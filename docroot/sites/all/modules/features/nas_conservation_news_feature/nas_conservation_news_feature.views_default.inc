@@ -43,6 +43,13 @@ function nas_conservation_news_feature_views_default_views() {
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['label'] = 'Conservation News';
   $handler->display->display_options['header']['area']['format'] = 'map';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'No news in this section.';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
   /* Field: Content: Date */
   $handler->display->display_options['fields']['field_conservation_news_date']['id'] = 'field_conservation_news_date';
   $handler->display->display_options['fields']['field_conservation_news_date']['table'] = 'field_data_field_conservation_news_date';
@@ -176,6 +183,7 @@ function nas_conservation_news_feature_views_default_views() {
     t('‹ Newer'),
     t('Older ›'),
     t('last »'),
+    t('No news in this section.'),
     t('[[field_conservation_news_link]]'),
     t('All'),
     t('Page'),
