@@ -46,3 +46,15 @@
 
   - name: Remove Jenkins logs
     shell: "rm -rf /var/log/jenkins/*"
+
+  - name: Remove all docker volumes
+    shell: "docker volume rm $(docker volume ls -qf dangling=true)"
+    ignore_errors: true
+
+  - name: Remove all docker containers except "demo"
+    shell: "docker rm -f $(docker ps -a | grep -v demo | grep -v CONTAINER | cut -d' ' -f1)"
+    ignore_errors: true
+
+  - name: Remove all docker images
+    shell: "docker rmi $(docker images -f \"dangling=true\" -q)"
+    ignore_errors: true
