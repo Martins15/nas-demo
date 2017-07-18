@@ -1,5 +1,6 @@
 ---
 global_env:
+  trusted_host_patterns: []
   pre_settings:
     - { name: '$conf["file_temporary_path"]', status: true, value: '{{ tmp_folder }}' }
     - { name: '$conf["memcache_key_prefix"]', status: true, value: '{{ mysql_db }}' }
