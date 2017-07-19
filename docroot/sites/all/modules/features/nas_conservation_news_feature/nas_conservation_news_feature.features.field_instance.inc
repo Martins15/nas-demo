@@ -356,7 +356,7 @@ function nas_conservation_news_feature_field_default_field_instances() {
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
-        'rel' => 'nofollow',
+        'rel' => '',
         'target' => '_blank',
         'title' => '',
       ),

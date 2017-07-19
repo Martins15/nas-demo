@@ -4327,3 +4327,13 @@ function nas_master_update_7298() {
     'priority' => 0.5
   ));
 }
+
+/**
+ * Revert nas_conservation_news_feature and nas_metatags_feature.
+ */
+function nas_master_update_7299() {
+  features_revert(array(
+    'nas_conservation_news_feature' => array('field_instance'),
+    'nas_metatags_feature' => array('metatag')
+  ));
+}
