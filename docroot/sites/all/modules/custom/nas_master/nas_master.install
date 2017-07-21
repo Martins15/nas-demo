@@ -4370,7 +4370,7 @@ function nas_master_update_7301() {
 /**
  * Set excluded image styles for lazyloader.
  */
-function nas_master_update_7287() {
+function nas_master_update_7302() {
   $options = array();
   $styles = image_styles();
   foreach ($styles as $style) {
@@ -4385,7 +4385,7 @@ function nas_master_update_7287() {
 /**
  * Revert nas_file_entity.
  */
-function nas_master_update_7289() {
+function nas_master_update_7303() {
   features_revert(array(
     'nas_file_entity' => array(
       'file_display',
