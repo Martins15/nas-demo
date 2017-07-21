@@ -4162,16 +4162,207 @@ function nas_master_update_7284() {
 }
 
 /**
- * Enable Panels Cache Expiration module.
+ * Move value from field_state to field_boa_state for BOA.
  */
 function nas_master_update_7285() {
+  features_revert(array(
+    'nas_boa_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+    ),
+    'nas_boa_index_feature' => array(
+      'views_view',
+    ),
+  ));
+
+  $node_load_multiple = node_load_multiple(array(), array('type' => 'boa'));
+  foreach ($node_load_multiple as $node) {
+    $node->field_boa_state = $node->field_state;
+    field_attach_update('node', $node);
+  }
+
+  if ($instance = field_info_instance('node', 'field_state', 'boa')) {
+    field_delete_instance($instance);
+  }
+
+}
+
+/**
+ * Turn off auto-add engagement cards to nodequeue.
+ */
+function nas_master_update_7286() {
+  // Qid of engagement_cards from table 'nodequeue_queue'.
+  $qid = 1;
+  $form_state = array(
+    'values' => array(
+      'qid' => $qid,
+      'auto_add' => 0,
+    ),
+  );
+  auto_nodequeue_nodequeue_edit_queue_form_submit(array(), $form_state);
+}
+
+/**
+ * Revert content types: article and static page and nas_view.
+ */
+function nas_master_update_7287() {
+  features_revert(array(
+    'nas_article_feature' => array(
+      'field_instance',
+      'field_group',
+      'variable',
+    ),
+    'nas_static_page_feature' => array(
+      'field_instance',
+      'field_group',
+      'variable',
+    ),
+    'nas_view_feature' => array(
+      'views_view',
+    ),
+  ));
+}
+
+/**
+ * Revert nas_news feature with .
+ */
+function nas_master_update_7288() {
+  features_revert(array('nas_news' => array('views_view')));
+}
+
+/**
+ * Enable AMPTheme theme.
+ */
+function nas_master_update_7289() {
+  theme_enable(array(
+    'amptheme',
+    'nas_amp',
+  ));
+}
+
+/**
+ * Enable AMP module.
+ */
+function nas_master_update_7290() {
+  module_enable(array(
+    'amp',
+    'nas_amp_feature',
+  ));
+}
+
+/**
+ * Revert Metatags, Article and Static Page features.
+ */
+function nas_master_update_7291() {
+  features_revert(array(
+    'nas_metatags_feature' => array('metatag'),
+    'nas_article_feature' => array(
+      'field_instance',
+      'strongarm',
+    ),
+    'nas_static_page_feature' => array(
+      'field_instance',
+      'strongarm',
+    ),
+  ));
+}
+
+/**
+ * Enable webform_validation module.
+ */
+function nas_master_update_7292() {
+  module_enable(array('webform_validation'));
+}
+
+/**
+ * Enable NAS Grid Gallery feature.
+ */
+function nas_master_update_7293() {
+  module_enable(array(
+    'nas_grid_gallery_feature',
+  ));
+}
+
+/**
+ * Enable conservation news feature.
+ *
+ * Turn on ability to export taxonomy terms, enable fe_date.
+ */
+function nas_master_update_7294() {
+  $taxonomy_settings = array(
+    'conservation_news_tracker' => 'conservation_news_tracker',
+  );
+  variable_set('uuid_features_entity_taxonomy_term', $taxonomy_settings);
+  module_enable(array('fe_date', 'nas_conservation_news_feature'));
+}
+
+/**
+ * Revert nas_conservation_news_feature.
+ */
+function nas_master_update_7295() {
+  $name = 'nas_conservation_news_feature';
+  module_disable(array($name));
+  drupal_uninstall_modules(array($name));
+  module_enable(array($name));
+}
+
+/**
+ * Enable panels_revision.
+ */
+function nas_master_update_7296() {
+  module_enable(array(
+    'panels_revision',
+  ));
+}
+
+/**
+ * Enable NAS Emoji module.
+ */
+function nas_master_update_7297() {
+  module_enable(array(
+    'nas_emoji',
+  ));
+}
+
+/**
+ * Revert nas_conservation_news_feature.
+ */
+function nas_master_update_7298() {
+  features_revert(array(
+    'nas_conservation_news_feature' => array(
+      'field_instance',
+      'strongarm',
+      'views_default'
+    )
+  ));
+  variable_set('xmlsitemap_settings_node_conservation_news', array(
+    'status' => 0,
+    'priority' => 0.5
+  ));
+}
+
+/**
+ * Revert nas_conservation_news_feature and nas_metatags_feature.
+ */
+function nas_master_update_7299() {
+  features_revert(array(
+    'nas_conservation_news_feature' => array('field_instance'),
+    'nas_metatags_feature' => array('metatag')
+  ));
+}
+
+/**
+ * Enable Panels Cache Expiration module.
+ */
+function nas_master_update_7300() {
   module_enable(array('expire_panels'));
 }
 
 /**
  * Enable nas_imagecache_token_feature feature. Set proper variable for updated lazyloader.
  */
-function nas_master_update_7286() {
+function nas_master_update_7301() {
   module_enable(array('nas_imagecache_token_feature'));
   variable_set('lazyloader_page_exclude_option', LAZYLOADER_PAGE_EXCLUDE_OPTION);
 }

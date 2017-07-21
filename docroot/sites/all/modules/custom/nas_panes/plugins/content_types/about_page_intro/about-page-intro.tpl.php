@@ -6,22 +6,34 @@
  */
 ?>
 
-<div class="row">
-  <div class="column">
-    <h2 class="thin">
-      <?php print $title; ?>
-    </h2>
+<?php if ($title): ?>
+  <div class="row<?php print !empty($spacetop) ? ' space-top' : ''; ?><?php print !empty($spacebetween) ? ' space-bottom' : ''; ?>">
+    <div class="column">
+      <<?php print $title_heading; ?> class="thin">
+        <?php print $title; ?>
+      </<?php print $title_heading; ?>>
+    </div>
   </div>
-</div>
-<div class="row text-container <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
+<?php endif; ?>
+
+<div class="row text-container<?php print !empty($contextual_links) ? ' contextual-links-region' : ''; ?><?php print !empty($spacebottom) ? $spacebottom : ''; ?><?php print empty($title) ? ' space-top' : ''; ?>">
   <?php print $contextual_links; ?>
-  <div class="columns medium-6">
-    <?php print $left_column; ?>
-  </div>
-  <div class="columns medium-6">
-    <?php print $right_column; ?>
-  </div>
-  <div class="columns">
-    <?php print $full_width_text; ?>
-  </div>
+
+  <?php if (!empty($left_column)): ?>
+    <div class="columns medium-6">
+      <?php print $left_column; ?>
+    </div>
+  <?php endif; ?>
+
+  <?php if (!empty($right_column)): ?>
+    <div class="columns medium-6">
+      <?php print $right_column; ?>
+    </div>
+  <?php endif; ?>
+
+  <?php if (!empty($full_width_text)): ?>
+    <div class="columns">
+      <?php print $full_width_text; ?>
+    </div>
+  <?php endif; ?>
 </div>

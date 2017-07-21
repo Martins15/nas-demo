@@ -7,16 +7,62 @@ namespace Composer\Autoload;
 class ComposerStaticInitComposerManager
 {
     public static $files = array (
+        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '7e702cccdb9dd904f2ccf22e5f37abae' => __DIR__ . '/..' . '/facebook/php-sdk-v4/src/Facebook/polyfills.php',
+        'e9b046393eb3376a21bcc1a30bd2fe64' => __DIR__ . '/..' . '/querypath/querypath/src/qp_functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'Zend\\Validator\\' => 15,
+            'Zend\\Uri\\' => 9,
+            'Zend\\Stdlib\\' => 12,
+            'Zend\\Soap\\' => 10,
+            'Zend\\Server\\' => 12,
+            'Zend\\EventManager\\' => 18,
+            'Zend\\Escaper\\' => 13,
+            'Zend\\Code\\' => 10,
+        ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\CssSelector\\' => 30,
+            'Symfony\\Component\\Console\\' => 26,
+        ),
+        'R' => 
+        array (
+            'React\\Promise\\' => 14,
+        ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+            'Psr\\Container\\' => 14,
+        ),
+        'M' => 
+        array (
+            'Masterminds\\' => 12,
+        ),
+        'L' => 
+        array (
+            'Lullabot\\AMP\\' => 13,
+        ),
+        'I' => 
+        array (
+            'Interop\\Container\\' => 18,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Stream\\' => 18,
+            'GuzzleHttp\\Ring\\' => 16,
+            'GuzzleHttp\\' => 11,
         ),
         'F' => 
         array (
+            'FastImageSize\\tests\\' => 20,
+            'FastImageSize\\' => 14,
             'Facebook\\InstantArticles\\' => 25,
             'Facebook\\' => 9,
         ),
@@ -29,9 +75,97 @@ class ComposerStaticInitComposerManager
     );
 
     public static $prefixDirsPsr4 = array (
+        'Zend\\Validator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-validator/src',
+        ),
+        'Zend\\Uri\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-uri/src',
+        ),
+        'Zend\\Stdlib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-stdlib/src',
+        ),
+        'Zend\\Soap\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-soap/src',
+        ),
+        'Zend\\Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-server/src',
+        ),
+        'Zend\\EventManager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-eventmanager/src',
+        ),
+        'Zend\\Escaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-escaper/src',
+        ),
+        'Zend\\Code\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-code/src',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\Debug\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/debug',
+        ),
         'Symfony\\Component\\CssSelector\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/css-selector',
+        ),
+        'Symfony\\Component\\Console\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'React\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/react/promise/src',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Masterminds\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/masterminds/html5/src',
+        ),
+        'Lullabot\\AMP\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lullabot/amp/src',
+        ),
+        'Interop\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
+        ),
+        'GuzzleHttp\\Stream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/streams/src',
+        ),
+        'GuzzleHttp\\Ring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/ringphp/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'FastImageSize\\tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/marc1706/fast-image-size/tests',
+        ),
+        'FastImageSize\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/marc1706/fast-image-size/lib',
         ),
         'Facebook\\InstantArticles\\' => 
         array (
@@ -52,6 +186,23 @@ class ComposerStaticInitComposerManager
         'Drupal\\fb_instant_articles\\' => 
         array (
             0 => __DIR__ . '/../../modules/patched/fb_instant_articles/src',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'Sabberworm\\CSS' => 
+            array (
+                0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib',
+            ),
+        ),
+        'Q' => 
+        array (
+            'QueryPath' => 
+            array (
+                0 => __DIR__ . '/..' . '/querypath/querypath/src',
+            ),
         ),
     );
 
@@ -135,6 +286,41 @@ class ComposerStaticInitComposerManager
         'LoggerRoot' => __DIR__ . '/..' . '/apache/log4php/src/main/php/LoggerRoot.php',
         'LoggerThrowableInformation' => __DIR__ . '/..' . '/apache/log4php/src/main/php/LoggerThrowableInformation.php',
         'LoggerUtils' => __DIR__ . '/..' . '/apache/log4php/src/main/php/helpers/LoggerUtils.php',
+        'Lullabot\\AMP\\Spec\\AmpLayout' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\AmpLayoutLayout' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\AtRuleSpec' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\AtRuleSpecBlockType' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\AttrList' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\AttrSpec' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\AttrTriggerSpec' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\BlackListedCDataRegex' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\CdataSpec' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ChildTagSpec' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\CssRuleSpec' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\CssSpec' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ErrorCategory' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ErrorCategoryCode' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ErrorFormat' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\PropertySpec' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\PropertySpecList' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\TagSpec' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\UrlSpec' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ValidationError' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ValidationErrorCode' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ValidationErrorSeverity' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ValidationResult' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ValidationResultStatus' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ValidationRulesFactory' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ValidatorInfo' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'Lullabot\\AMP\\Spec\\ValidatorRules' => __DIR__ . '/..' . '/lullabot/amp/src/Spec/validator-generated.php',
+        'SebastianBergmann\\Diff\\Chunk' => __DIR__ . '/..' . '/sebastian/diff/src/Chunk.php',
+        'SebastianBergmann\\Diff\\Diff' => __DIR__ . '/..' . '/sebastian/diff/src/Diff.php',
+        'SebastianBergmann\\Diff\\Differ' => __DIR__ . '/..' . '/sebastian/diff/src/Differ.php',
+        'SebastianBergmann\\Diff\\LCS\\LongestCommonSubsequence' => __DIR__ . '/..' . '/sebastian/diff/src/LCS/LongestCommonSubsequence.php',
+        'SebastianBergmann\\Diff\\LCS\\MemoryEfficientImplementation' => __DIR__ . '/..' . '/sebastian/diff/src/LCS/MemoryEfficientLongestCommonSubsequenceImplementation.php',
+        'SebastianBergmann\\Diff\\LCS\\TimeEfficientImplementation' => __DIR__ . '/..' . '/sebastian/diff/src/LCS/TimeEfficientLongestCommonSubsequenceImplementation.php',
+        'SebastianBergmann\\Diff\\Line' => __DIR__ . '/..' . '/sebastian/diff/src/Line.php',
+        'SebastianBergmann\\Diff\\Parser' => __DIR__ . '/..' . '/sebastian/diff/src/Parser.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -142,6 +328,7 @@ class ComposerStaticInitComposerManager
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitComposerManager::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitComposerManager::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitComposerManager::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitComposerManager::$classMap;
 
         }, null, ClassLoader::class);

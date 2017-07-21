@@ -20,6 +20,7 @@ $plugin = array(
     'filter' => array(
       'menu_section' => '',
       'editorial_section' => array(),
+      'conservation_strategy' => array(),
     ),
     'more_link_text' => '',
     'more_link_url' => '',
@@ -119,6 +120,16 @@ function editorial_card_river_edit_form($form, &$form_state) {
     '#default_value' => !empty($conf['filter']['editorial_section']) ? array_keys($conf['filter']['editorial_section']) : array(),
     '#era_entity_type' => 'taxonomy_term',
     '#era_bundles' => array('section'),
+    '#era_cardinality' => -1,
+    '#states' => $filter_state,
+  );
+
+  $form['filter']['conservation_strategy'] = array(
+    '#type' => 'entityreference',
+    '#title' => t('Conservation Strategy'),
+    '#default_value' => !empty($conf['filter']['conservation_strategy']) ? array_keys($conf['filter']['conservation_strategy']) : array(),
+    '#era_entity_type' => 'node',
+    '#era_bundles' => array('strategy'),
     '#era_cardinality' => -1,
     '#states' => $filter_state,
   );
@@ -246,6 +257,7 @@ function _editorial_card_river_presets() {
             'args' => array(
               'menu_section',
               'editorial_section',
+              'conservation_strategy',
             ),
           ),
         ),
@@ -280,7 +292,7 @@ function _editorial_card_river_presets() {
  *   Arguments.
  * @param array $settings
  *   Array of required context types.
- * @param array $context
+ * @param object $context
  *   Available context.
  * @param array $conf
  *   Pane configuration.
@@ -312,6 +324,23 @@ function _editorial_card_river_get_view_args(array &$args, array $settings, $con
           }
           if (!empty($editorial_filter)) {
             $args[$arg_key] = implode('+', $editorial_filter);
+          }
+        }
+        break;
+
+      case 'conservation_strategy':
+        // Apply filter or add default value.
+        $args[$arg_key] = 'all';
+        if (!empty($conf['filter'][$require_context])) {
+          // Apply filter or add default value.
+          $strategy_filter = array();
+          foreach ($conf['filter'][$require_context] as $reference) {
+            if (!empty($reference['entity_id'])) {
+              $strategy_filter[] = $reference['entity_id'];
+            }
+          }
+          if (!empty($strategy_filter)) {
+            $args[$arg_key] = implode('+', $strategy_filter);
           }
         }
         break;

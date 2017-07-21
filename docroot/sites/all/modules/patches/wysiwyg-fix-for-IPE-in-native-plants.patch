@@ -1,0 +1,15 @@
+diff --git a/docroot/sites/all/modules/patched/wysiwyg/wysiwyg.js b/docroot/sites/all/modules/patched/wysiwyg/wysiwyg.js
+index 5251558..7cd00b3 100644
+--- a/docroot/sites/all/modules/patched/wysiwyg/wysiwyg.js
++++ b/docroot/sites/all/modules/patched/wysiwyg/wysiwyg.js
+@@ -136,7 +136,9 @@ Drupal.behaviors.attachWysiwyg = {
+     if (/KDE/.test(navigator.vendor)) {
+       return;
+     }
+-
++    if (context != document && $(context).parents('body').size() < 1) {
++      return;
++    }
+     $('.wysiwyg:input', context).once('wysiwyg', function () {
+       var $this = $('#' + this.id, context), trigger = settings.wysiwyg.triggers[this.id];
+       // Skip processing if the trigger is unknown or does not exist in this

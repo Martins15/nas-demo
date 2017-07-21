@@ -184,6 +184,10 @@ function nas_article_feature_strongarm() {
             'weight' => '31',
             'visible' => FALSE,
           ),
+          'amp' => array(
+            'weight' => '6',
+            'visible' => TRUE,
+          ),
         ),
         'language' => array(
           'default' => array(
@@ -201,6 +205,10 @@ function nas_article_feature_strongarm() {
           'editorial_grid_teaser' => array(
             'weight' => '7',
             'visible' => FALSE,
+          ),
+          'amp' => array(
+            'weight' => '0',
+            'visible' => TRUE,
           ),
         ),
       ),

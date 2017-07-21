@@ -113,6 +113,7 @@
 
 .curtain-video {
   position: absolute;
+  top: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
@@ -131,10 +132,35 @@
     }
   }
 
-  &.cover, &.center {
+  &.center,
+  &.top-left,
+  &.top-right,
+  &.bottom-left,
+  &.bottom-right {
     video {
-      left: 50%;
+      max-width: none;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      position: absolute;
+      transform: scale(1.0);
+      margin: 0 auto !important;
+      -webkit-transform: scale(1.0);
+    }
+  }
+
+  &.center, &.cover {
+    video {
       top: 50%;
+      left: 50%;
+    }
+  }
+
+  &.center {
+    video {
+      transform: translate(-50%, -50%) scale(1.0);
+      -webkit-transform: translate(-50%, -50%) scale(1.0);
     }
   }
 

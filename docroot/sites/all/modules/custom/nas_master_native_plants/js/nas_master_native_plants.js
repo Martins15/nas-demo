@@ -152,12 +152,35 @@
   Drupal.behaviors.nativePlantsEndIPE = {
     attach: function (context, settings) {
       $('body').once('np-endIPE', function () {
-        $('body.panels-ipe').bind('endIPE', function () {
+        $(document).bind('endIPE', function () {
           if ($('.view-native-plants-search').length === 0) {
-            return;
+            window.location.reload();
           }
           $('.view-filters .form-select:first', $('.view-native-plants-search')).trigger('change');
         });
+      });
+    }
+  };
+
+  /**
+   * Reload all iframes in the Local Resources tab on click.
+   */
+  Drupal.behaviors.nativePlantsReloadEsriMap = {
+    attach: function (context, settings) {
+      var $tabs = $('.js-native-plants-tabs'),
+        reloadMap = false;
+
+      $tabs.responsiveTabs({
+        activate: function (event, tab) {
+          if (tab['selector'] == '#local_resources' && reloadMap == false) {
+            $('#local_resources iframe[src^="//audubon.maps.arcgis"]').each(function () {
+              $(this).attr('src', function (i, val) {
+                return val;
+              });
+            });
+            reloadMap = true;
+          }
+        }
       });
     }
   };

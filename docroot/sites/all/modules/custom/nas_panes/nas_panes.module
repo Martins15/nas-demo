@@ -591,17 +591,6 @@ function nas_panes_theme() {
       'template' => 'about-page-menu-bar',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_menu_bar',
     ),
-    'about_page_intro' => array(
-      'variables' => array(
-        'title' => NULL,
-        'left_column' => NULL,
-        'right_column' => NULL,
-        'full_width_text' => NULL,
-        'contextual_links' => NULL,
-      ),
-      'template' => 'about-page-intro',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_intro',
-    ),
     'about_page_leadership' => array(
       'variables' => array(
         'title' => NULL,
@@ -1499,13 +1488,13 @@ function _nas_panes_save_panelizer($subtype, $node) {
  *   Subtype.
  * @param array $data
  *   Data.
- * @param bool $first
+ * @param bool $sidebar
  *   Get first.
  *
  * @return array
  *   Array of node ojects and contextual_links.
  */
-function nas_panes_engagement_cards_get_cards($subtype, array $data, $first = FALSE) {
+function nas_panes_engagement_cards_get_cards($subtype, array $data, $number_of_cards = 1, $sidebar = FALSE) {
   global $language;
   $lang = $language->language == 'en' ? 'und' : $language->language;
   $nodes = $context = array();
@@ -1565,124 +1554,206 @@ function nas_panes_engagement_cards_get_cards($subtype, array $data, $first = FA
     }
   }
 
-  // Sidebar display card logic.
-  if ($first) {
-    // Check if we have loaded cards from Campaign
-    // and pass 1st card for sidebar.
-    if (!empty($nodes) && isset($nodes[0])) {
-      $nodes = array($nodes[0]);
-      // Pass to js special var for unchecking First Time Visitors.
-      drupal_add_js(array(
-        'nas_panes' => array(
-          'ignore_first_time_visitor' => TRUE,
-        ),
-      ), 'setting'
+  $nas_panes_engagement_cards_get_cards = &drupal_static(__FUNCTION__, FALSE);
+  if ($nas_panes_engagement_cards_get_cards === FALSE) {
+    $cards_priority = array();
+    // Check if we have loaded cards from Campaign and pass 1st card for sidebar.
+    if ($sidebar) {
+      $cards_priority[] = array(
+        'function_name' => 'campaign',
+        'nodes' => &$nodes
       );
     }
-    // Manual override.
-    if (empty($nodes) &&
-      !empty($data['references'][1]['entity_reference']['entity_id']) &&
-      node_load($data['references'][1]['entity_reference']['entity_id'])->status == NODE_PUBLISHED &&
-      $node = _i18n_node_load($data['references'][1]['entity_reference']['entity_id'])) {
-      $nodes[nodequeue_subqueue_position(1, $data['references'][1]['entity_reference']['entity_id'])] = $node;
+    // Bird content type related. Check if some editorial cards has reference to bird.
+    if (!empty($context_node) && $context_node->type == 'bird') {
+      $cards_priority[] = array(
+        'function_name' => 'ct_bird',
+        'field' => 'field_related_bird',
+        'context_node' => $context_node,
+        'all_nodes_positioned' => $all_nodes_positioned,
+        'nodes' => &$nodes
+      );
     }
-    if (empty($nodes)) {
-      // Check if some editorial cards has reference to bird.
-      if (isset($context_node)) {
-        if ($context_node->type == 'bird') {
-          foreach ($all_nodes_positioned as $node) {
-            if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
-              foreach ($field_related_bird_items as $value) {
-                if ($value['target_id'] == $context_node->nid) {
-                  $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-                }
-              }
-            }
-          }
-        }
-        if ($context_node->type == 'article') {
-          foreach ($all_nodes_positioned as $node) {
-            if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
-              if ($context_node->field_related_bird && $context_node_field_related_bird_items = field_get_items('node', $context_node, 'field_related_bird')) {
-                foreach ($field_related_bird_items as $value) {
-                  foreach ($context_node_field_related_bird_items as $context_node_value) {
-                    if ($context_node_value['target_id'] == $value['target_id']) {
-                      $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      // Not Manual overrides, not Birds references were provided.
-      if (empty($nodes) && isset($context_node)
-        && isset($context_node->field_menu_section) && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
-        $current_page_sections = array();
-        foreach ($field_menu_section_items as $value) {
-          $current_page_sections[] = $value['tid'];
-        }
-        foreach ($all_nodes_positioned as $node) {
-          if ($node->field_menu_section && $field_menu_section_items = field_get_items('node', $node, 'field_menu_section')) {
-            foreach ($field_menu_section_items as $value) {
-              if (in_array($value['tid'], $current_page_sections)) {
-                $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-              }
-            }
-          }
-        }
-      }
-
-      // Check engagement cards for 'Important Bird Areas' internal tag for IBA nodes.
-      if (empty($nodes) && isset($context_node) && $context_node->type == 'iba') {
-        $internal_tag = taxonomy_get_term_by_name('Important Bird Areas', 'internal_tagging');
-        $current_page_internal_tags = array(reset($internal_tag)->tid);
-        foreach ($all_nodes_positioned as $node) {
-          if ($node->field_internal_tagging && $field_internal_tagging = field_get_items('node', $node, 'field_internal_tagging')) {
-            foreach ($field_internal_tagging as $value) {
-              if (in_array($value['tid'], $current_page_internal_tags)) {
-                $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-              }
-            }
-          }
-        }
-      }
-    }
-    // Load card number 4 if manual override was not provided or context not matched.
-    if (empty($nodes)) {
-      if (isset($all_nodes_positioned[4])) {
-        $nodes[] = $all_nodes_positioned[4];
-      }
-    }
-    $cards_array['nodes'] = $nodes;
+    // Check if related bird matches.
+    $cards_priority[] = array(
+      'function_name' => 'n_fields',
+      'field' => 'field_related_bird',
+      'field_key' => 'target_id',
+      'context_node' => $context_node,
+      'all_nodes_positioned' => $all_nodes_positioned,
+      'nodes' => &$nodes
+    );
+    // Check if editorial section matches.
+    $cards_priority[] = array(
+      'function_name' => 'n_fields',
+      'field' => 'field_custom_section',
+      'field_key' => 'tid',
+      'context_node' => $context_node,
+      'all_nodes_positioned' => $all_nodes_positioned,
+      'nodes' => &$nodes
+    );
+    // Check if menu section matches. Check only last this time because it has
+    // more priority on others.
+    $cards_priority[] = array(
+      'function_name' => 'n_fields',
+      'field' => 'field_menu_section',
+      'field_key' => 'tid',
+      'context_node' => $context_node,
+      'all_nodes_positioned' => $all_nodes_positioned,
+      'nodes' => &$nodes,
+      'single_item' => 'last'
+    );
+    // Check if menu section matches. Check all items, last will be checked too
+    // but will not fall into order cause it will br present there already.
+    $cards_priority[] = array(
+      'function_name' => 'n_fields',
+      'field' => 'field_menu_section',
+      'field_key' => 'tid',
+      'context_node' => $context_node,
+      'all_nodes_positioned' => $all_nodes_positioned,
+      'nodes' => &$nodes
+    );
+    // Perform search for all conditions.
+    nas_panes_engagemanet_cards_prioritize($cards_priority);
+    $nas_panes_engagement_cards_get_cards = $nodes;
   }
-  // Footer block display cards logic.
+  // For case if $nas_panes_engagement_cards_get_cards was already defined. We
+  // need to keep those variables separately to be able to add manual override
+  // cards.
+  $nodes = $nas_panes_engagement_cards_get_cards;
+  nas_panes_engagemanet_cards_manual($data, $nodes);
+  nas_panes_engagemanet_cards_cut_paste_cards($sidebar, $number_of_cards, $all_nodes_positioned, $nodes);
+  return $nodes;
+}
+
+/**
+ * Manage matching cards, remove/add them if needed.
+ */
+function nas_panes_engagemanet_cards_cut_paste_cards($sidebar, $number_of_cards, $all_nodes_positioned, &$nodes) {
+  if ($sidebar) {
+    // Cut nodequeue array to take 4th element firstly in case nothing matches.
+    $all_nodes_positioned = array_slice($all_nodes_positioned, 3, count($all_nodes_positioned) - 3, TRUE);
+  }
+  // Add or cut cards if needed.
+  if (count($nodes) < $number_of_cards) {
+    foreach ($all_nodes_positioned as $node) {
+      $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+      if ($number_of_cards == count($nodes)) {
+        break;
+      }
+    }
+  }
   else {
-    // Check if we have loaded cards from Campaign
-    // and pass 2,3,4 cards for footer.
-    if (!empty($nodes) && count($nodes) == 4) {
-      $nodes = array_slice($nodes, 1, 3);
+    $nodes = array_slice($nodes, 0, $number_of_cards, TRUE);
+  }
+  $nas_panes_engagement_cards_get_cards = &drupal_static('nas_panes_engagement_cards_get_cards', array());
+  // Remove already added cards from static queue.
+  foreach ($nodes as $key => $node) {
+    unset($nas_panes_engagement_cards_get_cards[$key]);
+  }
+}
+
+/**
+ * Main function to handle order of searching matching engagement cards.
+ */
+function nas_panes_engagemanet_cards_prioritize(&$priority) {
+  foreach ($priority as &$parameters) {
+    $function_name = 'nas_panes_engagemanet_cards_' . $parameters['function_name'];
+    if (function_exists($function_name)) {
+      call_user_func_array($function_name, array(&$parameters));
     }
-    else {
-      $nodes = array();
+  }
+}
+
+/**
+ * Search engagement cards matches campaign.
+ */
+function nas_panes_engagemanet_cards_campaign(&$arguments) {
+  $nodes = &$arguments['nodes'];
+  if (!empty($nodes) && isset($nodes[0])) {
+    $nodes = array($nodes[0]);
+    // Pass to js special var for unchecking First Time Visitors.
+    drupal_add_js(array(
+      'nas_panes' => array(
+        'ignore_first_time_visitor' => TRUE,
+      ),
+    ), 'setting'
+    );
+  }
+}
+
+/**
+ * Search engagement cards matches for manual override in panels.
+ */
+function nas_panes_engagemanet_cards_manual($data, &$nodes) {
+  if (!isset($data['references'])) {
+    return;
+  }
+  foreach ($data['references'] as $value) {
+    if (empty($value['entity_reference']['entity_id']) || !$node = _i18n_node_load($value['entity_reference']['entity_id'])) {
+      continue;
     }
-    // Manual override.
-    if (empty($nodes) && isset($data['references'])) {
-      foreach ($data['references'] as $value) {
-        if (isset($value['entity_reference']['entity_id']) && $node = _i18n_node_load($value['entity_reference']['entity_id'])) {
-          $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
+    if ($node->status == NODE_PUBLISHED) {
+      $nodes = array(nodequeue_subqueue_position(1, $value['entity_reference']['entity_id']) => $node) + $nodes;
+    }
+  }
+}
+
+/**
+ * For BIRD content type only.
+ */
+function nas_panes_engagemanet_cards_ct_bird($arguments) {
+  $field = $arguments['field'];
+  $context_node = $arguments['context_node'];
+  $all_nodes_positioned = $arguments['all_nodes_positioned'];
+  $nodes = &$arguments['nodes'];
+  if (empty($context_node)) {
+    return;
+  }
+  foreach ($all_nodes_positioned as $node) {
+    if (!$node->{$field} || !$field_items = field_get_items('node', $node, $field)) {
+      continue;
+    }
+    foreach ($field_items as $value) {
+      if ($value['target_id'] == $context_node->nid) {
+        $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+      }
+    }
+  }
+}
+
+/**
+ * Search engagement cards that matches provided field.
+ */
+function nas_panes_engagemanet_cards_n_fields(&$arguments) {
+  $field = $arguments['field'];
+  $field_key = $arguments['field_key'];
+  $context_node = $arguments['context_node'];
+  $all_nodes_positioned = $arguments['all_nodes_positioned'];
+  $nodes = &$arguments['nodes'];
+  if (empty($context_node) || empty($context_node->{$field}) || !$context_field_items = field_get_items('node', $context_node, $field)) {
+    return;
+  }
+  if ($field == "field_menu_section"
+    && count($context_field_items) > 1
+    && !empty($arguments['single_item'])
+    && $arguments['single_item'] == 'last'
+  ) {
+    end($context_field_items);
+    $context_field_items = array(current($context_field_items));
+  }
+  foreach ($all_nodes_positioned as $card) {
+    if (!$card->{$field} || !$card_field_items = field_get_items('node', $card, $field)) {
+      continue;
+    }
+    foreach ($card_field_items as $value) {
+      foreach ($context_field_items as $context_value) {
+        if ($context_value[$field_key] == $value[$field_key]) {
+          $nodes[nodequeue_subqueue_position(1, $card->nid)] = $card;
         }
       }
     }
-    // Load first 3 from nodequeue if manual override was not provided.
-    if (empty($nodes)) {
-      $nodes = array_slice($all_nodes_positioned, 0, 3, TRUE);
-    }
-    $cards_array['nodes'] = $nodes;
   }
-
-  return $cards_array;
 }
 
 /**
@@ -2224,19 +2295,28 @@ function _nas_panes_default_social_pages_url() {
  *
  * @param object $file
  *   Loaded file entity of bundle 'image'.
+ * @param bool $plain
+ *   Flags if it doesn't need add HTML markup.
+ * @param bool $raw
+ *   Flags if only the raw values are required.
  *
- * @return string
+ * @return string|array
  *   Image caption and credit formatted like "[Caption] Photo: [Credit]".
  */
-function _nas_panes_format_image_attribution($file, $plain = FALSE) {
+function _nas_panes_format_image_attribution($file, $plain = FALSE, $raw = FALSE) {
   if (!$file) {
     return '';
   }
 
   $parts = array();
+  $raw_values = array(
+    'caption' => '',
+    'credit' => '',
+  );
 
   if ($items = field_get_items('file', $file, 'field_file_caption')) {
     if (isset($items[0]['safe_value'])) {
+      $raw_values['caption'] = $items[0]['safe_value'];
       if ($plain) {
         $parts[] = trim($items[0]['safe_value']);
       }
@@ -2247,6 +2327,7 @@ function _nas_panes_format_image_attribution($file, $plain = FALSE) {
   }
   if ($items = field_get_items('file', $file, 'field_file_credit')) {
     if (isset($items[0]['safe_value'])) {
+      $raw_values['credit'] = $items[0]['safe_value'];
       if ($plain) {
         $parts[] = t('Photo:');
         $parts[] = trim($items[0]['safe_value']);
@@ -2257,6 +2338,11 @@ function _nas_panes_format_image_attribution($file, $plain = FALSE) {
       }
     }
   }
+
+  if ($raw) {
+    return $raw_values;
+  }
+
   return implode(' ', $parts);
 }
 
@@ -2329,13 +2415,6 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
     ),
     '#id' => 'nas-boa-mail-subscription-submit',
   );
-  $form['cancel'] = array(
-    '#type' => 'link',
-    '#title' => t('No thanks'),
-    '#attributes' => array(
-      'class' => array('cancel'),
-    ),
-  );
   $form['privacy_policy'] = array(
     '#suffix' => '</div>',
     '#type' => 'link',
@@ -2376,35 +2455,18 @@ function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
     return;
   }
 
-  $url = 'http://www.audubonaction.org/site/Survey';
-  $data = array(
-    'cons_email' => $email,
-    'cons_info_component' => 't',
-    'cons_mail_opt_in' => 't',
-    'cons_email_opt_in' => 1,
-    'cons_email_opt_in_requested' => 'true',
-    'cons_first_name' => $first_name,
-    'cons_last_name' => $last_name,
-    'cons_zip_code' => $zip_code,
-    's_rememberMe' => 0,
-    'remember_me_opt_in_requested' => 'true',
-    'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
-    'SURVEY_ID' => '18260',
-    'denySubmit' => '',
-    "3340_18260_2_14661" => "1441",
-    "3340_18260_2_14661" => "1401",
+  // External integration.
+  $values = array(
+    'email' => $email,
+    'firstName' => $first_name,
+    'lastName' => $last_name,
+    'zipcode' => $zip_code,
+    'square_feet' => 0,
   );
-  $options = array(
-    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
-    'method' => 'POST',
-    'data' => http_build_query($data),
-    'timeout' => 60,
-  );
-  $result = drupal_http_request($url, $options);
-  watchdog('email_subscribe', 'Email %email entered', array('%email' => $email));
-  watchdog('email_subscribe', 'Service answer was !answer', array('!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>'));
-  // Set up cookie for showing download link of already subscribed users.
-  if (isset($result->code) && ($result->code == 200)) {
+  ctools_include('plugins');
+  $nas_boa_plate = ctools_get_plugins('ctools', 'content_types', 'nas_boa_plate');
+  nas_external_integration_process_form_submission($values, $nas_boa_plate['defaults']['nas_external_integration']);
+  if (isset($values['result']->code) && ($values['result']->code == 200)) {
     setcookie('show_download_link', 1, time() + (86400 * 365), '/');
   }
 }
@@ -2477,11 +2539,6 @@ function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
     '#type' => 'textarea',
     '#default_value' => variable_get('boa_mail_subscription_settings_form_after', ''),
   );
-  $form['after_no'] = array(
-    '#title' => t('Text after No Thanks.'),
-    '#type' => 'textarea',
-    '#default_value' => variable_get('boa_mail_subscription_settings_form_after_no', ''),
-  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
@@ -2499,7 +2556,6 @@ function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state
   variable_set('boa_mail_subscription_settings_form_image', $form_state['values']['image']);
   variable_set('boa_mail_subscription_settings_form_intro', $form_state['values']['intro']);
   variable_set('boa_mail_subscription_settings_form_after', $form_state['values']['after']);
-  variable_set('boa_mail_subscription_settings_form_after_no', $form_state['values']['after_no']);
 }
 
 /**
@@ -2660,8 +2716,44 @@ function nas_panes_ctools_plugin_pre_alter(&$plugin, &$info) {
   if ($info['type'] == 'content_types' && $plugin['name'] == 'custom') {
     // Adding form_build_id to use it for "NAS-style" contextual link.
     $plugin['defaults']['form_build_id'] = '';
+    unset($plugin['no title override']);
     $plugin['render callback'] = '_nas_panes_ctools_custom_content_type_render';
     $plugin['hook theme'] = '_nas_panes_ctools_custom_content_type_theme';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_panes_form_ctools_custom_content_type_edit_form_alter(&$form, &$form_state, $form_id) {
+  $conf = $form_state['conf'];
+  $form['override_title_left_margin'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Add left margin for title'),
+    '#default_value' => !empty($conf['override_title_left_margin']) ? $conf['override_title_left_margin'] : '',
+    '#weight' => 1,
+    '#states' => array(
+      'visible' => array(
+        'input[name="override_title"]' => array(
+          'checked' => TRUE,
+        ),
+      ),
+    ),
+  );
+  // Change weight for body field in form.
+  $form['body']['#weight'] = 2;
+  // Add custom submit function for title options.
+  $form['#submit'][] = '_nas_panes_ctools_custom_content_type_form_submit';
+}
+
+/**
+ * Submit handler for configuration.
+ */
+function _nas_panes_ctools_custom_content_type_form_submit(&$form, &$form_state) {
+  foreach (element_children($form) as $key) {
+    if (isset($form_state['values'][$key])) {
+      $form_state['conf'][$key] = $form_state['values'][$key];
+    }
   }
 }
 
@@ -2671,11 +2763,23 @@ function nas_panes_ctools_plugin_pre_alter(&$plugin, &$info) {
 function _nas_panes_ctools_custom_content_type_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
+  // Add check if not exist override_title add to pane override_title.
+  if (!isset($conf['override_title']) && !empty($conf['title'])) {
+    $conf['override_title'] = 1;
+    $conf['override_title_text'] = $conf['title'];
+    $conf['override_title_heading'] = 'h2';
+  }
+  // Add check if not exist override_title_left_margin.
+  if (!isset($conf['override_title_left_margin'])) {
+    $conf['override_title_left_margin'] = 0;
+  }
+
   $block = ctools_custom_content_type_render($subtype, $conf, $args, $contexts);
   $block->content = array(
     '#theme' => 'nas_panes_ctools_custom_content_type',
     '#markup' => $block->content,
     '#context_links' => $contextual_links,
+    '#left_margin' => $conf['override_title_left_margin'],
   );
 
   return $block;
