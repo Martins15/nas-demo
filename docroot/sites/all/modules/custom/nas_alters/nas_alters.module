@@ -332,6 +332,10 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
       'field_article_map',
       'field_credit_caption_map',
     ),
+    'fullwidth' => array(
+      'field_hero_image',
+      'field_hero_mobile_image',
+    ),
     'press_release' => array(
       'field_pressrelease_contact',
     ),
@@ -348,6 +352,7 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
   $form['menu_path_custom_tab']['field_article_redirect'] = $form['field_article_redirect'];
   $form['menu_path_custom_tab']['field_article_redirect']['#weight'] = 40;
   $form['field_article_redirect']['#access'] = FALSE;
+  $form['field_conservation_project']['#access'] = FALSE;
 
   // Manage visibility comment settings vertical tab.
   $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/hide-comment-settings.js';
@@ -762,6 +767,10 @@ function nas_alters_form_alter(&$form, &$form_state, $form_id) {
     $form['override_title']['#type'] = 'hidden';
     $form['override_title']['#default_value'] = 1;
     $form['override_title_text']['#title'] = t('Title');
+  }
+  // Hide title field in the custom type pane.
+  if ($form_id === 'ctools_custom_content_type_edit_form') {
+    $form['title']['#access'] = FALSE;
   }
 }
 

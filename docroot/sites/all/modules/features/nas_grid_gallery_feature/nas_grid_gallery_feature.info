@@ -1,0 +1,10 @@
+name = NAS Grid Gallery
+core = 7.x
+package = NAS
+version = 7.x-1.0
+project = nas_grid_gallery_feature
+dependencies[] = image
+features[features_api][] = api:2
+features[image][] = grid_gallery_lightbox
+features[image][] = grid_gallery_thumbnail
+project path = sites/all/modules/features

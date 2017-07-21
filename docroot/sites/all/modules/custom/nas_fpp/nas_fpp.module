@@ -138,6 +138,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Editorial card'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['amp'] = array(
+    'label' => t('AMP'),
+    'custom settings' => TRUE,
+  );
   $entity_info['file']['view modes']['hero'] = array(
     'label' => t('Hero'),
     'custom settings' => TRUE,

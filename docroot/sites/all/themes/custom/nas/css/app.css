@@ -4797,7 +4797,7 @@ select {
   padding-bottom: 12.5px;
 }
 
-.deck {
+.deck, .conservation_news_heading + div {
   font-style: italic;
 }
 
@@ -4808,7 +4808,7 @@ select {
 }
 
 @media only screen and (min-width: 768px) {
-  .deck {
+  .deck, .conservation_news_heading + div {
     font-size: 23px;
     line-height: 30px;
   }
@@ -5218,8 +5218,9 @@ small {
 }
 .engagement-hero__content .engagement-hero__header {
   display: block;
-  margin-bottom: 25px;
+  margin-bottom: 8px;
   font-size: 33px;
+  font-weight: 400;
   letter-spacing: -1px;
   line-height: 38px;
   text-transform: capitalize;
@@ -5238,7 +5239,7 @@ small {
   }
 }
 .engagement-hero__content .engagement-hero-text {
-  margin-bottom: 5px;
+  margin-bottom: 12px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   clear: both;
   font-size: 17px;
@@ -5311,6 +5312,19 @@ small {
     z-index: 2;
   }
 }
+.engagement-hero .hero-image.half--black .engagement-hero__content {
+  padding-bottom: 5px;
+}
+@media only screen and (min-width: 601px) {
+  .engagement-hero .hero-image.half--black .engagement-hero__content {
+    padding-bottom: 25px;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .engagement-hero .hero-image.half--black .engagement-hero__header {
+    margin-bottom: 0;
+  }
+}
 @media only screen and (min-width: 0px) and (max-width: 600px) {
   .engagement-hero .hero-attribution, .engagement-hero .hero-attribution-fullscreen {
     background: transparent;
@@ -5375,6 +5389,7 @@ small {
   }
 }
 .engagement-hero .half--black .engagement-hero-text {
+  margin-bottom: 5px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   clear: both;
   font-size: 17px;
@@ -5805,6 +5820,8 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 
 @media only screen {
   .mailing-list {
+    position: relative;
+    z-index: 5;
     text-align: center;
   }
 
@@ -6732,6 +6749,161 @@ table.row-borders tbody td {
   z-index: 3;
   display: none;
   cursor: pointer;
+}
+
+.editorial-card-2x-conservation-news-block .conservation-news-column h4 {
+  margin-bottom: 12.5px;
+}
+.editorial-card-2x-conservation-news-block .conservation-news-column .editorial-card {
+  border: none;
+  box-shadow: none;
+}
+.editorial-card-2x-conservation-news-block .conservation-news-column .view-conservation-news {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.editorial-card-2x-conservation-news-block .conservation-news-column .view-conservation-news .views-row {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  line-height: 20px;
+}
+
+.view-conservation-news-filter {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.view-conservation-news-filter .filter-label {
+  float: left;
+  color: #838078;
+}
+.view-conservation-news-filter .filter-items {
+  margin: 0;
+}
+.view-conservation-news-filter .filter-items li {
+  display: inline;
+  border-right: 1px solid #404040;
+  padding: 0 5px;
+  cursor: pointer;
+  color: #0AA8E3;
+  transition: color 0.15s;
+}
+.view-conservation-news-filter .filter-items li:last-child {
+  border-right: none;
+}
+.view-conservation-news-filter .filter-items li:hover {
+  color: #07729a;
+}
+
+.view-conservation-news .date-display-single:after {
+  content: ":";
+}
+.view-conservation-news .views-field-field-conservation-news-date {
+  font-weight: 600;
+}
+.view-conservation-news .views-field-field-conservation-news-link,
+.view-conservation-news .views-field-field-conservation-news-date,
+.view-conservation-news .views-field-body {
+  display: inline;
+}
+.view-conservation-news .views-field-field-conservation-news-link .field-content,
+.view-conservation-news .views-field-field-conservation-news-date .field-content,
+.view-conservation-news .views-field-body .field-content {
+  display: inherit;
+}
+.view-conservation-news .views-field-field-conservation-news-link .field-content p,
+.view-conservation-news .views-field-field-conservation-news-date .field-content p,
+.view-conservation-news .views-field-body .field-content p {
+  margin-bottom: 0;
+  display: inherit;
+}
+.view-conservation-news .pager {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  height: 50px;
+  list-style: none;
+  margin-left: 0;
+  position: relative;
+}
+.view-conservation-news .pager li {
+  position: absolute;
+  bottom: 5px;
+  font-size: 15px;
+}
+.view-conservation-news .pager .pager-previous {
+  left: 0;
+}
+.view-conservation-news .pager .pager-next {
+  right: 0;
+}
+.view-conservation-news .pager-current {
+  display: none;
+}
+
+.editorial-card-2x-conservation-news-block .view-conservation-news-views-list {
+  position: relative;
+}
+.editorial-card-2x-conservation-news-block .view-conservation-news-views-list .view {
+  display: none;
+}
+.editorial-card-2x-conservation-news-block .view-conservation-news-views-list .view .view-content {
+  font-size: 16px;
+}
+.editorial-card-2x-conservation-news-block.editorial-card-2x-conservation-news-block-processed .view {
+  display: block;
+}
+.editorial-card-2x-conservation-news-block.editorial-card-2x-conservation-news-block-processed .view.hidden {
+  display: none;
+}
+
+.conservation-menu-jump-menu {
+  margin-bottom: 37.5px;
+  font: 20px "Source Sans Pro", Verdana, sans-serif;
+  line-height: 27px;
+}
+.conservation-menu-jump-menu .jump-to {
+  float: left;
+  line-height: inherit;
+  padding-right: 0.2em;
+}
+.conservation-menu-jump-menu .jump-to-menu {
+  margin: 0;
+}
+.conservation-menu-jump-menu .jump-to-item {
+  display: inline-block;
+  padding-right: 0.2em;
+}
+.conservation-menu-jump-menu .jump-to-item:after {
+  content: " | ";
+  color: #404040;
+}
+.conservation-menu-jump-menu .jump-to-item:last-child {
+  border-right: none;
+}
+.conservation-menu-jump-menu .jump-to-item:last-child:after {
+  content: "";
+}
+
+.conservation-news-block .conservation-news-title {
+  line-height: 1.3;
+}
+.conservation-news-block .conservation-news-image {
+  float: left;
+  margin-right: 15px;
+  width: 40px;
+}
+.conservation-news-block .conservation-news-icon {
+  margin: auto;
+  display: block;
+  height: auto;
+}
+.conservation-news-block .conservation-news-heading + div {
+  font: italic 22px "Source Sans Pro", Verdana, sans-serif;
+}
+.conservation-news-block .view-conservation-news .views-row {
+  margin-bottom: 2em;
+}
+.conservation-news-block .view-conservation-news .pager {
+  height: 25px;
+}
+.conservation-news-block .view-conservation-news .pager li {
+  font-size: 16px;
 }
 
 /* @todo refactor like crazy for more hero variations */
@@ -11294,6 +11466,7 @@ body.black-bg .slide-caption {
 
 .curtain-video {
   position: absolute;
+  top: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
@@ -11308,9 +11481,24 @@ body.black-bg .slide-caption {
   min-width: 100%;
   max-width: none;
 }
-.curtain-video.cover video, .curtain-video.center video {
-  left: 50%;
+.curtain-video.center video, .curtain-video.top-left video, .curtain-video.top-right video, .curtain-video.bottom-left video, .curtain-video.bottom-right video {
+  max-width: none;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  transform: scale(1);
+  margin: 0 auto !important;
+  -webkit-transform: scale(1);
+}
+.curtain-video.center video, .curtain-video.cover video {
   top: 50%;
+  left: 50%;
+}
+.curtain-video.center video {
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
 }
 .curtain-video.top-left video {
   top: 0;
@@ -14342,10 +14530,10 @@ body.touch .sticky-wrapper {
   margin-top: 300px;
 }
 
-.static-page-content .deck {
+.static-page-content .deck, .static-page-content .conservation_news_heading + div {
   padding-bottom: 1em;
 }
-.static-page-content .text-container .deck {
+.static-page-content .text-container .deck, .static-page-content .text-container .conservation_news_heading + div {
   padding-bottom: 0;
 }
 
@@ -14845,7 +15033,7 @@ h2.grey {
 .node-type-iba h1 {
   margin: 0 0 5px 0;
 }
-.node-type-iba .deck {
+.node-type-iba .deck, .node-type-iba .conservation_news_heading + div {
   font-style: normal;
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
@@ -16463,6 +16651,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 
+.page-native-plants-search #full_results, .page-native-plants-search #best_results {
+  overflow: visible !important;
+}
 .page-native-plants-search #full_results .clearing-caption, .page-native-plants-search #best_results .clearing-caption {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 14px;
@@ -16576,6 +16767,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: none !important;
 }
 
+.cke_editable_themed p {
+  margin-bottom: 25.5px;
+}
+
 .social-bar {
   position: relative;
   background-color: #FBFAF6;
@@ -16683,23 +16878,37 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: flex;
   flex-flow: wrap row;
 }
+.editorial-grid-column.row:before, .editorial-grid-column.row:after {
+  content: none;
+  display: none;
+}
 .editorial-grid-column .editorial-card {
+  margin-bottom: 10px;
   padding-right: 12.5px;
   padding-left: 12.5px;
   width: 50%;
   border: 0;
   box-shadow: none;
 }
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 768px) {
   .editorial-grid-column .editorial-card {
     width: 20%;
+    margin-bottom: 5.5px;
   }
 }
 .editorial-grid-column .editorial-card .editorial-card-photo {
   display: block;
 }
 .editorial-grid-column .editorial-card .editorial-card-content {
-  padding: 12.5px 0;
+  padding: 12.5px 0 0;
+}
+.editorial-grid-column .editorial-card .editorial-card-content.short {
+  min-height: 120px;
+}
+@media only screen and (min-width: 768px) {
+  .editorial-grid-column .editorial-card .editorial-card-content.short {
+    padding: 12.5px 0;
+  }
 }
 .editorial-grid-column .editorial-card .editorial-card-title {
   margin-bottom: 5px;
@@ -16769,19 +16978,42 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   max-width: 100%;
 }
 .progress-bar-wrapper .progress-bar-content .progress .progress-label {
+  border-radius: 30px;
   display: block;
   height: 60px;
-  padding: 0 20px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
   width: 99.9%;
+  white-space: nowrap;
 }
 .progress-bar-wrapper .progress-bar-content .progress .progress-label .progress-start {
   float: left;
-  padding-right: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .progress-bar-wrapper .progress-bar-content .progress .progress-label .progress-current {
   display: inline-block;
   white-space: pre-line;
   overflow: hidden;
+  text-align: center;
+  padding: 0 20px;
+  position: absolute;
+  right: 0;
+  max-width: 100%;
+  width: 100%;
+}
+.progress-bar-wrapper .progress-bar-content .progress.progress-low .progress-current {
+  background: #7BA701;
+  width: auto;
+}
+@media only screen and (max-width: 600px) {
+  .progress-bar-wrapper .progress-bar-content .progress.progress-low .progress-start {
+    display: none;
+  }
+  .progress-bar-wrapper .progress-bar-content .progress.progress-low .progress-current {
+    width: 100%;
+  }
 }
 .progress-bar-wrapper .progress-bar-content .progress-finish {
   position: absolute;
@@ -16799,6 +17031,115 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .progress-bar-wrapper.space-bottom.double {
   padding-bottom: 50px;
+}
+
+.grid-gallery {
+  margin: 15px 0;
+}
+.grid-gallery .grid-gallery__thumbs {
+  margin-left: -2.5px;
+  margin-right: -2.5px;
+  width: auto;
+}
+.grid-gallery .grid-gallery__thumbs .columns {
+  padding-bottom: 2.5px;
+  padding-top: 2.5px;
+  padding-left: 2.5px;
+  padding-right: 2.5px;
+}
+@media only screen and (min-width: 601px) {
+  .grid-gallery .grid-gallery__thumbs {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .grid-gallery .grid-gallery__thumbs .columns {
+    padding-bottom: 6.25px;
+    padding-top: 6.25px;
+    padding-left: 6.25px;
+    padding-right: 6.25px;
+  }
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__lightbox {
+  line-height: 0;
+  display: block;
+  position: relative;
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__lightbox:before {
+  transition: opacity 0.1s;
+  background-image: url(../prototypes/full-screen-article/expander-x2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 100%;
+  content: "";
+  display: block;
+  height: 36px;
+  position: absolute;
+  left: 100%;
+  margin-left: -27px;
+  margin-top: -27px;
+  transform: translateX(-50%) translateY(-50%);
+  width: 36px;
+  opacity: 0;
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__lightbox:hover:before {
+  opacity: 1;
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__image {
+  width: 100%;
+}
+.grid-gallery .grid-gallery__caption {
+  color: #76736C;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+@media only screen and (min-width: 480px) {
+  .grid-gallery .grid-gallery__caption .columns {
+    padding-left: 2.5px;
+    padding-right: 2.5px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .grid-gallery .grid-gallery__caption .columns {
+    padding-left: 6.25px;
+    padding-right: 6.25px;
+  }
+}
+.grid-gallery .grid-gallery__caption p {
+  margin-bottom: 1em;
+}
+.grid-gallery.grid-gallery-single-image img {
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (min-width: 601px) {
+  .grid-gallery-slideshow-wrapper {
+    height: 0;
+    overflow: hidden;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .grid-gallery-5x3 .column-5 {
+    width: 20%;
+  }
+}
+.grid-gallery-5x3 .grid-gallery__thumbs {
+  max-width: none;
+}
+.grid-gallery-5x3 .grid-gallery__caption .columns {
+  max-width: 782px;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+@media only screen and (min-width: 480px) {
+  .grid-gallery-5x3 .grid-gallery__caption {
+    text-align: left;
+  }
 }
 
 .sidebar, .article-sidebar {
@@ -16856,7 +17197,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .article-sidebar-section .article-author-name {
   font-size: 18px;
-  line-height: 15px;
+  line-height: 20px;
   margin: 0 0 5px 0;
 }
 .article-sidebar-section .article-date {
@@ -16983,6 +17324,79 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .welcome-card.orange .welcome-card-banner {
   background-color: #dd7537;
+}
+
+.title-letter {
+  display: block;
+  float: left;
+  font-size: 82px;
+  height: 75px;
+  line-height: 75px;
+  margin-right: 10px;
+}
+
+.article-full-width .large-header {
+  max-width: 799px;
+  width: 100%;
+}
+.article-full-width .article-meta {
+  margin-top: 0;
+}
+.article-full-width.article-header {
+  margin-bottom: 25px;
+}
+
+.article-full-width-byline .article-author-image {
+  height: 45px;
+  width: 45px;
+  margin-right: 22px;
+}
+.article-full-width-byline .article-author-name {
+  font-size: 18px;
+}
+.article-full-width-byline .article-date {
+  font-size: 14px;
+}
+.article-full-width-byline .social-sharing {
+  display: none;
+}
+@media only screen and (min-width: 601px) {
+  .article-full-width-byline .social-sharing {
+    display: block;
+    margin-right: 12.5px;
+    position: absolute;
+    right: 64px;
+    text-align: right;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.article-full-width-layout .article-text {
+  left: 0;
+  margin: auto;
+  margin-top: 25px;
+  width: 100%;
+}
+.article-full-width-layout .article-text.row {
+  padding: 0 12.5px;
+  max-width: 799px;
+}
+.article-full-width-layout .article-text.row > :not(.article-aside):not(.article-image) {
+  margin: 0 auto 25.5px auto;
+  max-width: 640px;
+  width: 100%;
+}
+@media only screen and (min-width: 815px) {
+  .article-full-width-layout .article-text.row > :not(.article-aside):not(.article-image) {
+    margin-left: 67px;
+    margin-right: 67px;
+  }
+}
+.article-full-width-layout .article-text.row > .slideshow,
+.article-full-width-layout .article-text.row > .article-image {
+  max-width: none !important;
+  width: 100%;
 }
 
 .sm2_playing .icon-sound-full:before {
@@ -17561,6 +17975,14 @@ textarea.error {
 #modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-paddings .form-item {
   width: 90%;
 }
+#modalContent .ctools-modal-content #editorial-card-river-edit-form .form-item-override-title,
+#modalContent .ctools-modal-content #editorial-card-river-edit-form .form-item-override-title-text,
+#modalContent .ctools-modal-content #editorial-card-river-edit-form .form-item-override-title-heading {
+  width: auto;
+}
+#modalContent .ctools-modal-content #editorial-card-river-edit-form .form-item-override-title label {
+  padding-right: 0;
+}
 
 #nas-language-message-modal .close.button.tomato.large {
   background: #f15936;
@@ -17662,7 +18084,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 }
 
 @media only screen and (max-width: 479px) {
-  .title-slide-content .deck {
+  .title-slide-content .deck, .title-slide-content .conservation_news_heading + div {
     font-size: 12px;
     line-height: 15px;
   }
@@ -17876,7 +18298,7 @@ article.event .event-header > a {
 article.event .event-header h1 {
   margin-bottom: 8px;
 }
-article.event .event-header .deck {
+article.event .event-header .deck, article.event .event-header .conservation_news_heading + div {
   margin: 8px 0 40px;
 }
 article.event .event-header h4 {
@@ -18399,4 +18821,8 @@ ul.clearing-thumbs {
   .iba-map.embed-container iframe {
     height: 500px;
   }
+}
+
+.contextual-links-region p {
+  margin-bottom: 25.5px;
 }

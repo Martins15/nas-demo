@@ -5,3 +5,14 @@
  */
 
 include_once 'nas_fb_instant_articles_feature.features.inc';
+
+/**
+ * Implements hook_init().
+ */
+function nas_fb_instant_articles_feature_init() {
+  $args = arg();
+  if ($args[0] == 'fia' && $args[1] == 'nodes.rss') {
+    // Disable caching for Facebook RSS Feed.
+    drupal_page_is_cacheable(FALSE);
+  }
+}

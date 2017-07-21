@@ -612,6 +612,16 @@ textarea {
         width: 90%;
       }
     }
+    .form-item-override-title,
+    .form-item-override-title-text,
+    .form-item-override-title-heading {
+      width: auto;
+    }
+    .form-item-override-title {
+      label {
+        padding-right: 0;
+      }
+    }
   }
 }
 
@@ -1516,3 +1526,10 @@ ul.clearing-thumbs {
     }
   }
 }
+
+.contextual-links-region {
+  p {
+    margin-bottom: 25.5px;
+  }
+}
+

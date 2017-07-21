@@ -101,7 +101,7 @@ function nas_static_page_feature_strongarm() {
         'custom_settings' => TRUE,
       ),
       'editorial_grid_teaser' => array(
-          'custom_settings' => TRUE,
+        'custom_settings' => TRUE,
       ),
     ),
     'extra_fields' => array(
@@ -134,6 +134,10 @@ function nas_static_page_feature_strongarm() {
           'editorial_grid_teaser' => array(
             'weight' => '9',
             'visible' => FALSE,
+          ),
+          'amp' => array(
+            'weight' => '0',
+            'visible' => TRUE,
           ),
         ),
       ),

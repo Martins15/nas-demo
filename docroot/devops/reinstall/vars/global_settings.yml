@@ -16,6 +16,13 @@ origin_site_url: 'http://www.audubon.org/'
 # This variable will be used for variable_get('environment'). Can be overridden by CI server.
 # development = 'default', demo = 'demo', staging = 'staging', production = 'production'.
 pp_environment: 'default'
+# If Docker used for sql flow
+docker_sql: true
+docker_sql_db: drupal
+docker_prod_image: nas.ffwua.com:5000/dbprod
+docker_registry: nas.ffwua.com:5000
+docker_demo_sql_host: 172.18.254.253
+build_number: 0
 # @todo Backport old NAS approach
 solr_core: 'default'
 # This variable allows select type of installation. Can be overridden by CI server.
@@ -23,6 +30,8 @@ solr_core: 'default'
 workflow_type: 'sql'
 is_windows: false
 ci_server_username: 'jenkins'
+filesystem_user: 'www-data'
+filesystem_group: "{{ ci_server_username }}"
 # This variable allows make backup from CI environment before processing.
 # true, false.
 make_backup: false

@@ -1,0 +1,333 @@
+.nas-blueimp-gallery.blueimp-gallery {
+  padding-bottom: 160px;
+  background-color: rgba(255, 255, 255, 0.98);
+}
+
+.nas-blueimp-gallery.blueimp-gallery>.slides>.slide {
+  overflow: hidden;
+}
+
+.nas-blueimp-gallery.blueimp-gallery>.slides>.slide>.slide-content {
+  height: 100%;
+  left: 50%;
+  margin: 0;
+  max-width: none;
+  transform: translateX(-50%);
+  transition: height 1s;
+}
+
+.nas-blueimp-gallery.blueimp-gallery>.slides>.slide>.slide-content.slide-content-landscape {
+  height: auto;
+  max-height: none;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  width: 100%;
+  transform: translateX(-50%) translatey(-50%);
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery.blueimp-gallery>.slides>.slide>.slide-content.slide-content-landscape {
+    width: 90%;
+  }
+}
+
+.nas-blueimp-gallery.blueimp-gallery>.slides {
+  padding-top: 40px;
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery.blueimp-gallery>.slides {
+    padding-top: 50px;
+  }
+}
+
+.nas-blueimp-gallery .description {
+  bottom: 0;
+  height: 160px;
+  position: fixed;
+  width: 100%;
+  padding-top: 8px;
+  transition: padding-left 0.1s, padding-right 0.1s;
+}
+
+.nas-blueimp-gallery .description .row {
+  max-width: none;
+}
+
+.nas-blueimp-gallery .description .indicator {
+  display: none;
+}
+
+.nas-blueimp-gallery .description .total,
+.nas-blueimp-gallery .description .credit {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: #76736C;
+  text-shadow: none;
+  line-height: 18px;
+}
+
+.nas-blueimp-gallery .description .credit {
+  padding-left: 150px;
+  position: absolute;
+  right: 12.5px;
+  text-align: right;
+  top: 0;
+  max-height: 36px;
+  overflow: hidden;
+}
+
+.nas-blueimp-gallery .description .title-wrapper {
+  height: 95px;
+  margin-top: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery .description .title-wrapper {
+    height: 72px;
+    margin-top: 20px;
+  }
+}
+
+.nas-blueimp-gallery .description .title-wrapper-inner {
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 5;
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery .description .title-wrapper-inner {
+    padding-right: 30px;
+  }
+}
+
+.nas-blueimp-gallery .description .title-wrapper.overlay:before {
+  background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  bottom: 0;
+  content: "";
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity 0.2s;
+  z-index: 10;
+}
+
+.nas-blueimp-gallery .description .title-wrapper.overlay:hover:before {
+  display: none;
+}
+
+.nas-blueimp-gallery .description .title-wrapper.overlay .title:hover:before {
+  opacity: 0;
+}
+
+.nas-blueimp-gallery-alternative .title-wrapper .title,
+.nas-blueimp-gallery .description .title {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: #404040;
+  text-shadow: none;
+  display: block;
+  line-height: 19px;
+  position: relative;
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery-alternative .title-wrapper .title,
+  .nas-blueimp-gallery .description .title {
+    font-size: 18px;
+    line-height: 23px;
+  }
+}
+
+.nas-blueimp-gallery .description .title p {
+  margin-bottom: 1em;
+}
+
+.blueimp-gallery .prev,
+.blueimp-gallery .next {
+  border-radius: 6px;
+  background-color: #9A9A9A;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+
+  font-weight: 100;
+  line-height: 30px;
+
+  color: #fff;
+
+  text-decoration: none;
+  text-align: center;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  cursor: pointer;
+  display: inline-block;
+
+  background-image: url(../img/prev.png);
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+}
+.blueimp-gallery .next {
+  left: auto;
+  right: 15px;
+  background-image: url(../img/next.png);
+}
+
+/*.blueimp-gallery .title*/
+.blueimp-gallery .close {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  margin: 0 40px 0 0;
+  font-size: 20px;
+  line-height: 30px;
+  color: #fff;
+  text-shadow: 0 0 2px #000;
+  opacity: 0.8;
+  display: none;
+}
+
+.nas-blueimp-gallery.blueimp-gallery .close {
+  text-decoration: none;
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  background-image: url(../img/close.png);
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: block;
+  padding: 0;
+  margin: 0;
+  right: 16px;
+  top: 7px;
+  left: auto;
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery.blueimp-gallery .close {
+    top: 12px;
+    right: 32px;
+  }
+}
+
+.blueimp-gallery .play-pause {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  width: 15px;
+  height: 15px;
+  background: url(../img/play-pause.png) 0 0 no-repeat;
+  cursor: pointer;
+  opacity: 0.5;
+  display: none;
+}
+.blueimp-gallery-playing .play-pause {
+  background-position: -15px 0;
+}
+.blueimp-gallery .prev:hover,
+.blueimp-gallery .next:hover,
+.blueimp-gallery .close:hover,
+.blueimp-gallery .title:hover,
+.blueimp-gallery .play-pause:hover {
+  opacity: 1;
+}
+.blueimp-gallery-controls .prev,
+.blueimp-gallery-controls .next,
+.blueimp-gallery-controls .close,
+.blueimp-gallery-controls .title,
+.blueimp-gallery-controls .play-pause {
+  /*display: block;*/
+  /* Fix z-index issues (controls behind slide element) on Android: */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.blueimp-gallery-single .prev,
+.blueimp-gallery-left .prev,
+.blueimp-gallery-single .next,
+.blueimp-gallery-right .next,
+.blueimp-gallery-single .play-pause {
+  /*display: none;*/
+  opacity: 0.5;
+}
+.blueimp-gallery > .slides > .slide > .slide-content,
+.blueimp-gallery .prev,
+.blueimp-gallery .next,
+.blueimp-gallery .close,
+.blueimp-gallery .play-pause {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.title-wrapper-alternative {
+  display: none;
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative {
+  padding-bottom: 96px;
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative .description {
+  height: 96px;
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative .description .title-wrapper {
+  display: none;
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative .title-wrapper-alternative {
+  display: block;
+  position: absolute;
+  top: 40px;
+  width: 320px;
+  left: 50%;
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative .title-wrapper-alternative p {
+  margin-bottom: 1em;
+}
+
+@media only screen and (min-width: 801px) {
+  .blueimp-gallery.nas-blueimp-gallery-alternative .title-wrapper-alternative {
+    top: 50px;
+  }
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative .title-wrapper-inner {
+  margin-left: 35px;
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative .description {
+  margin-left: -160px;
+}
+
+.nas-blueimp-gallery.blueimp-gallery.nas-blueimp-gallery-alternative>.slides>.slide>.slide-content {
+  margin-left: -160px;
+}

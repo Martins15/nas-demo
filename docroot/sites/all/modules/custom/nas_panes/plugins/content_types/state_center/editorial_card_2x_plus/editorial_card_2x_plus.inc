@@ -30,7 +30,7 @@ $plugin = array(
       'more_link' => array(
         'more_link_text' => '',
         'more_link_url' => '',
-      )
+      ),
     ),
   ),
 );
@@ -211,16 +211,10 @@ function editorial_card_2x_plus_render($subtype, $conf, $args, $context) {
         $teasers[$key][] = drupal_render($build);
       }
     }
-    if (!empty($ref['engagement']['entity_id']) && $node = node_load($ref['engagement']['entity_id'])) {
-      $teasers[$key][] = _editorial_card_2x_plus_render_engagement_helper($node);
-    }
-    else {
-      $contexts = array();
-      if (!empty($context[0]->data)) {
-        $contexts['node'] = $context[0]->data;
-      }
-      // @TODO decide how to migrate or reuse this function nas_panes_engagement_cards_get_cards()
-      $nodes = asc_panes_engagement_cards_get_cards(3, 1, array(), $contexts);
+    $data['references'][]['entity_reference'] = !empty($ref['engagement']['entity_id']) ? $ref['engagement'] : FALSE;
+    // Get engagement card.
+    $nodes = nas_panes_engagement_cards_get_cards($subtype, $data, 1, TRUE);
+    if (isset($nodes)) {
       foreach ($nodes as $node) {
         $teasers[$key][] = _editorial_card_2x_plus_render_engagement_helper($node);
       }
@@ -264,7 +258,7 @@ function editorial_card_2x_plus_render($subtype, $conf, $args, $context) {
  *   Rendered HTML result.
  */
 function _editorial_card_2x_plus_render_engagement_helper($node) {
-  $build = node_view($node, 'teaser');
+  $build = node_view($node);
   return '<div class="columns large-4">' . drupal_render($build) . '</div>';
 }
 

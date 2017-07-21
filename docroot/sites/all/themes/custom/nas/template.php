@@ -1110,7 +1110,8 @@ function nas_preprocess_node_engagement_cards(&$vars) {
   $node = $vars['node'];
   if ($field_link_items = field_get_items('node', $node, 'field_link')) {
     $classes = array('button', 'tomato', 'large');
-    if ($vars['view_mode'] == 'nas_engagement_cards_full_width') {
+    $view_mode = array('nas_engagement_cards_full_width', 'nas_engagement_cards_full_width_half_black');
+    if (in_array($vars['view_mode'], $view_mode)) {
       $classes[] = 'native-plants-search-form--submit';
     }
     $vars['button'] = l($field_link_items[0]['title'], $field_link_items[0]['url'], array(
@@ -1393,6 +1394,14 @@ function nas_preprocess_panels_pane(&$vars) {
       $hero_mobile_image['#suffix'] = '</div>';
 
       $vars['content'] = array($hero_image, $hero_mobile_image);
+    }
+  }
+  // Add default nas class for title for custom type pane.
+  if ($vars['pane']->type == 'custom' && $vars['pane']->subtype == 'custom') {
+    $vars['title_attributes_array']['class'][] = 'thin';
+    if (isset($vars['content']['#left_margin']) && $vars['content']['#left_margin'] > 0) {
+      $vars['title_prefix'] = '<div class="row"><div class="column">';
+      $vars['title_suffix'] = '</div></div>';
     }
   }
 }

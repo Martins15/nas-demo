@@ -1,0 +1,68 @@
+<?php
+/**
+ * @file
+ * Code for the NAS AMP feature feature.
+ */
+
+include_once 'nas_amp_feature.features.inc';
+
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function nas_amp_feature_field_formatter_info() {
+  return array(
+    'amp_media' => array(
+      'label' => t('AMP image'),
+      'description' => t('Display an AMP image file.'),
+      'field types' => array('media'),
+      'settings' => array('image_style' => '', 'image_link' => '', 'amp_layout' => 'responsive', 'amp_fixed_height' => '300'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function nas_amp_feature_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $_instance = $instance;
+  // Mimic to amp_image and call the origin AMP formatter settings form.
+  $_instance['display'][$view_mode]['type'] = 'amp_image';
+  $element = amp_field_formatter_settings_form($field, $_instance, $view_mode, $form, $form_state);
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function nas_amp_feature_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $_instance = $instance;
+  // Mimic to amp_image and call the origin AMP formatter summary.
+  $_instance['display'][$view_mode]['type'] = 'amp_image';
+  $summary = amp_field_formatter_settings_summary($field, $_instance, $view_mode);
+
+  return $summary;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function nas_amp_feature_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+
+  switch ($display['type']) {
+    case 'amp_media':
+      foreach ($items as $delta => &$item) {
+        $item['uri'] = $item['file']->uri;
+      }
+
+      $_display = $display;
+      $_display['type'] = 'amp_image';
+      $element = amp_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $_display);
+      break;
+
+  }
+
+  return $element;
+}

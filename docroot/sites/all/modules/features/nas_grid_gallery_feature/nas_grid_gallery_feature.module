@@ -1,0 +1,16 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Grid Gallery feature.
+ */
+
+include_once 'nas_grid_gallery_feature.features.inc';
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function nas_grid_gallery_feature_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && !empty($plugin_type)) {
+    return 'plugins/' . $plugin_type;
+  }
+}
