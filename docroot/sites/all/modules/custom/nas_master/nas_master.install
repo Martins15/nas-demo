@@ -4395,3 +4395,10 @@ function nas_master_update_7303() {
     ),
   ));
 }
+
+/**
+ * Enable feeds_entity_processor.
+ */
+function nas_master_update_7304() {
+  module_enable(array('feeds_entity_processor'));
+}
