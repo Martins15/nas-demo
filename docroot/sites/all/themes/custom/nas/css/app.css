@@ -17174,6 +17174,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 @media only screen and (min-width: 0px) and (max-width: 767px) {
+  .article-sidebar {
+    margin-bottom: 0;
+  }
   .article-sidebar .tiny-6:nth-of-type(odd) {
     padding-left: 0;
   }
