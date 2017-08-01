@@ -235,14 +235,13 @@ function nas_grid_gallery_render($subtype, $conf, $args, $context) {
       'thumbnail_path' => image_style_url('grid_gallery_thumbnail', $image_uri),
       'lightbox_path' => image_style_url('grid_gallery_lightbox', $image_uri),
       'attributes' => '',
-      'attributes_plain' => '',
+      'title' => !empty($image_file->field_file_image_title_text) ? $image_file->field_file_image_title_text[LANGUAGE_NONE][0]['value'] : '',
       'caption' => '',
       'credit' => '',
       'class_column' => $class_column,
     );
     if (function_exists('_nas_panes_format_image_attribution')) {
       $vars['attributes'] = _nas_panes_format_image_attribution($image_file);
-      $vars['attributes_plain'] = _nas_panes_format_image_attribution($image_file, TRUE);
       $image_attributes = _nas_panes_format_image_attribution($image_file, FALSE, TRUE);
       $vars['caption'] = filter_xss(_filter_autop($image_attributes['caption']), array('a', 'em', 'i', 'b', 'strong', 'cite', 'blockquote', 'code', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'p', 'br'));
       $vars['credit'] = $image_attributes['credit'] ? 'Photo: ' . filter_xss($image_attributes['credit']) : '';

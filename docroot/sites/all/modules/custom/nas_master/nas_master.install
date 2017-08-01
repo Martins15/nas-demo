@@ -4301,3 +4301,39 @@ function nas_master_update_7296() {
     'panels_revision',
   ));
 }
+
+/**
+ * Enable NAS Emoji module.
+ */
+function nas_master_update_7297() {
+  module_enable(array(
+    'nas_emoji',
+  ));
+}
+
+/**
+ * Revert nas_conservation_news_feature.
+ */
+function nas_master_update_7298() {
+  features_revert(array(
+    'nas_conservation_news_feature' => array(
+      'field_instance',
+      'strongarm',
+      'views_default'
+    )
+  ));
+  variable_set('xmlsitemap_settings_node_conservation_news', array(
+    'status' => 0,
+    'priority' => 0.5
+  ));
+}
+
+/**
+ * Revert nas_conservation_news_feature and nas_metatags_feature.
+ */
+function nas_master_update_7299() {
+  features_revert(array(
+    'nas_conservation_news_feature' => array('field_instance'),
+    'nas_metatags_feature' => array('metatag')
+  ));
+}

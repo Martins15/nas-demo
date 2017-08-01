@@ -29,7 +29,7 @@
       <a class="grid-gallery__lightbox white" href="<?php print $image['lightbox_path']; ?>" data-gallery="#grid-gallery">
         <img class="grid-gallery__image"
              src="<?php print $image['thumbnail_path']; ?>"
-             title="<?php print htmlspecialchars($image['attributes_plain']); ?>"
+             title="<?php print htmlspecialchars($image['title']); ?>"
              data-credit="<?php print htmlspecialchars($image['credit']); ?>"
              data-title="<?php print htmlspecialchars($image['caption']); ?>">
       </a>

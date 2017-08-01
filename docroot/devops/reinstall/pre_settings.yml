@@ -19,9 +19,9 @@
 - name: Adding $databases variable to settings.php
   lineinfile:
     dest: "{{ platform_settings_file }}"
-    line: "$databases = array(
-      'default' => array(
-        'default' => array(
+    line: "$databases = [
+      'default' => [
+        'default' => [
           'database' => '{{ mysql_db }}',
           'username' => '{{ mysql_user }}',
           'password' => '{{ mysql_pass }}',
@@ -29,9 +29,54 @@
           'prefix' => '{{ mysql_prefix | default }}',
           'port' => {{ mysql_port | default(3306) }},
           'host' => '{{ mysql_host }}',
-        ),
-      ),
-    );"
+        ],
+      ],
+    ];"
+  when: not docker_sql
+
+- name: Adding database variable to settings.php
+  sudo: yes
+  lineinfile:
+    dest: "{{ platform_settings_file }}"
+    line: "$databases = [
+      'default' => [
+        'default' => [
+          'database' => '{{ docker_sql_db }}',
+          'username' => '{{ mysql_user }}',
+          'password' => '{{ mysql_pass }}',
+          'driver' => '{{ mysql_driver | default('mysql') }}',
+          'prefix' => '{{ mysql_prefix | default }}',
+          'port' => {{ mysql_port | default(3306) }},
+          'host' => '{{ docker_sql_host }}',
+        ],
+      ],
+    ];"
+  when: docker_sql and existing_container_name is undefined
+
+- name: Adding database variable to settings.php (for "demo")
+  sudo: yes
+  lineinfile:
+    dest: "{{ platform_settings_file }}"
+    line: "$databases = [
+      'default' => [
+        'default' => [
+          'database' => '{{ docker_sql_db }}',
+          'username' => '{{ mysql_user }}',
+          'password' => '{{ mysql_pass }}',
+          'driver' => '{{ mysql_driver | default('mysql') }}',
+          'prefix' => '{{ mysql_prefix | default }}',
+          'port' => {{ mysql_port | default(3306) }},
+          'host' => '{{ docker_demo_sql_host }}',
+        ],
+      ],
+    ];"
+  when: docker_sql and existing_container_name is defined and existing_container_name == "demo"
+
+- name: Adding trusted host patterns to settings.php
+  lineinfile:
+    dest: "{{ platform_settings_file }}"
+    line: "$settings['trusted_host_patterns'] = ['{{ (global_env.trusted_host_patterns + env.trusted_host_patterns) | join(\"', '\") }}'];"
+  when: global_env.trusted_host_patterns | length or env.trusted_host_patterns | length
 
 - name: Add general pre-settings to settings.php
   lineinfile: dest='{{ platform_settings_file }}' line='{{ item.name }} = \"{{ item.value }}\";'
