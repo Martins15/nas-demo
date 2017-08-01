@@ -23,3 +23,21 @@
 - name: Set writable private dir
   sudo: yes
   file: dest=sites/default/files/private mode=777 state=directory recurse=yes
+
+- name: Start the MySQL service
+  shell: service mysql start
+  sudo: yes
+  ignore_errors: true
+  when: not docker_sql
+
+- name: Get docker IP
+  shell: "BN=$(({{ build_number }}+1));LEVEL_1=$(($BN/254));LEVEL_2=$(($BN-$LEVEL_1*254+1));IP=\"172.18.\"$LEVEL_1\".\"$LEVEL_2;echo $IP"
+  register: docker_ip_output
+
+- name: Set Docker IP
+  set_fact:
+    docker_sql_host: "{{ docker_ip_output.stdout }}"
+
+- name: Docker IP address
+  debug:
+    msg: "{{ docker_sql_host }}"

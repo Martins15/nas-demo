@@ -1,0 +1,107 @@
+<?php
+
+/**
+ * @file
+ * Replace UTF8mb4 symbols in the fields.
+ */
+
+/**
+ * Implements hook_field_attach_presave().
+ */
+function nas_emoji_field_attach_presave($entity_type, $entity) {
+  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
+
+  foreach (field_info_instances($entity_type, $bundle) as $instance) {
+
+    if (isset($instance['widget']['type']) && _nas_emoji_field_widget_type($instance['widget']['type'])) {
+
+      // Grap the entity metadata wrapper for this field.
+      $entity_wrapper = entity_metadata_wrapper($entity_type, $entity);
+
+      // Grap the filed name from the instance.
+      $field_name = $instance['field_name'];
+
+      // Get text field values.
+      $text_field_data = $entity_wrapper->{$field_name}->value();
+
+      // If we do have data in the field.
+      if (is_array($text_field_data) && count($text_field_data) > 0) {
+
+        // Reject not utf8 strings for the field value.
+        if (isset($text_field_data['value'])) {
+          $text_field_data['value'] = _nas_emoji_utf8mb4_for_text_fields($text_field_data['value']);
+        }
+        else {
+          foreach ($text_field_data as $text_field_data_item_key => $text_field_data_item) {
+            $text_field_data[$text_field_data_item_key] = _nas_emoji_utf8mb4_for_text_fields($text_field_data_item);
+          }
+        }
+
+        // Reject not utf8 strings for the field summary if we do have.
+        if (isset($text_field_data['summary'])) {
+          $text_field_data['summary'] = _nas_emoji_utf8mb4_for_text_fields($text_field_data['summary']);
+        }
+
+        // Save the filtered field data in the entity object.
+        $entity_wrapper->{$field_name}->set($text_field_data);
+      }
+      elseif (is_string($text_field_data) && $text_field_data != '') {
+
+        $text_field_data = _nas_emoji_utf8mb4_for_text_fields($text_field_data);
+
+        // Save the filtered field data in the entity object.
+        $entity_wrapper->{$field_name} = $text_field_data;
+      }
+    }
+  }
+
+  // If we want to strip none utf8 from Drupal core node's title.
+  if (isset($entity->title) && _nas_emoji_field_widget_type('core_title')) {
+    $entity->title = _nas_emoji_utf8mb4_for_text_fields($entity->title);
+  }
+}
+
+/**
+ * Retern the processed text which the none utf8 characters has been replaced.
+ *
+ * @param string $text_data
+ *   Text from fields.
+ *
+ * @return string
+ *   Text with replaced utf8mb4 to string.
+ */
+function _nas_emoji_utf8mb4_for_text_fields($text_data) {
+  preg_match_all('/[\x00-\x08\x10\x0B\x0C\x0E-\x19\x7F]' .
+    '|[\x00-\x7F][\x80-\xBF]+' .
+    '|([\xC0\xC1]|[\xF0-\xFF])[\x80-\xBF]*' .
+    '|[\xC2-\xDF]((?![\x80-\xBF])|[\x80-\xBF]{2,})' .
+    '|[\xE0-\xEF](([\x80-\xBF](?![\x80-\xBF]))|(?![\x80-\xBF]{2})|[\x80-\xBF]{3,})/S',
+    $text_data, $matches);
+
+  foreach ($matches[0] as $match) {
+    $convert_to_html_entities = mb_convert_encoding($match, 'HTML-ENTITIES', "UTF-8");
+    $replace_array[$match] = $convert_to_html_entities;
+  }
+  if (!empty($replace_array)) {
+    $text_data = str_replace(
+      array_keys($replace_array),
+      array_values($replace_array),
+      $text_data
+    );
+  }
+
+  return $text_data;
+}
+
+/**
+ * Check allow to replace field widget type.
+ */
+function _nas_emoji_field_widget_type($field_widget_type) {
+  return in_array($field_widget_type,
+    array(
+      'text_textfield',
+      'text_textarea',
+      'text_textarea_with_summary',
+      'core_title',
+    ), TRUE);
+}

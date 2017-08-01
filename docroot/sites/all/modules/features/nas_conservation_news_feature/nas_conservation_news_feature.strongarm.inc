@@ -145,7 +145,7 @@ function nas_conservation_news_feature_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_settings_node_conservation_news';
   $strongarm->value = array(
-    'status' => '1',
+    'status' => '0',
     'priority' => '0.5',
   );
   $export['xmlsitemap_settings_node_conservation_news'] = $strongarm;

@@ -9452,11 +9452,7 @@ body.touch .primary-sub-nav-index {
 
 .article-header {
   margin-top: 25px;
-}
-@media only screen and (min-width: 767px) {
-  .article-header {
-    margin-bottom: 37.5px;
-  }
+  margin-bottom: 37.5px;
 }
 
 .article-slug {
@@ -17178,6 +17174,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 @media only screen and (min-width: 0px) and (max-width: 767px) {
+  .article-sidebar {
+    margin-bottom: 0;
+  }
   .article-sidebar .tiny-6:nth-of-type(odd) {
     padding-left: 0;
   }
