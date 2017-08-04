@@ -6,6 +6,7 @@ php = 5.5
 dependencies[] = token
 dependencies[] = ctools
 files[] = tests/amp.test
+files[] = tests/amp_node.test
 
 ; Information added by Drupal.org packaging script on 2017-05-11
 version = "7.x-1.0+8-dev"
