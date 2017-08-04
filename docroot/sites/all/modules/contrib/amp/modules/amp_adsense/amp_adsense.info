@@ -5,9 +5,9 @@ dependencies[] = amp
 dependencies[] = adsense
 dependencies[] = adsense_managed
 
-; Information added by Drupal.org packaging script on 2016-07-01
-version = "7.x-1.0"
+; Information added by Drupal.org packaging script on 2017-05-11
+version = "7.x-1.0+8-dev"
 core = "7.x"
 project = "amp"
-datestamp = "1467416440"
+datestamp = "1494517999"
 
