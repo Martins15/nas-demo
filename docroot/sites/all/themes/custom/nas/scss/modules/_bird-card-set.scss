@@ -151,3 +151,13 @@
     }
   }
 }
+
+.frontpage-in-the-news {
+  &.bird-card-set {
+    .bird-card-container {
+      &.space-bottom {
+        padding-bottom: 35px;
+      }
+    }
+  }
+}
