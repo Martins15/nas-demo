@@ -11,7 +11,7 @@
  * - $bird_guide_title: title of the Bird Guide link.
  */
 ?>
-<div class="bird-card-set bg-bone-white">
+<div class="frontpage-in-the-news bird-card-set bg-bone-white">
   <div class="row section-header">
     <div class="columns">
       <h2 class="thin"><?php print $title; ?></h2>
@@ -23,7 +23,7 @@
       </ul>
     </div>
   </div>
-  <div class="row bird-card-container">
+  <div class="row bird-card-container space-bottom">
     <div class="bird-card-scroller">
       <?php for ($i = 0; $i < 4; $i++): ?>
         <?php if (!isset($teasers[$i])): ?>
