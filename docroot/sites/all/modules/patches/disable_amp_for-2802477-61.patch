@@ -1,0 +1,411 @@
+diff --git a/amp.info b/amp.info
+index 0a4bba2..522f740 100644
+--- a/amp.info
++++ b/amp.info
+@@ -6,3 +6,4 @@ php = 5.5
+ dependencies[] = token
+ dependencies[] = ctools
+ files[] = tests/amp.test
++files[] = tests/amp_node.test
+diff --git a/amp.install b/amp.install
+index fcb6a71..04ae6cd 100644
+--- a/amp.install
++++ b/amp.install
+@@ -50,6 +50,51 @@ function amp_requirements($phase) {
+ }
+
+ /**
++ * Implements hook_install.
++ *
++ * Add new table for unpublished AMP nodes.
++ */
++function amp_schema() {
++  $schema['amp_node'] = array(
++    'description' => 'Stores preferences for amp nodes.',
++    'primary key' => array('aid'),
++    'fields' => array(
++      'aid' => array(
++        'description' => 'The {amp}.id of the amp node.',
++        'type' => 'int',
++        'unsigned' => TRUE,
++        'not null' => TRUE,
++        'default' => 0,
++      ),
++      'status' => array(
++        'description' => 'Boolean indicating whether the node is AMP enabled by default.',
++        'type' => 'int',
++        'unsigned' => TRUE,
++        'not null' => TRUE,
++        'default' => 1,
++        'size' => 'tiny',
++      ),
++    ),
++    'indexes' => array(
++      'aid' => array('aid'),
++      'status' => array('status'),
++    ),
++  );
++
++  return $schema;
++}
++
++/**
++ * Add new table to track unpublished AMP nodes.
++ */
++function amp_update_7001() {
++  if (!db_table_exists('amp_node')) {
++    drupal_install_schema('amp');
++  }
++
++}
++
++/**
+  * Implements hook_uninstall().
+  */
+ function amp_uninstall() {
+diff --git a/amp.module b/amp.module
+index 717ef33..cd574db 100644
+--- a/amp.module
++++ b/amp.module
+@@ -6,6 +6,7 @@
+  */
+
+ require_once dirname(__FILE__).'/amp.admin.inc';
++require_once dirname(__FILE__) . '/includes/amp.db.inc';
+
+ use Lullabot\AMP\AMP;
+ use Lullabot\AMP\Validate\Scope;
+@@ -341,14 +342,17 @@ function amp_is_amp_request() {
+       // it is a node type which has the AMP view mode enabled.
+       $node = menu_get_object();
+       if ($node && in_array($node->type, amp_get_enabled_types())) {
+-        // Do an additional check to ensure the current path is actually the
+-        // node's public URI. Without this check, this function would return
+-        // TRUE on the node's edit form.
+-        $uri = entity_uri('node', $node);
+-        if ($uri['path'] == current_path()) {
+-          // Only if all of the above conditions are true is this a valid AMP
+-          // request.
+-          $result = TRUE;
++        // Node level check.
++        if (amp_node_is_enabled($node->nid)) {
++          // Do an additional check to ensure the current path is actually the
++          // node's public URI. Without this check, this function would return
++          // TRUE on the node's edit form.
++          $uri = entity_uri('node', $node);
++          if ($uri['path'] == current_path()) {
++            // Only if all of the above conditions are true is this a valid AMP
++            // request.
++            $result = TRUE;
++          }
+         }
+       }
+     }
+@@ -388,7 +392,7 @@ function amp_form_node_form_alter(&$form, &$form_state, $form_id) {
+     $form['actions']['save_view_amp'] = array(
+       '#type' => 'submit',
+       '#value' => t('Save and view AMP page'),
+-      '#submit' => array('node_form_submit', 'amp_node_form_submit'),
++      '#submit' => array('node_form_submit', 'amp_node_enabled_form_submit', 'amp_node_form_submit'),
+       '#weight' => 12,
+       '#access' => TRUE,
+     );
+@@ -396,10 +400,42 @@ function amp_form_node_form_alter(&$form, &$form_state, $form_id) {
+     $form['actions']['save_view_amp_warnfix'] = array(
+         '#type' => 'submit',
+         '#value' => t('Save and view AMP page and see any AMP formatter warnings'),
+-        '#submit' => array('node_form_submit', 'amp_node_form_submit_warnfix'),
++        '#submit' => array('node_form_submit', 'amp_node_enabled_form_submit', 'amp_node_form_submit_warnfix'),
+         '#weight' => 13,
+         '#access' => TRUE,
+     );
++
++    // Option to disable AMP.
++    // When adding new nodes, AMP will be turned on by default.
++    $amp_enabled = 1;
++    // If we are editing an existing node, get the value from database.
++    if (isset($form_state['node']->nid) && !amp_db_is_node_enabled($form_state['node']->nid)) {
++      $amp_enabled = 0;
++    }
++    $form['options']['amp_enabled'] = array(
++      '#title' => t('Published (AMP)'),
++      '#type' => 'checkbox',
++      '#default_value' => $amp_enabled,
++    );
++
++    // Form callback for node enabled.
++    $form['actions']['submit']['#submit'][] = 'amp_node_enabled_form_submit';
++  }
++}
++
++/**
++ * Form callback to save the enabled status.
++ */
++function amp_node_enabled_form_submit(&$form, $form_state) {
++  if (isset($form_state['node']->nid)) {
++    $node_id = $form_state['node']->nid;
++    if ($form_state['values']['amp_enabled'] == 1) {
++      amp_db_enable_amp($node_id);
++    }
++    else {
++      amp_db_disable_amp($node_id);
++    }
++    amp_clear_cache($node_id);
+   }
+ }
+
+@@ -645,8 +681,14 @@ function amp_page_alter(array &$page) {
+  * Implements hook_node_view().
+  */
+ function amp_node_view($node, $view_mode, $langcode) {
++  if ($node = menu_get_object()) {
++    if (!in_array($node->type, amp_get_enabled_types()) || !amp_node_is_enabled($node->nid)) {
++      return;
++    }
++  }
++
+   // Show amphtml links on AMP-enabled nodes so search engines can find AMP.
+-  if ($view_mode == 'full' && node_is_page($node) && in_array($node->type, amp_get_enabled_types())) {
++  if ($view_mode == 'full' && node_is_page($node)) {
+     $uri = entity_uri('node', $node);
+     $uri['options']['query']['amp'] = NULL;
+     $uri['options']['absolute'] = TRUE;
+@@ -1450,6 +1492,54 @@ function amp_page_delivery_callback_alter(&$deliver_callback) {
+ }
+
+ /**
++ * Implements hook_node_delete().
++ */
++function amp_node_delete($node) {
++  if (in_array($node->type, amp_get_enabled_types())) {
++    // We don't need the amp table for this node if it gets removed.
++    amp_db_remove($node->nid);
++    amp_clear_cache($node->nid);
++  }
++}
++
++/**
++ * Clear cache with id $id
++ *
++ * @param $id
++ *   ID of the cache to clear.
++ */
++function amp_clear_cache($id) {
++  // Clear bins as we have fresh data.
++  cache_clear_all('amp:node_enabled:' . $id, 'cache');
++}
++
++/**
++ * Get if the node is enabled.
++ *
++ * @param $node_id
++ *   Node id to check.
++ *
++ * @return bool
++ *   TRUE if enabled, FALSE otherwise.
++ */
++function amp_node_is_enabled($node_id, $cache_override = FALSE) {
++  // Setup a cache ID
++  $cid = 'amp:node_enabled:' . $node_id;
++
++  // If a cached entry exists, return it
++  if (($cache = cache_get($cid, 'cache')) && $cache_override != TRUE) {
++    $is_enabled = $cache->data;
++  }
++  else {
++    $is_enabled = amp_db_is_node_enabled($node_id);
++    // Cache the result.
++    cache_set($cid, $is_enabled, 'cache');
++  }
++
++  return $is_enabled;
++}
++
++/**
+  * Implements hook_html_head_alter().
+  */
+ function amp_html_head_alter(&$head_elements) {
+diff --git a/includes/amp.db.inc b/includes/amp.db.inc
+new file mode 100644
+index 0000000..2adcbce
+--- /dev/null
++++ b/includes/amp.db.inc
+@@ -0,0 +1,80 @@
++<?php
++
++/**
++ * @file
++ * DB functions for AMP.
++ */
++
++/**
++ * AMP disabled value.
++ */
++const AMP_DISABLED = 0;
++
++/**
++ * Return TRUE if the node has amp enabled.
++ *
++ * @param $node_id
++ *   Node ID of the node to check
++ *
++ * @return bool
++ *   TRUE if AMP is enabled, FALSE otherwise.
++ */
++function amp_db_is_node_enabled($node_id) {
++  $is_enabled = TRUE;
++  $result = db_select('amp_node', 'n')
++    ->fields('n', array('status'))
++    ->condition('aid', $node_id, '=')
++    ->execute()
++    ->fetchAll();
++
++  // If we don't have an entry as disabled (!empty()), AMP is enabled by default
++  if (isset($result[0]->status) && $result[0]->status == AMP_DISABLED) {
++    $is_enabled = FALSE;
++  }
++
++  return $is_enabled;
++}
++
++/**
++ * Set a node as AMP disabled.
++ *
++ * @param $node_id
++ *   Node ID of the node to set as disabled.
++ *
++ * @throws \Exception
++ */
++function amp_db_disable_amp($node_id) {
++  db_merge('amp_node')
++    ->key(array('aid' => $node_id))
++    ->fields(array('status' => AMP_DISABLED))
++    ->execute();
++}
++
++/**
++ * Set a node as AMP enabled.
++ *
++ * @param $node_id
++ *   Node ID of the node to set as enabled.
++ *
++ * @throws \Exception
++ */
++function amp_db_enable_amp($node_id) {
++  // Enable removes the flag from the db.
++  amp_db_remove($node_id);
++}
++
++/**
++ * Remove a given node from AMP.
++ *
++ * @param $node_id
++ *   Node ID to remove.
++ *
++ * @throws \Exception
++ */
++function amp_db_remove($node_id) {
++  // Deleting it from the table will set it up as enabled by default and will
++  // keep the table as small as possible.
++  db_delete('amp_node')
++    ->condition('aid', $node_id)
++    ->execute();
++}
+diff --git a/modules/amp_dfp/amp_dfp.module b/modules/amp_dfp/amp_dfp.module
+index 771198f..f80ad90 100644
+--- a/modules/amp_dfp/amp_dfp.module
++++ b/modules/amp_dfp/amp_dfp.module
+@@ -36,6 +36,9 @@ function amp_dfp_theme($existing, $type, $theme, $path) {
+  * Implements hook_preprocess_amp_dfp_tag().
+  */
+ function amp_dfp_preprocess_amp_dfp_tag(&$variables) {
++  if (!amp_is_amp_request()) {
++    return;
++  }
+   $variables['layout'] = $variables['tag']->settings['amp_layout'];
+   $size = _amp_dfp_get_amp_size($variables['tag']);
+   if (empty($size)) {
+diff --git a/tests/amp_node.test b/tests/amp_node.test
+new file mode 100644
+index 0000000..ddf8c72
+--- /dev/null
++++ b/tests/amp_node.test
+@@ -0,0 +1,78 @@
++<?php
++
++/**
++ * @file
++ * Tests for amp.module.
++ */
++
++class AmpNodeTestCase extends DrupalWebTestCase {
++  protected $admin_user;
++
++  public static function getInfo() {
++    return array(
++      'name' => 'AMP node switch',
++      'description' => 'Tests AMP switch on node level.',
++      'group' => 'AMP',
++    );
++  }
++
++  protected function setUp() {
++    // Enable AMP module.
++    parent::setUp('field_ui', 'amp_test');
++
++    // Create Admin user.
++    $this->admin_user = $this->drupalCreateUser(array(
++        'administer content types',
++        'administer nodes',
++        'edit any article content',
++        'administer fields',
++      )
++    );
++    $this->drupalLogin($this->admin_user);
++  }
++
++  /**
++   * Test the AMP view mode.
++   */
++  public function testAmpNodeSwitch() {
++    // Login as an admin user.
++    $this->drupalLogin($this->admin_user);
++
++    // Create a node to test AMP metadata.
++    $node = $this->drupalCreateNode(array('type' => 'article'));
++
++    // Enable AMP display on article content.
++    $this->drupalGet("admin/structure/types/manage/article/display");
++    $this->assertResponse(200);
++    $edit = ["view_modes_custom[amp]" => '1'];
++    $this->drupalPost(NULL, $edit, t('Save'));
++
++    // Amp version of node should be enabled by default.
++    $this->drupalGet('node/' . $node->nid);
++    $this->assertResponse(200);
++    // Check amphtml link.
++    $this->assertRaw('<link rel="amphtml"');
++    // Visit amp page.
++    $this->drupalGet('node/' . $node->nid, array('query' => array('amp' => TRUE)));
++    $this->assertResponse(200);
++    $this->assertText($node->body[LANGUAGE_NONE][0]['value']);
++    // Check canonical link.
++    $pattern = '|<link rel="canonical" href="http(.*):\/\/(.*)node\/1"\s\/>|';
++    $this->assertPattern($pattern, 'Check that link rel="canonical" is present on the page.');
++
++    // Edit the node and turn off AMP.
++    $this->drupalGet('node/' . $node->nid . '/edit');
++    $this->assertResponse(200);
++    $edit = [
++      'amp_enabled' => FALSE,
++    ];
++    $this->drupalPost(NULL, $edit, t('Save'));
++
++    // View node.
++    $this->drupalGet('node/' . $node->nid);
++    $this->assertResponse(200);
++    // Check that amphtml link is not present.
++    $pattern = '|<link rel="amphtml" href="http(.*):\/\/(.*)node\/1\?.*amp"|';
++    $this->assertNoPattern($pattern, 'Check that link rel="amphtml" is present on the page.');
++  }
++}
