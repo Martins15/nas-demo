@@ -66,3 +66,22 @@ function nas_amp_feature_field_formatter_view($entity_type, $entity, $field, $in
 
   return $element;
 }
+
+/**
+ * Implements hook_default_page_manager_handlers_alter().
+ */
+function nas_amp_feature_default_page_manager_handlers_alter(&$handlers) {
+  if (empty($handlers['node_view_panelizer'])) {
+    return;
+  }
+  $handlers['node_view_panelizer']->conf['access'] = array(
+    'plugins' => array(
+      0 => array(
+        'name' => 'amp_request',
+        'settings' => NULL,
+        'not' => TRUE,
+      ),
+    ),
+    'logic' => 'and',
+  );
+}
