@@ -1,8 +1,8 @@
-name = AMP Doubleclick
-description = Helps render Doubleclick blocks as AMP elements
+name = AMP Tests
+description = Helper module to run tests
 core = 7.x
+php = 5.5
 dependencies[] = amp
-dependencies[] = dfp
 
 ; Information added by Drupal.org packaging script on 2017-05-11
 version = "7.x-1.0+8-dev"

@@ -8753,7 +8753,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #919191;
+    color: #909090;
   }
   .secondary-nav li {
     padding: 0 10px;
@@ -9181,6 +9181,10 @@ body.touch .primary-sub-nav-index {
     width: 60%;
   }
 }
+.frontpage-in-the-news.bird-card-set .bird-card-container.space-bottom {
+  padding-bottom: 35px;
+}
+
 .bird-card-grid {
   -moz-transition: height 0.5s ease-in-out;
   -o-transition: height 0.5s ease-in-out;
@@ -17174,6 +17178,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 @media only screen and (min-width: 0px) and (max-width: 767px) {
+  .article-sidebar {
+    margin-bottom: 0;
+  }
   .article-sidebar .tiny-6:nth-of-type(odd) {
     padding-left: 0;
   }

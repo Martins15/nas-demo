@@ -734,6 +734,12 @@ function nas_alters_module_implements_alter(&$implementations, $hook) {
     unset($implementations['nas_alters']);
     $implementations['nas_alters'] = $group;
   }
+  // Lazyloader has lazyloader_theme_registry_alter that overrides nas_theme_registry_alter.
+  if ($hook == 'theme_registry_alter') {
+    if (isset($implementations['lazyloader'])) {
+      unset($implementations['lazyloader']);
+    }
+  }
 }
 
 /**
