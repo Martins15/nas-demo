@@ -291,13 +291,17 @@ $white: #fff;
         }
       }
       span {
-        width: 100%;
+        width: 90%;
         position: absolute;
         left: 0;
         font-size: 10px;
         top: 20px;
         transition: all 0.3s;
         opacity: 1;
+        font-family: $font-sans;
+        background: $white;
+        border-radius: 3px;
+        border: 1px solid #768acc;
       }
       &:last-child {
 
@@ -324,11 +328,15 @@ $white: #fff;
           }
         }
         span {
+          width: 100%;
           opacity: 0;
           font-size: 12px;
-          top: 10px;
-          left: 20px;
+          top: 15px;
+          left: 0;
           text-align: center;
+          background: $white;
+          border-radius: 3px;
+          border: 1px solid #768acc;
         }
 
       }
@@ -338,6 +346,11 @@ $white: #fff;
 }
 .slick-track {
 }
+
 .slick-list {
+  padding: 0 !important;
+  overflow: visible !important;
+}
+.slick-slider {
   padding: 0 !important;
 }

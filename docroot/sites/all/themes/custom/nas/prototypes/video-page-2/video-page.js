@@ -46,6 +46,12 @@
 
     }
 
+    function autoslick() {
+      var windowHash = window.location.hash;
+      var sectionNum = windowHash.replace( /^\D+/g, '')
+      return sectionNum;
+    }
+
     function videoContainerLogic(){
 
       var loadClass = 'is-loaded';
@@ -71,7 +77,7 @@
               // For modern browser need to check in ie10
               var hash = '#' + el.attr('id');
               history.pushState(null, null, hash);
-              
+
               var $video = $('.main-video-item', el);
               var videoSrc = $video.data('src');
               var $placeholder = $('img', el);
@@ -86,6 +92,13 @@
 
               // Change class for dot navigation.
               changeActiveDot(hash);
+
+              $('.dot-navigation ul').slick('slickGoTo',
+                  autoslick()
+              )
+
+
+
             }
           },
           offset: '50%'
@@ -107,6 +120,9 @@
 
               // Change class for dot navigation.
               changeActiveDot(hash);
+              $('.dot-navigation ul').slick('slickGoTo',
+                  autoslick()
+              )
             }
           },
           offset: '-50%'
@@ -180,14 +196,16 @@
             breakpoint: 768,
             settings: {
               arrows: false,
-              slidesToShow: 3
+              slidesToShow: 3,
+              centerMode: true
             }
           },
           {
             breakpoint: 320,
             settings: {
               arrows: false,
-              slidesToShow: 3
+              slidesToShow: 3,
+              centerMode: true
             }
           }
         ]
@@ -204,12 +222,13 @@
       });
     }
 
-    videoContainerLogic();
+
     thumbnailCarousel();
     dotNavigation();
     stickyDotsNav();
     thumbnailAutoplay();
     anchorLinks();
+    videoContainerLogic();
 
   })
 
