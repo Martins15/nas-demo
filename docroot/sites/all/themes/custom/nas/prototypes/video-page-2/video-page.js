@@ -4,6 +4,10 @@
     Waypoint.refreshAll();
   });
 
+  $(window).on('scroll', function() {
+    Waypoint.refreshAll();
+  });
+
 
   $(window).on('load', function () {
 
@@ -43,35 +47,69 @@
     }
 
     function videoContainerLogic(){
-      $('.video-container').each(function () {
-        var el = $(this);
-        var activeDotClass = 'active';
-        var $video = $('.main-video-item', el);
-        var videoSrc = $video.data('src');
-        var $placeholder = $('img', el);
-        var loadClass = 'is-loaded';
 
+      var loadClass = 'is-loaded';
+      var activeDotClass = 'active';
+      var videoContainer = $('.video-container');
+      var videoPageSection = $('.video-page-section');
+
+      function changeActiveDot(hash) {
+        $('.js-dot-navigation a').removeClass(activeDotClass);
+        $('.js-dot-navigation a[href="' + hash +
+            '"]').addClass(activeDotClass);
+      }
+
+      // Detect down scroll.
+      videoContainer.each(function(){
+        var el = $(this);
         var waypoint = new Waypoint({
           element: el,
-          handler: function (direction) {
+          handler: function(direction) {
+            if (direction == 'down') {
 
-            // For modern browser need to check in ie10
-            var hash = '#' + el.attr('id');
-            history.pushState(null, null, hash);
+              // For modern browser need to check in ie10
+              var hash = '#' + el.attr('id');
+              history.pushState(null, null, hash);
 
-            // Lazy load for video and autoplay.
-            $('source', el).attr("src", videoSrc);
-            $video.get(0).load();
-            $placeholder.addClass(loadClass);
-            $video.get(0).play();
+              var $video = $('.main-video-item', el);
+              var videoSrc = $video.data('src');
+              var $placeholder = $('img', el);
 
-            // Change class for dot navigation.
-            $('.js-dot-navigation a').removeClass(activeDotClass);
-            $('.js-dot-navigation a[href="' + hash +
-                '"]').addClass(activeDotClass);
-          }, offset: '50%'
-        })
+              // Lazy load for video and autoplay.
+              $('source', el).attr("src", videoSrc);
+              $video.get(0).load();
+              $placeholder.addClass(loadClass);
+              $video.get(0).play();
+
+              // Change class for dot navigation.
+              changeActiveDot(hash);
+            }
+          },
+          offset: '50%'
+        });
       });
+
+
+      // Detect up scroll.
+      videoPageSection.each(function() {
+        var el = $(this);
+        var waypointUp = new Waypoint({
+          element: el, // класс секции с текстом
+          handler: function(direction) {
+            if (direction == 'up') {
+
+              // For modern browser need to check in ie10
+              var hash = '#' + el.data('section');
+              history.pushState(null, null, hash);
+
+              // Change class for dot navigation.
+              changeActiveDot(hash);
+            }
+          },
+          offset: '-50%'
+        });
+      })
+
     }
 
     function thumbnailAutoplay() {
@@ -162,7 +200,6 @@
         stuckClass: 'is-fixed'
       });
     }
-
 
     videoContainerLogic();
     thumbnailCarousel();
