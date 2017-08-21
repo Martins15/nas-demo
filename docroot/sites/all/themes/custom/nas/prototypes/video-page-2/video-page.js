@@ -53,6 +53,7 @@
       var videoContainer = $('.video-container');
       var videoPageSection = $('.video-page-section');
 
+
       function changeActiveDot(hash) {
         $('.js-dot-navigation a').removeClass(activeDotClass);
         $('.js-dot-navigation a[href="' + hash +
@@ -70,15 +71,17 @@
               // For modern browser need to check in ie10
               var hash = '#' + el.attr('id');
               history.pushState(null, null, hash);
-
+              
               var $video = $('.main-video-item', el);
               var videoSrc = $video.data('src');
               var $placeholder = $('img', el);
+              var videoContent = $('.video-content', el);
 
               // Lazy load for video and autoplay.
               $('source', el).attr("src", videoSrc);
               $video.get(0).load();
               $placeholder.addClass(loadClass);
+              videoContent.addClass(loadClass);
               $video.get(0).play();
 
               // Change class for dot navigation.
