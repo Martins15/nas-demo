@@ -43,31 +43,30 @@ $white: #fff;
         text-shadow: 2px 2px 1px rgb(179, 179, 179);
       }
     }
+  }
 
-    .main-video & {
-      .small,
-      .large {
-        text-transform: uppercase;
-        line-height: 1;
-        font-family: $font-sans;
-        display: block;
-      }
+  .main-video {
+    .small,
+    .large {
+      text-transform: uppercase;
+      line-height: 1;
+      font-family: $font-sans;
+      display: block;
+    }
+    .small {
+      font-size: 15px;
+    }
+    .large {
+      font-size: 25px;
+    }
+    @include breakpoint(min-width, 768px) {
       .small {
-        font-size: 15px;
+        font-size: 45px;
       }
       .large {
-        font-size: 25px;
-      }
-      @include breakpoint(min-width, 768px) {
-        .small {
-          font-size: 45px;
-        }
-        .large {
-          font-size: 75px;
-        }
+        font-size: 75px;
       }
     }
-
   }
 
   .video-content-secondary {

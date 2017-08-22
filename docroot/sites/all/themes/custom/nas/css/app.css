@@ -17185,24 +17185,24 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   color: #000;
   text-shadow: 2px 2px 1px #b3b3b3;
 }
-.main-video .video-page .video-content .small,
-.main-video .video-page .video-content .large {
+.video-page .main-video .small,
+.video-page .main-video .large {
   text-transform: uppercase;
   line-height: 1;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   display: block;
 }
-.main-video .video-page .video-content .small {
+.video-page .main-video .small {
   font-size: 15px;
 }
-.main-video .video-page .video-content .large {
+.video-page .main-video .large {
   font-size: 25px;
 }
 @media only screen and (min-width: 768px) {
-  .main-video .video-page .video-content .small {
+  .video-page .main-video .small {
     font-size: 45px;
   }
-  .main-video .video-page .video-content .large {
+  .video-page .main-video .large {
     font-size: 75px;
   }
 }
