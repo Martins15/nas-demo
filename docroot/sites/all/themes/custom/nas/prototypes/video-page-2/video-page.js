@@ -8,25 +8,25 @@
     Waypoint.refreshAll();
   });
 
-
-  $(window).on('load', function () {
-
-    function thumbnailCarousel(){
-
-      var thumbClass = 'js-thumbnail-main';
-      var copyThumbClass = 'js-thumbnail-secondary';
-      var articleBodyClass = 'article-body';
+  /**
+   * Thumbnail carousel with anchor links
+   */
+  Drupal.behaviors.thumbnailCarousel = {
+    attach: function (context, settings) {
+      var thumbClass = 'js-thumbnail-main'; // Main Thumbnail class.
+      var copyThumbClass = 'js-thumbnail-secondary'; // Name for second thumb slider.
+      var articleBodyClass = 'article-body'; // Main article class.
       var $originThumb = $('.' + thumbClass);
-      var $secondaryThumb = $('.' + copyThumbClass);
       var $thumbContainerOrigin = $('ul', $originThumb);
-      var $thumbContainerCopy = $('ul', $secondaryThumb);
 
+      // Clone origin thumb HTML and append to bottom article part.
       $originThumb
           .clone()
           .appendTo('.' + articleBodyClass)
           .removeClass(thumbClass)
           .addClass(copyThumbClass);
 
+      // Main Top carousel.
       $thumbContainerOrigin.owlCarousel({
         loop: false,
         responsiveClass: true,
@@ -35,7 +35,7 @@
         items: 5
       });
 
-
+      // Bottom carousel.
       $('.js-thumbnail-secondary ul').owlCarousel({
         loop: false,
         responsiveClass: true,
@@ -43,30 +43,40 @@
         navigation: true,
         items: 5
       });
-
     }
 
-    function autoslick() {
-      var windowHash = window.location.hash;
-      var sectionNum = windowHash.replace( /^\D+/g, '')
-      return sectionNum;
-    }
+  };
 
-    function videoContainerLogic(){
+  /**
+   * Return digit from window.hash.
+   * @returns {string}
+   */
+  function autoslick() {
+    var windowHash = window.location.hash;
+    var sectionNum = windowHash.replace( /^\D+/g, '')
+    return sectionNum;
+  }
 
-      var loadClass = 'is-loaded';
-      var activeDotClass = 'active';
-      var videoContainer = $('.video-container');
-      var videoPageSection = $('.video-page-section');
 
+  /**
+   * Main page part logic.
+   * @type {{attach: Drupal.behaviors.videoContainerLogic.attach}}
+   */
+  Drupal.behaviors.videoContainerLogic = {
+    attach: function (context, settings) {
+      var loadClass = 'is-loaded'; // Load class name.
+      var activeDotClass = 'active'; // Active dot class.
+      var videoContainer = $('.video-container', context); // Block with video.
+      var videoPageSection = $('.video-page-section'); // Block with text.
 
+      // Trigger active class on dot carousel.
       function changeActiveDot(hash) {
         $('.js-dot-navigation a').removeClass(activeDotClass);
         $('.js-dot-navigation a[href="' + hash +
             '"]').addClass(activeDotClass);
       }
 
-      // Detect down scroll.
+      // Detect down scroll on each video container.
       videoContainer.each(function(){
         var el = $(this);
         var waypoint = new Waypoint({
@@ -74,82 +84,94 @@
           handler: function(direction) {
             if (direction == 'down') {
 
-              // For modern browser need to check in ie10
+              // Get hash tag from current section in viewport.
               var hash = '#' + el.attr('id');
 
+              // Remove window.hash from main video block.
               if (hash === '#undefined') {
                 history.pushState(null, null, window.location.pathname);
               } else {
                 history.pushState(null, null, hash);
               }
 
+              var $video = $('.main-video-item', el); // Block with video tag.
+              var videoSrc = $video.data('src'); // Current video src from data.
+              var $placeholder = $('img', el); // Video placeholder.
+              var videoContent = $('.video-content', el); // Video copy.
+              var fadeTimer = 2000; // Fade time.
 
-              var $video = $('.main-video-item', el);
-              var videoSrc = $video.data('src');
-              var $placeholder = $('img', el);
-              var videoContent = $('.video-content', el);
-              var fadeTimer = 2000;
-
-              // Lazy load for video and autoplay.
+              // Lazy load for video.
+              // Get src from data attr and hide placeholder image.
               $('source', el).attr("src", videoSrc);
-              $video.get(0).load();
-              $placeholder.fadeOut(fadeTimer);
-              videoContent.addClass(loadClass);
-              $video.get(0).play();
+              $video.get(0).load(); // Load current video.
+              $placeholder.fadeOut(fadeTimer); // Hide placeholder.
+              videoContent.addClass(loadClass); // Add load class.
+              $video.get(0).play(); // Play current video.
 
-              // Change class for dot navigation.
+              // Change active class in dot navigation.
               changeActiveDot(hash);
 
+              // Auto slide dot navigation to current anchor link.
               $('.dot-navigation ul').slick('slickGoTo',
                   autoslick()
-              )
+              );
 
             }
           },
+          // Implement logic when section in 50% of the viewport.
           offset: '50%'
         });
       });
 
 
-      // Detect up scroll.
+      // Detect UP scroll.
       videoPageSection.each(function() {
         var el = $(this);
         var waypointUp = new Waypoint({
-          element: el, // класс секции с текстом
+          element: el,
           handler: function(direction) {
             if (direction == 'up') {
 
-              // For modern browser need to check in ie10
+              // Change window.hash from visible section.
               var hash = '#' + el.data('section');
-
               if (hash === '#undefined') {
-
                 history.pushState(null, null, window.location.pathname);
               } else {
                 history.pushState(null, null, hash);
               }
 
-
-              // Change class for dot navigation.
+              // Change active class in dot navigation.
               changeActiveDot(hash);
+
+              // Auto slide dot navigation to current anchor link.
               $('.dot-navigation ul').slick('slickGoTo',
                   autoslick()
               )
+
             }
           },
+          // Implement logic when section in 50% of the viewport.
           offset: '-50%'
         });
       })
-
     }
+  };
 
-    function thumbnailAutoplay() {
-      var $thumbItem = $('.thumbnail-item');
-      var $thumbLink = $('a', $thumbItem);
+
+  /**
+   * Implement auto play on thumbnail hover.
+   * @type {{attach: Drupal.behaviors.thumbnailAutoplay.attach}}
+   */
+  Drupal.behaviors.thumbnailAutoplay = {
+    attach: function (context, settings) {
+      var $thumbItem = $('.thumbnail-item', context); // Thumb item.
+      var $thumbLink = $('a', $thumbItem); // Thumb link.
+
 
       $thumbLink.each(function() {
         var el = $(this);
 
+        // Start video play on hover;
         el.on('mouseenter', function () {
           var $thumbnailVideo = $('.thumbnail-video', el);
           if ($thumbnailVideo.get(0).paused) {
@@ -157,50 +179,55 @@
           }
         });
 
-      })
-
-
-      $thumbLink.on('mouseenter', function () {
-        var el = $(this);
-        var $thumbnailVideo = $('.thumbnail-video', el);
-        if ($thumbnailVideo.paused) {
-          $thumbnailVideo.get(0).play();
-        }
       });
 
     }
+  };
 
-    function anchorLinks(){
+
+  /**
+   * Smooth scroll for anchor link.
+   * @type {{attach: Drupal.behaviors.anchorLinks.attach}}
+   */
+  Drupal.behaviors.anchorLinks = {
+    attach: function (context, settings) {
+
+      // Get all link with section href.
       $('a[href^="#"]').on('click', function (e) {
         e.preventDefault();
 
         var target = this.hash;
         var $target = $(target);
 
+        // Smooth scroll.
         $('html, body').stop().animate({
           'scrollTop': $target.offset().top
         }, 900, 'swing', function () {
           window.location.hash = target;
         });
       });
+
     }
+  };
 
-    function dotNavigation() {
-      var $dotContainer = $('.dot-navigation')
-          , $dotList = $('ul', $dotContainer)
-          , $link = $('.dot', $dotContainer)
-          , $textLink = $('.text', $dotContainer);
 
-      // Dot title.
+  /**
+   * Implement dot navigation with slider.
+   * @type {{attach: Drupal.behaviors.dotNavigation.attach}}
+   */
+  Drupal.behaviors.dotNavigation = {
+    attach: function (context, settings) {
+      var $dotContainer = $('.dot-navigation', context) // Dot nav section;
+          , $dotList = $('ul', $dotContainer) // Slider selector.
+          , $link = $('.dot', $dotContainer); // Get dot link
+
+      // Get data for link tooltip from data attr.
       $link.each(function () {
         var $el = $(this);
         var linkText = $el.data('text');
         var linkHref = $el.attr('href');
         $el.next().text(linkText);
         $el.next().attr('href', linkHref);
-
-        console.log(linkText);
-
       });
 
       // Dot carousel
@@ -229,26 +256,23 @@
         ]
 
       });
-
-
     }
+  };
 
-    function stickyDotsNav() {
+
+  /**
+   * Implement sticky dot nav.
+   * @type {{attach: Drupal.behaviors.stickyDotsNav.attach}}
+   */
+  Drupal.behaviors.stickyDotsNav = {
+    attach: function (context, settings) {
       var stickyDotNavigation = new Waypoint.Sticky({
         element: $('.js-dot-navigation')[0],
         stuckClass: 'is-fixed'
       });
     }
+  };
 
-
-    thumbnailCarousel();
-    dotNavigation();
-    stickyDotsNav();
-    thumbnailAutoplay();
-    anchorLinks();
-    videoContainerLogic();
-
-  })
 
 
 })(jQuery);
