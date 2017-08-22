@@ -17254,9 +17254,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   height: auto;
   z-index: 3;
 }
-.video-page .video-container img.is-loaded {
-  z-index: 1;
-}
 .video-page .video-container .main-video-item {
   width: 100%;
   height: auto;

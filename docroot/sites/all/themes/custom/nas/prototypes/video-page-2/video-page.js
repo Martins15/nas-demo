@@ -88,11 +88,12 @@
               var videoSrc = $video.data('src');
               var $placeholder = $('img', el);
               var videoContent = $('.video-content', el);
+              var fadeTimer = 2000;
 
               // Lazy load for video and autoplay.
               $('source', el).attr("src", videoSrc);
               $video.get(0).load();
-              $placeholder.addClass(loadClass);
+              $placeholder.fadeOut(fadeTimer);
               videoContent.addClass(loadClass);
               $video.get(0).play();
 
