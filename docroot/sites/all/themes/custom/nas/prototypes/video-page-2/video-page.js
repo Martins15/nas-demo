@@ -76,7 +76,13 @@
 
               // For modern browser need to check in ie10
               var hash = '#' + el.attr('id');
-              history.pushState(null, null, hash);
+
+              if (hash === '#undefined') {
+                history.pushState(null, null, window.location.pathname);
+              } else {
+                history.pushState(null, null, hash);
+              }
+
 
               var $video = $('.main-video-item', el);
               var videoSrc = $video.data('src');
@@ -97,8 +103,6 @@
                   autoslick()
               )
 
-
-
             }
           },
           offset: '50%'
@@ -116,7 +120,14 @@
 
               // For modern browser need to check in ie10
               var hash = '#' + el.data('section');
-              history.pushState(null, null, hash);
+
+              if (hash === '#undefined') {
+
+                history.pushState(null, null, window.location.pathname);
+              } else {
+                history.pushState(null, null, hash);
+              }
+
 
               // Change class for dot navigation.
               changeActiveDot(hash);
@@ -176,13 +187,19 @@
     function dotNavigation() {
       var $dotContainer = $('.dot-navigation')
           , $dotList = $('ul', $dotContainer)
-          , $link = $('a', $dotContainer);
+          , $link = $('.dot', $dotContainer)
+          , $textLink = $('.text', $dotContainer);
 
       // Dot title.
       $link.each(function () {
         var $el = $(this);
         var linkText = $el.data('text');
+        var linkHref = $el.attr('href');
         $el.next().text(linkText);
+        $el.next().attr('href', linkHref);
+
+        console.log(linkText);
+
       });
 
       // Dot carousel
