@@ -8,6 +8,57 @@
     Waypoint.refreshAll();
   });
 
+
+  Drupal.behaviors.videoInView = {
+    attach: function (context, settings) {
+
+      var $videoContainer = $('.video-container');
+
+      $videoContainer.each(function () {
+        var el = $(this); // Video container.
+
+        var $video = $('.main-video-item', el); // Block with video tag.
+        var videoSrc = $video.data('src'); // Current video src from data.
+        var $placeholder = $('img', el); // Video placeholder.
+        var videoContent = $('.video-content', el); // Video copy.
+        var fadeTimer = 2000; // Fade time.
+        var loadClass = 'is-loaded'; // Load class name.
+        // Lazy load for video.
+
+
+        var inview = new Waypoint.Inview({
+          element: el,
+          enter: function(direction) {
+            // Get src from data attr and hide placeholder image.
+
+            var $videoSrc = el.data('src');
+            if (typeof $videoSrc == typeof undefined || $videoSrc == false) {
+              // Element has this attribute
+              $('source', el).attr("src", videoSrc);
+              $video.get(0).load(); // Load current video.
+              $placeholder.fadeOut(fadeTimer); // Hide placeholder.
+              videoContent.addClass(loadClass); // Add load class.
+              $video.get(0).play(); // Play current video.
+            } else {
+              $video.get(0).play();
+            }
+
+          },
+          exited: function(direction) {
+            $video.get(0).pause();
+          }
+        })
+      })
+
+
+    }
+  };
+
+
+
+
+
+
   /**
    * Thumbnail carousel with anchor links
    */
@@ -64,7 +115,7 @@
    */
   Drupal.behaviors.videoContainerLogic = {
     attach: function (context, settings) {
-      var loadClass = 'is-loaded'; // Load class name.
+
       var activeDotClass = 'active'; // Active dot class.
       var videoContainer = $('.video-container', context); // Block with video.
       var videoPageSection = $('.video-page-section'); // Block with text.
@@ -94,19 +145,7 @@
                 history.pushState(null, null, hash);
               }
 
-              var $video = $('.main-video-item', el); // Block with video tag.
-              var videoSrc = $video.data('src'); // Current video src from data.
-              var $placeholder = $('img', el); // Video placeholder.
-              var videoContent = $('.video-content', el); // Video copy.
-              var fadeTimer = 2000; // Fade time.
 
-              // Lazy load for video.
-              // Get src from data attr and hide placeholder image.
-              $('source', el).attr("src", videoSrc);
-              $video.get(0).load(); // Load current video.
-              $placeholder.fadeOut(fadeTimer); // Hide placeholder.
-              videoContent.addClass(loadClass); // Add load class.
-              $video.get(0).play(); // Play current video.
 
               // Change active class in dot navigation.
               changeActiveDot(hash);
@@ -166,7 +205,11 @@
     attach: function (context, settings) {
       var $thumbItem = $('.thumbnail-item', context); // Thumb item.
       var $thumbLink = $('a', $thumbItem); // Thumb link.
+      var startDelay = 1500;
 
+      $("video").bind("ended", function() {
+        this.currentTime = 0;
+      });
 
       $thumbLink.each(function() {
         var el = $(this);
@@ -175,8 +218,12 @@
         el.on('mouseenter', function () {
           var $thumbnailVideo = $('.thumbnail-video', el);
           if ($thumbnailVideo.get(0).paused) {
-            $thumbnailVideo.get(0).play();
+            setTimeout(function(){
+              $thumbnailVideo.get(0).play();
+            }, startDelay)
+
           }
+
         });
 
       });
