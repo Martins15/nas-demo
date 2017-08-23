@@ -4,7 +4,7 @@ $white: #fff;
 .video-page {
   .slick-list {
     padding: 0 !important;
-    overflow: visible !important;
+    //overflow: visible !important;
   }
   .slick-slider {
     padding: 0 !important;
@@ -218,7 +218,34 @@ $white: #fff;
     width: 100%;
     transition: background 0.3s;
     padding-top: 0;
-
+    height: 48px;
+    background: #fff;
+    .row {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .mobile-slide-wrapper {
+      padding: 10px 0 0 0;
+      position: relative;
+      &:before,
+      &:after {
+        content: '';
+        display: block;
+        width: 15%;
+        height: calc(100% + 10px);
+        position: absolute;
+        top: 0;
+        z-index: 2;
+      }
+      &:before {
+        left: 0;
+        background-image: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.0));
+      }
+      &:after {
+        right: 0;
+        background-image: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0.0));
+      }
+    }
     &.is-fixed {
       position: fixed;
       top: 0;
@@ -226,29 +253,32 @@ $white: #fff;
       left: 50%;
       transform: translateX(-50%);
       margin: 0;
-      background-color: rgba(0,0,0, 0.5);
     }
+    h3 {
+      text-transform: uppercase;
+      margin: 0;
+      color: white;
+      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 
-    .dot-heading {
-      display: none;
+
+      letter-spacing: 7.2px;
+      text-align: left;
+      line-height: 42px;
       @include breakpoint(min-width, 768px) {
-        display: block;
-        background: #ccc;
-        padding: 20px 0;
-        h3 {
-          text-transform: uppercase;
-          margin: 0;
-          color: white;
-        }
+        font-size: 11px;
+      }
+      @include breakpoint(min-width, 980px) {
+        font-size: 20px;
       }
     }
 
     ul {
       margin: 0;
-      padding: 15px;
       text-align: center;
       width: 100%;
-      padding-top: 5px;
+      position: relative;
+      top: 10px;
+      background: #fff;
       li {
         padding: 0 0 40px 0;
         display: inline-block;
@@ -262,7 +292,7 @@ $white: #fff;
           left: 0;
           width: 100%;
           height: 2px;
-          background: #ccc;
+          background: #a1a1a1;
         }
         &:first-child {
           &:after {
@@ -282,7 +312,7 @@ $white: #fff;
           font-size: 0;
           width: 15px;
           height: 15px;
-          background: #ccc;
+          background: #a1a1a1;
           text-decoration: none;
           transition: all 0.5s;
           position: relative;
@@ -290,26 +320,27 @@ $white: #fff;
           &.active {
             transform: scale(1.1);
             transform-origin: center;
-            background: #768acc;
+            background: #696969;
           }
           &:hover {
             transform: scale(1.1);
             transform-origin: center;
-            background: #768acc;
+            background: #696969;
           }
         }
         a.text {
           width: 90%;
           position: absolute;
           left: 0;
-          font-size: 10px;
+          font-size: 12px;
           top: 20px;
           transition: all 0.3s;
           opacity: 1;
           font-family: $font-sans;
-          background: $white;
-          border-radius: 3px;
-          border: 1px solid #768acc;
+          color: #696969;
+          &:visited {
+            color: #696969;
+          }
         }
         &:last-child {
 
@@ -319,18 +350,48 @@ $white: #fff;
     }
     @include breakpoint(min-width, 768px) {
       margin: 0;
-      &.is-fixed {
-        background: none;
+      height: 48px;
+      background: #ccc;
+      .row {
+        height: 48px;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      .mobile-slide-wrapper {
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 0;
+        &:before,
+        &:after {
+          display: none;
+        }
+      }
+      &.with-gradient {
+        &::after {
+          opacity: 1;
+        }
+      }
+      &::after {
+        content: '';
+        opacity: 0;
+        transition: all 1s;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        z-index: -1;
+        background-image: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.0));
       }
       ul {
+        background: none;
         li {
           padding: 5px 0 40px 0;
           &:after {
-            top: 13px;
+            top: 12px;
           }
           a.dot {
-            width: 20px;
-            height: 20px;
+            width: 15px;
+            height: 15px;
             outline: none;
             &:focus,
             &:hover {
@@ -341,20 +402,22 @@ $white: #fff;
             &:hover {
               + a.text {
                 opacity: 1;
-                top: 30px;
+                top: 40px;
+                z-index: 2;
               }
             }
           }
           a.text {
-            width: 100%;
+            width: 250%;
             opacity: 0;
-            font-size: 12px;
+            font-size: 20px;
             top: 15px;
-            left: 0;
+            left: -80%;
             text-align: center;
-            background: $white;
+            background: none;
             border-radius: 3px;
-            border: 1px solid #768acc;
+            border: none;
+            color: #696969;
           }
 
         }

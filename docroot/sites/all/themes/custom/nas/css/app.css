@@ -17148,7 +17148,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .video-page .slick-list {
   padding: 0 !important;
-  overflow: visible !important;
 }
 .video-page .slick-slider {
   padding: 0 !important;
@@ -17342,6 +17341,33 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   width: 100%;
   transition: background 0.3s;
   padding-top: 0;
+  height: 48px;
+  background: #fff;
+}
+.video-page .dot-navigation .row {
+  padding-left: 0;
+  padding-right: 0;
+}
+.video-page .dot-navigation .mobile-slide-wrapper {
+  padding: 10px 0 0 0;
+  position: relative;
+}
+.video-page .dot-navigation .mobile-slide-wrapper:before, .video-page .dot-navigation .mobile-slide-wrapper:after {
+  content: '';
+  display: block;
+  width: 15%;
+  height: calc(100% + 10px);
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+.video-page .dot-navigation .mobile-slide-wrapper:before {
+  left: 0;
+  background-image: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
+}
+.video-page .dot-navigation .mobile-slide-wrapper:after {
+  right: 0;
+  background-image: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0));
 }
 .video-page .dot-navigation.is-fixed {
   position: fixed;
@@ -17350,29 +17376,33 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
-  background-color: rgba(0, 0, 0, 0.5);
 }
-.video-page .dot-navigation .dot-heading {
-  display: none;
+.video-page .dot-navigation h3 {
+  text-transform: uppercase;
+  margin: 0;
+  color: white;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  letter-spacing: 7.2px;
+  text-align: left;
+  line-height: 42px;
 }
 @media only screen and (min-width: 768px) {
-  .video-page .dot-navigation .dot-heading {
-    display: block;
-    background: #ccc;
-    padding: 20px 0;
+  .video-page .dot-navigation h3 {
+    font-size: 11px;
   }
-  .video-page .dot-navigation .dot-heading h3 {
-    text-transform: uppercase;
-    margin: 0;
-    color: white;
+}
+@media only screen and (min-width: 980px) {
+  .video-page .dot-navigation h3 {
+    font-size: 20px;
   }
 }
 .video-page .dot-navigation ul {
   margin: 0;
-  padding: 15px;
   text-align: center;
   width: 100%;
-  padding-top: 5px;
+  position: relative;
+  top: 10px;
+  background: #fff;
 }
 .video-page .dot-navigation ul li {
   padding: 0 0 40px 0;
@@ -17388,7 +17418,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   left: 0;
   width: 100%;
   height: 2px;
-  background: #ccc;
+  background: #a1a1a1;
 }
 .video-page .dot-navigation ul li:first-child:after {
   left: 50%;
@@ -17406,7 +17436,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 0;
   width: 15px;
   height: 15px;
-  background: #ccc;
+  background: #a1a1a1;
   text-decoration: none;
   transition: all 0.5s;
   position: relative;
@@ -17415,42 +17445,72 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .video-page .dot-navigation ul li a.dot.active {
   transform: scale(1.1);
   transform-origin: center;
-  background: #768acc;
+  background: #696969;
 }
 .video-page .dot-navigation ul li a.dot:hover {
   transform: scale(1.1);
   transform-origin: center;
-  background: #768acc;
+  background: #696969;
 }
 .video-page .dot-navigation ul li a.text {
   width: 90%;
   position: absolute;
   left: 0;
-  font-size: 10px;
+  font-size: 12px;
   top: 20px;
   transition: all 0.3s;
   opacity: 1;
   font-family: "Source Sans Pro", Verdana, sans-serif;
-  background: #fff;
-  border-radius: 3px;
-  border: 1px solid #768acc;
+  color: #696969;
+}
+.video-page .dot-navigation ul li a.text:visited {
+  color: #696969;
 }
 @media only screen and (min-width: 768px) {
   .video-page .dot-navigation {
     margin: 0;
+    height: 48px;
+    background: #ccc;
   }
-  .video-page .dot-navigation.is-fixed {
+  .video-page .dot-navigation .row {
+    height: 48px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .video-page .dot-navigation .mobile-slide-wrapper {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 0;
+  }
+  .video-page .dot-navigation .mobile-slide-wrapper:before, .video-page .dot-navigation .mobile-slide-wrapper:after {
+    display: none;
+  }
+  .video-page .dot-navigation.with-gradient::after {
+    opacity: 1;
+  }
+  .video-page .dot-navigation::after {
+    content: '';
+    opacity: 0;
+    transition: all 1s;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    z-index: -1;
+    background-image: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0));
+  }
+  .video-page .dot-navigation ul {
     background: none;
   }
   .video-page .dot-navigation ul li {
     padding: 5px 0 40px 0;
   }
   .video-page .dot-navigation ul li:after {
-    top: 13px;
+    top: 12px;
   }
   .video-page .dot-navigation ul li a.dot {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     outline: none;
   }
   .video-page .dot-navigation ul li a.dot:focus, .video-page .dot-navigation ul li a.dot:hover {
@@ -17459,18 +17519,20 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
   .video-page .dot-navigation ul li a.dot.video-at-top + a.text, .video-page .dot-navigation ul li a.dot:hover + a.text {
     opacity: 1;
-    top: 30px;
+    top: 40px;
+    z-index: 2;
   }
   .video-page .dot-navigation ul li a.text {
-    width: 100%;
+    width: 250%;
     opacity: 0;
-    font-size: 12px;
+    font-size: 20px;
     top: 15px;
-    left: 0;
+    left: -80%;
     text-align: center;
-    background: #fff;
+    background: none;
     border-radius: 3px;
-    border: 1px solid #768acc;
+    border: none;
+    color: #696969;
   }
 }
 

@@ -251,18 +251,28 @@
       var $videoContainer = $('.video-container');
       var $video = $('.main-video-item', $videoContainer);
       var $dotContainer = $('.dot-navigation');
+      var gradientClass = 'with-gradient';
+      var videoAtTopClass = 'video-at-top';
+
 
       $video.each(function() {
         var el = $(this);
         var waypointUp = new Waypoint({
           element: el,
           handler: function(direction) {
-            $('a.dot', $dotContainer).removeClass('video-at-top');
-            $('a.dot.active').addClass('video-at-top');
 
-            setTimeout(function(){
-              $('a.dot', $dotContainer).removeClass('video-at-top');
-            }, 3000)
+            if ( !$dotContainer.hasClass(gradientClass)) {
+              setTimeout(function() {
+                $('a.dot', $dotContainer).removeClass(videoAtTopClass);
+                $('a.dot.active').addClass(videoAtTopClass);
+                $dotContainer.addClass(gradientClass);
+              }, 300)
+
+              setTimeout(function(){
+                $('a.dot', $dotContainer).removeClass(videoAtTopClass);
+                $dotContainer.removeClass(gradientClass);
+              }, 3000)
+            }
 
           }
 
@@ -307,7 +317,9 @@
     attach: function (context, settings) {
       var $dotContainer = $('.dot-navigation', context) // Dot nav section;
           , $dotList = $('ul', $dotContainer) // Slider selector.
-          , $link = $('.dot', $dotContainer); // Get dot link
+          , $link = $('.dot', $dotContainer) // Get dot link
+          , gradientClass = 'with-gradient';
+
 
       // Get data for link tooltip from data attr.
       $link.each(function () {
@@ -316,6 +328,15 @@
         var linkHref = $el.attr('href');
         $el.next().text(linkText);
         $el.next().attr('href', linkHref);
+
+        $el.on('mouseover', function() {
+            $dotContainer.removeClass(gradientClass);
+            $dotContainer.addClass(gradientClass);
+        });
+        $el.on('mouseleave', function() {
+          $dotContainer.removeClass(gradientClass);
+        });
+
       });
 
       // Dot carousel
