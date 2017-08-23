@@ -310,6 +310,41 @@
 
 
   /**
+   * Implements video content position.
+   * @type {{attach: Drupal.behaviors.videoContentPosition.attach}}
+   */
+  Drupal.behaviors.videoContentPosition = {
+    attach: function (context, settings) {
+      var $videoContent = $('.video-content');
+
+      $videoContent.each(function() {
+        var $el = $(this);
+        var elPositionTop = $el.data('top');
+        var elPositionBottom = $el.data('bottom');
+
+        // Set top position fot video content.
+        if (elPositionTop !== '' ) {
+          $el.css({
+            'top': elPositionTop,
+            'bottom': 'auto'
+          })
+        }
+
+        // Set bottom position fot video content.
+        if (elPositionBottom !== '' ) {
+          $el.css({
+            'bottom': elPositionBottom,
+            'top' : 'auto'
+          })
+        }
+
+      });
+
+    }
+  };
+
+
+  /**
    * Implement dot navigation with slider.
    * @type {{attach: Drupal.behaviors.dotNavigation.attach}}
    */
