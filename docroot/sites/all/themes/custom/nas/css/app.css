@@ -17552,6 +17552,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     border: none;
     color: #696969;
   }
+  .video-page .dot-navigation ul li:first-child a.text {
+    left: -15px;
+  }
+  .video-page .dot-navigation ul li:last-child a.text {
+    left: auto;
+    right: -15px;
+  }
 }
 
 .sidebar, .article-sidebar {
