@@ -337,6 +337,7 @@ $white: #fff;
               outline: none;
               border: none;
             }
+            &.video-at-top,
             &:hover {
               + a.text {
                 opacity: 1;

@@ -23,11 +23,14 @@
         var videoContent = $('.video-content', el); // Video copy.
         var fadeTimer = 2000; // Fade time.
         var loadClass = 'is-loaded'; // Load class name.
+        var $dotContainer = $('.dot-navigation');
         // Lazy load for video.
 
 
         var inview = new Waypoint.Inview({
           element: el,
+
+          // Video container in viewport.
           enter: function(direction) {
             // Get src from data attr and hide placeholder image.
 
@@ -44,8 +47,16 @@
             }
 
           },
+
+          // Video container out of viewport.
           exited: function(direction) {
+
+            // Stop current video.
             $video.get(0).pause();
+
+            // Hide title from active dot navigation.
+            $('a.dot', $dotContainer).removeClass('video-at-top');
+
           }
         })
       })
@@ -223,13 +234,43 @@
             }, startDelay)
 
           }
-
         });
 
       });
 
     }
   };
+
+
+  /**
+   * Implements show dot title when video at the top of the screen.
+   * @type {{attach: Drupal.behaviors.showNavTitleOnTop.attach}}
+   */
+  Drupal.behaviors.showNavTitleOnTop = {
+    attach: function (context, settings) {
+      var $videoContainer = $('.video-container');
+      var $video = $('.main-video-item', $videoContainer);
+      var $dotContainer = $('.dot-navigation');
+
+      $video.each(function() {
+        var el = $(this);
+        var waypointUp = new Waypoint({
+          element: el,
+          handler: function(direction) {
+            $('a.dot', $dotContainer).removeClass('video-at-top');
+            $('a.dot.active').addClass('video-at-top');
+
+            setTimeout(function(){
+              $('a.dot', $dotContainer).removeClass('video-at-top');
+            }, 3000)
+
+          }
+
+        });
+      })
+    }
+  };
+
 
 
   /**

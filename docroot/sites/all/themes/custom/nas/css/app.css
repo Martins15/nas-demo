@@ -17457,7 +17457,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     outline: none;
     border: none;
   }
-  .video-page .dot-navigation ul li a.dot:hover + a.text {
+  .video-page .dot-navigation ul li a.dot.video-at-top + a.text, .video-page .dot-navigation ul li a.dot:hover + a.text {
     opacity: 1;
     top: 30px;
   }
