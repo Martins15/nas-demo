@@ -132,6 +132,26 @@ $white: #fff;
   }
 
   .thumbnail-container {
+
+    .slick-arrow {
+      font-size: 0;
+      position: absolute;
+      top: 50%;
+      transform:translateY(-50%);
+      width: 24px;
+      height: 42px;
+      z-index: 2;
+      padding: 0;
+      &.slick-prev {
+        left: 5px;
+        background: url('../prototypes/video-page-2/left.png') no-repeat center;
+      }
+      &.slick-next {
+        right: 5px;
+        background: url('../prototypes/video-page-2/right.png') no-repeat center;
+      }
+    }
+
     ul {
       list-style-type: none;
       margin: 0;
@@ -181,6 +201,7 @@ $white: #fff;
         width: auto;
         height: auto;
         position: relative;
+        //height: 60px;
       }
     }
     .owl-pagination {

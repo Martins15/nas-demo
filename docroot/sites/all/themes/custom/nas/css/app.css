@@ -17263,6 +17263,24 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .video-page .video-container .sticky-wrapper {
   display: block !important;
 }
+.video-page .thumbnail-container .slick-arrow {
+  font-size: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 42px;
+  z-index: 2;
+  padding: 0;
+}
+.video-page .thumbnail-container .slick-arrow.slick-prev {
+  left: 5px;
+  background: url("../prototypes/video-page-2/left.png") no-repeat center;
+}
+.video-page .thumbnail-container .slick-arrow.slick-next {
+  right: 5px;
+  background: url("../prototypes/video-page-2/right.png") no-repeat center;
+}
 .video-page .thumbnail-container ul {
   list-style-type: none;
   margin: 0;
