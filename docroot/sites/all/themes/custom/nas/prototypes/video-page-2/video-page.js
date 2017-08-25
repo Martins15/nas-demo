@@ -8,6 +8,9 @@
     Waypoint.refreshAll();
   });
 
+  $(window).on('load', function() {
+    Waypoint.refreshAll();
+  })
 
   Drupal.behaviors.VideoLogic = {
     attach: function (context, settings) {
@@ -159,6 +162,7 @@
 
   };
 
+
   /**
    * Return digit from window.hash.
    * @returns {string}
@@ -220,7 +224,9 @@
             }
           },
           // Implement logic when section in 50% of the viewport.
-          // offset: '50%'
+          offset: function() {
+            return $('.dot-navigation').height();
+          }
         });
       });
 

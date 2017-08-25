@@ -282,6 +282,7 @@ $white: #fff;
       left: 50%;
       transform: translateX(-50%);
       margin: 0;
+      width: 101%;
     }
     h3 {
       text-transform: uppercase;
@@ -389,7 +390,7 @@ $white: #fff;
       .mobile-slide-wrapper {
         padding-left: 12px;
         padding-right: 12px;
-        padding-top: 0;
+        //padding-top: 0;
         &:before,
         &:after {
           display: none;

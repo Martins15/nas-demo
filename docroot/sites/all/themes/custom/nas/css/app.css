@@ -17400,6 +17400,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
+  width: 101%;
 }
 .video-page .dot-navigation h3 {
   text-transform: uppercase;
@@ -17507,7 +17508,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .video-page .dot-navigation .mobile-slide-wrapper {
     padding-left: 12px;
     padding-right: 12px;
-    padding-top: 0;
   }
   .video-page .dot-navigation .mobile-slide-wrapper:before, .video-page .dot-navigation .mobile-slide-wrapper:after {
     display: none;
