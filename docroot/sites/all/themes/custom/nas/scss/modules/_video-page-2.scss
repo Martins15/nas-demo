@@ -254,7 +254,7 @@ $white: #fff;
       padding-right: 0;
     }
     .mobile-slide-wrapper {
-      padding: 0;
+      padding: 10px 0 0 0;
       position: relative;
       &:before,
       &:after {
@@ -304,14 +304,13 @@ $white: #fff;
       text-align: center;
       width: 100%;
       position: relative;
-      top: 10px;
       background: #fff;
       li {
         padding: 0;
         display: inline-block;
         position: relative;
         text-align: center;
-        height: 55px;
+        height: auto;
         &:after {
           content: '';
           display: block;
@@ -344,7 +343,7 @@ $white: #fff;
           &:hover,
           &.active {
             .circle {
-              background: #696969;
+              background: #575757;
             }
           }
           .circle {
@@ -359,9 +358,11 @@ $white: #fff;
             border-radius: 50%;
           }
           .text {
-            width: 100%;
+            width: auto;
+            transform: translateX(-50%);
             position: absolute;
-            left: 0;
+            left: 50%;
+            white-space: nowrap;
             font-size: 12px;
             top: 20px;
             transition: all 0.3s;
@@ -427,8 +428,6 @@ $white: #fff;
             }
             .text {
               position: relative;
-              width: auto;
-              white-space: nowrap;
               padding: 5px 10px;
               font-size: 20px;
               top: auto;

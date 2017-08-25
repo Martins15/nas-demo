@@ -220,7 +220,7 @@
             }
           },
           // Implement logic when section in 50% of the viewport.
-          offset: '50%'
+          // offset: '50%'
         });
       });
 
@@ -268,7 +268,7 @@
     attach: function (context, settings) {
       var $thumbItem = $('.thumbnail-item', context); // Thumb item.
       var $thumbLink = $('a', $thumbItem); // Thumb link.
-      var startDelay = 1500;
+      var startDelay = 500;
 
       $("video").bind("ended", function () {
         this.currentTime = 0;
