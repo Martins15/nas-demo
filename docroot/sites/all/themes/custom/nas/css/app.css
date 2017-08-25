@@ -17313,20 +17313,22 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   top: 0;
   z-index: 2;
 }
-.video-page .thumbnail-container .thumbnail-item a::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: white;
-  opacity: 0.5;
-  transition: all 1s;
-}
-.video-page .thumbnail-container .thumbnail-item a:hover::after {
-  opacity: 0;
+@media only screen and (min-width: 768px) {
+  .video-page .thumbnail-container .thumbnail-item a::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: white;
+    opacity: 0.5;
+    transition: all 1s;
+  }
+  .video-page .thumbnail-container .thumbnail-item a:hover::after {
+    opacity: 0;
+  }
 }
 .video-page .thumbnail-container .thumbnail-item .thumbnail-video {
   width: auto;

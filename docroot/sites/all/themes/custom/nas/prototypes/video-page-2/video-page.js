@@ -9,22 +9,36 @@
   });
 
 
-  Drupal.behaviors.videoInView = {
+  Drupal.behaviors.VideoLogic = {
     attach: function (context, settings) {
 
       var $videoContainer = $('.video-container');
 
+      // Start playing when video will scroll at the top of the window.
       $videoContainer.each(function () {
         var el = $(this); // Video container.
+        var waypoint = new Waypoint({
+          element: el,
+          handler: function() {
+            var $video = $('.main-video-item', el); // Block with video tag.
+            $video.get(0).play();
+          },
+          offset: function() {
+            return $('.dot-navigation').height();
+          }
+        })
+      });
 
+
+      // Video lazy load.
+      $videoContainer.each(function () {
+        var el = $(this); // Video container.
         var $video = $('.main-video-item', el); // Block with video tag.
         var videoSrc = $video.data('src'); // Current video src from data.
         var videoContent = $('.video-content', el); // Video copy.
         var loadClass = 'is-loaded'; // Load class name.
         var $dotContainer = $('.dot-navigation');
         // Lazy load for video.
-
-
         var inview = new Waypoint.Inview({
           element: el,
 
@@ -38,10 +52,10 @@
               $('source', el).attr("src", videoSrc);
               $video.get(0).load(); // Load current video.
               videoContent.addClass(loadClass); // Add load class.
-              $video.get(0).play(); // Play current video.
+              //$video.get(0).play(); // Play current video.
             }
             else {
-              $video.get(0).play();
+              //$video.get(0).play();
             }
 
           },
