@@ -2,9 +2,14 @@ $black: #000;
 $white: #fff;
 
 .video-page {
+
+  .article-full-width-layout {
+    overflow-x: hidden;
+  }
+
   .slick-list {
     padding: 0 !important;
-    //overflow: visible !important;
+    overflow: visible !important;
   }
   .slick-slider {
     padding: 0 !important;
@@ -24,6 +29,7 @@ $white: #fff;
       transform: scale(1);
     }
     h1 {
+      margin: 25px 0;
       font-size: 25px;
       line-height: 1;
       @include breakpoint(min-width, 768px) {
@@ -124,7 +130,7 @@ $white: #fff;
       height: auto;
       display: block;
       position: relative;
-      z-index: 2;
+      //z-index: 2;
     }
     .sticky-wrapper {
       display: block !important;
@@ -246,7 +252,7 @@ $white: #fff;
       padding-right: 0;
     }
     .mobile-slide-wrapper {
-      padding: 10px 0 0 0;
+      padding: 0;
       position: relative;
       &:before,
       &:after {
@@ -299,10 +305,11 @@ $white: #fff;
       top: 10px;
       background: #fff;
       li {
-        padding: 0 0 40px 0;
+        padding: 0;
         display: inline-block;
         position: relative;
         text-align: center;
+        height: 55px;
         &:after {
           content: '';
           display: block;
@@ -327,43 +334,44 @@ $white: #fff;
         a.dot {
           display: block;
           margin: 0 auto;
-          border-radius: 50%;
-          font-size: 0;
-          width: 15px;
-          height: 15px;
-          background: #a1a1a1;
+          width: 100%;
+          height: 100%;
           text-decoration: none;
-          transition: all 0.5s;
           position: relative;
           z-index: 2;
+          &:hover,
           &.active {
-            transform: scale(1.1);
-            transform-origin: center;
-            background: #696969;
+            .circle {
+              background: #696969;
+            }
           }
-          &:hover {
-            transform: scale(1.1);
-            transform-origin: center;
-            background: #696969;
+          .circle {
+            position: absolute;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #a1a1a1;
+            display: block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+          }
+          .text {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            font-size: 12px;
+            top: 20px;
+            transition: all 0.3s;
+            opacity: 1;
+            line-height: 1;
+            font-family: $font-sans;
+            color: #000;
+            &:visited {
+              color: #000;
+            }
           }
         }
-        a.text {
-          width: 90%;
-          position: absolute;
-          left: 0;
-          font-size: 12px;
-          top: 20px;
-          transition: all 0.3s;
-          opacity: 1;
-          font-family: $font-sans;
-          color: #696969;
-          &:visited {
-            color: #696969;
-          }
-        }
-        &:last-child {
-        }
-
       }
     }
     @include breakpoint(min-width, 768px) {
@@ -384,11 +392,6 @@ $white: #fff;
           display: none;
         }
       }
-      &.with-gradient {
-        &::after {
-          opacity: 1;
-        }
-      }
       &::after {
         content: '';
         opacity: 0;
@@ -403,54 +406,101 @@ $white: #fff;
       ul {
         background: none;
         li {
-          padding: 5px 0 40px 0;
+          height: 40px;
           &:after {
             top: 12px;
           }
           a.dot {
-            width: 15px;
-            height: 15px;
-            outline: none;
             &:focus,
             &:hover {
               outline: none;
               border: none;
             }
-            &.video-at-top,
-            &:hover {
-              + a.text {
-                opacity: 1;
-                top: 40px;
-                z-index: 2;
-              }
+
+            .circle {
+              width: 15px;
+              outline: none;
+              height: 15px;
+              top: 5px;
+            }
+            .text {
+              position: relative;
+              width: auto;
+              white-space: nowrap;
+              padding: 5px 10px;
+              font-size: 20px;
+              top: auto;
+              bottom: 0;
+              line-height: normal;
+              left: 0;
+              opacity: 1;
+              text-align: center;
+              background: none;
+              border-radius: 0;
+              border: none;
+              background: #ccc;
+              color: $white;
+              z-index: 5;
             }
           }
-          a.text {
-            width: 250%;
-            opacity: 0;
-            font-size: 20px;
-            top: 15px;
-            left: -80%;
-            text-align: center;
-            background: none;
-            border-radius: 3px;
-            border: none;
-            color: #696969;
+
+          &:last-child {
+            .text-wrapper {
+              right: 0;
+              left: auto;
+              transform: translateX(0);
+            }
+          }
+          .text-wrapper {
+            width: auto;
+            height: 0;
+            display: block;
+            position: absolute;
+            top: 90%;
+            overflow: hidden;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: height 0.3s;
+          }
+
+          &:hover {
+            .text-wrapper {
+              height: 30px;
+            }
+          }
+          a.dot.video-at-top {
+            .text-wrapper {
+              height: 30px;
+            }
           }
           &:first-child {
-            a.text {
+            .text {
               left: -15px;
             }
           }
           &:last-child {
-            a.text {
+            .text {
               left: auto;
               right: -15px;
             }
           }
         }
+        
       }
 
+    }
+    @include breakpoint(min-width, 1020px) {
+      ul {
+        li {
+          &:last-child {
+            .text-wrapper {
+              left: 50%;
+              right: auto;
+              transform: translateX(-50%);
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -4,7 +4,7 @@
     Waypoint.refreshAll();
   });
 
-  $(window).on('scroll', function() {
+  $(window).on('scroll', function () {
     Waypoint.refreshAll();
   });
 
@@ -19,9 +19,7 @@
 
         var $video = $('.main-video-item', el); // Block with video tag.
         var videoSrc = $video.data('src'); // Current video src from data.
-        var $placeholder = $('img', el); // Video placeholder.
         var videoContent = $('.video-content', el); // Video copy.
-        var fadeTimer = 2000; // Fade time.
         var loadClass = 'is-loaded'; // Load class name.
         var $dotContainer = $('.dot-navigation');
         // Lazy load for video.
@@ -31,7 +29,7 @@
           element: el,
 
           // Video container in viewport.
-          enter: function(direction) {
+          enter: function (direction) {
             // Get src from data attr and hide placeholder image.
 
             var $videoSrc = el.data('src');
@@ -39,17 +37,17 @@
               // Element has this attribute
               $('source', el).attr("src", videoSrc);
               $video.get(0).load(); // Load current video.
-              $placeholder.fadeOut(fadeTimer); // Hide placeholder.
               videoContent.addClass(loadClass); // Add load class.
               $video.get(0).play(); // Play current video.
-            } else {
+            }
+            else {
               $video.get(0).play();
             }
 
           },
 
           // Video container out of viewport.
-          exited: function(direction) {
+          exited: function (direction) {
 
             // Stop current video.
             $video.get(0).pause();
@@ -66,17 +64,14 @@
   };
 
 
-
-
-
-
   /**
    * Thumbnail carousel with anchor links
    */
   Drupal.behaviors.thumbnailCarousel = {
     attach: function (context, settings) {
       var thumbClass = 'js-thumbnail-main'; // Main Thumbnail class.
-      var copyThumbClass = 'js-thumbnail-secondary'; // Name for second thumb slider.
+      var copyThumbClass = 'js-thumbnail-secondary'; // Name for second thumb
+                                                     // slider.
       var articleBodyClass = 'article-body'; // Main article class.
       var $originThumb = $('.' + thumbClass);
       var $thumbContainerOrigin = $('ul', $originThumb);
@@ -114,7 +109,7 @@
               slidesToScroll: 1
             }
           }
-          ]
+        ]
       });
 
       $('.js-thumbnail-secondary ul').slick({
@@ -156,7 +151,8 @@
    */
   function autoslick() {
     var windowHash = window.location.hash;
-    var sectionNum = windowHash.replace( /^\D+/g, '')
+    var sectionNum = windowHash.replace(/^\D+/g, '');
+    sectionNum = sectionNum - 1;
     return sectionNum;
   }
 
@@ -180,11 +176,11 @@
       }
 
       // Detect down scroll on each video container.
-      videoContainer.each(function(){
+      videoContainer.each(function () {
         var el = $(this);
         var waypoint = new Waypoint({
           element: el,
-          handler: function(direction) {
+          handler: function (direction) {
             if (direction == 'down') {
 
               // Get hash tag from current section in viewport.
@@ -193,10 +189,10 @@
               // Remove window.hash from main video block.
               if (hash === '#undefined') {
                 history.pushState(null, null, window.location.pathname);
-              } else {
+              }
+              else {
                 history.pushState(null, null, hash);
               }
-
 
 
               // Change active class in dot navigation.
@@ -216,18 +212,19 @@
 
 
       // Detect UP scroll.
-      videoPageSection.each(function() {
+      videoPageSection.each(function () {
         var el = $(this);
         var waypointUp = new Waypoint({
           element: el,
-          handler: function(direction) {
+          handler: function (direction) {
             if (direction == 'up') {
 
               // Change window.hash from visible section.
               var hash = '#' + el.data('section');
               if (hash === '#undefined') {
                 history.pushState(null, null, window.location.pathname);
-              } else {
+              }
+              else {
                 history.pushState(null, null, hash);
               }
 
@@ -259,22 +256,22 @@
       var $thumbLink = $('a', $thumbItem); // Thumb link.
       var startDelay = 1500;
 
-      $("video").bind("ended", function() {
+      $("video").bind("ended", function () {
         this.currentTime = 0;
       });
 
-      $thumbLink.each(function() {
+      $thumbLink.each(function () {
         var el = $(this);
-
-        // Start video play on hover;
-        el.on('mouseenter', function () {
-          var $thumbnailVideo = $('.thumbnail-video', el);
-          if ($thumbnailVideo.get(0).paused) {
-            setTimeout(function(){
+        var myTimeout;
+        el.mouseenter(function () {
+          myTimeout = setTimeout(function () {
+            var $thumbnailVideo = $('.thumbnail-video', el);
+            if ($thumbnailVideo.get(0).paused) {
               $thumbnailVideo.get(0).play();
-            }, startDelay)
-
-          }
+            }
+          }, startDelay);
+        }).mouseleave(function () {
+          clearTimeout(myTimeout);
         });
 
       });
@@ -292,36 +289,31 @@
       var $videoContainer = $('.video-container');
       var $video = $('.main-video-item', $videoContainer);
       var $dotContainer = $('.dot-navigation');
-      var gradientClass = 'with-gradient';
       var videoAtTopClass = 'video-at-top';
 
-
-      $video.each(function() {
+      $video.each(function () {
         var el = $(this);
         var waypointUp = new Waypoint({
           element: el,
-          handler: function(direction) {
+          handler: function (direction) {
 
-            if ( !$dotContainer.hasClass(gradientClass)) {
-              setTimeout(function() {
-                $('a.dot', $dotContainer).removeClass(videoAtTopClass);
-                $('a.dot.active').addClass(videoAtTopClass);
-                $dotContainer.addClass(gradientClass);
-              }, 300)
+            $('a.dot', $dotContainer).removeClass(videoAtTopClass);
+            $('a.dot.active').addClass(videoAtTopClass);
 
-              setTimeout(function(){
-                $('a.dot', $dotContainer).removeClass(videoAtTopClass);
-                $dotContainer.removeClass(gradientClass);
-              }, 3000)
-            }
+            setTimeout(function () {
+              $('a.dot', $dotContainer).removeClass(videoAtTopClass);
+            }, 3000)
 
+
+          },
+          offset: function () {
+            return $('.dot-navigation').height();
           }
 
         });
       })
     }
   };
-
 
 
   /**
@@ -358,13 +350,13 @@
     attach: function (context, settings) {
       var $videoContent = $('.video-content');
 
-      $videoContent.each(function() {
+      $videoContent.each(function () {
         var $el = $(this);
         var elPositionTop = $el.data('top');
         var elPositionBottom = $el.data('bottom');
 
         // Set top position fot video content.
-        if (elPositionTop !== '' ) {
+        if (elPositionTop !== '') {
           $el.css({
             'top': elPositionTop,
             'bottom': 'auto'
@@ -372,10 +364,10 @@
         }
 
         // Set bottom position fot video content.
-        if (elPositionBottom !== '' ) {
+        if (elPositionBottom !== '') {
           $el.css({
             'bottom': elPositionBottom,
-            'top' : 'auto'
+            'top': 'auto'
           })
         }
 
@@ -393,25 +385,16 @@
     attach: function (context, settings) {
       var $dotContainer = $('.dot-navigation', context) // Dot nav section;
           , $dotList = $('ul', $dotContainer) // Slider selector.
-          , $link = $('.dot', $dotContainer) // Get dot link
-          , gradientClass = 'with-gradient';
-
+          , $link = $('.dot', $dotContainer); // Get dot link
 
       // Get data for link tooltip from data attr.
       $link.each(function () {
         var $el = $(this);
+        var $tooltip = $('.text', $el);
         var linkText = $el.data('text');
         var linkHref = $el.attr('href');
-        $el.next().text(linkText);
-        $el.next().attr('href', linkHref);
-
-        $el.on('mouseover', function() {
-            $dotContainer.removeClass(gradientClass);
-            $dotContainer.addClass(gradientClass);
-        });
-        $el.on('mouseleave', function() {
-          $dotContainer.removeClass(gradientClass);
-        });
+        $tooltip.text(linkText);
+        $tooltip.attr('href', linkHref);
 
       });
 
@@ -427,7 +410,8 @@
             settings: {
               arrows: false,
               slidesToShow: 3,
-              centerMode: true
+              centerMode: true,
+              loop: true
             }
           },
           {
@@ -435,7 +419,8 @@
             settings: {
               arrows: false,
               slidesToShow: 3,
-              centerMode: true
+              centerMode: true,
+              loop: true
             }
           }
         ]
@@ -457,7 +442,6 @@
       });
     }
   };
-
 
 
 })(jQuery);
