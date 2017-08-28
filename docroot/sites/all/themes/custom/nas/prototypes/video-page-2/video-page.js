@@ -317,13 +317,13 @@
           element: el,
           handler: function (direction) {
 
+
             $('a.dot', $dotContainer).removeClass(videoAtTopClass);
             $('a.dot.active').addClass(videoAtTopClass);
 
             setTimeout(function () {
               $('a.dot', $dotContainer).removeClass(videoAtTopClass);
             }, 3000)
-
 
           },
           offset: function () {
@@ -332,6 +332,11 @@
 
         });
       })
+
+      $('a.dot').on('mouseenter', function() {
+        $('a.dot').removeClass(videoAtTopClass);
+      })
+
     }
   };
 
