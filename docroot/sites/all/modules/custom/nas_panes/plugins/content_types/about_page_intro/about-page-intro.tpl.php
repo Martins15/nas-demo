@@ -16,7 +16,7 @@
   </div>
 <?php endif; ?>
 
-<div class="row text-container<?php print !empty($contextual_links) ? ' contextual-links-region' : ''; ?><?php print !empty($spacebottom) ? $spacebottom : ''; ?><?php print empty($title) ? ' space-top' : ''; ?>">
+<div class="row text-container about-page-intro<?php print !empty($contextual_links) ? ' contextual-links-region' : ''; ?><?php print !empty($spacebottom) ? $spacebottom : ''; ?><?php print empty($title) ? ' space-top' : ''; ?>">
   <?php print $contextual_links; ?>
 
   <?php if (!empty($left_column)): ?>
