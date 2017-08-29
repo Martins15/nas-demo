@@ -18830,6 +18830,9 @@ ul.clearing-thumbs {
   }
 }
 
-.contextual-links-region p {
+.about-page-intro p {
   margin-bottom: 25.5px;
+}
+.about-page-intro p:last-child {
+  margin-bottom: 0;
 }
