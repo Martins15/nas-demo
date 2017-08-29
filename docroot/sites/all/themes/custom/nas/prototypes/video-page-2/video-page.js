@@ -410,7 +410,9 @@
     attach: function (context, settings) {
       var $dotContainer = $('.dot-navigation', context) // Dot nav section;
           , $dotList = $('ul', $dotContainer) // Slider selector.
-          , $link = $('.dot', $dotContainer); // Get dot link
+          , $link = $('.dot', $dotContainer) // Get dot link
+          , $scrollToTop = $('.dot-title') // Scroll to top link.
+          , scrollTime = 1500;
 
       // Get data for link tooltip from data attr.
       $link.each(function () {
@@ -421,6 +423,14 @@
         $tooltip.text(linkText);
         $tooltip.attr('href', linkHref);
 
+      });
+
+      $scrollToTop.on('click', function(e) {
+        e.preventDefault();
+        var body = $("html, body");
+        body.stop().animate({scrollTop:0}, scrollTime, 'swing', function() {
+          // Finish animating.
+        });
       });
 
       // Dot carousel

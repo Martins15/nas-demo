@@ -17,36 +17,35 @@ $white: #fff;
   .video-content {
     position: absolute;
     z-index: 2;
-    bottom: 10%;
+    bottom: 40%;
     opacity: 0;
     text-align: center;
     transition: all 2s;
-    transform: scale(0.5);
     transform-origin: center;
     &.is-loaded {
-      bottom: 40%;
       opacity: 1;
-      transform: scale(1);
     }
     h1 {
       margin: 25px 0;
-      font-size: 25px;
+      font-size: 40px;
       line-height: 1;
       @include breakpoint(min-width, 768px) {
+        text-shadow: 2px 2px 11px #444444;
         font-size: 80px;
+        font-weight: 800;
       }
     }
 
     &.white-text {
       * {
         color: $white;
-        text-shadow: 2px 2px 1px rgba(150, 150, 150, 1);
+        text-shadow: 2px 2px 11px #444444;
       }
     }
     &.dark-text {
       * {
         color: $black;
-        text-shadow: 2px 2px 1px rgb(179, 179, 179);
+        text-shadow: 2px 2px 11px #444444;
       }
     }
   }
@@ -72,42 +71,6 @@ $white: #fff;
       .large {
         font-size: 75px;
       }
-    }
-  }
-
-  .video-content-secondary {
-    display: none;
-    @include breakpoint(min-width, 768px) {
-      display: block;
-    }
-    text-align: center;
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    z-index: 3;
-    &.white-text {
-      * {
-        color: $white;
-        text-shadow: 2px 2px 1px rgba(150, 150, 150, 1);
-      }
-    }
-    &.dark-text {
-      * {
-        color: $black;
-        text-shadow: 2px 2px 1px rgb(179, 179, 179);
-      }
-    }
-    span {
-      display: block;
-      font-family: $font-sans;
-      text-transform: uppercase;
-      line-height: 1;
-    }
-    .line-1 {
-      font-size: 30px;
-    }
-    .line-2 {
-      font-size: 48px;
     }
   }
 
@@ -209,6 +172,7 @@ $white: #fff;
         width: auto;
         height: auto;
         position: relative;
+        display: block;
         //height: 60px;
       }
     }
@@ -248,7 +212,7 @@ $white: #fff;
     transition: background 0.3s;
     padding-top: 0;
     height: 48px;
-    background: #fff;
+    background: #5087e9;
     .row {
       padding-left: 0;
       padding-right: 0;
@@ -256,24 +220,6 @@ $white: #fff;
     .mobile-slide-wrapper {
       padding: 10px 0 0 0;
       position: relative;
-      &:before,
-      &:after {
-        content: '';
-        display: block;
-        width: 15%;
-        height: calc(100% + 10px);
-        position: absolute;
-        top: 0;
-        z-index: 2;
-      }
-      &:before {
-        left: 0;
-        background-image: linear-gradient(to right, #fff, rgba(255, 255, 255, 0.0));
-      }
-      &:after {
-        right: 0;
-        background-image: linear-gradient(to left, #fff, rgba(255, 255, 255, 0.0));
-      }
     }
     &.is-fixed {
       position: fixed;
@@ -284,14 +230,13 @@ $white: #fff;
       margin: 0;
       width: 101%;
     }
-    h3 {
-      text-transform: uppercase;
+    .dot-title {
       margin: 0;
       color: white;
       font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-      letter-spacing: 7.2px;
+      letter-spacing: 1px;
       text-align: left;
-      line-height: 42px;
+      line-height: 46px;
       @include breakpoint(min-width, 768px) {
         font-size: 11px;
       }
@@ -305,13 +250,13 @@ $white: #fff;
       text-align: center;
       width: 100%;
       position: relative;
-      background: #fff;
+      background: #5087e9;
       li {
         padding: 0;
         display: inline-block;
         position: relative;
         text-align: center;
-        height: auto;
+        height: 40px;
         &:after {
           content: '';
           display: block;
@@ -320,7 +265,7 @@ $white: #fff;
           left: 0;
           width: 100%;
           height: 2px;
-          background: #a1a1a1;
+          background: #fff;
         }
         &:first-child {
           &:after {
@@ -344,7 +289,7 @@ $white: #fff;
           &:hover,
           &.active {
             .circle {
-              background: #575757;
+              background: #adadad;
             }
           }
           .circle {
@@ -352,7 +297,7 @@ $white: #fff;
             top: 3px;
             left: 50%;
             transform: translateX(-50%);
-            background: #a1a1a1;
+            background: #fff;
             display: block;
             width: 15px;
             height: 15px;
@@ -381,7 +326,7 @@ $white: #fff;
     @include breakpoint(min-width, 768px) {
       margin: 0;
       height: 48px;
-      background: #ccc;
+      background: #5087e9;
       .row {
         height: 48px;
         padding-left: 12px;
@@ -503,6 +448,26 @@ $white: #fff;
           }
         }
       }
+    }
+  }
+
+  .thumb-tooltip {
+    position: absolute;
+    top: 100%;
+    width: auto;
+    white-space: nowrap;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 0;
+    overflow: hidden;
+    background: #ccc;
+    color: #fff;
+    padding: 0 10px;
+    transition: height 0.3s
+  }
+  .thumbnail-item a:hover {
+    .thumb-tooltip {
+      height: 30px;
     }
   }
 }
