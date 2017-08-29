@@ -17333,6 +17333,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transition: background 0.3s;
   padding-top: 0;
   height: 48px;
+  position: relative;
+  z-index: 2;
   background: #5087e9;
 }
 .video-page .dot-navigation .row {
@@ -17504,7 +17506,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     background: none;
     border-radius: 0;
     border: none;
-    background: #ccc;
+    background: #5087e9;
     color: #fff;
     z-index: 5;
   }

@@ -212,6 +212,8 @@ $white: #fff;
     transition: background 0.3s;
     padding-top: 0;
     height: 48px;
+    position: relative;
+    z-index: 2;
     background: #5087e9;
     .row {
       padding-left: 0;
@@ -385,7 +387,7 @@ $white: #fff;
               background: none;
               border-radius: 0;
               border: none;
-              background: #ccc;
+              background: #5087e9;
               color: $white;
               z-index: 5;
             }
