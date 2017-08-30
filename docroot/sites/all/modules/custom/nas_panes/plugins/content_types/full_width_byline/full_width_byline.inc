@@ -15,7 +15,9 @@ $plugin = array(
   'hook theme' => 'full_width_byline_theme',
   'required context' => new ctools_context_required(t('Node'), 'node'),
   'defaults' => array(
-    'override' => 0,
+    'override' => array(
+      'entity_id' => 0,
+    ),
   ),
 );
 
@@ -26,7 +28,7 @@ function full_width_byline_form($form, &$form_state) {
     '#type' => 'entityreference',
     '#title' => t('Author'),
     '#description' => t('Keep this field empty in order to use Article Author'),
-    '#default_value' => $conf['override'],
+    '#default_value' => $conf['override']['entity_id'],
     '#era_entity_type' => 'node',
     '#era_bundles' => array('contact'),
   );
@@ -54,8 +56,8 @@ function full_width_byline_render($subtype, $conf, $args, $context) {
   $node = $context->data;
 
   $author_node = NULL;
-  if (!empty($conf['override'])) {
-    $author_node = node_load($conf['override']);
+  if (!empty($conf['override']['entity_id'])) {
+    $author_node = node_load($conf['override']['entity_id']);
   }
 
   $block = new stdClass();

@@ -201,7 +201,7 @@
           },
           // Implement logic when section in 50% of the viewport.
           offset: function() {
-            return $('.dot-navigation').height();
+            return ($(window).width() > 767 ? 48 : 40) + parseInt($('.dot-navigation').css('top'));
           }
         });
       });
