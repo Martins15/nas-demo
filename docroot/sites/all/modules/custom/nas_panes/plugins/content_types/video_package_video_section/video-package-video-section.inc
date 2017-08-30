@@ -182,6 +182,14 @@ function video_package_video_section_render($subtype, $conf, $args, $context) {
     $thumbnail_video = file_create_url($file->uri);
   }
 
+  $top = $bottom = '';
+  if ($conf['title_position'] == 'top') {
+    $top = $conf['title_offset'];
+  }
+  elseif ($conf['title_position'] == 'bottom') {
+    $bottom = $conf['title_offset'];
+  }
+
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'video_package_video_section',
@@ -192,8 +200,8 @@ function video_package_video_section_render($subtype, $conf, $args, $context) {
     '#title_short' => check_plain($conf['title_short']),
     '#title_long' => check_plain($conf['title_long']),
     '#hash' => drupal_html_id($conf['hash']),
-    '#title_position' => NULL,
-    '#title_offset' => NULL,
+    '#top' => $top,
+    '#bottom' => $bottom,
   );
   return $block;
 }
@@ -211,8 +219,8 @@ function video_package_video_section_theme(&$theme, $plugin) {
       'title_short' => NULL,
       'title_long' => NULL,
       'hash' => NULL,
-      'title_position' => NULL,
-      'title_offset' => NULL,
+      'top' => NULL,
+      'bottom' => NULL,
     ),
     'template' => 'video-package-video-section',
     'path' => $plugin['path'],

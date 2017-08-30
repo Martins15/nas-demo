@@ -15,7 +15,7 @@
          data-short-title="<?php print $title_short; ?>">
     <source src="" type="video/mp4">
   </video>
-  <div class="video-content column white-text" data-top="100px" data-bottom="">
+  <div class="video-content column white-text" data-top="<?php print $top; ?>" data-bottom="<?php print $bottom; ?>">
     <h1><?php print $title_long; ?></h1>
   </div>
 </div>

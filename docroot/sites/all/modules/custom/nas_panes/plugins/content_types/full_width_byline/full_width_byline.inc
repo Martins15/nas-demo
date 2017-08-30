@@ -20,9 +20,6 @@ $plugin = array(
 );
 
 function full_width_byline_form($form, &$form_state) {
-//  ctools_form_include($form_state, 'content');
-//  ctools_form_include($form_state, 'video-package-video-section', 'nas_panes', 'plugins/content_types/video_package_video_section');
-
   $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
 
   $form['override'] = array(
