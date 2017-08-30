@@ -1,10 +1,10 @@
 $black: #000;
 $white: #fff;
 
-.video-page {
+.video-package {
 
   .article-full-width-layout {
-    overflow-x: hidden;
+    //overflow-x: hidden;
   }
 
   .slick-list {
@@ -64,6 +64,12 @@ $white: #fff;
     .large {
       font-size: 25px;
     }
+    @include breakpoint(max-width, 767px) {
+      .video-content {
+        transform: translateY(50%);
+      }
+    }
+
     @include breakpoint(min-width, 768px) {
       .small {
         font-size: 45px;
@@ -101,6 +107,7 @@ $white: #fff;
   }
 
   .thumbnail-container {
+    overflow: hidden;
 
     .slick-arrow {
       font-size: 0;
@@ -212,6 +219,7 @@ $white: #fff;
     transition: background 0.3s;
     padding-top: 0;
     height: 48px;
+    //overflow: hidden;
     position: relative;
     z-index: 2;
     background: #5087e9;
@@ -317,9 +325,9 @@ $white: #fff;
             opacity: 1;
             line-height: 1;
             font-family: $font-sans;
-            color: #000;
+            color: #ffffff;
             &:visited {
-              color: #000;
+              color: #ffffff;
             }
           }
         }
@@ -474,7 +482,6 @@ $white: #fff;
   }
 }
 
-
-
-
-
+.video-package.admin-menu .dot-navigation.is-fixed {
+  top: 27px;
+}
