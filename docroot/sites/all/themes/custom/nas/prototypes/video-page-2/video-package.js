@@ -10,12 +10,12 @@
 
   $(window).on('load', function() {
     Waypoint.refreshAll();
-  })
+  });
 
   Drupal.behaviors.VideoLogic = {
     attach: function (context, settings) {
 
-      var $videoContainer = $('.video-container');
+      var $videoContainer = $('.video-container', context);
 
       // Start playing when video will scroll at the top of the window.
       $videoContainer.each(function () {
@@ -52,20 +52,17 @@
             var $videoSrc = el.data('src');
             if (typeof $videoSrc == typeof undefined || $videoSrc == false) {
               // Element has this attribute
-              $('source', el).attr("src", videoSrc);
+              $('source', el).attr('src', videoSrc);
               $video.get(0).load(); // Load current video.
               videoContent.addClass(loadClass); // Add load class.
-              //$video.get(0).play(); // Play current video.
             }
             else {
-              //$video.get(0).play();
             }
 
           },
 
           // Video container out of viewport.
           exited: function (direction) {
-
             // Stop current video.
             $video.get(0).pause();
 
@@ -73,16 +70,14 @@
             $('a.dot', $dotContainer).removeClass('video-at-top');
 
           }
-        })
-      })
-
-
+        });
+      });
     }
   };
 
 
   /**
-   * Thumbnail carousel with anchor links
+   * Thumbnail carousel with anchor links.
    */
   Drupal.behaviors.thumbnailCarousel = {
     attach: function (context, settings) {
@@ -109,7 +104,7 @@
             breakpoint: 1024,
             settings: {
               slidesToShow: 5,
-              slidesToScroll: 1,
+              slidesToScroll: 1
             }
           },
           {
@@ -189,8 +184,7 @@
       // Trigger active class on dot carousel.
       function changeActiveDot(hash) {
         $('.js-dot-navigation a').removeClass(activeDotClass);
-        $('.js-dot-navigation a[href="' + hash +
-            '"]').addClass(activeDotClass);
+        $('.js-dot-navigation a[href="' + hash +'"]').addClass(activeDotClass);
       }
 
       // Detect down scroll on each video container.
@@ -199,29 +193,30 @@
         var waypoint = new Waypoint({
           element: el,
           handler: function (direction) {
-            if (direction == 'down') {
-
-              // Get hash tag from current section in viewport.
-              var hash = '#' + el.attr('id');
-
-              // Remove window.hash from main video block.
-              if (hash === '#undefined') {
-                history.pushState(null, null, window.location.pathname);
-              }
-              else {
-                history.pushState(null, null, hash);
-              }
-
-
-              // Change active class in dot navigation.
-              changeActiveDot(hash);
-
-              // Auto slide dot navigation to current anchor link.
-              $('.dot-navigation ul').slick('slickGoTo',
-                  autoslick()
-              );
-
+            var hash;
+            if (direction == 'up') {
+              // Get hash tag from previous section in viewport.
+              hash = '#' + $(el).prevUntil('.video-container').prev('.video-container').attr('id');
             }
+
+            if (direction == 'down') {
+              // Get hash tag from current section in viewport.
+              hash = '#' + el.attr('id');
+            }
+
+            // Remove window.hash from main video block.
+            if (hash === '#undefined') {
+              history.pushState(null, null, window.location.pathname);
+            }
+            else {
+              history.pushState(null, null, hash);
+            }
+
+            // Change active class in dot navigation.
+            changeActiveDot(hash);
+
+            // Auto slide dot navigation to current anchor link.
+            $('.dot-navigation ul').slick('slickGoTo', autoslick());
           },
           // Implement logic when section in 50% of the viewport.
           offset: function() {
@@ -231,37 +226,37 @@
       });
 
 
-      // Detect UP scroll.
-      videoPageSection.each(function () {
-        var el = $(this);
-        var waypointUp = new Waypoint({
-          element: el,
-          handler: function (direction) {
-            if (direction == 'up') {
-
-              // Change window.hash from visible section.
-              var hash = '#' + el.data('section');
-              if (hash === '#undefined') {
-                history.pushState(null, null, window.location.pathname);
-              }
-              else {
-                history.pushState(null, null, hash);
-              }
-
-              // Change active class in dot navigation.
-              changeActiveDot(hash);
-
-              // Auto slide dot navigation to current anchor link.
-              $('.dot-navigation ul').slick('slickGoTo',
-                  autoslick()
-              )
-
-            }
-          },
-          // Implement logic when section in 50% of the viewport.
-          offset: '-50%'
-        });
-      })
+      //// Detect UP scroll.
+      //videoPageSection.each(function () {
+      //  var el = $(this);
+      //  var waypointUp = new Waypoint({
+      //    element: el,
+      //    handler: function (direction) {
+      //      if (direction == 'up') {
+      //
+      //        // Change window.hash from visible section.
+      //        var hash = '#' + el.data('section');
+      //        if (hash === '#undefined') {
+      //          history.pushState(null, null, window.location.pathname);
+      //        }
+      //        else {
+      //          history.pushState(null, null, hash);
+      //        }
+      //
+      //        // Change active class in dot navigation.
+      //        changeActiveDot(hash);
+      //
+      //        // Auto slide dot navigation to current anchor link.
+      //        $('.dot-navigation ul').slick('slickGoTo',
+      //            autoslick()
+      //        );
+      //
+      //      }
+      //    },
+      //    // Implement logic when section in 50% of the viewport.
+      //    offset: '-50%'
+      //  });
+      //})
     }
   };
 
@@ -285,9 +280,12 @@
         var myTimeout;
         el.mouseenter(function () {
           myTimeout = setTimeout(function () {
-            var $thumbnailVideo = $('.thumbnail-video', el);
-            if ($thumbnailVideo.get(0).paused) {
-              $thumbnailVideo.get(0).play();
+            var thumbnailVideo = $('.thumbnail-video', el).get(0);
+            if (thumbnailVideo.readyState !== 4) {
+              thumbnailVideo.load();
+            }
+            if (thumbnailVideo.paused) {
+              thumbnailVideo.play();
             }
           }, startDelay);
         }).mouseleave(function () {
@@ -331,7 +329,7 @@
           }
 
         });
-      })
+      });
 
       $('a.dot').on('mouseenter', function() {
         $('a.dot').removeClass(videoAtTopClass);
@@ -459,7 +457,6 @@
             }
           }
         ]
-
       });
     }
   };
