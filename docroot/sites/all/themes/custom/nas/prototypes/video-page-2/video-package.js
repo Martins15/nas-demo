@@ -24,7 +24,11 @@
           element: el,
           handler: function() {
             var $video = $('.main-video-item', el); // Block with video tag.
+            $video.get(0).currentTime = 0;
             $video.get(0).play();
+            $video.get(0).addEventListener('ended',function(){
+                this.currentTime = this.duration;
+            });
           },
           offset: function() {
             return $('.dot-navigation').height();
@@ -41,6 +45,7 @@
         var videoContent = $('.video-content', el); // Video copy.
         var loadClass = 'is-loaded'; // Load class name.
         var $dotContainer = $('.dot-navigation');
+        var loadedVideoClass = 'video-loaded';
         // Lazy load for video.
         var inview = new Waypoint.Inview({
           element: el,
@@ -48,12 +53,13 @@
           // Video container in viewport.
           enter: function (direction) {
             // Get src from data attr and hide placeholder image.
-
             var $videoSrc = el.data('src');
-            if (typeof $videoSrc == typeof undefined || $videoSrc == false) {
-              // Element has this attribute
-              $('source', el).attr('src', videoSrc);
-              $video.get(0).load(); // Load current video.
+            if (typeof $videoSrc == typeof undefined || $videoSrc == false) {// Element has this attribute
+             $('source', el).attr('src', videoSrc);
+             if( !$video.hasClass(loadedVideoClass) ) {
+               $video.addClass(loadedVideoClass);
+               $video.get(0).load(); // Load current video.
+             }
               videoContent.addClass(loadClass); // Add load class.
             }
             else {
