@@ -2,7 +2,7 @@ $black: #000;
 $white: #fff;
 
 .video-package {
-
+  overflow-x: hidden;
   .article-full-width-layout {
     //overflow-x: hidden;
   }
@@ -22,8 +22,36 @@ $white: #fff;
     text-align: center;
     transition: all 2s;
     transform-origin: center;
+    display: none;
     &.is-loaded {
       opacity: 1;
+    }
+    &.dublicate-content {
+      position: relative;
+      left: 0 !important;
+      top: 0 !important;
+      bottom: auto !important;
+      display: block;
+      opacity: 1;
+      text-align: left;
+      &.dark-text,
+      &.white-text {
+        * {
+          color: black;
+          text-shadow: none;
+          line-height: normal;
+        }
+        h1 {
+          margin-bottom: 0;
+          font-size: 33px;
+        }
+      }
+    }
+    @include breakpoint(min-width, 768px) {
+      display: block;
+      &.dublicate-content {
+        display: none;
+      }
     }
     h1 {
       margin: 25px 0;
@@ -67,6 +95,9 @@ $white: #fff;
     @include breakpoint(max-width, 767px) {
       .video-content {
         transform: translateY(50%);
+        &.dublicate-content {
+          transform: translateY(0);
+        }
       }
     }
 
@@ -485,3 +516,4 @@ $white: #fff;
 .video-package.admin-menu .dot-navigation.is-fixed {
   top: 27px;
 }
+
