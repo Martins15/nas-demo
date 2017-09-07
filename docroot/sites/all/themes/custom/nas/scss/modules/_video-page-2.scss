@@ -2,7 +2,7 @@ $black: #000;
 $white: #fff;
 
 .video-package {
-  overflow-x: hidden;
+  //overflow-x: hidden;
   .article-full-width-layout {
     //overflow-x: hidden;
   }
@@ -22,16 +22,11 @@ $white: #fff;
     text-align: center;
     transition: all 2s;
     transform-origin: center;
-    display: none;
     &.is-loaded {
       opacity: 1;
     }
-    &.dublicate-content {
-      position: relative;
-      left: 0 !important;
-      top: 0 !important;
-      bottom: auto !important;
-      display: block;
+    &.hide-for-large {
+      position: static;
       opacity: 1;
       text-align: left;
       &.dark-text,
@@ -45,12 +40,6 @@ $white: #fff;
           margin-bottom: 0;
           font-size: 33px;
         }
-      }
-    }
-    @include breakpoint(min-width, 768px) {
-      display: block;
-      &.dublicate-content {
-        display: none;
       }
     }
     h1 {
@@ -91,14 +80,6 @@ $white: #fff;
     }
     .large {
       font-size: 25px;
-    }
-    @include breakpoint(max-width, 767px) {
-      .video-content {
-        transform: translateY(50%);
-        &.dublicate-content {
-          transform: translateY(0);
-        }
-      }
     }
 
     @include breakpoint(min-width, 768px) {
@@ -243,14 +224,13 @@ $white: #fff;
   .temp-content {
     margin-bottom: 50px;
   }
-
+  
   .dot-navigation {
     margin: 0 auto;
     width: 100%;
     transition: background 0.3s;
     padding-top: 0;
     height: 48px;
-    //overflow: hidden;
     position: relative;
     z-index: 2;
     background: #5087e9;

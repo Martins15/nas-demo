@@ -17146,9 +17146,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
-.video-package {
-  overflow-x: hidden;
-}
 .video-package .slick-list {
   padding: 0 !important;
   overflow: visible !important;
@@ -17164,36 +17161,23 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   text-align: center;
   transition: all 2s;
   transform-origin: center;
-  display: none;
 }
 .video-package .video-content.is-loaded {
   opacity: 1;
 }
-.video-package .video-content.dublicate-content {
-  position: relative;
-  left: 0 !important;
-  top: 0 !important;
-  bottom: auto !important;
-  display: block;
+.video-package .video-content.hide-for-large {
+  position: static;
   opacity: 1;
   text-align: left;
 }
-.video-package .video-content.dublicate-content.dark-text *, .video-package .video-content.dublicate-content.white-text * {
+.video-package .video-content.hide-for-large.dark-text *, .video-package .video-content.hide-for-large.white-text * {
   color: black;
   text-shadow: none;
   line-height: normal;
 }
-.video-package .video-content.dublicate-content.dark-text h1, .video-package .video-content.dublicate-content.white-text h1 {
+.video-package .video-content.hide-for-large.dark-text h1, .video-package .video-content.hide-for-large.white-text h1 {
   margin-bottom: 0;
   font-size: 33px;
-}
-@media only screen and (min-width: 768px) {
-  .video-package .video-content {
-    display: block;
-  }
-  .video-package .video-content.dublicate-content {
-    display: none;
-  }
 }
 .video-package .video-content h1 {
   margin: 25px 0;
@@ -17227,14 +17211,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .video-package .main-video .large {
   font-size: 25px;
-}
-@media only screen and (max-width: 767px) {
-  .video-package .main-video .video-content {
-    transform: translateY(50%);
-  }
-  .video-package .main-video .video-content.dublicate-content {
-    transform: translateY(0);
-  }
 }
 @media only screen and (min-width: 768px) {
   .video-package .main-video .small {

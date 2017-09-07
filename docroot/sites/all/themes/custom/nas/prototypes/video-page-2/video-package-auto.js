@@ -313,21 +313,6 @@
     }
   };
 
-  /**
-   * Implements title for mobile device.
-   * @type {{attach: Drupal.behaviors.mobileVideoTitle.attach}}
-   */
-  Drupal.behaviors.mobileVideoTitle = {
-    attach: function (context, settings) {
-      var $videoContent = $('.video-content', context);
-      var dublicateContentClass = 'dublicate-content';
-      $videoContent.each(function() {
-        var $content = $(this);
-        var videoContentCopy = $content.clone();
-        videoContentCopy.insertAfter( $content ).addClass(dublicateContentClass);
-      })
-    }
-  };
 
 
   /**
