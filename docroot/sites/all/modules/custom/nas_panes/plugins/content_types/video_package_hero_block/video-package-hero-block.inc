@@ -135,7 +135,7 @@ function video_package_hero_block_render($subtype, $conf, $args, $context) {
     '#theme' => 'video_package_hero_block',
     '#image' => $image,
     '#video' => $video,
-    '#title_long' => check_plain($conf['title_long']),
+    '#title_long' => !empty($conf['title_long']) ? check_plain($conf['title_long']) : '',
     '#top' => $top,
     '#bottom' => $bottom,
     '#attached' => array(
