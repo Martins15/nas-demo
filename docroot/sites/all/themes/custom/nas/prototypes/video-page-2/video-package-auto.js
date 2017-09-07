@@ -19,10 +19,9 @@
             $video.get(0).currentTime = 0;
             $video.get(0).play();
 
-            $video.bind("ended", function() {
-              $(this)[0].currentTime = parseInt($(this)[0].duration);
-
-            });
+            // $video.bind("ended", function() {
+            //   //$(this)[0].currentTime = parseInt($(this)[0].duration);
+            // });
 
           },
           offset: function() {
@@ -228,10 +227,6 @@
       var $thumbItem = $('.thumbnail-item', context); // Thumb item.
       var $thumbLink = $('a', $thumbItem); // Thumb link.
       var startDelay = 500;
-
-      $("video").bind("ended", function () {
-        this.currentTime = 0;
-      });
 
       $thumbLink.each(function () {
         var el = $(this);
