@@ -15,7 +15,6 @@
   <video muted playsinline class="main-video-item" autoplay poster="<?php print $image; ?>">
     <source src="<?php print $video; ?>" type="video/mp4">
   </video>
-  <!-- todo: white-text -->
   <div class="video-content column white-text" data-top="<?php print $top; ?>" data-bottom="<?php print $bottom; ?>">
     <h1><?php print $title_long; ?></h1>
   </div>
