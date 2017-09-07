@@ -18,9 +18,12 @@
             var $video = $('.main-video-item', el); // Block with video tag.
             $video.get(0).currentTime = 0;
             $video.get(0).play();
-            $video.get(0).addEventListener('ended',function(){
-              this.currentTime = this.duration;
+
+            $video.bind("ended", function() {
+              $(this)[0].currentTime = parseInt($(this)[0].duration);
+
             });
+
           },
           offset: function() {
             return $('.dot-navigation').height();
