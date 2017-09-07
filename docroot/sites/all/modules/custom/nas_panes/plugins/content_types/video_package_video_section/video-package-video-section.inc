@@ -165,6 +165,7 @@ function video_package_video_section_render($subtype, $conf, $args, $context) {
 
   $file = file_load($conf['poster']);
   $uri = nas_alters_local_image_uri($file->uri);
+  $poster = image_style_url('thumbnail', $uri);
   $poster = file_create_url($uri);
 
   $file = file_load($conf['video']);
@@ -175,6 +176,7 @@ function video_package_video_section_render($subtype, $conf, $args, $context) {
 
   if ($file = file_load($conf['thumbnail_poster'])) {
     $uri = nas_alters_local_image_uri($file->uri);
+    $thumbnail_poster = image_style_url('thumbnail', $uri);
     $thumbnail_poster = file_create_url($uri);
   }
 
