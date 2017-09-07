@@ -34,6 +34,13 @@ function video_package_hero_block_form($form, &$form_state) {
 
   $conf = $form_state['conf'];
 
+  $form['title_long'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title'),
+    '#description' => t('E.g. %example', array('%example' => '1: The crocodile hunter')),
+    '#default_value' => !empty($conf['title_long']) ? $conf['title_long'] : '',
+  );
+
   $form['image'] = array(
     '#type' => 'media',
     '#tree' => TRUE,
@@ -65,6 +72,23 @@ function video_package_hero_block_form($form, &$form_state) {
     '#default_value' => !empty($conf['video']) ? $conf['video'] : 0,
   );
 
+  $form['title_position'] = array(
+    '#type' => 'select',
+    '#options' => array(
+      'top' => t('Top'),
+      'bottom' => t('Bottom'),
+    ),
+    '#title' => t('Title position'),
+    '#default_value' => !empty($conf['title_position']) ? $conf['title_position'] : 'top',
+  );
+
+  $form['title_offset'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title offset'),
+    '#description' => t('This field works in pair with Title Position field'),
+    '#default_value' => !empty($conf['title_offset']) ? $conf['title_offset'] : NULL,
+  );
+
   return $form;
 }
 
@@ -84,20 +108,36 @@ function video_package_hero_block_form_submit(&$form, &$form_state) {
  */
 function video_package_hero_block_render($subtype, $conf, $args, $context) {
 
-  $file = file_load($conf['image']);
-  $uri = nas_alters_local_image_uri($file->uri);
-  $image = image_style_url('hero_image', $uri);
+  $image = '';
+  if (!empty($conf['image'])) {
+    $file = file_load($conf['image']);
+    $uri = nas_alters_local_image_uri($file->uri);
+    $image = image_style_url('hero_image', $uri);
+  }
 
   $file = file_load($conf['video']);
   $video = file_create_url($file->uri);
 
   $path = drupal_get_path('theme', 'nas') . '/prototypes/video-page-2/';
 
+  $top = $bottom = '';
+  if (!empty($conf['title_offset']) && !empty($conf['title_position'])) {
+    if ($conf['title_position'] == 'top') {
+      $top = $conf['title_offset'];
+    }
+    elseif ($conf['title_position'] == 'bottom') {
+      $bottom = $conf['title_offset'];
+    }
+  }
+
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'video_package_hero_block',
     '#image' => $image,
     '#video' => $video,
+    '#title_long' => check_plain($conf['title_long']),
+    '#top' => $top,
+    '#bottom' => $bottom,
     '#attached' => array(
       'js' => array(
         $path . 'vendor/slick.js' => array(
@@ -135,8 +175,11 @@ function video_package_hero_block_render($subtype, $conf, $args, $context) {
 function video_package_hero_block_theme(&$theme, $plugin) {
   $theme['video_package_hero_block'] = array(
     'variables' => array(
+      'title_long' => NULL,
       'image' => NULL,
       'video' => NULL,
+      'top' => NULL,
+      'bottom' => NULL,
     ),
     'template' => 'video-package-hero-block',
     'path' => $plugin['path'],
