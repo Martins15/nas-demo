@@ -150,8 +150,10 @@ $white: #fff;
       display: inline-block;
       vertical-align: top;
       margin: 0;
-      padding: 0 0 30px 0;
-      //max-width: 300px;
+      padding: 0;
+      @include breakpoint(min-width, 768px) {
+        padding: 0 0 30px 0;
+      }
     }
     .thumbnail-item {
       width: 100%;
