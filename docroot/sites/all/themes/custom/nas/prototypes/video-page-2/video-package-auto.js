@@ -1,38 +1,11 @@
 (function ($) {
 
-  $(window).on('resize scroll load', function () {
-    Waypoint.refreshAll();
-  });
-
   Drupal.behaviors.VideoLogic = {
     attach: function (context, settings) {
-
       var $videoContainer = $('.video-container', context);
 
-      // Start playing when video will scroll at the top of the window.
-      $videoContainer.each(function () {
-        var el = $(this); // Video container.
-        var waypoint = new Waypoint({
-          element: el,
-          handler: function() {
-            var $video = $('.main-video-item', el); // Block with video tag.
-            $video.get(0).currentTime = 0;
-            $video.get(0).play();
-
-            // $video.bind("ended", function() {
-            //   //$(this)[0].currentTime = parseInt($(this)[0].duration);
-            // });
-
-          },
-          offset: function() {
-            return $('.dot-navigation').height();
-          }
-        })
-      });
-
-
       // Video lazy load.
-      $videoContainer.each(function () {
+      $videoContainer.once('video-lazy-load').each(function () {
         var el = $(this); // Video container.
         var $video = $('.main-video-item', el); // Block with video tag.
         var videoSrc = $video.data('src'); // Current video src from data.
@@ -47,29 +20,23 @@
           // Video container in viewport.
           enter: function (direction) {
             // Get src from data attr and hide placeholder image.
-
-            var $videoSrc = el.data('src');
-            if (typeof $videoSrc == typeof undefined || $videoSrc == false) {
-              $('source', el).attr('src', videoSrc);
-              if( !$video.hasClass(loadedVideoClass) ) {
-                $video.addClass(loadedVideoClass);
-                $video.get(0).load(); // Load current video.
-              }
-              videoContent.addClass(loadClass); // Add load class.
+            $('source', el).attr('src', videoSrc);
+            if (!$video.hasClass(loadedVideoClass)) {
+              $video.addClass(loadedVideoClass);
+              $video.get(0).load();
             }
-            else {
+            else if (direction == 'up') {
+              $video.get(0).play();
             }
-
+            videoContent.addClass(loadClass); // Add load class.
           },
 
           // Video container out of viewport.
           exited: function (direction) {
             // Stop current video.
             $video.get(0).pause();
-
             // Hide title from active dot navigation.
             $('a.dot', $dotContainer).removeClass('video-at-top');
-
           }
         });
       });
@@ -160,7 +127,6 @@
    */
   Drupal.behaviors.videoContainerLogic = {
     attach: function (context, settings) {
-
       var activeDotClass = 'active'; // Active dot class.
       var videoContainer = $('.video-container', context); // Block with video.
 
@@ -178,7 +144,7 @@
       });
 
       // Detect scrolls on each video container.
-      videoContainer.each(function () {
+      videoContainer.once('video-container-logic').each(function () {
         var el = $(this);
         var waypoint = new Waypoint({
           element: el,
@@ -193,24 +159,42 @@
               // Get hash tag from current section in viewport.
               hash = '#' + el.attr('id');
             }
+            if (hash === '#undefined') {
+              hash = '';
+            }
+
+            var video = $('.main-video-item', el).get(0); // Block with video tag.
+            if (video.currentTime == video.duration) {
+              video.currentTime = 0;
+            }
+            video.play();
 
             // Remove window.hash from main video block.
-            if (hash === '#undefined') {
-              history.pushState(null, null, window.location.pathname);
-            }
-            else {
-              history.pushState(null, null, hash);
+            if (window.location.hash !== hash) {
+              // Change active class in dot navigation.
+              changeActiveDot(hash);
+              try {
+                if (hash === '') {
+                  history.replaceState(null, null, window.location.pathname);
+                }
+                else {
+                  history.replaceState(null, null, hash);
+                }
+              }
+              catch (e) {
+              }
             }
 
-            // Change active class in dot navigation.
-            changeActiveDot(hash);
 
             // Auto slide dot navigation to current anchor link.
             $('.dot-navigation ul').slick('slickGoTo', autoslick());
           },
-          // Implement logic when section in 50% of the viewport.
           offset: function() {
-            return ($(window).width() > 767 ? 48 : 40) + parseInt($('.dot-navigation').css('top'));
+            var top = $('.dot-navigation').css('top');
+            if (top == 'auto') {
+              top = 0;
+            }
+            return ($(window).width() > 767 ? 48 : 40) + parseInt(top);
           }
         });
       });
@@ -250,14 +234,13 @@
     }
   };
 
-
   /**
    * Implements show dot title when video at the top of the screen.
    * @type {{attach: Drupal.behaviors.showNavTitleOnTop.attach}}
    */
   Drupal.behaviors.showNavTitleOnTop = {
     attach: function (context, settings) {
-      var $videoContainer = $('.video-container');
+      var $videoContainer = $('.video-container', context);
       var $video = $('.main-video-item', $videoContainer);
       var $dotContainer = $('.dot-navigation');
       var videoAtTopClass = 'video-at-top';
@@ -276,15 +259,18 @@
 
           },
           offset: function () {
-            return $('.dot-navigation').height();
+            var top = $('.dot-navigation').css('top');
+            if (top == 'auto') {
+              top = 0;
+            }
+            return ($(window).width() > 767 ? 48 : 40) + parseInt(top);
           }
-
         });
       });
 
       $('a.dot').on('mouseenter', function() {
         $('a.dot').removeClass(videoAtTopClass);
-      })
+      });
 
     }
   };
@@ -458,6 +444,4 @@
     }
   };
 
-
 })(jQuery);
-
