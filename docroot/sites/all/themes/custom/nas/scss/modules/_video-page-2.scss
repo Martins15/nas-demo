@@ -272,7 +272,6 @@ $white: #fff;
       text-align: center;
       width: 100%;
       position: relative;
-      background: #5087e9;
       li {
         padding: 0;
         display: inline-block;
@@ -348,7 +347,6 @@ $white: #fff;
     @include breakpoint(min-width, 768px) {
       margin: 0;
       height: 48px;
-      background: #5087e9;
       .row {
         height: 48px;
         padding-left: 12px;

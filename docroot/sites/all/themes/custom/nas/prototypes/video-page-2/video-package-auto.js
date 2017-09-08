@@ -356,9 +356,10 @@
    */
   Drupal.behaviors.dotNavigation = {
     attach: function (context, settings) {
-      var $dotContainer = $('.dot-navigation', context) // Dot nav section;
-          , $scrollToTop = $('.dot-title', $dotContainer) // Scroll to top link.
-          , scrollTime = 1500;
+      var $dotContainer = $('.dot-navigation', context),
+        $scrollToTop = $('.dot-title', $dotContainer),
+        backgroundColor = $dotContainer.css('background-color'),
+        scrollTime = 1500;
 
       $dotContainer.once('dot-navigation', function () {
         $(this).hide();
@@ -375,6 +376,7 @@
             '    </span>' +
             '  </a>' +
             '</li>');
+          $listitem.find('.text').css({backgroundColor: backgroundColor});
           $listitem.appendTo($list);
         });
         $list.appendTo($(this).find('.mobile-slide-wrapper'));

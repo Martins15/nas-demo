@@ -17392,7 +17392,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   text-align: center;
   width: 100%;
   position: relative;
-  background: #5087e9;
 }
 .video-package .dot-navigation ul li {
   padding: 0;
@@ -17464,7 +17463,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .video-package .dot-navigation {
     margin: 0;
     height: 48px;
-    background: #5087e9;
   }
   .video-package .dot-navigation .row {
     height: 48px;
