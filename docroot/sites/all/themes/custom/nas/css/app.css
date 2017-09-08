@@ -8753,7 +8753,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #919191;
+    color: #909090;
   }
   .secondary-nav li {
     padding: 0 10px;
@@ -17366,27 +17366,18 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .video-package .dot-navigation .dot-title {
   margin: 0;
   color: white;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  letter-spacing: 1px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  letter-spacing: -1px;
   text-align: left;
   line-height: 46px;
-}
-@media only screen and (min-width: 768px) {
-  .video-package .dot-navigation .dot-title {
-    font-size: 11px;
-  }
-}
-@media only screen and (min-width: 980px) {
-  .video-package .dot-navigation .dot-title {
-    font-size: 20px;
-  }
+  font-weight: 300;
+  font-size: 28px;
 }
 .video-package .dot-navigation ul {
   margin: 0;
   text-align: center;
   width: 100%;
   position: relative;
-  background: #5087e9;
 }
 .video-package .dot-navigation ul li {
   padding: 0;
@@ -17458,7 +17449,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .video-package .dot-navigation {
     margin: 0;
     height: 48px;
-    background: #5087e9;
   }
   .video-package .dot-navigation .row {
     height: 48px;
@@ -17484,7 +17474,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     background-image: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0));
   }
   .video-package .dot-navigation ul {
-    background: none;
+    background: none !important;
   }
   .video-package .dot-navigation ul li {
     height: 40px;
