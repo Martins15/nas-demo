@@ -669,7 +669,7 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
     '#default_value' => !empty($_conf['summary']) ? $_conf['summary'] : '',
   );
 
-  $form['#attached']['css'][] = drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured/css/colorpicker.css';
+  $form['#attached']['css'][] = drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured/css/colorpicker_overrides.css';
 }
 
 /**
@@ -877,7 +877,7 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
 
   if ($contextual_links) {
     $path = libraries_get_path('colorpicker');
-    drupal_add_css($path . '/css/colorpicker.css', array('group' => CSS_THEME));
+    drupal_add_css($path . '/css/colorpicker_overrides.css', array('group' => CSS_THEME));
   }
 
   $block = new stdClass();
