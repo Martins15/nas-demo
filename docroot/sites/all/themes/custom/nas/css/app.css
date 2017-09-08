@@ -17466,6 +17466,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .video-package .dot-navigation .mobile-slide-wrapper:before, .video-package .dot-navigation .mobile-slide-wrapper:after {
     display: none;
   }
+  .video-package .dot-navigation .slick-list {
+    overflow: visible;
+  }
   .video-package .dot-navigation::after {
     content: '';
     opacity: 0;

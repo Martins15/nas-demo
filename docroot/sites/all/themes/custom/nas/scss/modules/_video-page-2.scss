@@ -355,6 +355,9 @@ $white: #fff;
           display: none;
         }
       }
+      .slick-list {
+        overflow: visible;
+      }
       &::after {
         content: '';
         opacity: 0;
