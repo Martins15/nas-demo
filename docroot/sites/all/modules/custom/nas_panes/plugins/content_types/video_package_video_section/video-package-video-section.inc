@@ -162,11 +162,13 @@ function video_package_video_section_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info.
  */
 function video_package_video_section_render($subtype, $conf, $args, $context) {
-
   $file = file_load($conf['poster']);
   $uri = nas_alters_local_image_uri($file->uri);
-  $poster = image_style_url('thumbnail', $uri);
   $poster = file_create_url($uri);
+  // Force stage file proxy download images.
+  if (!file_exists($uri)) {
+    $poster = image_style_url('slideshow', $uri);
+  }
 
   $file = file_load($conf['video']);
   $video = file_create_url($file->uri);
@@ -176,8 +178,11 @@ function video_package_video_section_render($subtype, $conf, $args, $context) {
 
   if ($file = file_load($conf['thumbnail_poster'])) {
     $uri = nas_alters_local_image_uri($file->uri);
-    $thumbnail_poster = image_style_url('thumbnail', $uri);
     $thumbnail_poster = file_create_url($uri);
+    // Force stage file proxy download images.
+    if (!file_exists($uri)) {
+      $thumbnail_poster = image_style_url('slideshow', $uri);
+    }
   }
 
   if ($file = file_load($conf['thumbnail_video'])) {

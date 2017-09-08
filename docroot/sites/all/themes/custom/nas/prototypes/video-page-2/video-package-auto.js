@@ -2,7 +2,6 @@
 
   Drupal.behaviors.VideoLogic = {
     attach: function (context, settings) {
-
       var $videoContainer = $('.video-container', context);
 
       // Video lazy load.
@@ -128,7 +127,6 @@
    */
   Drupal.behaviors.videoContainerLogic = {
     attach: function (context, settings) {
-
       var activeDotClass = 'active'; // Active dot class.
       var videoContainer = $('.video-container', context); // Block with video.
 
@@ -146,7 +144,7 @@
       });
 
       // Detect scrolls on each video container.
-      videoContainer.each(function () {
+      videoContainer.once('video-container-logic').each(function () {
         var el = $(this);
         var waypoint = new Waypoint({
           element: el,
@@ -196,8 +194,7 @@
             if (top == 'auto') {
               top = 0;
             }
-            var v = ($(window).width() > 767 ? 48 : 40) + parseInt(top);
-            return v;
+            return ($(window).width() > 767 ? 48 : 40) + parseInt(top);
           }
         });
       });
@@ -237,7 +234,6 @@
     }
   };
 
-
   /**
    * Implements show dot title when video at the top of the screen.
    * @type {{attach: Drupal.behaviors.showNavTitleOnTop.attach}}
@@ -263,15 +259,18 @@
 
           },
           offset: function () {
-            return $('.dot-navigation').height();
+            var top = $('.dot-navigation').css('top');
+            if (top == 'auto') {
+              top = 0;
+            }
+            return ($(window).width() > 767 ? 48 : 40) + parseInt(top);
           }
-
         });
       });
 
       $('a.dot').on('mouseenter', function() {
         $('a.dot').removeClass(videoAtTopClass);
-      })
+      });
 
     }
   };
