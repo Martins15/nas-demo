@@ -8753,7 +8753,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #919191;
+    color: #909090;
   }
   .secondary-nav li {
     padding: 0 10px;
@@ -17372,20 +17372,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin: 0;
   color: white;
   font-family: "Source Sans Pro", Verdana, sans-serif;
-  letter-spacing: 1px;
+  letter-spacing: -1px;
   text-align: left;
   line-height: 46px;
   font-weight: 300;
-}
-@media only screen and (min-width: 768px) {
-  .video-package .dot-navigation .dot-title {
-    font-size: 11px;
-  }
-}
-@media only screen and (min-width: 980px) {
-  .video-package .dot-navigation .dot-title {
-    font-size: 28px;
-  }
+  font-size: 28px;
 }
 .video-package .dot-navigation ul {
   margin: 0;

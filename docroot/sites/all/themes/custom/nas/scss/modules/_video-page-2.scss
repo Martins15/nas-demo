@@ -255,16 +255,11 @@ $white: #fff;
       margin: 0;
       color: white;
       font-family: "Source Sans Pro", Verdana, sans-serif;
-      letter-spacing: 1px;
+      letter-spacing: -1px;
       text-align: left;
       line-height: 46px;
       font-weight: 300;
-      @include breakpoint(min-width, 768px) {
-        font-size: 11px;
-      }
-      @include breakpoint(min-width, 980px) {
-        font-size: 28px;
-      }
+      font-size: 28px;
     }
 
     ul {
