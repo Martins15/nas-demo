@@ -7,7 +7,8 @@
 ?>
 
 <!-- Video Package: Dot navigation -->
-<div class="dot-navigation js-dot-navigation" id="dot-navigation">
+<div class="dot-navigation js-dot-navigation" id="dot-navigation"
+     style="background-color:<?php print $bg_color; ?>">
   <div class="row">
     <div class="tiny-4 medium-4 large-4 columns hide-for-small hide-for-tiny hide-for-medium">
       <a href="" class="dot-title">What's at stake</a>
