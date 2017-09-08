@@ -17186,18 +17186,18 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .video-package .video-content h1 {
-    text-shadow: 2px 2px 11px #444444;
+    text-shadow: 2px 2px 11px #444;
     font-size: 80px;
     font-weight: 800;
   }
 }
 .video-package .video-content.white-text * {
   color: #fff;
-  text-shadow: 2px 2px 11px #444444;
+  text-shadow: 2px 2px 11px #444;
 }
 .video-package .video-content.dark-text * {
   color: #000;
-  text-shadow: 2px 2px 11px #444444;
+  text-shadow: 2px 2px 11px #444;
 }
 .video-package .main-video .small,
 .video-package .main-video .large {
@@ -17244,9 +17244,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .video-package .video-container .sticky-wrapper {
   display: block !important;
 }
-.video-package .thumbnail-container {
-  overflow: hidden;
-}
 .video-package .thumbnail-container .slick-arrow {
   font-size: 0;
   position: absolute;
@@ -17285,6 +17282,21 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: relative;
   display: block;
 }
+.video-package .thumbnail-container .thumbnail-item a::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: white;
+  opacity: 0.5;
+  transition: all 1s;
+}
+.video-package .thumbnail-container .thumbnail-item a:hover::after {
+  opacity: 0;
+}
 .video-package .thumbnail-container .thumbnail-item a img {
   position: absolute;
   width: 100%;
@@ -17292,23 +17304,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   left: 0;
   top: 0;
   z-index: 2;
-}
-@media only screen and (min-width: 768px) {
-  .video-package .thumbnail-container .thumbnail-item a::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: white;
-    opacity: 0.5;
-    transition: all 1s;
-  }
-  .video-package .thumbnail-container .thumbnail-item a:hover::after {
-    opacity: 0;
-  }
 }
 .video-package .thumbnail-container .thumbnail-item .thumbnail-video {
   width: auto;
@@ -17454,10 +17449,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   opacity: 1;
   line-height: 1;
   font-family: "Source Sans Pro", Verdana, sans-serif;
-  color: #ffffff;
+  color: #fff;
 }
 .video-package .dot-navigation ul li a.dot .text:visited {
-  color: #ffffff;
+  color: #fff;
 }
 @media only screen and (min-width: 768px) {
   .video-package .dot-navigation {
