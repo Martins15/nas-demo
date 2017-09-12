@@ -8753,7 +8753,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #909090;
+    color: #919191;
   }
   .secondary-nav li {
     padding: 0 10px;
@@ -17355,7 +17355,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-right: 0;
 }
 .video-package .dot-navigation .mobile-slide-wrapper {
-  padding: 10px 0 0 0;
+  padding: 8px 0 0 0;
   position: relative;
 }
 .video-package .dot-navigation.is-fixed {

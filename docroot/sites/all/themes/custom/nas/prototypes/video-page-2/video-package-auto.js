@@ -194,7 +194,7 @@
             if (top == 'auto') {
               top = 0;
             }
-            return ($(window).width() > 767 ? 48 : 40) + parseInt(top);
+            return ($(window).width() > 767 ? 50 : 48) + parseInt(top);
           }
         });
       });
@@ -263,7 +263,7 @@
             if (top == 'auto') {
               top = 0;
             }
-            return ($(window).width() > 767 ? 48 : 40) + parseInt(top);
+            return ($(window).width() > 767 ? 50 : 48) + parseInt(top);
           }
         });
       });
@@ -288,13 +288,16 @@
 
         var target = this.hash;
         var $target = $(target);
+        var $dotnavigation = $('.dot-navigation');
+        var dotNavHeight = $dotnavigation.height() - 3;
+        var fixedClass = 'is-fixed';
+        
+          // Smooth scroll.
+          $('html, body').stop().animate({
+            'scrollTop': $target.offset().top - dotNavHeight
+          }, 900, 'swing', function () {
+          });
 
-        // Smooth scroll.
-        $('html, body').stop().animate({
-          'scrollTop': $target.offset().top
-        }, 900, 'swing', function () {
-          window.location.hash = target;
-        });
       });
     }
   };
