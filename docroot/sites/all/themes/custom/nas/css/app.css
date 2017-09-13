@@ -17376,6 +17376,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   line-height: 46px;
   font-weight: 300;
   font-size: 28px;
+  width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .video-package .dot-navigation ul {
   margin: 0;
