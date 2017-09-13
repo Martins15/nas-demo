@@ -25,6 +25,7 @@ $plugin = array(
     'thumbnail_poster' => 0,
     'title_position' => 'top',
     'title_offset' => '',
+    'title_color' => '5087e9',
   ),
 );
 
@@ -49,6 +50,12 @@ function video_package_video_section_form($form, &$form_state) {
     '#title' => t('Section short title'),
     '#description' => t('E.g. %example', array('%example' => 'The Crock Doc')),
     '#default_value' => $conf['title_short'],
+  );
+
+  $form['title_color'] = array(
+    '#type' => 'jquery_colorpicker',
+    '#title' => t('Title color'),
+    '#default_value' => !empty($conf['title_color']) ? $conf['title_color'] : '',
   );
 
   $form['hash'] = array(
@@ -149,6 +156,8 @@ function video_package_video_section_form($form, &$form_state) {
     '#description' => t('This field works in pair with Title Position field'),
     '#default_value' => $conf['title_offset'],
   );
+  $form['#attached']['css'][] = drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured/css/colorpicker_overrides.css';
+  $form['#attached']['css'][] = libraries_get_path('colorpicker') . '/css/colorpicker.css';
 
   return $form;
 }
@@ -215,6 +224,7 @@ function video_package_video_section_render($subtype, $conf, $args, $context) {
     '#thumbnail_video' => $thumbnail_video,
     '#title_short' => check_plain($conf['title_short']),
     '#title_long' => check_plain($conf['title_long']),
+    '#title_color' => !empty($conf['title_color']) ? '#' . $conf['title_color'] : ' ',
     '#hash' => drupal_html_id($conf['hash']),
     '#top' => $top,
     '#bottom' => $bottom,
@@ -235,6 +245,7 @@ function video_package_video_section_theme(&$theme, $plugin) {
       'thumbnail_video' => NULL,
       'title_short' => NULL,
       'title_long' => NULL,
+      'title_color' => NULL,
       'hash' => NULL,
       'top' => NULL,
       'bottom' => NULL,
