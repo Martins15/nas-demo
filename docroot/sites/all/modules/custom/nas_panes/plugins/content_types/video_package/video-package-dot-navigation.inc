@@ -13,6 +13,9 @@ $plugin = array(
   'edit form' => 'video_package_dot_navigation_form',
   'render callback' => 'video_package_dot_navigation_render',
   'hook theme' => 'video_package_dot_navigation_theme',
+  'defaults' => array(
+    'title' => t('What\'s at stake'),
+  ),
 );
 
 /**
@@ -27,6 +30,12 @@ function video_package_dot_navigation_form($form, &$form_state) {
     '#type' => 'jquery_colorpicker',
     '#title' => t('Background color'),
     '#default_value' => !empty($conf['bg_color']) ? $conf['bg_color'] : '',
+  );
+  $form['title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Bar Title'),
+    '#description' => t('Text to show on bar dot navigation.'),
+    '#default_value' => !empty($conf['title_bar']) ? $conf['title_bar'] : $form_state['plugin']['defaults']['title_bar'],
   );
   $form['#attached']['css'][] = drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured/css/colorpicker_overrides.css';
   $form['#attached']['css'][] = libraries_get_path('colorpicker') . '/css/colorpicker.css';
@@ -56,6 +65,7 @@ function video_package_dot_navigation_render($subtype, $conf, $args, $context) {
   $block->content = array(
     '#theme' => 'video_package_dot_navigation',
     '#bg_color' => !empty($conf['bg_color']) ? '#' . $conf['bg_color'] : '',
+    '#title' => !empty($conf['title']) ? check_plain($conf['title']) : '',
 //    '#attached' => array(
 //      'js' => array(
 //        $path . 'vendor/slick.js',
@@ -79,7 +89,8 @@ function video_package_dot_navigation_render($subtype, $conf, $args, $context) {
 function video_package_dot_navigation_theme(&$theme, $plugin) {
   $theme['video_package_dot_navigation'] = array(
     'variables' => array(
-      'bg_color' => NULL
+      'bg_color' => NULL,
+      'title' => NULL
     ),
     'template' => 'video-package-dot-navigation',
     'path' => $plugin['path'],
