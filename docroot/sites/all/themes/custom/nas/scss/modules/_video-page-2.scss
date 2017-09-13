@@ -497,3 +497,12 @@ $white: #fff;
   top: 27px;
 }
 
+.video-caption-container{
+  .video-caption{
+    @extend .slide-caption;
+    text-align: right;
+  }
+  .column{
+    float: right;
+  }
+}

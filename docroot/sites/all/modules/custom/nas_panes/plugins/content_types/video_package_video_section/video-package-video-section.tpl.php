@@ -25,4 +25,15 @@
         <h1><?php print $title_long; ?></h1>
     </div>
 </div>
+
+<?php if (!empty($video_credit)) : ?>
+<div class="row video-caption-container">
+  <div class="large-9 column">
+    <div class="video-caption">
+        <span class="credit-intro"><?php print t('Video:') ?></span>
+        <span class="credit-value"><?php print $video_credit; ?></span>
+    </div>
+  </div>
+</div>
+<?php endif; ?>
 <!-- /Video package video section -->
