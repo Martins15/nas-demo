@@ -18,7 +18,9 @@
     </video>
     <div class="video-content column white-text hide-for-small hide-for-tiny hide-for-medium" data-top="<?php print $top; ?>"
          data-bottom="<?php print $bottom; ?>">
-        <h1><?php print $title_long; ?></h1>
+      <h1 style="color:<?php print $title_color; ?>;">
+        <?php print $title_long; ?>
+      </h1>
     </div>
     <div class="video-content column white-text hide-for-large hide-for-xlarge" data-top="<?php print $top; ?>"
          data-bottom="<?php print $bottom; ?>">
