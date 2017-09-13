@@ -259,6 +259,11 @@ $white: #fff;
       line-height: 46px;
       font-weight: 300;
       font-size: 28px;
+      width: 100%;
+      display: inline-block;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
     }
 
     ul {
@@ -492,3 +497,12 @@ $white: #fff;
   top: 27px;
 }
 
+.video-caption-container{
+  .video-caption{
+    @extend .slide-caption;
+    text-align: right;
+  }
+  .column{
+    float: right;
+  }
+}
