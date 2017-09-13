@@ -24,7 +24,7 @@ $plugin = array(
     'thumbnail_poster' => 0,
     'title_position' => 'top',
     'title_offset' => '',
-    'title_color' => '',
+    'title_color' => '5087e9',
   ),
 );
 
