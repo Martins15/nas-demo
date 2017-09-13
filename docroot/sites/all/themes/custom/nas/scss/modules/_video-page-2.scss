@@ -492,3 +492,11 @@ $white: #fff;
   top: 27px;
 }
 
+.video-caption-container{
+  .video-caption{
+    @extend .slide-caption;
+  }
+  .column{
+    float: right;
+  }
+}

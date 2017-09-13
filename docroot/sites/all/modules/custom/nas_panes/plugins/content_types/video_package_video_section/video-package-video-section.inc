@@ -19,6 +19,7 @@ $plugin = array(
     'title_short' => '',
     'hash' => '',
     'video' => 0,
+    'video_credit' => '',
     'poster' => 0,
     'thumbnail_video' => 0,
     'thumbnail_poster' => 0,
@@ -75,6 +76,13 @@ function video_package_video_section_form($form, &$form_state) {
     ),
     '#default_value' => $conf['video'],
     '#required' => TRUE,
+  );
+
+  $form['video_credit'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Video credit'),
+    '#description' => t('Video credit text'),
+    '#default_value' => !empty($conf['video_credit']) ? $conf['video_credit'] : '',
   );
 
   $form['poster'] = array(
@@ -202,6 +210,7 @@ function video_package_video_section_render($subtype, $conf, $args, $context) {
     '#theme' => 'video_package_video_section',
     '#poster' => $poster,
     '#video' => $video,
+    '#video_credit' => !empty($conf['video_credit']) ? check_plain($conf['video_credit']) : '',
     '#thumbnail_poster' => $thumbnail_poster,
     '#thumbnail_video' => $thumbnail_video,
     '#title_short' => check_plain($conf['title_short']),
@@ -221,6 +230,7 @@ function video_package_video_section_theme(&$theme, $plugin) {
     'variables' => array(
       'poster' => NULL,
       'video' => NULL,
+      'video_credit' => NULL,
       'thumbnail_poster' => NULL,
       'thumbnail_video' => NULL,
       'title_short' => NULL,
