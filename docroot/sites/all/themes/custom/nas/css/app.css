@@ -17577,6 +17577,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   top: 27px;
 }
 
+.video-caption-container .video-caption {
+  text-align: right;
+}
 .video-caption-container .column {
   float: right;
 }
