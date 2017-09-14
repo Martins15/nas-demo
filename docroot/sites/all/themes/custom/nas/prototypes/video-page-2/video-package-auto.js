@@ -56,19 +56,25 @@
             $video = $(this).find('video:eq(0)'),
             thumbPoster = ($video.data('thumb-poster') || $video.attr('poster')),
             thumbSource = ($video.data('thumb-src') || $video.data('src')),
-            shortTitle = ($video.data('short-title') || $(this).find('h1').text());
-          var $listitem = $('<li>' +
+            shortTitle = ($video.data('short-title') || $(this).find('h1').text()),
+            shortTitlColor = $('.dot-navigation').css("background-color");
+          var $listitem = '<li>' +
             '<div class="thumbnail-item">' +
             '  <a href="#' + hash + '">' +
             '    <video muted playsinline class="thumbnail-video" poster="' + thumbPoster + '">' +
             '      <source src="' + thumbSource + '" type="video/mp4">' +
             '    </video>' +
-            '    <div class="thumb-tooltip">' +
+            '    <div class="thumb-tooltip"';
+          if (shortTitlColor.length) {
+            $listitem += 'style="background-color:' + shortTitlColor + ';"';
+          }
+          $listitem += '>' +
             '      <span>' + shortTitle + '</span>' +
             '    </div>' +
             '  </a>' +
             '</div>' +
-            '</li>');
+            '</li>';
+          $listitem = $($listitem);
           $listitem.appendTo($list);
         });
         $list.appendTo($(this));
