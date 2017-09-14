@@ -17379,7 +17379,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-weight: 300;
   font-size: 28px;
   width: 100%;
-  display: inline-block;
+  display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -17573,6 +17573,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   color: #fff;
   padding: 0 10px;
   transition: height 0.3s;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 20px;
 }
 .video-package .thumbnail-item a:hover .thumb-tooltip {
   height: 30px;
