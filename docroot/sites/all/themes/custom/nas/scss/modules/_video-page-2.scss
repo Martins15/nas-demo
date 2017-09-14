@@ -260,7 +260,7 @@ $white: #fff;
       font-weight: 300;
       font-size: 28px;
       width: 100%;
-      display: inline-block;
+      display: block;
       white-space: nowrap;
       overflow:hidden;
       text-overflow: ellipsis;
@@ -485,7 +485,9 @@ $white: #fff;
     background: #ccc;
     color: #fff;
     padding: 0 10px;
-    transition: height 0.3s
+    transition: height 0.3s;
+    font-family: $font-sans;
+    font-size: 20px;
   }
   .thumbnail-item a:hover {
     .thumb-tooltip {
