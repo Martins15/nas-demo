@@ -1527,9 +1527,13 @@ ul.clearing-thumbs {
   }
 }
 
-.contextual-links-region {
+.about-page-intro {
+
   p {
     margin-bottom: 25.5px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
-

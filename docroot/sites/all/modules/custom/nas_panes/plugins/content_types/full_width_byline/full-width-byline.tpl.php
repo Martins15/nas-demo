@@ -23,7 +23,7 @@
         <img class="article-author-image" src="<?php print $author_image; ?>" alt="<?php print $author_name; ?>">
       </a>
       <?php endif; ?>
-      <a href="<?php print $author_link; ?>"><h5 class="article-author-name">By <?php print $author_name; ?></h5></a>
+      <a href="<?php print $author_link; ?>"><h5 class="article-author-name"><?php print t('By ') . $author_name; ?></h5></a>
       <small class="article-date"><?php print $published; ?></small>
       <section class="social-sharing no-caption">
         <a class="social-sharing-icon" target="_blank" href="http://twitter.com/share?text=<?php print $node->title; ?>&via=audubonsociety&url=<?php print $node_url; ?>"><i class="icon-twitter"></i></a>&nbsp;
