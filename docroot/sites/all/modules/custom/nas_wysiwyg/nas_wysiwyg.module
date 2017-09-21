@@ -10,8 +10,15 @@ define('NAS_WYSIWYG_LOGO_WELCOME_TO_ADUBON', 'wordmark-black.png');
 /**
  * Implements hook_wysiwyg_editor_settings_alter().
  */
-function nas_wysiwyg_wysiwyg_editor_settings_alter() {
+function nas_wysiwyg_wysiwyg_editor_settings_alter(&$settings, &$context) {
   drupal_add_css(drupal_get_path('module', 'nas_wysiwyg') . '/css/nas_wysiwyg.css');
+  if (empty($settings['contentsCss']) || !is_array($settings['contentsCss'])) {
+    return;
+  }
+  // Force wysiwyg use secure paths to css files.
+  foreach ($settings['contentsCss'] as &$url) {
+    $url = str_replace('http://', 'https://', $url);
+  }
 }
 
 /**
