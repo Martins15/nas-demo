@@ -25,7 +25,7 @@
 <?php if ($caption): ?>
   <div class="hero-caption">
     <div class="row">
-      <div class="caption large-10 large-centered columns">
+      <div class="caption large-centered columns caption-full-width">
         <p>
           <span class="image-caption"><?php print $caption; ?></p>
       </div>
