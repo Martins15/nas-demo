@@ -10,6 +10,57 @@
 function nas_beans_feature_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'bean-slideshow-field_stack_images_on_each_other'
+  $field_instances['bean-slideshow-field_stack_images_on_each_other'] = array(
+    'bundle' => 'slideshow',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Check this to show images stacked on top of each other',
+    'display' => array(
+      'bean_image_colorbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'bean_image_without_colorbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'bean',
+    'field_name' => 'field_stack_images_on_each_other',
+    'label' => 'Stack images on top of each other',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'quiz_result' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'bean-slideshow-field_wysiwyg_images'
   $field_instances['bean-slideshow-field_wysiwyg_images'] = array(
     'bundle' => 'slideshow',
@@ -121,7 +172,7 @@ function nas_beans_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -495,9 +546,11 @@ function nas_beans_feature_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Alignment');
   t('Caption');
+  t('Check this to show images stacked on top of each other');
   t('Embed code');
   t('Image');
   t('Images');
+  t('Stack images on top of each other');
   t('Width mode');
 
   return $field_instances;
