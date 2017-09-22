@@ -4344,8 +4344,8 @@ function nas_master_update_7299() {
 function nas_master_update_7300() {
   features_revert(array(
     'nas_beans_feature' => array(
-      'field_instance',
       'field_base',
+      'field_instance',
     ),
   ));
 }
