@@ -19,7 +19,7 @@ function nas_beans_feature_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => 'Check this to show images stacked on top of each other',
+    'description' => 'With this option images are displayed not in slideshow, but one after another.',
     'display' => array(
       'bean_image_colorbox' => array(
         'label' => 'above',
