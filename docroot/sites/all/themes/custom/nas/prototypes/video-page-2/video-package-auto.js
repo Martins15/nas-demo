@@ -61,7 +61,7 @@
           var $listitem = '<li>' +
             '<div class="thumbnail-item">' +
             '  <a href="#' + hash + '">' +
-            '    <video muted playsinline class="thumbnail-video" poster="' + thumbPoster + '">' +
+            '    <video muted playsinline class="thumbnail-video" poster="' + thumbPoster + '"  preload="none">' +
             '      <source src="' + thumbSource + '" type="video/mp4">' +
             '    </video>' +
             '    <div class="thumb-tooltip"';

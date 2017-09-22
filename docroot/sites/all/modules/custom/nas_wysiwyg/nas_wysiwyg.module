@@ -103,6 +103,10 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
       }
       $vars['slides'] = $slides;
       $vars['count'] = count($get_images);
+      $if_stacked = field_get_items('bean', $entity, 'field_stack_images_on_each_other');
+      if (!empty($if_stacked[0]['value'])) {
+        $vars['theme_hook_suggestions'][] = 'bean__slideshow_stacked';
+      }
     }
   }
 }
@@ -208,6 +212,14 @@ function nas_wysiwyg_theme() {
         'count' => array(),
       ),
       'template' => 'bean--slideshow',
+      'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
+    ),
+    'bean__slideshow_stacked' => array(
+      'variables' => array(
+        'title' => '',
+        'slides' => array(),
+      ),
+      'template' => 'bean--slideshow_stacked',
       'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
     ),
     'bean__video' => array(
