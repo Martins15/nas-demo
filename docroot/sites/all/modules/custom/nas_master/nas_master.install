@@ -4337,3 +4337,15 @@ function nas_master_update_7299() {
     'nas_metatags_feature' => array('metatag')
   ));
 }
+
+/**
+ * Revert nas_beans_feature.
+ */
+function nas_master_update_7300() {
+  features_revert(array(
+    'nas_beans_feature' => array(
+      'field_base',
+      'field_instance',
+    ),
+  ));
+}
