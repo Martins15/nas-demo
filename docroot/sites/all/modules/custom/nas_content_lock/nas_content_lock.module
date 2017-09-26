@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * @file
+ * Code related to Nas content lock module.
+ */
+
+define('NAS_CONTENT_LOCK_MESSAGE', t('User %username is currently editing this page. Proceed?'));
+
+/**
+ * Implements hook_node_view().
+ */
+function nas_content_lock_node_view($node, $view_mode, $langcode) {
+  global $user;
+  $lock = content_lock_fetch_lock($node->nid);
+  if (
+    !empty($node->panelizer['page_manager']->pipeline) &&
+    $node->panelizer['page_manager']->pipeline == 'ipe' &&
+    user_access('use ipe with page manager', $user) &&
+    $lock !== FALSE &&
+    $lock->name !== $user->name
+  ) {
+    drupal_set_message(str_replace('%username', $lock->name, NAS_CONTENT_LOCK_MESSAGE));
+  }
+}
+
+/**
+ * Implements hook_ajax_render_alter().
+ */
+function nas_content_lock_ajax_render_alter(&$commands) {
+  foreach ($commands as $command) {
+    if ($command['command'] == 'initIPE') {
+      $key = explode('-', $command['key']);
+      $lock = content_lock_fetch_lock($key[2]);
+      global $user;
+      if ($lock == FALSE) {
+        content_lock_node($key[2], $user->uid);
+      }
+      else {
+        if ($user->name !== $lock->name) {
+          $commands[] = ajax_command_alert(str_replace('%username', $lock->name, NAS_CONTENT_LOCK_MESSAGE));
+        }
+      }
+      $settings = _nas_content_lock_add_unload_js($key[2], $lock);
+      $commands[] = ajax_command_settings($settings, TRUE);
+
+      $m = drupal_get_path('module', 'content_lock');
+      $commands[] = ajax_command_append('body', '<script src="/' . $m . '/js/jquery.url.packed.js"></script>');
+      $commands[] = ajax_command_append('body', '<script src="/' . $m . '/js/onUserExit.js"></script>');
+      $commands[] = ajax_command_append('body', '<script src="/' . $m . '/js/content_lock_init.js"></script>');
+      break;
+    }
+  }
+}
+
+/**
+ * Add unload js.
+ */
+function _nas_content_lock_add_unload_js($nid, $lock) {
+  $internal_urls = array();
+  $internal_form_selectors = array();
+  $internal_urls[] = 'node/' . $nid . '/edit';
+  $internal_form_selectors[] = 'form.node-form';
+  // Check lock status.
+  if ($lock) {
+    $lock_ajax_key = $lock->ajax_key;
+  }
+  else {
+    $lock_ajax_key = FALSE;
+  }
+  // Get tokens.
+  $token = content_lock_get_release_token($nid);
+  // Prepare settings.
+  $settings = array(
+    'nid' => $nid,
+    'ajax_key' => $lock_ajax_key,
+    'token' => $token,
+    'unload_js_message_enable' => variable_get('content_lock_unload_js_message_enable', TRUE),
+    'internal_urls' => implode('|', $internal_urls),
+    'internal_forms' => implode(', ', $internal_form_selectors),
+  );
+  if ($settings['unload_js_message_enable']) {
+    $settings['unload_js_message'] = variable_get('content_lock_unload_js_message', 'If you proceed, ALL of your changes will be lost.');
+  }
+
+  return array('content_lock' => $settings);
+}
