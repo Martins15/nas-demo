@@ -45,9 +45,16 @@ function nas_content_lock_ajax_render_alter(&$commands) {
       $commands[] = ajax_command_settings($settings, TRUE);
 
       $m = drupal_get_path('module', 'content_lock');
-      $commands[] = ajax_command_append('body', '<script src="/' . $m . '/js/jquery.url.packed.js"></script>');
-      $commands[] = ajax_command_append('body', '<script src="/' . $m . '/js/onUserExit.js"></script>');
-      $commands[] = ajax_command_append('body', '<script src="/' . $m . '/js/content_lock_init.js"></script>');
+      $js_to_attache = array(
+        'jquery.url.packed.js',
+        'onUserExit.js',
+        'content_lock_init.js'
+      );
+      foreach ($js_to_attache as $js) {
+        global $base_url;
+        $url = $base_url . '/' . $m . '/js/' . $js;
+        $commands[] = ajax_command_append('head', '<script src="' . $url . '"></script>');
+      }
       break;
     }
   }
