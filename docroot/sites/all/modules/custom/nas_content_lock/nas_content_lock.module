@@ -5,7 +5,8 @@
  * Code related to Nas content lock module.
  */
 
-define('NAS_CONTENT_LOCK_MESSAGE', t('User %username is currently editing this page. Proceed?'));
+define('NAS_CONTENT_LOCK_MESSAGE', t('User !username is currently editing this page'));
+define('NAS_CONTENT_LOCK_AJAX_MESSAGE', t('User !username is currently editing this page. Be careful.'));
 
 /**
  * Implements hook_node_view().
@@ -20,7 +21,7 @@ function nas_content_lock_node_view($node, $view_mode, $langcode) {
     $lock !== FALSE &&
     $lock->name !== $user->name
   ) {
-    drupal_set_message(str_replace('%username', $lock->name, NAS_CONTENT_LOCK_MESSAGE));
+    drupal_set_message(t(NAS_CONTENT_LOCK_MESSAGE, array('!username' => $lock->name)));
   }
 }
 
@@ -30,32 +31,46 @@ function nas_content_lock_node_view($node, $view_mode, $langcode) {
 function nas_content_lock_ajax_render_alter(&$commands) {
   foreach ($commands as $command) {
     if ($command['command'] == 'initIPE') {
-      $key = explode('-', $command['key']);
-      $lock = content_lock_fetch_lock($key[2]);
-      global $user;
-      if ($lock == FALSE) {
-        content_lock_node($key[2], $user->uid);
+      list($module, $type, $nid, ) = explode('-', $command['key']);
+      if ($module !== 'panelizer' || $type !== 'node') {
+        continue;
       }
-      else {
-        if ($user->name !== $lock->name) {
-          $commands[] = ajax_command_alert(str_replace('%username', $lock->name, NAS_CONTENT_LOCK_MESSAGE));
-        }
+
+      if (!$lock = content_lock_fetch_lock($nid)) {
+        content_lock_node($nid, $GLOBALS['user']->uid);
+        // Clear drupal messages.
+        drupal_get_messages();
       }
-      $settings = _nas_content_lock_add_unload_js($key[2], $lock);
+      elseif ($GLOBALS['user']->name !== $lock->name) {
+        $commands[] = ajax_command_alert(t(NAS_CONTENT_LOCK_AJAX_MESSAGE, array('!username' => $lock->name)));
+      }
+      $settings = _nas_content_lock_add_unload_js($nid, $lock);
       $commands[] = ajax_command_settings($settings, TRUE);
 
-      $m = drupal_get_path('module', 'content_lock');
-      $js_to_attache = array(
-        'jquery.url.packed.js',
-        'onUserExit.js',
-        'content_lock_init.js'
+      $content_lock_path = drupal_get_path('module', 'content_lock');
+      $nas_content_lock_path = drupal_get_path('module', 'nas_content_lock');
+      $javascript_urls = array(
+        file_create_url($content_lock_path . '/js/jquery.url.packed.js'),
+        file_create_url($content_lock_path . '/js/onUserExit.js'),
+        file_create_url($content_lock_path . '/js/content_lock_init.js'),
+        file_create_url($nas_content_lock_path . '/js/nas-content-lock.js'),
       );
-      foreach ($js_to_attache as $js) {
-        global $base_url;
-        $url = $base_url . '/' . $m . '/js/' . $js;
-        $commands[] = ajax_command_append('head', '<script src="' . $url . '"></script>');
+      foreach ($javascript_urls as $url) {
+        $commands[] = ajax_command_prepend('head', '<script type="text/javascript" src="' . $url . '"></script>');
       }
       break;
+    }
+
+    if ($command['command'] == 'endIPE') {
+      list($module, $type, $nid, ) = explode('-', $command['key']);
+      if ($module !== 'panelizer' || $type !== 'node') {
+        continue;
+      }
+      $lock = content_lock_fetch_lock($nid);
+      if ($lock && $GLOBALS['user']->name == $lock->name) {
+        content_lock_release($nid, $GLOBALS['user']->uid);
+      }
+      $commands[] = ajax_command_invoke('body', 'removeUnloadCallback');
     }
   }
 }
@@ -64,10 +79,6 @@ function nas_content_lock_ajax_render_alter(&$commands) {
  * Add unload js.
  */
 function _nas_content_lock_add_unload_js($nid, $lock) {
-  $internal_urls = array();
-  $internal_form_selectors = array();
-  $internal_urls[] = 'node/' . $nid . '/edit';
-  $internal_form_selectors[] = 'form.node-form';
   // Check lock status.
   if ($lock) {
     $lock_ajax_key = $lock->ajax_key;
@@ -83,8 +94,8 @@ function _nas_content_lock_add_unload_js($nid, $lock) {
     'ajax_key' => $lock_ajax_key,
     'token' => $token,
     'unload_js_message_enable' => variable_get('content_lock_unload_js_message_enable', TRUE),
-    'internal_urls' => implode('|', $internal_urls),
-    'internal_forms' => implode(', ', $internal_form_selectors),
+    'internal_urls' => 'never',
+    'internal_forms' => 'never',
   );
   if ($settings['unload_js_message_enable']) {
     $settings['unload_js_message'] = variable_get('content_lock_unload_js_message', 'If you proceed, ALL of your changes will be lost.');
