@@ -4349,3 +4349,12 @@ function nas_master_update_7300() {
     ),
   ));
 }
+
+/**
+ * Enable nas_content_lock.
+ */
+function nas_master_update_7301() {
+  module_enable(array(
+    'nas_content_lock',
+  ));
+}
