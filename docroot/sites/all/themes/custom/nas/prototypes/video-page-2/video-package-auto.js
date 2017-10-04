@@ -312,35 +312,67 @@
 
   /**
    * Implements video content position.
-   * @type {{attach: Drupal.behaviors.videoContentPosition.attach}}
    */
-  Drupal.behaviors.videoContentPosition = {
+  Drupal.behaviors.videoContentPosition = function () {
+    var $videoContent = $('.video-content');
+    $videoContent.each(function (key, value) {
+      var $el = $(this)
+        , elPositionTop = $el.data('top')
+        , elPositionBottom = $el.data('bottom')
+        , elPositionTopJsOffset = Drupal.behaviors.calculateVideoTitleOffset($el, key);
+
+      if (typeof elPositionTopJsOffset !== "undefined") {
+        elPositionTop = elPositionTopJsOffset;
+        elPositionBottom = '';
+      }
+      // Set top position fot video content.
+      if (elPositionTop !== '') {
+        $el.css({
+          'top': elPositionTop,
+          'bottom': 'auto'
+        })
+      }
+
+      // Set bottom position fot video content.
+      if (elPositionBottom !== '') {
+        $el.css({
+          'bottom': elPositionBottom,
+          'top': 'auto'
+        })
+      }
+    });
+  };
+
+
+  /**
+   * React on window resize to adjust video title position.
+   */
+  Drupal.behaviors.resizeVideoTitlePosition = {
     attach: function (context, settings) {
-      var $videoContent = $('.video-content');
-
-      $videoContent.each(function () {
-        var $el = $(this);
-        var elPositionTop = $el.data('top');
-        var elPositionBottom = $el.data('bottom');
-
-        // Set top position fot video content.
-        if (elPositionTop !== '') {
-          $el.css({
-            'top': elPositionTop,
-            'bottom': 'auto'
-          })
-        }
-
-        // Set bottom position fot video content.
-        if (elPositionBottom !== '') {
-          $el.css({
-            'bottom': elPositionBottom,
-            'top': 'auto'
-          })
-        }
-
+      Drupal.behaviors.videoContentPosition();
+      $(window).on('resize', function(){
+        Drupal.behaviors.videoContentPosition();
       });
+    }
+  };
 
+
+  /**
+   * Calculate if we need top offset based on screen ratio.
+   * @returns {string}
+   */
+  Drupal.behaviors.calculateVideoTitleOffset = function ($el, key) {
+    if($el.height() !== 0){
+      var h = window.innerHeight
+        , w = window.innerWidth
+        , ratio = h/w
+        // height of the dot bar
+        , dotBarHeight = 48;
+      if(ratio<0.55){
+        h -= (key == 0) ? $('body>header').height() : dotBarHeight;
+        h -= $el.height();
+        return h;
+      }
     }
   };
 
