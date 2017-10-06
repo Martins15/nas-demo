@@ -12,13 +12,12 @@ include_once 'nas_mobapp_endpoint.features.inc';
 function nas_mobapp_endpoint_menu() {
   $items = array();
 
-  $items['get_endpoint/%/%/%'] = array(
+  $items['get_endpoint'] = array(
     'title' => 'GET ednpoint',
     'description' => 'Get endpoint',
     'access callback' => TRUE,
     'page callback' => 'nas_mobapp_endpoint_get_endpoint',
     'delivery callback' => 'drupal_json_output',
-    'page arguments' => array(1, 2, 3),
     'type' => MENU_NORMAL_ITEM,
   );
 
@@ -28,10 +27,16 @@ function nas_mobapp_endpoint_menu() {
 /**
  * Endpoint callback.
  */
-function nas_mobapp_endpoint_get_endpoint($type, $amount, $language) {
+function nas_mobapp_endpoint_get_endpoint() {
+  // Prevent the page from being cached.
+  drupal_page_is_cacheable(FALSE);
+  $type = (!empty($_GET['type'])) ? $_GET['type'] : '';
+  $amount = (!empty($_GET['amount'])) ? $_GET['amount'] : '';
+  $language = (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '';
   $types = array('article' => 'block', 'action' => 'block_1');
   $lang = (!empty($language) && $language == 'es') ? 'es' : LANGUAGE_NONE;
-  if (!empty($types[$type]) && is_int((int) $amount)) {
+  $amount = intval($amount);
+  if (!empty($types[$type]) && $amount > 0) {
     $view_results = views_get_view_result('mobile_app', $types[$type], $lang);
     $counted = count($view_results);
     if ($counted > $amount) {
