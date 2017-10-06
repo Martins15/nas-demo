@@ -368,7 +368,7 @@
         , ratio = h/w
         // height of the dot bar
         , dotBarHeight = 48;
-      if(ratio<0.55){
+      if(ratio<0.6){
         h -= (key == 0) ? $('body>header').height() : dotBarHeight;
         h -= $el.height();
         return h;
