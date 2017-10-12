@@ -1,0 +1,4 @@
+name = NAS contetn lock
+description = Module provides custom logic for locking content that is currently in edit
+core = 7.x
+package = NAS

@@ -17787,10 +17787,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin-right: 10px;
 }
 
-.article-full-width .large-header {
+.caption-full-width, .article-full-width .large-header {
   max-width: 799px;
   width: 100%;
 }
+
 .article-full-width .article-meta {
   margin-top: 0;
 }
