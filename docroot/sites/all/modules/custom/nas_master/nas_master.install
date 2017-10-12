@@ -4337,3 +4337,45 @@ function nas_master_update_7299() {
     'nas_metatags_feature' => array('metatag')
   ));
 }
+
+/**
+ * Revert nas_beans_feature.
+ */
+function nas_master_update_7300() {
+  features_revert(array(
+    'nas_beans_feature' => array(
+      'field_base',
+      'field_instance',
+    ),
+  ));
+}
+
+/**
+ * Enable nas_content_lock.
+ */
+function nas_master_update_7301() {
+  module_enable(array(
+    'nas_content_lock',
+  ));
+}
+
+/**
+ * Revert nas_engagement_cards_feature, nas_overrides_feature;
+ *
+ * Enable nas_mobapp_endpoint.
+ */
+function nas_master_update_7302() {
+  features_revert(array(
+    'nas_engagement_cards_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+    ),
+    'nas_overrides_feature' => array(
+      'strongarm'
+    )
+  ));
+  module_enable(array(
+    'nas_mobapp_endpoint',
+  ));
+}
