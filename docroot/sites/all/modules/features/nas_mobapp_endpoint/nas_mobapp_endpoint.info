@@ -1,0 +1,16 @@
+name = NAS Mobapp Endpoint
+core = 7.x
+package = NAS
+version = 7.x-1.0
+project = nas_mobapp_endpoint
+dependencies[] = fe_nodequeue
+dependencies[] = image
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[fe_nodequeue][] = mobile_app_articles
+features[fe_nodequeue][] = mobile_app_engagement_cards
+features[features_api][] = api:2
+features[image][] = mobapp
+features[views_view][] = mobile_app
+features_exclude[dependencies][ctools] = ctools
+project path = sites/all/modules/features
