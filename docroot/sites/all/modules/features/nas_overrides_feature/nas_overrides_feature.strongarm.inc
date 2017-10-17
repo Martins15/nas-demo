@@ -798,7 +798,12 @@ node/*/delete
 user
 user/*
 admin
-admin/*';
+admin/*
+2016-board-meeting-registration-form
+node/74601
+native-plants
+native-plants/*
+get_endpoint/*';
   $export['securepages_pages'] = $strongarm;
 
   $strongarm = new stdClass();
