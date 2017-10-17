@@ -27,6 +27,17 @@ function nas_master_install() {
 }
 
 /**
+ * Implements hook_update_dependencies().
+ */
+function nas_master_update_dependencies() {
+  $dependencies['nas_master'][7286] = array(
+    'lazyloader' => 7201,
+  );
+
+  return $dependencies;
+}
+
+/**
  * Enable nas_slideshow_feature feature.
  */
 function nas_master_update_7002() {
@@ -3958,6 +3969,9 @@ function nas_master_update_7266() {
  * Enable event date start field in Search API.
  */
 function nas_master_update_7267() {
+  module_load_install('search_api');
+  search_api_update_7118();
+
   features_revert(array('nas_solr_feature' => array('search_api_index')));
 }
 
@@ -4378,4 +4392,55 @@ function nas_master_update_7302() {
   module_enable(array(
     'nas_mobapp_endpoint',
   ));
+}
+
+/**
+ * Enable Panels Cache Expiration module.
+ */
+function nas_master_update_7303() {
+  module_enable(array('expire_panels'));
+}
+
+/**
+ * Enable nas_imagecache_token_feature feature. Set proper variable for updated lazyloader.
+ */
+function nas_master_update_7304() {
+  module_enable(array('nas_imagecache_token_feature'));
+  variable_set('lazyloader_page_exclude_option', LAZYLOADER_PAGE_EXCLUDE_OPTION);
+}
+
+/**
+ * Set excluded image styles for lazyloader.
+ */
+function nas_master_update_7305() {
+  $options = array();
+  $styles = image_styles();
+  foreach ($styles as $style) {
+    $options[$style['name']] = $style['name'];
+    if ($style['name'] == 'engagement_card' || $style['name'] == 'boa_mail_subscription') {
+      $options[$style['name']] = 0;
+    }
+  }
+  variable_set('lazyloader_image_styles', $options);
+}
+
+/**
+ * Revert nas_file_entity.
+ */
+function nas_master_update_7306() {
+  features_revert(array(
+    'nas_file_entity' => array(
+      'file_display',
+    ),
+    'nas_view_modes_feature' => array(
+      'file_display',
+    ),
+  ));
+}
+
+/**
+ * Enable feeds_entity_processor.
+ */
+function nas_master_update_7307() {
+  module_enable(array('feeds_entity_processor'));
 }

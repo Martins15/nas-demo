@@ -5,3 +5,28 @@
  */
 
 include_once 'nas_file_entity.features.inc';
+
+/**
+ * Implements hook_post_features_revert().
+ */
+function nas_file_entity_post_features_revert($component) {
+  if ($component !== 'file_display') {
+    return;
+  }
+  $file_displays = nas_file_entity_file_default_displays();
+  foreach ($file_displays as $file_display) {
+    if (
+      strpos($file_display->name, '__nas_wysiwyg_image__') !== FALSE ||
+      strpos($file_display->name, '__preview__') !== FALSE
+    ) {
+      db_merge('file_display')
+        ->key(array('name' => $file_display->name))
+        ->fields(array(
+          'weight' => $file_display->weight,
+          'settings' => serialize($file_display->settings),
+          'status' => (int) $file_display->status,
+        ))
+        ->execute();
+    }
+  }
+}

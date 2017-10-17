@@ -36,9 +36,13 @@ function page_manager_search_search_reset() {
  */
 function page_manager_search_search_status() {
   module_load_include('inc', 'page_manager', 'plugins/tasks/page');
-  $pages = page_manager_page_load_all();
+  $total = 0;
+  foreach (page_manager_page_load_all() as $subtask_id => $subtask) {
+    if (!isset($subtask->disabled) || !$subtask->disabled) {
+      $total++;
+    }
+  }
 
-  $total = count($pages);
   $remaining = $total - db_query("SELECT COUNT(*) FROM {search_dataset} d WHERE d.type = 'page_manager' AND d.reindex = 0")->fetchField();
   return array('remaining' => $remaining, 'total' => $total);
 }
@@ -49,7 +53,7 @@ function page_manager_search_search_status() {
 function page_manager_search_search_execute($keys = NULL, $conditions = NULL) {
   // @TODO - Add some form of access control.
 
-  // Build matching conditions
+  // Build matching conditions.
   $query = db_select('search_index', 'i', array('target' => 'slave'))
     ->extend('SearchQuery')
     ->extend('PagerDefault')
@@ -67,14 +71,16 @@ function page_manager_search_search_execute($keys = NULL, $conditions = NULL) {
 
   $results = array();
   foreach ($find as $item) {
-    $page = entity_load('page_manager_search', array($item->sid), array('length' => 10));
+    $page = entity_load('page_manager_search', array($item->sid), array('length' => 9));
 
-    $results[] = array(
-      'link' => url($page[$item->sid]->path, array('absolute' => TRUE)),
-      'title' => $page[$item->sid]->title,
-      'score' => $item->calculated_score,
-      'snippet' => search_excerpt($keys, $page[$item->sid]->content),
-    );
+    if (isset($page[$item->sid])) {
+      $results[] = array(
+        'link' => url($page[$item->sid]->path, array('absolute' => TRUE)),
+        'title' => $page[$item->sid]->title,
+        'score' => $item->calculated_score,
+        'snippet' => search_excerpt($keys, $page[$item->sid]->content),
+      );
+    }
   }
   return $results;
 }
@@ -89,6 +95,15 @@ function page_manager_search_update_index() {
   module_load_include('inc', 'page_manager', 'plugins/tasks/page');
   foreach (page_manager_page_load_all() as $subtask_id => $subtask) {
     $sid = page_manager_search_machine_name_to_dec($subtask_id);
-    search_index($sid, 'page_manager', page_manager_page_execute($subtask_id));
+
+    // Only populate the search index with content if the page is enabled.
+    $content = '';
+    if (!isset($subtask->disabled) || !$subtask->disabled) {
+      $content = page_manager_page_execute($subtask_id);
+      if (is_array($content)) {
+        $content = drupal_render($content);
+      }
+    }
+    search_index($sid, 'page_manager', $content);
   }
 }
