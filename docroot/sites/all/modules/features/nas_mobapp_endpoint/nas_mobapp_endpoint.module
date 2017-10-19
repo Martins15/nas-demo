@@ -46,7 +46,7 @@ function nas_mobapp_endpoint_get_endpoint() {
       $item = array();
       global $base_url;
       $item['title'] = trim($view_result->node_title);
-      $item['summary'] = !empty($view_result->field_body[0]['rendered']['#markup']) ? $view_result->field_body[0]['rendered']['#markup'] : '';
+      $item['summary'] = !empty($view_result->field_body[0]['rendered']['#markup']) ? strip_tags($view_result->field_body[0]['rendered']['#markup']) : '';
       $item['url'] = $base_url . '/node/' . $view_result->nid;
       $item['position'] = $view_result->nodequeue_nodes_node_position;
       $uri = '';
