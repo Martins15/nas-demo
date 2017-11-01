@@ -4379,3 +4379,13 @@ function nas_master_update_7302() {
     'nas_mobapp_endpoint',
   ));
 }
+
+/**
+ * Revert nas_netx_feature, force new auth on netx.
+ */
+function nas_master_update_7303() {
+  features_revert(array(
+    'nas_netx_feature' => array('variable'),
+  ));
+  variable_set('netx_cookie', "");
+}
