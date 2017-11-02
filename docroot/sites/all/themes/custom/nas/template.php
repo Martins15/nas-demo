@@ -1429,8 +1429,8 @@ function nas_preprocess_panels_pane(&$vars) {
       $hero_mobile_image_file = reset($field_items)['file'];
 
       $hero_mobile_image = $hero_image;
-      $hero_mobile_image[0]['file']['#item'] = (array) $hero_mobile_image_file;
-      $hero_mobile_image[0]['file']['#image_style'] = 'hero_mobile';
+      $hero_mobile_image[0]['file']['#item'] = $hero_mobile_image[0]['file']['image']['#item'] = (array) $hero_mobile_image_file;
+      $hero_mobile_image[0]['file']['#image_style'] = $hero_mobile_image[0]['file']['image']['#image_style'] = 'hero_mobile';
       $hero_mobile_image['#prefix'] = '<div class="hide-for-medium hide-for-large hide-for-xlarge">';
       $hero_mobile_image['#suffix'] = '</div>';
 
