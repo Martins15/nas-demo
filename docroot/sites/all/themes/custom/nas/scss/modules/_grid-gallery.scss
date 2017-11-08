@@ -31,14 +31,13 @@
       display: block;
       position: relative;
 
-      &:before {
+      .grid-gallery__expand {
         transition: opacity 0.1s;
-        background-image: url(../prototypes/full-screen-article/expander-x2.png);
+        background-image: url(../prototypes/full-screen-article/expander-x2-shadow.png);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
         top: 100%;
-        content: "";
         display: block;
         height: 36px;
         position: absolute;
@@ -50,7 +49,7 @@
         opacity: 0;
       }
 
-      &:hover:before {
+      &:hover .grid-gallery__expand {
         opacity: 1;
       }
     }
