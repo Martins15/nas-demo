@@ -131,6 +131,9 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
   }
 }
 
+/**
+ * Preprocess images for lazy-loading.
+ */
 function nas_wysiwyg_slides_image($variables) {
   if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name'])) {
 
@@ -394,7 +397,7 @@ function nas_wysiwyg_wysiwyg_plugin($editor) {
  * Implementation of hook_preprocess_field().
  */
 function nas_wysiwyg_preprocess_field(&$variables) {
-  if (!empty($variables['element']['#object']) && ($variables['element']['#field_type'] == 'text_with_summary' || $variables['element']['#field_type'] =='text_long')) {
+  if (!empty($variables['element']['#field_type']) && ($variables['element']['#field_type'] == 'text_with_summary' || $variables['element']['#field_type'] =='text_long')) {
     $variables['items']['0']['#markup'] = preg_replace('/src="([^"]*)" lazy-/', '', $variables['items']['0']['#markup']);
   }
 }
