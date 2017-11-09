@@ -1258,7 +1258,7 @@ function nas_image($variables) {
     $attributes = $variables['attributes'];
     $noscript_attributes = $variables['attributes'];
 
-    if (_lazy_loader_enabled()) {
+    if (_lazy_loader_enabled() || in_array($variables['style_name'], ['bean_wysiwyg_full_width'])) {
 
       $attributes['data-src'] = file_create_url($variables['path']);
       // Path to dummy placeholder image, to be replaced by actual image.
@@ -1429,8 +1429,8 @@ function nas_preprocess_panels_pane(&$vars) {
       $hero_mobile_image_file = reset($field_items)['file'];
 
       $hero_mobile_image = $hero_image;
-      $hero_mobile_image[0]['file']['#item'] = (array) $hero_mobile_image_file;
-      $hero_mobile_image[0]['file']['#image_style'] = 'hero_mobile';
+      $hero_mobile_image[0]['file']['#item'] = $hero_mobile_image[0]['file']['image']['#item'] = (array) $hero_mobile_image_file;
+      $hero_mobile_image[0]['file']['#image_style'] = $hero_mobile_image[0]['file']['image']['#image_style'] = 'hero_mobile';
       $hero_mobile_image['#prefix'] = '<div class="hide-for-medium hide-for-large hide-for-xlarge">';
       $hero_mobile_image['#suffix'] = '</div>';
 
