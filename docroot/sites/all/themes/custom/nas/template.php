@@ -1251,6 +1251,46 @@ function nas_image($variables) {
     'article_hero_inline',
   );
 
+  // List of styles for not applying of lazyloader.
+  $exclude_lazyloader_styles = array(
+    'engagement_card',
+    'boa_mail_subscription',
+  );
+  if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name']) && !in_array($variables['style_name'], $exclude_lazyloader_styles)) {
+    $attributes = $variables['attributes'];
+    $noscript_attributes = $variables['attributes'];
+
+    if (_lazy_loader_enabled() || in_array($variables['style_name'], ['bean_wysiwyg_full_width'])) {
+
+      $attributes['data-src'] = file_create_url($variables['path']);
+      // Path to dummy placeholder image, to be replaced by actual image.
+      $image_placeholder = trim(variable_get('lazyloader_placeholder', LAZYLOADER_PLACEHOLDER));
+      $attributes['src'] = $image_placeholder ? base_path() . $image_placeholder : url(drupal_get_path('module', 'lazyloader') . '/image_placeholder.gif');
+      $noscript_attributes['src'] = file_create_url($variables['path']);
+
+      // Integrate with Responsive Webdesign module.
+      if (module_exists('rdwimages')) {
+        global $_rwdimages_set;
+        if ($_rwdimages_set['enabled']) {
+          $attributes['class'] = ['rwdimage'];
+        }
+      }
+
+    }
+    else {
+      $attributes['src'] = file_create_url($variables['path']);
+    }
+
+    foreach (['width', 'height', 'alt', 'title', 'style'] as $key) {
+      if (isset($variables[$key])) {
+        $attributes[$key] = $variables[$key];
+      }
+      if (isset($variables[$key])) {
+        $noscript_attributes[$key] = $variables[$key];
+      }
+    }
+  }
+
   // Run lazyloader manually cause lazyloader_theme_registry_alter is overridden by nas_theme_registry_alter.
   if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name'])) {
     if (isset($variables['style_name']) && in_array($variables['style_name'], $remove_attr_for)) {
@@ -1388,8 +1428,8 @@ function nas_preprocess_panels_pane(&$vars) {
       $hero_mobile_image_file = reset($field_items)['file'];
 
       $hero_mobile_image = $hero_image;
-      $hero_mobile_image[0]['file']['#item'] = (array) $hero_mobile_image_file;
-      $hero_mobile_image[0]['file']['#image_style'] = 'hero_mobile';
+      $hero_mobile_image[0]['file']['#item'] = $hero_mobile_image[0]['file']['image']['#item'] = (array) $hero_mobile_image_file;
+      $hero_mobile_image[0]['file']['#image_style'] = $hero_mobile_image[0]['file']['image']['#image_style'] = 'hero_mobile';
       $hero_mobile_image['#prefix'] = '<div class="hide-for-medium hide-for-large hide-for-xlarge">';
       $hero_mobile_image['#suffix'] = '</div>';
 

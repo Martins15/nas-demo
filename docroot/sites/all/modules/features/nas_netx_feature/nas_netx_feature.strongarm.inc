@@ -21,7 +21,7 @@ function nas_netx_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'netx_cookie';
-  $strongarm->value = 'JSESSIONID=0DFC270B5C8B146DFEEA28C53CBAF754.audubon; Path=/; Secure; HttpOnly';
+  $strongarm->value = 'JSESSIONID=524865A9C24424FC10FED8EC1CDA21D6.audubon; Path=/; Secure; HttpOnly,sessionKey=h0A7zoVXGoeqYgHHhr4q7Dnrj; Expires=Fri, 27-Oct-2017 10:46:16 GMT; Path=/';
   $export['netx_cookie'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -56,7 +56,7 @@ function nas_netx_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'netx_log_requests';
-  $strongarm->value = 1;
+  $strongarm->value = FALSE;
   $export['netx_log_requests'] = $strongarm;
 
   $strongarm = new stdClass();
