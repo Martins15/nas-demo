@@ -1272,7 +1272,7 @@ function nas_image($variables) {
       if (module_exists('rdwimages')) {
         global $_rwdimages_set;
         if ($_rwdimages_set['enabled']) {
-          $attributes['class'] = array('rwdimage');
+          $attributes['class'] = ['rwdimage'];
         }
       }
 
@@ -1281,7 +1281,7 @@ function nas_image($variables) {
       $attributes['src'] = file_create_url($variables['path']);
     }
 
-    foreach (array('width', 'height', 'alt', 'title', 'style') as $key) {
+    foreach (['width', 'height', 'alt', 'title', 'style'] as $key) {
       if (isset($variables[$key])) {
         $attributes[$key] = $variables[$key];
       }
@@ -1289,7 +1289,7 @@ function nas_image($variables) {
         $noscript_attributes[$key] = $variables[$key];
       }
     }
-
+  }
 
   // Run lazyloader manually cause lazyloader_theme_registry_alter is overridden by nas_theme_registry_alter.
   if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name'])) {
