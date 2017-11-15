@@ -18,7 +18,9 @@
     <?php print render($form['submit']); ?>
   </div>
 </div>
-<?php print drupal_render_children($form); ?>
+<div class="element-hidden">
+  <?php print drupal_render_children($form); ?>
+</div>
 <div class="ngp-form"
      data-form-url="https://actions.everyaction.com/v1/Forms/S49LshHFBUKAejEkZAfw-g2"
      data-fastaction-endpoint="https://fastaction.ngpvan.com"
