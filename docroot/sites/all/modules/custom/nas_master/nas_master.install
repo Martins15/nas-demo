@@ -4389,3 +4389,20 @@ function nas_master_update_7303() {
   ));
   variable_set('netx_cookie', "");
 }
+
+/**
+ * Disable every action integration for native plants search form.
+ */
+function nas_master_update_7304() {
+  // Native plants display id.
+  $did = 38621;
+  $display = panels_load_display($did);
+  if (!empty($display->content)) {
+    foreach ($display->content as &$pane) {
+      if ($pane->type == 'native_plants_initial_form' && !empty($pane->configuration['nas_external_integration']['provider'])) {
+        $pane->configuration['nas_external_integration']['provider'] = '';
+      }
+    }
+  }
+  panels_save_display($display);
+}

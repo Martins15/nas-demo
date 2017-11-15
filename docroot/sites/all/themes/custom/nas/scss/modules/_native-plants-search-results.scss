@@ -77,6 +77,93 @@
   }
 }
 
+.native-plants-search-form {
+  .ngp-form {
+    &.at {
+      .at-inner {
+        background: transparent;
+        border: none;
+        position: relative;
+        input {
+          @extend %native-plants-large-input;
+          font-family: $font-sans;
+          &:focus {
+            border-color: #d4d4d4;
+            box-shadow: none;
+            background: #fff;
+          }
+          &+small{
+            font-size:19px;
+          }
+        }
+        .at-row.EmailAddress,
+        .at-row.PostalCode {
+          input {
+            &::-webkit-input-placeholder {
+              color: $color-light-text-gray;
+            }
+          }
+        }
+        .at-row.EmailAddress {
+          @include breakpoint(medium-up) {
+            max-width: 324px;
+            margin: auto;
+          }
+        }
+        @include breakpoint(medium-up) {
+          .PostalCode,
+          .at-form-submit {
+            width: 50%;
+            display: block;
+          }
+          .PostalCode {
+            float: left;
+          }
+          .at-form-submit {
+            float: right;
+          }
+        }
+        .PostalCode {
+          & > .at-text {
+            float: right;
+            max-width: 150px;
+            min-width: 0;
+            margin-right: 12.5px;
+            width: 100%;
+          }
+        }
+        .at-form-submit {
+          padding: 0;
+          .at-submit {
+            padding: 0;
+            width: 140px;
+            float: left;
+            margin: 0 0 0 22.5px;
+            background: $color-tomato;
+          }
+        }
+      }
+      label {
+        font-size: 0;
+        margin: 0;
+        small {
+          font-size:0;
+          a {
+            color: #1daeff;
+          }
+        }
+      }
+    }
+    fieldset.at-fieldset {
+      padding: 0;
+    }
+    legend,
+    header {
+      display: none;
+    }
+  }
+}
+
 // Search region under header, collapsible on mobile.
 .native-plants-search-form-inline {
   @include transition(max-height 0.5s);
