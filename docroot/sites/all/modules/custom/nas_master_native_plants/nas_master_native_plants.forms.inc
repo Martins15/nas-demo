@@ -578,6 +578,4 @@ function _nas_master_native_plants_attach_fields_sync(&$form) {
   $form['#attached']['library'][] = array('system', 'jquery.cookie');
   $form['#attached']['js'][] = libraries_get_path('json2') . '/json2.js';
   $form['#attached']['js'][] = drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.fields_sync.js';
-  $form['#attached']['js']['https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js'] = array('type' => 'external');
-  $form['#attached']['js'][] = drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.action_tag.js';
 }

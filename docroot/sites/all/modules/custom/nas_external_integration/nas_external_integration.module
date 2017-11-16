@@ -186,6 +186,13 @@ function nas_external_integration_settings_form($form, &$form_state, $conf = arr
     $form['nas_external_integration']['listid']['#options'] = $list_options;
   }
 
+  $form['nas_external_integration']['embed_script'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Embed Form'),
+    '#description' => t('Embed form loaded via JavaScript.'),
+    '#default_value' => isset($conf['embed_script']) ? $conf['embed_script'] : '',
+  );
+
   $form['nas_external_integration']['get_lists'] = array(
     '#type' => 'submit',
     '#value' => t('Get mailing lists from external provider'),
@@ -204,6 +211,8 @@ function nas_external_integration_settings_form($form, &$form_state, $conf = arr
     ),
     '#limit_validation_errors' => array(array('nas_external_integration')),
   );
+
+
 
   return $form;
 }

@@ -1,9 +1,6 @@
 var nvtag_callbacks = nvtag_callbacks || {};
 
 var alterFill = function (args) {
-  var fields = Drupal.native_plants_fields_sync.get_fields();
-  args.fill_dict.EmailAddress = fields.email;
-  args.fill_dict.PostalCode = fields.zipcode;
   jQuery('.PostalCode input').attr('placeholder', Drupal.t('U.S. ZIP code'));
   jQuery('.EmailAddress input').attr('placeholder', Drupal.t('Email Address'));
   return args;
@@ -20,18 +17,32 @@ var alterFormDefinition = function (args) {
 nvtag_callbacks.alterFormDefinition = nvtag_callbacks.alterFormDefinition || [];
 nvtag_callbacks.alterFormDefinition.push(alterFormDefinition);
 
+var alterPost = function (args) {
+  if (typeof args.data.PostalCode != 'undefined') {
+    var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(args.data.PostalCode);
+    if (isValidZip && typeof args.data.EmailAddress == 'undefined') {
+      Drupal.ajaxScreenLock.blockUI();
+      jQuery('.ngp-form').hide();
+      location = '/native-plants/search?zipcode=' + args.data.PostalCode;
+    }
+  }
+  return args;
+};
+nvtag_callbacks.alterPost = nvtag_callbacks.alterPost || [];
+nvtag_callbacks.alterPost.push(alterPost);
+
+var preSegue = function (args) {
+  Drupal.ajaxScreenLock.blockUI();
+  jQuery('.ngp-form').hide();
+  location = '/native-plants/search?zipcode=' + args.postVals.PostalCode;
+};
+nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
+nvtag_callbacks.preSegue.push(preSegue);
+
+
 var postRender = function () {
   jQuery('.at-row.EmailAddress').detach().insertBefore(".at-row.PostalCode");
   jQuery('.at-form-submit').detach().insertAfter(".at-row.PostalCode");
-  var mapping = {
-    '.EmailAddress > input': '.native-plants-search-form--email',
-    '.PostalCode > input': '.native-plants-search-form--zip-code'
-  };
-  jQuery.each(mapping, function (actionTagSelector, usualSelector) {
-    jQuery(actionTagSelector).on('input', function () {
-      jQuery(usualSelector).val(jQuery(actionTagSelector).val()).trigger('input');
-    })
-  });
 };
 nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
 nvtag_callbacks.postRender.push(postRender);
