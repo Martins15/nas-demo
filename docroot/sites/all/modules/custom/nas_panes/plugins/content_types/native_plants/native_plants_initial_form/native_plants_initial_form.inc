@@ -170,6 +170,19 @@ function native_plants_initial_form_render($subtype, $conf, $args, $contexts) {
   }
 
   $conf['form_theme'] = 'native_plants_initial_form';
+  if (!empty($conf['nas_external_integration']['embed_script_js'])) {
+    $js_list = explode(PHP_EOL, $conf['nas_external_integration']['embed_script_js']);
+    foreach($js_list as $item) {
+      if (strpos($item, 'http') === 0) {
+        drupal_add_js($item, 'external');
+      }
+      else {
+        drupal_add_js($item, array(
+          'weight' => 5,
+        ));
+      }
+    }
+  }
 
   if (!empty($conf['nas_external_integration']['embed_script'])) {
     $rendered_form = $conf['nas_external_integration']['embed_script'];

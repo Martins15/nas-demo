@@ -4401,16 +4401,18 @@ function nas_master_update_7304() {
     foreach ($display->content as &$pane) {
       if ($pane->type == 'native_plants_initial_form' && !empty($pane->configuration['nas_external_integration']['provider'])) {
         $pane->configuration['nas_external_integration']['provider'] = '';
-        $pane->configuration['nas_external_integration']['embed_script'] = '<script type=\'text/javascript\' src=\'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js\' crossorigin=\'anonymous\'></script>
-<script type=\'text/javascript\' src=\'/sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.action_tag.js\' crossorigin=\'anonymous\'></script>
-
-<div class="ngp-form"
+        $pane->configuration['nas_external_integration']['embed_script'] = '<div class="ngp-form"
      data-form-url="https://actions.everyaction.com/v1/Forms/S49LshHFBUKAejEkZAfw-g2"
      data-fastaction-endpoint="https://fastaction.ngpvan.com"
      data-inline-errors="true"
      data-fastaction-nologin="true"
      data-databag="everybody">
 </div>';
+        $pane->configuration['nas_external_integration']['embed_script_js'] = 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js
+        sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.action_tag.js
+sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.ajax_screen_lock.js';
+
+
       }
     }
   }

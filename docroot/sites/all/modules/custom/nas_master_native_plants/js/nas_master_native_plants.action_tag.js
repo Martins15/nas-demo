@@ -23,7 +23,7 @@ var alterPost = function (args) {
     if (isValidZip && typeof args.data.EmailAddress == 'undefined') {
       Drupal.ajaxScreenLock.blockUI();
       jQuery('.ngp-form').hide();
-      location = '/native-plants/search?zipcode=' + args.data.PostalCode;
+      location = Drupal.settings.basePath + 'native-plants/search?zipcode=' + args.data.PostalCode;
     }
   }
   return args;
@@ -34,7 +34,7 @@ nvtag_callbacks.alterPost.push(alterPost);
 var preSegue = function (args) {
   Drupal.ajaxScreenLock.blockUI();
   jQuery('.ngp-form').hide();
-  location = '/native-plants/search?zipcode=' + args.postVals.PostalCode;
+  location = Drupal.settings.basePath + 'native-plants/search?zipcode=' + args.postVals.PostalCode;
 };
 nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
 nvtag_callbacks.preSegue.push(preSegue);
