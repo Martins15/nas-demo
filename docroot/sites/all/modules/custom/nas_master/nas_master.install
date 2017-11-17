@@ -4409,7 +4409,7 @@ function nas_master_update_7304() {
      data-databag="everybody">
 </div>';
         $pane->configuration['nas_external_integration']['embed_script_js'] = 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js
-        sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.action_tag.js
+sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.action_tag.js
 sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.ajax_screen_lock.js';
 
 

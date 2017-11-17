@@ -173,6 +173,7 @@ function native_plants_initial_form_render($subtype, $conf, $args, $contexts) {
   if (!empty($conf['nas_external_integration']['embed_script_js'])) {
     $js_list = explode(PHP_EOL, $conf['nas_external_integration']['embed_script_js']);
     foreach($js_list as $item) {
+      $item = trim($item);
       if (strpos($item, 'http') === 0) {
         drupal_add_js($item, 'external');
       }
