@@ -61,7 +61,7 @@ function hero_video_form_render($subtype, $conf, $args, $contexts) {
     return;
   }
   $image_uri = nas_alters_local_image_uri($hero_video_poster['file']->uri);
-  $hero_image_path = image_style_url('slideshow', $image_uri);
+  $hero_image_path = image_style_url('hero_video_poster', $image_uri);
 
   // Hero video settings.
   $settings = array();

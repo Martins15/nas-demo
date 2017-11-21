@@ -17,23 +17,25 @@
  */
 ?>
 <?php print $content['magazine_bar']; ?>
-<div class="hero <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : ''; ?>-text expand">
-  <div class="hero-video">
+<div class="hero hero-video <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : ''; ?>-text">
+  <div class="hero-video-wrapper">
     <?php print $content['big_image']; ?>
-  </div> 
-  <div class="row">
-    <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
-      <div class="columns large-10 large-centered">
-        <?php print $content['header_hero']; ?>
-      </div>
-    </div>
-    <?php if (trim($content['header_hero_attr_text'])): ?>
-      <div class="hero-attribution-fullscreen">
-        <div class="hero-attribution-text extra">
-          <?php print $content['header_hero_attr_text']; ?>
+  </div>
+  <div class="video-caption">
+    <div class="row">
+      <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
+        <div class="columns large-10 large-centered">
+          <?php print $content['header_hero']; ?>
         </div>
       </div>
-    <?php endif; ?>
+      <?php if (trim($content['header_hero_attr_text'])): ?>
+        <div class="hero-attribution-fullscreen">
+          <div class="hero-attribution-text extra">
+            <?php print $content['header_hero_attr_text']; ?>
+          </div>
+        </div>
+      <?php endif; ?>
+    </div>
   </div>
 </div>
 <section class="global-content">

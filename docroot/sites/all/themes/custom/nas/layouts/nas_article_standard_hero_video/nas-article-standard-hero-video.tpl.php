@@ -5,8 +5,8 @@
  * Template of Article layout with Big image.
  */
 ?>
-<div class="hero dark-gradient">
-  <div class="hero-video">
+<div class="hero hero-video dark-gradient">
+  <div class="hero-video-wrapper">
     <?php print $content['big_image']; ?>
   </div>
 </div>

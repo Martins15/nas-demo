@@ -103,6 +103,7 @@ features[field_instance][] = node-article-field_related
 features[field_instance][] = node-article-field_related_bird
 features[field_instance][] = node-article-field_subtitle
 features[filter][] = map
+features[image][] = hero_video_poster
 features[image][] = in_the_news
 features[node][] = article
 features[panelizer_defaults][] = node:article:big_image
