@@ -972,6 +972,16 @@ function nas_panes_theme() {
       'template' => 'iba-individual-social',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/iba_individual_social',
     ),
+    'hero_video_pane' => array(
+      'variables' => array(
+        'video_url' => '',
+        'video_type' => '',
+        'video_settings' => '',
+        'video_poster' => '',
+      ),
+      'template' => 'hero_video_pane',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/hero_video_pane',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {

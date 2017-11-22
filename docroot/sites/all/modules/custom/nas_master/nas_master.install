@@ -4418,3 +4418,18 @@ sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.aj
   }
   panels_save_display($display);
 }
+
+/**
+ * Revert nas_article_feature.
+ */
+function nas_master_update_7305() {
+  features_revert(array(
+    'nas_article_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+      'panelizer_defaults',
+      'strongarm',
+    ),
+  ));
+}

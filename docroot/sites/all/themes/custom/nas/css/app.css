@@ -6963,36 +6963,30 @@ table.row-borders tbody td {
   }
 }
 
-.hero-video {
+.hero-video-wrapper {
   height: 0;
   position: relative;
   padding-top: 56.25%;
 }
-.hero-video iframe {
+.hero-video-wrapper video,
+.hero-video-wrapper iframe {
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
+  background: #000;
 }
 
-.expand .hero-header {
-  padding-bottom: 0;
-  bottom: 60px;
-}
-@media only screen and (min-width: 768px) {
-  .expand .hero-video {
-    padding-top: 0;
-    position: static;
-    height: 100%;
-  }
-  .expand .hero-video iframe {
-    position: static;
-  }
-}
-.expand .hero-attribution-fullscreen {
+.hero-video .hero-attribution-fullscreen {
   position: absolute;
-  bottom: 0;
-  margin-top: 0;
+  bottom: 18px;
+  right: 12px;
+}
+.hero-video .hero-header {
+  bottom: 70px;
+}
+.hero-video .hero-attribution-fullscreen .hero-attribution-text {
+  padding: 5px 13px;
 }
 
 .hero-map {
