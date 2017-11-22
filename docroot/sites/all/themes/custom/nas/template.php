@@ -1584,21 +1584,14 @@ function nas_preprocess_views_exposed_form(&$variables) {
  * Preprocess function for nas_article_fullscreen theme.
  */
 function nas_preprocess_nas_article_fullscreen(&$variables) {
-  // Replace substitutions.
-  $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
+  _nas_color_mode($variables);
+}
 
-  // @Improve
-  // Since replacement may be a field rendered value we have no access to
-  // machine value. Thanks God human values for color_mode field are
-  // Uppercased machine values. This does matter for particular situation.
-  $color_mode = strtolower(trim($color_mode));
-
-  // Allowed values are limited to 'dark' and 'light'. Default value is 'dark'.
-  $color_mode = in_array($color_mode, array('dark', 'light')) ? $color_mode : 'dark';
-
-  $variables['color_mode_gradient'] = $color_mode;
-  // Text color mode is inversion of gradient color mode.
-  $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
+/**
+ * Preprocess function for nas_article_fullscreen_video theme.
+ */
+function nas_preprocess_nas_article_fullscreen_video(&$variables) {
+  _nas_color_mode($variables);
 }
 
 /**
@@ -2032,4 +2025,25 @@ function nas_file_icon(array $variables) {
  */
 function nas_preprocess_asc_landing_page(&$vars) {
   $vars['asc_landing_page_sidebar_title'] = drupal_static('asc_landing_page_sidebar_title', NULL);
+}
+
+/**
+ * Helper function to provide color_mode_gradient and color_mode_text variables.
+ */
+function _nas_color_mode(&$variables) {
+  // Replace substitutions.
+  $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
+
+  // @Improve
+  // Since replacement may be a field rendered value we have no access to
+  // machine value. Thanks God human values for color_mode field are
+  // Uppercased machine values. This does matter for particular situation.
+  $color_mode = strtolower(trim($color_mode));
+
+  // Allowed values are limited to 'dark' and 'light'. Default value is 'dark'.
+  $color_mode = in_array($color_mode, array('dark', 'light')) ? $color_mode : 'dark';
+
+  $variables['color_mode_gradient'] = $color_mode;
+  // Text color mode is inversion of gradient color mode.
+  $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
 }
