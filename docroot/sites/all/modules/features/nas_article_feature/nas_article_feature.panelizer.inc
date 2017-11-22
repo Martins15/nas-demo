@@ -2857,6 +2857,810 @@ function nas_article_feature_panelizer_defaults() {
   $panelizer = new stdClass();
   $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
   $panelizer->api_version = 1;
+  $panelizer->name = 'node:article:fullscreen_video';
+  $panelizer->title = 'Full-screen hero video';
+  $panelizer->panelizer_type = 'node';
+  $panelizer->panelizer_key = 'article';
+  $panelizer->no_blocks = FALSE;
+  $panelizer->css_id = '';
+  $panelizer->css = '';
+  $panelizer->pipeline = 'standard';
+  $panelizer->contexts = array();
+  $panelizer->relationships = array();
+  $panelizer->access = array();
+  $panelizer->view_mode = 'page_manager';
+  $panelizer->css_class = '';
+  $panelizer->title_element = 'H2';
+  $panelizer->link_to_entity = TRUE;
+  $panelizer->extra = array();
+  $display = new panels_display();
+  $display->layout = 'nas-article-fullscreen-video';
+  $display->layout_settings = array(
+    'color_mode' => '%node:field_color_mode',
+  );
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'header' => NULL,
+      'big_image' => NULL,
+      'main' => NULL,
+      'left' => NULL,
+      'right' => NULL,
+      'card_set' => NULL,
+      'header_hero' => NULL,
+      'mobile_author' => NULL,
+      'social' => NULL,
+      'author' => NULL,
+      'birds' => NULL,
+      'header_hero_attr_text' => NULL,
+      'article_more_features' => NULL,
+      'magazine_bar' => NULL,
+      'header_hero_caption_text' => NULL,
+      'file_attachments' => NULL,
+      'comments' => NULL,
+      'related' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '%node:title';
+  $display->uuid = 'df50d13b-e5d7-4b4a-b9a7-6b4bc52df7a0';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-d97f77d4-ee68-4a3d-bb51-226fb5d17a9d';
+    $pane->panel = 'article_more_features';
+    $pane->type = 'nas_panes_article_more_features';
+    $pane->subtype = 'nas_panes_article_more_features';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd97f77d4-ee68-4a3d-bb51-226fb5d17a9d';
+    $display->content['new-d97f77d4-ee68-4a3d-bb51-226fb5d17a9d'] = $pane;
+    $display->panels['article_more_features'][0] = 'new-d97f77d4-ee68-4a3d-bb51-226fb5d17a9d';
+    $pane = new stdClass();
+    $pane->pid = 'new-295789ba-2fb8-467e-9dd6-7a37a0c94704';
+    $pane->panel = 'author';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_author';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'entityreference_entity_id',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '295789ba-2fb8-467e-9dd6-7a37a0c94704';
+    $display->content['new-295789ba-2fb8-467e-9dd6-7a37a0c94704'] = $pane;
+    $display->panels['author'][0] = 'new-295789ba-2fb8-467e-9dd6-7a37a0c94704';
+    $pane = new stdClass();
+    $pane->pid = 'new-74358488-3a54-4cfe-8e11-cb2eb301f18a';
+    $pane->panel = 'big_image';
+    $pane->type = 'hero_video_pane';
+    $pane->subtype = 'hero_video_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'panelizer',
+      'override_title_heading' => 'h2',
+      'form_build_id' => 'form-TZW1p5YazAWbBY7L35ERD8IjB56QCQzeDrEgMeA2AQs',
+      'form_token' => 'STY4tW3gQMTxzT8EgqKU6RTpFoMUJjmnigcWJEAxDrI',
+      'form_id' => 'hero_video_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '74358488-3a54-4cfe-8e11-cb2eb301f18a';
+    $display->content['new-74358488-3a54-4cfe-8e11-cb2eb301f18a'] = $pane;
+    $display->panels['big_image'][0] = 'new-74358488-3a54-4cfe-8e11-cb2eb301f18a';
+    $pane = new stdClass();
+    $pane->pid = 'new-f255c51a-cf46-481a-aca9-fe3c055c35aa';
+    $pane->panel = 'birds';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_similar_birds-nas_birds_in_this_story';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'panelizer',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f255c51a-cf46-481a-aca9-fe3c055c35aa';
+    $display->content['new-f255c51a-cf46-481a-aca9-fe3c055c35aa'] = $pane;
+    $display->panels['birds'][0] = 'new-f255c51a-cf46-481a-aca9-fe3c055c35aa';
+    $pane = new stdClass();
+    $pane->pid = 'new-a82e4c77-7bf7-4aab-a0aa-b8db137d65fa';
+    $pane->panel = 'card_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => 'Here’s how you can make a difference',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-pKG0BU02JiQ0mKl1rdxQ0nb-QSQvtdHdxfdWc_u-rjM',
+      'form_token' => '_SjDeOqFYr6sfe_pSTa4MsoFMk2g4yYSdsL7P0-iSDU',
+      'form_id' => 'engagement_cards_edit_form',
+      2225 => array(
+        'title' => '',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'a82e4c77-7bf7-4aab-a0aa-b8db137d65fa';
+    $display->content['new-a82e4c77-7bf7-4aab-a0aa-b8db137d65fa'] = $pane;
+    $display->panels['card_set'][0] = 'new-a82e4c77-7bf7-4aab-a0aa-b8db137d65fa';
+    $pane = new stdClass();
+    $pane->pid = 'new-5faeb12b-12b7-4ac4-bffc-f62b0feacd04';
+    $pane->panel = 'comments';
+    $pane->type = 'block';
+    $pane->subtype = 'disqus-disqus_comments';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '5faeb12b-12b7-4ac4-bffc-f62b0feacd04';
+    $display->content['new-5faeb12b-12b7-4ac4-bffc-f62b0feacd04'] = $pane;
+    $display->panels['comments'][0] = 'new-5faeb12b-12b7-4ac4-bffc-f62b0feacd04';
+    $pane = new stdClass();
+    $pane->pid = 'new-cd60fc53-e84f-478e-929a-3c5c39d9b2ee';
+    $pane->panel = 'comments';
+    $pane->type = 'custom';
+    $pane->subtype = 'political_statement';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '',
+      'format' => 'map',
+      'substitute' => TRUE,
+      'form_build_id' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'cd60fc53-e84f-478e-929a-3c5c39d9b2ee';
+    $display->content['new-cd60fc53-e84f-478e-929a-3c5c39d9b2ee'] = $pane;
+    $display->panels['comments'][1] = 'new-cd60fc53-e84f-478e-929a-3c5c39d9b2ee';
+    $pane = new stdClass();
+    $pane->pid = 'new-15c0d697-01c7-4e98-ad68-29a349660a04';
+    $pane->panel = 'file_attachments';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_file_attachments';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'file_default',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '15c0d697-01c7-4e98-ad68-29a349660a04';
+    $display->content['new-15c0d697-01c7-4e98-ad68-29a349660a04'] = $pane;
+    $display->panels['file_attachments'][0] = 'new-15c0d697-01c7-4e98-ad68-29a349660a04';
+    $pane = new stdClass();
+    $pane->pid = 'new-d6aba133-c5d1-4e51-a5ac-f2dc2190d656';
+    $pane->panel = 'header';
+    $pane->type = 'article_section';
+    $pane->subtype = 'article_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'classes' => 'article-slug',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd6aba133-c5d1-4e51-a5ac-f2dc2190d656';
+    $display->content['new-d6aba133-c5d1-4e51-a5ac-f2dc2190d656'] = $pane;
+    $display->panels['header'][0] = 'new-d6aba133-c5d1-4e51-a5ac-f2dc2190d656';
+    $pane = new stdClass();
+    $pane->pid = 'new-a43d95d7-634f-4b6e-8436-5ada79988e8e';
+    $pane->panel = 'header';
+    $pane->type = 'node_title';
+    $pane->subtype = 'node_title';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'link' => 0,
+      'markup' => 'h1',
+      'id' => '',
+      'class' => '',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'a43d95d7-634f-4b6e-8436-5ada79988e8e';
+    $display->content['new-a43d95d7-634f-4b6e-8436-5ada79988e8e'] = $pane;
+    $display->panels['header'][1] = 'new-a43d95d7-634f-4b6e-8436-5ada79988e8e';
+    $pane = new stdClass();
+    $pane->pid = 'new-2d92d0b6-d8e1-4e89-a4f4-2a849f72c2d3';
+    $pane->panel = 'header';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_subtitle';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'text_plain',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '2d92d0b6-d8e1-4e89-a4f4-2a849f72c2d3';
+    $display->content['new-2d92d0b6-d8e1-4e89-a4f4-2a849f72c2d3'] = $pane;
+    $display->panels['header'][2] = 'new-2d92d0b6-d8e1-4e89-a4f4-2a849f72c2d3';
+    $pane = new stdClass();
+    $pane->pid = 'new-a18c2974-c7f3-4003-9853-4e699eb3bbf1';
+    $pane->panel = 'header_hero';
+    $pane->type = 'article_section';
+    $pane->subtype = 'article_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'classes' => 'hero-slug',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'a18c2974-c7f3-4003-9853-4e699eb3bbf1';
+    $display->content['new-a18c2974-c7f3-4003-9853-4e699eb3bbf1'] = $pane;
+    $display->panels['header_hero'][0] = 'new-a18c2974-c7f3-4003-9853-4e699eb3bbf1';
+    $pane = new stdClass();
+    $pane->pid = 'new-42b34968-2e41-4225-bcd1-bfab4ee237de';
+    $pane->panel = 'header_hero';
+    $pane->type = 'node_title';
+    $pane->subtype = 'node_title';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'link' => 0,
+      'markup' => 'h2',
+      'id' => '',
+      'class' => 'hero-title',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '42b34968-2e41-4225-bcd1-bfab4ee237de';
+    $display->content['new-42b34968-2e41-4225-bcd1-bfab4ee237de'] = $pane;
+    $display->panels['header_hero'][1] = 'new-42b34968-2e41-4225-bcd1-bfab4ee237de';
+    $pane = new stdClass();
+    $pane->pid = 'new-0d4a250a-e301-480f-ae4c-716426105e11';
+    $pane->panel = 'header_hero';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_subtitle';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'text_plain',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '0d4a250a-e301-480f-ae4c-716426105e11';
+    $display->content['new-0d4a250a-e301-480f-ae4c-716426105e11'] = $pane;
+    $display->panels['header_hero'][2] = 'new-0d4a250a-e301-480f-ae4c-716426105e11';
+    $pane = new stdClass();
+    $pane->pid = 'new-b1d8c0a1-c05d-42d6-a492-8d8f3e760573';
+    $pane->panel = 'header_hero_attr_text';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_hero_video_poster';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'image_attributions',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'file_view_mode' => 'nas_file_plain_credits',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'b1d8c0a1-c05d-42d6-a492-8d8f3e760573';
+    $display->content['new-b1d8c0a1-c05d-42d6-a492-8d8f3e760573'] = $pane;
+    $display->panels['header_hero_attr_text'][0] = 'new-b1d8c0a1-c05d-42d6-a492-8d8f3e760573';
+    $pane = new stdClass();
+    $pane->pid = 'new-159b6d01-4739-42b5-9179-544ba64e25cb';
+    $pane->panel = 'left';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_most_viewed_articles-nas_most_viewed_articles';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '159b6d01-4739-42b5-9179-544ba64e25cb';
+    $display->content['new-159b6d01-4739-42b5-9179-544ba64e25cb'] = $pane;
+    $display->panels['left'][0] = 'new-159b6d01-4739-42b5-9179-544ba64e25cb';
+    $pane = new stdClass();
+    $pane->pid = 'new-762c2ae9-1c42-4282-8fcf-f8d9baa1a490';
+    $pane->panel = 'magazine_bar';
+    $pane->type = 'custom';
+    $pane->subtype = 'clone_of_geico_banner';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_field_value:node:engagement_cards:field_menu_section',
+          'settings' => array(
+            'field_menu_section' => array(
+              'und' => array(
+                0 => array(
+                  'tid' => '22',
+                ),
+              ),
+            ),
+            'field_menu_section_tid' => array(
+              0 => '22',
+            ),
+          ),
+          'context' => 'panelizer',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '',
+      'format' => 'full_html',
+      'substitute' => TRUE,
+      'form_build_id' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '762c2ae9-1c42-4282-8fcf-f8d9baa1a490';
+    $display->content['new-762c2ae9-1c42-4282-8fcf-f8d9baa1a490'] = $pane;
+    $display->panels['magazine_bar'][0] = 'new-762c2ae9-1c42-4282-8fcf-f8d9baa1a490';
+    $pane = new stdClass();
+    $pane->pid = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
+    $pane->panel = 'magazine_bar';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_magazine_issue';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'entityreference_label',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'view_mode' => 'teaser',
+        'links' => 0,
+        'link' => 0,
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '50c09e0e-e5c2-4f3a-957f-09b02dd86971';
+    $display->content['new-50c09e0e-e5c2-4f3a-957f-09b02dd86971'] = $pane;
+    $display->panels['magazine_bar'][1] = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
+    $pane = new stdClass();
+    $pane->pid = 'new-e35af7af-1c97-4ec1-8ead-8dd7025c90ed';
+    $pane->panel = 'main';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:body';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'text_default',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e35af7af-1c97-4ec1-8ead-8dd7025c90ed';
+    $display->content['new-e35af7af-1c97-4ec1-8ead-8dd7025c90ed'] = $pane;
+    $display->panels['main'][0] = 'new-e35af7af-1c97-4ec1-8ead-8dd7025c90ed';
+    $pane = new stdClass();
+    $pane->pid = 'new-edfa8550-a1f2-41d1-831e-96a6ee949534';
+    $pane->panel = 'mobile_author';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_author';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'entityreference_entity_id',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'edfa8550-a1f2-41d1-831e-96a6ee949534';
+    $display->content['new-edfa8550-a1f2-41d1-831e-96a6ee949534'] = $pane;
+    $display->panels['mobile_author'][0] = 'new-edfa8550-a1f2-41d1-831e-96a6ee949534';
+    $pane = new stdClass();
+    $pane->pid = 'new-d2ce338a-5768-4bb8-8951-c853c086fb25';
+    $pane->panel = 'related';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => 'Related',
+      'override_title_heading' => 'h2',
+      'preset' => 'static_page_related',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'additional_classes' => '',
+      'paddings' => array(
+        'top' => 0,
+        'between' => 0,
+        'bottom' => 0,
+        'double-bottom' => 0,
+      ),
+      'count' => '3',
+      'update_count' => 'Update count',
+      'refs' => array(
+        1 => array(
+          'reference' => FALSE,
+        ),
+        2 => array(
+          'reference' => FALSE,
+        ),
+        3 => array(
+          'reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-XQa6kwEXWhwpTN1GHobewQKJ6Vz25IICbe6CUyiqMQs',
+      'form_token' => '1PTzvhfzqAqZnAJ5XcSVezepIqdwH1HUwpXVVFj0Zxo',
+      'form_id' => 'editorial_card_3x_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd2ce338a-5768-4bb8-8951-c853c086fb25';
+    $display->content['new-d2ce338a-5768-4bb8-8951-c853c086fb25'] = $pane;
+    $display->panels['related'][0] = 'new-d2ce338a-5768-4bb8-8951-c853c086fb25';
+    $pane = new stdClass();
+    $pane->pid = 'new-92817a26-bf21-4fbc-a1e0-e95927555f58';
+    $pane->panel = 'right';
+    $pane->type = 'nas_panes_pane_endorose';
+    $pane->subtype = 'nas_panes_pane_endorose';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'nas_article_first_time_visitors',
+          'settings' => NULL,
+          'context' => 'panelizer',
+          'not' => TRUE,
+        ),
+      ),
+    );
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '92817a26-bf21-4fbc-a1e0-e95927555f58';
+    $display->content['new-92817a26-bf21-4fbc-a1e0-e95927555f58'] = $pane;
+    $display->panels['right'][0] = 'new-92817a26-bf21-4fbc-a1e0-e95927555f58';
+    $pane = new stdClass();
+    $pane->pid = 'new-8e8325ca-2553-45de-8a21-0c825207a812';
+    $pane->panel = 'right';
+    $pane->type = 'block';
+    $pane->subtype = 'bean-welcome-to-audubon';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '8e8325ca-2553-45de-8a21-0c825207a812';
+    $display->content['new-8e8325ca-2553-45de-8a21-0c825207a812'] = $pane;
+    $display->panels['right'][1] = 'new-8e8325ca-2553-45de-8a21-0c825207a812';
+    $pane = new stdClass();
+    $pane->pid = 'new-2491b34b-71ab-48c8-b59c-c7c4971deca7';
+    $pane->panel = 'right';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 1,
+      ),
+      'form_build_id' => 'form-1ofretQrj2dNQ1awjNu2cSW-QSJOD9djmoi6rJ5XztQ',
+      'form_token' => 'mOEOI7UzQlpTqA6UHzTVJrszl_WcKHYYK3ZgQWCQg5Q',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+      5750 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '2491b34b-71ab-48c8-b59c-c7c4971deca7';
+    $display->content['new-2491b34b-71ab-48c8-b59c-c7c4971deca7'] = $pane;
+    $display->panels['right'][2] = 'new-2491b34b-71ab-48c8-b59c-c7c4971deca7';
+    $pane = new stdClass();
+    $pane->pid = 'new-a17e9fab-d87c-4be5-969d-385e55a83cb8';
+    $pane->panel = 'social';
+    $pane->type = 'nas_panes_pane_in_the_article';
+    $pane->subtype = 'nas_panes_pane_in_the_article';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'a17e9fab-d87c-4be5-969d-385e55a83cb8';
+    $display->content['new-a17e9fab-d87c-4be5-969d-385e55a83cb8'] = $pane;
+    $display->panels['social'][0] = 'new-a17e9fab-d87c-4be5-969d-385e55a83cb8';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-e35af7af-1c97-4ec1-8ead-8dd7025c90ed';
+  $panelizer->display = $display;
+  $export['node:article:fullscreen_video'] = $panelizer;
+
+  $panelizer = new stdClass();
+  $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
+  $panelizer->api_version = 1;
   $panelizer->name = 'node:article:fullwidth';
   $panelizer->title = 'Full-width';
   $panelizer->panelizer_type = 'node';
@@ -5815,6 +6619,1259 @@ function nas_article_feature_panelizer_defaults() {
   $display->title_pane = 'new-76711ab8-f681-4c6c-94f3-17f98f65045c';
   $panelizer->display = $display;
   $export['node:article:press_release'] = $panelizer;
+
+  $panelizer = new stdClass();
+  $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
+  $panelizer->api_version = 1;
+  $panelizer->name = 'node:article:standard_hero_video';
+  $panelizer->title = 'Standard hero video';
+  $panelizer->panelizer_type = 'node';
+  $panelizer->panelizer_key = 'article';
+  $panelizer->no_blocks = FALSE;
+  $panelizer->css_id = '';
+  $panelizer->css = '';
+  $panelizer->pipeline = 'standard';
+  $panelizer->contexts = array();
+  $panelizer->relationships = array();
+  $panelizer->access = array();
+  $panelizer->view_mode = 'page_manager';
+  $panelizer->css_class = '';
+  $panelizer->title_element = 'H2';
+  $panelizer->link_to_entity = TRUE;
+  $panelizer->extra = array();
+  $display = new panels_display();
+  $display->layout = 'nas_article_standard_hero_video';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'header' => NULL,
+      'big_image' => NULL,
+      'header_hero_attr_text' => NULL,
+      'main' => NULL,
+      'comments' => NULL,
+      'file_attachments' => NULL,
+      'mobile_author' => NULL,
+      'social' => NULL,
+      'author' => NULL,
+      'birds' => NULL,
+      'left' => NULL,
+      'right' => NULL,
+      'related' => NULL,
+      'card_set' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '%node:title';
+  $display->uuid = 'f382bd49-2ae0-4e39-aab4-9346085380fa';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-637cfa03-30e2-494d-b82c-e7ef5bec3a64';
+    $pane->panel = 'author';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_author';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'entityreference_entity_id',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '637cfa03-30e2-494d-b82c-e7ef5bec3a64';
+    $display->content['new-637cfa03-30e2-494d-b82c-e7ef5bec3a64'] = $pane;
+    $display->panels['author'][0] = 'new-637cfa03-30e2-494d-b82c-e7ef5bec3a64';
+    $pane = new stdClass();
+    $pane->pid = 'new-00ed67f4-2d8a-4780-af0b-40fe82069f01';
+    $pane->panel = 'big_image';
+    $pane->type = 'custom';
+    $pane->subtype = 'clone_of_geico_banner';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_field_value:node:engagement_cards:field_menu_section',
+          'settings' => array(
+            'field_menu_section' => array(
+              'und' => array(
+                0 => array(
+                  'tid' => '22',
+                ),
+              ),
+            ),
+            'field_menu_section_tid' => array(
+              0 => '22',
+            ),
+          ),
+          'context' => 'panelizer',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '',
+      'format' => 'full_html',
+      'substitute' => TRUE,
+      'form_build_id' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '00ed67f4-2d8a-4780-af0b-40fe82069f01';
+    $display->content['new-00ed67f4-2d8a-4780-af0b-40fe82069f01'] = $pane;
+    $display->panels['big_image'][0] = 'new-00ed67f4-2d8a-4780-af0b-40fe82069f01';
+    $pane = new stdClass();
+    $pane->pid = 'new-7df47cec-a2cb-4cb3-8a9a-82938c3ca724';
+    $pane->panel = 'big_image';
+    $pane->type = 'custom';
+    $pane->subtype = 'clone_of_bwb_header';
+    $pane->shown = FALSE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_field_value:node:engagement_cards:field_menu_section',
+          'settings' => array(
+            'field_menu_section' => array(
+              'und' => array(
+                0 => array(
+                  'tid' => '22',
+                ),
+              ),
+            ),
+            'field_menu_section_tid' => array(
+              0 => '22',
+            ),
+          ),
+          'context' => 'panelizer',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '',
+      'format' => 'map',
+      'substitute' => TRUE,
+      'form_build_id' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '7df47cec-a2cb-4cb3-8a9a-82938c3ca724';
+    $display->content['new-7df47cec-a2cb-4cb3-8a9a-82938c3ca724'] = $pane;
+    $display->panels['big_image'][1] = 'new-7df47cec-a2cb-4cb3-8a9a-82938c3ca724';
+    $pane = new stdClass();
+    $pane->pid = 'new-8b729622-b895-4519-b77e-aa3ec7ef0b35';
+    $pane->panel = 'big_image';
+    $pane->type = 'hero_video_pane';
+    $pane->subtype = 'hero_video_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'panelizer',
+      'override_title_heading' => 'h2',
+      'form_build_id' => 'form-7DbyTse__goyMTwr7gYwkQRk2LHrIDPePfeqIvZCc7A',
+      'form_token' => 'STY4tW3gQMTxzT8EgqKU6RTpFoMUJjmnigcWJEAxDrI',
+      'form_id' => 'hero_video_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '8b729622-b895-4519-b77e-aa3ec7ef0b35';
+    $display->content['new-8b729622-b895-4519-b77e-aa3ec7ef0b35'] = $pane;
+    $display->panels['big_image'][2] = 'new-8b729622-b895-4519-b77e-aa3ec7ef0b35';
+    $pane = new stdClass();
+    $pane->pid = 'new-ed30cce7-6a5f-4999-9bed-fe49928d9028';
+    $pane->panel = 'birds';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_similar_birds-nas_birds_in_this_story';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'panelizer',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'ed30cce7-6a5f-4999-9bed-fe49928d9028';
+    $display->content['new-ed30cce7-6a5f-4999-9bed-fe49928d9028'] = $pane;
+    $display->panels['birds'][0] = 'new-ed30cce7-6a5f-4999-9bed-fe49928d9028';
+    $pane = new stdClass();
+    $pane->pid = 'new-402fd139-8a7e-4c86-b385-84b9f7851ea6';
+    $pane->panel = 'card_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => '',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-EagKkTzYJC-DzzGoEQrbLvFxIhvjG5Zl-2pZ8MXrLJE',
+      'form_token' => '_oYHu8GBhQsdpmubeduPOrUNYBUcLPu5KEe8alvOSLU',
+      'form_id' => 'engagement_cards_edit_form',
+      'override_title_heading' => 'h2',
+      52276 => array(
+        'title' => 'How you can help, right now',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '402fd139-8a7e-4c86-b385-84b9f7851ea6';
+    $display->content['new-402fd139-8a7e-4c86-b385-84b9f7851ea6'] = $pane;
+    $display->panels['card_set'][0] = 'new-402fd139-8a7e-4c86-b385-84b9f7851ea6';
+    $pane = new stdClass();
+    $pane->pid = 'new-6feb4492-e44a-48d3-9e7c-1f1d174e12e6';
+    $pane->panel = 'comments';
+    $pane->type = 'block';
+    $pane->subtype = 'disqus-disqus_comments';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'title' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '6feb4492-e44a-48d3-9e7c-1f1d174e12e6';
+    $display->content['new-6feb4492-e44a-48d3-9e7c-1f1d174e12e6'] = $pane;
+    $display->panels['comments'][0] = 'new-6feb4492-e44a-48d3-9e7c-1f1d174e12e6';
+    $pane = new stdClass();
+    $pane->pid = 'new-806addf4-85e5-4554-8e74-77967d22e847';
+    $pane->panel = 'comments';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '',
+      'format' => 'map',
+      'substitute' => TRUE,
+      'form_build_id' => '',
+      'name' => 'political_statement',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '806addf4-85e5-4554-8e74-77967d22e847';
+    $display->content['new-806addf4-85e5-4554-8e74-77967d22e847'] = $pane;
+    $display->panels['comments'][1] = 'new-806addf4-85e5-4554-8e74-77967d22e847';
+    $pane = new stdClass();
+    $pane->pid = 'new-d339d63c-1f71-408c-9d40-aa5b69e14afa';
+    $pane->panel = 'file_attachments';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_file_attachments';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'file_default',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd339d63c-1f71-408c-9d40-aa5b69e14afa';
+    $display->content['new-d339d63c-1f71-408c-9d40-aa5b69e14afa'] = $pane;
+    $display->panels['file_attachments'][0] = 'new-d339d63c-1f71-408c-9d40-aa5b69e14afa';
+    $pane = new stdClass();
+    $pane->pid = 'new-66161f93-996e-435d-84c1-0b2f7fcabb6b';
+    $pane->panel = 'header';
+    $pane->type = 'article_section';
+    $pane->subtype = 'article_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'classes' => 'article-slug',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '66161f93-996e-435d-84c1-0b2f7fcabb6b';
+    $display->content['new-66161f93-996e-435d-84c1-0b2f7fcabb6b'] = $pane;
+    $display->panels['header'][0] = 'new-66161f93-996e-435d-84c1-0b2f7fcabb6b';
+    $pane = new stdClass();
+    $pane->pid = 'new-5b25f808-9bd0-442c-985d-cf7a55eed5e3';
+    $pane->panel = 'header';
+    $pane->type = 'node_title';
+    $pane->subtype = 'node_title';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'link' => 0,
+      'markup' => 'h1',
+      'id' => '',
+      'class' => '',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '5b25f808-9bd0-442c-985d-cf7a55eed5e3';
+    $display->content['new-5b25f808-9bd0-442c-985d-cf7a55eed5e3'] = $pane;
+    $display->panels['header'][1] = 'new-5b25f808-9bd0-442c-985d-cf7a55eed5e3';
+    $pane = new stdClass();
+    $pane->pid = 'new-8bdc61ed-ebd0-4274-adca-87ef457b726c';
+    $pane->panel = 'header';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_subtitle';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'title',
+      'formatter' => 'text_default',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '8bdc61ed-ebd0-4274-adca-87ef457b726c';
+    $display->content['new-8bdc61ed-ebd0-4274-adca-87ef457b726c'] = $pane;
+    $display->panels['header'][2] = 'new-8bdc61ed-ebd0-4274-adca-87ef457b726c';
+    $pane = new stdClass();
+    $pane->pid = 'new-7bd77c51-e0da-4ac9-b358-f2cb60bf5413';
+    $pane->panel = 'header_hero_attr_text';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_hero_video_poster';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'image_attributions',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'file_view_mode' => 'nas_file_plain_text_fields',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => '',
+      'title' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '7bd77c51-e0da-4ac9-b358-f2cb60bf5413';
+    $display->content['new-7bd77c51-e0da-4ac9-b358-f2cb60bf5413'] = $pane;
+    $display->panels['header_hero_attr_text'][0] = 'new-7bd77c51-e0da-4ac9-b358-f2cb60bf5413';
+    $pane = new stdClass();
+    $pane->pid = 'new-4baa20e7-d4fe-4b90-99ef-dd2e675b48df';
+    $pane->panel = 'left';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_most_viewed_articles-nas_most_viewed_articles';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '4baa20e7-d4fe-4b90-99ef-dd2e675b48df';
+    $display->content['new-4baa20e7-d4fe-4b90-99ef-dd2e675b48df'] = $pane;
+    $display->panels['left'][0] = 'new-4baa20e7-d4fe-4b90-99ef-dd2e675b48df';
+    $pane = new stdClass();
+    $pane->pid = 'new-15b2f47b-9e70-451e-8845-28f737b2040b';
+    $pane->panel = 'main';
+    $pane->type = 'node_body';
+    $pane->subtype = 'node_body';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => '',
+      'title' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '15b2f47b-9e70-451e-8845-28f737b2040b';
+    $display->content['new-15b2f47b-9e70-451e-8845-28f737b2040b'] = $pane;
+    $display->panels['main'][0] = 'new-15b2f47b-9e70-451e-8845-28f737b2040b';
+    $pane = new stdClass();
+    $pane->pid = 'new-c4302322-480a-4845-9d5b-096ddc20fa9d';
+    $pane->panel = 'mobile_author';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_author';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'entityreference_entity_id',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => '',
+      'title' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c4302322-480a-4845-9d5b-096ddc20fa9d';
+    $display->content['new-c4302322-480a-4845-9d5b-096ddc20fa9d'] = $pane;
+    $display->panels['mobile_author'][0] = 'new-c4302322-480a-4845-9d5b-096ddc20fa9d';
+    $pane = new stdClass();
+    $pane->pid = 'new-f4b590e7-1270-44a3-9cf9-1976d36c1765';
+    $pane->panel = 'related';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => 'Related',
+      'override_title_heading' => 'h2',
+      'preset' => 'static_page_related',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'additional_classes' => '',
+      'paddings' => array(
+        'top' => 0,
+        'between' => 0,
+        'bottom' => 0,
+        'double-bottom' => 0,
+      ),
+      'count' => '3',
+      'update_count' => 'Update count',
+      'refs' => array(
+        1 => array(
+          'reference' => FALSE,
+        ),
+        2 => array(
+          'reference' => FALSE,
+        ),
+        3 => array(
+          'reference' => array(
+            'entity_id' => '49306',
+            'entity_label' => 'New York’s Fresh Kills Landfill Gets an Epic Facelift',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+            'entity_uuid' => 'f4382492-5edb-406c-9e8d-365eb0fa39a1',
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-Q4BnsIeq9TK0cfe_Z6UEOQWwBZ2P3v0lXtSl8NNx_7Q',
+      'form_token' => 'tXNyBDGS_kqUS7SWpsLqJSaNghzc6tLKLj1F_9fN3F0',
+      'form_id' => 'editorial_card_3x_edit_form',
+      'nas_panes_resave_panel' => TRUE,
+      'title' => 'Related',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f4b590e7-1270-44a3-9cf9-1976d36c1765';
+    $display->content['new-f4b590e7-1270-44a3-9cf9-1976d36c1765'] = $pane;
+    $display->panels['related'][0] = 'new-f4b590e7-1270-44a3-9cf9-1976d36c1765';
+    $pane = new stdClass();
+    $pane->pid = 'new-11abb8ed-b0bb-4ed4-822a-bcf5b7b6f7c8';
+    $pane->panel = 'right';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'references' => array(
+          'entity_reference' => FALSE,
+        ),
+        'hide_for_firsttime_visitors' => 1,
+      ),
+      'form_build_id' => 'form-cIsiQk6LyksZiKaQfyJ3U7lRmRaZfEeRygPQtlf0YIM',
+      'form_token' => '4VtKoIH8tAnJ8r3aUYqlcx5xdQ7ZbW_5Rq-kAoOG_xI',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+      'override_title_heading' => 'h2',
+      47536 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '45146',
+              'entity_label' => 'Change Glass, Save Birds',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      'nas_panes_resave_panel' => TRUE,
+      47606 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '46841',
+              'entity_label' => 'Join Our Climate Community',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      2291 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '47621',
+              'entity_label' => 'Start Helping Hummingbirds Now',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      48986 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '51811',
+              'entity_label' => 'Act for Greater Sage-Grouse',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      49536 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      50886 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '50916',
+              'entity_label' => 'EPA: Monitor Long-term Impacts of Gold King Mine Spill',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      51351 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '48751',
+              'entity_label' => 'Endangered Species Act in Jeopardy',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      51016 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '52036',
+              'entity_label' => 'The Audubon Bird Guide App',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      52791 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '52851',
+              'entity_label' => 'Stop Oil Development in Coastal Habitat',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      52751 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '53121',
+              'entity_label' => 'Gear Up for the 2016 Audubon Photography Awards',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      53131 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '53256',
+              'entity_label' => 'Speak Up for Birds Today',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      48681 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '48726',
+              'entity_label' => 'Support Bird Safe Buildings',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      53141 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '53256',
+              'entity_label' => 'Speak Up For Birds Today',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      52856 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '57776',
+              'entity_label' => 'Climate Threatens Birds Worldwide',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      63551 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '46431',
+              'entity_label' => 'Find Audubon Near You',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      51426 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '65106',
+              'entity_label' => 'Find Your Bird-Friendly Plants',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'cf88570d-16f6-46ac-b048-a9e9edf9b10f',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      63111 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '75426',
+              'entity_label' => 'Protect Ocean Habitat for Atlantic Puffins',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '61edf8a7-71f9-49ae-903c-b8fd601f0cf9',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      89536 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '89556',
+              'entity_label' => 'Watch Live Birds',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '449dc07b-9752-4d21-8ce9-0f60d31f0152',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      49436 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '65106',
+              'entity_label' => 'Find Your Bird-Friendly Plants',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'cf88570d-16f6-46ac-b048-a9e9edf9b10f',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      128946 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '128951',
+              'entity_label' => 'Restore the Colorado River Delta',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '27c0857f-6e23-4ba1-ba59-4b459eb955b4',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      153111 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '159041',
+              'entity_label' => 'Thank President Obama for Protecting the Arctic Ocean',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '24062a00-46be-470f-aee9-eb28a9b60f81',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      192146 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '65106',
+              'entity_label' => 'Find Your Bird-Friendly Plants',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'cf88570d-16f6-46ac-b048-a9e9edf9b10f',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      192111 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '192416',
+              'entity_label' => 'Endangered Species Act in Trouble',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '50e77cdf-4714-47c4-bf99-ea9cb52cf90e',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      119656 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '65106',
+              'entity_label' => 'Find Your Bird-Friendly Plants',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'cf88570d-16f6-46ac-b048-a9e9edf9b10f',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      193041 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '193951',
+              'entity_label' => 'Meet the Birds of Belize This Fall',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'd8f4c3df-19e3-4564-bf2b-3659805fae74',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      63341 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '191791',
+              'entity_label' => 'Meet Colombia\'s Birds This October',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'c164ce41-1ae5-4b41-ab33-15ddc7aeeee8',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      195641 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '47621',
+              'entity_label' => 'Start Helping Hummingbirds Now',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '903c6a4c-9bff-43e4-9c8e-94a2cbedb647',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      195516 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '184656',
+              'entity_label' => 'Crippling Budget Cuts Endanger Birds',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '605d67cb-3328-4399-9e1a-547a08802722',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '11abb8ed-b0bb-4ed4-822a-bcf5b7b6f7c8';
+    $display->content['new-11abb8ed-b0bb-4ed4-822a-bcf5b7b6f7c8'] = $pane;
+    $display->panels['right'][0] = 'new-11abb8ed-b0bb-4ed4-822a-bcf5b7b6f7c8';
+    $pane = new stdClass();
+    $pane->pid = 'new-44c9858a-477d-405d-b77c-bf3ff77c2803';
+    $pane->panel = 'right';
+    $pane->type = 'block';
+    $pane->subtype = 'bean-welcome-to-audubon';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '44c9858a-477d-405d-b77c-bf3ff77c2803';
+    $display->content['new-44c9858a-477d-405d-b77c-bf3ff77c2803'] = $pane;
+    $display->panels['right'][1] = 'new-44c9858a-477d-405d-b77c-bf3ff77c2803';
+    $pane = new stdClass();
+    $pane->pid = 'new-3e16a00f-6fb7-4c33-bba4-1915737579a9';
+    $pane->panel = 'social';
+    $pane->type = 'nas_panes_pane_in_the_article';
+    $pane->subtype = 'nas_panes_pane_in_the_article';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3e16a00f-6fb7-4c33-bba4-1915737579a9';
+    $display->content['new-3e16a00f-6fb7-4c33-bba4-1915737579a9'] = $pane;
+    $display->panels['social'][0] = 'new-3e16a00f-6fb7-4c33-bba4-1915737579a9';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $panelizer->display = $display;
+  $export['node:article:standard_hero_video'] = $panelizer;
 
   return $export;
 }
