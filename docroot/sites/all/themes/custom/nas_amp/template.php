@@ -58,8 +58,6 @@ function nas_amp_preprocess_node(&$variables) {
       'link_classes' => 'article-slug',
     ));
   }
-
-  // Subtitle.
 }
 
 /**

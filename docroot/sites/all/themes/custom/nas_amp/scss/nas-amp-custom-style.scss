@@ -11,6 +11,7 @@
 @import "base";
 // Generic modules
 @import "modules/engagement-cards";
+@import "modules/typography";
 @import "modules/cards";
 
 // --------------
@@ -30,8 +31,8 @@
   float: right;
 }
 
-.engagement-card.side-note{
-
+.caption{
+  @extend .hg-content-container;
 }
 
 .article-slug{
