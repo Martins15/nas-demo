@@ -1,0 +1,20 @@
+// -------------
+// Generic Cards
+// Extend into other semantic classes
+// -------------
+
+%card {
+  background-color: $color-white;
+  border: 1px solid $color-light-gray;
+  box-shadow: 0 1px 1px rgba(#000, 0.1);
+  margin-bottom: $column-gutter*1.5;
+  position: relative;
+
+/*  @include transform(translateZ(0));
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;*/
+}

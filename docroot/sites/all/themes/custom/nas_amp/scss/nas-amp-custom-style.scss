@@ -4,16 +4,38 @@
 // Variables and stuff
 @import "variables";
 // Foundation stuff
+@import "settings";
+// Foundation stuff
 @import "foundation-compiled";
 // Basic styles
 @import "base";
+// Generic modules
+@import "modules/engagement-cards";
+@import "modules/cards";
 
 // --------------
-// Styles
+// Basic Styles
 // --------------
 
 .nowrap {
   white-space: nowrap
+}
+
+.deck{
+  font-style: italic;
+}
+
+.article-aside{
+  padding-left: 10%;
+  float: right;
+}
+
+.engagement-card.side-note{
+
+}
+
+.article-slug{
+  border-bottom:0;
 }
 
 .hg-article-container {
@@ -67,6 +89,7 @@
 .powered-by, figcaption, h2, h3, h4, h5, h6 {
   font-family: Roboto, Helvetica, sans-serif
 }
+/*
 
 h2, h3, h4, h5, h6 {
   color: #555;
@@ -74,6 +97,7 @@ h2, h3, h4, h5, h6 {
   font-size: 18px;
   line-height: 24px
 }
+*/
 
 .hg-article-body amp-img, header amp-img {
   border-top: 1px solid #eee;
