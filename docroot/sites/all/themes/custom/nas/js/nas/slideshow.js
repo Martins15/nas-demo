@@ -340,19 +340,21 @@
       var stickyResize = function() {
         var $body = $('body');
         var body_width = $body.width();
+        var window_height = $(window).height();
 
-        var defaultHeight = $body.width() * 0.625;
-        maxHeight = defaultHeight;
 
-        maxHeight = Math.min(maxHeight, $(window).height() - 100);
+        var maxHeight = body_width * 0.625;
+        maxHeight = Math.min(maxHeight, window_height - 50);
+        if (window_height > body_width) {
+          maxHeight = window_height - 50;
+        }
 
-        $(".slideshow-mimic-image").each(function () {
-          $slideshow = $(this);
+        $(".slideshow-mimic-image").each(function (index, el) {
+          $slideshow = $(el);
           var margin = 0;
           if ($slideshow.offset().left !== 0) {
             margin = ($slideshow.offset().left) * (-1);
           }
-
 
           $slideshow.css({'padding-bottom': '20px'});
           $slideshow.find('div.ll-wrapper').css({
@@ -364,12 +366,10 @@
           });
 
           $slideshow.find('img').css({
-            'height': maxHeight + 'px',
             'maxHeight': maxHeight + 'px',
             'position': 'relative',
             'width': ''
-          }).attr('style', function(i,s) { return s + 'width: auto !important;' });;
-
+          }).attr('style', function(i,s) { return s + 'width: auto !important;' });
         });
       }
 
@@ -391,7 +391,6 @@
           // Transparent 1x1 pixel.
           .attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')
           .css({
-            height: attrHeight * width / attrWidth,
             display: 'inline-block'
           })
           .wrap('<div class="ll-wrapper"></div>')
