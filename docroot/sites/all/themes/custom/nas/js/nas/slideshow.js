@@ -337,7 +337,49 @@
 
   Drupal.behaviors.articleImageLazyLoad = {
     attach: function (context, settings) {
+      var stickyResize = function() {
+        var $body = $('body');
+        var body_width = $body.width();
+
+        var defaultHeight = $body.width() * 0.625;
+        maxHeight = defaultHeight;
+
+        maxHeight = Math.min(maxHeight, $(window).height() - 100);
+
+        $(".slideshow-mimic-image").each(function () {
+          $slideshow = $(this);
+          var margin = 0;
+          if ($slideshow.offset().left !== 0) {
+            margin = ($slideshow.offset().left) * (-1);
+          }
+
+
+          $slideshow.css({'padding-bottom': '20px'});
+          $slideshow.find('div.ll-wrapper').css({
+            'width': body_width,
+            'margin-left': margin,
+            'margin-right': margin,
+            'background': 'none',
+            'text-align': 'center',
+          });
+
+          $slideshow.find('img').css({
+            'height': maxHeight + 'px',
+            'maxHeight': maxHeight + 'px',
+            'position': 'relative',
+            'width': ''
+          }).attr('style', function(i,s) { return s + 'width: auto !important;' });;
+
+        });
+      }
+
+      $(window).resize(function(){
+        stickyResize();
+      });
       $(".article-image > img").once('articleImageLazyLoad', function () {
+
+
+
         var el = this;
         var attrHeight = parseInt($(this).attr('height')),
           attrWidth = parseInt($(this).attr('width')),
@@ -356,9 +398,10 @@
           .parent()
             .css({
               backgroundColor: '#e1e1e1',
-              paddingBottom: (100 * attrHeight / attrWidth) + '%',
               display: 'inline-block'
             });
+
+
 
         var parent = $(el).parent().get(0);
         var inview = new Waypoint.Inview({
@@ -375,15 +418,10 @@
                   .attr('src', $img.data('src'))
                   .data('src', null)
                   .css({
-                    height: 'auto',
                     background: 'none',
                     opacity: 0
                   })
-                  .animate({opacity: 1}, 1000)
-                  .parent()
-                  .css({
-                    paddingBottom: (100 * image.height / image.width) + '%'
-                  });
+                  .animate({opacity: 1}, 1000);
               };
               image.src = $img.data('src');
               inview.destroy();
@@ -391,6 +429,7 @@
           }
         });
       });
+      stickyResize();
     }
   };
 })(jQuery);
