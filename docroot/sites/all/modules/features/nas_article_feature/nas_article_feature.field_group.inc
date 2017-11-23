@@ -46,6 +46,34 @@ function nas_article_feature_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_hero_video_settings|node|article|form';
+  $field_group->group_name = 'group_hero_video_settings';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'article';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_panelizer';
+  $field_group->data = array(
+    'label' => 'Hero video settings',
+    'weight' => '46',
+    'children' => array(
+      0 => 'field_hero_video_settings',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Hero video settings',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-hero-video-settings field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsible',
+    ),
+  );
+  $export['group_hero_video_settings|node|article|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_main_content|node|article|form';
   $field_group->group_name = 'group_main_content';
   $field_group->entity_type = 'node';
@@ -135,6 +163,9 @@ function nas_article_feature_field_group_info() {
       5 => 'field_credit_caption_map',
       6 => 'field_social_media_photo',
       7 => 'field_hero_mobile_image',
+      8 => 'field_hero_video',
+      9 => 'field_hero_video_poster',
+      10 => 'group_hero_video_settings',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

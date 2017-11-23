@@ -4389,3 +4389,47 @@ function nas_master_update_7303() {
   ));
   variable_set('netx_cookie', "");
 }
+
+/**
+ * Disable every action integration for native plants search form.
+ */
+function nas_master_update_7304() {
+  // Native plants display id.
+  $did = 38621;
+  $display = panels_load_display($did);
+  if (!empty($display->content)) {
+    foreach ($display->content as &$pane) {
+      if ($pane->type == 'native_plants_initial_form' && !empty($pane->configuration['nas_external_integration']['provider'])) {
+        $pane->configuration['nas_external_integration']['provider'] = '';
+        $pane->configuration['nas_external_integration']['embed_script'] = '<div class="ngp-form"
+     data-form-url="https://actions.everyaction.com/v1/Forms/S49LshHFBUKAejEkZAfw-g2"
+     data-fastaction-endpoint="https://fastaction.ngpvan.com"
+     data-inline-errors="true"
+     data-fastaction-nologin="true"
+     data-databag="everybody">
+</div>';
+        $pane->configuration['nas_external_integration']['embed_script_js'] = 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js
+sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.action_tag.js
+sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.ajax_screen_lock.js';
+
+
+      }
+    }
+  }
+  panels_save_display($display);
+}
+
+/**
+ * Revert nas_article_feature.
+ */
+function nas_master_update_7305() {
+  features_revert(array(
+    'nas_article_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+      'panelizer_defaults',
+      'strongarm',
+    ),
+  ));
+}

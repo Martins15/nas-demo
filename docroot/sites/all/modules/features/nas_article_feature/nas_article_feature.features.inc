@@ -70,6 +70,26 @@ function nas_article_feature_fe_nodequeue_export_fields() {
 function nas_article_feature_image_default_styles() {
   $styles = array();
 
+  // Exported image style: hero_video_poster.
+  $styles['hero_video_poster'] = array(
+    'label' => 'Hero video poster',
+    'effects' => array(
+      193 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1920,
+          'height' => 1080,
+        ),
+        'weight' => 2,
+      ),
+      194 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
+    ),
+  );
+
   // Exported image style: in_the_news.
   $styles['in_the_news'] = array(
     'label' => 'In the News',
