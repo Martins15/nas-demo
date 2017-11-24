@@ -4051,7 +4051,7 @@ function nas_article_feature_field_default_field_instances() {
           'amp_fixed_height' => 300,
           'amp_layout' => 'responsive',
           'image_link' => '',
-          'image_style' => 'article_featured',
+          'image_style' => 'engagement_card_full_width',
         ),
         'type' => 'amp_media',
         'weight' => 1,
