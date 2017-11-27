@@ -88,7 +88,10 @@
   <div>
 
     <header>
+      <?php print $content['article_slug']; ?>
       <h1 class="hg-title"><?php print $title; ?></h1>
+      <?php print render($content['field_subtitle']); ?>
+      <?php print render($content['byline']); ?>
       <?php print render($content['field_article_date']); ?>
     </header>
 

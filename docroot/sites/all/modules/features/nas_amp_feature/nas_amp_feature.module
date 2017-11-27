@@ -55,6 +55,7 @@ function nas_amp_feature_field_formatter_view($entity_type, $entity, $field, $in
     case 'amp_media':
       foreach ($items as $delta => &$item) {
         $item['uri'] = $item['file']->uri;
+        $item['hero_caption'] = _nas_panes_format_image_attribution($item['file']);
       }
 
       $_display = $display;
