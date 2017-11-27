@@ -21,16 +21,14 @@
   border-bottom:0;
 }
 
+.hg-title {
+  margin-top: 7px;
+}
+
 .hg-article-container {
-  font-family: Merriweather, sans-serif;
-  line-height: 1.1667;
-  margin: 0 auto;
-  overflow-x: hidden
 }
 
 .hg-article-body {
-  font-size: 15px;
-  line-height: 1.9
 }
 
 .hg-brand-header {
@@ -200,5 +198,9 @@ blockquote {
     display: inline-block;
     vertical-align: top;
     border-bottom:0;
+  }
+  &.row {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
