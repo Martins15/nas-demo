@@ -149,12 +149,14 @@ function nas_wysiwyg_slides_image($variables) {
 
     if (_lazy_loader_enabled() || in_array($variables['style_name'], ['bean_wysiwyg_full_width'])) {
 
-      $attributes['data-src'] = file_create_url($variables['path']);
-      $attributes['src'] = file_create_url($variables['path']);
+      $url = parse_url(file_create_url($variables['path']));
+      $path = $url['path'];
+      $attributes['data-src'] = $path;
+      $attributes['src'] = $path;
       // Path to dummy placeholder image, to be replaced by actual image.
       $image_placeholder = trim(variable_get('lazyloader_placeholder', LAZYLOADER_PLACEHOLDER));
       $attributes['lazy-src'] = $image_placeholder ? base_path() . $image_placeholder : url(drupal_get_path('module', 'lazyloader') . '/image_placeholder.gif');
-      $noscript_attributes['src'] = file_create_url($variables['path']);
+      $noscript_attributes['src'] = $path;
 
       // Integrate with Responsive Webdesign module.
       if (module_exists('rdwimages')) {

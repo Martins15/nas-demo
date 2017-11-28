@@ -4499,3 +4499,15 @@ function nas_master_update_7309() {
 function nas_master_update_7310() {
   module_enable(['feeds_entity_processor']);
 }
+
+/**
+ * Revert nas_article_feature.
+ */
+function nas_master_update_7311() {
+  features_revert(array(
+    'nas_article_feature' => array(
+      'field_instance',
+      'strongarm',
+    ),
+  ));
+}
