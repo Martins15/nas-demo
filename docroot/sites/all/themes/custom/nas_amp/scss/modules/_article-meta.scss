@@ -1,0 +1,14 @@
+// ------------
+// Article Meta
+// Author info, publishing date
+// ------------
+
+.article-author-name {
+  font-family: $font-sans;
+  font-size: $size-text-base;
+  line-height: $size-text-medium;
+  margin: 3px 0 0 0;
+  a {
+    color: $color-text-gray;
+  }
+}
