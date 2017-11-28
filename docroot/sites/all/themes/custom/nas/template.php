@@ -1249,6 +1249,7 @@ function nas_image($variables) {
     'engagement_card_full_width',
     'engagement_card_full_width_half_black',
     'article_hero_inline',
+    'bean_wysiwyg_full_width',
   );
 
   // List of styles for not applying of lazyloader.
