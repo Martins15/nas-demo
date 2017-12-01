@@ -70,7 +70,7 @@
         ],
       ],
     ];"
-  when: docker_sql and existing_container_name is defined and existing_container_name == "demo"
+  when: docker_sql and existing_container_name is defined
 
 - name: Adding trusted host patterns to settings.php
   lineinfile:
