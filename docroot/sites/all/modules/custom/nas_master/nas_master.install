@@ -4445,3 +4445,10 @@ function nas_master_update_7306() {
     ),
   ));
 }
+
+/**
+ * Enable conservation tracker.
+ */
+function nas_master_update_7307() {
+  module_enable(array('nas_conservation_tracker'));
+}
