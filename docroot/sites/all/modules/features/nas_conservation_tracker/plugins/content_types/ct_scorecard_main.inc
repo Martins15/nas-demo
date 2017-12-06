@@ -27,7 +27,9 @@ $plugin = array(
  */
 function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
-  $block->content = "scorecard_main content coming soon...";
+  $vars = array(
+  );
+  $block->content = theme('ct_scorecard_main', $vars);
 
   return $block;
 }

@@ -27,7 +27,13 @@ $plugin = array(
  */
 function nas_conservation_tracker_scorecard_header_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
-  $block->content = "scorecard_header content coming soon...";
+  $vars = array(
+    'name' => 'Black Oystercather',
+    'application' => 'Haematopus Bachanami',
+    'description' => 'Lorem ipsum description',
+    'image' => '',
+  );
+  $block->content = theme('ct_scorecard_header', $vars);
 
   return $block;
 }

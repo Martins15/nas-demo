@@ -27,7 +27,12 @@ $plugin = array(
  */
 function nas_conservation_tracker_scorecard_overview_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
-  $block->content = "scorecard_overview content coming soon...";
+  $vars = array(
+    'title' => 'Action Overview',
+    'description' => 'Description of this overview',
+    'media' => 'some media',
+  );
+  $block->content = theme('ct_scorecard_carousel', $vars);
 
   return $block;
 }
