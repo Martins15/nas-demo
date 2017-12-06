@@ -14,7 +14,13 @@
 }
 
 .caption{
-  @extend .hg-content-container;
+  padding: 15px;
+}
+
+.slide-caption{
+  @extend .caption;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .article-slug{
@@ -29,6 +35,16 @@
 }
 
 .hg-article-body {
+  .slide{
+    .row{
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  .caption{
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .hg-brand-header {
@@ -38,7 +54,7 @@
   overflow: hidden;
   text-align: left;
   padding-left: 15px;
-  a {
+  .logo_main {
     border: none;
     display: inline-block;
     font-family: Roboto, Helvetica, sans-serif;
@@ -98,6 +114,9 @@ h2, h3, h4, h5, h6 {
   margin-bottom: 5px
 }
 
+.hg-pubdate{
+  font-family: $font-sans;
+}
 .hg-social-logo-block {
   margin-top: 15px
 }
