@@ -55,7 +55,7 @@
     <?php include $nas_amp_path_file . '/css/nas-amp-custom-style.css' ?>
   </style>
   <script async src="https://cdn.ampproject.org/v0.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic|Roboto:400,700|Roboto+Slab:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Noto+Serif:400,700,400italic|Roboto:400,700" rel="stylesheet" type="text/css">
 </head>
 
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
