@@ -32,7 +32,7 @@ function nas_conservation_tracker_scorecard_overview_render($subtype, $conf, $ar
     'description' => 'Description of this overview',
     'media' => 'some media',
   );
-  $block->content = theme('ct_scorecard_carousel', $vars);
+  $block->content = theme('ct_scorecard_overview', $vars);
 
   return $block;
 }

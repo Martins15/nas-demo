@@ -29,16 +29,16 @@ function nas_conservation_tracker_scorecard_tabs_render($subtype, $conf, $args, 
   $block = new stdClass();
   $vars = array(
     'menu_tree' => array(
-      array('markup' => l('/', t('Conservation Tracker'))),
+      array('markup' => l( t('Conservation Tracker'), '/')),
       array(
-        'markup' => l('/', t('Species')),
+        'markup' => l(t('Species'), '/'),
         'children' => array(
-          l('/', t('Species')),
-          l('/', t('Strategies')),
-          l('/', t('Landscapes')),
+          l(t('Species'), '/'),
+          l(t('Strategies'), '/'),
+          l(t('Landscapes'), '/'),
         ),
       ),
-      array('markup' => array('Black oystercather')),
+      array('markup' => 'Black oystercather'),
     ),
     'tabs' => array(
       t('Threats'),
