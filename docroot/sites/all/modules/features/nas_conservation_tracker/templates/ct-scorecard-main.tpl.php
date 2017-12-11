@@ -4,5 +4,5 @@
  */
 ?>
 <div class="ct-scorecard-main">
-  Map will be here...
+  <?php print $map; ?>
 </div>
