@@ -376,7 +376,7 @@
       $(window).resize(function(){
         stickyResize();
       });
-      $(".article-image > img").once('articleImageLazyLoad', function () {
+      $(".article-image img").once('articleImageLazyLoad', function () {
 
 
 
@@ -396,7 +396,6 @@
           .wrap('<div class="ll-wrapper"></div>')
           .parent()
             .css({
-              backgroundColor: '#e1e1e1',
               display: 'inline-block'
             });
 
