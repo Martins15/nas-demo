@@ -1,0 +1,12 @@
+.ct_linegraph path {
+  fill: none;
+}
+.ct_linegraph g.legend {
+  /*display: none;*/
+}
+.ct_linegraph g.ticks text {
+  font-size: 11px;
+}
+circle:hover {
+  /*stroke: #;*/
+}

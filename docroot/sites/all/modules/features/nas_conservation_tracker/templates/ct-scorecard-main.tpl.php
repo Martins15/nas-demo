@@ -4,5 +4,7 @@
  */
 ?>
 <div class="ct-scorecard-main">
-  <?php print $map; ?>
+  <?php //print $map; ?>
+  <?php print $actions; ?>
+  <?php print $objectives; ?>
 </div>

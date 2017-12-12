@@ -28,16 +28,9 @@ $plugin = array(
 function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
 
-  //drupal_add_library('leaflet', 'leaflet');
-
-  //libraries_load('leaflet');
-
-  //$map = leaflet_map_get_info();
-  //dpm(libraries_load('leaflet'));
- // dpm(drupal_get_library('leaflet', 'leaflet'));
   $map_info = current(leaflet_map_get_info());
-  dpm($map_info);
   $map_info['settings']['layerControl'] = TRUE;
+  $map_info['layers']['earth']['urlTemplate'] = '//cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
   $features[] = array(
     'type' => 'point',
     'lat' => (float)37.862924550662,
@@ -45,10 +38,54 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   );
   $map  = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_map_height', '800px'));
 
+  $actions = array(
+    array(
+      'name' => 'action one',
+      'value' => 20,
+    ),
+    array(
+      'name' => 'action two',
+      'value' => 25,
+    ),
+    array(
+      'name' => 'action three',
+      'value' => 80,
+    ),
+    array(
+      'name' => 'action four',
+      'value' => 65,
+    ),
+    array(
+      'name' => 'action five',
+      'value' => 45,
+    ),
+  );
+
+  $actions_chart = array(
+    'id' => 'visualization',
+    'type' => 'ct_linegraph',
+    'legend' => array(t('Actions')),
+    'rows' => array(),
+  );
+
+  $actions_chart2 = array(
+    'id' => 'visualization2',
+    'type' => 'linegraph',
+    'legend' => array(t('Actions')),
+    'rows' => array(),
+  );
+
+  foreach ($actions as $action) {
+    $actions_chart['rows'][] = array($action['name'], $action['value']);
+    $actions_chart2['rows'][] = array($action['name'], $action['value']);
+  }
 
   $vars = array(
     'map' => render($map),
+    'actions' => d3_draw($actions_chart) . d3_draw($actions_chart2),
+    'objectives' => '',
   );
+
   $block->content = theme('ct_scorecard_main', $vars);
 
   return $block;
