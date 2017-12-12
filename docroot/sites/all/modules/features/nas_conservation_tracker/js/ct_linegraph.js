@@ -78,14 +78,13 @@
       .enter().append('g');
 
     var defaultSize = 6;
-    var expandedSize = 9;
+    var expandedSize = 20;
     var sensitiveSize = 50;
     // This is the outer circle that is not visible on init.
     circle.append('circle')
         .attr('class', function(d,i) { return 'circle-outer circle-' + i + '-outer'; })
         .attr("cx", function(d,i) { return x(i); })
         .attr("cy", function(d,i) { return y(d.y); })
-        .attr('fill-opacity', 0.2)
         .attr("r", defaultSize);
 
     circle.append('circle')
@@ -96,7 +95,6 @@
 
 
     var mouseover = function (d, i) {
-      alert('ct lineg');
       if ($.isArray(d)) d = d[i];
       // Find the sibling circle, expand radius.
 
@@ -107,12 +105,9 @@
         .attr('visibility', 'visible')
         .attr('transform', function(d,i) { return 'translate(' + circle.attr('cx') + ',' + circle.attr('cy') + ')'})
         .select('.text text:last-child').text(d.y);
-        //.select('.text text:last-child').text('sddfdsfdsf');
 
       var textWidth = graph.select('.tooltip .text :last-child')[0][0].getComputedTextLength();
-      textWidth = textWidth < 55 ? 55 : textWidth;
-      graph.select('.tooltip .text').attr('transform', 'translate(' + (10 - 5 - textWidth / 2) + ",-40)");
-      graph.select('.tooltip').selectAll('path').attr("d", d3.tooltip.tooltipPath({ w: textWidth + 10, h: 40}));
+      graph.select('.tooltip .text').attr('transform', 'translate(-' + (textWidth / 2) + ",5)");
     };
     var mouseout = function (d, i) {
       if ($.isArray(d)) d = d[i];
@@ -124,8 +119,7 @@
     };
     circle.append('clipPath').attr("id", function (d, i) { return "clip-" + d.index + "-" + i;}).append('circle')
       .attr("class", function(d,i) { return 'circle-mouse circle-' + i + '-mouse'; })
-      .attr("fill", "#000000")
-      .attr("color", "#000000")
+      .attr("color", "#ffffff")
       .attr("cx", function(d,i) { return x(d.x); })
       .attr("cy", function(d,i) { return y(d.y); })
       .attr("r", sensitiveSize)
@@ -133,7 +127,7 @@
       .on("mouseout", mouseout);
 
 
-    d3.tooltip(graph.append('g')
+    d3.ct_tooltip(graph.append('g')
       .attr('class', 'tooltip')
       .attr('visibility', 'hidden'), "");
 
@@ -196,14 +190,6 @@
 
     var labelWrapper = keys.append("g");
 
-    labelWrapper.selectAll("text")
-        .data(function(d,i) { return d3.splitString(key[i], 15); })
-      .enter().append("text")
-        .text(function(d,i) { return d})
-        .attr("x", 20)
-        .attr("y", function(d,i) { return i * 20})
-        .attr("dy", "1em");
-
     function maxValue(rows) {
       var data = jQuery.extend(true, [], rows);
       data = d3.merge(data);
@@ -214,5 +200,21 @@
     }
 
   }
+
+  d3.ct_tooltip = function(tipjar) {
+    var svg = tipjar.node();
+    while (svg.tagName != "svg" && svg.parentNode) {
+      svg = svg.parentNode;
+    }
+
+    var textbox = tipjar.append('g')
+      .attr('class', 'text');
+
+    textbox.append('text')
+      .attr('text-anchor', 'start')
+      .attr('fill', '#fff')
+      .attr('dx', 0)
+      .attr('dy', 0);
+  };
 
 })(jQuery);

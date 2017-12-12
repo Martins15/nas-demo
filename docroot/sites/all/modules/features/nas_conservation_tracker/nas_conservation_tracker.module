@@ -39,20 +39,25 @@ function nas_conservation_tracker_ctools_plugin_directory($module, $plugin) {
 function nas_conservation_tracker_libraries_info() {
   $libraries = array();
 
-  // Drupal ext adds behaviors and d3 global object.
-  $libraries['d3.ct_linegraph'] = array(
-    'name' => 'CT Line Graph',
+  $lib_info = array(
     'vendor url' => 'http://audubon.org',
-    'files' => array(
-      'js' => array(
-        'ct_linegraph.js',
-      ),
-    ),
     'path' => 'js',
     'library path' => drupal_get_path('module', 'nas_conservation_tracker'),
-    'dependencies' => array('d3', 'd3.extend', 'd3.tooltip', 'd3.drupal'),
+    'dependencies' => array('d3'),
     'version' => '1',
   );
+
+  $libs = array(
+    'ct_linegraph' => 'CT Line Graph',
+    'ct_circular' => 'CT Circular',
+  );
+
+  foreach ($libs as $filename => $name) {
+    $key = 'd3.' . $filename;
+    $libraries[$key] = $lib_info;
+    $libraries[$key]['files']['js'][] = $filename . '.js';
+  }
+
   return $libraries;
 }
 
