@@ -1,0 +1,19 @@
+{
+  "id": "123",
+  "name": "Black Oystercatcher",
+  "subtitle": "Haematopus Bachmani",
+  "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
+  "youtube": "https://youtu.be/0wtR0Rv9p9g",
+  "application": "<strong style=\"color:blue;\">Some HTML app</strong>",
+  "description": "The Black Oystercatcher is still widespread along the Pacific Coast, and numerous in some areas. It is vulnerable to the effects of oil spills and other pollution in the intertidal zone, and also very vulnerable to disturbance at nesting sites.",
+  "settings": {
+    "map": {
+      "lat": "35.794982",
+      "lon": "-118.080368",
+      "zoom": "10"
+    }
+  },
+  "landscapes_id": "13",
+  "species_id": "56",
+  "initiatives_id": "63"
+}

@@ -6,6 +6,6 @@
 <div class="ct-scorecard-header">
   <?php print $image; ?>
   <?php print $name; ?>
-  <?php print $application; ?>
+  <?php print $subtitle; ?>
   <?php print $description; ?>
 </div>

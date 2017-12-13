@@ -64,8 +64,8 @@ function nas_conservation_tracker_theme() {
     'ct_scorecard_header' => array(
       'variables' => array(
         'name' => NULL,
+        'subtitle' => NULL,
         'image' => NULL,
-        'application' => NULL,
         'description' => NULL,
       ),
       'template' => 'templates/ct-scorecard-header',
@@ -107,4 +107,27 @@ function nas_conservation_tracker_theme() {
     ),
   );
   return $theme;
+}
+
+/**
+ * Get JSON object from hub.
+ * @param $path
+ */
+function nas_conservation_tracker_get_json($path) {
+  // @TODO: swap this for real data hub.
+  $demo_url = drupal_get_path('module', 'nas_conservation_tracker') . '/demo_assets/';
+  $cid = 'nas_conservation_tracker:' . md5($path);
+  $data = cache_get($cid);
+
+  if (!empty($data->data)) {
+    $json_data = $data->data;
+  }
+  else {
+    $json_url = $GLOBALS['base_url'] . '/' . variable_get('nas_conservation_tracker_endpoint', $demo_url) . $path . '.json';
+    $request = drupal_http_request($json_url);
+    $json_data = drupal_json_decode($request->data);
+    cache_set($cid, $json_data);
+  }
+
+  return $json_data;
 }
