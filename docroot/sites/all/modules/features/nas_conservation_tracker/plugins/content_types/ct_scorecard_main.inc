@@ -75,7 +75,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   }
 
   // Objectives.
-  $objectioves_chart = array(
+  $objectives_chart = array(
     'id' => 'd3-objectives',
     'type' => 'ct_circular',
     'rows' => array(
@@ -90,7 +90,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   $vars = array(
     'map' => render($map),
     'actions' => d3_draw($actions_chart),
-    'objectives' => d3_draw($objectioves_chart),
+    'objectives' => d3_draw($objectives_chart),
   );
 
   $block->content = theme('ct_scorecard_main', $vars);
