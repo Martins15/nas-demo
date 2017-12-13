@@ -7,19 +7,6 @@
 include_once 'nas_conservation_tracker.features.inc';
 
 /**
- * Implements hook_init().
- */
-function nas_conservation_tracker_init() {
-  //drupal_add_library('leaflet', 'leaflet', TRUE);
-  //libraries_load('leaflet');
-}
-
-function nas_conservation_tracker_libraries_info_alter(&$libraries) {
-  $libraries['leaflet']['version arguments']['lines'] = 137000;
-  $libraries['leaflet']['version arguments']['cols'] = 150000;
-}
-
-/**
  * Implements hook_ctools_plugin_directory().
  */
 function nas_conservation_tracker_ctools_plugin_directory($module, $plugin) {
@@ -54,6 +41,14 @@ function nas_conservation_tracker_libraries_info() {
   }
 
   return $libraries;
+}
+
+/**
+ * Implements hook_libraries_info_alter().
+ */
+function nas_conservation_tracker_libraries_info_alter(&$libraries) {
+  $libraries['leaflet']['version arguments']['lines'] = 137000;
+  $libraries['leaflet']['version arguments']['cols'] = 150000;
 }
 
 /**
