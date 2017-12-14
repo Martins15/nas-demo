@@ -1,0 +1,998 @@
+{
+  "id": "123",
+  "name": "Black Oystercatcher",
+  "subtitle": "Haematopus Bachmani",
+  "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
+  "description": "The Black Oystercatcher is still widespread along the Pacific Coast, and numerous in some areas. It is vulnerable to the effects of oil spills and other pollution in the intertidal zone, and also very vulnerable to disturbance at nesting sites.",
+  "settings": {
+    "map": {
+      "lat": "35.794982",
+      "lon": "-118.080368",
+      "zoom": "10"
+    }
+  },
+  "landscapes_id": "13",
+  "species_id": "56",
+  "initiatives_id": "63",
+  "actions": {
+    "youtube": "https://youtu.be/0wtR0Rv9p9g",
+    "application": "<strong style=\"color:red;\">Some HTML app</strong>",
+    "description": "Audubon’s coastal stewardship efforts in the Pacific Flyway aim to protect key coastal species throughout their life cycles by restoring and conserving dynamic beach dune habitat for nesting birds, and by reducing disturbance and minimizing threats during migration and winter. Rocky intertidal zones along the Pacific support some of the most vulnerable species in the flyway, including the Black Oystercatcher. As these areas face the ever-growing pressures of development and human disturbance, engagement and education of individuals and communities using these areas is vital. Building on the innovative stewardship programs of Audubon California and coastal chapters, coastal stewardship work in the Pacific combines on-the-ground protection with successful outreach programs aimed at increasing the number and diversity of breeding and wintering sites and protecting numerous other migratory shorebirds that rely on shoreline areas during winter and migration.",
+    "sites": [
+      {
+        "id": "5",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      },
+      {
+        "id": "11",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      },
+      {
+        "id": "14",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      }
+    ]
+  },
+  "threats": {
+    "youtube": "https://youtu.be/0wtR0Rv9p9g",
+    "application": "<strong style=\"color:orange;\">Some HTML app</strong>",
+    "description": "Audubon’s coastal stewardship efforts in the Pacific Flyway aim to protect key coastal species throughout their life cycles by restoring and conserving dynamic beach dune habitat for nesting birds, and by reducing disturbance and minimizing threats during migration and winter. Rocky intertidal zones along the Pacific support some of the most vulnerable species in the flyway, including the Black Oystercatcher. As these areas face the ever-growing pressures of development and human disturbance, engagement and education of individuals and communities using these areas is vital. Building on the innovative stewardship programs of Audubon California and coastal chapters, coastal stewardship work in the Pacific combines on-the-ground protection with successful outreach programs aimed at increasing the number and diversity of breeding and wintering sites and protecting numerous other migratory shorebirds that rely on shoreline areas during winter and migration.",
+    "sites": [
+      {
+        "id": "2",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      },
+      {
+        "id": "11",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      },
+      {
+        "id": "14",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      }
+    ]
+  },
+  "responses": {
+    "youtube": "https://youtu.be/0wtR0Rv9p9g",
+    "application": "<strong style=\"color:red;\">Some HTML app</strong>",
+    "description": "Audubon’s coastal stewardship efforts in the Pacific Flyway aim to protect key coastal species throughout their life cycles by restoring and conserving dynamic beach dune habitat for nesting birds, and by reducing disturbance and minimizing threats during migration and winter. Rocky intertidal zones along the Pacific support some of the most vulnerable species in the flyway, including the Black Oystercatcher. As these areas face the ever-growing pressures of development and human disturbance, engagement and education of individuals and communities using these areas is vital. Building on the innovative stewardship programs of Audubon California and coastal chapters, coastal stewardship work in the Pacific combines on-the-ground protection with successful outreach programs aimed at increasing the number and diversity of breeding and wintering sites and protecting numerous other migratory shorebirds that rely on shoreline areas during winter and migration.",
+    "sites": [
+      {
+        "id": "5",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "22",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "59",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "6",
+            "type": "objective"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          },
+          {
+            "key": "Improve estuary water quality and watershed management",
+            "value": "7",
+            "type": "objective"
+          }
+        ]
+      },
+      {
+        "id": "11",
+        "data": [
+          {
+            "type": "action_category",
+            "key": "Engagement",
+            "value": "10"
+          },
+          {
+            "type": "action_category",
+            "key": "Habitat Managment & Restoration",
+            "value": "25"
+          },
+          {
+            "type": "action_category",
+            "key": "Monitoring & Research",
+            "value": "56"
+          },
+          {
+            "type": "action_category",
+            "key": "Stewardship",
+            "value": "12"
+          },
+          {
+            "type": "action_category",
+            "key": "Policy & Advocacy",
+            "value": "11"
+          },
+          {
+            "key": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+            "value": "83",
+            "type": "objective"
+          },
+          {
+            "key": "Engage 5,000 people in the Audubon network in habitat protection",
+            "value": "23",
+            "type": "objective"
+          },
+          {
+            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
+            "value": "64",
+            "type": "objective"
+          },
+          {
+            "key": "Measure by guiding how it is invested and monitoring results",
+            "value": "19",
+            "type": "objective"
+          },
+          {
+            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+            "value": "34",
+            "type": "objective"
+          },
+          {
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value": "29",
+            "type": "objective"
+          },
+          {
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value": "99",
+            "type": "objective"
+          }
+        ]
+      }
+    ]
+  }
+}

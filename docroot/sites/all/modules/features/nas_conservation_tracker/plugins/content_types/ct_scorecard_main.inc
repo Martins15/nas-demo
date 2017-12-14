@@ -27,8 +27,72 @@ $plugin = array(
  */
 function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
-  $vars = array(
+
+  // Map.
+  $map_info = current(leaflet_map_get_info());
+  $map_info['settings']['layerControl'] = TRUE;
+  $map_info['layers']['earth']['urlTemplate'] = '//cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
+  $features[] = array(
+    'type' => 'point',
+    'lat' => (float)37.862924550662,
+    'lon' => (float)-155.42408150899,
   );
+  $map  = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_map_height', '800px'));
+
+  // Actions.
+  $actions = array(
+    array(
+      'name' => 'action one',
+      'value' => 20,
+    ),
+    array(
+      'name' => 'action two',
+      'value' => 25,
+    ),
+    array(
+      'name' => 'action three',
+      'value' => 80,
+    ),
+    array(
+      'name' => 'action four',
+      'value' => 65,
+    ),
+    array(
+      'name' => 'action five',
+      'value' => 45,
+    ),
+  );
+
+  $actions_chart = array(
+    'id' => 'd3-actions',
+    'type' => 'ct_linegraph',
+    'legend' => array(t('Actions')),
+    'rows' => array(),
+  );
+
+  foreach ($actions as $action) {
+    $actions_chart['rows'][] = array($action['name'], $action['value']);
+  }
+
+  // Objectives.
+  $objectives_chart = array(
+    'id' => 'd3-objectives',
+    'type' => 'ct_circular',
+    'rows' => array(
+      array('Development', 50),
+      array('Strategy', 60),
+      array('Design', 90),
+      array('QA', 23),
+      array('Lorem ipsum', 41),
+    ),
+  );
+
+  $vars = array(
+    'map' => render($map),
+    'actions' => d3_draw($actions_chart),
+    'objectives' => d3_draw($objectives_chart),
+  );
+
   $block->content = theme('ct_scorecard_main', $vars);
 
   return $block;

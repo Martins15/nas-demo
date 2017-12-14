@@ -16,6 +16,42 @@ function nas_conservation_tracker_ctools_plugin_directory($module, $plugin) {
 }
 
 /**
+ * Implements hook_libraries_info().
+ */
+function nas_conservation_tracker_libraries_info() {
+  $libraries = array();
+
+  $lib_info = array(
+    'vendor url' => 'http://audubon.org',
+    'path' => 'js',
+    'library path' => drupal_get_path('module', 'nas_conservation_tracker'),
+    'dependencies' => array('d3'),
+    'version' => '1',
+  );
+
+  $libs = array(
+    'ct_linegraph' => 'CT Line Graph',
+    'ct_circular' => 'CT Circular',
+  );
+
+  foreach ($libs as $filename => $name) {
+    $key = 'd3.' . $filename;
+    $libraries[$key] = $lib_info;
+    $libraries[$key]['files']['js'][] = $filename . '.js';
+  }
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_libraries_info_alter().
+ */
+function nas_conservation_tracker_libraries_info_alter(&$libraries) {
+  $libraries['leaflet']['version arguments']['lines'] = 137000;
+  $libraries['leaflet']['version arguments']['cols'] = 150000;
+}
+
+/**
  * Implements hook_theme().
  */
 function nas_conservation_tracker_theme() {
@@ -23,8 +59,8 @@ function nas_conservation_tracker_theme() {
     'ct_scorecard_header' => array(
       'variables' => array(
         'name' => NULL,
+        'subtitle' => NULL,
         'image' => NULL,
-        'application' => NULL,
         'description' => NULL,
       ),
       'template' => 'templates/ct-scorecard-header',
@@ -53,7 +89,7 @@ function nas_conservation_tracker_theme() {
     ),
     'ct_scorecard_main' => array(
       'variables' => array(
-
+        'map' => NULL,
       ),
       'template' => 'templates/ct-scorecard-main',
     ),
@@ -66,4 +102,27 @@ function nas_conservation_tracker_theme() {
     ),
   );
   return $theme;
+}
+
+/**
+ * Get JSON object from hub.
+ * @param $path
+ */
+function nas_conservation_tracker_get_json($path) {
+  // @TODO: swap this for real data hub.
+  $demo_url = drupal_get_path('module', 'nas_conservation_tracker') . '/demo_assets/';
+  $cid = 'nas_conservation_tracker:' . md5($path);
+  $data = cache_get($cid);
+
+  if (!empty($data->data)) {
+    $json_data = $data->data;
+  }
+  else {
+    $json_url = $GLOBALS['base_url'] . '/' . variable_get('nas_conservation_tracker_endpoint', $demo_url) . $path . '.json';
+    $request = drupal_http_request($json_url);
+    $json_data = drupal_json_decode($request->data);
+    cache_set($cid, $json_data);
+  }
+
+  return $json_data;
 }
