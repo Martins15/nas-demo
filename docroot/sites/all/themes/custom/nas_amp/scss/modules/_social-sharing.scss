@@ -58,7 +58,7 @@
 .social-sharing-icon {
   font-size: $size-text-large + 10px;
   margin-left: $size-space;
-  text-decoration: none !important;
+  text-decoration: none;
   vertical-align: middle;
   @extend %social-sharing-colors;
 
