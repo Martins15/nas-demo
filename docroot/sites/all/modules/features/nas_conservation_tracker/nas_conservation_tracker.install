@@ -14,8 +14,7 @@ function nas_conservation_tracker_update_7001() {
   $node->status = 1;
   $node->language = LANGUAGE_NONE;
   $node->title = $data['name'];
-  $node->field_scorecard_id[LANGUAGE_NONE][0]['value'] = $data['id'];
-  node_object_prepare($node);
+  $node->field_scorecard_id[LANGUAGE_NONE][]['value'] = $data['id'];
   $node = node_submit($node);
   node_save($node);
 }
