@@ -1254,7 +1254,7 @@ function nas_image($variables) {
     'engagement_card',
     'boa_mail_subscription',
   );
-  if (!isset($_GET['amp']) && module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name']) && !in_array($variables['style_name'], $exclude_lazyloader_styles)) {
+  if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name']) && !in_array($variables['style_name'], $exclude_lazyloader_styles)) {
     $attributes = $variables['attributes'];
     $noscript_attributes = $variables['attributes'];
 
