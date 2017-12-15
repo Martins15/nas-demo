@@ -1,0 +1,70 @@
+body {
+  color: $color-text-gray;
+  direction: ltr;
+  font-family: $font-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 25.5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: $color-bright-blue;
+  text-decoration: none;
+  outline: 0;
+  border-bottom: 1px solid #d0dae4;
+  &:hover {
+    color: darken($color-bright-blue, 15%);
+  }
+}
+
+p {
+  margin: .75em 0
+}
+
+h1, h2, h3, h4, h5 {
+  color: $color-dark-gray;
+  font-family: $font-sans;
+  font-weight: 400;
+  margin: 0 0 $size-line-base 0;
+  > a {
+    color: $color-black;
+    &:hover {
+      color: darken($color-bright-blue, 25%);
+    }
+  }
+}
+h1 {
+  font-size: $size-text-h2;
+  font-weight: 300;
+  line-height: $size-line-h2;
+  letter-spacing: -1px;
+}
+h2 {
+  font-size: $size-text-h3;
+  line-height: $size-line-h3;
+  letter-spacing: -0.5px;
+}
+h3 {
+  font-size: $size-text-h4;
+  line-height: $size-line-h4;
+  letter-spacing: -0.5px;
+}
+h4 {
+  font-size: $size-text-base + 2px;
+  line-height: $size-line-base;
+}
+h5 {
+  font-size: $size-text-base;
+  line-height: $size-line-base - 2px;
+  margin-bottom: $size-line-base/2;
+}
+
+.row {
+  padding-left: $column-gutter/2;
+  padding-right: $column-gutter/2;
+  .row {
+    padding: 0;
+  }
+}
