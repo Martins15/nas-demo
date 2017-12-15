@@ -50,18 +50,30 @@ function hero_video_form_render($subtype, $conf, $args, $contexts) {
   $hero_video_settings = field_get_items('node', $node, 'field_hero_video_settings');
 
   // Hero Video.
-  $hero_video = reset($hero_video);
-  if (empty($hero_video['file']->uri)) {
+  if (!is_array($hero_video)) {
     return;
+  }
+  $hero_video = reset($hero_video);
+  if (!empty($hero_video['file']->uri) && !empty($hero_video['file']->filemime)) {
+    $hero_video = $hero_video['file'];
+  }
+  else {
+    if (empty($hero_video['fid'])) {
+      return;
+    }
+    $hero_video = file_load($hero_video['fid']);
   }
 
   // Hero video poster.
-  $hero_video_poster = reset($hero_video_poster);
-  if (empty($hero_video_poster['file']->uri)) {
-    return;
+  $hero_image_path = '';
+  if (is_array($hero_video_poster)) {
+    $hero_video_poster = reset($hero_video_poster);
+    if (empty($hero_video_poster['file']->uri)) {
+      return;
+    }
+    $image_uri = nas_alters_local_image_uri($hero_video_poster['file']->uri);
+    $hero_image_path = image_style_url('hero_video_poster', $image_uri);
   }
-  $image_uri = nas_alters_local_image_uri($hero_video_poster['file']->uri);
-  $hero_image_path = image_style_url('hero_video_poster', $image_uri);
 
   // Hero video settings.
   $settings = array();
@@ -79,8 +91,8 @@ function hero_video_form_render($subtype, $conf, $args, $contexts) {
   }
 
   $content = theme('hero_video_pane', array(
-    'video_url' => file_create_url($hero_video['file']->uri),
-    'video_type' => $hero_video['file']->filemime,
+    'video_url' => file_create_url($hero_video->uri),
+    'video_type' => $hero_video->filemime,
     'video_settings' => $settings,
     'video_poster' => $hero_image_path,
   ));

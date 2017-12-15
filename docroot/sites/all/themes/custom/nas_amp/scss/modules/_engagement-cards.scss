@@ -1,0 +1,30 @@
+.engagement-card {
+  @extend %card;
+}
+// Variants
+.engagement-card.side-note {
+  .engagement-card-content {
+    height: auto;
+    padding-bottom: $size-space;
+  }
+
+  //@include breakpoint(medium-up) {
+    border: 0;
+    border-left: 1px solid $color-light-gray;
+    box-shadow: none;
+    padding-left: $column-gutter/2;
+
+/*    .engagement-card-headline {
+      color: $color-text-gray;
+      font-size: $size-text-h4;
+      font-weight: 400;
+      line-height: $size-text-h4 + 4px;
+    }
+    .engagement-card-cta {
+      text-align: left;
+    }
+    .engagement-card-photo {
+      display: none;
+    }*/
+  //}
+}

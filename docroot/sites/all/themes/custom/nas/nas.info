@@ -58,8 +58,6 @@ scripts[] = js/mute/foundation.js
 ;; NAS
 scripts[] = js/nas/nas.js
 scripts[] = js/nas/slideshow.js
-scripts[] = prototypes/video-page-2/vendor/jquery.waypoints.min.js
-scripts[] = prototypes/video-page-2/vendor/inview.min.js
 
 ; Panels layouts. You can place multiple layouts under the "layouts" folder.
 plugins[panels][layouts] = layouts

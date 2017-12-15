@@ -5,8 +5,8 @@ var alterFill = function (args) {
   var zipcode = '';
   var email = '';
   if (storage) {
-    zipcode = storage.PostalCode;
-    email = storage.EmailAddress;
+    zipcode = storage.zipcode;
+    email = storage.email;
   }
 
   jQuery('.PostalCode input').attr('placeholder', Drupal.t('U.S. ZIP code')).val(zipcode);
@@ -27,9 +27,6 @@ nvtag_callbacks.alterFormDefinition = nvtag_callbacks.alterFormDefinition || [];
 nvtag_callbacks.alterFormDefinition.push(alterFormDefinition);
 
 var alterPost = function (args) {
-  var storage = JSON.stringify(args.data);
-  jQuery.cookie('native_plants_fields_sync', storage, {expires: 7, path: Drupal.settings.basePath});
-
   if (typeof args.data.PostalCode != 'undefined') {
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(args.data.PostalCode);
     if (isValidZip && typeof args.data.EmailAddress == 'undefined') {
@@ -53,7 +50,20 @@ nvtag_callbacks.preSegue.push(preSegue);
 
 
 var postRender = function () {
-  jQuery('.at-row.EmailAddress').detach().insertBefore(".at-row.PostalCode");
+  var fields = Drupal.native_plants_fields_sync.get_fields();
+  jQuery('.at-row.PostalCode input').on('input', function() {
+    fields['zipcode'] = jQuery(this).val();
+    Drupal.native_plants_fields_sync.set_fields(fields);
+  });
+  jQuery('.at-row.EmailAddress')
+    .find('input')
+    .on('input', function() {
+      fields['email'] = jQuery(this).val();
+      Drupal.native_plants_fields_sync.set_fields(fields);
+    })
+    .end()
+    .detach()
+    .insertBefore(".at-row.PostalCode");
   jQuery('.at-form-submit').detach().insertAfter(".at-row.PostalCode");
 };
 nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];

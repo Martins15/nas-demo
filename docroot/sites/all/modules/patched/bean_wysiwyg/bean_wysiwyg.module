@@ -196,7 +196,6 @@ function bean_wysiwyg_filter_info() {
     'title' => t('Convert Block Insert tags to markup'),
     'description' => t('This filter will convert [block_insert]...[/block_insert] tags into markup.'),
     'process callback' => 'bean_wysiwyg_filter_process',
-    'cache' => FALSE,
     'weight' => 2,
   );
 

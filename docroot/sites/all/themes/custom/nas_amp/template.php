@@ -48,6 +48,16 @@ function nas_amp_page_alter(&$page) {
 function nas_amp_preprocess_node(&$variables) {
   $variables['date'] = format_date($variables['created'], 'nas_date');
   $variables['date_long'] = format_date($variables['created'], 'custom', 'Y-m-d H:i:s');
+
+  // Article slug.
+  list($text, $url) = nas_panes_get_blue_text_link($variables['node']);
+  if ($text && $url) {
+    $variables['content']['article_slug'] = theme('nas_panes_article_section', array(
+      'url' => $url,
+      'text' => $text,
+      'link_classes' => 'article-slug',
+    ));
+  }
 }
 
 /**

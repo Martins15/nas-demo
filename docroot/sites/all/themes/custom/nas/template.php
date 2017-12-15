@@ -1258,7 +1258,7 @@ function nas_image($variables) {
     $attributes = $variables['attributes'];
     $noscript_attributes = $variables['attributes'];
 
-    if (_lazy_loader_enabled() || in_array($variables['style_name'], ['bean_wysiwyg_full_width'])) {
+    if (_lazy_loader_enabled()) {
 
       $attributes['data-src'] = file_create_url($variables['path']);
       // Path to dummy placeholder image, to be replaced by actual image.
