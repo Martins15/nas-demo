@@ -29,6 +29,10 @@
         }
       }
     });
+    var zipcode = getZipCodeFromUrl();
+    if (zipcode !== false && fields['zipcode'] !== zipcode) {
+      fields['zipcode'] = zipcode;
+    }
     Drupal.native_plants_fields_sync.set_fields(fields);
 
     if ($.isEmptyObject(fields)) {
@@ -61,5 +65,15 @@
   Drupal.ajax.prototype.commands.nas_master_native_plants_zipcode_changed_cookie_remove =  function(ajax, response, status) {
     $.cookie('native_plants_zipcode_changed', null, {path: Drupal.settings.basePath});
   };
+
+  function getZipCodeFromUrl() {
+    var url_params = window.location.search.slice(1).split('&')
+      , params = [];
+    $.each(url_params, function (key, value) {
+      var item = value.split('=');
+      params[item[0]] = item[1];
+    });
+    return (typeof params['zipcode'] !== 'undefined') ? params['zipcode'] : false;
+  }
 
 })(jQuery);

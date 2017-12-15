@@ -84,10 +84,11 @@ function _nas_master_native_plants_get_terms() {
       switch ($voc_machine_name) {
         case 'native_plant_attributes':
         case 'native_plant_resources':
+          $color = $wrapper->field_np_attr_color->value();
           $plant_terms[$voc_machine_name][$wrapper->tid->value()] = array(
             'tid' => $wrapper->tid->value(),
             'name' => $wrapper->name->value(),
-            'color' => $wrapper->field_np_attr_color->value(),
+            'color' => is_array($color) ? $color['rgb'] : $color,
           );
           break;
 
