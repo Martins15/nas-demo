@@ -57,12 +57,12 @@
 }
 
 [data-icon]:before {
-  font-family: "audubon" !important;
+  font-family: "audubon";
   content: attr(data-icon);
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
   speak: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -70,11 +70,11 @@
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  font-family: "audubon" !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
+  font-family: "audubon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
   speak: none;
   vertical-align: middle;
   -webkit-font-smoothing: antialiased;
