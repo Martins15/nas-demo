@@ -24,7 +24,7 @@
           Slideshow._setupIndicatorPosition($slides, $indicator);
           Slideshow._setupButtonPosition($slides, $buttons);
         });
-      };
+      }
 
       Slideshow._resizeSlides = function($slides) {
         var $imgWrappers = $slides.find(".slide-img"),
@@ -36,7 +36,7 @@
 
         // Then give the images the body width
         $imgs.css({
-          width: '100vw'
+          "width": $("body").width() + "px"
         });
 
         // Get the max height of all landscape

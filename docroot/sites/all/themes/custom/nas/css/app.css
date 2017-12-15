@@ -9496,20 +9496,7 @@ body.touch .primary-sub-nav-index {
   }
 }
 .article-text figure:not(.article-video-container) img, .article-text figure:not(.article-video-container) video, .article-text figure:not(.article-video-container) object, .article-text figure:not(.article-video-container) embed, .article-text figure:not(.article-video-container) iframe {
-  height: auto;
   width: 100% !important;
-}
-.article-text figure:not(.article-video-container) .ll-wrapper {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-.article-text figure:not(.article-video-container) .ll-wrapper img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
 }
 @media only screen and (max-width: 600px) {
   .article-text figure:not(.article-video-container) {

@@ -34,12 +34,20 @@
  */
 ?>
 <?php foreach ($slides as $slide): ?>
-  <figure class="article-image type-full slideshow-mimic-image">
-    <?php print $slide['image']; ?>
-    <?php if (!empty($slide['caption'])): ?>
-      <figcaption class="caption">
-        <?php print $slide['caption']; ?>
-      </figcaption>
-    <?php endif; ?>
-  </figure>
+  <div class="slideshow clearfix">
+    <div class="slideshow-wrapper">
+      <div class="slideshow-scroller">
+        <div class="slide">
+          <div class="slide-img">
+            <?php print $slide['image']; ?>
+          </div>
+          <div class="row">
+            <div class="large-9 columns">
+              <div class="slide-caption"><?php print $slide['caption']; ?></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <?php endforeach; ?>
