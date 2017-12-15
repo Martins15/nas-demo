@@ -24,13 +24,174 @@
   -webkit-justify-content: space-between;
   justify-content: space-between;
 }
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+$lato-font: 'Lato', sans-serif;
+$gray-menu-filter: #fbfaf6;
+$bord-filter: #dfdfdf;
+$dark-filter: #404040;
+$text-gray-filter: #9b9b9b;
 
 .species-filter {
+  font-family: $font-sans;
+  .text-info {
+    background: $gray-menu-filter;
+    padding: 10px 20px;
+    margin: 30px 10px 10px;
+    @include breakpoint(large-up) {
+      padding: 15px 20px;
+      margin: 30px 10px 30px;
+    }
+    p {
+      color: $text-gray-filter;
+      font-size: 15px;
+      line-height: 1.33;
+      @include breakpoint(large-up) {
+        font-size: 20px;
+      }
+    }
+  }
   .alphabet-block {
+    overflow: hidden;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    margin-bottom: 30px;
     ul {
       list-style: none;
       margin: 0;
       @include content-between();
+      width: 340%;
+      @include breakpoint(large-up) {
+        width: 100%;
+      }
+    }
+    li {
+      font-size: 24px;
+      color: $brownish-grey;
+    }
+  }
+ .filter-block {
+   &__search {
+     margin-bottom: 10px;
+     input {
+       border: 1px solid $bord-filter;
+       border-radius: 0;
+       box-shadow: none;
+       margin: 0;
+     }
+   }
+   &__menu-block {
+     ul {
+       list-style: none;
+       margin: 0;
+       padding: 0;
+       font-family: $lato-font;
+       p {
+         position: relative;
+       }
+     }
+     .first-level {
+       > li {
+         margin-bottom: 10px;
+         background: $gray-menu-filter;
+         border: 1px solid $bord-filter;
+         padding: 15px;
+         font-size: 25px;
+         position: relative;
+         &.js-open {
+           padding: 15px 15px 0;
+           cursor: pointer;
+           i {
+             &:before{ transform: rotate(90deg); }
+             &:after{ background: transparent; }
+           }
+         }
+       }
+     }
+      .second-level {
+        margin: 0 -15px;
+        li {
+          border-bottom: 1px solid $bord-filter;
+          padding: 15px;
+          font-size: 17px;
+          p {
+            padding-left: 24px;
+            padding-right: 10px;
+            &:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              border: 1px solid $bord-filter;
+            }
+          }
+          &.js-open {
+            i {
+              transform: rotate(-135deg);
+              -webkit-transform: rotate(-135deg);
+            }
+          }
+        }
+      }
+     i {
+       position: absolute;
+       top: 50%;
+       transform: translateY(-50%);
+       right: 0;
+       cursor: pointer;
+     }
+     i.plus {
+       width: 12px;
+       height: 12px;
+       &:before,
+       &:after{
+         content: "";
+         position: absolute;
+         background-color: $dark-filter;
+         border-radius: 2px;
+         transition: transform 0.25s ease-out;
+       }
+       &:before{
+         top: 0;
+         left: 50%;
+         width: 2px;
+         height: 100%;
+         transform: translateX(-50%);
+       }
+       &:after{
+         top: 50%;
+         left: 0;
+         width: 100%;
+         height: 2px;
+         transform: translateY(-50%);
+       }
+     }
+     i.down{
+       border: solid $dark-filter;
+       border-width: 0 3px 3px 0;
+       display: inline-block;
+       padding: 3px;
+       border-radius: 3px;
+       transform: rotate(45deg);
+       -webkit-transform: rotate(45deg);
+     }
+   }
+ }
+  .birds-wrap {
+    &__title {
+      h4{
+        font-size: 28px;
+        @include breakpoint(large-up) {
+          font-size: 33px;
+        }
+      }
+      margin-bottom: 15px;
     }
   }
 }
