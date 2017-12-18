@@ -3,26 +3,17 @@
   Drupal.behaviors.cta_tabs_angular = {};
   Drupal.behaviors.cta_tabs_angular.attach = function(context, settings) {
 
-    if ($('body').hasClass('nas-cta-tabs-angular-processed')) {
+    if ($('body').hasClass('nas-cta-tabs-content-angular-processed')) {
       return;
     }
-    $('body').addClass('nas-cta-tabs-angular-processed');
-
-    // Set constant for url page.
-    const threats = 'threats',
-      actions = 'actions',
-      responses = 'responses';
-
+    $('body').addClass('nas-cta-tabs-content-angular-processed');
 
     var NativeCtaApp = angular.module('NativeCta', ['ngCookies', 'ngSanitize', 'ngAnimate', 'ui.router', 'ngStorage', 'duScroll'])
-
-
-    NativeCtaApp.run(['$rootScope', '$state', '$stateParams',
-      function ($rootScope, $state, $stateParams) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-      }]);
-
+      .run(['$rootScope', '$state', '$stateParams',
+        function ($rootScope, $state, $stateParams) {
+          $rootScope.$state = $state;
+          $rootScope.$stateParams = $stateParams;
+        }]);
 
     NativeCtaApp.config(function($stateProvider,$locationProvider, $urlRouterProvider) {
       $locationProvider.hashPrefix('');
@@ -58,27 +49,6 @@
           });
         });
 
-      }
-    ]);
-
-
-    NativeCtaApp.controller('Content', ['$scope', '$stateParams', '$state', '$rootScope',
-      function($scope, $stateParams, $state, $rootScope) {
-        $rootScope.$on("$locationChangeStart", function(event, next, current) {
-
-          const currentName = $state['current']['name'];
-          
-          if (currentName === threats) {
-
-          }
-          if (currentName === actions) {
-
-          }
-          if (currentName === responses) {
-
-          }
-
-        });
       }
     ]);
 

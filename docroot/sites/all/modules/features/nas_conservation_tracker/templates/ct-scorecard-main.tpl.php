@@ -16,6 +16,9 @@
     </ul>
 </div>
 
+<div class="content" data-ng-controller="Content">
+</div>
+
 
 <div class="ct-scorecard-main">
   <?php //print $map; ?>
