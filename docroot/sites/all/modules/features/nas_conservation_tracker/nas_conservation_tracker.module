@@ -43,6 +43,15 @@ function nas_conservation_tracker_libraries_info() {
   return $libraries;
 }
 
+//@todo need correct include js file.
+drupal_add_js('//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js', 'external');
+drupal_add_js('//unpkg.com/angular-ui-router@0.3.2/release/angular-ui-router.min.js', 'external');
+drupal_add_js('//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.min.js', 'external');
+drupal_add_js('//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-cookies.min.js', 'external');
+drupal_add_js('//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js', 'external');
+drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js', 'external');
+drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/angular-scroll/1.0.0/angular-scroll.min.js', 'external');
+drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/ct_tabs.js');
 /**
  * Implements hook_libraries_info_alter().
  */
