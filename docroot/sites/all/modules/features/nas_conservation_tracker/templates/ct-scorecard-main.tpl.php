@@ -38,3 +38,16 @@
     </div>
   </div>
 </aside>
+
+<div class="tabs" data-ng-controller="Tabs">
+  <span>$state = <b>{{$state.current.name}}</b></span><br>
+  <span>$state url = <b>{{$state.$current.url.source}}</b></span>
+  <ul>
+    <li
+      ng-repeat="tab in tabs"
+      heading="{{ tab.heading }}"
+      ui-sref="{{ tab.route }}"
+      active="tab.active">{{ tab.heading }}
+    </li>
+  </ul>
+</div>
