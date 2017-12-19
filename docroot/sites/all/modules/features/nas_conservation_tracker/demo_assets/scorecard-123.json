@@ -1,9 +1,9 @@
 {
   "id": "123",
-  "name": "Action",
+  "name": "Black Oystercatcher",
   "subtitle": "Haematopus Bachmani",
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
-  "description": "",
+  "description": "The Black Oystercatcher is still widespread along the Pacific Coast, and numerous in some areas. It is vulnerable to the effects of oil spills and other pollution in the intertidal zone, and also very vulnerable to disturbance at nesting sites.",
   "settings": {
     "actions": {
       "youtube": "https://youtu.be/0wtR0Rv9p9g",
@@ -41,7 +41,11 @@
               "unit": ""
             },
             "key": "Engagement",
-            "value_type": "",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
             "value": "1"
           },
           {
@@ -51,7 +55,11 @@
               "unit": ""
             },
             "key": "Habitat Managment & Restoration",
-            "value_type": "",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
             "value": "1"
           },
           {
@@ -61,7 +69,11 @@
               "unit": ""
             },
             "key": "Monitoring & Research",
-            "value_type": "",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
             "value": "1"
           },
           {
@@ -71,7 +83,11 @@
               "unit": ""
             },
             "key": "Stewardship",
-            "value_type": "",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
             "value": "1"
           },
           {
@@ -81,38 +97,126 @@
               "unit": ""
             },
             "key": "Policy & Advocacy",
-            "value_type": "",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
             "value": "1"
           },
-          {},
           {
-            "key": "Engage 5,000 people in the Audubon network in habitat protection",
-            "value": "23"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+              "unit": "%"
+            },
+            "value": "83"
           },
           {
-            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
-            "value": "64"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value": "23",
+            "value_type": {
+              "name": "Objective",
+              "description": "Engage 5,000 people in the Audubon network in habitat protection",
+              "unit": "%"
+            }
           },
           {
-            "key": "Measure by guiding how it is invested and monitoring results"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value": "64",
+            "value_type": {
+              "name": "Objective",
+              "description": "Build a broad coalition of stakeholders to address mutual conservation goals",
+              "unit": "%"
+            }
           },
           {
-            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Measure by guiding how it is invested and monitoring results",
+              "unit": "%"
+            },
+            "value": "19"
           },
           {
-            "key": "Promote climate-smart restoration and resilient landscape design"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+              "unit": "%"
+            },
+            "value": "34"
           },
           {
-            "key": "Grow community involvement and commitment to estuary conservation and restoration"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value_type": {
+              "name": "Objective",
+              "description": "Promote climate-smart restoration and resilient landscape design",
+              "unit": "%"
+            },
+            "value": "29"
           },
           {
-            "key": "Improve estuary water quality and watershed management"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value_type": {
+              "name": "Objective",
+              "description": "Grow community involvement and commitment to estuary conservation and restoration",
+              "unit": "%"
+            },
+            "value": "99"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Improve estuary water quality and watershed management",
+            "value_type": {
+              "name": "Objective",
+              "description": "Improve estuary water quality and watershed management",
+              "unit": "%"
+            },
+            "value": "7"
           }
-        ],
-        "key_type": {
-          "key": ""
-        },
-        "value_type": ""
+        ]
       },
       {
         "id": "6",
@@ -124,7 +228,11 @@
               "unit": ""
             },
             "key": "Engagement",
-            "value_type": "",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
             "value": "1"
           },
           {
@@ -134,7 +242,11 @@
               "unit": ""
             },
             "key": "Habitat Managment & Restoration",
-            "value_type": "",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
             "value": "1"
           },
           {
@@ -144,7 +256,11 @@
               "unit": ""
             },
             "key": "Monitoring & Research",
-            "value_type": "",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
             "value": "1"
           },
           {
@@ -153,7 +269,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Stewardship"
+            "key": "Stewardship",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -161,37 +283,127 @@
               "description": "",
               "unit": ""
             },
-            "key": "Policy & Advocacy"
-          },
-          {},
-          {
-            "key": "Engage 5,000 people in the Audubon network in habitat protection",
-            "value": "23"
-          },
-          {
-            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
-            "value": "64"
+            "key": "Policy & Advocacy",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "key": "Measure by guiding how it is invested and monitoring results"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+              "unit": "%"
+            },
+            "value": "83"
           },
           {
-            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value": "23",
+            "value_type": {
+              "name": "Objective",
+              "description": "Engage 5,000 people in the Audubon network in habitat protection",
+              "unit": "%"
+            }
           },
           {
-            "key": "Promote climate-smart restoration and resilient landscape design"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value": "64",
+            "value_type": {
+              "name": "Objective",
+              "description": "Build a broad coalition of stakeholders to address mutual conservation goals",
+              "unit": "%"
+            }
           },
           {
-            "key": "Grow community involvement and commitment to estuary conservation and restoration"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Measure by guiding how it is invested and monitoring results",
+              "unit": "%"
+            },
+            "value": "19"
           },
           {
-            "key": "Improve estuary water quality and watershed management"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+              "unit": "%"
+            },
+            "value": "34"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value_type": {
+              "name": "Objective",
+              "description": "Promote climate-smart restoration and resilient landscape design",
+              "unit": "%"
+            },
+            "value": "29"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value_type": {
+              "name": "Objective",
+              "description": "Grow community involvement and commitment to estuary conservation and restoration",
+              "unit": "%"
+            },
+            "value": "99"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Improve estuary water quality and watershed management",
+            "value_type": {
+              "name": "Objective",
+              "description": "Improve estuary water quality and watershed management",
+              "unit": "%"
+            },
+            "value": "7"
           }
-        ],
-        "value_type": "",
-        "key_type": {
-          "key": ""
-        }
+        ]
       },
       {
         "id": "8",
@@ -202,7 +414,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Engagement"
+            "key": "Engagement",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -210,7 +428,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Habitat Managment & Restoration"
+            "key": "Habitat Managment & Restoration",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -218,7 +442,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Monitoring & Research"
+            "key": "Monitoring & Research",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -226,7 +456,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Stewardship"
+            "key": "Stewardship",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -234,37 +470,127 @@
               "description": "",
               "unit": ""
             },
-            "key": "Policy & Advocacy"
-          },
-          {},
-          {
-            "key": "Engage 5,000 people in the Audubon network in habitat protection",
-            "value": "23"
-          },
-          {
-            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
-            "value": "64"
+            "key": "Policy & Advocacy",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "key": "Measure by guiding how it is invested and monitoring results"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+              "unit": "%"
+            },
+            "value": "83"
           },
           {
-            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value": "23",
+            "value_type": {
+              "name": "Objective",
+              "description": "Engage 5,000 people in the Audubon network in habitat protection",
+              "unit": "%"
+            }
           },
           {
-            "key": "Promote climate-smart restoration and resilient landscape design"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value": "64",
+            "value_type": {
+              "name": "Objective",
+              "description": "Build a broad coalition of stakeholders to address mutual conservation goals",
+              "unit": "%"
+            }
           },
           {
-            "key": "Grow community involvement and commitment to estuary conservation and restoration"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Measure by guiding how it is invested and monitoring results",
+              "unit": "%"
+            },
+            "value": "19"
           },
           {
-            "key": "Improve estuary water quality and watershed management"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+              "unit": "%"
+            },
+            "value": "34"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value_type": {
+              "name": "Objective",
+              "description": "Promote climate-smart restoration and resilient landscape design",
+              "unit": "%"
+            },
+            "value": "29"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value_type": {
+              "name": "Objective",
+              "description": "Grow community involvement and commitment to estuary conservation and restoration",
+              "unit": "%"
+            },
+            "value": "99"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Improve estuary water quality and watershed management",
+            "value_type": {
+              "name": "Objective",
+              "description": "Improve estuary water quality and watershed management",
+              "unit": "%"
+            },
+            "value": "7"
           }
-        ],
-        "value_type": "",
-        "key_type": {
-          "key": ""
-        }
+        ]
       },
       {
         "id": "11",
@@ -275,7 +601,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Engagement"
+            "key": "Engagement",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -283,7 +615,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Habitat Managment & Restoration"
+            "key": "Habitat Managment & Restoration",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -291,7 +629,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Monitoring & Research"
+            "key": "Monitoring & Research",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -299,7 +643,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Stewardship"
+            "key": "Stewardship",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -307,10 +657,15 @@
               "description": "",
               "unit": ""
             },
-            "key": "Policy & Advocacy"
+            "key": "Policy & Advocacy",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           }
-        ],
-        "value_type": ""
+        ]
       },
       {
         "id": "14",
@@ -321,7 +676,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Engagement"
+            "key": "Engagement",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -329,7 +690,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Habitat Managment & Restoration"
+            "key": "Habitat Managment & Restoration",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -337,7 +704,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Monitoring & Research"
+            "key": "Monitoring & Research",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -345,7 +718,13 @@
               "description": "",
               "unit": ""
             },
-            "key": "Stewardship"
+            "key": "Stewardship",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
             "key_type": {
@@ -353,94 +732,281 @@
               "description": "",
               "unit": ""
             },
-            "key": "Policy & Advocacy"
+            "key": "Policy & Advocacy",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           }
-        ],
-        "value_type": ""
+        ]
       }
     ]
   },
-  "unit": "",
   "threats": {
     "sites": [
       {
         "id": "2",
         "data": [
           {
-            "type": "action_category",
-            "key": "Engagement"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Engagement",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "type": "action_category",
-            "key": "Habitat Managment & Restoration"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Habitat Managment & Restoration",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "type": "action_category",
-            "key": "Monitoring & Research"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Monitoring & Research",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "type": "action_category",
-            "key": "Stewardship"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Stewardship",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "type": "action_category",
-            "key": "Policy & Advocacy"
-          },
-          {},
-          {
-            "key": "Engage 5,000 people in the Audubon network in habitat protection",
-            "value": "23"
-          },
-          {
-            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
-            "value": "64"
-          },
-          {
-            "key": "Measure by guiding how it is invested and monitoring results"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Policy & Advocacy",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+              "unit": "%"
+            },
+            "value": "83"
           },
           {
-            "key": "Promote climate-smart restoration and resilient landscape design"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value": "23",
+            "value_type": {
+              "name": "Objective",
+              "description": "Engage 5,000 people in the Audubon network in habitat protection",
+              "unit": "%"
+            }
           },
           {
-            "key": "Grow community involvement and commitment to estuary conservation and restoration"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value": "64",
+            "value_type": {
+              "name": "Objective",
+              "description": "Build a broad coalition of stakeholders to address mutual conservation goals",
+              "unit": "%"
+            }
           },
           {
-            "key": "Improve estuary water quality and watershed management"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Measure by guiding how it is invested and monitoring results",
+              "unit": "%"
+            },
+            "value": "19"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+              "unit": "%"
+            },
+            "value": "34"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value_type": {
+              "name": "Objective",
+              "description": "Promote climate-smart restoration and resilient landscape design",
+              "unit": "%"
+            },
+            "value": "29"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value_type": {
+              "name": "Objective",
+              "description": "Grow community involvement and commitment to estuary conservation and restoration",
+              "unit": "%"
+            },
+            "value": "99"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Improve estuary water quality and watershed management",
+            "value_type": {
+              "name": "Objective",
+              "description": "Improve estuary water quality and watershed management",
+              "unit": "%"
+            },
+            "value": "7"
           }
-        ],
-        "value_type": "",
-        "key_type": {
-          "key": ""
-        }
+        ]
       },
       {
         "id": "3",
         "data": [
           {
-            "type": "action_category",
-            "key": "Engagement"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Engagement",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "type": "action_category",
-            "key": "Habitat Managment & Restoration"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Habitat Managment & Restoration",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "type": "action_category",
-            "key": "Monitoring & Research"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Monitoring & Research",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "type": "action_category",
-            "key": "Stewardship"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Stewardship",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "type": "action_category",
-            "key": "Policy & Advocacy"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Policy & Advocacy",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           }
-        ],
-        "value_type": ""
+        ]
       }
     ]
   },
@@ -450,51 +1016,188 @@
         "id": "5",
         "data": [
           {
-            "type": "action_category",
-            "key": "Engagement"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Engagement",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "type": "action_category",
-            "key": "Habitat Managment & Restoration"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Habitat Managment & Restoration",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "type": "action_category",
-            "key": "Stewardship"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Monitoring & Research",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "type": "action_category",
-            "key": "Policy & Advocacy"
-          },
-          null,
-          {},
-          {
-            "key": "Engage 5,000 people in the Audubon network in habitat protection",
-            "value": "23"
-          },
-          {
-            "key": "Build a broad coalition of stakeholders to address mutual conservation goals",
-            "value": "64"
-          },
-          {
-            "key": "Measure by guiding how it is invested and monitoring results"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Stewardship",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "key": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results"
+            "key_type": {
+              "name": "Action Category",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Policy & Advocacy",
+            "value_type": {
+              "name": "Action",
+              "description": "",
+              "unit": ""
+            },
+            "value": "1"
           },
           {
-            "key": "Promote climate-smart restoration and resilient landscape design"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+              "unit": "%"
+            },
+            "value": "83"
           },
           {
-            "key": "Grow community involvement and commitment to estuary conservation and restoration"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value": "23",
+            "value_type": {
+              "name": "Objective",
+              "description": "Engage 5,000 people in the Audubon network in habitat protection",
+              "unit": "%"
+            }
           },
           {
-            "key": "Improve estuary water quality and watershed management"
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value": "64",
+            "value_type": {
+              "name": "Objective",
+              "description": "Build a broad coalition of stakeholders to address mutual conservation goals",
+              "unit": "%"
+            }
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Measure by guiding how it is invested and monitoring results",
+              "unit": "%"
+            },
+            "value": "19"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
+              "unit": "%"
+            },
+            "value": "34"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Promote climate-smart restoration and resilient landscape design",
+            "value_type": {
+              "name": "Objective",
+              "description": "Promote climate-smart restoration and resilient landscape design",
+              "unit": "%"
+            },
+            "value": "29"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Grow community involvement and commitment to estuary conservation and restoration",
+            "value_type": {
+              "name": "Objective",
+              "description": "Grow community involvement and commitment to estuary conservation and restoration",
+              "unit": "%"
+            },
+            "value": "99"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "Improve estuary water quality and watershed management",
+            "value_type": {
+              "name": "Objective",
+              "description": "Improve estuary water quality and watershed management",
+              "unit": "%"
+            },
+            "value": "7"
           }
-        ],
-        "value_type": "",
-        "key_type": {
-          "key": ""
-        }
+        ]
       }
     ]
   }
