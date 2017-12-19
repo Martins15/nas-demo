@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="bird-page body-item" ng-cloak ng-class={{class}}>>
+        <div class="bird-page body-item" ng-cloak >
             <div class="title-wrap">
                 <div class="title-wrap__title columns tiny-10"><h3>Threats
                         Overview</h3></div>
