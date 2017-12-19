@@ -72,25 +72,27 @@
     NativeCtaApp.controller('Content', [
       '$scope', '$stateParams', '$state', '$rootScope', '$http',
       function ($scope, $stateParams, $state, $rootScope, $http) {
+      // @todo update var.
+       var idItem = 123;
 
         // Load json file.
         function getContent(currentName) {
           if (currentName === threats) {
-            $http.get('http://nas.docksal/sites/all/modules/features/nas_conservation_tracker/json/threats.json')
+            $http.get('http://nas.docksal/conservation-tracker/ajax/scorecard/' + idItem + '/threats')
               .then(function (response) {
-                $scope.content = response.data;
+                $scope.threats = response.data;
               });
           }
           if (currentName === actions) {
-            $http.get('http://nas.docksal/sites/all/modules/features/nas_conservation_tracker/json/actions.json')
+            $http.get('http://nas.docksal/conservation-tracker/ajax/scorecard/' + idItem + '/actions')
               .then(function (response) {
-                $scope.content = response.data;
+                $scope.actions = response.data;
               });
           }
           if (currentName === responses) {
-            $http.get('http://nas.docksal/sites/all/modules/features/nas_conservation_tracker/json/responses.json')
+            $http.get('http://nas.docksal/conservation-tracker/ajax/scorecard/' + idItem + '/responses')
               .then(function (response) {
-                $scope.content = response.data;
+                $scope.responses = response.data;
               });
           }
         }
@@ -102,9 +104,7 @@
 
         // On change.
         $rootScope.$on("$locationChangeStart", function (event, next, current) {
-          getContent($state['current']['name']);
         });
-
       }
     ]);
 
