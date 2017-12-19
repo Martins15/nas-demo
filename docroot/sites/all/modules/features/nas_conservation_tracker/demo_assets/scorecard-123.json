@@ -222,8 +222,8 @@
       },
       {
         "name": "Bird Island Point Bonita",
-        "lat": "37.8242",
-        "lon": "-122.537",
+        "latitude": "37.8242",
+        "longitude": "-122.537",
         "state": "CA",
         "flyway": "Pacific",
         "data": [
