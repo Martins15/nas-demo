@@ -31,6 +31,21 @@ function nas_conservation_tracker_init() {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function nas_conservation_tracker_menu() {
+  $items = array();
+  $items['conservation-tracker/ajax/scorecard/%/%'] = array (
+    'title' => 'Get data for scorecard',
+    'page callback' => 'nas_conservation_tracker_get_scorecard_json',
+    'page arguments' => array(3,4),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
  * Implements hook_libraries_info().
  */
 function nas_conservation_tracker_libraries_info() {
@@ -126,18 +141,50 @@ function nas_conservation_tracker_theme() {
 function nas_conservation_tracker_get_json($path) {
   // @TODO: swap this for real data hub.
   $demo_url = drupal_get_path('module', 'nas_conservation_tracker') . '/demo_assets/';
-  $cid = 'nas_conservation_tracker:' . md5($path);
-  $data = cache_get($cid);
+  $json_data = NULL;
+  if (variable_get('nas_conservation_tracker_api_cache_enabled', TRUE)) {
+    $cid = 'nas_conservation_tracker:' . md5($path);
+    $data = cache_get($cid);
 
-  if (!empty($data->data)) {
-    $json_data = $data->data;
+    if (!empty($data->data)) {
+      $json_data = $data->data;
+    }
   }
-  else {
-    $json_url = $GLOBALS['base_url'] . '/' . variable_get('nas_conservation_tracker_endpoint', $demo_url) . $path . '.json';
+
+  if (empty($json_data)) {
+    $json_url = variable_get('nas_conservation_tracker_endpoint', $demo_url) . '/' . $path . '.json';
     $request = drupal_http_request($json_url);
     $json_data = drupal_json_decode($request->data);
-    cache_set($cid, $json_data);
+    if (variable_get('nas_conservation_tracker_api_cache_enabled', TRUE)) {
+      cache_set($cid, $json_data);
+    }
   }
 
   return $json_data;
+}
+
+/**
+ * Get Score card data.
+ * @param $id
+ */
+function nas_conservation_tracker_get_scorecard_json($id, $type = 'actions') {
+  $result = array('data' => array(), success => 0);
+  if (!empty($id) && is_numeric($id)) {
+    $data = nas_conservation_tracker_get_json('scorecard-' . $id);
+    $types = array('threats', 'actions', 'responses', 'partners');
+    if (!in_array($type, $types)) {
+      $type = 'actions';
+    }
+    foreach ($types as $item) {
+      if ($item != $type) {
+        unset($data[$item]);
+      }
+    }
+
+    $result['data'] = $data;
+    if (!empty($result['data'])) {
+      $result['success'] = 1;
+    }
+  }
+  drupal_json_output($result);
 }
