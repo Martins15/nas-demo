@@ -95,11 +95,13 @@
                 $scope.responses = response.data;
               });
           }
+
         }
 
         // On load.
         $rootScope.$on('$stateChangeSuccess', function (event, transition) {
           getContent($state['current']['name']);
+          $scope.isActive = transition.name;
         });
 
         // On change.

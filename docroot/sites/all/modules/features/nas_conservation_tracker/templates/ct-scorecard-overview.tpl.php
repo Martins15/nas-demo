@@ -15,16 +15,18 @@
             </ul>
         </div>
         <div class="text-wrap columns large-6">
-            <div class="text-wrap__content" ng-cloak >
+            <div class="text-wrap__content" ng-cloak>
 
             </div>
         </div>
-</div>
+    </div>
 </div>
 
-<div class="global-content with-padding static-page-content" data-ng-controller="Content">
+<div class="global-content with-padding tabs-ng-content"
+     data-ng-controller="Content">
     <div class="row">
-        <div ng-class="{{tab.active}}" class="bird-page body-item" ng-cloak>
+        <div class="bird-page body-item" ng-cloak
+             ng-class="{'active': isActive === 'responses'}">
             <div class="title-wrap">
                 <div class="title-wrap__title columns tiny-10"><h3>Threats
                         Overview</h3></div>
@@ -39,11 +41,13 @@
             </div>
             <div class="video-wrap columns large-4">
                 <div class="video-wrap__item help-img-full">
-                    <img src={{responses.data.settings.responses.image}} alt="">
+                    <img ng-if="responses.data.settings.responses.image !== ''"
+                         src={{responses.data.settings.responses.image}} alt="">
                 </div>
             </div>
         </div>
-        <div class="bird-page body-item" ng-cloak >
+        <div class="bird-page body-item" ng-cloak
+             ng-class="{'active': isActive === 'actions'}">
             <div class="title-wrap">
                 <div class="title-wrap__title columns tiny-10"><h3>Threats
                         Overview</h3></div>
@@ -62,7 +66,8 @@
                 </div>
             </div>
         </div>
-        <div class="bird-page body-item" ng-cloak>
+        <div class="bird-page body-item" ng-cloak
+             ng-class="{'active': isActive === 'threats'}">
             <div class="title-wrap">
                 <div class="title-wrap__title columns tiny-10"><h3>Threats
                         Overview</h3></div>
@@ -85,25 +90,24 @@
 </div>
 
 
-
-
 <div class="ct-scorecard-overview row">
-  <div class="bird-page body-item">
-    <div class="title-wrap">
-      <div class="title-wrap__title columns tiny-10"><h3><?php print $title; ?></h3></div>
-      <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
-        Download
-      </div>
+    <div class="bird-page body-item">
+        <div class="title-wrap">
+            <div class="title-wrap__title columns tiny-10">
+                <h3><?php print $title; ?></h3></div>
+            <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
+                Download
+            </div>
+        </div>
+        <div class="body-wrap columns large-8">
+            <div class="body-wrap__body-text">
+                <p><?php print $description; ?></p>
+            </div>
+        </div>
+        <div class="video-wrap columns large-4">
+            <div class="video-wrap__item help-img-full">
+              <?php print $media; ?>
+            </div>
+        </div>
     </div>
-    <div class="body-wrap columns large-8">
-      <div class="body-wrap__body-text">
-        <p><?php print $description; ?></p>
-      </div>
-    </div>
-    <div class="video-wrap columns large-4">
-      <div class="video-wrap__item help-img-full">
-        <?php print $media; ?>
-      </div>
-    </div>
-  </div>
 </div>
