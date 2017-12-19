@@ -26,11 +26,11 @@ $plugin = array(
  * @return stdClass
  */
 function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, $context) {
-  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/us-states.js');
-  drupal_add_js(array('nas_conservation_tracker' => array()), 'setting');
-
   $block = new stdClass();
   $data = nas_conservation_tracker_get_json('scorecard-123');
+
+  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/us-states.js');
+  drupal_add_js(array('nas_conservation_tracker' => array('json_data' => $data)), 'setting');
 
   // Map.
   $map_info = current(leaflet_map_get_info());
@@ -39,8 +39,8 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   $map_info['settings']['zoomDefault'] = 4;
   $map_info['settings']['zoom'] = 4;
   $map_info['center'] = array(
-    'lat' => $data['settings']['map']['lat'],
-    'lon' => $data['settings']['map']['lon'],
+    'lat' => $data['settings']['map']['latitude'],
+    'lon' => $data['settings']['map']['longitude'],
   );
   $features = array(
   );

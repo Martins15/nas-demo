@@ -145,26 +145,28 @@ function nas_conservation_tracker_theme() {
  */
 function nas_conservation_tracker_get_json($path) {
   // @TODO: swap this for real data hub.
-  $demo_url = drupal_get_path('module', 'nas_conservation_tracker') . '/demo_assets/';
+  $demo_url = '';
   $json_data = NULL;
   if (variable_get('nas_conservation_tracker_api_cache_enabled', TRUE)) {
     $cid = 'nas_conservation_tracker:' . md5($path);
     $data = cache_get($cid);
-
+    dpm($data);
     if (!empty($data->data)) {
       $json_data = $data->data;
     }
   }
 
   if (empty($json_data)) {
-    $json_url = variable_get('nas_conservation_tracker_endpoint', $demo_url) . '/' . $path . '.json';
+    $json_url = rtrim(variable_get('nas_conservation_tracker_endpoint', $demo_url), '\/') . '/' . $path . '.json';
     $request = drupal_http_request($json_url);
+    dpm($request);
+    dpm($json_url);
     $json_data = drupal_json_decode($request->data);
     if (variable_get('nas_conservation_tracker_api_cache_enabled', TRUE)) {
       cache_set($cid, $json_data);
     }
   }
-
+  dpm($json_data);
   return $json_data;
 }
 
