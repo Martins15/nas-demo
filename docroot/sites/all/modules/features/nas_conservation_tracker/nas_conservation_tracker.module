@@ -27,7 +27,12 @@ function nas_conservation_tracker_init() {
   drupal_add_js('//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js', 'external');
   drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js', 'external');
   drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/angular-scroll/1.0.0/angular-scroll.min.js', 'external');
-  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/ct_tabs.js');
+  $js_path = drupal_get_path('module', 'nas_conservation_tracker') . '/js/';
+  drupal_add_js($js_path . 'ct_tabs.js');
+  drupal_add_js($js_path . 'nas_conservation_tracker.js', array(
+    'weight' => 999,
+    'group' => JS_THEME,
+  ));
 }
 
 /**

@@ -5,9 +5,6 @@
 
 (function($) {
   Drupal.d3.ct_circular = function (select, settings) {
-    console.log(select);
-    console.log(settings);
-
     var CircleLoader = function() {
       var _svgWidth = 300,
         _iWidthCircle = 50,
