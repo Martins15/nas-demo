@@ -3744,6 +3744,29 @@ h1.centered, h2.centered, h3.centered, h4.centered, h5.centered,
   }
 }
 
+.ct-item-nav-conservation .menu-wrap ul, .species-filter .alphabet-block ul {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
 /*
     Colorbox Core Style:
     The following CSS is consistent between example themes and should not be altered.
@@ -17871,6 +17894,43 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   color: #F15936;
 }
 
+.ct-item-nav-conservation {
+  background: #fbfaf6;
+  overflow: hidden;
+}
+@media only screen and (min-width: 768px) {
+  .ct-item-nav-conservation {
+    padding: 30px 0;
+  }
+}
+.ct-item-nav-conservation .menu-wrap ul {
+  list-style: none;
+}
+.ct-item-nav-conservation .menu-wrap li {
+  cursor: pointer;
+}
+.ct-item-nav-conservation .menu-wrap li.true {
+  font-weight: bold;
+}
+.ct-item-nav-conservation .text-wrap {
+  padding-right: 50px;
+  border-left: 1px solid #d9d9d9;
+}
+@media only screen and (min-width: 768px) {
+  .ct-item-nav-conservation .text-wrap h4 {
+    font-size: 33px;
+    font-weight: 300;
+    line-height: 1.21;
+    margin: 0;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .ct-item-nav-conservation .text-wrap p {
+    font-size: 14px;
+    color: #76736c;
+  }
+}
+
 .species-filter {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
@@ -17906,26 +17966,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .alphabet-block ul {
   list-style: none;
   margin: 0;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-direction: normal;
-  -moz-box-direction: normal;
-  -ms-flex-direction: row;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-lines: multiple;
-  -moz-box-lines: multiple;
-  -ms-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -moz-box-pack: justify;
-  -ms-flex-pack: justify;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
   width: 340%;
 }
 @media only screen and (min-width: 768px) {
