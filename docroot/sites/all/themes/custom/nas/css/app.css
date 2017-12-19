@@ -17931,6 +17931,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
+.tabs-ng-content .bird-page {
+  display: none;
+}
+.tabs-ng-content .bird-page.active {
+  display: block;
+}
+
 .species-filter {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }

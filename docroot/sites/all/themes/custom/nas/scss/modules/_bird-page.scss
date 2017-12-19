@@ -205,3 +205,12 @@ $padding-item: 25px 17.5px 0;
     }
   }
 }
+
+.tabs-ng-content {
+  .bird-page {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}
