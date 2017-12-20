@@ -7,9 +7,20 @@
 
   Drupal.behaviors.nas_conservation_tracker = {
     attach: function (context, settings) {
+      $.getJSON('conservation-tracker/ajax/scorecard/' + settings.nas_conservation_tracker.nid + '/actions', function(data) {
+        settings.nas_conservation_tracker.json = data;
+        conosle.log(data);
+      });
+      // Init map.
+      var lMap = L.map('map').setView([37.8, -96], 4);
+/*
+      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken, {
+        id: 'mapbox.light',
+        attribution: ...
+    }).addTo(lMap);
+*/
       // Highlight states which have sites.
-      var lMap = settings.leaflet['0'].lMap,
-        markerClass = 'ct-leaflet-site',
+      var markerClass = 'ct-leaflet-site',
         polygons = [],
         states = {};1
       for (var i = 0 in settings.nas_conservation_tracker.json_data.actions.sites) {

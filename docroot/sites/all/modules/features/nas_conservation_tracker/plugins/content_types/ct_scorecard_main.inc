@@ -27,13 +27,16 @@ $plugin = array(
  */
 function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
-  $data = nas_conservation_tracker_get_json('scorecard-123');
+  $settings = array(
+    'nid' => arg(1),
+  );
 
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/us-states.js');
-  drupal_add_js(array('nas_conservation_tracker' => array('json_data' => $data)), 'setting');
+  drupal_add_js(array('nas_conservation_tracker' => $settings), 'setting');
 
   // Map.
-  $map_info = current(leaflet_map_get_info());
+ // $map_info = current(nas_conservation_tracker_leaflet_map_info());
+  /*
   $map_info['settings']['layerControl'] = TRUE;
   $map_info['layers']['earth']['urlTemplate'] = '//cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
   $map_info['settings']['zoomDefault'] = 4;
@@ -44,10 +47,9 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   );
   $features = array(
   );
-  dpm($map_info);
-  dpm($features);
-  $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_map_height', '800px'));
 
+  $map = nas_conservation_tracker_leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_map_height', '800px'));
+*/
   // Actions.
   $actions = array(
     array(
@@ -97,7 +99,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   );
 
   $vars = array(
-    'map' => render($map),
+    'map' => '',
     'actions' => d3_draw($actions_chart),
     'objectives' => d3_draw($objectives_chart),
   );
