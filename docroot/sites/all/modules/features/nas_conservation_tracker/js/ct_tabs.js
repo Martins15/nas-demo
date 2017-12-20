@@ -82,7 +82,7 @@
               .then(function (response) {
                 $scope.threats = response.data;
                 Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
-                Drupal.attachBehaviors();
+                Drupal.nas_conservation_tracker_init();
               });
           }
           if (currentName === actions) {
@@ -90,7 +90,7 @@
               .then(function (response) {
                 $scope.actions = response.data;
                 Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
-                Drupal.attachBehaviors();
+                Drupal.nas_conservation_tracker_init();
               });
           }
           if (currentName === responses) {
@@ -98,7 +98,7 @@
               .then(function (response) {
                 $scope.responses = response.data;
                 Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
-                Drupal.attachBehaviors();
+                Drupal.nas_conservation_tracker_init();
               });
           }
         }
