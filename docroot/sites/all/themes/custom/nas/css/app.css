@@ -17927,6 +17927,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     font-size: 0;
     opacity: .2;
     background-position: center;
+    background-size: contain;
+    padding: 0;
   }
   .ct-item-nav-conservation .menu-wrap li:hover {
     opacity: 1;

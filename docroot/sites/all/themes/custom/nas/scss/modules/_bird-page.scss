@@ -198,6 +198,8 @@ $padding-item: 25px 17.5px 0;
         font-size: 0;
         opacity: .2;
         background-position: center;
+        background-size: contain;
+        padding: 0;
         &:hover {
           opacity: 1;
         }
