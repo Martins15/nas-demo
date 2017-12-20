@@ -58,6 +58,15 @@ function nas_amp_preprocess_node(&$variables) {
       'link_classes' => 'article-slug',
     ));
   }
+
+  if(!empty($variables['field_author'][LANGUAGE_NONE][0]['target_id'])) {
+    $conf = array('override' => array('entity_id' => $variables['field_author'][LANGUAGE_NONE][0]['target_id']));
+    $context = new stdClass();
+    $context->data = $variables['node'];
+    module_load_include('inc', 'nas_panes', 'plugins/content_types/full_width_byline/full_width_byline');
+    $byline = full_width_byline_render(array(), $conf, array(), $context);
+    $variables['content']['byline'] = $byline->content;
+  }
 }
 
 /**
