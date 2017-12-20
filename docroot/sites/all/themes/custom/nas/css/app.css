@@ -17927,6 +17927,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     font-size: 0;
     opacity: .2;
     background-position: center;
+    background-size: contain;
+    padding: 0;
   }
   .ct-item-nav-conservation .menu-wrap li:hover {
     opacity: 1;
@@ -18020,6 +18022,32 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 23px;
   line-height: 1.22;
   color: #000;
+}
+.slider-element .owl-controls {
+  margin-top: 10px;
+  text-align: center;
+}
+@media only screen and (min-width: 768px) {
+  .slider-element .owl-controls {
+    margin-top: 20px;
+  }
+}
+.slider-element .owl-controls .owl-page {
+  display: inline-block;
+  zoom: 1;
+}
+.slider-element .owl-controls .owl-page span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 0 6px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background: #CCCCCC;
+}
+.slider-element .owl-controls .owl-page.active span {
+  background: #7F7F7F;
 }
 
 .tabs-ng-content .bird-page {
