@@ -5,36 +5,50 @@
 
 (function ($, Drupal) {
 
-  Drupal.behaviors.nas_conservation_tracker = {
-    attach: function (context, settings) {
-      // Highlight states which have sites.
-      var lMap = settings.leaflet['0'].lMap,
+  Drupal.nas_conservation_tracker_init = function () {
+    //console.log(Drupal.settings.nas_conservation_tracker.json_data);
+      var lMap = Drupal.settings.leaflet['0'].lMap,
         markerClass = 'ct-leaflet-site',
+        loc = getLocation(),
         polygons = [],
-        states = {};1
-      for (var i = 0 in settings.nas_conservation_tracker.json_data.actions.sites) {
-        var stateID = settings.nas_conservation_tracker.json_data.actions.sites[i].state;
+        states = {};
+
+      // Delete existing sites from map.
+      lMap.eachLayer(function(layer) {
+        console.log(layer);
+        if (layer._leaflet_id !== 'earth' && !layer._layers) {
+          lMap.removeLayer(layer);
+
+        }
+
+      });
+      // Highlight states which have sites.
+
+      for (var i = 0 in Drupal.settings.nas_conservation_tracker.json_data[loc].sites) {
+        var stateID = Drupal.settings.nas_conservation_tracker.json_data[loc].sites[i].state;
         if (Number.isInteger(states[stateID])) {
           states[stateID]++;
         }
         else {
-          states[stateID] = 0;
+          states[stateID] = 1;
         }
         // Display sites (dots).
         var dot = L.divIcon({className: markerClass}),
           latLon = [
-            parseFloat(settings.nas_conservation_tracker.json_data.actions.sites[i].latitude),
-            parseFloat(settings.nas_conservation_tracker.json_data.actions.sites[i].longitude),
+            parseFloat(Drupal.settings.nas_conservation_tracker.json_data[loc].sites[i].latitude),
+            parseFloat(Drupal.settings.nas_conservation_tracker.json_data[loc].sites[i].longitude),
           ];
         L.marker(latLon, {icon: dot}).addTo(lMap);
-        showMarkers();
       }
-      for (var j = 0 in settings.nas_conservation_tracker_states_data) {
-        if (typeof settings.nas_conservation_tracker_states_data[j].properties.shortname == 'string' &&
-          states[settings.nas_conservation_tracker_states_data[j].properties.shortname] > 0) {
-          polygons.push(settings.nas_conservation_tracker_states_data[j]);
+      showMarkers();
+      //console.log(states);
+      for (var j = 0 in Drupal.settings.nas_conservation_tracker_states_data) {
+        if (typeof Drupal.settings.nas_conservation_tracker_states_data[j].properties.shortname == 'string' &&
+          states[Drupal.settings.nas_conservation_tracker_states_data[j].properties.shortname] > 0) {
+          polygons.push(Drupal.settings.nas_conservation_tracker_states_data[j]);
         }
       }
+      //console.log(polygons);
       L.geoJson({type: 'FeatureCollection', features: polygons}, {style: getStateStyle}).addTo(lMap);
 
       // Show/hide markers depending on zoom.
@@ -45,8 +59,8 @@
       // Helper functions.
       function getStateStyle(feature) {
         var d = states[feature.properties.shortname],
-        color = d > 10 ? '#FEB24C' :
-          d > 5 ? '#FED976' : '#FFEDA0';
+        color = d > 4 ? '#FEB24C' :
+          d > 1 ? '#FED976' : '#FFEDA0';
         return {
           fillColor: color,
           weight: 2,
@@ -59,7 +73,10 @@
         var visibility = lMap.getZoom() > 5 ? 'visible' : 'hidden';
         $('.' + markerClass).css('visibility', visibility);
       }
-    }
+      function getLocation() {
+        var loc = window.location.href;
+        return loc.split("/").slice(-1)[0];
+      }
   };
 
 })(jQuery, window.Drupal);
