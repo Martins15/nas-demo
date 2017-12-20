@@ -294,6 +294,22 @@
         </div>
     </div>
 </section>
+<div class="tabs ct-item-nav-conservation" ng-cloak data-ng-controller="Tabs">
+    <div class="row">
+        <div class="menu-wrap columns large-6">
+            <ul>
+                <li ng-repeat="tab in tabs" ui-sref="threats" class="threats true" href="#/threats">threats</li>
+                <li ng-repeat="tab in tabs" ui-sref="actions" class="actions false" href="#/actions">actions</li>
+                <li ng-repeat="tab in tabs" ui-sref="responses" class="responses false" href="#/responses">responses</li>
+            </ul>
+        </div>
+        <div class="text-wrap columns large-6">
+            <div class="text-wrap__content" ng-cloak>
+
+            </div>
+        </div>
+    </div>
+</div>
 <section class="global-content with-padding static-page-content">
     <div class="row">
         <div class="bird-page body-item">
@@ -333,6 +349,32 @@
             </div>
         </div>
     </div>
+</section>
+<div class="slider-element bird-page">
+    <div class="row">
+        <div class="slider-element__title-wrap">
+            <h4>Popular right now</h4>
+        </div>
+    <div class="items-wrap">
+        <div class="item">
+            <div class="item__pre-title">Species</div>
+            <div class="item__title">American Oystercatcher</div>
+        </div>
+        <div class="item">
+            <div class="item__pre-title">Strategies</div>
+            <div class="item__title">Coastal Stewardship: Atlantic & Pacific</div>
+        </div>
+        <div class="item">
+            <div class="item__pre-title">Landscapes</div>
+            <div class="item__title">The Fight for the Greater Sage-Grouser</div>
+        </div>
+        <div class="item">
+            <div class="item__pre-title">Species</div>
+            <div class="item__title">American Oystercatcher</div>
+        </div>
+    </div>
+    </div>
+</div>
     <aside class="map-items bird-page">
         <div class="row">
             <div class="diagram-wrap help-bg-white columns map-item large-8">

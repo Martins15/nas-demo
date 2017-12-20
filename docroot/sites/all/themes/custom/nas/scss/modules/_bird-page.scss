@@ -16,8 +16,8 @@ $grey-bg-bird: #F0F0F0;
 $grey-menu-bird: #fbfaf6;
 $border-bird: #d9d9d9;
 $orange-bird: #F15936;
+$blue-bird: #0aa8e3;
 $padding-item: 25px 17.5px 0;
-
 
 .bird-page.body-item {
   .body-wrap {
@@ -161,7 +161,7 @@ $padding-item: 25px 17.5px 0;
   p[data-value]:after {
     content: attr(data-value) '%';
     position: absolute;
-    right:0;
+    right: 0;
     top: -35px;
     font-family: $font-sans;
     color: $orange-bird;
@@ -171,19 +171,52 @@ $padding-item: 25px 17.5px 0;
 .ct-item-nav-conservation {
   background: $grey-menu-bird;
   overflow: hidden;
+  padding: 10px 0;
   @include breakpoint(large-up) {
     padding: 30px 0;
   }
   .menu-wrap {
     ul {
       list-style: none;
+      margin: 0;
       @extend %content-between;
     }
     li {
       cursor: pointer;
-      &.true {
-        font-weight: bold;
+      background-size: auto 38px;
+      height: 40px;
+      background-position: left center;
+      background-repeat: no-repeat;
+      padding-left: 50px;
+      line-height: 40px;
+      font-size: 16px;
+      text-transform: capitalize;
+      font-family: $lato-font;
+      @include breakpoint(large-up) {
+        width: 60px;
+        height: 60px;
+        font-size: 0;
+        opacity: .2;
+        background-position: center;
+        &:hover {
+          opacity: 1;
+        }
       }
+      &.true {
+        @include breakpoint(large-up) {
+          font-weight: bold;
+          opacity: 1;
+        }
+      }
+    }
+    .threats {
+        background-image: url("../img/bird-page/first-item.png");
+    }
+    .actions {
+      background-image: url("../img/bird-page/second-item.png");
+    }
+    .responses {
+      background-image: url("../img/bird-page/third-item.png");
     }
   }
   .text-wrap {
@@ -202,6 +235,57 @@ $padding-item: 25px 17.5px 0;
         font-size: 14px;
         color: $brownish-grey;
       }
+    }
+  }
+}
+
+// Style for slider.
+.slider-element.bird-page {
+  padding: 30px 0;
+  width: 62.66666666666667%;
+  margin: 0 auto;
+  @include breakpoint(large-up) {
+    padding: 60px 0;
+    width: 100%;
+  }
+}
+
+.slider-element {
+  &__title-wrap {
+    text-align: center;
+    @include breakpoint(large-up) {
+      margin-bottom: 40px;
+    }
+    h4 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.11;
+      color: $black;
+    }
+  }
+  .items-wrap {
+    @include breakpoint(large-up) {
+      margin-bottom: 30px;
+    }
+  }
+  .item {
+    text-align: center;
+    @include breakpoint(large-up) {
+      text-align: left;
+    }
+    &__pre-title {
+      color: $blue-bird;
+      margin-bottom: 10px;
+      font-size: 15px;
+      line-height: 1.33;
+      @include breakpoint(large-up) {
+        margin-bottom: 5px;
+      }
+    }
+    &__title {
+      font-size: 23px;
+      line-height: 1.22;
+      color: $black;
     }
   }
 }
