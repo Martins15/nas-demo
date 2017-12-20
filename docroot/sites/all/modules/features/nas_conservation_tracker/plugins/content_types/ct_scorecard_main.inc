@@ -21,6 +21,7 @@ $plugin = array(
  *
  * @param $subtype
  * @param $conf
+ *
  * @param $args
  * @param $context
  * @return stdClass

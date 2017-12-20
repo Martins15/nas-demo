@@ -50,4 +50,22 @@ Drupal.behaviors.birdCardSet = {
   }
 };
 
+  Drupal.behaviors.sliderScoreCard = {
+    attach: function (context) {
+      var $slierWrap = $('.slider-element.bird-page', context);
+      if ($slierWrap.length) {
+        $('.items-wrap', $slierWrap).owlCarousel({
+          loop: true,
+          responsiveClass: true,
+          pagination: true,
+          itemsCustom: [
+            [0, 1],
+            [768, 3],
+            [1024, 4]
+          ]
+        })
+      }
+    }
+  };
+
 })(jQuery);
