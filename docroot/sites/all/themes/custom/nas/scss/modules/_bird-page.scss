@@ -290,6 +290,32 @@ $padding-item: 25px 17.5px 0;
       color: $black;
     }
   }
+  .owl-controls {
+    margin-top: 10px;
+    text-align: center;
+    @include breakpoint(large-up) {
+      margin-top: 20px;
+    }
+    .owl-page {
+      display: inline-block;
+      zoom: 1;
+      span {
+        display: block;
+        width: 8px;
+        height: 8px;
+        margin: 0 6px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        background: #CCCCCC;
+      }
+      &.active {
+        span {
+          background: #7F7F7F;
+        }
+      }
+    }
+  }
 }
 
 .tabs-ng-content {
