@@ -7,6 +7,11 @@
 
   Drupal.behaviors.nas_conservation_tracker = {
     attach: function (context, settings) {
+      // Charts.
+      var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
+      objectives.update({rows: [['test1', 10], ['test2', 30]]});
+
+
       // Highlight states which have sites.
       var lMap = settings.leaflet['0'].lMap,
         markerClass = 'ct-leaflet-site',
@@ -59,6 +64,10 @@
         var visibility = lMap.getZoom() > 5 ? 'visible' : 'hidden';
         $('.' + markerClass).css('visibility', visibility);
       }
+
+
+
+
     }
   };
 
