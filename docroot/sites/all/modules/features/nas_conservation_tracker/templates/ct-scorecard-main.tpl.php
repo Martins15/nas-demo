@@ -5,6 +5,7 @@
 ?>
 <aside class="ct-scorecard-main map-items bird-page">
   <div class="row">
+    <?php print $form; ?>
     <?php print $map; ?>
     <div class="diagram-wrap help-bg-white columns map-item large-8">
       <div class="map-item__inner-help">

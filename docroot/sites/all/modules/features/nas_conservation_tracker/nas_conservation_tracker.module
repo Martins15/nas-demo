@@ -125,6 +125,7 @@ function nas_conservation_tracker_theme() {
     'ct_scorecard_main' => array(
       'variables' => array(
         'map' => NULL,
+        'form' => NULL,
       ),
       'template' => 'templates/ct-scorecard-main',
     ),
