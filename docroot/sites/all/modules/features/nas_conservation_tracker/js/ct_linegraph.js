@@ -6,6 +6,7 @@
 (function($) {
 
   Drupal.d3.ct_linegraph = function (select, settings) {
+
     var labels = [],
       key = settings.legend || [],
       rows = settings.rows,
@@ -199,6 +200,15 @@
       return max;
     }
 
+    return {
+      clear: function() {
+
+      },
+      update: function(settings){
+
+      },
+    }
+
   }
 
   d3.ct_tooltip = function(tipjar) {
@@ -216,5 +226,7 @@
       .attr('dx', 0)
       .attr('dy', 0);
   };
+
+
 
 })(jQuery);

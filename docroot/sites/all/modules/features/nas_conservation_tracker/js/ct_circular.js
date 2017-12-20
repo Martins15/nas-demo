@@ -88,12 +88,30 @@
       }
     }
 
-    for (var i in settings.rows) {
-      var id = select + "-" + i;
-      var graph = new CircleLoader();
-      $('#' + select).append('<div class="item"><div class="item__process help-img-full" id="' + id + '"></div></div>');
-      graph.init(id, 'circle', parseInt(settings.rows[i][1]), 60, 15);
-      $('#' + id).after('<div class="item__info">' + settings.rows[i][0] + '</div>');
+    drawData(select, settings);
+    function drawData(select, settings) {
+      if (typeof settings.rows !== 'undefined') {
+        for (var i in settings.rows) {
+          var id = select + "-" + i;
+          var graph = new CircleLoader();
+          $('#' + select).append('<div class="item"><div class="item__process help-img-full" id="' + id + '"></div></div>');
+          graph.init(id, 'circle', parseInt(settings.rows[i][1]), 60, 15);
+          $('#' + id).after('<div class="item__info">' + settings.rows[i][0] + '</div>');
+        }
+      }
     }
+
+
+
+    return {
+      clear: function() {
+        $('#' + select).empty();
+      },
+      update: function(settings){
+        this.clear();
+        drawData(select, settings)
+      },
+    }
+
   }
 })(jQuery);
