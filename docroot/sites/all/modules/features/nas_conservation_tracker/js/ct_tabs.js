@@ -78,24 +78,29 @@
         // Load json file.
         function getContent(currentName) {
           if (currentName === threats) {
-            $http.get('http://nas.docksal/conservation-tracker/ajax/scorecard/' + idItem + '/threats')
+            $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/threats')
               .then(function (response) {
                 $scope.threats = response.data;
+                Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
+                Drupal.attachBehaviors();
               });
           }
           if (currentName === actions) {
-            $http.get('http://nas.docksal/conservation-tracker/ajax/scorecard/' + idItem + '/actions')
+            $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/actions')
               .then(function (response) {
                 $scope.actions = response.data;
+                Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
+                Drupal.attachBehaviors();
               });
           }
           if (currentName === responses) {
-            $http.get('http://nas.docksal/conservation-tracker/ajax/scorecard/' + idItem + '/responses')
+            $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/responses')
               .then(function (response) {
                 $scope.responses = response.data;
+                Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
+                Drupal.attachBehaviors();
               });
           }
-
         }
 
         // On load.
