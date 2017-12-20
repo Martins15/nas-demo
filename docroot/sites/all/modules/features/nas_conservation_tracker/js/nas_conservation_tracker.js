@@ -23,7 +23,6 @@
 
       });
       // Highlight states which have sites.
-
       for (var i = 0 in Drupal.settings.nas_conservation_tracker.json_data[loc].sites) {
         var stateID = Drupal.settings.nas_conservation_tracker.json_data[loc].sites[i].state;
         if (Number.isInteger(states[stateID])) {
@@ -38,7 +37,7 @@
             parseFloat(Drupal.settings.nas_conservation_tracker.json_data[loc].sites[i].latitude),
             parseFloat(Drupal.settings.nas_conservation_tracker.json_data[loc].sites[i].longitude),
           ];
-        L.marker(latLon, {icon: dot}).addTo(lMap);
+        L.marker(latLon, {icon: dot}).bindTooltip(Drupal.settings.nas_conservation_tracker.json_data[loc].sites[i].name).addTo(lMap);
       }
       showMarkers();
       //console.log(states);
