@@ -18207,10 +18207,14 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
+.species-filter .filter-block__menu-block.dark-style {
+  margin-bottom: 20px;
+}
 .species-filter .filter-block__menu-block.dark-style .first-level > li {
   color: #fff;
   background: #303030;
   border: 1px solid #1c1c1c;
+  margin-bottom: 0;
 }
 .species-filter .filter-block__menu-block.dark-style .second-level li {
   border-bottom: 1px solid #1c1c1c;

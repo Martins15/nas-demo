@@ -160,11 +160,13 @@ $text-gray-filter: #9b9b9b;
         -webkit-transform: rotate(45deg);
       }
       &.dark-style {
+        margin-bottom: 20px;
         .first-level {
           > li {
             color: $white;
             background: $dark-bg-filter;
             border: 1px solid $dark-border-filter;
+            margin-bottom: 0;
           }
         }
         .second-level {
