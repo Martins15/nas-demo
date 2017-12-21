@@ -99,6 +99,44 @@
           coordinates: coordinates,
         };
       }
+
+      // Charts. TODO make it look good
+      var objectivesRows = [];
+      var sites = Drupal.settings.nas_conservation_tracker.json_data[loc].sites;
+      for (var i = 0 in sites) {
+        for (var j = 0 in sites[i].data) {
+          if (angular.isDefined(sites[i].data[j].value_type) && sites[i].data[j].value_type.name == 'Objective') {
+            var data = sites[i].data[j];
+            objectivesRows.push([data.value_type.description, data.value]);
+          }
+        }
+      }
+
+      // Charts.
+      var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
+      objectives.update({rows: objectivesRows});
+
+       // Charts. TODO make it look good
+      var mainObjRows = {};
+      var agOp = 'sum';
+      for (var i = 0 in sites) {
+        for (var j = 0 in sites[i].data) {
+          if (angular.isDefined(sites[i].data[j].value_type) && sites[i].data[j].value_type.name != 'Objective') {
+            var data = sites[i].data[j];
+            switch(agOp) {
+              case 'sum':
+                mainObjRows[data.key] = mainObjRows[data.key] || 0;
+                mainObjRows[data.key] += parseFloat(data.value);
+                break;
+            }
+          }
+        }
+      }
+      var mainRows = Object.keys(mainObjRows).map(function (key) { return [key, mainObjRows[key]]; });
+
+      // Charts.
+      var mainChart = Drupal.d3.ct_linegraph('d3-actions', {rows: []});
+      mainChart.update({rows: mainRows,legend: ['Actions']});
   };
 
 })(jQuery, window.Drupal);

@@ -11,6 +11,7 @@
   }
 }
 
+$dark-bg-bird: #1c1c1c;
 $brownish-grey: #76736c;
 $grey-bg-bird: #F0F0F0;
 $grey-menu-bird: #fbfaf6;
@@ -44,17 +45,25 @@ $padding-item: 25px 17.5px 0;
 }
 
 .map-items.bird-page {
-  background: #1c1c1c;
+  background: $dark-bg-bird;
   margin-top: 10px;
   padding-top: 10px;
-  .row {
-    background: url("../img/bird-page/map.png") no-repeat top center;
+  &.demo-block {
+    .row {
+      background: url("../img/bird-page/map.png") no-repeat center center;
+    }
   }
 }
 
 .map-item {
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
   @include breakpoint(large-up) {
     float: right;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
   &__inner-help {
     padding: $padding-item;
@@ -73,10 +82,11 @@ $padding-item: 25px 17.5px 0;
 
 .diagram-wrap {
   // @todo Update after add 3d.
-  margin-top: 200px;
   padding-bottom: 20px;
+  margin-top: 200px;
   margin-bottom: 10px;
   @include breakpoint(large-up) {
+    margin-bottom: 10px;
     margin-top: 0;
   }
   &__title {
@@ -85,6 +95,17 @@ $padding-item: 25px 17.5px 0;
       color: $brownish-grey;
       font-family: $font-sans;
     }
+  }
+  .diagram-item {
+    overflow: hidden;
+    @include breakpoint(large-up) {
+      overflow: inherit;
+    }
+  }
+  .ct_linegraph g.ticks text {
+    font-size: 14px;
+    color: $brownish-grey;
+    font-family: $font-sans;
   }
 }
 
@@ -176,6 +197,7 @@ $padding-item: 25px 17.5px 0;
     padding: 30px 0;
   }
   .menu-wrap {
+    padding-right: 50px;
     ul {
       list-style: none;
       margin: 0;
@@ -198,6 +220,8 @@ $padding-item: 25px 17.5px 0;
         font-size: 0;
         opacity: .2;
         background-position: center;
+        background-size: contain;
+        padding: 0;
         &:hover {
           opacity: 1;
         }
@@ -218,9 +242,12 @@ $padding-item: 25px 17.5px 0;
     .responses {
       background-image: url("../img/bird-page/third-item.png");
     }
+    .partners {
+      background-image: url("../img/bird-page/fourth-item.png");
+    }
   }
   .text-wrap {
-    padding-right: 50px;
+    padding-left: 50px;
     border-left: 1px solid $border-bird;
     h4 {
       @include breakpoint(large-up) {
@@ -228,11 +255,13 @@ $padding-item: 25px 17.5px 0;
         font-weight: 300;
         line-height: 1.21;
         margin: 0;
+        color: $black;
       }
     }
     p {
       @include breakpoint(large-up) {
         font-size: 14px;
+        line-height: 15px;
         color: $brownish-grey;
       }
     }
@@ -288,6 +317,32 @@ $padding-item: 25px 17.5px 0;
       color: $black;
     }
   }
+  .owl-controls {
+    margin-top: 10px;
+    text-align: center;
+    @include breakpoint(large-up) {
+      margin-top: 20px;
+    }
+    .owl-page {
+      display: inline-block;
+      zoom: 1;
+      span {
+        display: block;
+        width: 8px;
+        height: 8px;
+        margin: 0 6px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        background: #CCCCCC;
+      }
+      &.active {
+        span {
+          background: #7F7F7F;
+        }
+      }
+    }
+  }
 }
 
 .tabs-ng-content {
@@ -295,6 +350,112 @@ $padding-item: 25px 17.5px 0;
     display: none;
     &.active {
       display: block;
+    }
+  }
+}
+
+.ct-scorecard-tabs {
+  background: $dark-bg-bird;
+  padding: 15px 0;
+  a {
+    font-size: 17px;
+    text-align: left;
+    color: $white;
+    opacity: .5;
+    font-family: $font-sans;
+    margin-right: 15px;
+    &:first-child,
+    &.active,
+    &:hover {
+      opacity: 1;
+    }
+    &:first-child {
+      &:after {
+        content: '';
+        border: solid $white;
+        border-width: 0 2px 2px 0;
+        opacity: .2;
+        display: inline-block;
+        padding: 4px;
+        border-radius: 0;
+        margin-left: 10px;
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+      }
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+.ct-scorecard-main {
+  .row {
+    position: relative;
+    @include breakpoint(large-up) {
+      min-height: 800px;
+    }
+  }
+  .leaflet-container {
+    @include breakpoint(large-up) {
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+}
+.help-wrap-items-map-items {
+  @include breakpoint(large-up) {
+    position: relative;
+    z-index: 9999;
+    max-width: 572px;
+    margin-bottom: 40px;
+    float: right;
+    clear: both;
+  }
+}
+
+.leaflet-container {
+  background: $dark-bg-bird;
+}
+
+.node-type-ct-scorecard {
+  .hero-header {
+    padding-right: 0;
+    p, .hero-blurb,
+    .hero-title {
+      text-shadow: none;
+    }
+    .hero-title {
+      font-family: $font-sans;
+      font-size: 37px;
+      text-align: left;
+      color: $white;
+      margin-bottom: 30px;
+      line-height: 0.92;
+      @include breakpoint(large-up) {
+        font-size: 64px;
+        line-height: 1.25;
+        margin-bottom: 0;
+      }
+    }
+    p, .hero-blurb {
+      font-size: 20px;
+      color: $white;
+      margin: 0;
+      font-style: normal;
+    }
+    .hero-blurb {
+      @include breakpoint(large-up) {
+        margin-bottom: 20px;
+        font-size: 18px;
+        opacity: .8;
+      }
+    }
+    p {
+      @include breakpoint(large-up) {
+        font-size: 24px;
+        line-height: 1.38;
+      }
     }
   }
 }
