@@ -406,3 +406,45 @@ $padding-item: 25px 17.5px 0;
 .leaflet-container {
   background: $dark-bg-bird;
 }
+
+.node-type-ct-scorecard {
+  .hero-header {
+    padding-right: 0;
+    p, .hero-blurb,
+    .hero-title {
+      text-shadow: none;
+    }
+    .hero-title {
+      font-family: $font-sans;
+      font-size: 37px;
+      text-align: left;
+      color: $white;
+      margin-bottom: 30px;
+      line-height: 0.92;
+      @include breakpoint(large-up) {
+        font-size: 64px;
+        line-height: 1.25;
+        margin-bottom: 0;
+      }
+    }
+    p, .hero-blurb {
+      font-size: 20px;
+      color: $white;
+      margin: 0;
+      font-style: normal;
+    }
+    .hero-blurb {
+      @include breakpoint(large-up) {
+        margin-bottom: 20px;
+        font-size: 18px;
+        opacity: .8;
+      }
+    }
+    p {
+      @include breakpoint(large-up) {
+        font-size: 24px;
+        line-height: 1.38;
+      }
+    }
+  }
+}

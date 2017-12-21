@@ -8,7 +8,7 @@
     <?php print $image; ?>
   </div>
   <div class="row">
-    <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
+    <div class="hero-header">
       <div class="columns large-12 large-centered">
         <h1 class="hero-title"><?php print $name; ?></h1>
         <p class="hero-blurb"><?php print $subtitle; ?></p>
