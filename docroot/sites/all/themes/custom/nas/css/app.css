@@ -17776,9 +17776,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   background: url("../img/bird-page/map.png") no-repeat top center;
 }
 
+.map-item {
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
 @media only screen and (min-width: 768px) {
   .map-item {
     float: right;
+    width: 66.66667%;
   }
 }
 .map-item__inner-help {
@@ -17798,16 +17804,30 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .diagram-wrap {
-  margin-top: 200px;
   padding-bottom: 20px;
+  margin-top: 200px;
   margin-bottom: 10px;
 }
 @media only screen and (min-width: 768px) {
   .diagram-wrap {
+    margin-bottom: 10px;
     margin-top: 0;
   }
 }
 .diagram-wrap__title p {
+  font-size: 14px;
+  color: #76736c;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.diagram-wrap .diagram-item {
+  overflow: hidden;
+}
+@media only screen and (min-width: 768px) {
+  .diagram-wrap .diagram-item {
+    overflow: inherit;
+  }
+}
+.diagram-wrap .ct_linegraph g.ticks text {
   font-size: 14px;
   color: #76736c;
   font-family: "Source Sans Pro", Verdana, sans-serif;
@@ -18057,6 +18077,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: block;
 }
 
+.messages.error {
+  display: none !important;
+}
+
 .species-filter {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
@@ -18206,6 +18230,29 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-radius: 3px;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+.species-filter .filter-block__menu-block.dark-style {
+  margin-bottom: 20px;
+}
+.species-filter .filter-block__menu-block.dark-style .first-level > li {
+  color: #fff;
+  background: #303030;
+  border: 1px solid #1c1c1c;
+  margin-bottom: 0;
+}
+.species-filter .filter-block__menu-block.dark-style .second-level li {
+  border-bottom: 1px solid #1c1c1c;
+  opacity: .5;
+}
+.species-filter .filter-block__menu-block.dark-style i {
+  opacity: .5;
+}
+.species-filter .filter-block__menu-block.dark-style i.plus:before, .species-filter .filter-block__menu-block.dark-style i.plus:after {
+  background-color: #fff;
+}
+.species-filter .filter-block__menu-block.dark-style i.down {
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
 }
 .species-filter .birds-wrap__title {
   margin-bottom: 15px;

@@ -7,6 +7,9 @@
     }
     $('body').addClass('nas-cta-tabs-angular-processed');
 
+    $('head').append('<base href="' + settings.basePath + '">');
+    var pathname = window.location.pathname;
+
     // Set constant for url page.
     const threats = 'threats',
       actions = 'actions',
@@ -32,17 +35,17 @@
 
     NativeCtaApp.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
       $locationProvider.hashPrefix('');
-      $urlRouterProvider.otherwise("/");
+      $locationProvider.html5Mode(true);
 
       $stateProvider
         .state(threats, {
-          url: '/' + threats
+          url: pathname + '/' + threats
         })
         .state(actions, {
-          url: '/' + actions
+          url: pathname + '/' + actions
         })
         .state(responses, {
-          url: '/' + responses
+          url: pathname + '/' + responses
         });
     });
 
