@@ -17926,6 +17926,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     padding: 30px 0;
   }
 }
+.ct-item-nav-conservation .menu-wrap {
+  padding-right: 50px;
+}
 .ct-item-nav-conservation .menu-wrap ul {
   list-style: none;
   margin: 0;
@@ -17970,6 +17973,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .ct-item-nav-conservation .menu-wrap .responses {
   background-image: url("../img/bird-page/third-item.png");
+}
+.ct-item-nav-conservation .menu-wrap .partners {
+  background-image: url("../img/bird-page/fourth-item.png");
 }
 .ct-item-nav-conservation .text-wrap {
   padding-left: 50px;
