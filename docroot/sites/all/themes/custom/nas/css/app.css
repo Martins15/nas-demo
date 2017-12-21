@@ -17772,9 +17772,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin-top: 10px;
   padding-top: 10px;
 }
-.map-items.bird-page .row {
-  background: url("../img/bird-page/map.png") no-repeat top center;
-}
 
 .map-item {
   width: 96%;
@@ -17784,7 +17781,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 @media only screen and (min-width: 768px) {
   .map-item {
     float: right;
-    width: 66.66667%;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 .map-item__inner-help {
@@ -18077,8 +18076,66 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: block;
 }
 
-.messages.error {
-  display: none !important;
+.ct-scorecard-tabs {
+  background: #1c1c1c;
+  padding: 15px 0;
+}
+.ct-scorecard-tabs a {
+  font-size: 17px;
+  text-align: left;
+  color: #fff;
+  opacity: .5;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  margin-right: 15px;
+}
+.ct-scorecard-tabs a:first-child, .ct-scorecard-tabs a.active, .ct-scorecard-tabs a:hover {
+  opacity: 1;
+}
+.ct-scorecard-tabs a:first-child:after {
+  content: '';
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  opacity: .2;
+  display: inline-block;
+  padding: 4px;
+  border-radius: 0;
+  margin-left: 10px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.ct-scorecard-tabs a:last-child {
+  margin-right: 0;
+}
+
+.ct-scorecard-main .row {
+  position: relative;
+}
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-main .row {
+    min-height: 800px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-main .leaflet-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .help-wrap-items-map-items {
+    position: relative;
+    z-index: 9999;
+    max-width: 572px;
+    margin-bottom: 40px;
+    float: right;
+    clear: both;
+  }
+}
+
+.leaflet-container {
+  background: #1c1c1c;
 }
 
 .species-filter {
