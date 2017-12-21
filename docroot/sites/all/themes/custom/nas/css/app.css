@@ -18207,6 +18207,25 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
+.species-filter .filter-block__menu-block.dark-style .first-level > li {
+  color: #fff;
+  background: #303030;
+  border: 1px solid #1c1c1c;
+}
+.species-filter .filter-block__menu-block.dark-style .second-level li {
+  border-bottom: 1px solid #1c1c1c;
+  opacity: .5;
+}
+.species-filter .filter-block__menu-block.dark-style i {
+  opacity: .5;
+}
+.species-filter .filter-block__menu-block.dark-style i.plus:before, .species-filter .filter-block__menu-block.dark-style i.plus:after {
+  background-color: #fff;
+}
+.species-filter .filter-block__menu-block.dark-style i.down {
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+}
 .species-filter .birds-wrap__title {
   margin-bottom: 15px;
 }
