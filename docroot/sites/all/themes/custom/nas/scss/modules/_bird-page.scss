@@ -48,9 +48,6 @@ $padding-item: 25px 17.5px 0;
   background: $dark-bg-bird;
   margin-top: 10px;
   padding-top: 10px;
-  .row {
-    background: url("../img/bird-page/map.png") no-repeat top center;
-  }
 }
 
 .map-item {
@@ -59,7 +56,9 @@ $padding-item: 25px 17.5px 0;
   margin-right: 2%;
   @include breakpoint(large-up) {
     float: right;
-    width: 66.66667%;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
   &__inner-help {
     padding: $padding-item;
@@ -377,4 +376,33 @@ $padding-item: 25px 17.5px 0;
       margin-right: 0;
     }
   }
+}
+.ct-scorecard-main {
+  .row {
+    position: relative;
+    @include breakpoint(large-up) {
+      min-height: 800px;
+    }
+  }
+  .leaflet-container {
+    @include breakpoint(large-up) {
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+}
+.help-wrap-items-map-items {
+  @include breakpoint(large-up) {
+    position: relative;
+    z-index: 9999;
+    max-width: 572px;
+    margin-bottom: 40px;
+    float: right;
+    clear: both;
+  }
+}
+
+.leaflet-container {
+  background: $dark-bg-bird;
 }
