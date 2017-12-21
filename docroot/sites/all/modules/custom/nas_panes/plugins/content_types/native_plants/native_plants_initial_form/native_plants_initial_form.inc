@@ -170,11 +170,32 @@ function native_plants_initial_form_render($subtype, $conf, $args, $contexts) {
   }
 
   $conf['form_theme'] = 'native_plants_initial_form';
-  $form = drupal_get_form('nas_master_native_plants_initial_form', $conf);
-  $rendered_form = drupal_render($form);
-
+  if (!empty($conf['nas_external_integration']['embed_script_js'])) {
+    $js_list = explode(PHP_EOL, $conf['nas_external_integration']['embed_script_js']);
+    foreach($js_list as $item) {
+      $item = trim($item);
+      if (strpos($item, 'http') === 0) {
+        drupal_add_js($item, 'external');
+      }
+      else {
+        drupal_add_js($item, array(
+          'weight' => 5,
+        ));
+      }
+    }
+  }
   $block = new stdClass();
-  $block->content = array(
+  if (!empty($conf['nas_external_integration']['embed_script'])) {
+    $rendered_form = $conf['nas_external_integration']['embed_script'];
+    $attache_js = array();
+    _nas_master_native_plants_attach_fields_sync($attache_js);
+    $block->content = $attache_js;
+  }
+  else {
+    $form = drupal_get_form('nas_master_native_plants_initial_form', $conf);
+    $rendered_form = drupal_render($form);
+  }
+  $block->content += array(
     '#theme' => 'native_plants_initial_form_pane',
     '#title_desktop' => t(filter_xss($conf['title_desktop'])),
     '#title_mobile' => t(filter_xss($conf['title_mobile'])),
@@ -186,7 +207,6 @@ function native_plants_initial_form_render($subtype, $conf, $args, $contexts) {
     '#form' => $rendered_form,
     '#context_links' => $contextual_links,
   );
-
   return $block;
 }
 

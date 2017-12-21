@@ -100,27 +100,73 @@ function nas_grid_gallery_edit_form($form, &$form_state) {
     '#prefix' => '<div id="gallery-images-wrapper">',
     '#suffix' => '</div>',
   );
-
+  $rows = array();
+  $row_elements = array();
+  if (!empty($conf['gallery_images']['table']['elements'])) {
+    // Reset keys to use array keys instead of ['weight'] of items.
+    $conf['gallery_images']['table']['elements'] = array_values($conf['gallery_images']['table']['elements']);
+  }
   for ($i = 0; $i < $form_state['storage']['count']; $i++) {
-    if (empty($conf['gallery_images'][$i])) {
-      $conf['images'][$i] = array();
+    if (!empty($conf['gallery_images'][$i]['image'])) {
+      // Fallback for previous version, without table dragging.
+      $default_value = $conf['gallery_images'][$i]['image'];
     }
-    $form['gallery_images'][$i]['image'] = array(
-      '#type' => 'media',
-      '#tree' => TRUE,
-      '#title' => t('Image № @number', array('@number' => $i + 1)),
-      '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
-      '#media_options' => array(
-        'global' => array(
-          'file_extensions' => 'png jpg jpeg gif',
-          'max_filesize' => '20 MB',
-          'file_directory' => 'grid_gallery',
-          'types' => array('image'),
+    elseif (!empty($conf['gallery_images']['table']['elements'][$i]['image']['fid'])) {
+      $default_value = $conf['gallery_images']['table']['elements'][$i]['image']['fid'];
+    }
+    else {
+      $default_value = '';
+    }
+    $rows[$i] = array(
+      'class' => array('draggable'),
+      'data' => array(
+        array(),
+        array(
+          'data' => array(
+            '#type' => 'media',
+            '#tree' => TRUE,
+            '#title' => t('Image № @number', array('@number' => $i + 1)),
+            '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+            '#media_options' => array(
+              'global' => array(
+                'file_extensions' => 'png jpg jpeg gif',
+                'max_filesize' => '20 MB',
+                'file_directory' => 'grid_gallery',
+                'types' => array('image'),
+              ),
+            ),
+            '#default_value' => $default_value,
+          ),
+          'class' => ''
         ),
-      ),
-      '#default_value' => !empty($conf['gallery_images'][$i]['image']) ? $conf['gallery_images'][$i]['image'] : '',
+        array(
+          'data' => array(
+            '#type' => 'textfield',
+            '#default_value' => $i,
+          ),
+          'class' => 'item-row-weight'
+        ),
+      )
+    );
+    $row_elements[$i] = array(
+      'image' => &$rows[$i]['data'][1]['data'],
+      'weight' => &$rows[$i]['data'][2]['data'],
     );
   }
+  $header = array(
+    'order' => '',
+    'image' => t('Image'),
+    'weight' => t('Weight'),
+  );
+  $form['gallery_images']['table'] = array(
+    '#theme' => 'table',
+    'elements' => $row_elements,
+    '#header' => $header,
+    '#rows' => $rows,
+    '#empty' => t('There are no entries available.'),
+    '#attributes' => array('id' => 'gallery-images-table'),
+  );
+  drupal_add_tabledrag('gallery-images-table', 'order', 'group', 'item-row-weight');
 
   $form['gallery_caption'] = array(
     '#type' => 'textarea',
@@ -168,9 +214,9 @@ function nas_grid_gallery_edit_form($form, &$form_state) {
 function nas_grid_gallery_edit_form_validate($form, $form_state) {
   $values = &$form_state['values'];
   // Check if all images exist.
-  if (isset($values['gallery_images'])) {
-    foreach ($values['gallery_images'] as $item) {
-      if (!$item['image']) {
+  if (isset($form_state['input']['gallery_images']['table']['elements'])) {
+    foreach ($form_state['input']['gallery_images']['table']['elements'] as $item) {
+      if (!$item['image']['fid']) {
         form_set_error('images', t('Please add other images.'));
       }
     }
@@ -189,7 +235,9 @@ function nas_grid_gallery_edit_form_validate($form, $form_state) {
 function nas_grid_gallery_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
     if (isset($form_state['values'][$key])) {
-      $form_state['conf'][$key] = $form_state['values'][$key];
+      $form_state['conf'][$key] = ($key == 'gallery_images')
+        ? $form_state['input'][$key]
+        : $form_state['values'][$key];
     }
   }
 }
@@ -203,8 +251,13 @@ function nas_grid_gallery_render($subtype, $conf, $args, $context) {
   if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
     $conf = array_merge($plugin['defaults'], $conf);
   }
-
-  if (!$conf['gallery_images']) {
+  if ($conf['gallery_images']) {
+    // Fallback for previous version, without table dragging.
+    if (!empty($conf['gallery_images']['table']['elements'])) {
+      $conf['gallery_images'] = $conf['gallery_images']['table']['elements'];
+    }
+  }
+  else {
     return;
   }
 
@@ -226,6 +279,10 @@ function nas_grid_gallery_render($subtype, $conf, $args, $context) {
   foreach ($conf['gallery_images'] as $image) {
     if (empty($image['image'])) {
       continue;
+    }
+    // Fallback for previous version, without table dragging.
+    if (is_array($image['image'])) {
+      $image['image'] = $image['image']['fid'];
     }
     if (!$image_file = file_load($image['image'])) {
       continue;

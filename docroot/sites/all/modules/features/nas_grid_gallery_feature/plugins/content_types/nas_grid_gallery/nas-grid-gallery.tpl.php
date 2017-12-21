@@ -27,6 +27,7 @@
   <?php foreach ($images as $image): ?>
     <div class="columns <?php print $image['class_column']; ?>">
       <a class="grid-gallery__lightbox white" href="<?php print $image['lightbox_path']; ?>" data-gallery="#grid-gallery">
+        <div title="<?php print t('Expand'); ?>" class="grid-gallery__expand"></div>
         <img class="grid-gallery__image"
              src="<?php print $image['thumbnail_path']; ?>"
              title="<?php print htmlspecialchars($image['title']); ?>"

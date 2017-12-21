@@ -8,4 +8,5 @@ sites/*/private
 
 # Ignore other paths
 sites/all/themes/custom/nas/.sass-cache
+sites/all/themes/custom/nas_amp/.sass-cache
 local_reinstall.yml

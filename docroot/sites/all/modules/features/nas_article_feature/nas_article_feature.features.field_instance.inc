@@ -655,7 +655,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 22,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -839,7 +839,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 21,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -1038,7 +1038,7 @@ function nas_article_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 47,
+      'weight' => 50,
     ),
   );
 
@@ -1053,7 +1053,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 26,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -1225,7 +1225,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 14,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -1432,7 +1432,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 23,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -1600,7 +1600,7 @@ function nas_article_feature_field_default_field_instances() {
         'checkall' => FALSE,
       ),
       'type' => 'options_buttons',
-      'weight' => 44,
+      'weight' => 47,
     ),
   );
 
@@ -1615,7 +1615,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 25,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'above',
@@ -1806,7 +1806,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 15,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -1965,7 +1965,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 28,
+        'weight' => 31,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -2136,7 +2136,7 @@ function nas_article_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 48,
+      'weight' => 51,
     ),
   );
 
@@ -2151,7 +2151,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 19,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -2342,7 +2342,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 30,
+        'weight' => 33,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -2527,7 +2527,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 27,
+        'weight' => 30,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -2740,7 +2740,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 29,
+        'weight' => 32,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -2925,7 +2925,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 13,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -3146,7 +3146,7 @@ function nas_article_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 46,
+      'weight' => 49,
     ),
   );
 
@@ -3161,7 +3161,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 31,
+        'weight' => 34,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -3314,7 +3314,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 25,
+        'weight' => 28,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -3498,7 +3498,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 24,
+        'weight' => 27,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -3681,7 +3681,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 26,
+        'weight' => 29,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -3856,7 +3856,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 24,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -4353,7 +4353,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 33,
+        'weight' => 36,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -4559,6 +4559,605 @@ function nas_article_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-article-field_hero_video'
+  $field_instances['node-article-field_hero_video'] = array(
+    'bundle' => 'article',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'default',
+        ),
+        'type' => 'media',
+        'weight' => 33,
+      ),
+      'editorial_card_3x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_related_news' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'rss' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser_author_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hero_video',
+    'label' => 'Hero video',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'epsacrop' => array(
+        'styles' => array(
+          'about_page_success_section' => 0,
+          'article_featured' => 0,
+          'birds_landing_banner' => 0,
+          'boa_family_species' => 0,
+          'boa_hero' => 0,
+          'boa_index_bio' => 0,
+          'boa_mail_subscription' => 0,
+          'boa_plate_binocular' => 0,
+          'boa_plate_thumbnail' => 0,
+          'conservation_slideshow_featured_project' => 0,
+          'conservation_slideshow_icon' => 0,
+          'conservation_strategy_slideshow' => 0,
+          'default_teaser_image' => 0,
+          'engagement_card' => 0,
+          'engagement_card_full_width' => 0,
+          'engagement_card_full_width_half_black' => 0,
+          'featured_frontpage' => 0,
+          'featured_frontpage_hero_image' => 0,
+          'front_flyway_image' => 0,
+          'get_outside' => 0,
+          'hero_cover_bird_page' => 0,
+          'hero_icon' => 0,
+          'hero_mobile' => 0,
+          'local_chapters_centers' => 0,
+          'magazine_issue_cover' => 0,
+          'magazine_issue_cover_teaser' => 0,
+          'nas_birds_landing_epsacrop_mobile' => 0,
+          'native_plant_desktop' => 0,
+          'native_plant_mobile' => 0,
+          'slideshow_sidebar' => 0,
+          'social_media_photo' => 0,
+          'social_owl_image' => 0,
+          'static_cards_two_columns' => 0,
+          'static_cards_two_columns_mobile' => 0,
+        ),
+      ),
+      'file_extensions' => 'mp4',
+      'quiz_result' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'feed' => 0,
+          'http' => 0,
+          'https' => 0,
+          'netx' => 0,
+          'private' => 'private',
+          'public' => 'public',
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 0,
+          'video' => 'video',
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'netx' => 'netx',
+          'netx-tree' => 'netx-tree',
+          'remote_file' => 0,
+          'upload' => 'upload',
+          'youtube' => 'youtube',
+        ),
+      ),
+      'type' => 'media_generic',
+      'weight' => 44,
+    ),
+  );
+
+  // Exported field_instance: 'node-article-field_hero_video_poster'
+  $field_instances['node-article-field_hero_video_poster'] = array(
+    'bundle' => 'article',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'default',
+        ),
+        'type' => 'media',
+        'weight' => 34,
+      ),
+      'editorial_card_3x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_related_news' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'rss' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser_author_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hero_video_poster',
+    'label' => 'Hero video poster',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'epsacrop' => array(
+        'styles' => array(
+          'about_page_success_section' => 0,
+          'article_featured' => 0,
+          'birds_landing_banner' => 0,
+          'boa_family_species' => 0,
+          'boa_hero' => 0,
+          'boa_index_bio' => 0,
+          'boa_mail_subscription' => 0,
+          'boa_plate_binocular' => 0,
+          'boa_plate_thumbnail' => 0,
+          'conservation_slideshow_featured_project' => 0,
+          'conservation_slideshow_icon' => 0,
+          'conservation_strategy_slideshow' => 0,
+          'default_teaser_image' => 0,
+          'engagement_card' => 0,
+          'engagement_card_full_width' => 0,
+          'engagement_card_full_width_half_black' => 0,
+          'featured_frontpage' => 0,
+          'featured_frontpage_hero_image' => 0,
+          'front_flyway_image' => 0,
+          'get_outside' => 0,
+          'hero_cover_bird_page' => 0,
+          'hero_icon' => 0,
+          'hero_mobile' => 0,
+          'local_chapters_centers' => 0,
+          'magazine_issue_cover' => 0,
+          'magazine_issue_cover_teaser' => 0,
+          'nas_birds_landing_epsacrop_mobile' => 0,
+          'native_plant_desktop' => 0,
+          'native_plant_mobile' => 0,
+          'slideshow_sidebar' => 0,
+          'social_media_photo' => 0,
+          'social_owl_image' => 0,
+          'static_cards_two_columns' => 0,
+          'static_cards_two_columns_mobile' => 0,
+        ),
+      ),
+      'file_extensions' => 'jpg jpeg gif png',
+      'quiz_result' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'feed' => 0,
+          'http' => 0,
+          'https' => 0,
+          'netx' => 0,
+          'private' => 'private',
+          'public' => 'public',
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'netx' => 'netx',
+          'netx-tree' => 'netx-tree',
+          'remote_file' => 0,
+          'upload' => 'upload',
+          'youtube' => 0,
+        ),
+      ),
+      'type' => 'media_generic',
+      'weight' => 45,
+    ),
+  );
+
+  // Exported field_instance: 'node-article-field_hero_video_settings'
+  $field_instances['node-article-field_hero_video_settings'] = array(
+    'bundle' => 'article',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 35,
+      ),
+      'editorial_card_3x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_related_news' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'rss' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser_author_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hero_video_settings',
+    'label' => 'hero video settings',
+    'required' => 0,
+    'settings' => array(
+      'checkall' => array(
+        'checkall' => 0,
+        'checkall-check-all' => 1,
+        'checkall-toggle' => 1,
+        'checkall-uncheck-all' => 1,
+      ),
+      'entity_translation_sync' => FALSE,
+      'quiz_result' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'checkall' => FALSE,
+      ),
+      'type' => 'options_buttons',
+      'weight' => 14,
+    ),
+  );
+
   // Exported field_instance: 'node-article-field_internal_tagging'
   $field_instances['node-article-field_internal_tagging'] = array(
     'bundle' => 'article',
@@ -4570,7 +5169,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 17,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -4761,7 +5360,7 @@ function nas_article_feature_field_default_field_instances() {
         'module' => 'amp',
         'settings' => array(),
         'type' => 'amp_text',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -4976,7 +5575,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 18,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -5179,7 +5778,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 7,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -5376,7 +5975,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 20,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -5564,7 +6163,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 49,
+      'weight' => 52,
     ),
   );
 
@@ -5579,7 +6178,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 32,
+        'weight' => 35,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -5734,7 +6333,7 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 16,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -5935,9 +6534,10 @@ function nas_article_feature_field_default_field_instances() {
     'display' => array(
       'amp' => array(
         'label' => 'hidden',
+        'module' => 'amp',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 11,
+        'type' => 'amp_text',
+        'weight' => 3,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -6148,6 +6748,8 @@ function nas_article_feature_field_default_field_instances() {
   t('For internal use only');
   t('Hero Image');
   t('Hero Mobile Image');
+  t('Hero video');
+  t('Hero video poster');
   t('If multiple menu sections are selected, the section at the bottom of the list will appear in the blue slug link above the headline.');
   t('If this field is filled instead of displaying the node, user will be redirected to specified url. Please include "http://" at the start for external websites.');
   t('Internal tagging');
@@ -6162,6 +6764,7 @@ function nas_article_feature_field_default_field_instances() {
   t('Subtitle');
   t('To be used when building a link to the node. For example in Editorial Card.');
   t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image. (Applies for fullscreen image layout)');
+  t('hero video settings');
 
   return $field_instances;
 }

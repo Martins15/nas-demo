@@ -312,37 +312,72 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
 
   $states = array(
     'big_image' => array(
-      'field_hero_image',
-      'field_hero_mobile_image',
-      'field_color_mode',
+      'visible' => array(
+        'field_hero_image',
+        'field_hero_mobile_image',
+        'field_color_mode',
+      ),
     ),
     'inline_hero_photo' => array(
-      'field_hero_image',
-      'field_hero_mobile_image',
+      'visible' => array(
+        'field_hero_image',
+        'field_hero_mobile_image',
+      ),
     ),
     'default' => array(),
     'fullscreen_image' => array(
-      'field_hero_image',
-      'field_hero_mobile_image',
-      'field_color_mode',
+      'visible' => array(
+        'field_hero_image',
+        'field_hero_mobile_image',
+        'field_color_mode',
+      ),
     ),
     'map' => array(
-      'field_article_map',
-      'field_credit_caption_map',
+      'visible' => array(
+        'field_article_map',
+        'field_credit_caption_map',
+      ),
     ),
     'fullwidth' => array(
-      'field_hero_image',
-      'field_hero_mobile_image',
+      'visible' => array(
+        'field_hero_image',
+        'field_hero_mobile_image',
+      ),
     ),
     'press_release' => array(
-      'field_pressrelease_contact',
+      'visible' => array(
+        'field_pressrelease_contact',
+      ),
+    ),
+    'fullscreen_video' => array(
+      'visible' => array(
+        'field_color_mode',
+        'field_hero_video_poster',
+        'field_hero_video_settings',
+        'field_hero_video',
+      ),
+      'required' => array(
+        'field_hero_video',
+      ),
+    ),
+    'standard_hero_video' => array(
+      'visible' => array(
+        'field_hero_video_poster',
+        'field_hero_video_settings',
+        'field_hero_video',
+      ),
+      'required' => array(
+        'field_hero_video',
+      ),
     ),
   );
 
   // Add custom states for each fields with appropriate panelizer mode.
-  foreach ($states as $panelizer_mode => $fields) {
-    foreach ($fields as $field) {
-      $form[$field]['#states']['visible'][':input[name="panelizer[page_manager][name]"]'][]['value'] = 'node:article:' . $panelizer_mode;
+  foreach ($states as $panelizer_mode => $properties) {
+    foreach ($properties as $property => $state) {
+      foreach ($state as $field) {
+        $form[$field]['#states'][$property][':input[name="panelizer[page_manager][name]"]'][]['value'] = 'node:article:' . $panelizer_mode;
+      }
     }
   }
 
