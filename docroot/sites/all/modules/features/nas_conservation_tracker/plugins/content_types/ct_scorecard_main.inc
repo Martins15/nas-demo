@@ -49,26 +49,26 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
 
   // Actions.
   $actions = array(
-    array(
-      'name' => 'action one',
-      'value' => 20,
-    ),
-    array(
-      'name' => 'action two',
-      'value' => 25,
-    ),
-    array(
-      'name' => 'action three',
-      'value' => 80,
-    ),
-    array(
-      'name' => 'action four',
-      'value' => 65,
-    ),
-    array(
-      'name' => 'action five',
-      'value' => 45,
-    ),
+//    array(
+//      'name' => 'action one',
+//      'value' => 20,
+//    ),
+//    array(
+//      'name' => 'action two',
+//      'value' => 25,
+//    ),
+//    array(
+//      'name' => 'action three',
+//      'value' => 80,
+//    ),
+//    array(
+//      'name' => 'action four',
+//      'value' => 65,
+//    ),
+//    array(
+//      'name' => 'action five',
+//      'value' => 45,
+//    ),
   );
 
   $actions_chart = array(

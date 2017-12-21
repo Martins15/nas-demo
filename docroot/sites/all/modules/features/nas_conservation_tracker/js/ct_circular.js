@@ -109,7 +109,7 @@
       },
       update: function(settings){
         this.clear();
-        drawData(select, settings)
+        drawData(select, settings);
       },
     }
 
