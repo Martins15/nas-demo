@@ -31,7 +31,7 @@
                 <div class="title-wrap__title columns tiny-10"><h3>Threats
                         Overview</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
-                    Download
+                    <span class="img-block print"></span> <span class="img-block download"></span> Download
                 </div>
             </div>
             <div class="body-wrap columns large-8">
@@ -52,7 +52,7 @@
                 <div class="title-wrap__title columns tiny-10"><h3>Threats
                         Overview</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
-                    Download
+                    <span class="img-block print"></span> <span class="img-block download"></span> Download
                 </div>
             </div>
             <div class="body-wrap columns large-8">
@@ -72,7 +72,7 @@
                 <div class="title-wrap__title columns tiny-10"><h3>Threats
                         Overview</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
-                    Download
+                    <span class="img-block print"></span> <span class="img-block download"></span> Download
                 </div>
             </div>
             <div class="body-wrap columns large-8">
