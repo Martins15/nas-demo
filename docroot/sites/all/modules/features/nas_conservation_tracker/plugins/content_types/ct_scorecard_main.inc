@@ -30,7 +30,6 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   $block = new stdClass();
   $data = nas_conservation_tracker_get_json('scorecard-123');
 
-  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/us-states.js');
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/unit-data.js');
   drupal_add_js(array('nas_conservation_tracker' => array('json_data' => $data)), 'setting');
 
@@ -96,8 +95,10 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
     ),
   );
 
+  $form = drupal_get_form('nas_conservation_tracker_map_form');
+
   $vars = array(
-    'form' => render(drupal_get_form('nas_conservation_tracker_map_form')),
+    'form' => render($form),
     'map' => render($map),
     'actions' => d3_draw($actions_chart),
     'objectives' => d3_draw($objectives_chart),
@@ -113,7 +114,7 @@ function nas_conservation_tracker_map_form($form, &$form_state) {
     '#action' => '#',
     'map_type' => array('#type' => 'radios',
       '#title' => t('UNIT NAME:'),
-      '#default_value' => 'state',
+      '#default_value' => 'county',
       '#options' => array(
         'state' => t('State'),
         'county' => t('County'),

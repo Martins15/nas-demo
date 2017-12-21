@@ -172,7 +172,7 @@ function nas_conservation_tracker_get_json($path) {
  * @param $id
  */
 function nas_conservation_tracker_get_scorecard_json($id, $type = 'actions') {
-  $result = array('data' => array(), success => 0);
+  $result = array('data' => array(), 'success' => 0);
   if (!empty($id) && is_numeric($id)) {
     $data = nas_conservation_tracker_get_json('scorecard-' . $id);
     $types = array('threats', 'actions', 'responses', 'partners');
