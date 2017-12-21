@@ -42,6 +42,29 @@ $padding-item: 25px 17.5px 0;
       height: auto;
     }
   }
+  .title-wrap {
+    &__print {
+      color: #9b9b9b;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-family: $font-sans;
+      .img-block {
+        width: 20px;
+        height: 18px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: inline-block;
+      }
+      .download {
+        background-image: url("../img/bird-page/download.png");
+      }
+      .print {
+        background-image: url("../img/bird-page/print.png");
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
 .map-items.bird-page {
@@ -352,6 +375,9 @@ $padding-item: 25px 17.5px 0;
       display: block;
     }
   }
+  @include breakpoint(large-up) {
+    padding-bottom: 60px;
+  }
 }
 
 .ct-scorecard-tabs {
@@ -408,6 +434,7 @@ $padding-item: 25px 17.5px 0;
     position: relative;
     z-index: 9999;
     max-width: 572px;
+    width: 62.66666666666667%;
     margin-bottom: 40px;
     float: right;
     clear: both;
@@ -457,5 +484,9 @@ $padding-item: 25px 17.5px 0;
         line-height: 1.38;
       }
     }
+  }
+  .mailing-list {
+    // @todo update when other blocks will be ready.
+    margin-top: 40px;
   }
 }
