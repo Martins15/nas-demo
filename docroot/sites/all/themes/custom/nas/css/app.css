@@ -17772,6 +17772,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin-top: 10px;
   padding-top: 10px;
 }
+.map-items.bird-page.demo-block .row {
+  background: url("../img/bird-page/map.png") no-repeat center center;
+}
 
 .map-item {
   width: 96%;
@@ -17969,7 +17972,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   background-image: url("../img/bird-page/third-item.png");
 }
 .ct-item-nav-conservation .text-wrap {
-  padding-right: 50px;
+  padding-left: 50px;
   border-left: 1px solid #d9d9d9;
 }
 @media only screen and (min-width: 768px) {
@@ -17978,11 +17981,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     font-weight: 300;
     line-height: 1.21;
     margin: 0;
+    color: #000;
   }
 }
 @media only screen and (min-width: 768px) {
   .ct-item-nav-conservation .text-wrap p {
     font-size: 14px;
+    line-height: 15px;
     color: #76736c;
   }
 }
