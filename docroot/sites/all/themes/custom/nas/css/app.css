@@ -18077,8 +18077,35 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: block;
 }
 
-.messages.error {
-  display: none !important;
+.ct-scorecard-tabs {
+  background: #1c1c1c;
+  padding: 15px 0;
+}
+.ct-scorecard-tabs a {
+  font-size: 17px;
+  text-align: left;
+  color: #fff;
+  opacity: .5;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  margin-right: 15px;
+}
+.ct-scorecard-tabs a:first-child, .ct-scorecard-tabs a.active, .ct-scorecard-tabs a:hover {
+  opacity: 1;
+}
+.ct-scorecard-tabs a:first-child:after {
+  content: '';
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  opacity: .2;
+  display: inline-block;
+  padding: 4px;
+  border-radius: 0;
+  margin-left: 10px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.ct-scorecard-tabs a:last-child {
+  margin-right: 0;
 }
 
 .species-filter {
