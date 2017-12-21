@@ -12,7 +12,7 @@
  *    // shape: 'square',
  *  };
  * </script>
- * <script id="embeddedNativePlantsForm" src="http://audubon.org/sites/all/modules/custom/native_plants_embed_form/native_plants_embed_form.js"></script>
+ * <script id="native-plants-embed-form" src="http://audubon.org/sites/all/modules/custom/native_plants_embed_form/native_plants_embed_form.js"></script>
  */
 
 window.onload = function() {
@@ -20,7 +20,7 @@ window.onload = function() {
 };
 
 function nativePlantsEmbedForm() {
-  var id = 'embeddedNativePlantsForm',
+  var id = 'native-plants-embed-form',
       script = document.getElementById(id);
   if (typeof script === 'undefined') {
     return;
@@ -28,7 +28,7 @@ function nativePlantsEmbedForm() {
   var path = script.src.split('/')
     , homePath = path[0] + '//' + path[2];
   addAssets('script', 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js');
-  addAssets('link', homePath + '/sites/all/modules/custom/native_plants_embed_form/native_plants_embed_form.css');
+  addAssets('link', homePath + '/sites/all/modules/custom/native_plants_embed_form/native_plants_embed_form.min.css');
   addAssets('link', 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
 
   var parent = script.parentElement
