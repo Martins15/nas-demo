@@ -87,11 +87,11 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
     'id' => 'd3-objectives',
     'type' => 'ct_circular',
     'rows' => array(
-      array('Development', 50),
-      array('Strategy', 60),
-      array('Design', 90),
-      array('QA', 23),
-      array('Lorem ipsum', 41),
+//      array('Development', 50),
+//      array('Strategy', 60),
+//      array('Design', 90),
+//      array('QA', 23),
+//      array('Lorem ipsum', 41),
     ),
   );
 
