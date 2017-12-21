@@ -43,7 +43,7 @@
 
       $stateProvider
         .state(threats, {
-          url:  pathname + '/' + threats
+          url: pathname + '/' + threats
         })
         .state(actions, {
           url: pathname + '/' + actions
