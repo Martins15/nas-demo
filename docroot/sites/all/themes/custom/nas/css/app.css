@@ -18002,6 +18002,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-left: 50px;
   border-left: 1px solid #d9d9d9;
 }
+.ct-item-nav-conservation .text-wrap__content > div {
+  display: none;
+}
+.ct-item-nav-conservation .text-wrap__content > div.active {
+  display: block;
+}
 @media only screen and (min-width: 768px) {
   .ct-item-nav-conservation .text-wrap h4 {
     font-size: 33px;

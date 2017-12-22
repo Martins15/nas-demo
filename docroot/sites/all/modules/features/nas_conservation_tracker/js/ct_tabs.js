@@ -71,6 +71,7 @@
           $scope.tabs.forEach(function (tab) {
             tab.active = $scope.active(tab.route);
           });
+          $scope.isActiveTab = $state.current.name;
         });
 
       }

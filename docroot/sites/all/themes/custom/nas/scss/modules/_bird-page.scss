@@ -272,6 +272,14 @@ $padding-item: 25px 17.5px 0;
   .text-wrap {
     padding-left: 50px;
     border-left: 1px solid $border-bird;
+    &__content {
+      > div {
+        display: none;
+        &.active {
+          display: block;
+        }
+      }
+    }
     h4 {
       @include breakpoint(large-up) {
         font-size: 33px;
