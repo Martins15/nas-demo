@@ -32,6 +32,10 @@
     flex-wrap: wrap;
 }
 
+.at.rectangle .at-fields {
+    margin-top: -6px;
+}
+
 .at fieldset.at-fieldset {
     padding: 18px 26px 15px;
 }
@@ -46,10 +50,11 @@
     margin: 0;
     font-family: "Source Sans Pro";
     padding-top: 16px;
+    line-height: 1;
 }
 
 .at.rectangle fieldset legend.at-legend {
-    padding-top: 14px;
+    padding-top: 6px;
 }
 
 .at.black .at-row,
@@ -68,7 +73,7 @@
 
 .at .at-submit.btn-at-primary {
     position: absolute;
-    top: 52.5%;
+    top: 48.5%;
     width: 145px;
     background: #F15936;
     border-radius: 6px;
@@ -81,9 +86,9 @@
 }
 
 .at.rectangle .at-submit.btn-at-primary {
-    top: 40%;
-    right: 22px;
-    width: 80px;
+    top: 35%;
+    right: 35px;
+    width: 65px;
 }
 
 .at .at-row input {
