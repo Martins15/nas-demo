@@ -33,6 +33,46 @@ function nas_conservation_tracker_init() {
     'weight' => 999,
     'group' => JS_THEME,
   ));
+
+
+  _nas_conservation_tracker_get_real_path(TRUE);
+
+//  $sections = arg();
+//  $path = array_pop($sections);
+//  $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
+//
+//  if (in_array($path, $types)) {
+//    $alias = implode('/', $sections);
+//    $source = drupal_get_normal_path($alias);
+//    if (strpos($source, 'node/') === 0) {
+//      menu_execute_active_handler($source);
+//      drupal_exit();
+//    }
+//  }
+}
+
+/**
+ * Implements hook_init().
+ */
+function _nas_conservation_tracker_get_real_path($load = FALSE) {
+  $current_sections = $sections = arg();
+
+  $path = array_pop($sections);
+  $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
+
+  if (in_array($path, $types)) {
+    $alias = implode('/', $sections);
+    $source = drupal_get_normal_path($alias);
+    if (strpos($source, 'node/') === 0) {
+      if ($load) {
+        menu_execute_active_handler($source);
+        drupal_exit();
+      }
+      return $source;
+    }
+  }
+
+  return  implode('/', $current_sections);
 }
 
 /**
@@ -67,6 +107,7 @@ function nas_conservation_tracker_libraries_info() {
   $libs = array(
     'ct_linegraph' => 'CT Line Graph',
     'ct_circular' => 'CT Circular',
+    'ct_bar' => 'CT Bar Graph',
   );
 
   foreach ($libs as $filename => $name) {
@@ -175,7 +216,7 @@ function nas_conservation_tracker_get_scorecard_json($id, $type = 'actions') {
   $result = array('data' => array(), 'success' => 0);
   if (!empty($id) && is_numeric($id)) {
     $data = nas_conservation_tracker_get_json('scorecard-' . $id);
-    $types = array('threats', 'actions', 'responses', 'partners');
+    $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
     if (!in_array($type, $types)) {
       $type = 'actions';
     }

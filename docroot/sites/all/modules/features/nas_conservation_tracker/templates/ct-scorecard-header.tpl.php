@@ -12,7 +12,7 @@
       <div class="columns large-12 large-centered">
         <h1 class="hero-title"><?php print $name; ?></h1>
         <p class="hero-blurb"><?php print $subtitle; ?></p>
-        <p><?php print $description; ?></p>
+<!--        <p>--><?php //print $description; ?><!--</p>-->
       </div>
     </div>
   </div>

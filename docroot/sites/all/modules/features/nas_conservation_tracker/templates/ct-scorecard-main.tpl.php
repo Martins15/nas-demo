@@ -7,8 +7,8 @@
   <div>
     <?php print $form; ?>
   </div>
-  <div class="row">
     <?php print $map; ?>
+    <div class="row">
       <div class="help-wrap-items-map-items">
           <div class="diagram-wrap help-bg-white columns map-item large-8">
               <div class="map-item__inner-help">

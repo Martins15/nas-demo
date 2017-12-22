@@ -16,7 +16,18 @@
         </div>
         <div class="text-wrap columns large-6">
             <div class="text-wrap__content" ng-cloak>
-
+                <div class="threats" ng-class="{'active': isActiveTab === 'threats'}">
+                    <h4>Threats</h4>
+                    <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
+                </div>
+                <div class="actions" ng-class="{'active': isActiveTab === 'actions'}">
+                    <h4>Actions</h4>
+                    <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
+                </div>
+                <div class="responses"  ng-class="{'active': isActiveTab === 'responses'}">
+                    <h4>Responses</h4>
+                    <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -31,7 +42,7 @@
                 <div class="title-wrap__title columns tiny-10"><h3>Threats
                         Overview</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
-                    Download
+                    <span class="img-block print"></span> <span class="img-block download"></span> Download
                 </div>
             </div>
             <div class="body-wrap columns large-8">
@@ -52,7 +63,7 @@
                 <div class="title-wrap__title columns tiny-10"><h3>Threats
                         Overview</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
-                    Download
+                    <span class="img-block print"></span> <span class="img-block download"></span> Download
                 </div>
             </div>
             <div class="body-wrap columns large-8">
@@ -72,7 +83,7 @@
                 <div class="title-wrap__title columns tiny-10"><h3>Threats
                         Overview</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
-                    Download
+                    <span class="img-block print"></span> <span class="img-block download"></span> Download
                 </div>
             </div>
             <div class="body-wrap columns large-8">

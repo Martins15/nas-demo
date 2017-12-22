@@ -7,7 +7,11 @@
 /**
  * Create scorecard node(s).
  */
-function nas_conservation_tracker_update_7001() {
+function nas_conservation_tracker_update_7002() {
+  global $base_url;
+  $demo_url = $base_url . '/sites/all/modules/features/nas_conservation_tracker/demo_assets';
+  variable_set('nas_conservation_tracker_endpoint', $demo_url);
+
   $data = nas_conservation_tracker_get_json('scorecard-123');
   $node = new StdClass();
   $node->type = 'ct_scorecard';
@@ -17,4 +21,15 @@ function nas_conservation_tracker_update_7001() {
   $node->field_scorecard_id[LANGUAGE_NONE][]['value'] = $data['id'];
   $node = node_submit($node);
   node_save($node);
+}
+
+/**
+ * Revert conservation tracker feature.
+ */
+function nas_conservation_tracker_update_7003() {
+  features_revert(array(
+    'nas_conservation_tracker' => array(
+      'page_manager_pages',
+    ),
+  ));
 }

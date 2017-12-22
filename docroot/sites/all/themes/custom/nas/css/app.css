@@ -17766,9 +17766,30 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   width: 100%;
   height: auto;
 }
+.bird-page.body-item .title-wrap__print {
+  color: #9b9b9b;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.bird-page.body-item .title-wrap__print .img-block {
+  width: 20px;
+  height: 18px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+}
+.bird-page.body-item .title-wrap__print .download {
+  background-image: url("../img/bird-page/download.png");
+}
+.bird-page.body-item .title-wrap__print .print {
+  background-image: url("../img/bird-page/print.png");
+  margin-right: 10px;
+}
 
 .map-items.bird-page {
-  background: #1c1c1c;
+  background: #0E0E0E;
   margin-top: 10px;
   padding-top: 10px;
 }
@@ -17981,6 +18002,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-left: 50px;
   border-left: 1px solid #d9d9d9;
 }
+.ct-item-nav-conservation .text-wrap__content > div {
+  display: none;
+}
+.ct-item-nav-conservation .text-wrap__content > div.active {
+  display: block;
+}
 @media only screen and (min-width: 768px) {
   .ct-item-nav-conservation .text-wrap h4 {
     font-size: 33px;
@@ -18086,6 +18113,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .tabs-ng-content .bird-page.active {
   display: block;
 }
+@media only screen and (min-width: 768px) {
+  .tabs-ng-content {
+    padding-bottom: 60px;
+  }
+}
 
 .ct-scorecard-tabs {
   background: #1c1c1c;
@@ -18126,6 +18158,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     min-height: 800px;
   }
 }
+.ct-scorecard-main .leaflet-container {
+  width: 100%;
+}
 @media only screen and (min-width: 768px) {
   .ct-scorecard-main .leaflet-container {
     position: absolute;
@@ -18139,14 +18174,20 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     position: relative;
     z-index: 9999;
     max-width: 572px;
+    width: 62.66666666666667%;
     margin-bottom: 40px;
     float: right;
     clear: both;
   }
 }
 
-.leaflet-container {
-  background: #1c1c1c;
+.leaflet-container,
+.ct-scorecard-main {
+  background: #0E0E0E;
+}
+
+.ct-scorecard-main {
+  position: relative;
 }
 
 .node-type-ct-scorecard .hero-header {
@@ -18189,6 +18230,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     font-size: 24px;
     line-height: 1.38;
   }
+}
+.node-type-ct-scorecard .mailing-list {
+  margin-top: 40px;
 }
 
 .species-filter {
