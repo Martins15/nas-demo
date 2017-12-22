@@ -19,19 +19,6 @@ function nas_conservation_tracker_ctools_plugin_directory($module, $plugin) {
  * Implements hook_init().
  */
 function nas_conservation_tracker_init() {
-
-  $sections = arg();
-  $path = array_pop($sections);
-  $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
-
-  if (in_array($path, $types)) {
-    $alias = implode('/', $sections);
-    $source = drupal_get_normal_path($alias);
-    menu_execute_active_handler($source);
-    drupal_exit();
-  }
-
-
   //@todo need correct include js file.
   drupal_add_js('//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js', 'external');
   drupal_add_js('//unpkg.com/angular-ui-router@0.3.2/release/angular-ui-router.min.js', 'external');
@@ -46,6 +33,20 @@ function nas_conservation_tracker_init() {
     'weight' => 999,
     'group' => JS_THEME,
   ));
+
+
+  $sections = arg();
+  $path = array_pop($sections);
+  $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
+
+  if (in_array($path, $types)) {
+    $alias = implode('/', $sections);
+    $source = drupal_get_normal_path($alias);
+    if (strpos($source, 'node/') === 0) {
+      menu_execute_active_handler($source);
+      drupal_exit();
+    }
+  }
 }
 
 /**
