@@ -28,6 +28,10 @@
                     <h4>Responses</h4>
                     <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
                 </div>
+                <div class="partners"  ng-class="{'active': isActiveTab === 'partners'}">
+                    <h4>Partners</h4>
+                    <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -39,7 +43,7 @@
         <div class="bird-page body-item" ng-cloak
              ng-class="{'active': isActive === 'responses'}">
             <div class="title-wrap">
-                <div class="title-wrap__title columns tiny-10"><h3>Threats
+                <div class="title-wrap__title columns tiny-10"><h3>Responses
                         Overview</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
                     <span class="img-block print"></span> <span class="img-block download"></span> Download
@@ -60,7 +64,7 @@
         <div class="bird-page body-item" ng-cloak
              ng-class="{'active': isActive === 'actions'}">
             <div class="title-wrap">
-                <div class="title-wrap__title columns tiny-10"><h3>Threats
+                <div class="title-wrap__title columns tiny-10"><h3>Actions
                         Overview</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
                     <span class="img-block print"></span> <span class="img-block download"></span> Download
@@ -94,6 +98,26 @@
             <div class="video-wrap columns large-4">
                 <div class="video-wrap__item help-img-full">
                     <img src={{threats.data.settings.threats.image}} alt="">
+                </div>
+            </div>
+        </div>
+        <div class="bird-page body-item" ng-cloak
+             ng-class="{'active': isActive === 'partners'}">
+            <div class="title-wrap">
+                <div class="title-wrap__title columns tiny-10"><h3>Partners
+                        Overview</h3></div>
+                <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
+                    <span class="img-block print"></span> <span class="img-block download"></span> Download
+                </div>
+            </div>
+            <div class="body-wrap columns large-8">
+                <div class="body-wrap__body-text">
+                    <p>{{partners.data.settings.partners.description}}</p>
+                </div>
+            </div>
+            <div class="video-wrap columns large-4">
+                <div class="video-wrap__item help-img-full">
+                    <img src={{partners.data.settings.partners.image}} alt="">
                 </div>
             </div>
         </div>
