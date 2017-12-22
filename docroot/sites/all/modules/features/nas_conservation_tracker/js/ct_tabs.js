@@ -7,13 +7,20 @@
     }
     $('body').addClass('nas-cta-tabs-angular-processed');
 
-    var pathname = window.location.pathname;
-    $('head').append('<base href="' + settings.basePath + '">');
+    var linkArray = ['threats', 'actions', 'responses']
+      , pathName = window.location.pathname
+      , pathArray = window.location.pathname.split('/')
+      , lastName = pathArray.slice(-1)[0]
+      , activeUrl = '';
 
-    // Set constant for url page.
-    const threats = 'threats',
-      actions = 'actions',
-      responses = 'responses';
+    $('head').append('<base href="' + settings.basePath + '">');
+    
+    if (linkArray.includes(lastName)) {
+      activeUrl = pathArray.slice(0, -1).join('/');
+    }
+    else {
+      activeUrl = pathName;
+    }
 
     var NativeCtaApp = angular.module('NativeCta', [
       'ngCookies',
@@ -41,16 +48,10 @@
         rewriteLinks: false
       });
 
-      $stateProvider
-        .state(threats, {
-          url: pathname + '/' + threats
-        })
-        .state(actions, {
-          url: pathname + '/' + actions
-        })
-        .state(responses, {
-          url: pathname + '/' + responses
-        });
+      linkArray.forEach(function(item) {
+          $stateProvider.state(item, {url: activeUrl + '/' + item});
+      });
+
     });
 
     NativeCtaApp.controller('Tabs', [
@@ -61,11 +62,12 @@
           return $state.is(route);
         };
 
-        $scope.tabs = [
-          {heading: "threats", route: threats, active: false, class: 'threats'},
-          {heading: "actions", route: actions, active: false, class: 'actions'},
-          {heading: "responses", route: responses, active: false, class: 'responses'}
-        ];
+        var tabsArray = [];
+        linkArray.forEach(function(item) {
+          tabsArray.push({heading: item, route: item, active: false, class: item});
+        });
+
+        $scope.tabs = tabsArray;
 
         $scope.$on("$stateChangeSuccess", function () { // Keep the right tab highlighted if the URL changes.
           $scope.tabs.forEach(function (tab) {
@@ -85,36 +87,20 @@
 
         // Load json file.
         function getContent(currentName) {
-          if (currentName === threats) {
-            $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/threats')
-              .then(function (response) {
-                $scope.threats = response.data;
-                // @TODO write it once.
-                Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
-                Drupal.nas_conservation_tracker_init_map();
-                Drupal.nas_conservation_tracker_init_charts();
-              });
-          }
-          if (currentName === actions) {
-            $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/actions')
-              .then(function (response) {
-                $scope.actions = response.data;
-                // @TODO write it once.
-                Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
-                Drupal.nas_conservation_tracker_init_map();
-                Drupal.nas_conservation_tracker_init_charts();
-              });
-          }
-          if (currentName === responses) {
-            $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/responses')
-              .then(function (response) {
-                // @TODO write it once.
-                $scope.responses = response.data;
-                Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
-                Drupal.nas_conservation_tracker_init_map();
-                Drupal.nas_conservation_tracker_init_charts();
-              });
-          }
+
+          linkArray.forEach(function(item) {
+            if (currentName === item) {
+              $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + item)
+                .then(function (response) {
+                  // @TODO write it once.
+                  $scope[item] = response.data;
+                  Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
+                  Drupal.nas_conservation_tracker_init_map();
+                  Drupal.nas_conservation_tracker_init_charts();
+                  console.log($scope);
+                });
+            }
+          });
         }
 
         // On load.
