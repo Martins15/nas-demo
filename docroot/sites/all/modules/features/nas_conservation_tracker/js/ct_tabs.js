@@ -88,24 +88,30 @@
             $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/threats')
               .then(function (response) {
                 $scope.threats = response.data;
+                // @TODO write it once.
                 Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
-                Drupal.nas_conservation_tracker_init();
+                Drupal.nas_conservation_tracker_init_map();
+                Drupal.nas_conservation_tracker_init_charts();
               });
           }
           if (currentName === actions) {
             $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/actions')
               .then(function (response) {
                 $scope.actions = response.data;
+                // @TODO write it once.
                 Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
-                Drupal.nas_conservation_tracker_init();
+                Drupal.nas_conservation_tracker_init_map();
+                Drupal.nas_conservation_tracker_init_charts();
               });
           }
           if (currentName === responses) {
             $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/responses')
               .then(function (response) {
+                // @TODO write it once.
                 $scope.responses = response.data;
                 Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
-                Drupal.nas_conservation_tracker_init();
+                Drupal.nas_conservation_tracker_init_map();
+                Drupal.nas_conservation_tracker_init_charts();
               });
           }
         }

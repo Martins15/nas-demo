@@ -4,6 +4,9 @@
  */
 ?>
 <aside class="ct-scorecard-main map-items bird-page">
+  <div>
+    <?php print $form; ?>
+  </div>
   <div class="row">
     <?php print $map; ?>
       <div class="help-wrap-items-map-items">
