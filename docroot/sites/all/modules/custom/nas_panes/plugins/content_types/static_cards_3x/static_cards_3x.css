@@ -1,0 +1,15 @@
+.static-cards-multiple .image_link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.static-cards-multiple a {
+    color: #fff;
+}
+
+.static-cards-multiple a:hover {
+    color: #e3e3e3;
+}
