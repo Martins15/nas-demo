@@ -7,7 +7,7 @@
     }
     $('body').addClass('nas-cta-tabs-angular-processed');
 
-    var linkArray = ['threats', 'actions', 'responses']
+    var linkArray = ['threats', 'actions', 'responses', 'partners']
       , pathName = window.location.pathname
       , pathArray = window.location.pathname.split('/')
       , lastName = pathArray.slice(-1)[0]

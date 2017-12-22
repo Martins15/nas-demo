@@ -17789,7 +17789,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .map-items.bird-page {
-  background: #0E0E0E;
+  background: #212121;
   margin-top: 10px;
   padding-top: 10px;
 }
@@ -18180,10 +18180,26 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     clear: both;
   }
 }
+@media only screen and (min-width: 1000px) {
+  .help-wrap-items-map-items {
+    margin-right: 15.27777777777778%;
+  }
+}
+
+.wrap-map-diagram {
+  position: relative;
+}
+@media only screen and (min-width: 768px) {
+  .wrap-map-diagram {
+    min-height: 800px;
+    background: #212121;
+    overflow: hidden;
+  }
+}
 
 .leaflet-container,
 .ct-scorecard-main {
-  background: #0E0E0E;
+  background: #212121;
 }
 
 .ct-scorecard-main {
