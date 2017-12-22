@@ -17789,7 +17789,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .map-items.bird-page {
-  background: #1c1c1c;
+  background: #0E0E0E;
   margin-top: 10px;
   padding-top: 10px;
 }
@@ -18152,6 +18152,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     min-height: 800px;
   }
 }
+.ct-scorecard-main .leaflet-container {
+  width: 100%;
+}
 @media only screen and (min-width: 768px) {
   .ct-scorecard-main .leaflet-container {
     position: absolute;
@@ -18172,8 +18175,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
-.leaflet-container {
-  background: #0e0e0e;
+.leaflet-container,
+.ct-scorecard-main {
+  background: #0E0E0E;
+}
+
+.ct-scorecard-main {
+  position: relative;
 }
 
 .node-type-ct-scorecard .hero-header {
