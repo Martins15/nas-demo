@@ -140,7 +140,8 @@
       var mainRows = Object.keys(mainObjRows).map(function (key) { return [key, mainObjRows[key]]; });
 
       // Charts.
-      var mainChart = Drupal.d3.ct_linegraph('d3-actions', {rows: []});
+      //var mainChart = Drupal.d3.ct_linegraph('d3-actions', {rows: []});
+    var mainChart = Drupal.d3.ct_bar('d3-actions', {rows: []});
       mainChart.update({rows: mainRows,legend: ['Actions']});
   };
 
