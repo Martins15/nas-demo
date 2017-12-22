@@ -72,7 +72,7 @@ function _nas_conservation_tracker_get_real_path($load = FALSE) {
     }
   }
 
-  return  $current_sections;
+  return  implode('/', $current_sections);
 }
 
 /**
