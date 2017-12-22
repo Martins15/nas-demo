@@ -35,7 +35,28 @@ function nas_conservation_tracker_init() {
   ));
 
 
-  $sections = arg();
+  _nas_conservation_tracker_get_real_path(TRUE);
+
+//  $sections = arg();
+//  $path = array_pop($sections);
+//  $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
+//
+//  if (in_array($path, $types)) {
+//    $alias = implode('/', $sections);
+//    $source = drupal_get_normal_path($alias);
+//    if (strpos($source, 'node/') === 0) {
+//      menu_execute_active_handler($source);
+//      drupal_exit();
+//    }
+//  }
+}
+
+/**
+ * Implements hook_init().
+ */
+function _nas_conservation_tracker_get_real_path($load = FALSE) {
+  $current_sections = $sections = arg();
+
   $path = array_pop($sections);
   $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
 
@@ -43,10 +64,15 @@ function nas_conservation_tracker_init() {
     $alias = implode('/', $sections);
     $source = drupal_get_normal_path($alias);
     if (strpos($source, 'node/') === 0) {
-      menu_execute_active_handler($source);
-      drupal_exit();
+      if ($load) {
+        menu_execute_active_handler($source);
+        drupal_exit();
+      }
+      return $source;
     }
   }
+
+  return  $current_sections;
 }
 
 /**
