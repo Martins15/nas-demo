@@ -42,12 +42,40 @@ $padding-item: 25px 17.5px 0;
       height: auto;
     }
   }
+  .title-wrap {
+    &__print {
+      color: #9b9b9b;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-family: $font-sans;
+      .img-block {
+        width: 20px;
+        height: 18px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: inline-block;
+      }
+      .download {
+        background-image: url("../img/bird-page/download.png");
+      }
+      .print {
+        background-image: url("../img/bird-page/print.png");
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
 .map-items.bird-page {
   background: $dark-bg-bird;
   margin-top: 10px;
   padding-top: 10px;
+  &.demo-block {
+    .row {
+      background: url("../img/bird-page/map.png") no-repeat center center;
+    }
+  }
 }
 
 .map-item {
@@ -192,6 +220,7 @@ $padding-item: 25px 17.5px 0;
     padding: 30px 0;
   }
   .menu-wrap {
+    padding-right: 50px;
     ul {
       list-style: none;
       margin: 0;
@@ -236,9 +265,12 @@ $padding-item: 25px 17.5px 0;
     .responses {
       background-image: url("../img/bird-page/third-item.png");
     }
+    .partners {
+      background-image: url("../img/bird-page/fourth-item.png");
+    }
   }
   .text-wrap {
-    padding-right: 50px;
+    padding-left: 50px;
     border-left: 1px solid $border-bird;
     h4 {
       @include breakpoint(large-up) {
@@ -246,11 +278,13 @@ $padding-item: 25px 17.5px 0;
         font-weight: 300;
         line-height: 1.21;
         margin: 0;
+        color: $black;
       }
     }
     p {
       @include breakpoint(large-up) {
         font-size: 14px;
+        line-height: 15px;
         color: $brownish-grey;
       }
     }
@@ -341,6 +375,9 @@ $padding-item: 25px 17.5px 0;
       display: block;
     }
   }
+  @include breakpoint(large-up) {
+    padding-bottom: 60px;
+  }
 }
 
 .ct-scorecard-tabs {
@@ -397,6 +434,7 @@ $padding-item: 25px 17.5px 0;
     position: relative;
     z-index: 9999;
     max-width: 572px;
+    width: 62.66666666666667%;
     margin-bottom: 40px;
     float: right;
     clear: both;
@@ -405,4 +443,50 @@ $padding-item: 25px 17.5px 0;
 
 .leaflet-container {
   background: $dark-bg-bird;
+}
+
+.node-type-ct-scorecard {
+  .hero-header {
+    padding-right: 0;
+    p, .hero-blurb,
+    .hero-title {
+      text-shadow: none;
+    }
+    .hero-title {
+      font-family: $font-sans;
+      font-size: 37px;
+      text-align: left;
+      color: $white;
+      margin-bottom: 30px;
+      line-height: 0.92;
+      @include breakpoint(large-up) {
+        font-size: 64px;
+        line-height: 1.25;
+        margin-bottom: 0;
+      }
+    }
+    p, .hero-blurb {
+      font-size: 20px;
+      color: $white;
+      margin: 0;
+      font-style: normal;
+    }
+    .hero-blurb {
+      @include breakpoint(large-up) {
+        margin-bottom: 20px;
+        font-size: 18px;
+        opacity: .8;
+      }
+    }
+    p {
+      @include breakpoint(large-up) {
+        font-size: 24px;
+        line-height: 1.38;
+      }
+    }
+  }
+  .mailing-list {
+    // @todo update when other blocks will be ready.
+    margin-top: 40px;
+  }
 }
