@@ -22,3 +22,14 @@ function nas_conservation_tracker_update_7002() {
   $node = node_submit($node);
   node_save($node);
 }
+
+/**
+ * Revert conservation tracker feature.
+ */
+function nas_conservation_tracker_update_7003() {
+  features_revert(array(
+    'nas_conservation_tracker' => array(
+      'page_manager_pages',
+    ),
+  ));
+}
