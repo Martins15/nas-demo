@@ -449,6 +449,17 @@ $padding-item: 25px 17.5px 0;
     float: right;
     clear: both;
   }
+  @media only screen and (min-width: 1000px)  {
+    margin-right: 15.27777777777778%;
+  }
+}
+.wrap-map-diagram {
+  position: relative;
+  @include breakpoint(large-up) {
+    min-height: 800px;
+    background: $bg-map-bird;
+    overflow: hidden;
+  }
 }
 
 .leaflet-container,
