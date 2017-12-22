@@ -3,19 +3,30 @@
   "name": "Black Oystercatcher",
   "subtitle": "Haematopus Bachmani",
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
-  "description": "The Black Oystercatcher is still widespread along the Pacific Coast, and numerous in some areas. It is vulnerable to the effects of oil spills and other pollution in the intertidal zone, and also very vulnerable to disturbance at nesting sites.",
   "settings": {
     "actions": {
       "youtube": "https://youtu.be/0wtR0Rv9p9g",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
+      "title": "Actions Overview",
       "description": "ACTIONS! Audubon’s coastal stewardship efforts in the Pacific Flyway aim to protect key coastal species throughout their life cycles by restoring and conserving dynamic beach dune habitat for nesting birds, and by reducing disturbance and minimizing threats during migration and winter. Rocky intertidal zones along the Pacific support some of the most vulnerable species in the flyway, including the Black Oystercatcher. As these areas face the ever-growing pressures of development and human disturbance, engagement and education of individuals and communities using these areas is vital. Building on the innovative stewardship programs of Audubon California and coastal chapters, coastal stewardship work in the Pacific combines on-the-ground protection with successful outreach programs aimed at increasing the number and diversity of breeding and wintering sites and protecting numerous other migratory shorebirds that rely on shoreline areas during winter and migration."
     },
     "threats": {
       "application": "<strong style=\"color:orange;\">Some HTML app</strong>",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
+      "title": "Threats Overview",
       "description": "THREATS! Audubon’s coastal stewardship efforts in the Pacific Flyway aim to protect key coastal species throughout their life cycles by restoring and conserving dynamic beach dune habitat for nesting birds, and by reducing disturbance and minimizing threats during migration and winter. Rocky intertidal zones along the Pacific support some of the most vulnerable species in the flyway, including the Black Oystercatcher. As these areas face the ever-growing pressures of development and human disturbance, engagement and education of individuals and communities using these areas is vital. Building on the innovative stewardship programs of Audubon California and coastal chapters, coastal stewardship work in the Pacific combines on-the-ground protection with successful outreach programs aimed at increasing the number and diversity of breeding and wintering sites and protecting numerous other migratory shorebirds that rely on shoreline areas during winter and migration."
     },
     "responses": {
       "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
+      "title": "Responses Overview",
       "description": "RESPONSES! Audubon’s coastal stewardship efforts in the Pacific Flyway aim to protect key coastal species throughout their life cycles by restoring and conserving dynamic beach dune habitat for nesting birds, and by reducing disturbance and minimizing threats during migration and winter. Rocky intertidal zones along the Pacific support some of the most vulnerable species in the flyway, including the Black Oystercatcher. As these areas face the ever-growing pressures of development and human disturbance, engagement and education of individuals and communities using these areas is vital. Building on the innovative stewardship programs of Audubon California and coastal chapters, coastal stewardship work in the Pacific combines on-the-ground protection with successful outreach programs aimed at increasing the number and diversity of breeding and wintering sites and protecting numerous other migratory shorebirds that rely on shoreline areas during winter and migration."
+    },
+    "partners": {
+      "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
+      "title": "Partners Overview",
+      "description": "PARTNERS! Audubon’s coastal stewardship efforts in the Pacific Flyway aim to protect key coastal species throughout their life cycles by restoring and conserving dynamic beach dune habitat for nesting birds, and by reducing disturbance and minimizing threats during migration and winter. Rocky intertidal zones along the Pacific support some of the most vulnerable species in the flyway, including the Black Oystercatcher. As these areas face the ever-growing pressures of development and human disturbance, engagement and education of individuals and communities using these areas is vital. Building on the innovative stewardship programs of Audubon California and coastal chapters, coastal stewardship work in the Pacific combines on-the-ground protection with successful outreach programs aimed at increasing the number and diversity of breeding and wintering sites and protecting numerous other migratory shorebirds that rely on shoreline areas during winter and migration."
     },
     "map": {
       "latitude": "35.794982",
