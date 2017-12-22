@@ -21,6 +21,13 @@ function nas_conservation_tracker_update_7002() {
   $node->field_scorecard_id[LANGUAGE_NONE][]['value'] = $data['id'];
   $node = node_submit($node);
   node_save($node);
+
+  $path = array('source' => 'node/' . $node->nid,
+    'alias' => 'conservation-tracker/scorecard/black-oystercatcher',
+    'language' => $node->language);
+
+  path_save($path);
+
 }
 
 /**

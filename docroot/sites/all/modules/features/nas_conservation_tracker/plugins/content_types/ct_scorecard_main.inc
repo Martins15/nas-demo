@@ -33,6 +33,22 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/unit-data.js');
   drupal_add_js(array('nas_conservation_tracker' => array('json_data' => $data)), 'setting');
 
+
+  //@todo need correct include js file.
+  drupal_add_js('//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js', 'external');
+  drupal_add_js('//unpkg.com/angular-ui-router@0.3.2/release/angular-ui-router.min.js', 'external');
+  drupal_add_js('//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.min.js', 'external');
+  drupal_add_js('//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-cookies.min.js', 'external');
+  drupal_add_js('//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js', 'external');
+  drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js', 'external');
+  drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/angular-scroll/1.0.0/angular-scroll.min.js', 'external');
+  $js_path = drupal_get_path('module', 'nas_conservation_tracker') . '/js/';
+  drupal_add_js($js_path . 'ct_tabs.js');
+  drupal_add_js($js_path . 'nas_conservation_tracker.js', array(
+    'weight' => 999,
+    'group' => JS_THEME,
+  ));
+
   // Map.
   $map_info = current(leaflet_map_get_info());
   $map_info['settings']['layerControl'] = TRUE;
