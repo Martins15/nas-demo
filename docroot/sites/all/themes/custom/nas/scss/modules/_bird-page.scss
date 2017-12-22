@@ -68,7 +68,7 @@ $padding-item: 25px 17.5px 0;
 }
 
 .map-items.bird-page {
-  background: $dark-bg-bird;
+  background: #0E0E0E;
   margin-top: 10px;
   padding-top: 10px;
   &.demo-block {
@@ -272,6 +272,14 @@ $padding-item: 25px 17.5px 0;
   .text-wrap {
     padding-left: 50px;
     border-left: 1px solid $border-bird;
+    &__content {
+      > div {
+        display: none;
+        &.active {
+          display: block;
+        }
+      }
+    }
     h4 {
       @include breakpoint(large-up) {
         font-size: 33px;
@@ -422,6 +430,7 @@ $padding-item: 25px 17.5px 0;
     }
   }
   .leaflet-container {
+    width: 100%;
     @include breakpoint(large-up) {
       position: absolute;
       top: 0;
@@ -441,8 +450,12 @@ $padding-item: 25px 17.5px 0;
   }
 }
 
-.leaflet-container {
-  background: #0e0e0e;
+.leaflet-container,
+.ct-scorecard-main {
+  background: #0E0E0E;
+}
+.ct-scorecard-main {
+  position: relative;
 }
 
 .node-type-ct-scorecard {

@@ -17789,7 +17789,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .map-items.bird-page {
-  background: #1c1c1c;
+  background: #0E0E0E;
   margin-top: 10px;
   padding-top: 10px;
 }
@@ -18002,6 +18002,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-left: 50px;
   border-left: 1px solid #d9d9d9;
 }
+.ct-item-nav-conservation .text-wrap__content > div {
+  display: none;
+}
+.ct-item-nav-conservation .text-wrap__content > div.active {
+  display: block;
+}
 @media only screen and (min-width: 768px) {
   .ct-item-nav-conservation .text-wrap h4 {
     font-size: 33px;
@@ -18152,6 +18158,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     min-height: 800px;
   }
 }
+.ct-scorecard-main .leaflet-container {
+  width: 100%;
+}
 @media only screen and (min-width: 768px) {
   .ct-scorecard-main .leaflet-container {
     position: absolute;
@@ -18172,8 +18181,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
-.leaflet-container {
-  background: #0e0e0e;
+.leaflet-container,
+.ct-scorecard-main {
+  background: #0E0E0E;
+}
+
+.ct-scorecard-main {
+  position: relative;
 }
 
 .node-type-ct-scorecard .hero-header {

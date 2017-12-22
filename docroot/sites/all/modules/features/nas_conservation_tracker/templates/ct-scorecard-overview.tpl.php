@@ -16,7 +16,18 @@
         </div>
         <div class="text-wrap columns large-6">
             <div class="text-wrap__content" ng-cloak>
-
+                <div class="threats" ng-class="{'active': isActiveTab === 'threats'}">
+                    <h4>Threats</h4>
+                    <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
+                </div>
+                <div class="actions" ng-class="{'active': isActiveTab === 'actions'}">
+                    <h4>Actions</h4>
+                    <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
+                </div>
+                <div class="responses"  ng-class="{'active': isActiveTab === 'responses'}">
+                    <h4>Responses</h4>
+                    <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
+                </div>
             </div>
         </div>
     </div>
