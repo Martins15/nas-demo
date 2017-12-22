@@ -10509,6 +10509,9 @@ body.black-bg .slideshow {
     margin-top: -60px;
   }
 }
+.slideshow.hidden {
+  visibility: hidden;
+}
 
 .hero-image .slideshow img {
   min-width: 0;

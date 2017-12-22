@@ -325,6 +325,7 @@
             }
           });
           Slideshow.resize();
+          $slideshow.removeClass('hidden');
         });
 
         Slideshow.setup();
