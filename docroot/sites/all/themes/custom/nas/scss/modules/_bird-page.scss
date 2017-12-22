@@ -13,6 +13,7 @@
 
 $dark-bg-bird: #1c1c1c;
 $brownish-grey: #76736c;
+$bg-map-bird: #212121;
 $grey-bg-bird: #F0F0F0;
 $grey-menu-bird: #fbfaf6;
 $border-bird: #d9d9d9;
@@ -68,7 +69,7 @@ $padding-item: 25px 17.5px 0;
 }
 
 .map-items.bird-page {
-  background: #0E0E0E;
+  background: $bg-map-bird;
   margin-top: 10px;
   padding-top: 10px;
   &.demo-block {
@@ -452,7 +453,7 @@ $padding-item: 25px 17.5px 0;
 
 .leaflet-container,
 .ct-scorecard-main {
-  background: #0E0E0E;
+  background: $bg-map-bird;
 }
 .ct-scorecard-main {
   position: relative;

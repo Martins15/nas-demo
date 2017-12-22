@@ -17789,7 +17789,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .map-items.bird-page {
-  background: #0E0E0E;
+  background: #212121;
   margin-top: 10px;
   padding-top: 10px;
 }
@@ -18183,7 +18183,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .leaflet-container,
 .ct-scorecard-main {
-  background: #0E0E0E;
+  background: #212121;
 }
 
 .ct-scorecard-main {
