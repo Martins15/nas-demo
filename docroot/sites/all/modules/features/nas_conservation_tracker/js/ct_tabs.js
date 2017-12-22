@@ -14,8 +14,8 @@
       , activeUrl = '';
 
     $('head').append('<base href="' + settings.basePath + '">');
-    
-    if (linkArray.includes(lastName)) {
+
+    if (linkArray.indexOf(lastName) > -1) {
       activeUrl = pathArray.slice(0, -1).join('/');
     }
     else {
@@ -87,20 +87,15 @@
 
         // Load json file.
         function getContent(currentName) {
-
-          linkArray.forEach(function(item) {
-            if (currentName === item) {
-              $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + item)
-                .then(function (response) {
-                  // @TODO write it once.
-                  $scope[item] = response.data;
-                  Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
-                  Drupal.nas_conservation_tracker_init_map();
-                  Drupal.nas_conservation_tracker_init_charts();
-                  console.log($scope);
-                });
-            }
-          });
+          if (linkArray.indexOf(currentName) > -1) {
+            $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + currentName)
+              .then(function (response) {
+                $scope[currentName] = response.data;
+                Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
+                Drupal.nas_conservation_tracker_init_map();
+                Drupal.nas_conservation_tracker_init_charts();
+              });
+          }
         }
 
         // On load.
@@ -114,7 +109,6 @@
         });
       }
     ]);
-
 
     angular.bootstrap(document.getElementsByTagName('body')[0], ['NativeCta']);
   };
