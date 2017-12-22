@@ -214,22 +214,4 @@
 
   }
 
-  d3.ct_tooltip = function(tipjar) {
-    var svg = tipjar.node();
-    while (svg.tagName != "svg" && svg.parentNode) {
-      svg = svg.parentNode;
-    }
-
-    var textbox = tipjar.append('g')
-      .attr('class', 'text');
-
-    textbox.append('text')
-      .attr('text-anchor', 'start')
-      .attr('fill', '#fff')
-      .attr('dx', 0)
-      .attr('dy', 0);
-  };
-
-
-
 })(jQuery);

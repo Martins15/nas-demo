@@ -81,6 +81,7 @@ function nas_conservation_tracker_libraries_info() {
   $libs = array(
     'ct_linegraph' => 'CT Line Graph',
     'ct_circular' => 'CT Circular',
+    'ct_bar' => 'CT Bar Graph',
   );
 
   foreach ($libs as $filename => $name) {
