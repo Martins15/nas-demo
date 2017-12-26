@@ -134,7 +134,7 @@
               "unit": "%"
             },
             "value": "53"
-          },
+          }
         ]
       },
       {
@@ -214,7 +214,7 @@
               "unit": ""
             },
             "value": "1"
-          },
+          }
         ]
       },
       {
@@ -294,7 +294,7 @@
               "unit": ""
             },
             "value": "1"
-          },
+          }
         ]
       },
       {
@@ -374,118 +374,6 @@
               "unit": ""
             },
             "value": "1"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value_type": {
-              "name": "Objective",
-              "description": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
-              "unit": "%"
-            },
-            "value": "83"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value": "23",
-            "value_type": {
-              "name": "Objective",
-              "description": "Engage 5,000 people in the Audubon network in habitat protection",
-              "unit": "%"
-            }
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value": "64",
-            "value_type": {
-              "name": "Objective",
-              "description": "Build a broad coalition of stakeholders to address mutual conservation goals",
-              "unit": "%"
-            }
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value_type": {
-              "name": "Objective",
-              "description": "Measure by guiding how it is invested and monitoring results",
-              "unit": "%"
-            },
-            "value": "19"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value_type": {
-              "name": "Objective",
-              "description": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
-              "unit": "%"
-            },
-            "value": "34"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "Promote climate-smart restoration and resilient landscape design",
-            "value_type": {
-              "name": "Objective",
-              "description": "Promote climate-smart restoration and resilient landscape design",
-              "unit": "%"
-            },
-            "value": "29"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "Grow community involvement and commitment to estuary conservation and restoration",
-            "value_type": {
-              "name": "Objective",
-              "description": "Grow community involvement and commitment to estuary conservation and restoration",
-              "unit": "%"
-            },
-            "value": "99"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "Improve estuary water quality and watershed management",
-            "value_type": {
-              "name": "Objective",
-              "description": "Improve estuary water quality and watershed management",
-              "unit": "%"
-            },
-            "value": "7"
           }
         ]
       },
@@ -730,118 +618,6 @@
               "unit": ""
             },
             "value": "1"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value_type": {
-              "name": "Objective",
-              "description": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
-              "unit": "%"
-            },
-            "value": "83"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value": "23",
-            "value_type": {
-              "name": "Objective",
-              "description": "Engage 5,000 people in the Audubon network in habitat protection",
-              "unit": "%"
-            }
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value": "64",
-            "value_type": {
-              "name": "Objective",
-              "description": "Build a broad coalition of stakeholders to address mutual conservation goals",
-              "unit": "%"
-            }
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value_type": {
-              "name": "Objective",
-              "description": "Measure by guiding how it is invested and monitoring results",
-              "unit": "%"
-            },
-            "value": "19"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value_type": {
-              "name": "Objective",
-              "description": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
-              "unit": "%"
-            },
-            "value": "34"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "Promote climate-smart restoration and resilient landscape design",
-            "value_type": {
-              "name": "Objective",
-              "description": "Promote climate-smart restoration and resilient landscape design",
-              "unit": "%"
-            },
-            "value": "29"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "Grow community involvement and commitment to estuary conservation and restoration",
-            "value_type": {
-              "name": "Objective",
-              "description": "Grow community involvement and commitment to estuary conservation and restoration",
-              "unit": "%"
-            },
-            "value": "99"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "Improve estuary water quality and watershed management",
-            "value_type": {
-              "name": "Objective",
-              "description": "Improve estuary water quality and watershed management",
-              "unit": "%"
-            },
-            "value": "7"
           }
         ]
       },
@@ -922,6 +698,20 @@
               "unit": ""
             },
             "value": "1"
+          },
+          {
+            "key_type": {
+              "name": "",
+              "description": "",
+              "unit": ""
+            },
+            "key": "",
+            "value_type": {
+              "name": "Objective",
+              "description": "Protect or restore intertidal habitat for Black Oystercatcher",
+              "unit": "%"
+            },
+            "value": "33"
           }
         ]
       }
@@ -1016,39 +806,25 @@
             "key": "",
             "value_type": {
               "name": "Objective",
-              "description": "Protect 5,000 acres of eelgrass and mudflat stopover habitat",
+              "description": "Maintain 0.41 fledged chicks per pair per year",
               "unit": "%"
             },
-            "value": "83"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value": "23",
-            "value_type": {
-              "name": "Objective",
-              "description": "Engage 5,000 people in the Audubon network in habitat protection",
-              "unit": "%"
-            }
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value": "64",
-            "value_type": {
-              "name": "Objective",
-              "description": "Build a broad coalition of stakeholders to address mutual conservation goals",
-              "unit": "%"
-            }
-          },
+            "value": "33"
+          }
+        ]
+      }
+    ]
+  },
+  "partners": {
+    "sites": [
+      {
+        "id": "5",
+        "name": "Hollywood Beach",
+        "latitude": "34.160633",
+        "longitude": "-119.227934",
+        "state": "CA",
+        "flyway": "Pacific",
+        "data": [
           {
             "key_type": {
               "name": "",
@@ -1058,66 +834,10 @@
             "key": "",
             "value_type": {
               "name": "Objective",
-              "description": "Measure by guiding how it is invested and monitoring results",
+              "description": "Recruit, train and support coastal stewards protecting the places on the Pacific coast that Black Oystercatchers need most",
               "unit": "%"
             },
-            "value": "19"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "",
-            "value_type": {
-              "name": "Objective",
-              "description": "Maximize the impact of Measure AA by guiding how it is invested and monitoring results",
-              "unit": "%"
-            },
-            "value": "34"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "Promote climate-smart restoration and resilient landscape design",
-            "value_type": {
-              "name": "Objective",
-              "description": "Promote climate-smart restoration and resilient landscape design",
-              "unit": "%"
-            },
-            "value": "29"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "Grow community involvement and commitment to estuary conservation and restoration",
-            "value_type": {
-              "name": "Objective",
-              "description": "Grow community involvement and commitment to estuary conservation and restoration",
-              "unit": "%"
-            },
-            "value": "99"
-          },
-          {
-            "key_type": {
-              "name": "",
-              "description": "",
-              "unit": ""
-            },
-            "key": "Improve estuary water quality and watershed management",
-            "value_type": {
-              "name": "Objective",
-              "description": "Improve estuary water quality and watershed management",
-              "unit": "%"
-            },
-            "value": "7"
+            "value": "44"
           }
         ]
       }
