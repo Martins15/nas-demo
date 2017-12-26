@@ -9,8 +9,6 @@
     var lMap = Drupal.settings.leaflet['0'].lMap,
       markerClass = 'ct-leaflet-site',
       loc = getLocation(),
-      polygons = [],
-      counties = {},
       $radios = $('input[name="map_type"]');
     if (!Drupal.settings.nas_conservation_tracker_unit_data_sorted) {
       Drupal.settings.nas_conservation_tracker_unit_data_sorted = new LUnitSorted(Drupal.settings.nas_conservation_tracker_unit_data.features);
@@ -42,7 +40,6 @@
       }
       marker.bindTooltip(site.name).addTo(lMap);
     }
-    L.geoJson({type: 'FeatureCollection', features: polygons}, {style: getPolygonStyle}).addTo(lMap);
     // Scale map to selected unit.
     $radios.each(function() {
       if ($(this).prop('checked')) {
@@ -55,15 +52,25 @@
     // Helper functions.
     
     function getPolygonStyle(feature) {
-      var d = counties[feature.id],
-        color = d > 4 ? '#ff0000' :
-          d > 1 ? '#feb24c' : '#FFEDA0';
+      var i = 0;
+      lMap.eachLayer(function (layer) {
+        if (layer.properties && layer.properties.marker) {
+          latLon = layer.getLatLng();
+          for (var j = 0 in feature.geometry.coordinates) {
+            if (isInsidePolygon(latLon.lat, latLon.lng, feature.geometry.coordinates[j])) {
+              i++;
+            }
+          }
+        }
+      });
+      var color = i > 6 ? '#ff0000' :
+        i > 1 ? '#feb24c' : '#FFEDA0';
       return {
         fillColor: color,
         weight: 2,
-        opacity: 1,
+        opacity: 0.3,
         color: color,
-        fillOpacity: 1
+        fillOpacity: 0.3,
       }
     }
 
@@ -176,7 +183,7 @@
         unit: unit,
       };
       this.geometry = {
-        type: (coordinates[0][0].length > 2 && typeof(coordinates[0][0][0]) === 'object') ? 'MultiPolygon' : 'Polygon',
+        type: 'Polygon',
         coordinates: coordinates,
       };
     }
