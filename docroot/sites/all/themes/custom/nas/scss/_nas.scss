@@ -1537,3 +1537,48 @@ ul.clearing-thumbs {
     }
   }
 }
+
+.ct_linegraph g.legend {
+  display: none;
+}
+
+.ct_linegraph g.ticks text {
+  font-size: 14px;
+  color: #76736c;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+
+.ct_linegraph path.line {
+  fill: none;
+}
+
+.ct_circular .graph {
+  text-align: center;
+}
+
+.ct_circular path.circle_back {
+  fill: #ccc;
+}
+
+.ct_circular path.circle_front {
+  fill: #f15936;
+}
+
+.ct-leaflet-site {
+  background: #000;
+  border-radius: 7px;
+  border: 2px solid #fff;
+}
+.ct-visible-area {
+  border: 2px dashed #ccc;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+@media screen and (min-width: 1280px) {
+  .page-conservation-tracker .conservation-tracker-custom-pane {
+    margin: 0 85px;
+  }
+}
