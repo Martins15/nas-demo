@@ -742,4 +742,15 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.scrollToNext = {
+    attach: function (context, settings) {
+      $(".curtain-arrow.storecard").click(function(e) {
+        e.preventDefault();
+        $('html, body').animate({
+          scrollTop: $(".ct-scorecard-tabs").offset().top
+        }, 1000);
+      });
+    }
+  };
+
 })(jQuery);

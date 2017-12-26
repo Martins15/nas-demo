@@ -479,16 +479,22 @@ $padding-item: 25px 17.5px 0;
     }
     .hero-title {
       font-family: $font-sans;
-      font-size: 37px;
+      font-size: 25px;
       text-align: left;
       color: $white;
-      margin-bottom: 30px;
-      line-height: 0.92;
+      margin-bottom: 15px;
+      line-height: 0.72;
       @include breakpoint(large-up) {
         font-size: 64px;
         line-height: 1.25;
         margin-bottom: 0;
       }
+      @include breakpoint(medium-up) {
+        font-size: 37px;
+        line-height: 0.92;
+        margin-bottom: 30px;
+      }
+
     }
     p, .hero-blurb {
       font-size: 20px;
@@ -504,14 +510,25 @@ $padding-item: 25px 17.5px 0;
       }
     }
     p {
+      font-size: 14px;
+      @include breakpoint(medium-up) {
+        font-size: 16px;
+      }
       @include breakpoint(large-up) {
         font-size: 24px;
-        line-height: 1.38;
       }
     }
   }
   .mailing-list {
     // @todo update when other blocks will be ready.
     margin-top: 40px;
+  }
+  @include breakpoint(large-up){
+    .menu-wrapper {
+      position: absolute;
+      top: 37px;
+      left: 0;
+      width: 100%;
+    }
   }
 }

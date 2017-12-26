@@ -11487,6 +11487,19 @@ body.black-bg .video-caption-container .video-caption,
   position: static;
 }
 
+.curtain-content-up {
+  position: absolute;
+  top: 0;
+  height: 400px;
+  z-index: 1;
+  padding: 25px 0;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-repeat: no-repeat;
+  background-size: 100% 100px;
+  background-position: center top;
+}
+
 .curtain-attribution {
   line-height: 20px;
 }
@@ -17789,7 +17802,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .map-items.bird-page {
-  background: #212121;
+  background: #1c1c1c;
   margin-top: 10px;
   padding-top: 10px;
 }
@@ -18002,12 +18015,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-left: 50px;
   border-left: 1px solid #d9d9d9;
 }
-.ct-item-nav-conservation .text-wrap__content > div {
-  display: none;
-}
-.ct-item-nav-conservation .text-wrap__content > div.active {
-  display: block;
-}
 @media only screen and (min-width: 768px) {
   .ct-item-nav-conservation .text-wrap h4 {
     font-size: 33px;
@@ -18158,15 +18165,52 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     min-height: 800px;
   }
 }
-.ct-scorecard-main .leaflet-container {
-  width: 100%;
-}
 @media only screen and (min-width: 768px) {
   .ct-scorecard-main .leaflet-container {
     position: absolute;
     top: 0;
     width: 100%;
   }
+}
+.ct-scorecard-main #nas-conservation-tracker-map-form {
+  position: absolute;
+  left: 70px;
+  top: 33px;
+  z-index: 999;
+}
+.ct-scorecard-main #nas-conservation-tracker-map-form .form-item-map-type.form-type-radios {
+  font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+}
+.ct-scorecard-main #nas-conservation-tracker-map-form .form-item-map-type.form-type-radios > label {
+  display: block;
+  width: 165px;
+  padding: 8px 0 7px 15px;
+  background-color: #303030;
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+.ct-scorecard-main #nas-conservation-tracker-map-form .form-item-map-type.form-type-radios > label span {
+  display: inline-block;
+  border: 1px solid white;
+  padding: 0 3px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 12px;
+  margin-left: 5px;
+  font-size: 12px;
+}
+.ct-scorecard-main #nas-conservation-tracker-map-form .form-item-map-type.form-type-radios #edit-map-type {
+  width: 165px;
+  padding: 8px 10px 7px 15px;
+  background-color: #303030;
+  margin-top: 2px;
+  font-size: 13px;
+  display: none;
+}
+.ct-scorecard-main #nas-conservation-tracker-map-form .form-item-map-type.form-type-radios #edit-map-type label {
+  color: #fff;
+  font-size: 16px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -18180,30 +18224,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     clear: both;
   }
 }
-@media only screen and (min-width: 1000px) {
-  .help-wrap-items-map-items {
-    margin-right: 15.27777777777778%;
-  }
-}
 
-.wrap-map-diagram {
-  position: relative;
-}
-@media only screen and (min-width: 768px) {
-  .wrap-map-diagram {
-    min-height: 800px;
-    background: #212121;
-    overflow: hidden;
-  }
-}
-
-.leaflet-container,
-.ct-scorecard-main {
-  background: #212121;
-}
-
-.ct-scorecard-main {
-  position: relative;
+.leaflet-container {
+  background: #0e0e0e;
 }
 
 .node-type-ct-scorecard .hero-header {
@@ -18215,17 +18238,24 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .node-type-ct-scorecard .hero-header .hero-title {
   font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 37px;
+  font-size: 25px;
   text-align: left;
   color: #fff;
-  margin-bottom: 30px;
-  line-height: 0.92;
+  margin-bottom: 15px;
+  line-height: 0.72;
 }
 @media only screen and (min-width: 768px) {
   .node-type-ct-scorecard .hero-header .hero-title {
     font-size: 64px;
     line-height: 1.25;
     margin-bottom: 0;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .node-type-ct-scorecard .hero-header .hero-title {
+    font-size: 37px;
+    line-height: 0.92;
+    margin-bottom: 30px;
   }
 }
 .node-type-ct-scorecard .hero-header p, .node-type-ct-scorecard .hero-header .hero-blurb {
@@ -18241,14 +18271,29 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     opacity: .8;
   }
 }
+.node-type-ct-scorecard .hero-header p {
+  font-size: 14px;
+}
+@media only screen and (min-width: 601px) {
+  .node-type-ct-scorecard .hero-header p {
+    font-size: 16px;
+  }
+}
 @media only screen and (min-width: 768px) {
   .node-type-ct-scorecard .hero-header p {
     font-size: 24px;
-    line-height: 1.38;
   }
 }
 .node-type-ct-scorecard .mailing-list {
   margin-top: 40px;
+}
+@media only screen and (min-width: 768px) {
+  .node-type-ct-scorecard .menu-wrapper {
+    position: absolute;
+    top: 37px;
+    left: 0;
+    width: 100%;
+  }
 }
 
 .species-filter {
@@ -20126,49 +20171,4 @@ ul.clearing-thumbs {
 }
 .about-page-intro p:last-child {
   margin-bottom: 0;
-}
-
-.ct_linegraph g.legend {
-  display: none;
-}
-
-.ct_linegraph g.ticks text {
-  font-size: 14px;
-  color: #76736c;
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-}
-
-.ct_linegraph path.line {
-  fill: none;
-}
-
-.ct_circular .graph {
-  text-align: center;
-}
-
-.ct_circular path.circle_back {
-  fill: #ccc;
-}
-
-.ct_circular path.circle_front {
-  fill: #f15936;
-}
-
-.ct-leaflet-site {
-  background: #000;
-  border-radius: 7px;
-  border: 2px solid #fff;
-}
-.ct-visible-area {
-  border: 2px dashed #ccc;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-}
-
-@media screen and (min-width: 1280px) {
-  .page-conservation-tracker .conservation-tracker-custom-pane {
-    margin: 0 85px;
-  }
 }
