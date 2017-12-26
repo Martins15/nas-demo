@@ -14,7 +14,7 @@
               <div class="map-item__inner-help">
                   <div class="diagram-wrap__title">
                       <h4 class="map-title">Action Categories</h4>
-                      <p>Count within map window.</p>
+                      <p>Sites: <span  id="site-count">0</span></p>
                   </div>
                   <div class="diagram-item">
                     <?php print $actions; ?>

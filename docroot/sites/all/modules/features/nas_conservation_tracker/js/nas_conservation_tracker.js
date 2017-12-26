@@ -196,12 +196,14 @@
       // Charts. TODO make it look good
       var loc = getLocation();
       var objectivesRows = [];
+      var overall = 0;
       var sites = Drupal.settings.nas_conservation_tracker.json_data[loc].sites;
       for (var i = 0 in sites) {
         for (var j = 0 in sites[i].data) {
           if (angular.isDefined(sites[i].data[j].value_type) && sites[i].data[j].value_type.name == 'Objective') {
             var data = sites[i].data[j];
             objectivesRows.push([data.value_type.description, data.value]);
+            overall += parseFloat(data.value);
           }
         }
       }
@@ -209,6 +211,22 @@
       // Charts.
       var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
       objectives.update({rows: objectivesRows});
+
+      overall = Math.round(overall/objectivesRows.length);
+      updateOverall(overall);
+      function updateOverall(overall) {
+        $overallWrapper = $('.progress-item');
+        if (overall > 40) {
+          $overallWrapper.find('p').css('width', overall + '%').attr('data-value', overall);
+        }
+        else {
+          $overallWrapper.find('p').css('width', '40%').attr('data-value', overall);
+        }
+
+        $overallWrapper.find('progress').val(overall);
+      }
+
+
 
        // Charts. TODO make it look good
       var mainObjRows = {};
@@ -231,7 +249,8 @@
       // Charts.
       //var mainChart = Drupal.d3.ct_linegraph('d3-actions', {rows: []});
     var mainChart = Drupal.d3.ct_bar('d3-actions', {rows: []});
-      mainChart.update({rows: mainRows,legend: ['Actions']});
+    mainChart.update({rows: mainRows,width: 512, height: 306, barWidth: 9, barRx: 4, barColor: ['#ef5a3e']});
+    $('#site-count').text(sites.length);
   };
 
   // Common helper functions.
