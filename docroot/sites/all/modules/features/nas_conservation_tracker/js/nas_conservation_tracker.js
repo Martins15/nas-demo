@@ -7,7 +7,11 @@
 
   Drupal.nas_conservation_tracker_init_map = function () {
     var lMap = Drupal.settings.leaflet['0'].lMap,
-      markerClass = 'ct-leaflet-site',
+      classes = {
+        site: 'ct-leaflet-site',
+        visible_area: 'ct-visible-area',
+        charts: 'help-wrap-items-map-items',
+      },
       loc = getLocation(),
       $radios = $('input[name="map_type"]');
     if (!Drupal.settings.nas_conservation_tracker_unit_data_sorted) {
@@ -22,7 +26,7 @@
     for (var i = 0 in Drupal.settings.nas_conservation_tracker.json_data[loc].sites) {
       // Display sites (dots).
       var site = Drupal.settings.nas_conservation_tracker.json_data[loc].sites[i];
-      var dot = L.divIcon({className: markerClass}),
+      var dot = L.divIcon({className: classes.site}),
         latLon = [
           parseFloat(site.latitude),
           parseFloat(site.longitude),
@@ -32,6 +36,7 @@
         marker: true,
         flyway: site.flyway.toLowerCase(),
         state: site.state.toLowerCase(),
+        site: site,
       };
       for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
         if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
@@ -49,7 +54,60 @@
     // Show/hide markers depending on zoom.
     showMarkers();
 
+    // Create visible area.
+    $('#' + Drupal.settings.leaflet[0].mapId).parent().prepend('<div class="' + classes.visible_area + '"></div>');
+    var $visibleArea = $('.' + classes.visible_area);
+    rebuildVisibleArea($visibleArea, classes);
+
+    // Event linsteners.
+
+    lMap.on('moveend', function () {
+      rebuildCharts($visibleArea);
+    });
+
+    lMap.on('zoomend', function () {
+      showMarkers();
+      rebuildCharts($visibleArea);
+    });
+
+    $radios.change(function() {
+      scaleMapTo($(this).val());
+    });
+
+    $(window).resize(function() {
+      rebuildVisibleArea($visibleArea, classes);
+    });
+
     // Helper functions.
+
+    function rebuildCharts(area) {
+      Drupal.settings.nas_conservation_tracker.visible_sites = [];
+      var w = parseInt(area.width().toFixed());
+      var h = parseInt(area.height().toFixed());
+      lMap.eachLayer(function (layer) {
+        if (layer.properties && layer.properties.marker) {
+          var iconOffset = $(layer._icon).offset();
+          var x = parseInt(iconOffset.left.toFixed());
+          var y = parseInt(iconOffset.top.toFixed()) - parseInt(area.offset().top.toFixed());
+          if (
+            y >= 0 &&
+            x >= 0 &&
+            x <= w &&
+            y <= h) {
+            Drupal.settings.nas_conservation_tracker.visible_sites.push(layer.properties.site);
+          }
+        }
+      });
+      console.log(Drupal.settings.nas_conservation_tracker.visible_sites);
+      Drupal.nas_conservation_tracker_init_charts();
+    }
+
+    function rebuildVisibleArea(area, classes) {
+      area.css({
+        'width': $('.' + classes.charts).offset().left.toFixed(0) + 'px',
+        'height': $('#' + Drupal.settings.leaflet[0].mapId).height() + 'px',
+      });
+    }
     
     function getPolygonStyle(feature) {
       var i = 0;
@@ -76,7 +134,7 @@
 
     function showMarkers() {
       var visibility = lMap.getZoom() > 5 ? 'visible' : 'hidden';
-      $('.' + markerClass).css('visibility', visibility);
+      $('.' + classes.site).css('visibility', visibility);
     }
 
     function isInsidePolygon(x, y, polyPoints) {
@@ -187,23 +245,15 @@
         coordinates: coordinates,
       };
     }
-
-    // Event linsteners.
-
-    lMap.on('zoomend', function () {
-      showMarkers();
-    });
-
-    $radios.change(function() {
-      scaleMapTo($(this).val());
-    });
   }
 
   Drupal.nas_conservation_tracker_init_charts = function () {
       // Charts. TODO make it look good
       var loc = getLocation();
       var objectivesRows = [];
-      var sites = Drupal.settings.nas_conservation_tracker.json_data[loc].sites;
+      var sites = (Drupal.settings.nas_conservation_tracker.visible_sites) ?
+        Drupal.settings.nas_conservation_tracker.visible_sites :
+        Drupal.settings.nas_conservation_tracker.json_data[loc].sites;
       for (var i = 0 in sites) {
         for (var j = 0 in sites[i].data) {
           if (angular.isDefined(sites[i].data[j].value_type) && sites[i].data[j].value_type.name == 'Objective') {

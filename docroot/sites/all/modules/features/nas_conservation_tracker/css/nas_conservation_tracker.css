@@ -29,6 +29,14 @@
     border-radius: 7px;
     border: 2px solid #fff;
 }
+.ct-visible-area {
+    border: 2px dashed #ccc;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 999999;
+}
 
 @media screen and (min-width: 1280px) {
     .page-conservation-tracker .conservation-tracker-custom-pane {
