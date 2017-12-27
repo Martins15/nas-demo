@@ -54,14 +54,14 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   $map_info['settings']['layerControl'] = TRUE;
   $map_info['layers']['earth']['urlTemplate'] = '//cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
   $map_info['settings']['zoomDefault'] = 4;
-  $map_info['settings']['zoom'] = 4;
+  $map_info['settings']['zoom'] = $data['settings']['map']['zoom'];
   $map_info['center'] = array(
     'lat' => $data['settings']['map']['latitude'],
     'lon' => $data['settings']['map']['longitude'],
   );
   $features = array(
   );
-  $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_map_height', '600') . 'px');
+  $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_map_height', '800') . 'px');
 
   libraries_load('d3.extend');
   libraries_load('d3.tooltip');
