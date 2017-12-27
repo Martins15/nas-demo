@@ -258,7 +258,7 @@ $padding-item: 25px 17.5px 0;
       }
     }
     .threats {
-        background-image: url("../img/bird-page/first-item.png");
+      background-image: url("../img/bird-page/first-item.png");
     }
     .actions {
       background-image: url("../img/bird-page/second-item.png");
@@ -423,6 +423,7 @@ $padding-item: 25px 17.5px 0;
     }
   }
 }
+
 .ct-scorecard-main {
   .row {
     position: relative;
@@ -438,7 +439,49 @@ $padding-item: 25px 17.5px 0;
       width: 100%;
     }
   }
+
+  #nas-conservation-tracker-map-form {
+    position: absolute;
+    left: 70px;
+    top: 33px;
+    z-index: 999;
+    .form-item-map-type.form-type-radios {
+      font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+      > label {
+        display: block;
+        width: 165px;
+        padding: 8px 0 7px 15px;
+        background-color: #303030;
+        font-size: 14px;
+        color: $white;
+        letter-spacing: 0.5px;
+        span {
+          display: inline-block;
+          border: 1px solid white;
+          padding: 0 3px;
+          text-align: center;
+          font-weight: bold;
+          line-height: 12px;
+          margin-left: 5px;
+          font-size: 12px;
+        }
+      }
+      #edit-map-type {
+        width: 165px;
+        padding: 8px 10px 7px 15px;
+        background-color: #303030;
+        margin-top: 2px;
+        font-size: 13px;
+        display: none;
+        label {
+          color: $white;
+          font-size: 16px;
+        }
+      }
+    }
+  }
 }
+
 .help-wrap-items-map-items {
   @include breakpoint(large-up) {
     position: relative;
@@ -523,7 +566,7 @@ $padding-item: 25px 17.5px 0;
     // @todo update when other blocks will be ready.
     margin-top: 40px;
   }
-  @include breakpoint(large-up){
+  @include breakpoint(large-up) {
     .menu-wrapper {
       position: absolute;
       top: 37px;

@@ -753,4 +753,12 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.mapControlsToggle = {
+    attach: function (context, settings) {
+      $(".form-item-map-type.form-type-radios label").click(function(e) {
+        $(this).next('#edit-map-type').slideToggle('fast');
+      });
+    }
+  };
+
 })(jQuery);
