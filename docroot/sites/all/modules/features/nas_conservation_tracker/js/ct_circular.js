@@ -14,16 +14,15 @@
         _value, _oldValue, _oldAngle,
         arc, svg, background, foreground, text;
 
-      function animation(transition, newAngle, oldAngle) {
+      function animation(transition, newAngle, oldAngle, textLabel) {
         _oldAngle = (!oldAngle) ? _min : oldAngle;
         var interpolate = d3.interpolate(_oldAngle, newAngle);
         var interpolateValue = d3.interpolateNumber(_oldAngle, newAngle);
-
+        //var textLabel = text;
         transition.attrTween("d", function(d) {
           return function(t) {
             d.endAngle = interpolate(t);
-            var textLabels = text
-              .text( d3.format("f")(interpolateValue(t) * _max / τ) +'%' );
+            var textLabels = text.text( textLabel );
             return arc(d);
           };
         });
@@ -31,8 +30,8 @@
       }
 
       function myCallback() {
-        foreground.transition().duration(500).ease("back-out").attr("transform", "scale(2.1)");
-        background.transition().duration(500).ease("back-out").attr("transform", "scale(2.1)");
+        // foreground.transition().duration(500).ease("back-out").attr("transform", "scale(2.1)");
+        // background.transition().duration(500).ease("back-out").attr("transform", "scale(2.1)");
       }
 
       return {
@@ -72,18 +71,40 @@
           text = svg.select("text")
             .attr('class','circle-txt');
 
-          foreground.transition()
-            .duration(1000)
-            .call(animation, (_value * τ/_max))
-            .each("end", myCallback);
+          foreground.attr("transform", "scale(2.1)");
+          background.attr("transform", "scale(2.1)");
+
+          if (_value >= 0) {console.log('VALUE', _value);
+            foreground.transition()
+              .duration(1000)
+              .call(animation, (_value * τ/_max), 0, _value + '%')
+              .each("end", myCallback);
+          }
+          else {
+            _value = 0;
+            foreground.transition()
+                .duration(1000)
+                .call(animation, (_value * τ/_max), 0, 'N/A')
+                .each("end", myCallback);
+          }
         },
         update : function(value) {
           _value = value;
 
-          foreground.transition()
-            .duration(1000)
-            .call(animation, (_value * τ/_max), (_oldValue * τ/_max))
-            .each("end", myCallback);
+          if (_value >= 0) {
+            foreground.transition()
+              .duration(1000)
+              .call(animation, (_value * τ/_max), (_oldValue * τ/_max), _value + '%')
+              .each("end", myCallback);
+          }
+          else {
+            _value = 0;
+            foreground.transition()
+                .duration(1000)
+                .call(animation, (_value * τ/_max), (_oldValue * τ/_max), 'N/A')
+                .each("end", myCallback);
+          }
+
         }
       }
     }
