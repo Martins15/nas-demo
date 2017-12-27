@@ -100,7 +100,7 @@
           }
         }
       });
-      console.log(Drupal.settings.nas_conservation_tracker.visible_sites);
+      //console.log(Drupal.settings.nas_conservation_tracker.visible_sites);
       Drupal.nas_conservation_tracker_init_charts();
     }
 
@@ -116,11 +116,11 @@
       lMap.eachLayer(function (layer) {
         if (layer.properties && layer.properties.marker) {
           latLon = layer.getLatLng();
-          for (var j = 0 in feature.geometry.coordinates) {
-            if (isInsidePolygon(latLon.lat, latLon.lng, feature.geometry.coordinates[j])) {
+          //for (var j = 0 in feature.geometry.coordinates) {
+            if (isInsidePolygon(latLon.lat, latLon.lng, feature.geometry.coordinates)) {
               i++;
             }
-          }
+          //}
         }
       });
       var color = i > 6 ? '#ff0000' :
@@ -141,13 +141,15 @@
 
     function isInsidePolygon(x, y, polyPoints) {
       var inside = false;
-      for (var i = 0, j = polyPoints.length - 1; i < polyPoints.length; j = i++) {
-        // Y is before X in data coming from unit-data.js
-        var xi = polyPoints[i][1], yi = polyPoints[i][0];
-        var xj = polyPoints[j][1], yj = polyPoints[j][0];
-        var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-        if (intersect) {
-          inside = !inside;
+      for (var subPoints in polyPoints) {
+        for (var i = 0, j = polyPoints[subPoints].length - 1; i < polyPoints[subPoints].length; j = i++) {
+          // Y is before X in data coming from unit-data.js
+          var xi = polyPoints[subPoints][i][1], yi = polyPoints[subPoints][i][0];
+          var xj = polyPoints[subPoints][j][1], yj = polyPoints[subPoints][j][0];
+          var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+          if (intersect) {
+            inside = !inside;
+          }
         }
       }
       return inside;
@@ -165,13 +167,9 @@
             case 'county':
               var county = Drupal.settings.nas_conservation_tracker_unit_data_sorted
                   [layer.properties.flyway][layer.properties.state][layer.properties.county];
-              if (typeof(county) == 'undefined') {
-                console.log('COUNTY NOT EXISTS!', layer.properties);
-                return;
-              }
               polygons[layer.properties.county] = new LPolygon(
                   county.NAMELSAD,
-                  [county.coordinates],
+                  county.coordinates,
                   layer.properties.state,
                   layer.properties.flyway,
                   unit
@@ -183,7 +181,9 @@
               var coordinates = [];
               for (var county in state) {
                 // Create a multipolygon from county coordinates.
-                coordinates.push(state[county].coordinates);
+                for (var i = 0 in state[county].coordinates) {
+                  coordinates.push(state[county].coordinates[i]);
+                }
               }
               polygons[layer.properties.state] = new LPolygon(
                   stateData[0].STATE_NAME,
@@ -200,7 +200,9 @@
               for (var state in flyway) {
                 for (var county in flyway[state]) {
                   // Create a multipolygon from county coordinates.
-                  coordinates.push(flyway[state][county].coordinates);
+                  for (var i = 0 in flyway[state][county].coordinates) {
+                    coordinates.push(flyway[state][county].coordinates[i]);
+                  }
                 }
               }
               polygons[layer.properties.flyway] = new LPolygon(
@@ -238,7 +240,7 @@
             this[flyway][state] = {};
           }
           this[flyway][state][county] = data[i].attributes;
-          this[flyway][state][county].coordinates = data[i].geometry.rings[0];
+          this[flyway][state][county].coordinates = data[i].geometry.rings;
         }
       }
     }
@@ -268,7 +270,7 @@
         Drupal.settings.nas_conservation_tracker.visible_sites :
         json.sites;
     var tabSettings = Drupal.settings.nas_conservation_tracker.json_data.settings[loc];
-    console.log('TABSETTINGS', tabSettings);
+    //console.log('TABSETTINGS', tabSettings);
 
     var objectives = tabSettings.objectives;
     for (var j = 0 in objectives) {
@@ -360,7 +362,7 @@
 
       }
     }
-    console.log('MAIN DATA', mainObjRows);
+    //.log('MAIN DATA', mainObjRows);
 
     var mainRows = Object.keys(mainObjRows).map(function (key) {
       var value = mainObjRows[key];
