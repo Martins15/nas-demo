@@ -32,9 +32,10 @@ function nas_conservation_tracker_scorecard_header_render($subtype, $conf, $args
   $data = nas_conservation_tracker_get_json('scorecard-' . $id);
 
   $vars = array(
-    'name' => $data['name'],
-    'subtitle' => $data['subtitle'],
-    'image' => theme_image(array('path' => $data['image'], 'alt' => $data['name'], 'attributes' =>array())),
+    'name' => isset($data['name']) ? $data['name'] : '',
+    'subtitle' => isset($data['subtitle']) ? $data['subtitle'] : '',
+    'image' => isset($data['image']) ?
+      theme_image(array('path' => $data['image'], 'alt' => $data['name'], 'attributes' =>array())) : '',
   );
 
   $block->content = theme('ct_scorecard_header', $vars);

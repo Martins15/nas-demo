@@ -28,11 +28,11 @@
     for (var i = 0 in json.sites) {
       // Display sites (dots).
       var site = json.sites[i];
-      var dot = L.divIcon({className: classes.site}),
-          latLon = [
-            parseFloat(site.latitude),
-            parseFloat(site.longitude),
-          ];
+      var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
+        latLon = [
+          parseFloat(site.latitude),
+          parseFloat(site.longitude),
+        ];
       var marker = L.marker(latLon, {icon: dot});
       marker.properties = {
         marker: true,

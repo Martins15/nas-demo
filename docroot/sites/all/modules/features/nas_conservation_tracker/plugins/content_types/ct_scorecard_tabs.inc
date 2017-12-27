@@ -27,26 +27,23 @@ $plugin = array(
  */
 function nas_conservation_tracker_scorecard_tabs_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
-  $vars = array(
-    'menu_tree' => array(
-      array('markup' => l( t('Conservation Tracker'), '/')),
-      array(
-        'markup' => l(t('Species'), '/'),
-        'children' => array(
-          l(t('Species'), '/'),
-          l(t('Strategies'), '/'),
-          l(t('Landscapes'), '/'),
-        ),
-      ),
-      array('markup' => 'Black oystercather'),
-    ),
-    'tabs' => array(
-      t('Threats'),
-      t('Actions'),
-      t('Responses'),
-      t('Partners'),
-    ),
-  );
+  $links = menu_tree_all_data('menu-ct-menu');
+  $vars['menu_tree'] = array();
+
+  foreach ($links as $link) {
+    $key = $link['link']['mlid'];
+    $vars['menu_tree'][$key] = array(
+      'markup' => l($link['link']['link_title'], $link['link']['router_path']),
+      'children' => array(),
+    );
+    foreach ($link['below'] as $child) {
+      $vars['menu_tree'][$key]['children'][] = array(
+        'markup' => l($child['link']['link_title'], $child['link']['router_path']),
+      );
+    }
+  }
+  $vars['menu_tree'][] = array('markup' => $context->data->title);
+
   $block->content = theme('ct_scorecard_tabs', $vars);
 
   return $block;
