@@ -161,6 +161,7 @@
             case 'county':
               var county = Drupal.settings.nas_conservation_tracker_unit_data_sorted
                 [layer.properties.flyway][layer.properties.state][layer.properties.county];
+              
               polygons[layer.properties.county] = new LPolygon(
                 county.NAMELSAD,
                 [county.coordinates],
