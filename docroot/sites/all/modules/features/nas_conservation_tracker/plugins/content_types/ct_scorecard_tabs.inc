@@ -27,9 +27,15 @@ $plugin = array(
  */
 function nas_conservation_tracker_scorecard_tabs_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
-  $vars = array(
-    'menu_tree' => array(
-      array('markup' => l( t('Conservation Tracker'), '/')),
+  $node = menu_get_object();
+  $menu = menu_tree_all_data('menu-ct-menu');
+  $first = array_shift($menu);
+  dpm($menu);
+  dpm($node);
+  /*
+  $vars['menu_tree'][] = array(
+    'markup' => l( $first['link']['link_title'], $first['link']['router_path'])),
+  );
       array(
         'markup' => l(t('Species'), '/'),
         'children' => array(
@@ -38,15 +44,16 @@ function nas_conservation_tracker_scorecard_tabs_render($subtype, $conf, $args, 
           l(t('Landscapes'), '/'),
         ),
       ),
-      array('markup' => 'Black oystercather'),
+      array('markup' => $node->title),
     ),
-    'tabs' => array(
+    $vars['tabs'] = array(
       t('Threats'),
       t('Actions'),
       t('Responses'),
       t('Partners'),
-    ),
+    );
   );
+  */
   $block->content = theme('ct_scorecard_tabs', $vars);
 
   return $block;
