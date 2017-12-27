@@ -34,7 +34,6 @@ function nas_conservation_tracker_scorecard_header_render($subtype, $conf, $args
   $vars = array(
     'name' => isset($data['name']) ? $data['name'] : '',
     'subtitle' => isset($data['subtitle']) ? $data['subtitle'] : '',
-    'description' => isset($data['description']) ? $data['description'] : '',
     'image' => isset($data['image']) ?
       theme_image(array('path' => $data['image'], 'alt' => $data['name'], 'attributes' =>array())) : '',
   );

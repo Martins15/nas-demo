@@ -159,7 +159,7 @@
           })
           .enter().append('rect')
           .attr("width", barWidth)
-          .attr("height", 10)
+          .attr("height", 0)
           .attr("rx", barRx)
           .attr('y', function (d, i) {
             return y(d) + (chart.h - y(d));

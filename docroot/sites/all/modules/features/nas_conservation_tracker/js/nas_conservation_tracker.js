@@ -6,14 +6,16 @@
 (function ($, Drupal) {
 
   Drupal.nas_conservation_tracker_init_map = function () {
+
     var lMap = Drupal.settings.leaflet['0'].lMap,
-      classes = {
-        site: 'ct-leaflet-site',
-        visible_area: 'ct-visible-area',
-        charts: 'help-wrap-items-map-items',
-      },
-      loc = getLocation(),
-      $radios = $('input[name="map_type"]');
+        classes = {
+          site: 'ct-leaflet-site',
+          visible_area: 'ct-visible-area',
+          charts: 'help-wrap-items-map-items',
+        },
+        loc = getLocation(),
+        json = Drupal.settings.nas_conservation_tracker.json_data[loc],
+        $radios = $('input[name="map_type"]');
     if (!Drupal.settings.nas_conservation_tracker_unit_data_sorted) {
       Drupal.settings.nas_conservation_tracker_unit_data_sorted = new LUnitSorted(Drupal.settings.nas_conservation_tracker_unit_data.features);
     }
@@ -23,9 +25,9 @@
         lMap.removeLayer(layer);
       }
     });
-    for (var i = 0 in Drupal.settings.nas_conservation_tracker.json_data[loc].sites) {
+    for (var i = 0 in json.sites) {
       // Display sites (dots).
-      var site = Drupal.settings.nas_conservation_tracker.json_data[loc].sites[i];
+      var site = json.sites[i];
       var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
         latLon = [
           parseFloat(site.latitude),
@@ -46,7 +48,7 @@
       marker.bindTooltip(site.name).addTo(lMap);
     }
     // Scale map to selected unit.
-    $radios.each(function() {
+    $radios.each(function () {
       if ($(this).prop('checked')) {
         scaleMapTo($(this).val());
       }
@@ -70,11 +72,11 @@
       rebuildCharts($visibleArea);
     });
 
-    $radios.change(function() {
+    $radios.change(function () {
       scaleMapTo($(this).val());
     });
 
-    $(window).resize(function() {
+    $(window).resize(function () {
       rebuildVisibleArea($visibleArea, classes);
     });
 
@@ -90,10 +92,10 @@
           var x = parseInt(iconOffset.left.toFixed());
           var y = parseInt(iconOffset.top.toFixed()) - parseInt(area.offset().top.toFixed());
           if (
-            y >= 0 &&
-            x >= 0 &&
-            x <= w &&
-            y <= h) {
+              y >= 0 &&
+              x >= 0 &&
+              x <= w &&
+              y <= h) {
             Drupal.settings.nas_conservation_tracker.visible_sites.push(layer.properties.site);
           }
         }
@@ -108,7 +110,7 @@
         'height': $('#' + Drupal.settings.leaflet[0].mapId).height() + 'px',
       });
     }
-    
+
     function getPolygonStyle(feature) {
       var i = 0;
       lMap.eachLayer(function (layer) {
@@ -122,7 +124,7 @@
         }
       });
       var color = i > 6 ? '#ff0000' :
-        i > 1 ? '#feb24c' : '#FFEDA0';
+          i > 1 ? '#feb24c' : '#FFEDA0';
       return {
         fillColor: color,
         weight: 2,
@@ -144,7 +146,9 @@
         var xi = polyPoints[i][1], yi = polyPoints[i][0];
         var xj = polyPoints[j][1], yj = polyPoints[j][0];
         var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-        if (intersect) inside = !inside;
+        if (intersect) {
+          inside = !inside;
+        }
       }
       return inside;
     }
@@ -160,14 +164,17 @@
           switch (unit) {
             case 'county':
               var county = Drupal.settings.nas_conservation_tracker_unit_data_sorted
-                [layer.properties.flyway][layer.properties.state][layer.properties.county];
-              
+                  [layer.properties.flyway][layer.properties.state][layer.properties.county];
+              if (typeof(county) == 'undefined') {
+                console.log('COUNTY NOT EXISTS!', layer.properties);
+                return;
+              }
               polygons[layer.properties.county] = new LPolygon(
-                county.NAMELSAD,
-                [county.coordinates],
-                layer.properties.state,
-                layer.properties.flyway,
-                unit,
+                  county.NAMELSAD,
+                  [county.coordinates],
+                  layer.properties.state,
+                  layer.properties.flyway,
+                  unit
               );
               break;
             case 'state':
@@ -179,11 +186,11 @@
                 coordinates.push(state[county].coordinates);
               }
               polygons[layer.properties.state] = new LPolygon(
-                stateData[0].STATE_NAME,
-                coordinates,
-                layer.properties.state,
-                stateData[0].FLY_NAME,
-                unit,
+                  stateData[0].STATE_NAME,
+                  coordinates,
+                  layer.properties.state,
+                  stateData[0].FLY_NAME,
+                  unit
               );
               break;
             case 'flyway':
@@ -197,18 +204,21 @@
                 }
               }
               polygons[layer.properties.flyway] = new LPolygon(
-                layer.properties.flyway,
-                coordinates,
-                '',
-                layer.properties.flyway,
-                unit,
+                  layer.properties.flyway,
+                  coordinates,
+                  '',
+                  layer.properties.flyway,
+                  unit
               );
               break;
           }
         }
       });
       if (Object.values(polygons).length > 0) {
-        L.geoJson({type: 'FeatureCollection', features: Object.values(polygons)}, {style: getPolygonStyle}).addTo(lMap);
+        L.geoJson({
+          type: 'FeatureCollection',
+          features: Object.values(polygons)
+        }, {style: getPolygonStyle}).addTo(lMap);
       }
     }
 
@@ -222,7 +232,7 @@
       for (var i = 0 in data) {
         var flyway = data[i].attributes.FLY_NAME.toLowerCase();
         var state = data[i].attributes.STATE_ABV.toLowerCase();
-        var county = data[i].attributes.CNTY_NAME.toLowerCase().replace(/\s/g,'');
+        var county = data[i].attributes.CNTY_NAME.toLowerCase().replace(/\s/g, '');
         if (this[flyway]) {
           if (!this[flyway][state]) {
             this[flyway][state] = {};
@@ -249,29 +259,37 @@
   }
 
   Drupal.nas_conservation_tracker_init_charts = function () {
-      // Charts. TODO make it look good
-      var loc = getLocation();
-      var objectivesRows = [];
-      var overall = 0;
-      var sites = (Drupal.settings.nas_conservation_tracker.visible_sites) ?
+    // Charts. TODO make it look good
+    var loc = getLocation();
+    var json = Drupal.settings.nas_conservation_tracker.json_data[loc];
+    var objectivesRows = [];
+    var overall = 0;
+    var sites = (Drupal.settings.nas_conservation_tracker.visible_sites) ?
         Drupal.settings.nas_conservation_tracker.visible_sites :
-        Drupal.settings.nas_conservation_tracker.json_data[loc].sites;
-      for (var i = 0 in sites) {
-        for (var j = 0 in sites[i].data) {
-          if (angular.isDefined(sites[i].data[j].value_type) && sites[i].data[j].value_type.name == 'Objective') {
-            var data = sites[i].data[j];
-            objectivesRows.push([data.value_type.description, data.value]);
-            overall += parseFloat(data.value);
-          }
-        }
+        json.sites;
+    var tabSettings = Drupal.settings.nas_conservation_tracker.json_data.settings[loc];
+    console.log('TABSETTINGS', tabSettings);
+
+    var objectives = tabSettings.objectives;
+    for (var j = 0 in objectives) {
+      if ($.isNumeric(objectives[j].value)) {
+        objectivesRows.push([objectives[j].description, objectives[j].value]);
+        overall += parseFloat(objectives[j].value);
       }
+      else {
+        objectivesRows.push([objectives[j].description, -1]);
+      }
+    }
 
-      // Charts.
-      var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
-      objectives.update({rows: objectivesRows});
 
-      overall = Math.round(overall/objectivesRows.length);
+    // Charts.
+    var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
+    objectives.update({rows: objectivesRows});
+    if (objectivesRows.length > 0) {
+      $('.objectives-wrap').show();
+      overall = Math.round(overall / objectivesRows.length);
       updateOverall(overall);
+
       function updateOverall(overall) {
         $overallWrapper = $('.progress-item');
         if (overall > 40) {
@@ -283,32 +301,97 @@
 
         $overallWrapper.find('progress').val(overall);
       }
+    }
+    else {
+      $('.objectives-wrap').hide();
+    }
+
+    if (overall > 0) {
+      $('.progress-wrap').show();
+    }
+    else {
+      $('.progress-wrap').hide();
+    }
 
 
+    // Charts. TODO make it look good
+    var mainObjRows = {};
+    var additionalData = {};
+    if (typeof tabSettings.chart != 'undefined') {
+      var agOp = tabSettings.chart.operation;
 
-       // Charts. TODO make it look good
-      var mainObjRows = {};
-      var agOp = 'sum';
       for (var i = 0 in sites) {
-        for (var j = 0 in sites[i].data) {
-          if (angular.isDefined(sites[i].data[j].value_type) && sites[i].data[j].value_type.name != 'Objective') {
-            var data = sites[i].data[j];
-            switch(agOp) {
-              case 'sum':
+        if (tabSettings.chart.type == 'data') {
+          for (var j = 0 in sites[i].data) {
+            if (angular.isDefined(sites[i].data[j].value_type) && sites[i].data[j].value_type.name == tabSettings.chart.value_type) {
+              if (angular.isDefined(sites[i].data[j].key_type) && sites[i].data[j].key_type.name == tabSettings.chart.key_type) {
+                var data = sites[i].data[j];
                 mainObjRows[data.key] = mainObjRows[data.key] || 0;
-                mainObjRows[data.key] += parseFloat(data.value);
+                switch (agOp) {
+                  case 'sum':
+                    mainObjRows[data.key] += parseFloat(data.value);
+                    break;
+                  case 'avg':
+                    mainObjRows[data.key] += parseFloat(data.value);
+
+                    additionalData[data.key] = additionalData[data.key] || {};
+                    additionalData[data.key]['count'] = additionalData[data.key]['count'] || 0;
+                    additionalData[data.key]['count']++;
+                    break;
+                }
+
+              }
+            }
+          }
+        }
+        else if (tabSettings.chart.type == 'actions') {
+          for (var j = 0 in sites[i].actions) {
+            var data = sites[i].actions[j];
+            var key = data.categories[0].name;
+            mainObjRows[key] = mainObjRows[key] || 0;
+            switch (agOp) {
+              case 'sum':
+                mainObjRows[key] += 1;
                 break;
             }
           }
         }
+
+
       }
-      var mainRows = Object.keys(mainObjRows).map(function (key) { return [key, mainObjRows[key]]; });
+    }
+    console.log('MAIN DATA', mainObjRows);
+
+    var mainRows = Object.keys(mainObjRows).map(function (key) {
+      var value = mainObjRows[key];
+      if (agOp == 'avg') {
+        value = (mainObjRows[key] / additionalData[key]['count']).toFixed(2);
+      }
+      return [key, value];
+    });
+
+    if (mainRows.length > 0) {
+      var $diagram = $('.diagram-wrap');
+      $diagram.find('.map-title').text(tabSettings.chart.value_type);
+      $diagram.show();
 
       // Charts.
       //var mainChart = Drupal.d3.ct_linegraph('d3-actions', {rows: []});
-    var mainChart = Drupal.d3.ct_bar('d3-actions', {rows: []});
-    mainChart.update({rows: mainRows,width: 512, height: 306, barWidth: 9, barRx: 4, barColor: ['#ef5a3e']});
-    $('#site-count').text(sites.length);
+      var mainChart = Drupal.d3.ct_bar('d3-actions', {rows: []});
+      mainChart.update({
+        rows: mainRows,
+        width: 512,
+        height: 306,
+        barWidth: 9,
+        barRx: 4,
+        barColor: ['#ef5a3e']
+      });
+      $('#site-count').text(sites.length);
+
+    }
+    else {
+      $('.diagram-wrap').hide();
+    }
   };
 
   // Common helper functions.

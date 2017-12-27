@@ -7,6 +7,7 @@
     }
     $('body').addClass('nas-cta-tabs-angular-processed');
 
+    // @todo load from backend
     var linkArray = ['threats', 'actions', 'responses', 'partners']
       , pathName = window.location.pathname
       , pathArray = window.location.pathname.split('/')
@@ -88,6 +89,7 @@
         // Load json file.
         function getContent(currentName) {
           if (linkArray.indexOf(currentName) > -1) {
+            // @todo take from backend
             $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + currentName)
               .then(function (response) {
                 $scope[currentName] = response.data;
