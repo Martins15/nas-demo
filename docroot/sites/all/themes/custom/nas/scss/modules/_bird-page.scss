@@ -451,6 +451,7 @@ $padding-item: 25px 17.5px 0;
         display: block;
         width: 165px;
         padding: 8px 0 7px 15px;
+        // @todo make colors as variables.
         background-color: #303030;
         font-size: 14px;
         color: $white;
@@ -478,6 +479,26 @@ $padding-item: 25px 17.5px 0;
           font-size: 16px;
         }
       }
+    }
+  }
+  .controls-link {
+    display: block;
+    position: absolute;
+    left: 237px;
+    top: 33px;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+    background-color: #303030;
+    border: solid 2px #303030;
+    text-align: center;
+    .border {
+      display: block;
+      width: 14px;
+      height: 14px;
+      border: dashed 2px $white;
+      margin-top: 11px;
+      margin-left: 11px;
     }
   }
 }
