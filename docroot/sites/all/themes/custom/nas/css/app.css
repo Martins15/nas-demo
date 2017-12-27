@@ -20155,9 +20155,8 @@ ul.clearing-thumbs {
 }
 
 .ct-leaflet-site {
-  background: #000;
-  border-radius: 7px;
-  border: 2px solid #fff;
+  background: #ccc;
+  border-radius: 3px;
 }
 .ct-visible-area {
   border: 2px dashed #ccc;
