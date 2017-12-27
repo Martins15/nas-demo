@@ -84,7 +84,7 @@
       '$scope', '$stateParams', '$state', '$rootScope', '$http',
       function ($scope, $stateParams, $state, $rootScope, $http) {
       // @todo update var.
-       var idItem = 123;
+       var idItem = 123;console.log('ITEM ID', idItem);
 
         // Load json file.
         function getContent(currentName) {
