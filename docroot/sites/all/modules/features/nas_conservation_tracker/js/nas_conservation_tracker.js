@@ -135,7 +135,7 @@
     }
 
     function showMarkers() {
-      var visibility = lMap.getZoom() > 5 ? 'visible' : 'hidden';
+      var visibility = lMap.getZoom() > 6 ? 'visible' : 'hidden';
       $('.' + classes.site).css('visibility', visibility);
     }
 
