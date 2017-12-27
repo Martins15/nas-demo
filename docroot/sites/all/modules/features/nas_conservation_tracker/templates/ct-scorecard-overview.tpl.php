@@ -18,19 +18,19 @@
             <div class="text-wrap__content" ng-cloak>
                 <div class="threats" ng-class="{'active': isActiveTab === 'threats'}">
                     <h4>Threats</h4>
-                    <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
+                    <p>Anthropogenic pressures on birds, habitats they rely on, and/or an entire ecosystem{{settings.threats.tagLine}}</p>
                 </div>
                 <div class="actions" ng-class="{'active': isActiveTab === 'actions'}">
                     <h4>Actions</h4>
-                    <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
+                    <p>Conservation interventions by Audubon field staff and partners as classifed by the Conservation Measures Partnership{{settings.actions.tagLine}}</p>
                 </div>
                 <div class="responses"  ng-class="{'active': isActiveTab === 'responses'}">
                     <h4>Responses</h4>
-                    <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
+                    <p>Quantifying the effectiveness of our conservation actions using scientifically-sound metrics{{settings.responses.tagLine}}</p>
                 </div>
                 <div class="partners"  ng-class="{'active': isActiveTab === 'partners'}">
                     <h4>Partners</h4>
-                    <p>Our on-the-ground conservation actions are fueled by science, advocacy, and our network.</p>
+                    <p>Our work is co-developed and often led by partner organizations and stakeholders {{settings.partners.tagLine}}</p>
                 </div>
             </div>
         </div>
@@ -43,15 +43,14 @@
         <div class="bird-page body-item" ng-cloak
              ng-class="{'active': isActive === 'responses'}">
             <div class="title-wrap">
-                <div class="title-wrap__title columns tiny-10"><h3>Responses
-                        Overview</h3></div>
+                <div class="title-wrap__title columns tiny-10"><h3>{{responses.data.settings.responses.title}}</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
                     <span class="img-block print"></span> <span class="img-block download"></span> Download
                 </div>
             </div>
             <div class="body-wrap columns large-8">
                 <div class="body-wrap__body-text">
-                    <p>{{responses.data.settings.responses.description}}</p>
+                    <p ng-bind-html="responses.data.settings.responses.description"></p>
                 </div>
             </div>
             <div class="video-wrap columns large-4">
@@ -64,15 +63,14 @@
         <div class="bird-page body-item" ng-cloak
              ng-class="{'active': isActive === 'actions'}">
             <div class="title-wrap">
-                <div class="title-wrap__title columns tiny-10"><h3>Actions
-                        Overview</h3></div>
+                <div class="title-wrap__title columns tiny-10"><h3>{{actions.data.settings.actions.title}}</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
                     <span class="img-block print"></span> <span class="img-block download"></span> Download
                 </div>
             </div>
             <div class="body-wrap columns large-8">
                 <div class="body-wrap__body-text">
-                    <p>{{actions.data.settings.actions.description}}</p>
+                    <p ng-bind-html="actions.data.settings.actions.description"></p>
                 </div>
             </div>
             <div class="video-wrap columns large-4">
@@ -84,15 +82,14 @@
         <div class="bird-page body-item" ng-cloak
              ng-class="{'active': isActive === 'threats'}">
             <div class="title-wrap">
-                <div class="title-wrap__title columns tiny-10"><h3>Threats
-                        Overview</h3></div>
+                <div class="title-wrap__title columns tiny-10"><h3>{{threats.data.settings.threats.title}}</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
                     <span class="img-block print"></span> <span class="img-block download"></span> Download
                 </div>
             </div>
             <div class="body-wrap columns large-8">
                 <div class="body-wrap__body-text">
-                    <p>{{threats.data.settings.threats.description}}</p>
+                    <p ng-bind-html="threats.data.settings.threats.description"></p>
                 </div>
             </div>
             <div class="video-wrap columns large-4">
@@ -104,15 +101,14 @@
         <div class="bird-page body-item" ng-cloak
              ng-class="{'active': isActive === 'partners'}">
             <div class="title-wrap">
-                <div class="title-wrap__title columns tiny-10"><h3>Partners
-                        Overview</h3></div>
+                <div class="title-wrap__title columns tiny-10"><h3>{{partners.data.settings.partners.title}}</h3></div>
                 <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
                     <span class="img-block print"></span> <span class="img-block download"></span> Download
                 </div>
             </div>
             <div class="body-wrap columns large-8">
                 <div class="body-wrap__body-text">
-                    <p>{{partners.data.settings.partners.description}}</p>
+                    <p ng-bind-html="partners.data.settings.partners.description"></p>
                 </div>
             </div>
             <div class="video-wrap columns large-4">

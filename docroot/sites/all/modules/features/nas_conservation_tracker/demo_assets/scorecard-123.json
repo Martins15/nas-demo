@@ -34,6 +34,7 @@
       "chart":
       {
         "type": "actions",
+        "value_type": "Action Categories",
         "operation": "sum"
       }
     },
@@ -73,8 +74,8 @@
       ]
     },
     "map": {
-      "latitude": "38.013476231041935",
-      "longitude": "-112.80761718750001",
+      "latitude": "38.020098201368114",
+      "longitude": "-114.63378906250001",
       "zoom": "6"
     }
   },

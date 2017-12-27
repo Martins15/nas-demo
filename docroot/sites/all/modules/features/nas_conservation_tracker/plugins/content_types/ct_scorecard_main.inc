@@ -61,7 +61,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   );
   $features = array(
   );
-  $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_map_height', '600') . 'px');
+  $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_map_height', '800') . 'px');
 
   libraries_load('d3.extend');
   libraries_load('d3.tooltip');
