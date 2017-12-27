@@ -9,7 +9,7 @@
         <?php print $item['markup']; ?>
         <?php if (isset($item['children'])): ?>
           <?php foreach ($item['children'] as $child): ?>
-            <?php print $child; ?>
+            <?php print $child['markup']; ?>
           <?php endforeach; ?>
         <?php endif; ?>
       <?php endforeach; ?>

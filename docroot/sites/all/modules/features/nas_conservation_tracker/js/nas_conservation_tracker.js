@@ -26,7 +26,7 @@
     for (var i = 0 in Drupal.settings.nas_conservation_tracker.json_data[loc].sites) {
       // Display sites (dots).
       var site = Drupal.settings.nas_conservation_tracker.json_data[loc].sites[i];
-      var dot = L.divIcon({className: classes.site}),
+      var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
         latLon = [
           parseFloat(site.latitude),
           parseFloat(site.longitude),
