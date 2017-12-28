@@ -43,9 +43,9 @@
         <div class="bird-page body-item" ng-cloak
              ng-class="{'active': isActive === 'responses'}">
             <div class="title-wrap">
-                <div class="title-wrap__title columns tiny-10"><h3>{{responses.data.settings.responses.title}}</h3></div>
-                <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
-                    <span class="img-block print"></span> <span class="img-block download"></span> Download
+                <div class="title-wrap__title columns tiny-9"><h3>{{responses.data.settings.responses.title}}</h3></div>
+                <div class="title-wrap__print  columns large-3 hide-for-medium hide-for-small">
+                  <a href="#" class="img-block print"></a> <a href="#" class="img-block download">Download</a><span>?</span>
                 </div>
             </div>
             <div class="body-wrap columns large-8">
@@ -63,9 +63,9 @@
         <div class="bird-page body-item" ng-cloak
              ng-class="{'active': isActive === 'actions'}">
             <div class="title-wrap">
-                <div class="title-wrap__title columns tiny-10"><h3>{{actions.data.settings.actions.title}}</h3></div>
-                <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
-                    <span class="img-block print"></span> <span class="img-block download"></span> Download
+                <div class="title-wrap__title columns tiny-9"><h3>{{actions.data.settings.actions.title}}</h3></div>
+                <div class="title-wrap__print  columns large-3 hide-for-medium hide-for-small">
+                  <a href="#" class="img-block print"></a> <a href="#" class="img-block download">Download</a><span>?</span>
                 </div>
             </div>
             <div class="body-wrap columns large-8">
@@ -82,9 +82,9 @@
         <div class="bird-page body-item" ng-cloak
              ng-class="{'active': isActive === 'threats'}">
             <div class="title-wrap">
-                <div class="title-wrap__title columns tiny-10"><h3>{{threats.data.settings.threats.title}}</h3></div>
-                <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
-                    <span class="img-block print"></span> <span class="img-block download"></span> Download
+                <div class="title-wrap__title columns tiny-9"><h3>{{threats.data.settings.threats.title}}</h3></div>
+                <div class="title-wrap__print  columns large-3 hide-for-medium hide-for-small">
+                  <a href="#" class="img-block print"></a> <a href="#" class="img-block download">Download</a><span>?</span>
                 </div>
             </div>
             <div class="body-wrap columns large-8">
@@ -101,9 +101,9 @@
         <div class="bird-page body-item" ng-cloak
              ng-class="{'active': isActive === 'partners'}">
             <div class="title-wrap">
-                <div class="title-wrap__title columns tiny-10"><h3>{{partners.data.settings.partners.title}}</h3></div>
-                <div class="title-wrap__print  columns large-2 hide-for-medium hide-for-small">
-                    <span class="img-block print"></span> <span class="img-block download"></span> Download
+                <div class="title-wrap__title columns tiny-9"><h3>{{partners.data.settings.partners.title}}</h3></div>
+                <div class="title-wrap__print  columns large-3 hide-for-medium hide-for-small">
+                  <a href="#" class="img-block print"></a> <a href="#" class="img-block download">Download</a><span>?</span> 
                 </div>
             </div>
             <div class="body-wrap columns large-8">
