@@ -34,6 +34,7 @@
           parseFloat(site.longitude),
         ];
       var marker = L.marker(latLon, {icon: dot});
+      var text = site.name;
       marker.properties = {
         marker: true,
         flyway: site.flyway.toLowerCase(),
@@ -45,7 +46,12 @@
           marker.properties.county = county;
         }
       }
-      marker.bindTooltip(site.name).addTo(lMap);
+      for (var j = 0 in site.actions) {
+        for (var l = 0 in site.actions[j].categories) {
+          text += ("<br/><small>" + site.actions[j].categories[l].name + "</small>");
+        }
+      }
+      marker.bindTooltip(text).addTo(lMap);
     }
     // Scale map to selected unit.
     $radios.each(function () {
@@ -109,6 +115,11 @@
         'width': $('.' + classes.charts).offset().left.toFixed(0) + 'px',
         'height': $('#' + Drupal.settings.leaflet[0].mapId).height() + 'px',
       });
+    }
+
+    function getPolygonStyle(feature, layer) {
+      console.log(feature);
+      console.log(layer);
     }
 
     function getPolygonStyle(feature) {
@@ -217,10 +228,11 @@
         }
       });
       if (Object.values(polygons).length > 0) {
-        L.geoJson({
+        var polygons = L.geoJson({
           type: 'FeatureCollection',
           features: Object.values(polygons)
-        }, {style: getPolygonStyle}).addTo(lMap);
+        }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
+        polygons.addTo(lMap);
       }
     }
 
