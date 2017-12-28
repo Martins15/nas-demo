@@ -74,7 +74,7 @@
           foreground.attr("transform", "scale(2.1)");
           background.attr("transform", "scale(2.1)");
 
-          if (_value >= 0) {console.log('VALUE', _value);
+          if (_value >= 0) {
             foreground.transition()
               .duration(1000)
               .call(animation, (_value * τ/_max), 0, _value + '%')
