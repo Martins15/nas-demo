@@ -9281,7 +9281,182 @@
       }
     ]
   },
-  "partners": {
-    "sites": []
-  }
+  "partners": [
+    {
+      "id": 1,
+      "name": "Buena Vista Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 2,
+      "name": "CA State Agencies",
+      "state": "CA",
+      "chapter": "",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 3,
+      "name": "Conservacion de Islas",
+      "state": "CA",
+      "chapter": "",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 4,
+      "name": "eBird",
+      "state": "CA",
+      "chapter": "",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 5,
+      "name": "El Dorado Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 6,
+      "name": "Golden Gate Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 7,
+      "name": "Los Angeles Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 8,
+      "name": "Madrone Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 9,
+      "name": "Marin Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 10,
+      "name": "Marin-Sonoma Mosquito Control District",
+      "state": "CA",
+      "chapter": "",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 11,
+      "name": "Monterey Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 12,
+      "name": "Morro Coast Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 13,
+      "name": "Palos Verdes/South Bay Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 14,
+      "name": "Redwood Region Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 15,
+      "name": "Richardson Bay Audubon Center and Sanctuary",
+      "state": "CA",
+      "chapter": "",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 16,
+      "name": "San Diego Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 17,
+      "name": "Santa Barbara Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 18,
+      "name": "Santa Monica Bay Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 19,
+      "name": "Sea and Sage Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 20,
+      "name": "Sequoia Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 21,
+      "name": "U.S. Fish and Wildlife Service",
+      "state": "CA",
+      "chapter": "",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 22,
+      "name": "Ventura Audubon Society",
+      "state": "CA",
+      "chapter": "x",
+      "description": "",
+      "image": ""
+    }
+  ]
 }

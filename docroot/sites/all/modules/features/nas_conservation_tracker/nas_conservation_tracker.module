@@ -144,9 +144,15 @@ function nas_conservation_tracker_theme() {
     ),
     'ct_scorecard_overview' => array(
       'variables' => array(
+        'data' => NULL,
+        /*
         'title' => NULL,
         'description' => NULL,
-        'media' => NULL,
+        'application' => NULL,
+        'thumbnail' => NULL,
+        'youtube' => NULL,
+        'tagline' => NULL,
+        */
       ),
       'template' => 'templates/ct-scorecard-overview',
     ),

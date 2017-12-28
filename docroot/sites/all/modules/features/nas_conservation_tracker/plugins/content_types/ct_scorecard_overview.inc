@@ -28,9 +28,7 @@ $plugin = array(
 function nas_conservation_tracker_scorecard_overview_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $vars = array(
-    'title' => 'Action Overview',
-    'description' => 'Description of this overview',
-    'media' => 'some media',
+    'data' => nas_conservation_tracker_get_json('scorecard-' . $context->data->field_scorecard_id[LANGUAGE_NONE][0]['value']),
   );
   $block->content = theme('ct_scorecard_overview', $vars);
 
