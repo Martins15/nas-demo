@@ -4515,7 +4515,7 @@ function nas_master_update_7311() {
 /**
  * Revert nas_nurseries_near_you_feature.
  */
-function nas_master_update_7307() {
+function nas_master_update_7312() {
   features_revert(array(
     'nas_nurseries_near_you_feature' => array('views_default'),
   ));
