@@ -201,6 +201,27 @@ $padding-item: 25px 17.5px 0;
   }
 }
 
+.objectives-wrap, .diagram-wrap {
+  .map-title {
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    span {
+      display: block;
+      text-align: center;
+      width: 20px;
+      height: 20px;
+      border: solid 1px $brownish-grey;
+      font-size: 14px;
+      color: $brownish-grey;
+      border-radius: 50%;
+      position: absolute;
+      right: -25px;
+      top: 8px;
+    }
+  }
+}
+
 .progress-wrap {
   background: $grey-bg-bird;
   margin-bottom: 10px;

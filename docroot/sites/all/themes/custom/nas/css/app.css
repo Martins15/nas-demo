@@ -17936,6 +17936,25 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
+.objectives-wrap .map-title, .diagram-wrap .map-title {
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+.objectives-wrap .map-title span, .diagram-wrap .map-title span {
+  display: block;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  border: solid 1px #76736c;
+  font-size: 14px;
+  color: #76736c;
+  border-radius: 50%;
+  position: absolute;
+  right: -25px;
+  top: 8px;
+}
+
 .progress-wrap {
   background: #F0F0F0;
   margin-bottom: 10px;
