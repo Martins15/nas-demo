@@ -14,7 +14,7 @@
           <div class="diagram-wrap help-bg-white columns map-item large-8">
               <div class="map-item__inner-help">
                   <div class="diagram-wrap__title">
-                      <h4 class="map-title">Action Categories</h4>
+                      <h4 class="map-title">Action Categories <span>?</span></h4>
                       <p>Sites: <span  id="site-count">0</span></p>
                   </div>
                   <div class="diagram-item">
@@ -25,7 +25,7 @@
           <div class="objectives-wrap help-bg-white columns map-item large-8">
               <div class="map-item__inner-help">
                   <div class="objectives-wrap__title">
-                      <h4 class="map-title">Objectives</h4></div>
+                      <h4 class="map-title">Objectives <span>?</span></h4></div>
                   <div class="objectives-wrap__wrap-items">
                     <?php print $objectives; ?>
                   </div>
