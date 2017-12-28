@@ -18,19 +18,19 @@
             <div class="text-wrap__content" ng-cloak>
                 <div class="threats" ng-class="{'active': isActiveTab === 'threats'}">
                     <h4>Threats</h4>
-                    <p>Anthropogenic pressures on birds, habitats they rely on, and/or an entire ecosystem{{settings.threats.tagLine}}</p>
+                    <p><?php print $data['settings']['threats']['tagLine'] ?></p>
                 </div>
                 <div class="actions" ng-class="{'active': isActiveTab === 'actions'}">
                     <h4>Actions</h4>
-                    <p>Conservation interventions by Audubon field staff and partners as classifed by the Conservation Measures Partnership{{settings.actions.tagLine}}</p>
+                    <p><?php print $data['settings']['actions']['tagLine'] ?></p>
                 </div>
                 <div class="responses"  ng-class="{'active': isActiveTab === 'responses'}">
                     <h4>Responses</h4>
-                    <p>Quantifying the effectiveness of our conservation actions using scientifically-sound metrics{{settings.responses.tagLine}}</p>
+                    <p><?php print $data['settings']['responses']['tagLine'] ?></p>
                 </div>
                 <div class="partners"  ng-class="{'active': isActiveTab === 'partners'}">
                     <h4>Partners</h4>
-                    <p>Our work is co-developed and often led by partner organizations and stakeholders {{settings.partners.tagLine}}</p>
+                    <p><?php print $data['settings']['partners']['tagLine'] ?></p>
                 </div>
             </div>
         </div>

@@ -25,6 +25,27 @@
         lMap.removeLayer(layer);
       }
     });
+<<<<<<< HEAD
+    for (var i = 0 in json.sites) {
+      // Display sites (dots).
+      var site = json.sites[i];
+      var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
+        latLon = [
+          parseFloat(site.latitude),
+          parseFloat(site.longitude),
+        ];
+      var marker = L.marker(latLon, {icon: dot});
+      var text = site.name;
+      marker.properties = {
+        marker: true,
+        flyway: site.flyway.toLowerCase(),
+        state: site.state.toLowerCase(),
+        site: site,
+      };
+      for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
+        if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
+          marker.properties.county = county;
+
     if (angular.isDefined(json)) {
       for (var i = 0 in json.sites) {
         // Display sites (dots).
@@ -48,7 +69,12 @@
         }
         marker.bindTooltip(site.name).addTo(lMap);
       }
-
+      for (var j = 0 in site.actions) {
+        for (var l = 0 in site.actions[j].categories) {
+          text += ("<br/><small>" + site.actions[j].categories[l].name + "</small>");
+        }
+      }
+      marker.bindTooltip(text).addTo(lMap);
     }
     // Scale map to selected unit.
     $radios.each(function () {
@@ -122,6 +148,11 @@
         'width': $('.' + classes.charts).offset().left.toFixed(0) + 'px',
         'height': $('#' + Drupal.settings.leaflet[0].mapId).height() + 'px',
       });
+    }
+
+    function getPolygonStyle(feature, layer) {
+      console.log(feature);
+      console.log(layer);
     }
 
     function getPolygonStyle(feature) {
@@ -230,10 +261,11 @@
         }
       });
       if (Object.values(polygons).length > 0) {
-        L.geoJson({
+        var polygons = L.geoJson({
           type: 'FeatureCollection',
           features: Object.values(polygons)
-        }, {style: getPolygonStyle}).addTo(lMap);
+        }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
+        polygons.addTo(lMap);
       }
     }
 
