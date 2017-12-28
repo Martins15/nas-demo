@@ -89,14 +89,40 @@
         // Load json file.
         function getContent(currentName) {
           if (linkArray.indexOf(currentName) > -1) {
-            // @todo take from backend
-            $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + currentName)
-              .then(function (response) {
-                $scope[currentName] = response.data;
-                Drupal.settings.nas_conservation_tracker.json_data = response.data.data;
-                Drupal.nas_conservation_tracker_init_map();
-                Drupal.nas_conservation_tracker_init_charts();
-              });
+            Drupal.settings.nas_conservation_tracker.tabsOverview = Drupal.settings.nas_conservation_tracker.tabsOverview || {};
+            Drupal.settings.nas_conservation_tracker.tabsData = Drupal.settings.nas_conservation_tracker.tabsData || {};
+
+            // Load data via ajax only once.
+            if (!angular.isDefined(Drupal.settings.nas_conservation_tracker.tabsOverview[currentName])) {
+              // @todo take from backend
+              $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + currentName)
+                .then(function (response) {
+                  var tabData = response.data.data
+                  tabData.settings.overview = tabData.settings[currentName];
+                  tabData.settings.tabs = linkArray;
+                  Drupal.settings.nas_conservation_tracker.tabsOverview[currentName] = tabData;
+                  Drupal.settings.nas_conservation_tracker.tabsData[currentName] = response.data.data;
+                  $scope['tab'] = tabData;
+
+                  updateTabData(response.data.data);
+                });
+            }
+            else {
+              // Make sure url was changed.
+              setTimeout(function(){
+                  $scope['tab'] = Drupal.settings.nas_conservation_tracker.tabsOverview[currentName];
+                  updateTabData(Drupal.settings.nas_conservation_tracker.tabsData[currentName]);
+                  $scope.$apply();
+              }, 100);
+            }
+
+          }
+        }
+        function updateTabData(data) {
+          if (angular.isDefined(data)) {
+            Drupal.settings.nas_conservation_tracker.json_data = data;
+            Drupal.nas_conservation_tracker_init_map();
+            Drupal.nas_conservation_tracker_init_charts();
           }
         }
 
