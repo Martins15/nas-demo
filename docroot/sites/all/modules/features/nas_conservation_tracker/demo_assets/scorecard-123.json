@@ -5,7 +5,7 @@
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_black_oystercatcher_hero.jpg",
   "settings": {
     "threats": {
-      "application": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/blkoys_A2.gif",
+      "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/blkoys_A2.gif",
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_bloy_threats.png",
       "tagLine": "Anthropogenic pressures on birds, habitats they rely on, and/or an entire ecosystem",
       "title": "A climate-endangered species",
@@ -40,7 +40,7 @@
       }
     },
     "responses": {
-      "application": "<iframe src='http://web4.audubon.org/scidev/cbc_trends/bloy.html' with='600' height='400' />",
+      "iframe": "//web4.audubon.org/scidev/cbc_trends/bloy.html",
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_bloy_response.png",
       "tagLine": "Quantifying the effectiveness of our conservation actions using scientifically-sound metrics",
       "title": "California intertidal is critical for the Black Oystercatcher population",

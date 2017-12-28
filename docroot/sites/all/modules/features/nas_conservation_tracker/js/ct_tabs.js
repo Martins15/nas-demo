@@ -30,7 +30,13 @@
       'ui.router',
       'ngStorage',
       'duScroll'
-    ]);
+    ]).directive('tabsRepeatDirective', function() {
+      return function($scope, element, attrs) {
+        if ($scope.$last){
+          // Drupal.attachBehaviors($('.body-item '));
+        }
+      };
+    });
 
 
     NativeCtaApp.run([
@@ -84,7 +90,8 @@
       '$scope', '$stateParams', '$state', '$rootScope', '$http',
       function ($scope, $stateParams, $state, $rootScope, $http) {
       // @todo update var.
-       var idItem = 123;//console.log('ITEM ID', idItem);
+
+       var idItem = 123;
 
         // Load json file.
         function getContent(currentName) {
@@ -99,11 +106,27 @@
                 .then(function (response) {
                   var tabData = response.data.data
                   tabData.settings.overview = tabData.settings[currentName];
+                  tabData.settings.overview.preparedLink = {'target': '_self'};
+                  if (angular.isDefined(tabData.settings.overview.image)) {
+                    tabData.settings.overview.preparedLink.class = 'colorbox-load';
+                    tabData.settings.overview.preparedLink.href = tabData.settings.overview.image + '?iframe=false';
+                  }
+                  else if (angular.isDefined(tabData.settings.overview.iframe)) {
+                    tabData.settings.overview.preparedLink.class = 'colorbox-load';
+                    var width = $(window).width() * 0.75;
+                    var height = $(window).height() * 0.9;
+                    tabData.settings.overview.preparedLink.href = tabData.settings.overview.iframe + '?width=' + width + '&height=' + height + '&iframe=true';
+                  }
+                  else if (angular.isDefined(tabData.settings.overview.link)) {
+                    tabData.settings.overview.preparedLink.class = 'overview-link';
+                    tabData.settings.overview.preparedLink.href = tabData.settings.overview.link;
+                    tabData.settings.overview.preparedLink.target = '_blank';
+                  }
+
                   tabData.settings.tabs = linkArray;
                   Drupal.settings.nas_conservation_tracker.tabsOverview[currentName] = tabData;
                   Drupal.settings.nas_conservation_tracker.tabsData[currentName] = response.data.data;
                   $scope['tab'] = tabData;
-
                   updateTabData(response.data.data);
                 });
             }
@@ -112,8 +135,9 @@
               setTimeout(function(){
                   $scope['tab'] = Drupal.settings.nas_conservation_tracker.tabsOverview[currentName];
                   updateTabData(Drupal.settings.nas_conservation_tracker.tabsData[currentName]);
+                  Drupal.attachBehaviors($('.' + currentName + '-tab-wrapper'));
                   $scope.$apply();
-              }, 100);
+              }, 500);
             }
 
           }
@@ -130,11 +154,26 @@
         $rootScope.$on('$stateChangeSuccess', function (event, transition) {
           getContent($state['current']['name']);
           $scope.isActive = transition.name;
+
+          setTimeout(function(){
+            Drupal.attachBehaviors($('.' + $state['current']['name'] + '-tab-wrapper'));
+          }, 1000);
+
         });
 
         // On change.
         $rootScope.$on("$locationChangeStart", function (event, next, current) {
+          // Placeholder.
         });
+
+        // On change.
+        $rootScope.$on("$locationChangeSuccess", function (event, next, current) {
+          // Placeholder.
+        });
+
+
+
+
       }
     ]);
 
