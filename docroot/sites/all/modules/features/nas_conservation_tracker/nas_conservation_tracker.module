@@ -21,7 +21,7 @@ function nas_conservation_tracker_ctools_plugin_directory($module, $plugin) {
 function nas_conservation_tracker_init() {
   _nas_conservation_tracker_get_real_path(TRUE);
 
-  //drupal_add_css(drupal_get_path('module', 'nas_conservation_tracker'), '/css/nas_conservation_tracker.css');
+  drupal_add_css(drupal_get_path('module', 'nas_conservation_tracker'), '/css/nas_conservation_tracker.css');
 
 //  $sections = arg();
 //  $path = array_pop($sections);
@@ -144,9 +144,15 @@ function nas_conservation_tracker_theme() {
     ),
     'ct_scorecard_overview' => array(
       'variables' => array(
+        'data' => NULL,
+        /*
         'title' => NULL,
         'description' => NULL,
-        'media' => NULL,
+        'application' => NULL,
+        'thumbnail' => NULL,
+        'youtube' => NULL,
+        'tagline' => NULL,
+        */
       ),
       'template' => 'templates/ct-scorecard-overview',
     ),

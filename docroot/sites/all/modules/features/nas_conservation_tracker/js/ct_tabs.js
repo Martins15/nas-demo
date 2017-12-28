@@ -90,6 +90,7 @@
       '$scope', '$stateParams', '$state', '$rootScope', '$http',
       function ($scope, $stateParams, $state, $rootScope, $http) {
       // @todo update var.
+
        var idItem = 123;
 
         // Load json file.
