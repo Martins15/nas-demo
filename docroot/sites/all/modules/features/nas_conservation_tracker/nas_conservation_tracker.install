@@ -40,3 +40,12 @@ function nas_conservation_tracker_update_7003() {
     ),
   ));
 }
+
+/**
+ * Update config for colorbox.
+ */
+function nas_conservation_tracker_update_7004() {
+  variable_set('colorbox_load', TRUE);
+  variable_set('colorbox_inline', TRUE);
+}
+

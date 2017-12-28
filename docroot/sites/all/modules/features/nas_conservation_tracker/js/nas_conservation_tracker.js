@@ -25,27 +25,30 @@
         lMap.removeLayer(layer);
       }
     });
-    for (var i = 0 in json.sites) {
-      // Display sites (dots).
-      var site = json.sites[i];
-      var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
-        latLon = [
-          parseFloat(site.latitude),
-          parseFloat(site.longitude),
-        ];
-      var marker = L.marker(latLon, {icon: dot});
-      marker.properties = {
-        marker: true,
-        flyway: site.flyway.toLowerCase(),
-        state: site.state.toLowerCase(),
-        site: site,
-      };
-      for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
-        if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
-          marker.properties.county = county;
+    if (angular.isDefined(json)) {
+      for (var i = 0 in json.sites) {
+        // Display sites (dots).
+        var site = json.sites[i];
+        var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
+          latLon = [
+            parseFloat(site.latitude),
+            parseFloat(site.longitude),
+          ];
+        var marker = L.marker(latLon, {icon: dot});
+        marker.properties = {
+          marker: true,
+          flyway: site.flyway.toLowerCase(),
+          state: site.state.toLowerCase(),
+          site: site,
+        };
+        for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
+          if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
+            marker.properties.county = county;
+          }
         }
+        marker.bindTooltip(site.name).addTo(lMap);
       }
-      marker.bindTooltip(site.name).addTo(lMap);
+
     }
     // Scale map to selected unit.
     $radios.each(function () {

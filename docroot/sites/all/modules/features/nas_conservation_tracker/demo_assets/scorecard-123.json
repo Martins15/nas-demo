@@ -5,8 +5,8 @@
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_black_oystercatcher_hero.jpg",
   "settings": {
     "threats": {
-      "application": "http://web4.audubon.org/climatedata/",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/blkoys_A2.gif",
+      "application": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/blkoys_A2.gif",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_bloy_threats.png",
       "tagLine": "Anthropogenic pressures on birds, habitats they rely on, and/or an entire ecosystem",
       "title": "A climate-endangered species",
       "description": "<ul><li>Sea level rise</li><li>Increased storms and king tides</li><li>Ocean acidification</li><li>Disturbance from coastal users</li><li>Avian predators</li><li>Climate change</li></ul>",
@@ -19,8 +19,8 @@
       ]
     },
     "actions": {
-      "youtube": "https://youtu.be/U92tgvJLF8c",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/BLOY_NaturalScene_mockup_v1.jpg",
+      "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/BLOY_NaturalScene_mockup_v1.jpg",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_actions.png",
       "tagLine": "Conservation interventions by Audubon field staff and partners as classifed by the Conservation Measures Partnership",
       "title": "Monitoring productivity since 2012",
       "description": "<ul><li>Monitoring and research to track the health of Black Oystercatcher populations by measuring productivity</li><li>Engagement to increase public awareness of oystercatchers, including signs, magnets, pamphlets, lectures, and conversations with coastal users and business owners</li><li>Habitat management and restoration to protect and enhance Black Oystercatcher populations and other societal benefits</li></ul>",
@@ -28,7 +28,7 @@
       [
         {
           "description": "Continue monitoring productivity along the California coast and use the data to conduct a population viability assessment",
-          "value": "44"
+          "value": ""
         }
       ],
       "chart":
@@ -40,8 +40,8 @@
       }
     },
     "responses": {
-      "application": "Tim's Shiny app for productivity analysis (Meehan et al. 2017) http://web4.audubon.org/scidev/cbc_trends/bloy.html",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
+      "application": "<iframe src='http://web4.audubon.org/scidev/cbc_trends/bloy.html' with='600' height='400' />",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_bloy_response.png",
       "tagLine": "Quantifying the effectiveness of our conservation actions using scientifically-sound metrics",
       "title": "California intertidal is critical for the Black Oystercatcher population",
       "description": "<ul><li>Until recently little was known of its status and distribution in California</li><li>Over 1300 birds and over 170 nests were detected in California suggesting the species is stable in the state</li><li>We estimate 4000-6000 oystercatchers in California, making our state critical for the species. Productivity monitoring from 2012-2016 has found a statewide fledge success (fledged chicks per pair per year) of between 0.41-0.49.</li><li>Audubon Christmas Bird Count shows significant increase in wintering oystercatchers between 1966 and 2017</li></ul>",
@@ -49,7 +49,7 @@
       [
         {
           "description": "Maintain 0.41 fledged chicks per pair per year",
-          "value": "77"
+          "value": ""
         }
       ],
       "chart":
@@ -62,8 +62,8 @@
       }
     },
     "partners": {
-      "application": "http://radio.krcb.org/post/monitoring-california-s-black-oystercatchers#stream/0",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster.png",
+      "link": "http://radio.krcb.org/post/monitoring-california-s-black-oystercatchers#stream/0",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_bloy_partners.png",
       "tagLine": "Our work is co-developed and often led by partner organizations and stakeholders",
       "title": "A network of state partners",
       "description": "<ul><li>Over 150 participants from coastal chapters and agencies, including the Mendocino Coast Bureau of Land Management, California Coastal National Monument, California State Parks, and Oikonos Ecosystem Knowledge. Audubon chapters include Mendocino Coast, Madrone, Golden Gate, Marin, and Monterey.</li><li>Funding for the program has been provided by the Marisla Foundation, the Resources Legacy Fund, the Bureau of Land Management, and private donations.</li></ul>",
@@ -71,7 +71,7 @@
       [
         {
           "description": "Recruit, train and support coastal stewards protecting the places on the Pacific coast that Black Oystercatchers need most",
-          "value": "55"
+          "value": ""
         }
       ]
     },
