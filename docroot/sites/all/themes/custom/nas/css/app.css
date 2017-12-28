@@ -18168,19 +18168,16 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-scorecard-tabs {
   background: #1c1c1c;
   padding: 15px 0;
+  color: #fff;
 }
 .ct-scorecard-tabs a {
   font-size: 17px;
   text-align: left;
   color: #fff;
-  opacity: .5;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin-right: 15px;
 }
-.ct-scorecard-tabs a:first-child, .ct-scorecard-tabs a.active, .ct-scorecard-tabs a:hover {
-  opacity: 1;
-}
-.ct-scorecard-tabs a:first-child:after {
+.ct-scorecard-tabs a:after {
   content: '';
   border: solid #fff;
   border-width: 0 2px 2px 0;
@@ -18192,8 +18189,23 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
-.ct-scorecard-tabs a:last-child {
-  margin-right: 0;
+.ct-scorecard-tabs a:hover {
+  color: #404040;
+}
+.ct-scorecard-tabs span:last-child {
+  position: relative;
+}
+.ct-scorecard-tabs span:last-child:after {
+  position: absolute;
+  left: 50%;
+  bottom: -17px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #fbfaf6;
+  display: block;
+  content: "";
 }
 
 .ct-scorecard-main .row {

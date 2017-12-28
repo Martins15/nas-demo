@@ -6,7 +6,7 @@
 <div class="ct-scorecard-tabs">
     <div class="row">
       <?php foreach ($menu_tree as $item): ?>
-        <?php print $item['markup']; ?>
+        <span class="current-title"><?php print $item['markup']; ?></span>
         <?php if (isset($item['children'])): ?>
           <?php foreach ($item['children'] as $child): ?>
             <?php print $child['markup']; ?>

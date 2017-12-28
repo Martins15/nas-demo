@@ -13,6 +13,7 @@
 
 $dark-bg-bird: #1c1c1c;
 $brownish-grey: #76736c;
+$darkish-grey: #404040;
 $bg-map-bird: #212121;
 $grey-bg-bird: #F0F0F0;
 $grey-menu-bird: #fbfaf6;
@@ -427,34 +428,42 @@ $padding-item: 25px 17.5px 0;
 .ct-scorecard-tabs {
   background: $dark-bg-bird;
   padding: 15px 0;
+  color: $white;
   a {
     font-size: 17px;
     text-align: left;
     color: $white;
-    opacity: .5;
     font-family: $font-sans;
     margin-right: 15px;
-    &:first-child,
-    &.active,
+    &:after {
+      content: '';
+      border: solid $white;
+      border-width: 0 2px 2px 0;
+      opacity: .2;
+      display: inline-block;
+      padding: 4px;
+      border-radius: 0;
+      margin-left: 10px;
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+    }
     &:hover {
-      opacity: 1;
+      color: $darkish-grey;
     }
-    &:first-child {
-      &:after {
-        content: '';
-        border: solid $white;
-        border-width: 0 2px 2px 0;
-        opacity: .2;
-        display: inline-block;
-        padding: 4px;
-        border-radius: 0;
-        margin-left: 10px;
-        transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-      }
-    }
-    &:last-child {
-      margin-right: 0;
+  }
+  span:last-child {
+    position: relative;
+    &:after {
+      position: absolute;
+      left: 50%;
+      bottom: -17px;
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-bottom: 7px solid #fbfaf6;
+      display: block;
+      content: "";
     }
   }
 }
