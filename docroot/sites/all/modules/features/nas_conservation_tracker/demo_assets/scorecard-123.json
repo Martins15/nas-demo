@@ -34,6 +34,7 @@
       "chart":
       {
         "type": "actions",
+        "chart_type": "bar",
         "value_type": "Action Categories",
         "operation": "sum"
       }
@@ -54,6 +55,7 @@
       "chart":
       {
         "type": "data",
+        "chart_type": "linegraph",
         "value_type": "Productivity",
         "key_type": "Year",
         "operation": "avg"
@@ -285,7 +287,7 @@
             "categories": [
               {
                 "id": 5,
-                "name": "Adv_Policy"
+                "name": "Advocacy Policy"
               }
             ]
           }
