@@ -40,8 +40,8 @@
 <div class="global-content with-padding tabs-ng-content"
      data-ng-controller="Content">
     <div class="row">
-        <div ng-repeat="(key, value) in tab.settings.tabs">
-            <div class="bird-page body-item" ng-cloak  ng-class="{'active': isActive === value}">
+        <div ng-repeat="(key, value) in tab.settings.tabs" tabs-repeat-directive>
+            <div class="bird-page body-item {{value}}-tab-wrapper" ng-cloak  ng-class="{'active': isActive === value}">
 
                 <div class="title-wrap">
                     <div class="title-wrap__title columns tiny-9"><h3>{{tab.settings.overview.title}}</h3></div>
@@ -56,8 +56,10 @@
                 </div>
                 <div class="video-wrap columns large-4">
                     <div class="video-wrap__item help-img-full">
-                        <img ng-if="tab.settings.overview.thumbnail !== ''"
-                             src={{tab.settings.overview.thumbnail}} alt="">
+                        <a class="{{tab.settings.overview.preparedLink.class}}" href="{{tab.settings.overview.preparedLink.href}}" target="{{tab.settings.overview.preparedLink.target}}">
+                            <img ng-if="tab.settings.overview.thumbnail !== ''"
+                                 src={{tab.settings.overview.thumbnail}} alt="">
+                        </a>
                     </div>
                 </div>
             </div>
