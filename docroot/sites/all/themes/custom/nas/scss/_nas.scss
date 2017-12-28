@@ -1575,6 +1575,9 @@ ul.clearing-thumbs {
   top: 0;
   z-index: -1;
 }
+.leaflet-container small {
+  font-size: 11px;
+}
 
 @media screen and (min-width: 1280px) {
   .page-conservation-tracker .conservation-tracker-custom-pane {
