@@ -8,6 +8,16 @@
   Drupal.nas_conservation_tracker_init_map = function () {
 
     var lMap = Drupal.settings.leaflet['0'].lMap,
+        styleActive = {
+          weight: 2,
+          opacity: 0.2,
+          fillOpacity: 0.2,
+        },
+        styleSelected = {
+          weight: 2,
+          opacity: 0.5,
+          fillOpacity: 0.5,
+        },
         classes = {
           site: 'ct-leaflet-site',
           visible_area: 'ct-visible-area',
@@ -25,7 +35,6 @@
         lMap.removeLayer(layer);
       }
     });
-<<<<<<< HEAD
     for (var i = 0 in json.sites) {
       // Display sites (dots).
       var site = json.sites[i];
@@ -45,7 +54,9 @@
       for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
         if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
           marker.properties.county = county;
-
+        }
+      }
+    }
     if (angular.isDefined(json)) {
       for (var i = 0 in json.sites) {
         // Display sites (dots).
@@ -76,12 +87,10 @@
       }
       marker.bindTooltip(text).addTo(lMap);
     }
+
     // Scale map to selected unit.
-    $radios.each(function () {
-      if ($(this).prop('checked')) {
-        scaleMapTo($(this).val());
-      }
-    });
+    scaleMapTo(getScaling());
+
     // Show/hide markers depending on zoom.
     showMarkers();
 
@@ -93,12 +102,12 @@
     // Event linsteners.
 
     lMap.on('moveend', function () {
-      rebuildCharts($visibleArea);
+      rebuildChartsByZoom($visibleArea);
     });
 
     lMap.on('zoomend', function () {
       showMarkers();
-      rebuildCharts($visibleArea);
+      rebuildChartsByZoom($visibleArea);
     });
 
     lMap.scrollWheelZoom.disable();
@@ -121,26 +130,46 @@
 
     // Helper functions.
 
-    function rebuildCharts(area) {
+    function rebuildChartsBySelection() {
       Drupal.settings.nas_conservation_tracker.visible_sites = [];
-      var w = parseInt(area.width().toFixed());
-      var h = parseInt(area.height().toFixed());
-      lMap.eachLayer(function (layer) {
-        if (layer.properties && layer.properties.marker) {
-          var iconOffset = $(layer._icon).offset();
-          var x = parseInt(iconOffset.left.toFixed());
-          var y = parseInt(iconOffset.top.toFixed()) - parseInt(area.offset().top.toFixed());
-          if (
+      //Drupal.settings.nas_conservation_tracker.selected_units
+      lMap.eachLayer(function (unitLayer) {
+        if (unitLayer.feature.properties.selected) {
+          lMap.eachLayer(function (layer) {
+            if (isSite(layer) && layer[selected.feature.properties.unit] == selected.feature.properties.machineName) {
+              Drupal.settings.nas_conservation_tracker.visible_sites.push(layer.properties.site);
+            }
+          });
+        }
+      });
+      Drupal.settings.nas_conservation_tracker.selected_units++;
+      console.log(selected);
+
+      Drupal.nas_conservation_tracker_init_charts();
+    }
+
+    function rebuildChartsByZoom(area) {
+      // This should work only if no manually selected units present.
+      if (!Drupal.settings.nas_conservation_tracker.selected_units) {
+        Drupal.settings.nas_conservation_tracker.visible_sites = [];
+        var w = parseInt(area.width().toFixed());
+        var h = parseInt(area.height().toFixed());
+        lMap.eachLayer(function (layer) {
+          if (isSite(layer)) {
+            var iconOffset = $(layer._icon).offset();
+            var x = parseInt(iconOffset.left.toFixed());
+            var y = parseInt(iconOffset.top.toFixed()) - parseInt(area.offset().top.toFixed());
+            if (
               y >= 0 &&
               x >= 0 &&
               x <= w &&
               y <= h) {
-            Drupal.settings.nas_conservation_tracker.visible_sites.push(layer.properties.site);
+              Drupal.settings.nas_conservation_tracker.visible_sites.push(layer.properties.site);
+            }
           }
-        }
-      });
-      //console.log(Drupal.settings.nas_conservation_tracker.visible_sites);
-      Drupal.nas_conservation_tracker_init_charts();
+        });
+        Drupal.nas_conservation_tracker_init_charts();
+      }
     }
 
     function rebuildVisibleArea(area, classes) {
@@ -150,32 +179,49 @@
       });
     }
 
-    function getPolygonStyle(feature, layer) {
-      console.log(feature);
-      console.log(layer);
+    function getPolygonEvents(feature, layer) {
+      layer.on('click', function (event) {
+        layer.feature.properties.selected = !layer.feature.properties.selected;
+        if (layer.feature.properties.selected) {
+          layer.setStyle(styleSelected);
+        }
+        else {
+          layer.setStyle(styleActive);
+        }
+        rebuildChartsBySelection();
+      });
     }
 
     function getPolygonStyle(feature) {
       var i = 0;
+      var style = styleActive;
       lMap.eachLayer(function (layer) {
-        if (layer.properties && layer.properties.marker) {
+        if (isSite(layer)) {
           latLon = layer.getLatLng();
-          //for (var j = 0 in feature.geometry.coordinates) {
-            if (isInsidePolygon(latLon.lat, latLon.lng, feature.geometry.coordinates)) {
-              i++;
-            }
-          //}
+          if (isInsidePolygon(latLon.lat, latLon.lng, feature.geometry.coordinates)) {
+            i++;
+          }
         }
       });
       var color = i > 6 ? '#ff0000' :
           i > 1 ? '#feb24c' : '#FFEDA0';
-      return {
-        fillColor: color,
-        weight: 2,
-        opacity: 0.3,
-        color: color,
-        fillOpacity: 0.3,
-      }
+      style.fillColor = color;
+      style.color = color;
+      return style;
+    }
+
+    function getScaling() {
+      var scaling = 'county';
+      $radios.each(function () {
+        if ($(this).prop('checked')) {
+          scaling =  $(this).val();
+        }
+      });
+      return scaling;
+    }
+
+    function isSite(layer) {
+      return (layer.properties && layer.properties.marker);
     }
 
     function showMarkers() {
@@ -206,7 +252,7 @@
           // Remove present polygons.
           lMap.removeLayer(layer);
         }
-        if (layer.properties && layer.properties.marker) {
+        if (isSite(layer)) {
           switch (unit) {
             case 'county':
               var county = Drupal.settings.nas_conservation_tracker_unit_data_sorted
@@ -293,10 +339,12 @@
     function LPolygon(name, coordinates, state, flyway, unit) {
       this.type = 'Feature';
       this.properties = {
+        machineName: name.toLowerCase().replace(/\s/g, ''),
         name: name,
         state: state.toLowerCase(),
         flyway: flyway.toLowerCase(),
         unit: unit,
+        selected: false,
       };
       this.geometry = {
         type: 'Polygon',
