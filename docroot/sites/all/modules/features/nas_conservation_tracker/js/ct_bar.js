@@ -36,7 +36,7 @@
           h = settings.height || 400,
           // chart is 65% and 80% of overall height
           //chart = {w: w * .65, h: h * .80},
-          chart = {w: w, h: h * .80},
+          chart = {w: w, h: h * .75},
           legend = {w: w * .35, h: h},
           // bar width is calculated based on chart width, and amount of data
           // items - will resize if there is more or less
@@ -79,16 +79,15 @@
             return 'translate(' + (x(i) + (barGroupWidth / 2)) + ',' + (chart.h) + ')'
           })
           .append("text")
-          .attr("font-size", "11px")
+          .attr("font-size", "12px")
           .attr("font-family", "\"Source Sans Pro\", Verdana, sans-serif")
-          .attr("dy", function (d, i) {
-            return ".75em";
-          })
+          .attr("dy", "1.75em")
           .attr("text-anchor", "middle")
+          .style('fill', d3.rgb("#666666"))
           .text(function (d, i) {
             return xLabels[i];
           })
-          .call(wrap, barGroupWidth + barSpacing);
+          .call(wrap, barGroupWidth + barSpacing - 10);
 
       /* LINES */
       var rule = graph.selectAll("g.rule")
@@ -118,6 +117,22 @@
             .attr("text-anchor", "end")
             .text(d3.format(",d"));
       }
+
+      //Draw the line
+      var line = graph.selectAll('line')
+          .data(rows)
+          .enter().append("line")
+          .attr("x1", function (d, i) {
+            return x(i) + 4;
+          })
+          .attr("y1", 0)
+          .attr("x2", function (d, i) {
+            return x(i) + 4;
+          })
+          .attr("y2", chart.h)
+          .attr("stroke-width", 1)
+          .attr("stroke", d3.rgb("#666666"))
+          .style("stroke-opacity", 0.2);
 
       var bar = graph.selectAll('g.bars')
           .data(rows)
@@ -167,8 +182,8 @@
           .attr('fill', function (d, i) {
             return d3.rgb(z(i));
           }).on('mouseover', function (d, i) {
-            showToolTip(d, i, this);
-          })
+        showToolTip(d, i, this);
+      })
           .on('mouseout', function (d, i) {
             hideToolTip(d, i, this);
           })
@@ -199,7 +214,6 @@
           .text(function (d) {
             return d[0];
           });
-
 
       /* LEGEND */
 
@@ -280,7 +294,7 @@
               word,
               line = [],
               lineNumber = 0,
-              lineHeight = 0.1, // ems
+              lineHeight = -0.75, // ems
               y = text.attr("y"),
               dy = parseFloat(text.attr("dy")),
               tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
@@ -291,7 +305,8 @@
               line.pop();
               tspan.text(line.join(" "));
               line = [word];
-              tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+              //tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+              tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", "1em").text(word);
             }
           }
         });
