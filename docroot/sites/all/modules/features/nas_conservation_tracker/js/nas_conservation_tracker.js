@@ -415,5 +415,24 @@
     var loc = window.location.href;
     return loc.split("/").slice(-1)[0];
   }
+  
+  Drupal.behaviors.scrollToNext = {
+    attach: function (context, settings) {
+      $(".curtain-arrow.storecard").click(function(e) {
+        e.preventDefault();
+        $('html, body').animate({
+          scrollTop: $(".ct-scorecard-tabs").offset().top
+        }, 1000);
+      });
+    }
+  };
+
+  Drupal.behaviors.mapControlsToggle = {
+    attach: function (context, settings) {
+      $(".form-item-map-type.form-type-radios label").click(function(e) {
+        $(this).next('#edit-map-type').slideToggle('fast');
+      });
+    }
+  };
 
 })(jQuery, window.Drupal);
