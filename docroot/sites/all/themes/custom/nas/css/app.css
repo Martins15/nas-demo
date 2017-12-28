@@ -17968,7 +17968,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   appearance: none;
   border: none;
   width: 100%;
-  height: 20px;
+  height: 10px;
   border-radius: 3px;
   box-shadow: none;
   color: royalblue;
