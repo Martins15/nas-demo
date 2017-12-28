@@ -72,6 +72,16 @@
       rebuildCharts($visibleArea);
     });
 
+    lMap.scrollWheelZoom.disable();
+    lMap.on('click', function() {
+      if (lMap.scrollWheelZoom.enabled()) {
+        lMap.scrollWheelZoom.disable();
+      }
+      else {
+        lMap.scrollWheelZoom.enable();
+      }
+    });
+
     $radios.change(function () {
       scaleMapTo($(this).val());
     });
