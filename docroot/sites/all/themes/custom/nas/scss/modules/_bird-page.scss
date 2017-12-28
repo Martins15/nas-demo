@@ -13,6 +13,7 @@
 
 $dark-bg-bird: #1c1c1c;
 $brownish-grey: #76736c;
+$darkish-grey: #404040;
 $bg-map-bird: #212121;
 $grey-bg-bird: #F0F0F0;
 $grey-menu-bird: #fbfaf6;
@@ -59,12 +60,47 @@ $padding-item: 25px 17.5px 0;
       }
       .download {
         background-image: url("../img/bird-page/download.png");
+        padding-left: 25px;
+        color: #9b9b9b;
+        width: auto;
+        background-position: left;
+        float: left;
+        font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 18px;
       }
       .print {
         background-image: url("../img/bird-page/print.png");
-        margin-right: 10px;
+        margin-right: 20px;
+        display: block;
+        float: left;
+        margin-left: 50px;
+      }
+      span {
+        display: block;
+        border: 1px solid #9b9b9b;
+        padding: 0 3px;
+        text-align: center;
+        font-weight: bold;
+        margin-left: 5px;
+        font-size: 11px;
+        line-height: 14px;
+        float: left;
+        margin-top: 2px;
+        font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
       }
     }
+  }
+  h3 {
+    font-size: 33px;
+    line-height: 1.21;
+  }
+}
+
+.page-conservation-tracker-scorecard-black-oystercatcher {
+  .global-content.with-padding {
+    padding-top: 50px;
   }
 }
 
@@ -161,6 +197,27 @@ $padding-item: 25px 17.5px 0;
       @include breakpoint(large-up) {
         width: calc(100% - 80px);
       }
+    }
+  }
+}
+
+.objectives-wrap, .diagram-wrap {
+  .map-title {
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    span {
+      display: block;
+      text-align: center;
+      width: 20px;
+      height: 20px;
+      border: solid 1px $brownish-grey;
+      font-size: 14px;
+      color: $brownish-grey;
+      border-radius: 50%;
+      position: absolute;
+      right: -25px;
+      top: 8px;
     }
   }
 }
@@ -392,34 +449,42 @@ $padding-item: 25px 17.5px 0;
 .ct-scorecard-tabs {
   background: $dark-bg-bird;
   padding: 15px 0;
+  color: $white;
   a {
     font-size: 17px;
     text-align: left;
     color: $white;
-    opacity: .5;
     font-family: $font-sans;
     margin-right: 15px;
-    &:first-child,
-    &.active,
+    &:after {
+      content: '';
+      border: solid $white;
+      border-width: 0 2px 2px 0;
+      opacity: .2;
+      display: inline-block;
+      padding: 4px;
+      border-radius: 0;
+      margin-left: 10px;
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+    }
     &:hover {
-      opacity: 1;
+      color: $darkish-grey;
     }
-    &:first-child {
-      &:after {
-        content: '';
-        border: solid $white;
-        border-width: 0 2px 2px 0;
-        opacity: .2;
-        display: inline-block;
-        padding: 4px;
-        border-radius: 0;
-        margin-left: 10px;
-        transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-      }
-    }
-    &:last-child {
-      margin-right: 0;
+  }
+  span:last-child {
+    position: relative;
+    &:after {
+      position: absolute;
+      left: 50%;
+      bottom: -17px;
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-bottom: 7px solid #fbfaf6;
+      display: block;
+      content: "";
     }
   }
 }
@@ -513,10 +578,11 @@ $padding-item: 25px 17.5px 0;
     float: right;
     clear: both;
   }
-  @media only screen and (min-width: 1000px)  {
+  @media only screen and (min-width: 1000px) {
     margin-right: 15.27777777777778%;
   }
 }
+
 .wrap-map-diagram {
   position: relative;
   @include breakpoint(large-up) {
@@ -530,6 +596,7 @@ $padding-item: 25px 17.5px 0;
 .ct-scorecard-main {
   background: $bg-map-bird;
 }
+
 .ct-scorecard-main {
   position: relative;
 }

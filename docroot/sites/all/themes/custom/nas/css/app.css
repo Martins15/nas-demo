@@ -17795,10 +17795,43 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .bird-page.body-item .title-wrap__print .download {
   background-image: url("../img/bird-page/download.png");
+  padding-left: 25px;
+  color: #9b9b9b;
+  width: auto;
+  background-position: left;
+  float: left;
+  font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
 }
 .bird-page.body-item .title-wrap__print .print {
   background-image: url("../img/bird-page/print.png");
-  margin-right: 10px;
+  margin-right: 20px;
+  display: block;
+  float: left;
+  margin-left: 50px;
+}
+.bird-page.body-item .title-wrap__print span {
+  display: block;
+  border: 1px solid #9b9b9b;
+  padding: 0 3px;
+  text-align: center;
+  font-weight: bold;
+  margin-left: 5px;
+  font-size: 11px;
+  line-height: 14px;
+  float: left;
+  margin-top: 2px;
+  font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+}
+.bird-page.body-item h3 {
+  font-size: 33px;
+  line-height: 1.21;
+}
+
+.page-conservation-tracker-scorecard-black-oystercatcher .global-content.with-padding {
+  padding-top: 50px;
 }
 
 .map-items.bird-page {
@@ -17901,6 +17934,25 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .objectives-wrap .item__info {
     width: calc(100% - 80px);
   }
+}
+
+.objectives-wrap .map-title, .diagram-wrap .map-title {
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+.objectives-wrap .map-title span, .diagram-wrap .map-title span {
+  display: block;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  border: solid 1px #76736c;
+  font-size: 14px;
+  color: #76736c;
+  border-radius: 50%;
+  position: absolute;
+  right: -25px;
+  top: 8px;
 }
 
 .progress-wrap {
@@ -18135,19 +18187,16 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-scorecard-tabs {
   background: #1c1c1c;
   padding: 15px 0;
+  color: #fff;
 }
 .ct-scorecard-tabs a {
   font-size: 17px;
   text-align: left;
   color: #fff;
-  opacity: .5;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin-right: 15px;
 }
-.ct-scorecard-tabs a:first-child, .ct-scorecard-tabs a.active, .ct-scorecard-tabs a:hover {
-  opacity: 1;
-}
-.ct-scorecard-tabs a:first-child:after {
+.ct-scorecard-tabs a:after {
   content: '';
   border: solid #fff;
   border-width: 0 2px 2px 0;
@@ -18159,8 +18208,23 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
-.ct-scorecard-tabs a:last-child {
-  margin-right: 0;
+.ct-scorecard-tabs a:hover {
+  color: #404040;
+}
+.ct-scorecard-tabs span:last-child {
+  position: relative;
+}
+.ct-scorecard-tabs span:last-child:after {
+  position: absolute;
+  left: 50%;
+  bottom: -17px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #fbfaf6;
+  display: block;
+  content: "";
 }
 
 .ct-scorecard-main .row {

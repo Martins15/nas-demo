@@ -25,6 +25,7 @@
         lMap.removeLayer(layer);
       }
     });
+<<<<<<< HEAD
     for (var i = 0 in json.sites) {
       // Display sites (dots).
       var site = json.sites[i];
@@ -44,7 +45,29 @@
       for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
         if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
           marker.properties.county = county;
+
+    if (angular.isDefined(json)) {
+      for (var i = 0 in json.sites) {
+        // Display sites (dots).
+        var site = json.sites[i];
+        var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
+          latLon = [
+            parseFloat(site.latitude),
+            parseFloat(site.longitude),
+          ];
+        var marker = L.marker(latLon, {icon: dot});
+        marker.properties = {
+          marker: true,
+          flyway: site.flyway.toLowerCase(),
+          state: site.state.toLowerCase(),
+          site: site,
+        };
+        for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
+          if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
+            marker.properties.county = county;
+          }
         }
+        marker.bindTooltip(site.name).addTo(lMap);
       }
       for (var j = 0 in site.actions) {
         for (var l = 0 in site.actions[j].categories) {
@@ -76,6 +99,16 @@
     lMap.on('zoomend', function () {
       showMarkers();
       rebuildCharts($visibleArea);
+    });
+
+    lMap.scrollWheelZoom.disable();
+    lMap.on('click', function() {
+      if (lMap.scrollWheelZoom.enabled()) {
+        lMap.scrollWheelZoom.disable();
+      }
+      else {
+        lMap.scrollWheelZoom.enable();
+      }
     });
 
     $radios.change(function () {
@@ -417,5 +450,24 @@
     var loc = window.location.href;
     return loc.split("/").slice(-1)[0];
   }
+  
+  Drupal.behaviors.scrollToNext = {
+    attach: function (context, settings) {
+      $(".curtain-arrow.storecard").click(function(e) {
+        e.preventDefault();
+        $('html, body').animate({
+          scrollTop: $(".ct-scorecard-tabs").offset().top
+        }, 1000);
+      });
+    }
+  };
+
+  Drupal.behaviors.mapControlsToggle = {
+    attach: function (context, settings) {
+      $(".form-item-map-type.form-type-radios label").click(function(e) {
+        $(this).next('#edit-map-type').slideToggle('fast');
+      });
+    }
+  };
 
 })(jQuery, window.Drupal);
