@@ -377,16 +377,20 @@
       $diagram.find('.map-title').text(tabSettings.chart.value_type);
       $diagram.show();
 
-      // Charts.
-      //var mainChart = Drupal.d3.ct_linegraph('d3-actions', {rows: []});
-      var mainChart = Drupal.d3.ct_bar('d3-actions', {rows: []});
+      if (tabSettings.chart.chart_type == 'linegraph') {
+        var mainChart = Drupal.d3.ct_linegraph('d3-actions', {rows: []});
+      }
+      else {
+        var mainChart = Drupal.d3.ct_bar('d3-actions', {rows: []});
+      }
+
       mainChart.update({
         rows: mainRows,
         width: 512,
         height: 306,
         barWidth: 9,
         barRx: 4,
-        barColor: ['#ef5a3e']
+        barColor: ['#ef5a3e'],
       });
       $('#site-count').text(sites.length);
 
