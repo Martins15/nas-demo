@@ -25,7 +25,8 @@
         },
         loc = getLocation(),
         json = Drupal.settings.nas_conservation_tracker.json_data[loc],
-        $radios = $('input[name="map_type"]');
+        $radios = $('input[name="map_type"]'),
+        $reset = $('#edit-map-reset');
     if (!Drupal.settings.nas_conservation_tracker_unit_data_sorted) {
       Drupal.settings.nas_conservation_tracker_unit_data_sorted = new LUnitSorted(Drupal.settings.nas_conservation_tracker_unit_data.features);
     }
@@ -128,6 +129,18 @@
 
     $(window).resize(function () {
       rebuildVisibleArea($visibleArea, classes);
+    });
+
+    $reset.click(function (e) {
+      e.preventDefault();
+      var latlng = L.latLng(
+        Drupal.settings.nas_conservation_tracker.json_data.settings.map.latitude,
+        Drupal.settings.nas_conservation_tracker.json_data.settings.map.longitude
+      );
+      lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.json_data.settings.map.zoom);
+      Drupal.settings.nas_conservation_tracker.visible_sites = [];
+      scaleMapTo(Drupal.settings.nas_conservation_tracker.scale);
+      Drupal.nas_conservation_tracker_init_charts();
     });
 
     // Helper functions.

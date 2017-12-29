@@ -5,6 +5,8 @@
  * Content type plugin for CT.
  */
 
+define('NAS_CT_SCALE', 'county');
+
 $plugin = [
   'title' => t('CT Scorecard Main'),
   'description' => t('Displays CT Scorecard Main Content (Map, Actions etc)'),
@@ -36,6 +38,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
     'json_data' => $data,
     'selected_units' => 0,
     'visible_sites' => [],
+    'scale' => NAS_CT_SCALE,
   ]], 'setting');
 
 
@@ -123,7 +126,7 @@ function nas_conservation_tracker_map_form($form, &$form_state) {
     'map_type' => [
       '#type' => 'radios',
       '#title' => t('SCALE CONTROLS'),
-      '#default_value' => 'county',
+      '#default_value' => NAS_CT_SCALE,
       '#options' => [
         'state' => t('State'),
         'county' => t('County'),
