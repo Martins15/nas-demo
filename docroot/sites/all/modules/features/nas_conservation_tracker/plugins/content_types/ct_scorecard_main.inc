@@ -66,7 +66,8 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   // Map.
   $map_info = current(leaflet_map_get_info());
   $map_info['settings']['layerControl'] = TRUE;
-  $map_info['layers']['earth']['urlTemplate'] = '//cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
+  //$map_info['layers']['earth']['urlTemplate'] = '//cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
+  $map_info['layers']['earth']['urlTemplate'] = '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
   $map_info['settings']['zoomDefault'] = $data['settings']['map']['zoom'];
   $map_info['settings']['zoom'] = $data['settings']['map']['zoom'];
   $map_info['center'] = [
@@ -82,28 +83,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   libraries_load('d3.tooltip');
 
   // Actions.
-  $actions = [
-    //    array(
-    //      'name' => 'action one',
-    //      'value' => 20,
-    //    ),
-    //    array(
-    //      'name' => 'action two',
-    //      'value' => 25,
-    //    ),
-    //    array(
-    //      'name' => 'action three',
-    //      'value' => 80,
-    //    ),
-    //    array(
-    //      'name' => 'action four',
-    //      'value' => 65,
-    //    ),
-    //    array(
-    //      'name' => 'action five',
-    //      'value' => 45,
-    //    ),
-  ];
+  $actions = [];
 
   $actions_chart = [
     'id' => 'd3-actions',
@@ -120,13 +100,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   $objectives_chart = [
     'id' => 'd3-objectives',
     'type' => 'ct_circular',
-    'rows' => [
-      //      array('Development', 50),
-      //      array('Strategy', 60),
-      //      array('Design', 90),
-      //      array('QA', 23),
-      //      array('Lorem ipsum', 41),
-    ],
+    'rows' => [],
   ];
 
   $form = drupal_get_form('nas_conservation_tracker_map_form');
