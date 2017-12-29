@@ -5,6 +5,8 @@
  * Content type plugin for CT.
  */
 
+define('NAS_CT_SCALE', 'county');
+
 $plugin = [
   'title' => t('CT Scorecard Main'),
   'description' => t('Displays CT Scorecard Main Content (Map, Actions etc)'),
@@ -30,12 +32,15 @@ $plugin = [
 function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $data = nas_conservation_tracker_get_json('scorecard-123');
+  $arg = arg();
+  $path = array_pop($arg);
 
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/unit-data.js');
   drupal_add_js(['nas_conservation_tracker' => [
     'json_data' => $data,
     'selected_units' => 0,
     'visible_sites' => [],
+    'scale' => NAS_CT_SCALE,
   ]], 'setting');
 
 
@@ -68,18 +73,17 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   $map_info['settings']['layerControl'] = TRUE;
   //$map_info['layers']['earth']['urlTemplate'] = '//cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
   $map_info['layers']['earth']['urlTemplate'] = '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
-  $map_info['settings']['zoomDefault'] = $data['settings']['map']['zoom'];
-  $map_info['settings']['zoom'] = $data['settings']['map']['zoom'];
+  $map_info['settings']['zoomDefault'] = $data['settings'][$path]['map']['zoom'];
+  $map_info['settings']['zoom'] = $data['settings'][$path]['map']['zoom'];
   $map_info['center'] = [
-    'lat' => $data['settings']['map']['latitude'],
-    'lon' => $data['settings']['map']['longitude'],
+    'lat' => $data['settings'][$path]['map']['latitude'],
+    'lon' => $data['settings'][$path]['map']['longitude'],
   ];
   $features = [
   ];
   $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_map_height', '800') . 'px');
 
   libraries_load('d3.extend');
-  libraries_load('d3.ct_linegraph');
   libraries_load('d3.tooltip');
 
   // Actions.
@@ -123,12 +127,18 @@ function nas_conservation_tracker_map_form($form, &$form_state) {
     'map_type' => [
       '#type' => 'radios',
       '#title' => t('SCALE CONTROLS'),
-      '#default_value' => 'county',
+      '#default_value' => NAS_CT_SCALE,
       '#options' => [
         'state' => t('State'),
         'county' => t('County'),
         'flyway' => t('Flyway'),
       ],
+    ],
+    'map_reset' => [
+      '#type' => 'button',
+      '#value' => t('Reset'),
+      '#name' => 'map_reset',
+      '#button_type' => 'reset',
     ],
   ];
   return $form;
