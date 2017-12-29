@@ -17935,12 +17935,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
-.objectives-wrap .map-title, .diagram-wrap .map-title {
+.help-wrap-items-map-items .map-title {
   margin-bottom: 30px;
   position: relative;
   display: inline-block;
 }
-.objectives-wrap .map-title span, .diagram-wrap .map-title span {
+.help-wrap-items-map-items .map-title:after {
   display: block;
   text-align: center;
   width: 20px;
@@ -17950,8 +17950,64 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   color: #76736c;
   border-radius: 50%;
   position: absolute;
-  right: -25px;
-  top: 8px;
+  font-weight: bold;
+  right: -27px;
+  top: 6px;
+  content: '?';
+}
+.help-wrap-items-map-items .trigger {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+.help-wrap-items-map-items .trigger h5 {
+  font-size: 15px;
+  color: #76736c;
+  text-transform: uppercase;
+  float: left;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  letter-spacing: normal;
+}
+.help-wrap-items-map-items .trigger .switch {
+  float: right;
+  position: relative;
+  width: 60px;
+  height: 30px;
+  top: -3px;
+}
+.help-wrap-items-map-items .trigger .switch .form-switch {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.help-wrap-items-map-items .trigger .switch .form-switch + label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #e8e8e8;
+  border-radius: 50px;
+  margin-right: 1em;
+  background-color: #e8e8e8;
+}
+.help-wrap-items-map-items .trigger .switch .form-switch + label::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: 2px;
+  top: 2px;
+  border: 1px solid #ADACA9;
+  height: 22px;
+  width: 22px;
+  background: #ADACA9;
+  transition: all 0.2s ease;
+}
+.help-wrap-items-map-items .trigger .switch .form-switch:checked + label::after {
+  background: #ADACA9;
+  left: 97%;
+  transform: translateX(-100%);
 }
 
 .progress-wrap {
@@ -18304,6 +18360,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border: dashed 2px #fff;
   margin-top: 11px;
   margin-left: 11px;
+}
+.ct-scorecard-main .leaflet-control-layers {
+  display: none;
 }
 
 @media only screen and (min-width: 768px) {
