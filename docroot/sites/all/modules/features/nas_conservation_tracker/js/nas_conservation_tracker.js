@@ -147,7 +147,7 @@
         Drupal.settings.nas_conservation_tracker.json_data.settings.map.longitude
       );
       lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.json_data.settings.map.zoom);
-      Drupal.settings.nas_conservation_tracker.visible_sites = [];
+      resetSelection();
       scaleMapTo(Drupal.settings.nas_conservation_tracker.scale);
       Drupal.nas_conservation_tracker_init_charts();
     });
@@ -155,8 +155,7 @@
     // Helper functions.
 
     function rebuildChartsBySelection() {
-      Drupal.settings.nas_conservation_tracker.selected_units = 0;
-      Drupal.settings.nas_conservation_tracker.visible_sites = [];
+      resetSelection();
       lMap.eachLayer(function (unitLayer) {
         if (isUnit(unitLayer) && unitLayer.feature.properties.selected) {
           Drupal.settings.nas_conservation_tracker.selected_units++;
@@ -240,6 +239,11 @@
         }
       });
       return scaling;
+    }
+
+    function resetSelection() {
+      Drupal.settings.nas_conservation_tracker.visible_sites = [];
+      Drupal.settings.nas_conservation_tracker.selected_units = 0;
     }
 
     function isUnit(layer) {

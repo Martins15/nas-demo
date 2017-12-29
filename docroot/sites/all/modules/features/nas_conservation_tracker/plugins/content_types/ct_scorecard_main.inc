@@ -32,6 +32,8 @@ $plugin = [
 function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $data = nas_conservation_tracker_get_json('scorecard-123');
+  $arg = arg();
+  $path = array_pop($arg);
 
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/unit-data.js');
   drupal_add_js(['nas_conservation_tracker' => [
@@ -71,11 +73,11 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   $map_info['settings']['layerControl'] = TRUE;
   //$map_info['layers']['earth']['urlTemplate'] = '//cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
   $map_info['layers']['earth']['urlTemplate'] = '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
-  $map_info['settings']['zoomDefault'] = $data['settings']['map']['zoom'];
-  $map_info['settings']['zoom'] = $data['settings']['map']['zoom'];
+  $map_info['settings']['zoomDefault'] = $data[$path]['map']['zoom'];
+  $map_info['settings']['zoom'] = $data[$path]['map']['zoom'];
   $map_info['center'] = [
-    'lat' => $data['settings']['map']['latitude'],
-    'lon' => $data['settings']['map']['longitude'],
+    'lat' => $data[$path]['map']['latitude'],
+    'lon' => $data[$path]['map']['longitude'],
   ];
   $features = [
   ];
