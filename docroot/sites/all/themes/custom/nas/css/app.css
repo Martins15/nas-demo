@@ -17805,25 +17805,24 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-weight: 600;
   line-height: 18px;
 }
+.bird-page.body-item .title-wrap__print .download:after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #9b9b9b;
+  margin-left: 5px;
+  font-size: 12px;
+  content: "";
+  vertical-align: middle;
+}
 .bird-page.body-item .title-wrap__print .print {
   background-image: url("../img/bird-page/print.png");
   margin-right: 20px;
   display: block;
   float: left;
   margin-left: 50px;
-}
-.bird-page.body-item .title-wrap__print span {
-  display: block;
-  border: 1px solid #9b9b9b;
-  padding: 0 3px;
-  text-align: center;
-  font-weight: bold;
-  margin-left: 5px;
-  font-size: 11px;
-  line-height: 14px;
-  float: left;
-  margin-top: 2px;
-  font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
 }
 .bird-page.body-item h3 {
   font-size: 33px;
@@ -17968,7 +17967,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   appearance: none;
   border: none;
   width: 100%;
-  height: 20px;
+  height: 10px;
   border-radius: 3px;
   box-shadow: none;
   color: royalblue;
@@ -18263,15 +18262,16 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   color: #fff;
   letter-spacing: 0.5px;
 }
-.ct-scorecard-main #nas-conservation-tracker-map-form .form-item-map-type.form-type-radios > label span {
+.ct-scorecard-main #nas-conservation-tracker-map-form .form-item-map-type.form-type-radios > label:after {
   display: inline-block;
-  border: 1px solid white;
-  padding: 0 3px;
-  text-align: center;
-  font-weight: bold;
-  line-height: 12px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #fff;
   margin-left: 5px;
   font-size: 12px;
+  content: "";
 }
 .ct-scorecard-main #nas-conservation-tracker-map-form .form-item-map-type.form-type-radios #edit-map-type {
   width: 165px;
@@ -20325,6 +20325,7 @@ ul.clearing-thumbs {
   top: 0;
   z-index: -1;
 }
+
 .leaflet-container small {
   font-size: 11px;
 }

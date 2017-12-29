@@ -122,7 +122,7 @@ function nas_conservation_tracker_map_form($form, &$form_state) {
     '#action' => '#',
     'map_type' => [
       '#type' => 'radios',
-      '#title' => t('SCALE CONTROLS <span>?</span>'),
+      '#title' => t('SCALE CONTROLS'),
       '#default_value' => 'county',
       '#options' => [
         'state' => t('State'),
