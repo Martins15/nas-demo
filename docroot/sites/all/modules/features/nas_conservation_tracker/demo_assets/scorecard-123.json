@@ -10,14 +10,11 @@
       "tagLine": "Anthropogenic pressures on birds, habitats they rely on, and/or an entire ecosystem",
       "title": "A climate-endangered species",
       "description": "<ul><li>Sea level rise</li><li>Increased storms and king tides</li><li>Ocean acidification</li><li>Disturbance from coastal users</li><li>Avian predators</li><li>Climate change</li></ul>",
-      "objectives":
-      [
-        {
-          "description": "Protect or restore intertidal habitat for Black Oystercatcher",
-          "tooltip": "Protect or restore intertidal habitat for Black Oystercatcher",
-          "value": ""
-        }
-      ]
+      "objectives": [{
+        "description": "Protect or restore intertidal habitat for Black Oystercatcher",
+        "tooltip": "Protect or restore intertidal habitat for Black Oystercatcher",
+        "value": ""
+      }]
     },
     "actions": {
       "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/BLOY_NaturalScene_mockup_v1.jpg",
@@ -25,16 +22,12 @@
       "tagLine": "Conservation interventions by Audubon field staff and partners as classifed by the Conservation Measures Partnership",
       "title": "Monitoring productivity since 2012",
       "description": "<ul><li>Monitoring and research to track the health of Black Oystercatcher populations by measuring productivity</li><li>Engagement to increase public awareness of oystercatchers, including signs, magnets, pamphlets, lectures, and conversations with coastal users and business owners</li><li>Habitat management and restoration to protect and enhance Black Oystercatcher populations and other societal benefits</li></ul>",
-      "objectives":
-      [
-        {
-          "description": "Continue monitoring productivity along the California coast and use the data to conduct a population viability assessment",
-          "tooltip": "Continue monitoring productivity along the California coast and use the data to conduct a population viability assessment",
-          "value": ""
-        }
-      ],
-      "chart":
-      {
+      "objectives": [{
+        "description": "Continue monitoring productivity along the California coast and use the data to conduct a population viability assessment",
+        "tooltip": "Continue monitoring productivity along the California coast and use the data to conduct a population viability assessment",
+        "value": ""
+      }],
+      "chart": {
         "type": "actions",
         "chart_type": "bar",
         "value_type": "Action Categories",
@@ -47,16 +40,12 @@
       "tagLine": "Quantifying the effectiveness of our conservation actions using scientifically-sound metrics",
       "title": "California intertidal is critical for the Black Oystercatcher population",
       "description": "<ul><li>Until recently little was known of its status and distribution in California</li><li>Over 1300 birds and over 170 nests were detected in California suggesting the species is stable in the state</li><li>We estimate 4000-6000 oystercatchers in California, making our state critical for the species. Productivity monitoring from 2012-2016 has found a statewide fledge success (fledged chicks per pair per year) of between 0.41-0.49.</li><li>Audubon Christmas Bird Count shows significant increase in wintering oystercatchers between 1966 and 2017</li></ul>",
-      "objectives":
-      [
-        {
-          "description": "Maintain 0.41 fledged chicks per pair per year",
-          "tooltip": "Maintain 0.41 fledged chicks per pair per year",
-          "value": ""
-        }
-      ],
-      "chart":
-      {
+      "objectives": [{
+        "description": "Maintain 0.41 fledged chicks per pair per year",
+        "tooltip": "Maintain 0.41 fledged chicks per pair per year",
+        "value": ""
+      }],
+      "chart": {
         "type": "data",
         "chart_type": "linegraph",
         "value_type": "Productivity",
@@ -70,15 +59,12 @@
       "tagLine": "Our work is co-developed and often led by partner organizations and stakeholders",
       "title": "A network of state partners",
       "description": "<ul><li>Over 150 participants from coastal chapters and agencies, including the Mendocino Coast Bureau of Land Management, California Coastal National Monument, California State Parks, and Oikonos Ecosystem Knowledge. Audubon chapters include Mendocino Coast, Madrone, Golden Gate, Marin, and Monterey.</li><li>Funding for the program has been provided by the Marisla Foundation, the Resources Legacy Fund, the Bureau of Land Management, and private donations.</li></ul>",
-      "objectives":
-      [
-        {
-          "description": "Recruit, train and support coastal stewards protecting the places on the Pacific coast that Black Oystercatchers need most",
-          "tooltip": "Recruit, train and support coastal stewards protecting the places on the Pacific coast that Black Oystercatchers need most",
-          "value": ""
-        }
-      ]
-    },
+      "objectives": [{
+        "description": "Recruit, train and support coastal stewards protecting the places on the Pacific coast that Black Oystercatchers need most",
+        "tooltip": "Recruit, train and support coastal stewards protecting the places on the Pacific coast that Black Oystercatchers need most",
+        "value": ""
+      }]
+    }
   },
   "landscapes_id": "13",
   "species_id": "56",
@@ -89,30 +75,23 @@
       "longitude": "-114.63378906250001",
       "zoom": "6"
     },
-    "sites":
-
-    [
-      {
+    "sites": [{
+      "id": 0,
+      "name": "Agua Hediondo Lagoon",
+      "latitude": "33.14182",
+      "longitude": "-117.340193",
+      "state": "CA",
+      "flyway": "Pacific",
+      "actions": [{
         "id": 0,
-        "name": "Agua Hediondo Lagoon",
-        "latitude": "33.14182",
-        "longitude": "-117.340193",
-        "state": "CA",
-        "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 0,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
-        "data": []
-      },
+        "name": "",
+        "categories": [{
+          "id": 0,
+          "name": "Research & Monitoring"
+        }]
+      }],
+      "data": []
+    },
       {
         "id": 1,
         "name": "Alameda Wildlife Reserve Breakwater",
@@ -120,18 +99,14 @@
         "longitude": "-122.3198",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -141,18 +116,14 @@
         "longitude": "-122.3198",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -162,18 +133,14 @@
         "longitude": "-122.424744",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -183,18 +150,14 @@
         "longitude": "-118.094792",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -204,18 +167,14 @@
         "longitude": "-122.2762",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -225,33 +184,28 @@
         "longitude": "-122.5",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2013",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "0"
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2013",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "0"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -275,18 +229,14 @@
         "longitude": "-123.127",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -296,18 +246,14 @@
         "longitude": "-121.93884",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -317,18 +263,14 @@
         "longitude": "-120.8642779",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -338,18 +280,14 @@
         "longitude": "-120.7398323",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -359,18 +297,14 @@
         "longitude": "-117.297585",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -380,18 +314,14 @@
         "longitude": "-121.91329",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -401,18 +331,14 @@
         "longitude": "-119.910357",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -422,18 +348,14 @@
         "longitude": "-122.537",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -443,18 +365,14 @@
         "longitude": "-121.944",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -464,18 +382,14 @@
         "longitude": "-122.894",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -485,18 +399,14 @@
         "longitude": "-122.680688",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -506,18 +416,14 @@
         "longitude": "-118.0463136",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -527,18 +433,14 @@
         "longitude": "-118.041032",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -548,18 +450,14 @@
         "longitude": "-120.8973827",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -569,18 +467,14 @@
         "longitude": "-121.466",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -590,18 +484,14 @@
         "longitude": "-123.8257667",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -611,18 +501,14 @@
         "longitude": "-124.249",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -632,18 +518,14 @@
         "longitude": "-120.922288",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -653,18 +535,14 @@
         "longitude": "-119.7408",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -674,18 +552,14 @@
         "longitude": "-119.880864",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -695,18 +569,14 @@
         "longitude": "-124.184",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -716,18 +586,14 @@
         "longitude": "-121.978",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -737,18 +603,14 @@
         "longitude": "-118.7520003",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -758,18 +620,14 @@
         "longitude": "-117.699496",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -779,18 +637,14 @@
         "longitude": "-122.522",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -800,18 +654,14 @@
         "longitude": "-122.4660859",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -821,18 +671,14 @@
         "longitude": "-120.9462995",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -842,18 +688,14 @@
         "longitude": "-121.9288",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -863,18 +705,14 @@
         "longitude": "-123.8151608",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -884,18 +722,14 @@
         "longitude": "-123.8165744",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -905,18 +739,14 @@
         "longitude": "-121.939",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -926,18 +756,14 @@
         "longitude": "-122.616",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -947,18 +773,14 @@
         "longitude": "-123.121",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -968,18 +790,14 @@
         "longitude": "-123.807485",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -989,18 +807,14 @@
         "longitude": "-123.7612",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1010,18 +824,14 @@
         "longitude": "-121.9033",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1031,18 +841,14 @@
         "longitude": "-124.0381",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -1052,18 +858,14 @@
         "longitude": "-124.212",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1073,18 +875,14 @@
         "longitude": "-117.5581",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -1094,18 +892,14 @@
         "longitude": "-118.397371",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1115,18 +909,14 @@
         "longitude": "-124.081",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1136,18 +926,14 @@
         "longitude": "-117.274318",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1157,18 +943,14 @@
         "longitude": "-117.273709",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1178,18 +960,14 @@
         "longitude": "-123.8037823",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1199,18 +977,14 @@
         "longitude": "-123.79635",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1220,18 +994,14 @@
         "longitude": "-123.7963529",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1241,18 +1011,14 @@
         "longitude": "-118.2165",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1262,18 +1028,14 @@
         "longitude": "-123.8151724",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1283,33 +1045,28 @@
         "longitude": "-123.768425",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2014",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "0"
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2014",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "0"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -1403,18 +1160,14 @@
         "longitude": "-118.6804459",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -1424,18 +1177,14 @@
         "longitude": "-118.682299",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1445,18 +1194,14 @@
         "longitude": "-118.681189",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1466,18 +1211,14 @@
         "longitude": "-118.45948",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1487,18 +1228,14 @@
         "longitude": "-123.7612",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1508,18 +1245,14 @@
         "longitude": "-123.7612",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1529,18 +1262,14 @@
         "longitude": "-117.253931",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1550,18 +1279,14 @@
         "longitude": "-120.8938281",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1571,18 +1296,14 @@
         "longitude": "-121.891",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1592,18 +1313,14 @@
         "longitude": "-121.89",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1613,33 +1330,28 @@
         "longitude": "-121.91305",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2014",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "0"
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2014",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "0"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -1761,26 +1473,21 @@
         "longitude": "-121.8841202",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -1792,18 +1499,14 @@
         "longitude": "-120.8491",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1813,18 +1516,14 @@
         "longitude": "-120.8491",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1834,18 +1533,14 @@
         "longitude": "-120.8491",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1855,18 +1550,14 @@
         "longitude": "-120.8491",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1876,18 +1567,14 @@
         "longitude": "-121.786",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1897,18 +1584,14 @@
         "longitude": "-121.781",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1918,18 +1601,14 @@
         "longitude": "-119.093523",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -1939,26 +1618,21 @@
         "longitude": "-118.44505",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -1970,33 +1644,28 @@
         "longitude": "-123.77265",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2012",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "0"
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2012",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "0"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -2090,18 +1759,14 @@
         "longitude": "-117.881074",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2111,18 +1776,14 @@
         "longitude": "-123.8167079",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2132,18 +1793,14 @@
         "longitude": "-123.81655",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2153,18 +1810,14 @@
         "longitude": "-117.258588",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2174,18 +1827,14 @@
         "longitude": "-117.404438",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2195,26 +1844,21 @@
         "longitude": "-119.16544",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -2226,18 +1870,14 @@
         "longitude": "-121.9367724",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2247,26 +1887,21 @@
         "longitude": "-122.5002689",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -2278,18 +1913,14 @@
         "longitude": "-121.809",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2299,18 +1930,14 @@
         "longitude": "-121.9666",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2320,18 +1947,14 @@
         "longitude": "-123.7726583",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2341,18 +1964,14 @@
         "longitude": "-122.41555",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2362,18 +1981,14 @@
         "longitude": "-121.289",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2383,18 +1998,14 @@
         "longitude": "-122.482",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2404,18 +2015,14 @@
         "longitude": "-122.482038",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2425,18 +2032,14 @@
         "longitude": "-120.654",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2446,26 +2049,21 @@
         "longitude": "-118.4521828",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -2477,18 +2075,14 @@
         "longitude": "-122.316",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2498,18 +2092,14 @@
         "longitude": "-122.5279833",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2519,33 +2109,28 @@
         "longitude": "-123.8239111",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2012",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "1"
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2012",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "1"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -2765,18 +2350,14 @@
         "longitude": "-119.213671",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2786,18 +2367,14 @@
         "longitude": "-121.9592",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2807,18 +2384,14 @@
         "longitude": "-121.9514944",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2828,18 +2401,14 @@
         "longitude": "-117.245358",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2849,18 +2418,14 @@
         "longitude": "-121.937774",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2870,18 +2435,14 @@
         "longitude": "-122.49",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 2,
+            "name": "Land \/ Water Management"
+          }]
+        }],
         "data": []
       },
       {
@@ -2891,18 +2452,14 @@
         "longitude": "-122.49",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 2,
+            "name": "Land \/ Water Management"
+          }]
+        }],
         "data": []
       },
       {
@@ -2912,18 +2469,14 @@
         "longitude": "-122.49",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2933,18 +2486,14 @@
         "longitude": "-119.443551",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2954,18 +2503,14 @@
         "longitude": "-121.911133",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2975,18 +2520,14 @@
         "longitude": "-123.8043671",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -2996,18 +2537,14 @@
         "longitude": "-118.431425",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3017,18 +2554,14 @@
         "longitude": "-121.80037",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3038,18 +2571,14 @@
         "longitude": "-116.8709",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3059,56 +2588,45 @@
         "longitude": "-122.4104",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 2,
+            "name": "Land \/ Water Management"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
+            "categories": [{
+              "id": 2,
+              "name": "Land \/ Water Management"
+            }]
           },
           {
             "id": 2,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           },
           {
             "id": 3,
             "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
+            "categories": [{
+              "id": 2,
+              "name": "Land \/ Water Management"
+            }]
           },
           {
             "id": 4,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Research & Monitoring"
+            }]
           }
         ],
         "data": []
@@ -3120,56 +2638,45 @@
         "longitude": "-122.4104",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 2,
+            "name": "Land \/ Water Management"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
+            "categories": [{
+              "id": 2,
+              "name": "Land \/ Water Management"
+            }]
           },
           {
             "id": 2,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           },
           {
             "id": 3,
             "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
+            "categories": [{
+              "id": 2,
+              "name": "Land \/ Water Management"
+            }]
           },
           {
             "id": 4,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Research & Monitoring"
+            }]
           }
         ],
         "data": []
@@ -3181,18 +2688,14 @@
         "longitude": "-119.688111",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3202,18 +2705,14 @@
         "longitude": "-118.787",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3223,18 +2722,14 @@
         "longitude": "-122.019",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3244,18 +2739,14 @@
         "longitude": "-120.5234",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3265,18 +2756,14 @@
         "longitude": "-120.6254",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3286,26 +2773,21 @@
         "longitude": "-118.514351",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -3317,18 +2799,14 @@
         "longitude": "-123.5283833",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3338,18 +2816,14 @@
         "longitude": "-121.914",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3359,18 +2833,14 @@
         "longitude": "-122.516",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3380,18 +2850,14 @@
         "longitude": "-123.4834583",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3401,18 +2867,14 @@
         "longitude": "-120.673",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3422,18 +2884,14 @@
         "longitude": "-120.6556472",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3443,18 +2901,14 @@
         "longitude": "-123.8221111",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3464,26 +2918,21 @@
         "longitude": "-117.1387222",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -3495,18 +2944,14 @@
         "longitude": "-124.20518",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3516,18 +2961,14 @@
         "longitude": "-117.101628",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3537,26 +2978,21 @@
         "longitude": "-118.4676403",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -3568,18 +3004,14 @@
         "longitude": "-123.012",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3589,18 +3021,14 @@
         "longitude": "-123.8010889",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3610,18 +3038,14 @@
         "longitude": "-123.7707333",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3631,26 +3055,21 @@
         "longitude": "-117.1274179",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -3662,18 +3081,14 @@
         "longitude": "-117.12932",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3683,18 +3098,14 @@
         "longitude": "-121.269",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3704,26 +3115,21 @@
         "longitude": "-119.8825728",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -3735,18 +3141,14 @@
         "longitude": "-119.271291",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3756,18 +3158,14 @@
         "longitude": "-119.308378",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3777,18 +3175,14 @@
         "longitude": "-122.4728",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3798,26 +3192,21 @@
         "longitude": "-118.8239406",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -3829,18 +3218,14 @@
         "longitude": "-117.223475",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -3851,21 +3236,20 @@
         "state": "CA",
         "flyway": "Pacific",
         "actions": [],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2012",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "0"
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2012",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "0"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -3941,43 +3325,36 @@
     ]
   },
   "threats": {
+    "sites": [],
     "map": {
       "latitude": "38.020098201368114",
       "longitude": "-114.63378906250001",
-      "zoom": "8"
-    },
-    "sites": []
+      "zoom": "6"
+    }
   },
   "responses": {
     "map": {
-      "latitude": "38.090098201368114",
-      "longitude": "-117.63378906250001",
-      "zoom": "7"
+      "latitude": "38.020098201368114",
+      "longitude": "-114.63378906250001",
+      "zoom": "6"
     },
-    "sites":
-
-    [
-      {
+    "sites": [{
+      "id": 0,
+      "name": "Agua Hediondo Lagoon",
+      "latitude": "33.14182",
+      "longitude": "-117.340193",
+      "state": "CA",
+      "flyway": "Pacific",
+      "actions": [{
         "id": 0,
-        "name": "Agua Hediondo Lagoon",
-        "latitude": "33.14182",
-        "longitude": "-117.340193",
-        "state": "CA",
-        "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 0,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
-        "data": []
-      },
+        "name": "",
+        "categories": [{
+          "id": 0,
+          "name": "Research & Monitoring"
+        }]
+      }],
+      "data": []
+    },
       {
         "id": 1,
         "name": "Alameda Wildlife Reserve Breakwater",
@@ -3985,18 +3362,14 @@
         "longitude": "-122.3198",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4006,18 +3379,14 @@
         "longitude": "-122.3198",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4027,18 +3396,14 @@
         "longitude": "-122.424744",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4048,18 +3413,14 @@
         "longitude": "-118.094792",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4069,18 +3430,14 @@
         "longitude": "-122.2762",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4090,33 +3447,28 @@
         "longitude": "-122.5",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2013",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "0"
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2013",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "0"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -4140,18 +3492,14 @@
         "longitude": "-123.127",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4161,18 +3509,14 @@
         "longitude": "-121.93884",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4182,18 +3526,14 @@
         "longitude": "-120.8642779",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -4203,18 +3543,14 @@
         "longitude": "-120.7398323",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4224,18 +3560,14 @@
         "longitude": "-117.297585",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4245,18 +3577,14 @@
         "longitude": "-121.91329",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4266,18 +3594,14 @@
         "longitude": "-119.910357",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4287,18 +3611,14 @@
         "longitude": "-122.537",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4308,18 +3628,14 @@
         "longitude": "-121.944",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4329,18 +3645,14 @@
         "longitude": "-122.894",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4350,18 +3662,14 @@
         "longitude": "-122.680688",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4371,18 +3679,14 @@
         "longitude": "-118.0463136",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -4392,18 +3696,14 @@
         "longitude": "-118.041032",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4413,18 +3713,14 @@
         "longitude": "-120.8973827",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4434,18 +3730,14 @@
         "longitude": "-121.466",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4455,18 +3747,14 @@
         "longitude": "-123.8257667",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4476,18 +3764,14 @@
         "longitude": "-124.249",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4497,18 +3781,14 @@
         "longitude": "-120.922288",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4518,18 +3798,14 @@
         "longitude": "-119.7408",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4539,18 +3815,14 @@
         "longitude": "-119.880864",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4560,18 +3832,14 @@
         "longitude": "-124.184",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4581,18 +3849,14 @@
         "longitude": "-121.978",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4602,18 +3866,14 @@
         "longitude": "-118.7520003",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -4623,18 +3883,14 @@
         "longitude": "-117.699496",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4644,18 +3900,14 @@
         "longitude": "-122.522",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4665,18 +3917,14 @@
         "longitude": "-122.4660859",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4686,18 +3934,14 @@
         "longitude": "-120.9462995",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4707,18 +3951,14 @@
         "longitude": "-121.9288",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4728,18 +3968,14 @@
         "longitude": "-123.8151608",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4749,18 +3985,14 @@
         "longitude": "-123.8165744",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4770,18 +4002,14 @@
         "longitude": "-121.939",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4791,18 +4019,14 @@
         "longitude": "-122.616",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4812,18 +4036,14 @@
         "longitude": "-123.121",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4833,18 +4053,14 @@
         "longitude": "-123.807485",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4854,18 +4070,14 @@
         "longitude": "-123.7612",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4875,18 +4087,14 @@
         "longitude": "-121.9033",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4896,18 +4104,14 @@
         "longitude": "-124.0381",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -4917,18 +4121,14 @@
         "longitude": "-124.212",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4938,18 +4138,14 @@
         "longitude": "-117.5581",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -4959,18 +4155,14 @@
         "longitude": "-118.397371",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -4980,18 +4172,14 @@
         "longitude": "-124.081",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5001,18 +4189,14 @@
         "longitude": "-117.274318",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5022,18 +4206,14 @@
         "longitude": "-117.273709",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5043,18 +4223,14 @@
         "longitude": "-123.8037823",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5064,18 +4240,14 @@
         "longitude": "-123.79635",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5085,18 +4257,14 @@
         "longitude": "-123.7963529",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5106,18 +4274,14 @@
         "longitude": "-118.2165",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5127,18 +4291,14 @@
         "longitude": "-123.8151724",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5148,33 +4308,28 @@
         "longitude": "-123.768425",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2014",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "0"
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2014",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "0"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -5268,18 +4423,14 @@
         "longitude": "-118.6804459",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Awareness Raising"
+          }]
+        }],
         "data": []
       },
       {
@@ -5289,18 +4440,14 @@
         "longitude": "-118.682299",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5310,18 +4457,14 @@
         "longitude": "-118.681189",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5331,18 +4474,14 @@
         "longitude": "-118.45948",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5352,18 +4491,14 @@
         "longitude": "-123.7612",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5373,18 +4508,14 @@
         "longitude": "-123.7612",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5394,18 +4525,14 @@
         "longitude": "-117.253931",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5415,18 +4542,14 @@
         "longitude": "-120.8938281",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5436,18 +4559,14 @@
         "longitude": "-121.891",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5457,18 +4576,14 @@
         "longitude": "-121.89",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5478,33 +4593,28 @@
         "longitude": "-121.91305",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2014",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "0"
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2014",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "0"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -5626,26 +4736,21 @@
         "longitude": "-121.8841202",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -5657,18 +4762,14 @@
         "longitude": "-120.8491",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5678,18 +4779,14 @@
         "longitude": "-120.8491",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5699,18 +4796,14 @@
         "longitude": "-120.8491",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5720,18 +4813,14 @@
         "longitude": "-120.8491",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5741,18 +4830,14 @@
         "longitude": "-121.786",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5762,18 +4847,14 @@
         "longitude": "-121.781",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5783,18 +4864,14 @@
         "longitude": "-119.093523",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5804,26 +4881,21 @@
         "longitude": "-118.44505",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -5835,33 +4907,28 @@
         "longitude": "-123.77265",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2012",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "0"
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2012",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "0"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -5955,18 +5022,14 @@
         "longitude": "-117.881074",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5976,18 +5039,14 @@
         "longitude": "-123.8167079",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -5997,18 +5056,14 @@
         "longitude": "-123.81655",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6018,18 +5073,14 @@
         "longitude": "-117.258588",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6039,18 +5090,14 @@
         "longitude": "-117.404438",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6060,26 +5107,21 @@
         "longitude": "-119.16544",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -6091,18 +5133,14 @@
         "longitude": "-121.9367724",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6112,26 +5150,21 @@
         "longitude": "-122.5002689",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -6143,18 +5176,14 @@
         "longitude": "-121.809",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6164,18 +5193,14 @@
         "longitude": "-121.9666",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6185,18 +5210,14 @@
         "longitude": "-123.7726583",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6206,18 +5227,14 @@
         "longitude": "-122.41555",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6227,18 +5244,14 @@
         "longitude": "-121.289",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6248,18 +5261,14 @@
         "longitude": "-122.482",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6269,18 +5278,14 @@
         "longitude": "-122.482038",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6290,18 +5295,14 @@
         "longitude": "-120.654",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6311,26 +5312,21 @@
         "longitude": "-118.4521828",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -6342,18 +5338,14 @@
         "longitude": "-122.316",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6363,18 +5355,14 @@
         "longitude": "-122.5279833",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6384,33 +5372,28 @@
         "longitude": "-123.8239111",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2012",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "1"
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2012",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "1"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -6630,18 +5613,14 @@
         "longitude": "-119.213671",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6651,18 +5630,14 @@
         "longitude": "-121.9592",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6672,18 +5647,14 @@
         "longitude": "-121.9514944",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6693,18 +5664,14 @@
         "longitude": "-117.245358",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6714,18 +5681,14 @@
         "longitude": "-121.937774",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6735,18 +5698,14 @@
         "longitude": "-122.49",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 2,
+            "name": "Land \/ Water Management"
+          }]
+        }],
         "data": []
       },
       {
@@ -6756,18 +5715,14 @@
         "longitude": "-122.49",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 2,
+            "name": "Land \/ Water Management"
+          }]
+        }],
         "data": []
       },
       {
@@ -6777,18 +5732,14 @@
         "longitude": "-122.49",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6798,18 +5749,14 @@
         "longitude": "-119.443551",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6819,18 +5766,14 @@
         "longitude": "-121.911133",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6840,18 +5783,14 @@
         "longitude": "-123.8043671",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6861,18 +5800,14 @@
         "longitude": "-118.431425",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6882,18 +5817,14 @@
         "longitude": "-121.80037",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6903,18 +5834,14 @@
         "longitude": "-116.8709",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -6924,56 +5851,45 @@
         "longitude": "-122.4104",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 2,
+            "name": "Land \/ Water Management"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
+            "categories": [{
+              "id": 2,
+              "name": "Land \/ Water Management"
+            }]
           },
           {
             "id": 2,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           },
           {
             "id": 3,
             "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
+            "categories": [{
+              "id": 2,
+              "name": "Land \/ Water Management"
+            }]
           },
           {
             "id": 4,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Research & Monitoring"
+            }]
           }
         ],
         "data": []
@@ -6985,56 +5901,45 @@
         "longitude": "-122.4104",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 2,
+            "name": "Land \/ Water Management"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
+            "categories": [{
+              "id": 2,
+              "name": "Land \/ Water Management"
+            }]
           },
           {
             "id": 2,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           },
           {
             "id": 3,
             "name": "",
-            "categories": [
-              {
-                "id": 2,
-                "name": "Land \/ Water Management"
-              }
-            ]
+            "categories": [{
+              "id": 2,
+              "name": "Land \/ Water Management"
+            }]
           },
           {
             "id": 4,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Research & Monitoring"
+            }]
           }
         ],
         "data": []
@@ -7046,18 +5951,14 @@
         "longitude": "-119.688111",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7067,18 +5968,14 @@
         "longitude": "-118.787",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7088,18 +5985,14 @@
         "longitude": "-122.019",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7109,18 +6002,14 @@
         "longitude": "-120.5234",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7130,18 +6019,14 @@
         "longitude": "-120.6254",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7151,26 +6036,21 @@
         "longitude": "-118.514351",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -7182,18 +6062,14 @@
         "longitude": "-123.5283833",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7203,18 +6079,14 @@
         "longitude": "-121.914",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7224,18 +6096,14 @@
         "longitude": "-122.516",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7245,18 +6113,14 @@
         "longitude": "-123.4834583",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7266,18 +6130,14 @@
         "longitude": "-120.673",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7287,18 +6147,14 @@
         "longitude": "-120.6556472",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7308,18 +6164,14 @@
         "longitude": "-123.8221111",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7329,26 +6181,21 @@
         "longitude": "-117.1387222",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -7360,18 +6207,14 @@
         "longitude": "-124.20518",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7381,18 +6224,14 @@
         "longitude": "-117.101628",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7402,26 +6241,21 @@
         "longitude": "-118.4676403",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -7433,18 +6267,14 @@
         "longitude": "-123.012",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7454,18 +6284,14 @@
         "longitude": "-123.8010889",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7475,18 +6301,14 @@
         "longitude": "-123.7707333",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7496,26 +6318,21 @@
         "longitude": "-117.1274179",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -7527,18 +6344,14 @@
         "longitude": "-117.12932",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7548,18 +6361,14 @@
         "longitude": "-121.269",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7569,26 +6378,21 @@
         "longitude": "-119.8825728",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -7600,18 +6404,14 @@
         "longitude": "-119.271291",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7621,18 +6421,14 @@
         "longitude": "-119.308378",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7642,18 +6438,14 @@
         "longitude": "-122.4728",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7663,26 +6455,21 @@
         "longitude": "-118.8239406",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          },
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        },
           {
             "id": 1,
             "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Awareness Raising"
-              }
-            ]
+            "categories": [{
+              "id": 1,
+              "name": "Awareness Raising"
+            }]
           }
         ],
         "data": []
@@ -7694,18 +6481,14 @@
         "longitude": "-117.223475",
         "state": "CA",
         "flyway": "Pacific",
-        "actions": [
-          {
-            "id": 0,
-            "name": "",
-            "categories": [
-              {
-                "id": 1,
-                "name": "Research & Monitoring"
-              }
-            ]
-          }
-        ],
+        "actions": [{
+          "id": 0,
+          "name": "",
+          "categories": [{
+            "id": 1,
+            "name": "Research & Monitoring"
+          }]
+        }],
         "data": []
       },
       {
@@ -7716,21 +6499,20 @@
         "state": "CA",
         "flyway": "Pacific",
         "actions": [],
-        "data": [
-          {
-            "key_type": {
-              "name": "Year",
-              "description": "",
-              "unit": ""
-            },
-            "key": "2012",
-            "value_type": {
-              "name": "Productivity",
-              "description": "",
-              "unit": ""
-            },
-            "value": "0"
+        "data": [{
+          "key_type": {
+            "name": "Year",
+            "description": "",
+            "unit": ""
           },
+          "key": "2012",
+          "value_type": {
+            "name": "Productivity",
+            "description": "",
+            "unit": ""
+          },
+          "value": "0"
+        },
           {
             "key_type": {
               "name": "Year",
@@ -7805,12 +6587,12 @@
       }
     ]
   },
-  "partners": [
+  "partners": {
     "map": {
       "latitude": "38.020098201368114",
       "longitude": "-114.63378906250001",
       "zoom": "6"
-    }
+    },
     "partners": [
       {
         "id": 1,
@@ -7989,5 +6771,5 @@
         "image": ""
       }
     ]
-  ]
+  }
 }
