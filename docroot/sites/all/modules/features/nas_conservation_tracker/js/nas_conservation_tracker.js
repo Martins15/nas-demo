@@ -131,20 +131,18 @@
     // Helper functions.
 
     function rebuildChartsBySelection() {
+      Drupal.settings.nas_conservation_tracker.selected_units = 0;
       Drupal.settings.nas_conservation_tracker.visible_sites = [];
-      //Drupal.settings.nas_conservation_tracker.selected_units
       lMap.eachLayer(function (unitLayer) {
-        if (unitLayer.feature.properties.selected) {
-          lMap.eachLayer(function (layer) {
-            if (isSite(layer) && layer[selected.feature.properties.unit] == selected.feature.properties.machineName) {
-              Drupal.settings.nas_conservation_tracker.visible_sites.push(layer.properties.site);
+        if (isUnit(unitLayer) && unitLayer.feature.properties.selected) {
+          Drupal.settings.nas_conservation_tracker.selected_units++;
+          lMap.eachLayer(function (siteLayer) {
+            if (isSite(siteLayer) && siteLayer.properties[unitLayer.feature.properties.unit] == unitLayer.feature.properties.machineName) {
+              Drupal.settings.nas_conservation_tracker.visible_sites.push(siteLayer.properties.site);
             }
           });
         }
       });
-      Drupal.settings.nas_conservation_tracker.selected_units++;
-      console.log(selected);
-
       Drupal.nas_conservation_tracker_init_charts();
     }
 
@@ -220,6 +218,10 @@
       return scaling;
     }
 
+    function isUnit(layer) {
+      return (layer.feature && layer.feature.constructor == LPolygon);
+    }
+
     function isSite(layer) {
       return (layer.properties && layer.properties.marker);
     }
@@ -248,7 +250,7 @@
     function scaleMapTo(unit) {
       var polygons = {};
       lMap.eachLayer(function (layer) {
-        if (layer.feature && layer.feature.constructor == LPolygon) {
+        if (isUnit(layer)) {
           // Remove present polygons.
           lMap.removeLayer(layer);
         }
@@ -258,7 +260,7 @@
               var county = Drupal.settings.nas_conservation_tracker_unit_data_sorted
                   [layer.properties.flyway][layer.properties.state][layer.properties.county];
               polygons[layer.properties.county] = new LPolygon(
-                  county.NAMELSAD,
+                  county.CNTY_NAME,
                   county.coordinates,
                   layer.properties.state,
                   layer.properties.flyway,
@@ -276,7 +278,7 @@
                 }
               }
               polygons[layer.properties.state] = new LPolygon(
-                  stateData[0].STATE_NAME,
+                  stateData[0].STATE_ABV,
                   coordinates,
                   layer.properties.state,
                   stateData[0].FLY_NAME,
@@ -359,7 +361,7 @@
     var json = Drupal.settings.nas_conservation_tracker.json_data[loc];
     var objectivesRows = [];
     var overall = 0;
-    var sites = (Drupal.settings.nas_conservation_tracker.visible_sites) ?
+    var sites = (Drupal.settings.nas_conservation_tracker.visible_sites.length > 0) ?
         Drupal.settings.nas_conservation_tracker.visible_sites :
         json.sites;
     var tabSettings = Drupal.settings.nas_conservation_tracker.json_data.settings[loc];
