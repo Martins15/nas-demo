@@ -567,6 +567,10 @@ $gray-lightish: #9b9b9b;
       margin-left: 11px;
     }
   }
+
+  .leaflet-control-layers {
+    display: none;
+  }
 }
 
 .help-wrap-items-map-items {

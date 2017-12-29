@@ -18305,6 +18305,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin-top: 11px;
   margin-left: 11px;
 }
+.ct-scorecard-main .leaflet-control-layers {
+  display: none;
+}
 
 @media only screen and (min-width: 768px) {
   .help-wrap-items-map-items {
