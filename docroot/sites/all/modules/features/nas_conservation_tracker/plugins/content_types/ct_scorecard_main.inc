@@ -85,6 +85,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
 
   libraries_load('d3.extend');
   libraries_load('d3.tooltip');
+  libraries_load('d3.ct_linegraph');
 
   // Actions.
   $actions = [];

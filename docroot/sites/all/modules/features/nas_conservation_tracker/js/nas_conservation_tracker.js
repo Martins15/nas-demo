@@ -5,18 +5,24 @@
 
 (function ($, Drupal) {
 
+  var colors = {
+    responses: ['#74c476','#41ab5d','#238b45','#006d2c','#00441b'],
+    actions: ['#6baed6','#4292c6','#2171b5','#08519c','#08306b'],
+    threats: ['#f768a1','#dd3497','#ae017e','#7a0177','#49006a']
+  };
+
   Drupal.nas_conservation_tracker_init_map = function () {
 
     var lMap = Drupal.settings.leaflet['0'].lMap,
         styleActive = {
           weight: 2,
-          opacity: 0.2,
-          fillOpacity: 0.2,
+          opacity: 0.3,
+          fillOpacity: 0.3,
         },
         styleSelected = {
           weight: 2,
-          opacity: 0.5,
-          fillOpacity: 0.5,
+          opacity: 0.7,
+          fillOpacity: 0.7,
         },
         classes = {
           site: 'ct-leaflet-site',
@@ -36,13 +42,20 @@
         lMap.removeLayer(layer);
       }
     });
-    if (angular.isDefined(json)) {
 
-      if (json.sites.length == 0) {
-        $('.leaflet-container').after('<div class="no-data-overlay">No data to display</div>');
-      }
-      else {
+    if (!angular.isDefined(json) || !angular.isDefined(json.sites) || json.sites.length == 0) {
+      $('.leaflet-container').after('<div class="no-data-overlay">No data to display</div>');
+    }
+
+    if (angular.isDefined(json) && angular.isDefined(json.sites)) {
+      Drupal.settings.nas_conservation_tracker.current_map = {};
+      Drupal.settings.nas_conservation_tracker.current_map.flyway = {};
+      Drupal.settings.nas_conservation_tracker.current_map.state = {};
+      Drupal.settings.nas_conservation_tracker.current_map.county = {};
+
+      if (json.sites.length > 0) {
         $('.no-data-overlay').remove();
+
         for (var i = 0 in json.sites) {
           // Display sites (dots).
           var site = json.sites[i];
@@ -64,6 +77,14 @@
               marker.properties.county = county;
             }
           }
+          Drupal.settings.nas_conservation_tracker.current_map.flyway[marker.properties.flyway] = Drupal.settings.nas_conservation_tracker.current_map.flyway[marker.properties.flyway] || [];
+          Drupal.settings.nas_conservation_tracker.current_map.state[marker.properties.state] = Drupal.settings.nas_conservation_tracker.current_map.state[marker.properties.state] || [];
+          Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county] = Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county] || [];
+
+          Drupal.settings.nas_conservation_tracker.current_map.flyway[marker.properties.flyway].push(site);
+          Drupal.settings.nas_conservation_tracker.current_map.state[marker.properties.state].push(site);
+          Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county].push(site);
+
         }
       }
 
@@ -214,18 +235,17 @@
     }
 
     function getPolygonStyle(feature) {
-      var i = 0;
-      var style = styleActive;
-      lMap.eachLayer(function (layer) {
-        if (isSite(layer)) {
-          latLon = layer.getLatLng();
-          if (isInsidePolygon(latLon.lat, latLon.lng, feature.geometry.coordinates)) {
-            i++;
-          }
+      var style = {};
+      Object.assign(style, styleActive);
+
+      var k = 0;
+      for (var i in Drupal.settings.nas_conservation_tracker.current_map.range) {
+        if (Drupal.settings.nas_conservation_tracker.current_map.rows[feature.properties.machineName] >= Drupal.settings.nas_conservation_tracker.current_map.range[i]) {
+          k = i;
         }
-      });
-      var color = i > 6 ? '#ff0000' :
-          i > 1 ? '#feb24c' : '#FFEDA0';
+      }
+
+      var color = colors[getLocation()][k];
       style.fillColor = color;
       style.color = color;
       return style;
@@ -338,7 +358,44 @@
           }
         }
       });
+
+
       if (Object.values(polygons).length > 0) {
+        Drupal.settings.nas_conservation_tracker.current_map.rows = {};
+        var min, max;
+
+        for (var i in polygons) {
+          var rows = getChartData(Drupal.settings.nas_conservation_tracker.current_map[unit][polygons[i].properties.machineName]);
+          var z = 0;
+          for (var j in rows) {
+            z += rows[j][1]
+          }
+          if (min == null) {
+            min = z;
+          }
+          if (max == null) {
+            max = z;
+          }
+          if (z < min) {
+            min = z;
+          }
+          if (z > max) {
+            max = z;
+          }
+          Drupal.settings.nas_conservation_tracker.current_map.rows[polygons[i].properties.machineName] = z;
+          Drupal.settings.nas_conservation_tracker.current_map.min = min;
+          Drupal.settings.nas_conservation_tracker.current_map.max = max;
+        }
+
+        var step = (max - min) / 5;
+        var range = [];
+        range[0] = min;
+        for (var i = 1; i < 5; i++) {
+          range[i] = range[i - 1] + step;
+        }
+        range[4] = max;
+        Drupal.settings.nas_conservation_tracker.current_map.range = range;
+
         var polygons = L.geoJson({
           type: 'FeatureCollection',
           features: Object.values(polygons)
@@ -445,8 +502,43 @@
       $('.progress-wrap').hide();
     }
 
+    var mainRows = getChartData(sites);
 
-    // Charts. TODO make it look good
+    if (mainRows.length > 0) {
+      var $diagram = $('.diagram-wrap');
+      $diagram.find('.map-title').text(tabSettings.chart.value_type);
+      $diagram.show();
+
+      if (tabSettings.chart.chart_type == 'linegraph') {
+        var mainChart = Drupal.d3.ct_linegraph('d3-actions', {rows: []});
+      }
+      else {
+        var mainChart = Drupal.d3.ct_bar('d3-actions', {rows: []});
+      }
+
+      mainChart.update({
+        rows: mainRows,
+        width: 512,
+        height: 306,
+        barWidth: 9,
+        barRx: 4,
+        graphColor: [colors[loc][1]],
+      });
+      $('#site-count').text(sites.length);
+
+    }
+    else {
+      $('.diagram-wrap').hide();
+    }
+  };
+
+
+  function getChartData(sites, tabSettings) {
+    if (typeof tabSettings == 'undefined') {
+      var loc = getLocation();
+      tabSettings = Drupal.settings.nas_conservation_tracker.json_data.settings[loc];
+    }
+
     var mainObjRows = {};
     var additionalData = {};
     if (typeof tabSettings.chart != 'undefined') {
@@ -501,33 +593,9 @@
       return [key, value];
     });
 
-    if (mainRows.length > 0) {
-      var $diagram = $('.diagram-wrap');
-      $diagram.find('.map-title').text(tabSettings.chart.value_type);
-      $diagram.show();
+    return mainRows;
+  }
 
-      if (tabSettings.chart.chart_type == 'linegraph') {
-        var mainChart = Drupal.d3.ct_linegraph('d3-actions', {rows: []});
-      }
-      else {
-        var mainChart = Drupal.d3.ct_bar('d3-actions', {rows: []});
-      }
-
-      mainChart.update({
-        rows: mainRows,
-        width: 512,
-        height: 306,
-        barWidth: 9,
-        barRx: 4,
-        barColor: ['#ef5a3e'],
-      });
-      $('#site-count').text(sites.length);
-
-    }
-    else {
-      $('.diagram-wrap').hide();
-    }
-  };
 
   // Common helper functions.
   function getLocation() {
