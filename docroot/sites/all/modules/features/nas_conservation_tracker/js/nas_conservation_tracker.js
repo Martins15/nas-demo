@@ -36,37 +36,46 @@
         lMap.removeLayer(layer);
       }
     });
-    for (var i = 0 in json.sites) {
-      // Display sites (dots).
-      var site = json.sites[i];
-      var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
-        latLon = [
-          parseFloat(site.latitude),
-          parseFloat(site.longitude),
-        ];
-      var marker = L.marker(latLon, {icon: dot});
-      var text = site.name;
-      marker.properties = {
-        marker: true,
-        flyway: site.flyway.toLowerCase(),
-        state: site.state.toLowerCase(),
-        site: site,
-      };
-      for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
-        if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
-          marker.properties.county = county;
+    if (angular.isDefined(json)) {
+
+      if (json.sites.length == 0) {
+        $('.leaflet-container').after('<div class="no-data-overlay">No data to display</div>');
+      }
+      else {
+        $('.no-data-overlay').remove();
+        for (var i = 0 in json.sites) {
+          // Display sites (dots).
+          var site = json.sites[i];
+          var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
+              latLon = [
+                parseFloat(site.latitude),
+                parseFloat(site.longitude),
+              ];
+          var marker = L.marker(latLon, {icon: dot});
+          var text = site.name;
+          marker.properties = {
+            marker: true,
+            flyway: site.flyway.toLowerCase(),
+            state: site.state.toLowerCase(),
+            site: site,
+          };
+          for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
+            if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
+              marker.properties.county = county;
+            }
+          }
         }
       }
-    }
-    if (angular.isDefined(json)) {
+
+
       for (var i = 0 in json.sites) {
         // Display sites (dots).
         var site = json.sites[i];
         var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
-          latLon = [
-            parseFloat(site.latitude),
-            parseFloat(site.longitude),
-          ];
+            latLon = [
+              parseFloat(site.latitude),
+              parseFloat(site.longitude),
+            ];
         var marker = L.marker(latLon, {icon: dot});
         marker.properties = {
           marker: true,
@@ -114,7 +123,7 @@
     });
 
     lMap.scrollWheelZoom.disable();
-    lMap.on('click', function() {
+    lMap.on('click', function () {
       if (lMap.scrollWheelZoom.enabled()) {
         lMap.scrollWheelZoom.disable();
       }
@@ -173,10 +182,10 @@
             var x = parseInt(iconOffset.left.toFixed());
             var y = parseInt(iconOffset.top.toFixed()) - parseInt(area.offset().top.toFixed());
             if (
-              y >= 0 &&
-              x >= 0 &&
-              x <= w &&
-              y <= h) {
+                y >= 0 &&
+                x >= 0 &&
+                x <= w &&
+                y <= h) {
               Drupal.settings.nas_conservation_tracker.visible_sites.push(layer.properties.site);
             }
           }
@@ -227,7 +236,7 @@
       var scaling = 'county';
       $radios.each(function () {
         if ($(this).prop('checked')) {
-          scaling =  $(this).val();
+          scaling = $(this).val();
         }
       });
       return scaling;
@@ -251,8 +260,10 @@
       for (var subPoints in polyPoints) {
         for (var i = 0, j = polyPoints[subPoints].length - 1; i < polyPoints[subPoints].length; j = i++) {
           // Y is before X in data coming from unit-data.js
-          var xi = polyPoints[subPoints][i][1], yi = polyPoints[subPoints][i][0];
-          var xj = polyPoints[subPoints][j][1], yj = polyPoints[subPoints][j][0];
+          var xi = polyPoints[subPoints][i][1],
+              yi = polyPoints[subPoints][i][0];
+          var xj = polyPoints[subPoints][j][1],
+              yj = polyPoints[subPoints][j][0];
           var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
           if (intersect) {
             inside = !inside;
@@ -375,6 +386,7 @@
     var loc = getLocation();
     var json = Drupal.settings.nas_conservation_tracker.json_data[loc];
     var objectivesRows = [];
+    var objectivesTips = [];
     var overall = 0;
     var sites = (Drupal.settings.nas_conservation_tracker.visible_sites.length > 0) ?
         Drupal.settings.nas_conservation_tracker.visible_sites :
@@ -390,12 +402,17 @@
       else {
         objectivesRows.push([objectives[j].description, -1]);
       }
+      var tooltip = '';
+      if (angular.isDefined(objectives[j].tooltip)) {
+        tooltip = objectives[j].tooltip;
+      }
+      objectivesTips.push(tooltip);
     }
 
 
     // Charts.
     var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
-    objectives.update({rows: objectivesRows});
+    objectives.update({rows: objectivesRows, tooltips: objectivesTips});
     if (objectivesRows.length > 0) {
       $('.objectives-wrap').show();
       overall = Math.round(overall / objectivesRows.length);
@@ -513,11 +530,11 @@
     var loc = window.location.href;
     return loc.split("/").slice(-1)[0];
   }
-  
+
   Drupal.behaviors.scrollToNext = {
     attach: function (context, settings) {
-      $(".curtain-arrow.storecard").once(function(){
-        $(".curtain-arrow.storecard").click(function(e) {
+      $(".curtain-arrow.storecard").once(function () {
+        $(".curtain-arrow.storecard").click(function (e) {
           e.preventDefault();
           $('html, body').animate({
             scrollTop: $(".ct-scorecard-tabs").offset().top
@@ -529,8 +546,8 @@
 
   Drupal.behaviors.mapControlsToggle = {
     attach: function (context, settings) {
-      $('.form-item-map-type.form-type-radios label').once('form-toggle', function() {
-        $(this).click(function(e) {
+      $(".form-item-map-type.form-type-radios").once(function () {
+        $(".form-item-map-type.form-type-radios label", context).click(function (e) {
           $(this).next('#edit-map-type').slideToggle('fast');
         });
       });
