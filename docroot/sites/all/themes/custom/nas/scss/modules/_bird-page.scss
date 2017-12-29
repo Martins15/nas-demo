@@ -21,6 +21,7 @@ $border-bird: #d9d9d9;
 $orange-bird: #F15936;
 $blue-bird: #0aa8e3;
 $padding-item: 25px 17.5px 0;
+$gray-lightish: #9b9b9b;
 
 .bird-page.body-item {
   .body-wrap {
@@ -46,7 +47,7 @@ $padding-item: 25px 17.5px 0;
   }
   .title-wrap {
     &__print {
-      color: #9b9b9b;
+      color: $gray-lightish;
       font-size: 14px;
       text-transform: uppercase;
       font-family: $font-sans;
@@ -61,7 +62,7 @@ $padding-item: 25px 17.5px 0;
       .download {
         background-image: url("../img/bird-page/download.png");
         padding-left: 25px;
-        color: #9b9b9b;
+        color: $gray-lightish;
         width: auto;
         background-position: left;
         float: left;
@@ -69,6 +70,18 @@ $padding-item: 25px 17.5px 0;
         font-size: 14px;
         font-weight: 600;
         line-height: 18px;
+        &:after {
+          display: inline-block;
+          width: 0;
+          height: 0;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-top: 5px solid $gray-lightish;
+          margin-left: 5px;
+          font-size: 12px;
+          content: "";
+          vertical-align: middle;
+        }
       }
       .print {
         background-image: url("../img/bird-page/print.png");
@@ -76,19 +89,6 @@ $padding-item: 25px 17.5px 0;
         display: block;
         float: left;
         margin-left: 50px;
-      }
-      span {
-        display: block;
-        border: 1px solid #9b9b9b;
-        padding: 0 3px;
-        text-align: center;
-        font-weight: bold;
-        margin-left: 5px;
-        font-size: 11px;
-        line-height: 14px;
-        float: left;
-        margin-top: 2px;
-        font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
       }
     }
   }
@@ -521,15 +521,16 @@ $padding-item: 25px 17.5px 0;
         font-size: 14px;
         color: $white;
         letter-spacing: 0.5px;
-        span {
+        &:after {
           display: inline-block;
-          border: 1px solid white;
-          padding: 0 3px;
-          text-align: center;
-          font-weight: bold;
-          line-height: 12px;
+          width: 0;
+          height: 0;
+          border-left: 6px solid transparent;
+          border-right: 6px solid transparent;
+          border-top: 6px solid $white;
           margin-left: 5px;
           font-size: 12px;
+          content: "";
         }
       }
       #edit-map-type {
