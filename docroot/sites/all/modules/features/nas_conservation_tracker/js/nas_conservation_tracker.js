@@ -9,7 +9,7 @@
 
     var lMap = Drupal.settings.leaflet['0'].lMap,
         styleActive = {
-          weight: 2,
+          weight: 0,
           opacity: 0.2,
           fillOpacity: 0.2,
         },
@@ -142,14 +142,7 @@
 
     $reset.click(function (e) {
       e.preventDefault();
-      var latlng = L.latLng(
-        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.latitude,
-        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.longitude
-      );
-      lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.zoom);
-      resetSelection();
-      scaleMapTo(Drupal.settings.nas_conservation_tracker.scale);
-      Drupal.nas_conservation_tracker_init_charts();
+      resetMap();
     });
 
     // Helper functions.
@@ -239,6 +232,17 @@
         }
       });
       return scaling;
+    }
+
+    function resetMap() {
+      var latlng = L.latLng(
+        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.latitude,
+        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.longitude
+      );
+      lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.zoom);
+      resetSelection();
+      scaleMapTo(Drupal.settings.nas_conservation_tracker.scale);
+      Drupal.nas_conservation_tracker_init_charts();
     }
 
     function resetSelection() {
