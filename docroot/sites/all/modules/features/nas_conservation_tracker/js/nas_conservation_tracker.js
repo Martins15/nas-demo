@@ -42,15 +42,18 @@
         lMap.removeLayer(layer);
       }
     });
-    if (angular.isDefined(json)) {
+
+    if (!angular.isDefined(json) || !angular.isDefined(json.sites) || json.sites.length == 0) {
+      $('.leaflet-container').after('<div class="no-data-overlay">No data to display</div>');
+    }
+
+    if (angular.isDefined(json) && angular.isDefined(json.sites)) {
       Drupal.settings.nas_conservation_tracker.current_map = {};
       Drupal.settings.nas_conservation_tracker.current_map.flyway = {};
       Drupal.settings.nas_conservation_tracker.current_map.state = {};
       Drupal.settings.nas_conservation_tracker.current_map.county = {};
-      if (json.sites.length == 0) {
-        $('.leaflet-container').after('<div class="no-data-overlay">No data to display</div>');
-      }
-      else {
+
+      if (json.sites.length > 0) {
         $('.no-data-overlay').remove();
 
         for (var i = 0 in json.sites) {
@@ -356,42 +359,43 @@
         }
       });
 
-      Drupal.settings.nas_conservation_tracker.current_map.rows = {};
-      var min, max;
-
-      for (var i in polygons) {
-        var rows = getChartData(Drupal.settings.nas_conservation_tracker.current_map[unit][polygons[i].properties.machineName]);
-        var z = 0;
-        for (var j in rows) {
-          z += rows[j][1]
-        }
-        if (min == null) {
-          min = z;
-        }
-        if (max == null) {
-          max = z;
-        }
-        if (z < min) {
-          min = z;
-        }
-        if (z > max) {
-          max = z;
-        }
-        Drupal.settings.nas_conservation_tracker.current_map.rows[polygons[i].properties.machineName] = z;
-        Drupal.settings.nas_conservation_tracker.current_map.min = min;
-        Drupal.settings.nas_conservation_tracker.current_map.max = max;
-      }
-
-      var step = (max - min) / 5;
-      var range = [];
-      range[0] = min;
-      for (var i = 1; i < 5; i++) {
-        range[i] = range[i - 1] + step;
-      }
-      range[4] = max;
-      Drupal.settings.nas_conservation_tracker.current_map.range = range;
 
       if (Object.values(polygons).length > 0) {
+        Drupal.settings.nas_conservation_tracker.current_map.rows = {};
+        var min, max;
+
+        for (var i in polygons) {
+          var rows = getChartData(Drupal.settings.nas_conservation_tracker.current_map[unit][polygons[i].properties.machineName]);
+          var z = 0;
+          for (var j in rows) {
+            z += rows[j][1]
+          }
+          if (min == null) {
+            min = z;
+          }
+          if (max == null) {
+            max = z;
+          }
+          if (z < min) {
+            min = z;
+          }
+          if (z > max) {
+            max = z;
+          }
+          Drupal.settings.nas_conservation_tracker.current_map.rows[polygons[i].properties.machineName] = z;
+          Drupal.settings.nas_conservation_tracker.current_map.min = min;
+          Drupal.settings.nas_conservation_tracker.current_map.max = max;
+        }
+
+        var step = (max - min) / 5;
+        var range = [];
+        range[0] = min;
+        for (var i = 1; i < 5; i++) {
+          range[i] = range[i - 1] + step;
+        }
+        range[4] = max;
+        Drupal.settings.nas_conservation_tracker.current_map.range = range;
+
         var polygons = L.geoJson({
           type: 'FeatureCollection',
           features: Object.values(polygons)
