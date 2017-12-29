@@ -80,12 +80,14 @@
         }
         marker.bindTooltip(site.name).addTo(lMap);
       }
-      for (var j = 0 in site.actions) {
-        for (var l = 0 in site.actions[j].categories) {
-          text += ("<br/><small>" + site.actions[j].categories[l].name + "</small>");
+      if (angular.isDefined(site)) {
+        for (var j = 0 in site.actions) {
+          for (var l = 0 in site.actions[j].categories) {
+            text += ("<br/><small>" + site.actions[j].categories[l].name + "</small>");
+          }
         }
+        marker.bindTooltip(text).addTo(lMap);
       }
-      marker.bindTooltip(text).addTo(lMap);
     }
 
     // Scale map to selected unit.
@@ -365,7 +367,6 @@
         Drupal.settings.nas_conservation_tracker.visible_sites :
         json.sites;
     var tabSettings = Drupal.settings.nas_conservation_tracker.json_data.settings[loc];
-    //console.log('TABSETTINGS', tabSettings);
 
     var objectives = tabSettings.objectives;
     for (var j = 0 in objectives) {
@@ -457,7 +458,6 @@
 
       }
     }
-    //.log('MAIN DATA', mainObjRows);
 
     var mainRows = Object.keys(mainObjRows).map(function (key) {
       var value = mainObjRows[key];
@@ -503,11 +503,13 @@
   
   Drupal.behaviors.scrollToNext = {
     attach: function (context, settings) {
-      $(".curtain-arrow.storecard").click(function(e) {
-        e.preventDefault();
-        $('html, body').animate({
-          scrollTop: $(".ct-scorecard-tabs").offset().top
-        }, 1000);
+      $(".curtain-arrow.storecard").once(function(){
+        $(".curtain-arrow.storecard").click(function(e) {
+          e.preventDefault();
+          $('html, body').animate({
+            scrollTop: $(".ct-scorecard-tabs").offset().top
+          }, 1000);
+        });
       });
     }
   };

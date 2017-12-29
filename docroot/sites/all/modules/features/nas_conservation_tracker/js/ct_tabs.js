@@ -137,6 +137,7 @@
                   updateTabData(Drupal.settings.nas_conservation_tracker.tabsData[currentName]);
                   Drupal.attachBehaviors($('.' + currentName + '-tab-wrapper'));
                   $scope.$apply();
+
               }, 500);
             }
 
