@@ -514,7 +514,7 @@
 
   Drupal.behaviors.mapControlsToggle = {
     attach: function (context, settings) {
-      $(".form-item-map-type.form-type-radios label").click(function(e) {
+      $(".form-item-map-type.form-type-radios label", context).click(function(e) {
         $(this).next('#edit-map-type').slideToggle('fast');
       });
     }
