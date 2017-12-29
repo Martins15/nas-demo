@@ -362,6 +362,7 @@
     var loc = getLocation();
     var json = Drupal.settings.nas_conservation_tracker.json_data[loc];
     var objectivesRows = [];
+    var objectivesTips = [];
     var overall = 0;
     var sites = (Drupal.settings.nas_conservation_tracker.visible_sites.length > 0) ?
         Drupal.settings.nas_conservation_tracker.visible_sites :
@@ -377,12 +378,17 @@
       else {
         objectivesRows.push([objectives[j].description, -1]);
       }
+      var tooltip = '';
+      if (angular.isDefined(objectives[j].tooltip)) {
+        tooltip = objectives[j].tooltip;
+      }
+      objectivesTips.push(tooltip);
     }
 
 
     // Charts.
     var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
-    objectives.update({rows: objectivesRows});
+    objectives.update({rows: objectivesRows, tooltips: objectivesTips});
     if (objectivesRows.length > 0) {
       $('.objectives-wrap').show();
       overall = Math.round(overall / objectivesRows.length);
