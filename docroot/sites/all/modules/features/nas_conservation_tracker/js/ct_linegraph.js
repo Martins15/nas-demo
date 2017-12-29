@@ -11,6 +11,7 @@
       var labels = [],
           key = settings.legend || ['Data'],
           rows = settings.rows,
+          range = settings.graphColor || ["#f15936"],
           p = settings.padding || [20, 20, 70, 50],
           w = (settings.width || 900) - p[1] - p[3],
           h = (settings.height || 400),
@@ -19,7 +20,7 @@
           x = d3.scale.linear().domain([0, rows.length - 1]).range([20, chart.w]),
           //y = d3.scale.linear().domain([0, maxValue(rows)]).range([chart.h, 0]),
           y = d3.scale.linear().domain([0, d3.max(rows, function(d) {return d[1]; })]).range([chart.h, 0]),
-          z = d3.scale.ordinal().range(["#f15936"]);
+          z = d3.scale.ordinal().range(range);
 
 
 
@@ -52,14 +53,17 @@
           .style("stroke", function (d, i) {
             return d3.rgb(z(i));
           })
+          .attr("fill", function (d, i) {
+            return d3.rgb('#ffffff');
+          })
           .style("stroke-width", 1)
           .attr("d", d3.svg.line()
               .x(function (d, i) {
-                return x(i);
+                return Math.round(x(i));
               })
               .y(function (d) {
-                return y(d.y);
-              }));
+                return Math.round(y(d.y));
+              }).interpolate("linear"));
 
 
       /* X AXIS */
@@ -75,9 +79,12 @@
           .text(function (d, i) {
             return labels[i];
           })
-          .attr("text-anchor", "end")
+          .attr("text-anchor", "middle")
           .attr('dy', '1em')
-          .attr('dx', '2.5em');
+          .attr('dx', '0')
+          .attr("font-size", "14px")
+          .attr("font-family", "\"Source Sans Pro\", Verdana, sans-serif")
+          .style('fill', d3.rgb("#666666"));
 
       xTicks.append("line")
           .attr("y2", -chart.h)

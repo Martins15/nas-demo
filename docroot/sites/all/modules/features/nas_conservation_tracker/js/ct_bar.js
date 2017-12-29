@@ -11,7 +11,7 @@
       settings.id = settings.id || select;
 
       var key = [],
-          range = settings.barColor || ["blue", "red", "orange", "green"];
+          range = settings.graphColor || ["blue", "red", "orange", "green"];
       if (typeof settings.legend != 'undefined') {
         key = settings.legend;
       }

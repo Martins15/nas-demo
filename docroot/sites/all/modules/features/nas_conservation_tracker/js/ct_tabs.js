@@ -128,6 +128,7 @@
                   Drupal.settings.nas_conservation_tracker.tabsData[currentName] = response.data.data;
                   $scope['tab'] = tabData;
                   updateTabData(response.data.data);
+
                 });
             }
             else {
