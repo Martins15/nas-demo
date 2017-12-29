@@ -53,14 +53,17 @@
           .style("stroke", function (d, i) {
             return d3.rgb(z(i));
           })
+          .attr("fill", function (d, i) {
+            return d3.rgb('#ffffff');
+          })
           .style("stroke-width", 1)
           .attr("d", d3.svg.line()
               .x(function (d, i) {
-                return x(i);
+                return Math.round(x(i));
               })
               .y(function (d) {
-                return y(d.y);
-              }));
+                return Math.round(y(d.y));
+              }).interpolate("linear"));
 
 
       /* X AXIS */
@@ -76,9 +79,12 @@
           .text(function (d, i) {
             return labels[i];
           })
-          .attr("text-anchor", "end")
+          .attr("text-anchor", "middle")
           .attr('dy', '1em')
-          .attr('dx', '2.5em');
+          .attr('dx', '0')
+          .attr("font-size", "14px")
+          .attr("font-family", "\"Source Sans Pro\", Verdana, sans-serif")
+          .style('fill', d3.rgb("#666666"));
 
       xTicks.append("line")
           .attr("y2", -chart.h)
