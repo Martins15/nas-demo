@@ -4,7 +4,7 @@
  */
 ?>
 <aside class="ct-scorecard-main map-items bird-page">
-  <div>
+    <div>
     <?php print $form; ?>
     <a href="#" class="controls-link"><span class="border"></span> </a>
   </div>
