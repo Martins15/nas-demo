@@ -156,6 +156,12 @@ function nas_conservation_tracker_map_form($form, &$form_state) {
         'flyway' => t('Flyway'),
       ],
     ],
+    'map_reset' => [
+      '#type' => 'button',
+      '#value' => t('Reset'),
+      '#name' => 'map_reset',
+      '#button_type' => 'reset',
+    ],
   ];
   return $form;
 }
