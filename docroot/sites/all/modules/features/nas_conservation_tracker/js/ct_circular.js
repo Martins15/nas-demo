@@ -115,7 +115,11 @@
         for (var i in settings.rows) {
           var id = select + "-" + i;
           var graph = new CircleLoader();
-          $('#' + select).append('<div class="item"><div class="item__process help-img-full" id="' + id + '"></div></div>');
+          var tooltip = '';
+          if (typeof settings.tooltips != 'undefined' && settings.tooltips[i] != '') {
+            tooltip = ' title="' + settings.tooltips[i] + '"';
+          }
+          $('#' + select).append('<div class="item"' + tooltip + '><div class="item__process help-img-full" id="' + id + '"></div></div>');
           graph.init(id, 'circle', parseInt(settings.rows[i][1]), 60, 15);
           $('#' + id).after('<div class="item__info">' + settings.rows[i][0] + '</div>');
         }

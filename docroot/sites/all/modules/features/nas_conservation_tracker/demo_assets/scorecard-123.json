@@ -14,6 +14,7 @@
       [
         {
           "description": "Protect or restore intertidal habitat for Black Oystercatcher",
+          "tooltip": "Protect or restore intertidal habitat for Black Oystercatcher",
           "value": ""
         }
       ]
@@ -28,6 +29,7 @@
       [
         {
           "description": "Continue monitoring productivity along the California coast and use the data to conduct a population viability assessment",
+          "tooltip": "Continue monitoring productivity along the California coast and use the data to conduct a population viability assessment",
           "value": ""
         }
       ],
@@ -49,6 +51,7 @@
       [
         {
           "description": "Maintain 0.41 fledged chicks per pair per year",
+          "tooltip": "Maintain 0.41 fledged chicks per pair per year",
           "value": ""
         }
       ],
@@ -71,6 +74,7 @@
       [
         {
           "description": "Recruit, train and support coastal stewards protecting the places on the Pacific coast that Black Oystercatchers need most",
+          "tooltip": "Recruit, train and support coastal stewards protecting the places on the Pacific coast that Black Oystercatchers need most",
           "value": ""
         }
       ]
