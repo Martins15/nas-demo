@@ -143,10 +143,10 @@
     $reset.click(function (e) {
       e.preventDefault();
       var latlng = L.latLng(
-        Drupal.settings.nas_conservation_tracker.json_data[loc].map.latitude,
-        Drupal.settings.nas_conservation_tracker.json_data[loc].map.longitude
+        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.latitude,
+        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.longitude
       );
-      lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.json_data[loc].map.zoom);
+      lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.zoom);
       resetSelection();
       scaleMapTo(Drupal.settings.nas_conservation_tracker.scale);
       Drupal.nas_conservation_tracker_init_charts();

@@ -73,18 +73,17 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   $map_info['settings']['layerControl'] = TRUE;
   //$map_info['layers']['earth']['urlTemplate'] = '//cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
   $map_info['layers']['earth']['urlTemplate'] = '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
-  $map_info['settings']['zoomDefault'] = $data[$path]['map']['zoom'];
-  $map_info['settings']['zoom'] = $data[$path]['map']['zoom'];
+  $map_info['settings']['zoomDefault'] = $data['settings'][$path]['map']['zoom'];
+  $map_info['settings']['zoom'] = $data['settings'][$path]['map']['zoom'];
   $map_info['center'] = [
-    'lat' => $data[$path]['map']['latitude'],
-    'lon' => $data[$path]['map']['longitude'],
+    'lat' => $data['settings'][$path]['map']['latitude'],
+    'lon' => $data['settings'][$path]['map']['longitude'],
   ];
   $features = [
   ];
   $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_map_height', '800') . 'px');
 
   libraries_load('d3.extend');
-  libraries_load('d3.ct_linegraph');
   libraries_load('d3.tooltip');
 
   // Actions.
