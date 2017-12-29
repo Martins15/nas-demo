@@ -11,6 +11,7 @@
       var labels = [],
           key = settings.legend || ['Data'],
           rows = settings.rows,
+          range = settings.graphColor || ["#f15936"],
           p = settings.padding || [20, 20, 70, 50],
           w = (settings.width || 900) - p[1] - p[3],
           h = (settings.height || 400),
@@ -19,7 +20,7 @@
           x = d3.scale.linear().domain([0, rows.length - 1]).range([20, chart.w]),
           //y = d3.scale.linear().domain([0, maxValue(rows)]).range([chart.h, 0]),
           y = d3.scale.linear().domain([0, d3.max(rows, function(d) {return d[1]; })]).range([chart.h, 0]),
-          z = d3.scale.ordinal().range(["#f15936"]);
+          z = d3.scale.ordinal().range(range);
 
 
 

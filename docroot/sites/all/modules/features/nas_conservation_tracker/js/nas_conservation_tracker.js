@@ -5,6 +5,12 @@
 
 (function ($, Drupal) {
 
+  var colors = {
+    responses: ['#74c476','#41ab5d','#238b45','#006d2c','#00441b'],
+    actions: ['#6baed6','#4292c6','#2171b5','#08519c','#08306b'],
+    threats: ['#f768a1','#dd3497','#ae017e','#7a0177','#49006a']
+  };
+
   Drupal.nas_conservation_tracker_init_map = function () {
 
     var lMap = Drupal.settings.leaflet['0'].lMap,
@@ -223,12 +229,6 @@
           k = i;
         }
       }
-
-      var colors = {
-        responses: ['#74c476','#41ab5d','#238b45','#006d2c','#00441b'],
-        actions: ['#6baed6','#4292c6','#2171b5','#08519c','#08306b'],
-        threats: ['#f768a1','#dd3497','#ae017e','#7a0177','#49006a']
-      };
 
       var color = colors[getLocation()][k];
       style.fillColor = color;
@@ -501,7 +501,7 @@
         height: 306,
         barWidth: 9,
         barRx: 4,
-        barColor: ['#ef5a3e'],
+        graphColor: [colors[loc][1]],
       });
       $('#site-count').text(sites.length);
 
