@@ -27,6 +27,8 @@ $plugin = [
  * @return stdClass
  */
 function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, $context) {
+  $arg = arg();
+  $path = array_pop($arg);
   $block = new stdClass();
   if (!empty($context->data->field_scorecard_id[$context->data->language][0]['value'])) {
     $scorecard_id = $context->data->field_scorecard_id[$context->data->language][0]['value'];
@@ -38,8 +40,6 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
     return;
   }
   $data = nas_conservation_tracker_get_json('scorecard-' . $scorecard_id);
-  $arg = arg();
-  $path = array_pop($arg);
   $scale = array(
     'actions' => array('county', 'state', 'flyway'),
     'threats' => array('county', 'state', 'flyway'),
