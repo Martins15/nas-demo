@@ -91,7 +91,7 @@
       function ($scope, $stateParams, $state, $rootScope, $http) {
       // @todo update var.
 
-       var idItem = 123;
+       var idItem = Drupal.settings.nas_conservation_tracker.scorecardId;
 
         // Load json file.
         function getContent(currentName) {
