@@ -12,6 +12,7 @@ function nas_conservation_tracker_update_7002() {
   $demo_url = $base_url . '/sites/all/modules/features/nas_conservation_tracker/demo_assets';
   variable_set('nas_conservation_tracker_endpoint', $demo_url);
 
+  // Black Oystercatcher.
   $data = nas_conservation_tracker_get_json('scorecard-123');
   $node = new StdClass();
   $node->type = 'ct_scorecard';
@@ -28,17 +29,31 @@ function nas_conservation_tracker_update_7002() {
 
   path_save($path);
 
+
+  // Coastal Carolinas.
+  $data = nas_conservation_tracker_get_json('scorecard-321');
+  $node = new StdClass();
+  $node->type = 'ct_scorecard';
+  $node->status = 1;
+  $node->language = LANGUAGE_NONE;
+  $node->title = $data['name'];
+  $node->field_scorecard_id[LANGUAGE_NONE][]['value'] = $data['id'];
+  $node = node_submit($node);
+  node_save($node);
+
+  $path = array('source' => 'node/' . $node->nid,
+    'alias' => 'conservation-tracker/scorecard/coastal-carolinas',
+    'language' => $node->language);
+
+  path_save($path);
+
 }
 
 /**
  * Revert conservation tracker feature.
  */
 function nas_conservation_tracker_update_7003() {
-  features_revert(array(
-    'nas_conservation_tracker' => array(
-      'page_manager_pages',
-    ),
-  ));
+  features_revert_module('nas_conservation_tracker');
 }
 
 /**
