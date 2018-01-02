@@ -62,6 +62,12 @@
                         </a>
                     </div>
                 </div>
+                <div class="wrap-partners">
+                    <div class="partner" ng-repeat="partner in tab.settings.overview.partners">
+                        <div class="state">{{partner.state}}</div>
+                        <div class="state">{{partner.name}}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

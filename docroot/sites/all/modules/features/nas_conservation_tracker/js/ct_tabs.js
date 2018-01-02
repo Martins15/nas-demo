@@ -123,6 +123,10 @@
                     tabData.settings.overview.preparedLink.target = '_blank';
                   }
 
+                  if (currentName === 'partners') {
+                      tabData.settings.overview.partners = tabData.partners;
+                  }
+
                   tabData.settings.tabs = linkArray;
                   Drupal.settings.nas_conservation_tracker.tabsOverview[currentName] = tabData;
                   Drupal.settings.nas_conservation_tracker.tabsData[currentName] = response.data.data;
