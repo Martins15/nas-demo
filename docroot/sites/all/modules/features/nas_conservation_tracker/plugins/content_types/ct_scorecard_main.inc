@@ -31,17 +31,28 @@ $plugin = [
  */
 function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
-  $data = nas_conservation_tracker_get_json('scorecard-123');
+  if (!empty($context->data->field_scorecard_id[$context->data->language][0]['value'])) {
+    $scorecard_id = $context->data->field_scorecard_id[$context->data->language][0]['value'];
+  }
+  elseif (!empty($context->data->field_scorecard_id[LANGUAGE_NONE][0]['value'])) {
+    $scorecard_id = $context->data->field_scorecard_id[LANGUAGE_NONE][0]['value'];
+  }
+  else {
+    return;
+  }
+  $data = nas_conservation_tracker_get_json('scorecard-' . $scorecard_id);
   $arg = arg();
   $path = array_pop($arg);
 
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/unit-data.js');
-  drupal_add_js(['nas_conservation_tracker' => [
-    'json_data' => $data,
-    'selected_units' => 0,
-    'visible_sites' => [],
-    'scale' => NAS_CT_SCALE,
-  ]], 'setting');
+  drupal_add_js([
+    'nas_conservation_tracker' => [
+      'scorecardId' => $data['id'],
+      'selected_units' => 0,
+      'visible_sites' => [],
+      'scale' => NAS_CT_SCALE,
+    ],
+  ], 'setting');
 
 
   $libs = [
