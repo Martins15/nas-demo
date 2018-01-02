@@ -104,7 +104,7 @@
               // @todo take from backend
               $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + currentName)
                 .then(function (response) {
-                  var tabData = response.data.data
+                  var tabData = response.data.data;
                   tabData.settings.overview = tabData.settings[currentName];
                   tabData.settings.overview.preparedLink = {'target': '_self'};
                   if (angular.isDefined(tabData.settings.overview.image)) {
