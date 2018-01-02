@@ -104,7 +104,7 @@
               // @todo take from backend
               $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + currentName)
                 .then(function (response) {
-                  var tabData = response.data.data
+                  var tabData = response.data.data;
                   tabData.settings.overview = tabData.settings[currentName];
                   tabData.settings.overview.preparedLink = {'target': '_self'};
                   if (angular.isDefined(tabData.settings.overview.image)) {
@@ -121,6 +121,12 @@
                     tabData.settings.overview.preparedLink.class = 'overview-link';
                     tabData.settings.overview.preparedLink.href = tabData.settings.overview.link;
                     tabData.settings.overview.preparedLink.target = '_blank';
+                  }
+
+                  // Add partners array to scope.
+                  // If partners tabs.
+                  if (currentName === 'partners') {
+                      tabData.settings.overview.partners = tabData.partners;
                   }
 
                   tabData.settings.tabs = linkArray;

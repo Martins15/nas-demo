@@ -45,6 +45,10 @@ $gray-lightish: #9b9b9b;
       height: auto;
     }
   }
+  .partners-wrap {
+    width: 100%;
+    overflow: hidden;
+  }
   .title-wrap {
     &__print {
       color: $gray-lightish;

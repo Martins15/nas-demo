@@ -17779,6 +17779,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   width: 100%;
   height: auto;
 }
+.bird-page.body-item .partners-wrap {
+  width: 100%;
+  overflow: hidden;
+}
 .bird-page.body-item .title-wrap__print {
   color: #9b9b9b;
   font-size: 14px;
