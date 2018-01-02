@@ -49,6 +49,27 @@ $gray-lightish: #9b9b9b;
     width: 100%;
     overflow: hidden;
   }
+  .partner {
+    min-height: 120px;
+    p {
+      font-size: 16px;
+      line-height: 22px;
+    }
+    &__state {
+      margin: 0 0 6px;
+      span {
+        font-size: 14px;
+      }
+    }
+    &__name {
+      margin: 0;
+      padding: 4px 0;
+      font-weight: 600;
+    }
+    &__chapter {
+
+    }
+  }
   .title-wrap {
     &__print {
       color: $gray-lightish;

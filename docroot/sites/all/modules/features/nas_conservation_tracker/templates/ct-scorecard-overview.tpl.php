@@ -64,7 +64,7 @@
                 </div>
                 <div class="partners-wrap columns" ng-show="{{value === 'partners'}}">
                     <div class="partners-wrap__partner partner large-4 medium-12 columns" ng-repeat="partner in tab.settings.overview.partners">
-                        <div class="partner__state"><p>{{partner.state}}</p></div>
+                        <div class="partner__state"><p><span>State:</span> {{partner.state}}</p></div>
                         <div class="partner__name"><p>{{partner.name}}</p></div>
                         <div class="partner__chapter"  ng-if="partner.chapter.length > 0"><p>Audubon Chapter</p></div>
                     </div>
