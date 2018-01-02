@@ -396,6 +396,26 @@
         range[4] = max;
         Drupal.settings.nas_conservation_tracker.current_map.range = range;
 
+        var legend = L.control({position: 'bottomleft'});
+
+        legend.onAdd = function (map) {
+
+          var div = L.DomUtil.create('div', 'info legend'),
+              grades = range,
+              labels = [];
+
+          // loop through our density intervals and generate a label with a colored square for each interval
+          for (var i = 0; i < grades.length; i++) {
+            div.innerHTML +=
+                '<i style="background:' + colors[loc][i] + '"></i> ' +
+                Number(grades[i]).toFixed(2) + (grades[i + 1] ? '&ndash;' + Number(grades[i + 1]).toFixed(2) + '<br>' : '+');
+          }
+
+          return div;
+        };
+
+        legend.addTo(lMap);
+
         var polygons = L.geoJson({
           type: 'FeatureCollection',
           features: Object.values(polygons)
