@@ -123,6 +123,8 @@
                     tabData.settings.overview.preparedLink.target = '_blank';
                   }
 
+                  // Add partners array to scope.
+                  // If partners tabs.
                   if (currentName === 'partners') {
                       tabData.settings.overview.partners = tabData.partners;
                   }
