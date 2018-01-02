@@ -33,9 +33,7 @@
         json = Drupal.settings.nas_conservation_tracker.json_data[loc],
         $radios = $('input[name="map_type"]'),
         $reset = $('#edit-map-reset');
-    if (!Drupal.settings.nas_conservation_tracker_unit_data_sorted) {
-      Drupal.settings.nas_conservation_tracker_unit_data_sorted = new LUnitSorted(Drupal.settings.nas_conservation_tracker_unit_data.features);
-    }
+
     // Delete existing sites from map.
     lMap.eachLayer(function (layer) {
       if (layer._leaflet_id !== 'earth' && !layer._layers) {
@@ -66,17 +64,24 @@
               ];
           var marker = L.marker(latLon, {icon: dot});
           var text = site.name;
+          for (var j = 0 in site.actions) {
+            for (var l = 0 in site.actions[j].categories) {
+              text += ("<br/><small>" + site.actions[j].categories[l].name + "</small>");
+            }
+          }
           marker.properties = {
             marker: true,
             flyway: site.flyway.toLowerCase(),
             state: site.state.toLowerCase(),
             site: site,
           };
-          for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
-            if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
+          for (var county in Drupal.settings.nas_conservation_tracker_unit_data[marker.properties.flyway]['states'][marker.properties.state]['counties']) {
+            if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway]['states'][marker.properties.state]['counties'][county].coordinates)) {
               marker.properties.county = county;
             }
           }
+          marker.bindTooltip(text).addTo(lMap);
+
           Drupal.settings.nas_conservation_tracker.current_map.flyway[marker.properties.flyway] = Drupal.settings.nas_conservation_tracker.current_map.flyway[marker.properties.flyway] || [];
           Drupal.settings.nas_conservation_tracker.current_map.state[marker.properties.state] = Drupal.settings.nas_conservation_tracker.current_map.state[marker.properties.state] || [];
           Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county] = Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county] || [];
@@ -86,38 +91,6 @@
           Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county].push(site);
 
         }
-      }
-
-
-      for (var i = 0 in json.sites) {
-        // Display sites (dots).
-        var site = json.sites[i];
-        var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
-            latLon = [
-              parseFloat(site.latitude),
-              parseFloat(site.longitude),
-            ];
-        var marker = L.marker(latLon, {icon: dot});
-        marker.properties = {
-          marker: true,
-          flyway: site.flyway.toLowerCase(),
-          state: site.state.toLowerCase(),
-          site: site,
-        };
-        for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
-          if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
-            marker.properties.county = county;
-          }
-        }
-        marker.bindTooltip(site.name).addTo(lMap);
-      }
-      if (angular.isDefined(site)) {
-        for (var j = 0 in site.actions) {
-          for (var l = 0 in site.actions[j].categories) {
-            text += ("<br/><small>" + site.actions[j].categories[l].name + "</small>");
-          }
-        }
-        marker.bindTooltip(text).addTo(lMap);
       }
     }
 
@@ -429,7 +402,7 @@
       }
     }
 
-    function LPolygon(name, coordinates, state, flyway, unit) {
+    function LPolygon(name, coordinates, state, flyway, unit, type = 'Polygon') {
       this.type = 'Feature';
       this.properties = {
         machineName: name.toLowerCase().replace(/\s/g, ''),
@@ -440,7 +413,7 @@
         selected: false,
       };
       this.geometry = {
-        type: 'Polygon',
+        type: type,
         coordinates: coordinates,
       };
     }
