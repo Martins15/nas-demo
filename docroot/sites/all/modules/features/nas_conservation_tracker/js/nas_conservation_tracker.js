@@ -42,7 +42,7 @@
     });
 
     if (!angular.isDefined(json) || !angular.isDefined(json.sites) || json.sites.length == 0) {
-      $('.leaflet-container').after('<div class="no-data-overlay">No data to display</div>');
+      $('.leaflet-container').after('<div class="no-data-overlay">' + Drupal.t('No data to display') + '</div>');
     }
 
     if (angular.isDefined(json) && angular.isDefined(json.sites)) {
@@ -94,11 +94,20 @@
       }
     }
 
-    // Scale map to selected unit.
-    scaleMapTo(getScaling());
+    // Set correct scaling options.
+    $radios.each(function() {
+      if (Drupal.settings.nas_conservation_tracker.scale[loc].indexOf($(this).val()) < 0) {
+        $(this).parent().hide();
+      }
+      else {
+        $(this).parent().show();
+      }
+    });
 
     // Show/hide markers depending on zoom.
     showMarkers();
+
+    resetMap();
 
     // Create visible area.
     $('#' + Drupal.settings.leaflet[0].mapId).parent().prepend('<div class="' + classes.visible_area + '"></div>');
@@ -217,16 +226,6 @@
       return style;
     }
 
-    function getScaling() {
-      var scaling = 'county';
-      $radios.each(function () {
-        if ($(this).prop('checked')) {
-          scaling = $(this).val();
-        }
-      });
-      return scaling;
-    }
-
     function resetMap() {
       var latlng = L.latLng(
         Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.latitude,
@@ -234,7 +233,7 @@
       );
       lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.zoom);
       resetSelection();
-      scaleMapTo(Drupal.settings.nas_conservation_tracker.scale);
+      scaleMapTo(Drupal.settings.nas_conservation_tracker.scale[loc][0]);
       Drupal.nas_conservation_tracker_init_charts();
     }
 
@@ -275,6 +274,11 @@
     }
 
     function scaleMapTo(unit) {
+      $radios.each(function () {
+        if ($(this).val() == unit) {
+          $(this).prop('checked', true);
+        }
+      });
       var polygons = {};
       lMap.eachLayer(function (layer) {
         if (isUnit(layer)) {
@@ -320,7 +324,7 @@
           }
         }
       });
-      
+
       if (Object.values(polygons).length > 0) {
         Drupal.settings.nas_conservation_tracker.current_map.rows = {};
         var min, max;

@@ -4,9 +4,6 @@
  * @file
  * Content type plugin for CT.
  */
-
-define('NAS_CT_SCALE', 'county');
-
 $plugin = [
   'title' => t('CT Scorecard Main'),
   'description' => t('Displays CT Scorecard Main Content (Map, Actions etc)'),
@@ -43,7 +40,11 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   $data = nas_conservation_tracker_get_json('scorecard-' . $scorecard_id);
   $arg = arg();
   $path = array_pop($arg);
-
+  $scale = array(
+    'actions' => array('county', 'state', 'flyway'),
+    'threats' => array('county', 'state', 'flyway'),
+    'responses' => array('state'),
+  );
 
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/units.js');
   drupal_add_js([
@@ -51,7 +52,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
       'scorecardId' => $data['id'],
       'selected_units' => 0,
       'visible_sites' => [],
-      'scale' => NAS_CT_SCALE,
+      'scale' => variable_get('nas_conservation_tracker_scale', $scale),
     ],
   ], 'setting');
 
@@ -139,7 +140,7 @@ function nas_conservation_tracker_map_form($form, &$form_state) {
     'map_type' => [
       '#type' => 'radios',
       '#title' => t('SCALE CONTROLS'),
-      '#default_value' => NAS_CT_SCALE,
+      '#default_value' => 'county',
       '#options' => [
         'state' => t('State'),
         'county' => t('County'),
