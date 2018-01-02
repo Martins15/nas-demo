@@ -33,9 +33,7 @@
         json = Drupal.settings.nas_conservation_tracker.json_data[loc],
         $radios = $('input[name="map_type"]'),
         $reset = $('#edit-map-reset');
-    if (!Drupal.settings.nas_conservation_tracker_unit_data_sorted) {
-      Drupal.settings.nas_conservation_tracker_unit_data_sorted = new LUnitSorted(Drupal.settings.nas_conservation_tracker_unit_data.features);
-    }
+
     // Delete existing sites from map.
     lMap.eachLayer(function (layer) {
       if (layer._leaflet_id !== 'earth' && !layer._layers) {
@@ -66,17 +64,24 @@
               ];
           var marker = L.marker(latLon, {icon: dot});
           var text = site.name;
+          for (var j = 0 in site.actions) {
+            for (var l = 0 in site.actions[j].categories) {
+              text += ("<br/><small>" + site.actions[j].categories[l].name + "</small>");
+            }
+          }
           marker.properties = {
             marker: true,
             flyway: site.flyway.toLowerCase(),
             state: site.state.toLowerCase(),
             site: site,
           };
-          for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
-            if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
+          for (var county in Drupal.settings.nas_conservation_tracker_unit_data[marker.properties.flyway]['states'][marker.properties.state]['counties']) {
+            if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data[marker.properties.flyway]['states'][marker.properties.state]['counties'][county].coordinates)) {
               marker.properties.county = county;
             }
           }
+          marker.bindTooltip(text).addTo(lMap);
+
           Drupal.settings.nas_conservation_tracker.current_map.flyway[marker.properties.flyway] = Drupal.settings.nas_conservation_tracker.current_map.flyway[marker.properties.flyway] || [];
           Drupal.settings.nas_conservation_tracker.current_map.state[marker.properties.state] = Drupal.settings.nas_conservation_tracker.current_map.state[marker.properties.state] || [];
           Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county] = Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county] || [];
@@ -86,38 +91,6 @@
           Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county].push(site);
 
         }
-      }
-
-
-      for (var i = 0 in json.sites) {
-        // Display sites (dots).
-        var site = json.sites[i];
-        var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
-            latLon = [
-              parseFloat(site.latitude),
-              parseFloat(site.longitude),
-            ];
-        var marker = L.marker(latLon, {icon: dot});
-        marker.properties = {
-          marker: true,
-          flyway: site.flyway.toLowerCase(),
-          state: site.state.toLowerCase(),
-          site: site,
-        };
-        for (var county in Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state]) {
-          if (isInsidePolygon(latLon[0], latLon[1], Drupal.settings.nas_conservation_tracker_unit_data_sorted[marker.properties.flyway][marker.properties.state][county].coordinates)) {
-            marker.properties.county = county;
-          }
-        }
-        marker.bindTooltip(site.name).addTo(lMap);
-      }
-      if (angular.isDefined(site)) {
-        for (var j = 0 in site.actions) {
-          for (var l = 0 in site.actions[j].categories) {
-            text += ("<br/><small>" + site.actions[j].categories[l].name + "</small>");
-          }
-        }
-        marker.bindTooltip(text).addTo(lMap);
       }
     }
 
@@ -163,14 +136,7 @@
 
     $reset.click(function (e) {
       e.preventDefault();
-      var latlng = L.latLng(
-        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.latitude,
-        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.longitude
-      );
-      lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.zoom);
-      resetSelection();
-      scaleMapTo(Drupal.settings.nas_conservation_tracker.scale);
-      Drupal.nas_conservation_tracker_init_charts();
+      resetMap();
     });
 
     // Helper functions.
@@ -261,6 +227,17 @@
       return scaling;
     }
 
+    function resetMap() {
+      var latlng = L.latLng(
+        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.latitude,
+        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.longitude
+      );
+      lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.zoom);
+      resetSelection();
+      scaleMapTo(Drupal.settings.nas_conservation_tracker.scale);
+      Drupal.nas_conservation_tracker_init_charts();
+    }
+
     function resetSelection() {
       Drupal.settings.nas_conservation_tracker.visible_sites = [];
       Drupal.settings.nas_conservation_tracker.selected_units = 0;
@@ -307,59 +284,43 @@
         if (isSite(layer)) {
           switch (unit) {
             case 'county':
-              var county = Drupal.settings.nas_conservation_tracker_unit_data_sorted
-                  [layer.properties.flyway][layer.properties.state][layer.properties.county];
+              var county = Drupal.settings.nas_conservation_tracker_unit_data
+                [layer.properties.flyway]['states'][layer.properties.state]['counties'][layer.properties.county];
               polygons[layer.properties.county] = new LPolygon(
-                  county.CNTY_NAME,
-                  county.coordinates,
-                  layer.properties.state,
-                  layer.properties.flyway,
-                  unit
+                county.CNTY_NAME,
+                county.coordinates,
+                layer.properties.state,
+                layer.properties.flyway,
+                unit
               );
               break;
             case 'state':
-              var state = Drupal.settings.nas_conservation_tracker_unit_data_sorted[layer.properties.flyway][layer.properties.state];
-              var stateData = Object.values(state);
-              var coordinates = [];
-              for (var county in state) {
-                // Create a multipolygon from county coordinates.
-                for (var i = 0 in state[county].coordinates) {
-                  coordinates.push(state[county].coordinates[i]);
-                }
-              }
+              var state = Drupal.settings.nas_conservation_tracker_unit_data[layer.properties.flyway]['states'][layer.properties.state];
+              var stateData = Object.values(state['counties']);
               polygons[layer.properties.state] = new LPolygon(
-                  stateData[0].STATE_ABV,
-                  coordinates,
-                  layer.properties.state,
-                  stateData[0].FLY_NAME,
-                  unit
+                state.name,
+                state.geometry.coordinates,
+                layer.properties.state,
+                stateData[0].FLY_NAME,
+                unit,
+                state.geometry.type
               );
               break;
             case 'flyway':
-              var flyway = Drupal.settings.nas_conservation_tracker_unit_data_sorted[layer.properties.flyway];
-              var flyData = Object.values(flyway);
-              var coordinates = [];
-              for (var state in flyway) {
-                for (var county in flyway[state]) {
-                  // Create a multipolygon from county coordinates.
-                  for (var i = 0 in flyway[state][county].coordinates) {
-                    coordinates.push(flyway[state][county].coordinates[i]);
-                  }
-                }
-              }
+              var flyway = Drupal.settings.nas_conservation_tracker_unit_data[layer.properties.flyway];
+              var flyData = Object.values(flyway.states);
               polygons[layer.properties.flyway] = new LPolygon(
-                  layer.properties.flyway,
-                  coordinates,
-                  '',
-                  layer.properties.flyway,
-                  unit
+                layer.properties.flyway,
+                flyway.coordinates,
+                '',
+                flyway.name,
+                unit
               );
               break;
           }
         }
       });
-
-
+      
       if (Object.values(polygons).length > 0) {
         Drupal.settings.nas_conservation_tracker.current_map.rows = {};
         var min, max;
@@ -425,27 +386,7 @@
     }
 
     // Constructors.
-
-    function LUnitSorted(data) {
-      this.pacific = {};
-      this.central = {};
-      this.mississippi = {};
-      this.atlantic = {};
-      for (var i = 0 in data) {
-        var flyway = data[i].attributes.FLY_NAME.toLowerCase();
-        var state = data[i].attributes.STATE_ABV.toLowerCase();
-        var county = data[i].attributes.CNTY_NAME.toLowerCase().replace(/\s/g, '');
-        if (this[flyway]) {
-          if (!this[flyway][state]) {
-            this[flyway][state] = {};
-          }
-          this[flyway][state][county] = data[i].attributes;
-          this[flyway][state][county].coordinates = data[i].geometry.rings;
-        }
-      }
-    }
-
-    function LPolygon(name, coordinates, state, flyway, unit) {
+    function LPolygon(name, coordinates, state, flyway, unit, type = 'Polygon') {
       this.type = 'Feature';
       this.properties = {
         machineName: name.toLowerCase().replace(/\s/g, ''),
@@ -456,7 +397,7 @@
         selected: false,
       };
       this.geometry = {
-        type: 'Polygon',
+        type: type,
         coordinates: coordinates,
       };
     }
