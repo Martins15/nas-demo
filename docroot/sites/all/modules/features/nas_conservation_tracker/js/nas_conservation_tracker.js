@@ -57,6 +57,9 @@
         for (var i = 0 in json.sites) {
           // Display sites (dots).
           var site = json.sites[i];
+          if (site.latitude == '' || site.longitude == '') {
+            continue;
+          }
           var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
               latLon = [
                 parseFloat(site.latitude),
@@ -280,7 +283,9 @@
         }
       });
       var polygons = {};
+
       lMap.eachLayer(function (layer) {
+
         if (isUnit(layer)) {
           // Remove present polygons.
           lMap.removeLayer(layer);
@@ -288,6 +293,10 @@
         if (isSite(layer)) {
           switch (unit) {
             case 'county':
+
+              if (typeof county == 'undefined') {
+                console.log(layer);
+              }
               var county = Drupal.settings.nas_conservation_tracker_unit_data
                 [layer.properties.flyway]['states'][layer.properties.state]['counties'][layer.properties.county];
               polygons[layer.properties.county] = new LPolygon(
@@ -361,25 +370,51 @@
         range[4] = max;
         Drupal.settings.nas_conservation_tracker.current_map.range = range;
 
-        var legend = L.control({position: 'bottomleft'});
+        L.Control.Legend = L.Control.extend({
+          options: {
+            position: 'bottomleft',
+            legend: '1'
+          },
+          update: function () {
+            var div = L.DomUtil.get('map-legend'),
+            grades = Drupal.settings.nas_conservation_tracker.current_map.range;
+            div.innerHTML = '';
+            for (var i = 0; i < grades.length; i++) {
+              div.innerHTML +=
+                  '<i style="background:' + colors[getLocation()][i] + '"></i> ' +
+                  Number(grades[i]).toFixed(2) + (grades[i + 1] ? '&ndash;' + Number(grades[i + 1]).toFixed(2) + '<br>' : '+');
+            }
+          },
+          onAdd: function (map) {
+            // Add reference to map
+            map.legendControl = this;
+            var div = L.DomUtil.create('div', 'info legend'),
+                grades = range,
+                labels = [];
 
-        legend.onAdd = function (map) {
+            div.id = 'map-legend';
+            // loop through our density intervals and generate a label with a colored square for each interval
+            for (var i = 0; i < grades.length; i++) {
+              div.innerHTML +=
+                  '<i style="background:' + colors[loc][i] + '"></i> ' +
+                  Number(grades[i]).toFixed(2) + (grades[i + 1] ? '&ndash;' + Number(grades[i + 1]).toFixed(2) + '<br>' : '+');
+            }
 
-          var div = L.DomUtil.create('div', 'info legend'),
-              grades = range,
-              labels = [];
-
-          // loop through our density intervals and generate a label with a colored square for each interval
-          for (var i = 0; i < grades.length; i++) {
-            div.innerHTML +=
-                '<i style="background:' + colors[loc][i] + '"></i> ' +
-                Number(grades[i]).toFixed(2) + (grades[i + 1] ? '&ndash;' + Number(grades[i + 1]).toFixed(2) + '<br>' : '+');
+            return div;
+          },
+          onRemove: function (map) {
+            // Remove reference from map
+            delete map.legendControl;
           }
+        });
+        if (lMap.legendControl) {
+          lMap.legendControl.update();
+        }
+        else {
+          var legend = new L.Control.Legend();
+          legend.addTo(lMap);
+        }
 
-          return div;
-        };
-
-        legend.addTo(lMap);
 
         var polygons = L.geoJson({
           type: 'FeatureCollection',
