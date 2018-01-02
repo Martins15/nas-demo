@@ -25,10 +25,10 @@ function nativePlantsEmbedForm() {
   if (typeof script === 'undefined') {
     return;
   }
-  var path = script.src.split('/')
-    , homePath = path[0] + '//' + path[2];
+  var homePathToModule = '/sites/all/modules/custom/native_plants_embed_form'
+    , homePath = script.src.substring(0, script.src.indexOf(homePathToModule));
   addAssets('script', 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js');
-  addAssets('link', homePath + '/sites/all/modules/custom/native_plants_embed_form/native_plants_embed_form.min.css');
+  addAssets('link', homePath + homePathToModule + '/native_plants_embed_form.min.css');
   addAssets('link', 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
 
   var parent = script.parentElement
@@ -117,9 +117,9 @@ nvtag_callbacks.alterFormDefinition.push(alterFormDefinition);
 
 
 var alterPost = function (args) {
-  if (typeof args.data.PostalCode != 'undefined') {
+  if (typeof args.data.PostalCode !== 'undefined') {
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(args.data.PostalCode);
-    if (isValidZip && typeof args.data.EmailAddress == 'undefined') {
+    if (isValidZip && typeof args.data.EmailAddress === 'undefined') {
       document.getElementsByClassName('at-inner')[0].style.display = 'none';
       location = '//audubon.org/native-plants/search?zipcode=' + args.data.PostalCode;
     }
@@ -132,15 +132,27 @@ nvtag_callbacks.alterPost.push(alterPost);
 
 var preSegue = function (args) {
   document.getElementsByClassName('at-inner')[0].style.display = 'none';
-  location = '//audubon.org/native-plants/search?zipcode=' + args.data.PostalCode;
+  location = '//audubon.org/native-plants/search?zipcode=' + args.postVals.PostalCode;
 };
 nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
 nvtag_callbacks.preSegue.push(preSegue);
 
 
 var postRender = function () {
-  var description = document.getElementsByClassName('at-markup Description');
-  description[description.length - 1].parentNode.className += 'at-description';
+  var description = document.getElementsByClassName('at-markup Description')
+    , fields = document.getElementsByClassName('at-fields');
+  if (description[description.length - 1]) {
+    description[description.length - 1].parentNode.className += 'at-description';
+  }
+  if (fields[0]) {
+    fields = fields[0];
+    fields.insertBefore(
+      document.getElementsByClassName('at-row EmailAddress')[0], fields.childNodes[1]
+    );
+    fields.insertBefore(
+      document.getElementsByClassName('at-form-submit')[0], fields.childNodes[3]
+    );
+  }
 };
 nvtag_callbacks.postRender = nvtag_callbacks.postRender || [];
 nvtag_callbacks.postRender.push(postRender);

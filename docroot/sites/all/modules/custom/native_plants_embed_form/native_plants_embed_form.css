@@ -28,8 +28,6 @@
 }
 
 .at .at-fields {
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .at.rectangle .at-fields {
@@ -72,8 +70,6 @@
 }
 
 .at .at-submit.btn-at-primary {
-    position: absolute;
-    top: 48.5%;
     width: 145px;
     background: #F15936;
     border-radius: 6px;
@@ -86,8 +82,6 @@
 }
 
 .at.rectangle .at-submit.btn-at-primary {
-    top: 35%;
-    right: 35px;
     width: 65px;
 }
 
@@ -101,6 +95,7 @@
     margin-bottom: 16px;
     font-family: "Source Sans Pro";
     font-size: 18px;
+    height: 37px;
 }
 
 .at.rectangle .at-row input[type="email"],
@@ -145,19 +140,6 @@
 .at.rectangle .description,
 .at.rectangle .EmailAddress {
     width: 55%;
-}
-
-.at .EmailAddress {
-    order: 1;
-    width: 100%;
-}
-
-.at .PostalCode {
-    order: 2;
-}
-
-.at .at-description {
-    order: 3;
 }
 
 .at.square .PostalCode input {
@@ -262,4 +244,8 @@
 
 .at .FooterHtml {
     margin: 0;
+}
+
+.content.thankYou {
+    display: none;
 }
