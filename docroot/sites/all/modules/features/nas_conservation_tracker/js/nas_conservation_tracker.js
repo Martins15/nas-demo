@@ -57,6 +57,9 @@
         for (var i = 0 in json.sites) {
           // Display sites (dots).
           var site = json.sites[i];
+          if (site.latitude == '' || site.longitude == '') {
+            continue;
+          }
           var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
               latLon = [
                 parseFloat(site.latitude),
@@ -290,6 +293,10 @@
         if (isSite(layer)) {
           switch (unit) {
             case 'county':
+
+              if (typeof county == 'undefined') {
+                console.log(layer);
+              }
               var county = Drupal.settings.nas_conservation_tracker_unit_data
                 [layer.properties.flyway]['states'][layer.properties.state]['counties'][layer.properties.county];
               polygons[layer.properties.county] = new LPolygon(
