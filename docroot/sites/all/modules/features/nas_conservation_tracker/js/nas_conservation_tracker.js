@@ -42,7 +42,7 @@
     });
 
     if (!angular.isDefined(json) || !angular.isDefined(json.sites) || json.sites.length == 0) {
-      $('.leaflet-container').after('<div class="no-data-overlay">No data to display</div>');
+      $('.leaflet-container').after('<div class="no-data-overlay">' + Drupal.t('No data to display') + '</div>');
     }
 
     if (angular.isDefined(json) && angular.isDefined(json.sites)) {
@@ -57,6 +57,9 @@
         for (var i = 0 in json.sites) {
           // Display sites (dots).
           var site = json.sites[i];
+          if (site.latitude == '' || site.longitude == '') {
+            continue;
+          }
           var dot = L.divIcon({iconSize: [6, 6], className: classes.site}),
               latLon = [
                 parseFloat(site.latitude),
@@ -94,11 +97,20 @@
       }
     }
 
-    // Scale map to selected unit.
-    scaleMapTo(getScaling());
+    // Set correct scaling options.
+    $radios.each(function() {
+      if (Drupal.settings.nas_conservation_tracker.scale[loc].indexOf($(this).val()) < 0) {
+        $(this).parent().hide();
+      }
+      else {
+        $(this).parent().show();
+      }
+    });
 
     // Show/hide markers depending on zoom.
     showMarkers();
+
+    resetMap();
 
     // Create visible area.
     $('#' + Drupal.settings.leaflet[0].mapId).parent().prepend('<div class="' + classes.visible_area + '"></div>');
@@ -217,16 +229,6 @@
       return style;
     }
 
-    function getScaling() {
-      var scaling = 'county';
-      $radios.each(function () {
-        if ($(this).prop('checked')) {
-          scaling = $(this).val();
-        }
-      });
-      return scaling;
-    }
-
     function resetMap() {
       var latlng = L.latLng(
         Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.latitude,
@@ -234,7 +236,7 @@
       );
       lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.zoom);
       resetSelection();
-      scaleMapTo(Drupal.settings.nas_conservation_tracker.scale);
+      scaleMapTo(Drupal.settings.nas_conservation_tracker.scale[loc][0]);
       Drupal.nas_conservation_tracker_init_charts();
     }
 
@@ -275,8 +277,15 @@
     }
 
     function scaleMapTo(unit) {
+      $radios.each(function () {
+        if ($(this).val() == unit) {
+          $(this).prop('checked', true);
+        }
+      });
       var polygons = {};
+
       lMap.eachLayer(function (layer) {
+
         if (isUnit(layer)) {
           // Remove present polygons.
           lMap.removeLayer(layer);
@@ -284,6 +293,10 @@
         if (isSite(layer)) {
           switch (unit) {
             case 'county':
+
+              if (typeof county == 'undefined') {
+                console.log(layer);
+              }
               var county = Drupal.settings.nas_conservation_tracker_unit_data
                 [layer.properties.flyway]['states'][layer.properties.state]['counties'][layer.properties.county];
               polygons[layer.properties.county] = new LPolygon(
@@ -320,7 +333,7 @@
           }
         }
       });
-      
+
       if (Object.values(polygons).length > 0) {
         Drupal.settings.nas_conservation_tracker.current_map.rows = {};
         var min, max;
@@ -357,25 +370,51 @@
         range[4] = max;
         Drupal.settings.nas_conservation_tracker.current_map.range = range;
 
-        var legend = L.control({position: 'bottomleft'});
+        L.Control.Legend = L.Control.extend({
+          options: {
+            position: 'bottomleft',
+            legend: '1'
+          },
+          update: function () {
+            var div = L.DomUtil.get('map-legend'),
+            grades = Drupal.settings.nas_conservation_tracker.current_map.range;
+            div.innerHTML = '';
+            for (var i = 0; i < grades.length; i++) {
+              div.innerHTML +=
+                  '<i style="background:' + colors[getLocation()][i] + '"></i> ' +
+                  Number(grades[i]).toFixed(2) + (grades[i + 1] ? '&ndash;' + Number(grades[i + 1]).toFixed(2) + '<br>' : '+');
+            }
+          },
+          onAdd: function (map) {
+            // Add reference to map
+            map.legendControl = this;
+            var div = L.DomUtil.create('div', 'info legend'),
+                grades = range,
+                labels = [];
 
-        legend.onAdd = function (map) {
+            div.id = 'map-legend';
+            // loop through our density intervals and generate a label with a colored square for each interval
+            for (var i = 0; i < grades.length; i++) {
+              div.innerHTML +=
+                  '<i style="background:' + colors[loc][i] + '"></i> ' +
+                  Number(grades[i]).toFixed(2) + (grades[i + 1] ? '&ndash;' + Number(grades[i + 1]).toFixed(2) + '<br>' : '+');
+            }
 
-          var div = L.DomUtil.create('div', 'info legend'),
-              grades = range,
-              labels = [];
-
-          // loop through our density intervals and generate a label with a colored square for each interval
-          for (var i = 0; i < grades.length; i++) {
-            div.innerHTML +=
-                '<i style="background:' + colors[loc][i] + '"></i> ' +
-                Number(grades[i]).toFixed(2) + (grades[i + 1] ? '&ndash;' + Number(grades[i + 1]).toFixed(2) + '<br>' : '+');
+            return div;
+          },
+          onRemove: function (map) {
+            // Remove reference from map
+            delete map.legendControl;
           }
+        });
+        if (lMap.legendControl) {
+          lMap.legendControl.update();
+        }
+        else {
+          var legend = new L.Control.Legend();
+          legend.addTo(lMap);
+        }
 
-          return div;
-        };
-
-        legend.addTo(lMap);
 
         var polygons = L.geoJson({
           type: 'FeatureCollection',
