@@ -305,12 +305,12 @@
           switch (unit) {
             case 'county':
 
+              var county = Drupal.settings.nas_conservation_tracker_unit_data
+                [layer.properties.flyway]['states'][layer.properties.state]['counties'][layer.properties.county];
               if (typeof county == 'undefined') {
                 console.log('COUNTY NOT DEFINED', layer);
                 return;
               }
-              var county = Drupal.settings.nas_conservation_tracker_unit_data
-                [layer.properties.flyway]['states'][layer.properties.state]['counties'][layer.properties.county];
               polygons[layer.properties.county] = new LPolygon(
                 county.CNTY_NAME,
                 county.coordinates,
