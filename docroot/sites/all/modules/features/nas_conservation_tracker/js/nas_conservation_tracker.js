@@ -527,7 +527,7 @@
 
     if (mainRows.length > 0) {
       var $diagram = $('.diagram-wrap');
-      $diagram.find('.map-title').text(tabSettings.chart.value_type);
+      $diagram.find('.map-title .map-span-title').text(tabSettings.chart.value_type);
       $diagram.show();
 
       if (tabSettings.chart.chart_type == 'linegraph') {
