@@ -175,6 +175,13 @@ function nas_conservation_tracker_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'nas_conservation_tracker_owl';
+  $strongarm->value = '/sites/all/themes/custom/nas/js/vendor/owl-carousel/owl.carousel.min.js';
+  $export['nas_conservation_tracker_owl'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_ct_scorecard';
   $strongarm->value = array(
     0 => 'status',

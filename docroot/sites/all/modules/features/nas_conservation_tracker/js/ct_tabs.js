@@ -165,6 +165,16 @@
 
           setTimeout(function(){
             Drupal.attachBehaviors($('.' + $state['current']['name'] + '-tab-wrapper'));
+            if ($state['current']['name'] == 'partners') {
+              $('.no-data-overlay').remove();
+              $('.leaflet-container').hide();
+              $('#nas-conservation-tracker-map-form').hide();
+              $('.partners-wrap').prependTo('.wrap-map-diagram');
+            }
+            else {
+              $('.leaflet-container').show();
+              $('#nas-conservation-tracker-map-form').show();
+            }
           }, 1000);
 
         });
