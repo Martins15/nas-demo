@@ -168,7 +168,11 @@
         if (isUnit(unitLayer) && unitLayer.feature.properties.selected) {
           Drupal.settings.nas_conservation_tracker.selected_units++;
           lMap.eachLayer(function (siteLayer) {
-            if (isSite(siteLayer) && siteLayer.properties[unitLayer.feature.properties.unit] == unitLayer.feature.properties.machineName) {
+            var machineName = unitLayer.feature.properties.machineName;
+            if (unitLayer.feature.properties.unit == 'state') {
+              machineName = unitLayer.feature.properties.state;
+            }
+            if (isSite(siteLayer) && (siteLayer.properties[unitLayer.feature.properties.unit] == machineName)) {
               Drupal.settings.nas_conservation_tracker.visible_sites.push(siteLayer.properties.site);
             }
           });
@@ -590,9 +594,9 @@
             }
           }
         }
-        else if (tabSettings.chart.type == 'actions') {
-          for (var j = 0 in sites[i].actions) {
-            var data = sites[i].actions[j];
+        else if (tabSettings.chart.type == 'actions' || tabSettings.chart.type == 'threats') {
+          for (var j = 0 in sites[i][tabSettings.chart.type]) {
+            var data = sites[i][tabSettings.chart.type][j];
             var key = data.categories[0].name;
             mainObjRows[key] = mainObjRows[key] || 0;
             switch (agOp) {
