@@ -22,7 +22,7 @@
                 <label for="checkActions"></label>
               </div>
             </div>
-            <p>Sites: <span id="site-count">0</span></p>
+            <p>Sites in selected/visible area(s): <span id="site-count">0</span></p>
           </div>
           <div class="diagram-item">
             <?php print $actions; ?>
