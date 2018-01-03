@@ -67,9 +67,13 @@
           var dot = L.divIcon({iconSize: [6, 6], className: classes.site});
           var marker = L.marker(site.latLon, {icon: dot});
           var text = site.name;
+          var categories = [];
           for (var j = 0 in site.actions) {
             for (var l = 0 in site.actions[j].categories) {
-              text += ("<br/><small>" + site.actions[j].categories[l].name + "</small>");
+              if (categories.indexOf(site.actions[j].categories[l].name) < 0) {
+                text += ("<br/><small>" + site.actions[j].categories[l].name + "</small>");
+                categories.push(site.actions[j].categories[l].name);
+              }
             }
           }
           marker.properties = {
@@ -95,8 +99,11 @@
 
     // Set correct scaling options.
     $radios.each(function() {
-      if (Drupal.settings.nas_conservation_tracker.scale[loc]) {
-        if (Drupal.settings.nas_conservation_tracker.scale[loc].indexOf($(this).val()) < 0) {
+      // Get scaling optons from json. Fallback to global settings if not defined.
+      var scale = Drupal.settings.nas_conservation_tracker.json_data.settings[loc].scale ?
+        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].scale : Drupal.settings.nas_conservation_tracker.scale[loc];
+      if (scale) {
+        if (scale.indexOf($(this).val()) < 0) {
           $(this).parent().hide();
         }
         else {
