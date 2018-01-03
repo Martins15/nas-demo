@@ -17974,7 +17974,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .help-wrap-items-map-items .map-title .tooltip .text {
   padding: 5px;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 12px;
   line-height: normal;
   color: #1c1c1c;
   background: white;
