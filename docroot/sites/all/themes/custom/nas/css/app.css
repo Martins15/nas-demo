@@ -18507,6 +18507,38 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   opacity: 0.7;
 }
 
+.partners-wrap.columns {
+  margin-bottom: 20px;
+}
+.partners-wrap.columns .partners-wrap__partner {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 10px 0;
+  vertical-align: top;
+  position: relative;
+  padding-left: 10px;
+}
+@media screen and (min-width: 768px) {
+  .partners-wrap.columns .partners-wrap__partner {
+    width: 45%;
+    margin-right: 3%;
+  }
+}
+.partners-wrap.columns .partners-wrap__partner:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 5px;
+  height: 5px;
+  border-radius: 10px;
+  background: #ccc;
+  display: inline-block;
+}
+.partners-wrap.columns .partners-wrap__partner .partner__state {
+  display: none;
+}
+
 .species-filter {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
