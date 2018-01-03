@@ -5,6 +5,11 @@
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_coastal_carolinas_hero.jpg",
   "settings": {
     "threats": {
+      "scale": [
+        "county",
+        "state",
+        "flyway"
+      ],
       "map": {
         "latitude": "34.7506398050501",
         "longitude": "-73.59191894531251",
@@ -35,6 +40,11 @@
       }
     },
     "actions": {
+      "scale": [
+        "county",
+        "state",
+        "flyway"
+      ],
       "map": {
         "latitude": "34.7506398050501",
         "longitude": "-73.59191894531251",
@@ -70,6 +80,9 @@
       }
     },
     "responses": {
+      "scale": [
+        "state"
+      ],
       "map": {
         "latitude": "34.7506398050501",
         "longitude": "-73.59191894531251",
