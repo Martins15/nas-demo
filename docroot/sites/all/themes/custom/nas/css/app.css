@@ -18592,6 +18592,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-bottom: 10px;
 }
 
+.ct-scorecard-tabs .custom-dropdown {
+  display: none;
+}
+
 .species-filter {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
