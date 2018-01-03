@@ -15,14 +15,12 @@
           p = settings.padding || [20, 20, 70, 50],
           w = (settings.width || 900) - p[1] - p[3],
           h = (settings.height || 400),
-          chart = settings.chart || {w: w * .60, h: h - p[0] - p[2]},
+          chart = settings.chart || {w: w * 0.9, h: h - p[0] - p[2]},
           legend = {w: w * .25, h: h},
           x = d3.scale.linear().domain([0, rows.length - 1]).range([20, chart.w]),
           //y = d3.scale.linear().domain([0, maxValue(rows)]).range([chart.h, 0]),
           y = d3.scale.linear().domain([0, d3.max(rows, function(d) {return d[1]; })]).range([chart.h, 0]),
           z = d3.scale.ordinal().range(range);
-
-
 
 
       var svg = d3.select('#' + select).append("svg")

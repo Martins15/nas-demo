@@ -6,8 +6,8 @@
   "settings": {
     "threats": {
       "map": {
-        "latitude": "38.020098201368114",
-        "longitude": "-114.63378906250001",
+        "latitude": "34.7506398050501",
+        "longitude": "-73.59191894531251",
         "zoom": "6"
       },
       "youtube": "https://youtu.be/7p_GwffJ1pQ",
@@ -30,8 +30,8 @@
     },
     "actions": {
       "map": {
-        "latitude": "38.020098201368114",
-        "longitude": "-114.63378906250001",
+        "latitude": "34.7506398050501",
+        "longitude": "-73.59191894531251",
         "zoom": "6"
       },
       "iframe": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/Proposed CBRS - NC District 3 close up.pdf",
@@ -65,8 +65,8 @@
     },
     "responses": {
       "map": {
-        "latitude": "38.020098201368114",
-        "longitude": "-114.63378906250001",
+        "latitude": "34.7506398050501",
+        "longitude": "-73.59191894531251",
         "zoom": "6"
       },
       "iframe": "//web4.audubon.org/scidev/cbc_trends/carolinas.html",
@@ -91,8 +91,8 @@
     },
     "partners": {
       "map": {
-        "latitude": "38.020098201368114",
-        "longitude": "-114.63378906250001",
+        "latitude": "34.7506398050501",
+        "longitude": "-73.59191894531251",
         "zoom": "6"
       },
       "youtube": "https://youtu.be/RDBbmZALHIU",
