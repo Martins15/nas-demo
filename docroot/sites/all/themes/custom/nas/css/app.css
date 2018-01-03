@@ -18329,6 +18329,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin-right: 15px;
   display: inline-block;
+  padding-right: 0;
 }
 .ct-scorecard-tabs a:after {
   content: '';

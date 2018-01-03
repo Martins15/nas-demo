@@ -595,6 +595,7 @@ $gray-lightish: #9b9b9b;
     font-family: $font-sans;
     margin-right: 15px;
     display: inline-block;
+    padding-right: 0;
     &:after {
       content: '';
       border: solid $white;
