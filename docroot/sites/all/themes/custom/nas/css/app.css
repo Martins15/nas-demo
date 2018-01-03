@@ -18144,7 +18144,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 @media only screen and (min-width: 768px) {
   .ct-item-nav-conservation .text-wrap p {
     font-size: 14px;
-    line-height: 15px;
+    line-height: normal;
     color: #76736c;
   }
 }

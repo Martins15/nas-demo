@@ -410,7 +410,7 @@ $gray-lightish: #9b9b9b;
     p {
       @include breakpoint(large-up) {
         font-size: 14px;
-        line-height: 15px;
+        line-height: normal;
         color: $brownish-grey;
       }
     }
