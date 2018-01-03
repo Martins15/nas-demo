@@ -20,10 +20,6 @@
     fill: #ccc;
 }
 
-.ct_circular path.circle_front {
-    fill: #f15936;
-}
-
 .ct-leaflet-site {
     background: #000;
     border-radius: 7px;

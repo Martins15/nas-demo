@@ -19,22 +19,8 @@ function nas_conservation_tracker_ctools_plugin_directory($module, $plugin) {
  * Implements hook_init().
  */
 function nas_conservation_tracker_init() {
-  _nas_conservation_tracker_get_real_path(TRUE);
-
   drupal_add_css(drupal_get_path('module', 'nas_conservation_tracker'), '/css/nas_conservation_tracker.css');
-
-//  $sections = arg();
-//  $path = array_pop($sections);
-//  $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
-//
-//  if (in_array($path, $types)) {
-//    $alias = implode('/', $sections);
-//    $source = drupal_get_normal_path($alias);
-//    if (strpos($source, 'node/') === 0) {
-//      menu_execute_active_handler($source);
-//      drupal_exit();
-//    }
-//  }
+  _nas_conservation_tracker_get_real_path(TRUE);
 }
 
 /**
@@ -42,10 +28,8 @@ function nas_conservation_tracker_init() {
  */
 function _nas_conservation_tracker_get_real_path($load = FALSE) {
   $current_sections = $sections = arg();
-
   $path = array_pop($sections);
   $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
-
   if (in_array($path, $types)) {
     $alias = implode('/', $sections);
     $source = drupal_get_normal_path($alias);
