@@ -435,6 +435,12 @@
               content = '';
             }
             else {
+              if (!Number.isInteger(min)) {
+                min = Number(min).toFixed(2);
+              }
+              if (!Number.isInteger(max)) {
+                max = Number(max).toFixed(2);
+              }
               content = '<div class="legend-color" style="background: linear-gradient(to bottom, '
                   + colors[loc][4] + ' 0%,' + colors[loc][0] + ' 100%);"><div class="legend-max">'
                   + max + '</div><div class="legend-min">' + min + '</div></div>';
