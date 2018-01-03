@@ -152,9 +152,9 @@
         }
         function updateTabData(data) {
           if (angular.isDefined(data)) {
-            Drupal.settings.nas_conservation_tracker.json_data = data;
-            Drupal.nas_conservation_tracker_init_map();
-            Drupal.nas_conservation_tracker_init_charts();
+            Drupal.settings.nas_conservation_tracker.jsonData = data;
+            Drupal.nasCtInitMap();
+            Drupal.nasCtInitCharts();
           }
         }
 
