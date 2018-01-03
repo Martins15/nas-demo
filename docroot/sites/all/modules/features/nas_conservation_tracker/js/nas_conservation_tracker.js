@@ -673,4 +673,32 @@
     }
   };
 
+
+  // Custom breadcrumbs for bird page.
+  Drupal.behaviors.birdGroubBreadcrumbs = {
+    attach: function (context, settings) {
+      var $breadcrumbBlock = $('.ct-scorecard-tabs', context);
+
+      if ($breadcrumbBlock.length) {
+        var links = $('a', $breadcrumbBlock);
+        var activeTrialClass = 'active-trail';
+        var spacies = 'Species';
+        var strategies = 'Strategies';
+
+        if (links.hasClass(activeTrialClass)) {
+          $('.' + activeTrialClass).append( "<div class='custom-dropdown'></div>" );
+
+          links.each(function(){
+            var link = $(this);
+            if (link.html() === spacies || link.html() === strategies) {
+              link.appendTo('.custom-dropdown');
+            }
+          })
+
+        }
+      }
+
+    }
+  };
+
 })(jQuery, window.Drupal);

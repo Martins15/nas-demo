@@ -17974,7 +17974,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .help-wrap-items-map-items .map-title .tooltip .text {
   padding: 5px;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 12px;
   line-height: normal;
   color: #1c1c1c;
   background: white;
@@ -18308,6 +18308,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: block;
   color: #1c1c1c;
   padding-left: 15px;
+  margin: 0;
+}
+.ct-scorecard-tabs .custom-dropdown a:hover {
+  background: #ccc;
 }
 .ct-scorecard-tabs .custom-dropdown a:after {
   display: none;
@@ -18325,6 +18329,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin-right: 15px;
   display: inline-block;
+  padding-right: 0;
 }
 .ct-scorecard-tabs a:after {
   content: '';
@@ -18587,18 +18592,31 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin: 20px auto;
   position: relative;
   background: white;
+  padding: 30px 15px;
 }
 @media screen and (min-width: 768px) {
   .partners-wrap.columns {
     position: absolute;
     top: 0;
     margin: 0;
-    left: 20px;
-    width: 30%;
+    right: calc(572px + 10px);
+    width: 23%;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .partners-wrap.columns {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    right: calc(572px + 16%);
+    width: 25%;
   }
 }
 .partners-wrap.columns .partners-wrap__partner {
-  display: inline-block;
+  display: block;
   width: 100%;
   margin: 5px 0 5px 0;
   vertical-align: top;
@@ -18606,18 +18624,19 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-left: 10px;
 }
 @media screen and (min-width: 768px) {
-  .partners-wrap.columns .partners-wrap__partner {
-    width: 45%;
-    margin-right: 3%;
-  }
   .partners-wrap.columns .partners-wrap__partner .partner__name {
     font-size: 9px;
-    line-height: normal;
+    line-height: 1.3;
   }
 }
 @media screen and (min-width: 1020px) {
   .partners-wrap.columns .partners-wrap__partner .partner__name {
-    font-size: 17px;
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .partners-wrap.columns .partners-wrap__partner .partner__name {
+    font-size: 15px;
   }
 }
 .partners-wrap.columns .partners-wrap__partner:before {
@@ -18663,6 +18682,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   outline: none;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   min-height: 40px;
+  text-transform: uppercase;
   margin-left: 5px;
 }
 
