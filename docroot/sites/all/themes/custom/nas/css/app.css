@@ -18289,17 +18289,42 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
+.ct-scorecard-tabs .active-trail {
+  position: relative;
+}
+.ct-scorecard-tabs .active-trail:hover .custom-dropdown {
+  display: block;
+}
+.ct-scorecard-tabs .custom-dropdown {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 100%;
+  z-index: 2;
+  background: white;
+}
+.ct-scorecard-tabs .custom-dropdown a {
+  display: block;
+  color: #1c1c1c;
+  padding-left: 15px;
+}
+.ct-scorecard-tabs .custom-dropdown a:after {
+  display: none;
+}
+
 .ct-scorecard-tabs {
   background: #1c1c1c;
-  padding: 15px 0;
   color: #fff;
 }
 .ct-scorecard-tabs a {
   font-size: 17px;
   text-align: left;
+  padding: 15px;
   color: #fff;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin-right: 15px;
+  display: inline-block;
 }
 .ct-scorecard-tabs a:after {
   content: '';
@@ -18314,7 +18339,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   -webkit-transform: rotate(-45deg);
 }
 .ct-scorecard-tabs a:hover {
-  color: #404040;
+  background: #fff;
+  color: #1c1c1c;
 }
 .ct-scorecard-tabs span:last-child {
   position: relative;
@@ -18621,10 +18647,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .bird-page ul li {
   padding-bottom: 10px;
-}
-
-.ct-scorecard-tabs .custom-dropdown {
-  display: none;
 }
 
 .ct-scorecard-main .controls-link {
