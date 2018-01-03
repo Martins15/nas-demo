@@ -415,7 +415,6 @@
           legend.addTo(lMap);
         }
 
-
         var polygons = L.geoJson({
           type: 'FeatureCollection',
           features: Object.values(polygons)
@@ -580,8 +579,6 @@
             }
           }
         }
-
-
       }
     }
 
@@ -603,7 +600,7 @@
     return loc.split("/").slice(-1)[0];
   }
 
-  Drupal.behaviors.scrollToNext = {
+  Drupal.behaviors.nasCtScrollToNext = {
     attach: function (context, settings) {
       $(".curtain-arrow.storecard").once(function () {
         $(".curtain-arrow.storecard").click(function (e) {
@@ -616,12 +613,25 @@
     }
   };
 
-  Drupal.behaviors.mapControlsToggle = {
+  Drupal.behaviors.nasCtMapControlsToggle = {
     attach: function (context, settings) {
       $(".form-item-map-type.form-type-radios").once(function () {
         $(".form-item-map-type.form-type-radios label", context).click(function (e) {
           $(this).next('#edit-map-type').slideToggle('fast');
         });
+      });
+    }
+  };
+
+  Drupal.behaviors.nasCtOwl = {
+    attach: function(context, settings) {
+      $("#ct-scorecard-owl").owlCarousel({
+        'items': 4,
+        'paginationSpeed': 100,
+        'navigation': true,
+        'rewindNav': false,
+        'pagination': false,
+        'navigationText': ["<i class=\"indicator-left icon-arrow-left\"></i>", "<i class=\"indicator-right icon-arrow-right\"></i>"]
       });
     }
   };

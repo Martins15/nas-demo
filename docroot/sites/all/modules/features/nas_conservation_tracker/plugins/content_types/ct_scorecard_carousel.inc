@@ -28,9 +28,21 @@ $plugin = array(
 function nas_conservation_tracker_scorecard_carousel_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $vars = array(
-    'title' => 'Some carousel title',
+    'title' => t('Popular right now'),
     'items' => array(),
   );
+  $data = nas_conservation_tracker_get_json('popular');
+  if (!empty($data['items'])) {
+    foreach ($data['items'] as $item) {
+      $vars['items'][] = array(
+        'title' => $item['title'],
+        'category' => $item['category'],
+        'href' => $item['href'],
+      );
+    }
+    $owl = '//cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js';
+    drupal_add_js(variable_get('nas_conservation_tracker_owl', $owl));
+  }
   $block->content = theme('ct_scorecard_carousel', $vars);
 
   return $block;
