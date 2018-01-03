@@ -553,15 +553,44 @@ $gray-lightish: #9b9b9b;
 }
 
 .ct-scorecard-tabs {
+  .active-trail {
+    position: relative;
+    &:hover {
+      .custom-dropdown {
+        display: block;
+      }
+    }
+  }
+  .custom-dropdown {
+    display: none;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 100%;
+    z-index: 2;
+    background: white;
+    a {
+      display: block;
+      color: $dark-bg-bird;
+      padding-left: 15px;
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+
+.ct-scorecard-tabs {
   background: $dark-bg-bird;
-  padding: 15px 0;
   color: $white;
   a {
     font-size: 17px;
     text-align: left;
+    padding: 15px;
     color: $white;
     font-family: $font-sans;
     margin-right: 15px;
+    display: inline-block;
     &:after {
       content: '';
       border: solid $white;
@@ -575,7 +604,8 @@ $gray-lightish: #9b9b9b;
       -webkit-transform: rotate(-45deg);
     }
     &:hover {
-      color: $darkish-grey;
+      background: #fff;
+      color: $dark-bg-bird;
     }
   }
   span:last-child {
@@ -819,17 +849,36 @@ $gray-lightish: #9b9b9b;
 
 .partners-wrap {
   &.columns {
-    margin-bottom: 20px;
+    width: 90%;
+    margin: 20px auto;
+    position: relative;
+    background: white;
+    @media screen and (min-width: 768px) {
+      position: absolute;
+      top: 0;
+      margin: 0;
+      left: 20px;
+      width: 30%;
+    }
     .partners-wrap__partner {
       display: inline-block;
       width: 100%;
-      margin: 0 0 10px 0;
+      margin: 5px 0 5px 0;
       vertical-align: top;
       position: relative;
       padding-left: 10px;
       @media screen and (min-width: 768px) {
         width: 45%;
         margin-right: 3%;
+        .partner__name {
+          font-size: 9px;
+          line-height: normal;
+        }
+      }
+      @media screen and (min-width: 1020px) {
+        .partner__name {
+          font-size: 17px;
+        }
       }
       &:before {
         content: '';
@@ -841,6 +890,12 @@ $gray-lightish: #9b9b9b;
         border-radius: 10px;
         background: #ccc;
         display: inline-block;
+        @media screen and (min-width: 768px) {
+          top: 4px;
+        }
+        @media screen and (min-width: 1020px) {
+          top: 11px;
+        }
       }
       .partner__state {
         display: none;
@@ -855,3 +910,25 @@ $gray-lightish: #9b9b9b;
   }
 }
 
+
+
+.ct-scorecard-main {
+  .controls-link {
+    display: none
+  }
+}
+
+#nas-conservation-tracker-map-form {
+  .form-item-map-type {
+    float: left;
+  }
+  .form-reset {
+    background-color: #303030;
+    color: white;
+    border: none;
+    outline: none;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    min-height: 40px;
+    margin-left: 5px;
+  }
+}
