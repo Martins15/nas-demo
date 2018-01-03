@@ -31,7 +31,13 @@
           "tooltip": "Expand Coastal Barrier Resources Act (CBRA) to incorporate  an additional 6000 acres in the Carolinas and modernize the statute to account for climate change impacts",
           "value": ""
         }
-      ]
+      ],
+      "chart": {
+        "type": "threats",
+        "chart_type": "bar",
+        "value_type": "Threats Categories",
+        "operation": "sum"
+      }
     },
     "actions": {
       "scale": [
