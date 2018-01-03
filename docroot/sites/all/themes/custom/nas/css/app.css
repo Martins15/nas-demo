@@ -18539,6 +18539,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: none;
 }
 
+.bird-page ul li {
+  padding-bottom: 10px;
+}
+
 .species-filter {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
