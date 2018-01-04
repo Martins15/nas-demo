@@ -48,7 +48,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
 
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/units.js');
   drupal_add_js([
-    'nas_conservation_tracker' => [
+    'nasConservationTracker' => [
       'scorecardId' => $data['id'],
       'selectedUnits' => 0,
       'visibleSites' => [],
