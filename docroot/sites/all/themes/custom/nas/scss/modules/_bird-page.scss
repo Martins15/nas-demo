@@ -553,6 +553,10 @@ $gray-lightish: #9b9b9b;
 }
 
 .ct-scorecard-tabs {
+  .menu-has-children {
+    display: inline-block;
+    position: relative;
+  }
   .active-trail {
     position: relative;
     &:hover {
@@ -566,7 +570,9 @@ $gray-lightish: #9b9b9b;
     position: absolute;
     left: 0;
     width: 100%;
-    top: 100%;
+    top: 0;
+    margin: 0;
+    list-style: none;
     z-index: 2;
     background: white;
     a {
