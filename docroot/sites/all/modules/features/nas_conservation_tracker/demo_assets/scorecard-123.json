@@ -4,6 +4,7 @@
   "subtitle": "Heamatopus bachmani",
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_black_oystercatcher_hero.jpg",
   "settings": {
+    "tabDefault": "actions",
     "threats": {
       "map": {
         "latitude": "38.020098201368114",

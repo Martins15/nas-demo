@@ -4,6 +4,7 @@
   "subtitle": "",
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_coastal_carolinas_hero.jpg",
   "settings": {
+    "tabDefault": "actions",
     "threats": {
       "scale": [
         "county",
