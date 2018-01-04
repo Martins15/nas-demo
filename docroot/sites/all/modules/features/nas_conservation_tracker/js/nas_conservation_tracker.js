@@ -142,23 +142,24 @@
         }
       });
 
+
+
+      $radios.change(function () {
+        resetMap();
+        scaleMapTo($(this).val());
+      });
+
+      $(window).resize(function () {
+        rebuildVisibleArea($visibleArea, classes);
+      });
+
+      $reset.click(function (e) {
+        e.preventDefault();
+        resetMap();
+      });
+
       lMap.initiated = true;
-
     }
-
-    $radios.change(function () {
-      scaleMapTo($(this).val());
-    });
-
-    $(window).resize(function () {
-      rebuildVisibleArea($visibleArea, classes);
-    });
-
-    $reset.click(function (e) {
-      e.preventDefault();
-      resetMap();
-    });
-
     // Helper functions.
 
     function detectCounty(site, marker) {
@@ -250,6 +251,7 @@
     }
 
     function resetMap() {
+      var loc = getLocation();
       if (Drupal.settings.nasConservationTracker.scale[loc]) {
         var latlng = L.latLng(
           Drupal.settings.nasConservationTracker.jsonData.settings[loc].map.latitude,
@@ -268,7 +270,8 @@
     }
 
     function isUnit(layer) {
-      return (layer.feature && layer.feature.constructor == LPolygon);
+      return (layer.feature);
+      //return (layer.feature && layer.feature.constructor == LPolygon);
     }
 
     function isSite(layer) {
@@ -307,7 +310,6 @@
       var polygons = {};
 
       lMap.eachLayer(function (layer) {
-
         if (isUnit(layer)) {
           // Remove present polygons.
           lMap.removeLayer(layer);
