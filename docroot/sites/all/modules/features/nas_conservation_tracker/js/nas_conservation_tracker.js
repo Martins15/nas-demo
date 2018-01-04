@@ -147,6 +147,7 @@
     }
 
     $radios.change(function () {
+      resetMap();
       scaleMapTo($(this).val());
     });
 
