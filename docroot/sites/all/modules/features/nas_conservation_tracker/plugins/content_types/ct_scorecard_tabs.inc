@@ -27,6 +27,17 @@ $plugin = array(
  */
 function nas_conservation_tracker_scorecard_tabs_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
+  if (!empty($context->data->field_scorecard_id[$context->data->language][0]['value'])) {
+    $scorecard_id = $context->data->field_scorecard_id[$context->data->language][0]['value'];
+  }
+  elseif (!empty($context->data->field_scorecard_id[LANGUAGE_NONE][0]['value'])) {
+    $scorecard_id = $context->data->field_scorecard_id[LANGUAGE_NONE][0]['value'];
+  }
+  else {
+    return;
+  }
+  $data = nas_conservation_tracker_get_json('scorecard-' . $scorecard_id);
+  dpm($data);
   $links = menu_tree_all_data('menu-ct-menu');
   $vars['menu_tree'] = array();
 
@@ -37,8 +48,12 @@ function nas_conservation_tracker_scorecard_tabs_render($subtype, $conf, $args, 
       'children' => array(),
     );
     foreach ($link['below'] as $child) {
+      $attr = array();
+      if ($child['link']['link_title'] == $data['settings']['menuParent']) {
+        $attr['class'][] = 'active-trail';
+      }
       $vars['menu_tree'][$key]['children'][] = array(
-        'markup' => l($child['link']['link_title'], $child['link']['router_path']),
+        'markup' => l($child['link']['link_title'], $child['link']['router_path'], $attr),
       );
     }
   }
