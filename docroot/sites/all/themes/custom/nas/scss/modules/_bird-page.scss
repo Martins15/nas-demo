@@ -312,13 +312,15 @@ $gray-lightish: #9b9b9b;
         transition: all 0.2s ease;
       }
       .form-switch:checked + label::after {
-        background: #adaca9;
+        background: #1fad2e;
         left: 97%;
         transform: translateX(-100%);
       }
     }
   }
 }
+
+
 .progress-wrap {
   background: $grey-bg-bird;
   margin-bottom: 10px;

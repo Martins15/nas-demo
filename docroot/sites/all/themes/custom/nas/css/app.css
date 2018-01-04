@@ -18055,7 +18055,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transition: all 0.2s ease;
 }
 .help-wrap-items-map-items .trigger .switch .form-switch:checked + label::after {
-  background: #adaca9;
+  background: #1fad2e;
   left: 97%;
   transform: translateX(-100%);
 }
