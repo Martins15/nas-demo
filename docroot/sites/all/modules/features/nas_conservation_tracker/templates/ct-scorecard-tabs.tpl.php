@@ -16,6 +16,7 @@
   </div>
 </div>
 
+<!--
 <div class="ct-scorecard-tabs">
   <div class="row">
     <span class="current-title"><a href="/">Conservation Tracker</a></span>
@@ -25,3 +26,4 @@
     <span class="current-title">Black Oystercatcher</span>
   </div>
 </div>
+/-->
