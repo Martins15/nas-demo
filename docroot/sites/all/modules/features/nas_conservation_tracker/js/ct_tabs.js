@@ -128,40 +128,51 @@
             if (!angular.isDefined(Drupal.settings.nasConservationTracker.tabsOverview[currentName])) {
               // @todo take from backend
               $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + currentName)
-                  .then(function (response) {
-                    var tabData = response.data.data;
-                    tabData.settings.overview = tabData.settings[currentName];
-                    tabData.settings.overview.preparedLink = {'target': '_self'};
-                    if (angular.isDefined(tabData.settings.overview.image)) {
-                      tabData.settings.overview.preparedLink.class = 'colorbox-load';
-                      tabData.settings.overview.preparedLink.href = tabData.settings.overview.image + '?iframe=false';
+                .then(function (response) {
+                  var tabData = response.data.data;
+                  tabData.settings.overview = tabData.settings[currentName];
+                  tabData.settings.overview.preparedLink = {'target': '_self'};
+                  console.log('tabData',tabData);
+                  if (angular.isDefined(tabData.settings.overview.image)) {
+                    tabData.settings.overview.preparedLink.class = 'colorbox-load';
+                    tabData.settings.overview.preparedLink.href = tabData.settings.overview.image + '?iframe=false';
+                  }
+                  else if (angular.isDefined(tabData.settings.overview.iframe)) {
+                    tabData.settings.overview.preparedLink.class = 'colorbox-load';
+                    var width = $(window).width() * 0.75;
+                    var height = $(window).height() * 0.9;
+                    tabData.settings.overview.preparedLink.href = tabData.settings.overview.iframe + '?width=' + width + '&height=' + height + '&iframe=true';
+                  }
+                  else if (angular.isDefined(tabData.settings.overview.link)) {
+                    tabData.settings.overview.preparedLink.class = 'overview-link';
+                    tabData.settings.overview.preparedLink.href = tabData.settings.overview.link;
+                    tabData.settings.overview.preparedLink.target = '_blank';
+                  }
+                  else if (angular.isDefined(tabData.settings.overview.youtube)) {
+                    var width = $(window).width() * 0.75;
+                    var height = $(window).height() * 0.9;
+                    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+                    var match = tabData.settings.overview.youtube.match(regExp);
+                    var yid = (match&&match[7].length==11) ? match[7] : false;
+                    if (yid) {
+                      var youtube = 'https://www.youtube.com/embed/' + yid;
+                      tabData.settings.overview.preparedLink.class = 'colorbox-load youtube';
+                      tabData.settings.overview.preparedLink.href = youtube + '?iframe=true&width=' + width + '&height=' + height;
                     }
-                    else if (angular.isDefined(tabData.settings.overview.iframe)) {
-                      tabData.settings.overview.preparedLink.class = 'colorbox-load';
-                      var width = $(window).width() * 0.75;
-                      var height = $(window).height() * 0.9;
-                      tabData.settings.overview.preparedLink.href = tabData.settings.overview.iframe + '?width=' + width + '&height=' + height + '&iframe=true';
-                    }
-                    else if (angular.isDefined(tabData.settings.overview.link)) {
-                      tabData.settings.overview.preparedLink.class = 'overview-link';
-                      tabData.settings.overview.preparedLink.href = tabData.settings.overview.link;
-                      tabData.settings.overview.preparedLink.target = '_blank';
-                    }
+                  }
 
+                  // Add partners array to scope.
+                  // If partners tabs.
+                  if (currentName === 'partners') {
+                    tabData.settings.overview.partners = tabData.partners;
+                  }
 
-                    // Add partners array to scope.
-                    // If partners tabs.
-                    if (currentName === 'partners') {
-                      tabData.settings.overview.partners = tabData.partners;
-                    }
-
-                    tabData.settings.tabs = linkArray;
-                    Drupal.settings.nasConservationTracker.tabsOverview[currentName] = tabData;
-                    Drupal.settings.nasConservationTracker.tabsData[currentName] = response.data.data;
-                    $scope['tab'] = tabData;
-                    updateTabData(response.data.data);
-
-                  });
+                  tabData.settings.tabs = linkArray;
+                  Drupal.settings.nasConservationTracker.tabsOverview[currentName] = tabData;
+                  Drupal.settings.nasConservationTracker.tabsData[currentName] = response.data.data;
+                  $scope['tab'] = tabData;
+                  updateTabData(response.data.data);
+                });
             }
             else {
               $scope['tab'] = Drupal.settings.nasConservationTracker.tabsOverview[currentName];
