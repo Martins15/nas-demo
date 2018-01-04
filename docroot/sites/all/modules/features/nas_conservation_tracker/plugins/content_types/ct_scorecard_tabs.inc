@@ -37,7 +37,6 @@ function nas_conservation_tracker_scorecard_tabs_render($subtype, $conf, $args, 
     return;
   }
   $data = nas_conservation_tracker_get_json('scorecard-' . $scorecard_id);
-  //dpm($data);
   $links = menu_tree_all_data('menu-ct-menu');
   $vars['menu_tree'] = array();
 
@@ -47,15 +46,17 @@ function nas_conservation_tracker_scorecard_tabs_render($subtype, $conf, $args, 
       'markup' => l($link['link']['link_title'], $link['link']['router_path']),
       'children' => array(),
     );
-    foreach ($link['below'] as $child) {
-      $attr = array();
+    foreach ($link['below'] as $ckey => $child) {
+      $opt = array();
       if ($child['link']['link_title'] == $data['settings']['menuParent']) {
-        $attr['class'][] = 'active-trail';
+        $opt['attributes']['class'][] = 'active-trail';
+        $ckey = 0;
       }
-      $vars['menu_tree'][$key]['children'][] = array(
-        'markup' => l($child['link']['link_title'], $child['link']['router_path'], $attr),
+      $vars['menu_tree'][$key]['children'][$ckey] = array(
+        'markup' => l($child['link']['link_title'], $child['link']['router_path'], $opt),
       );
     }
+    asort($vars['menu_tree'][$key]['children']);
   }
   $vars['menu_tree'][] = array('markup' => $context->data->title);
 

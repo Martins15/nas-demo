@@ -18300,7 +18300,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: absolute;
   left: 0;
   width: 120%;
-  top: 100%;
+  top: 0;
+  margin: 0;
+  list-style: none;
   z-index: 2;
   background: white;
   -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.41);
@@ -18325,6 +18327,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .ct-scorecard-tabs .custom-dropdown a:after {
   display: none;
+}
+.ct-scorecard-tabs .menu-has-children {
+  display: inline-block;
+  position: relative;
 }
 
 .ct-scorecard-tabs {

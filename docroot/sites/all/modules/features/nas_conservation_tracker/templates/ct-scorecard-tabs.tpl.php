@@ -6,23 +6,17 @@
 <div class="ct-scorecard-tabs">
   <div class="row">
     <?php foreach ($menu_tree as $item): ?>
-      <span class="current-title"><?php print $item['markup']; ?></span>
+      <?php print $item['markup']; ?>
       <?php if (isset($item['children'])): ?>
-        <?php foreach ($item['children'] as $child): ?>
-          <?php print $child['markup']; ?>
-        <?php endforeach; ?>
+        <div class="menu-has-children">
+          <?php print $item['children'][0]['markup']; ?>
+          <ul class="custom-dropdown">
+          <?php foreach ($item['children'] as $child): ?>
+            <li><?php print $child['markup']; ?></li>
+          <?php endforeach; ?>
+          </ul>
+        </div>
       <?php endif; ?>
     <?php endforeach; ?>
-  </div>
-</div>
-
-<!--
-<div class="ct-scorecard-tabs">
-  <div class="row">
-    <span class="current-title"><a href="/">Conservation Tracker</a></span>
-    <a href="/" class="active-trail">Landscapes</a>
-    <a href="/">Species</a>
-    <a href="/">Strategies</a>
-    <span class="current-title">Black Oystercatcher</span>
   </div>
 </div>
