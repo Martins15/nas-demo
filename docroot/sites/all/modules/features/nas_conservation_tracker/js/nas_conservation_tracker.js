@@ -11,7 +11,7 @@
     threats: ['#f768a1','#dd3497','#ae017e','#7a0177','#49006a']
   };
 
-  Drupal.nas_conservation_tracker_init_map = function () {
+  Drupal.nasCtInitMap = function () {
 
     var lMap = Drupal.settings.leaflet['0'].lMap,
         styleActive = {
@@ -26,11 +26,11 @@
         },
         classes = {
           site: 'ct-leaflet-site',
-          visible_area: 'ct-visible-area',
+          visibleArea: 'ct-visible-area',
           charts: 'help-wrap-items-map-items',
         },
         loc = getLocation(),
-        json = Drupal.settings.nas_conservation_tracker.json_data[loc],
+        json = Drupal.settings.nas_conservation_tracker.jsonData[loc],
         $radios = $('input[name="map_type"]'),
         $reset = $('#edit-map-reset');
 
@@ -46,10 +46,10 @@
     }
 
     if (angular.isDefined(json) && angular.isDefined(json.sites)) {
-      Drupal.settings.nas_conservation_tracker.current_map = {};
-      Drupal.settings.nas_conservation_tracker.current_map.flyway = {};
-      Drupal.settings.nas_conservation_tracker.current_map.state = {};
-      Drupal.settings.nas_conservation_tracker.current_map.county = {};
+      Drupal.settings.nas_conservation_tracker.currentMap = {};
+      Drupal.settings.nas_conservation_tracker.currentMap.flyway = {};
+      Drupal.settings.nas_conservation_tracker.currentMap.state = {};
+      Drupal.settings.nas_conservation_tracker.currentMap.county = {};
 
       if (json.sites.length > 0) {
         $('.no-data-overlay').remove();
@@ -85,13 +85,13 @@
           marker.properties.county = site.county ? site.county.toLowerCase() : detectCounty(site, marker);
           marker.bindTooltip(text).addTo(lMap);
 
-          Drupal.settings.nas_conservation_tracker.current_map.flyway[marker.properties.flyway] = Drupal.settings.nas_conservation_tracker.current_map.flyway[marker.properties.flyway] || [];
-          Drupal.settings.nas_conservation_tracker.current_map.state[marker.properties.state] = Drupal.settings.nas_conservation_tracker.current_map.state[marker.properties.state] || [];
-          Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county] = Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county] || [];
+          Drupal.settings.nas_conservation_tracker.currentMap.flyway[marker.properties.flyway] = Drupal.settings.nas_conservation_tracker.currentMap.flyway[marker.properties.flyway] || [];
+          Drupal.settings.nas_conservation_tracker.currentMap.state[marker.properties.state] = Drupal.settings.nas_conservation_tracker.currentMap.state[marker.properties.state] || [];
+          Drupal.settings.nas_conservation_tracker.currentMap.county[marker.properties.county] = Drupal.settings.nas_conservation_tracker.currentMap.county[marker.properties.county] || [];
 
-          Drupal.settings.nas_conservation_tracker.current_map.flyway[marker.properties.flyway].push(site);
-          Drupal.settings.nas_conservation_tracker.current_map.state[marker.properties.state].push(site);
-          Drupal.settings.nas_conservation_tracker.current_map.county[marker.properties.county].push(site);
+          Drupal.settings.nas_conservation_tracker.currentMap.flyway[marker.properties.flyway].push(site);
+          Drupal.settings.nas_conservation_tracker.currentMap.state[marker.properties.state].push(site);
+          Drupal.settings.nas_conservation_tracker.currentMap.county[marker.properties.county].push(site);
 
         }
       }
@@ -100,8 +100,8 @@
     // Set correct scaling options.
     $radios.each(function() {
       // Get scaling optons from json. Fallback to global settings if not defined.
-      var scale = Drupal.settings.nas_conservation_tracker.json_data.settings[loc].scale ?
-        Drupal.settings.nas_conservation_tracker.json_data.settings[loc].scale : Drupal.settings.nas_conservation_tracker.scale[loc];
+      var scale = Drupal.settings.nas_conservation_tracker.jsonData.settings[loc].scale ?
+        Drupal.settings.nas_conservation_tracker.jsonData.settings[loc].scale : Drupal.settings.nas_conservation_tracker.scale[loc];
       if (scale) {
         if (scale.indexOf($(this).val()) < 0) {
           $(this).parent().hide();
@@ -118,8 +118,8 @@
     resetMap();
 
     // Create visible area.
-    $('#' + Drupal.settings.leaflet[0].mapId).parent().prepend('<div class="' + classes.visible_area + '"></div>');
-    var $visibleArea = $('.' + classes.visible_area);
+    $('#' + Drupal.settings.leaflet[0].mapId).parent().prepend('<div class="' + classes.visibleArea + '"></div>');
+    var $visibleArea = $('.' + classes.visibleArea);
     rebuildVisibleArea($visibleArea, classes);
     lMap.scrollWheelZoom.disable();
     if (!lMap.initiated) {
@@ -142,10 +142,6 @@
         }
       });
 
-      // lMap.on('mousemove', function () {
-      //   console.log(lMap.getCenter());
-      // });
-
       lMap.initiated = true;
 
     }
@@ -166,8 +162,8 @@
     // Helper functions.
 
     function detectCounty(site, marker) {
-      for (var county in Drupal.settings.nas_conservation_tracker_unit_data[marker.properties.flyway]['states'][marker.properties.state]['counties']) {
-        if (isInsidePolygon(site.latLon[0], site.latLon[1], Drupal.settings.nas_conservation_tracker_unit_data[marker.properties.flyway]['states'][marker.properties.state]['counties'][county].coordinates)) {
+      for (var county in Drupal.settings.nasCtUnitData[marker.properties.flyway]['states'][marker.properties.state]['counties']) {
+        if (isInsidePolygon(site.latLon[0], site.latLon[1], Drupal.settings.nasCtUnitData[marker.properties.flyway]['states'][marker.properties.state]['counties'][county].coordinates)) {
           return county;
         }
       }
@@ -177,25 +173,25 @@
       resetSelection();
       lMap.eachLayer(function (unitLayer) {
         if (isUnit(unitLayer) && unitLayer.feature.properties.selected) {
-          Drupal.settings.nas_conservation_tracker.selected_units++;
+          Drupal.settings.nas_conservation_tracker.selectedUnits++;
           lMap.eachLayer(function (siteLayer) {
             var machineName = unitLayer.feature.properties.machineName;
             if (unitLayer.feature.properties.unit == 'state') {
               machineName = unitLayer.feature.properties.state;
             }
             if (isSite(siteLayer) && (siteLayer.properties[unitLayer.feature.properties.unit] == machineName)) {
-              Drupal.settings.nas_conservation_tracker.visible_sites.push(siteLayer.properties.site);
+              Drupal.settings.nas_conservation_tracker.visibleSites.push(siteLayer.properties.site);
             }
           });
         }
       });
-      Drupal.nas_conservation_tracker_init_charts();
+      Drupal.nasCtInitCharts();
     }
 
     function rebuildChartsByZoom(area) {
       // This should work only if no manually selected units present.
-      if (!Drupal.settings.nas_conservation_tracker.selected_units) {
-        Drupal.settings.nas_conservation_tracker.visible_sites = [];
+      if (!Drupal.settings.nas_conservation_tracker.selectedUnits) {
+        Drupal.settings.nas_conservation_tracker.visibleSites = [];
         var w = parseInt(area.width().toFixed());
         var h = parseInt(area.height().toFixed());
         lMap.eachLayer(function (layer) {
@@ -208,11 +204,11 @@
                 x >= 0 &&
                 x <= w &&
                 y <= h) {
-              Drupal.settings.nas_conservation_tracker.visible_sites.push(layer.properties.site);
+              Drupal.settings.nas_conservation_tracker.visibleSites.push(layer.properties.site);
             }
           }
         });
-        Drupal.nas_conservation_tracker_init_charts();
+        Drupal.nasCtInitCharts();
       }
     }
 
@@ -241,8 +237,8 @@
       Object.assign(style, styleActive);
 
       var k = 0;
-      for (var i in Drupal.settings.nas_conservation_tracker.current_map.range) {
-        if (Drupal.settings.nas_conservation_tracker.current_map.rows[feature.properties.machineName] >= Drupal.settings.nas_conservation_tracker.current_map.range[i]) {
+      for (var i in Drupal.settings.nas_conservation_tracker.currentMap.range) {
+        if (Drupal.settings.nas_conservation_tracker.currentMap.rows[feature.properties.machineName] >= Drupal.settings.nas_conservation_tracker.currentMap.range[i]) {
           k = i;
         }
       }
@@ -256,19 +252,19 @@
     function resetMap() {
       if (Drupal.settings.nas_conservation_tracker.scale[loc]) {
         var latlng = L.latLng(
-          Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.latitude,
-          Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.longitude
+          Drupal.settings.nas_conservation_tracker.jsonData.settings[loc].map.latitude,
+          Drupal.settings.nas_conservation_tracker.jsonData.settings[loc].map.longitude
         );
-        lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.json_data.settings[loc].map.zoom);
+        lMap.setView(latlng, Drupal.settings.nas_conservation_tracker.jsonData.settings[loc].map.zoom);
         resetSelection();
         scaleMapTo(Drupal.settings.nas_conservation_tracker.scale[loc][0]);
-        Drupal.nas_conservation_tracker_init_charts();
+        Drupal.nasCtInitCharts();
       }
     }
 
     function resetSelection() {
-      Drupal.settings.nas_conservation_tracker.visible_sites = [];
-      Drupal.settings.nas_conservation_tracker.selected_units = 0;
+      Drupal.settings.nas_conservation_tracker.visibleSites = [];
+      Drupal.settings.nas_conservation_tracker.selectedUnits = 0;
     }
 
     function isUnit(layer) {
@@ -319,7 +315,7 @@
         if (isSite(layer)) {
           switch (unit) {
             case 'county':
-              var county = Drupal.settings.nas_conservation_tracker_unit_data
+              var county = Drupal.settings.nasCtUnitData
                 [layer.properties.flyway]['states'][layer.properties.state]['counties'][layer.properties.county];
               if (typeof county == 'undefined') {
                 console.log('COUNTY NOT DEFINED', layer);
@@ -335,7 +331,7 @@
               }
               break;
             case 'state':
-              var state = Drupal.settings.nas_conservation_tracker_unit_data[layer.properties.flyway]['states'][layer.properties.state];
+              var state = Drupal.settings.nasCtUnitData[layer.properties.flyway]['states'][layer.properties.state];
               var stateData = Object.values(state['counties']);
               polygons[layer.properties.state] = new LPolygon(
                 state.name,
@@ -347,7 +343,7 @@
               );
               break;
             case 'flyway':
-              var flyway = Drupal.settings.nas_conservation_tracker_unit_data[layer.properties.flyway];
+              var flyway = Drupal.settings.nasCtUnitData[layer.properties.flyway];
               var flyData = Object.values(flyway.states);
               polygons[layer.properties.flyway] = new LPolygon(
                 layer.properties.flyway,
@@ -362,15 +358,15 @@
       });
 
       if (Object.values(polygons).length > 0) {
-        Drupal.settings.nas_conservation_tracker.current_map.rows = {};
+        Drupal.settings.nas_conservation_tracker.currentMap.rows = {};
         var min, max;
 
         for (var i in polygons) {
           if (unit == 'state') {
-            var rows = getChartData(Drupal.settings.nas_conservation_tracker.current_map[unit][polygons[i].properties.state]);
+            var rows = getChartData(Drupal.settings.nas_conservation_tracker.currentMap[unit][polygons[i].properties.state]);
           }
           else {
-            var rows = getChartData(Drupal.settings.nas_conservation_tracker.current_map[unit][polygons[i].properties.machineName]);
+            var rows = getChartData(Drupal.settings.nas_conservation_tracker.currentMap[unit][polygons[i].properties.machineName]);
           }
 
           var z = 0;
@@ -390,9 +386,9 @@
           if (z > max) {
             max = z;
           }
-          Drupal.settings.nas_conservation_tracker.current_map.rows[polygons[i].properties.machineName] = z;
-          Drupal.settings.nas_conservation_tracker.current_map.min = min;
-          Drupal.settings.nas_conservation_tracker.current_map.max = max;
+          Drupal.settings.nas_conservation_tracker.currentMap.rows[polygons[i].properties.machineName] = z;
+          Drupal.settings.nas_conservation_tracker.currentMap.min = min;
+          Drupal.settings.nas_conservation_tracker.currentMap.max = max;
         }
 
         var step = (max - min) / 5;
@@ -402,7 +398,7 @@
           range[i] = range[i - 1] + step;
         }
         range[4] = max;
-        Drupal.settings.nas_conservation_tracker.current_map.range = range;
+        Drupal.settings.nas_conservation_tracker.currentMap.range = range;
 
         L.Control.Legend = L.Control.extend({
           options: {
@@ -427,8 +423,8 @@
           },
           getContent: function() {
             var content = '',
-            min = Drupal.settings.nas_conservation_tracker.current_map.min,
-            max = Drupal.settings.nas_conservation_tracker.current_map.max;
+            min = Drupal.settings.nas_conservation_tracker.currentMap.min,
+            max = Drupal.settings.nas_conservation_tracker.currentMap.max;
             var loc = getLocation();
             // If only one element is displayed
             if (min == max) {
@@ -483,17 +479,17 @@
     }
   }
 
-  Drupal.nas_conservation_tracker_init_charts = function () {
+  Drupal.nasCtInitCharts = function () {
     // Charts. TODO make it look good
     var loc = getLocation();
-    var json = Drupal.settings.nas_conservation_tracker.json_data[loc];
+    var json = Drupal.settings.nas_conservation_tracker.jsonData[loc];
     var objectivesRows = [];
     var objectivesTips = [];
     var overall = 0;
-    var sites = (Drupal.settings.nas_conservation_tracker.visible_sites.length > 0) ?
-        Drupal.settings.nas_conservation_tracker.visible_sites :
+    var sites = (Drupal.settings.nas_conservation_tracker.visibleSites.length > 0) ?
+        Drupal.settings.nas_conservation_tracker.visibleSites :
         json.sites;
-    var tabSettings = Drupal.settings.nas_conservation_tracker.json_data.settings[loc];
+    var tabSettings = Drupal.settings.nas_conservation_tracker.jsonData.settings[loc];
 
     var objectives = tabSettings.objectives;
     for (var j = 0 in objectives) {
@@ -578,7 +574,7 @@
   function getChartData(sites, tabSettings) {
     if (typeof tabSettings == 'undefined') {
       var loc = getLocation();
-      tabSettings = Drupal.settings.nas_conservation_tracker.json_data.settings[loc];
+      tabSettings = Drupal.settings.nas_conservation_tracker.jsonData.settings[loc];
     }
 
     var mainObjRows = {};
