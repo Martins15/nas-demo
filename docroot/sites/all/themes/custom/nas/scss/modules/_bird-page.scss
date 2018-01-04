@@ -990,3 +990,25 @@ $gray-lightish: #9b9b9b;
     font-size: 14px;
   }
 }
+
+.leaflet-top .leaflet-control {
+  margin-top: 23px;
+}
+.leaflet-bar {
+  a {
+    &.leaflet-control-zoom-out,
+    &.leaflet-control-zoom-in {
+      width: 40px;
+      height: 40px;
+      background-color: #303030;
+      color: white;
+      line-height: 38px;
+      &:hover {
+        background-color: #707070;
+      }
+    }
+  }
+
+}
+
+
