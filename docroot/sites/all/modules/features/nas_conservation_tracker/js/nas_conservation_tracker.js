@@ -690,8 +690,10 @@
         var $ul = $breadcrumbBlock.find('ul.custom-dropdown');
         $breadcrumbBlock.find('.menu-has-children').hover(function () {
           $ul.show();
+          $('.active-trail').addClass('hover');
         }, function () {
           $ul.hide();
+          $('.active-trail').removeClass('hover');
         });
       }
     }
