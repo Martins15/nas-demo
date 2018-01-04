@@ -100,6 +100,12 @@
 
         var idItem = Drupal.settings.nasConservationTracker.scorecardId;
         $scope.tabLoaded = function () {
+          if (Drupal.settings.nasConservationTracker.currentTab == 'responses') {
+            $('.trigger').show();
+          }
+          else {
+            $('.trigger').hide();
+          }
 
           if (Drupal.settings.nasConservationTracker.currentTab == 'partners') {
             $('.no-data-overlay').remove();
