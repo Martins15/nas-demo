@@ -540,57 +540,37 @@ $gray-lightish: #9b9b9b;
     padding-bottom: 60px;
   }
 }
+
 .ct-scorecard-tabs {
-  .menu-has-children {
-    display: inline-block;
-    position: relative;
-  }
-  .active-trail {
-    position: relative;
-    &:hover {
-      .custom-dropdown {
-        display: block;
-      }
-    }
-  }
+  background: $dark-bg-bird;
+  color: $white;
 
   .custom-dropdown {
     display: none;
     position: absolute;
     left: 0;
     width: 120%;
-    top: 0;
+    top: 100%;
     margin: 0;
     list-style: none;
     z-index: 2;
     background: white;
-    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.41);
-    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.41);
-    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.41);
-    .arrow-block {
-      display: block !important;
-      margin-left: 0;
-      &:after {
-        display: none !important;
-      }
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.41);
+    -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.41);
+    box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.41);
+    .active-trail {
+      display: none;
     }
     a {
-      display: block;
       color: $dark-bg-bird;
-      padding-left: 15px;
-      margin: 0;
+      display: block;
       &:hover {
         background: #ccc;
       }
-      &:after {
-        display: none;
-      }
     }
   }
-}
-.ct-scorecard-tabs {
-  background: $dark-bg-bird;
-  color: $white;
+
+
   a {
     font-size: 17px;
     text-align: left;
@@ -598,42 +578,34 @@ $gray-lightish: #9b9b9b;
     color: $white;
     font-family: $font-sans;
     display: inline-block;
-    &:hover {
-      background: #fff;
-      color: $dark-bg-bird;
-    }
-  }
-  .current-title:last-child {
-    margin-left: 15px;
-  }
-
-  span.current-title {
-    position: relative;
-    margin-left: 15px;
-    &:after {
-      position: absolute;
-      left: 50%;
-      bottom: -17px;
-      width: 0;
-      height: 0;
-      border-left: 7px solid transparent;
-      border-right: 7px solid transparent;
-      border-bottom: 7px solid #fbfaf6;
-      display: block;
-      content: "";
-    }
-    &:first-child {
-      margin-left: 0;
+    &.active-trail {
+      position: relative;
+      padding-right: 25px;
+      &.hover,
+      &:hover {
+        background: white;
+        color: $dark-bg-bird;
+      }
       &:after {
-        display: none;
+        content: '';
+        position: absolute;
+        right: 8px;
+        top: 53%;
+        transform: translateY(-50%);
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 6px 4px 0 4px;
+        border-color: #8a8a8a transparent transparent transparent;
       }
     }
   }
 
-  .arrow-block {
+  .link-wrapper {
     position: relative;
     display: inline-block;
-    margin-left: 5px;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
     &:after {
       content: '';
       border: solid $white;
@@ -646,46 +618,41 @@ $gray-lightish: #9b9b9b;
       transform: rotate(-45deg);
       -webkit-transform: rotate(-45deg);
     }
+
     &:last-child {
+      margin-left: 15px;
       &:after {
-        display: none;
+        position: absolute;
+        left: 50%;
+        bottom: -17px;
+        transform: rotate(0deg);
+        margin-left: -5px;
+        opacity: 1;
+        width: 0;
+        height: 0;
+        padding: 0;
+        border-style: solid;
+        border-width: 0 7.5px 10px 7.5px;
+        border-color: transparent transparent #ffffff transparent;
+        display: block;
+        content: "";
       }
-    }
-    &:first-child {
-      &:after {
-        content: '';
-        border: solid $white;
-        border-width: 0 2px 2px 0;
-        opacity: .2;
-        display: inline-block;
-        padding: 4px;
-        border-radius: 0;
-        margin: 0;
-        transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-      }
-
     }
   }
 
-  .active-trail {
-    position: relative;
-    &:after {
-      content: '';
-      position: absolute;
-      right: 5px;
-      top: 53%;
-      transform: translateY(-50%);
-      display: inline-block;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 6px 4px 0 4px;
-      border-color: #8a8a8a transparent transparent transparent;
-    }
+  .menu-has-children {
+    display: inline-block;
   }
+
+
 
 }
+
+
+
+
+
+
 .ct-scorecard-main {
   .row {
     position: relative;

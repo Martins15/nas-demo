@@ -18289,53 +18289,33 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
-.ct-scorecard-tabs .active-trail {
-  position: relative;
-}
-.ct-scorecard-tabs .active-trail:hover .custom-dropdown {
-  display: block;
+.ct-scorecard-tabs {
+  background: #1c1c1c;
+  color: #fff;
 }
 .ct-scorecard-tabs .custom-dropdown {
   display: none;
   position: absolute;
   left: 0;
   width: 120%;
-  top: 0;
+  top: 100%;
   margin: 0;
   list-style: none;
   z-index: 2;
   background: white;
-  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.41);
-  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.41);
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.41);
+  -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.41);
+  -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.41);
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.41);
 }
-.ct-scorecard-tabs .custom-dropdown .arrow-block {
-  display: block !important;
-  margin-left: 0;
-}
-.ct-scorecard-tabs .custom-dropdown .arrow-block:after {
-  display: none !important;
+.ct-scorecard-tabs .custom-dropdown .active-trail {
+  display: none;
 }
 .ct-scorecard-tabs .custom-dropdown a {
-  display: block;
   color: #1c1c1c;
-  padding-left: 15px;
-  margin: 0;
+  display: block;
 }
 .ct-scorecard-tabs .custom-dropdown a:hover {
   background: #ccc;
-}
-.ct-scorecard-tabs .custom-dropdown a:after {
-  display: none;
-}
-.ct-scorecard-tabs .menu-has-children {
-  display: inline-block;
-  position: relative;
-}
-
-.ct-scorecard-tabs {
-  background: #1c1c1c;
-  color: #fff;
 }
 .ct-scorecard-tabs a {
   font-size: 17px;
@@ -18345,41 +18325,33 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   display: inline-block;
 }
-.ct-scorecard-tabs a:hover {
-  background: #fff;
+.ct-scorecard-tabs a.active-trail {
+  position: relative;
+  padding-right: 25px;
+}
+.ct-scorecard-tabs a.active-trail.hover, .ct-scorecard-tabs a.active-trail:hover {
+  background: white;
   color: #1c1c1c;
 }
-.ct-scorecard-tabs .current-title:last-child {
-  margin-left: 15px;
-}
-.ct-scorecard-tabs span.current-title {
-  position: relative;
-  margin-left: 15px;
-}
-.ct-scorecard-tabs span.current-title:after {
+.ct-scorecard-tabs a.active-trail:after {
+  content: '';
   position: absolute;
-  left: 50%;
-  bottom: -17px;
+  right: 8px;
+  top: 53%;
+  transform: translateY(-50%);
+  display: inline-block;
   width: 0;
   height: 0;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-bottom: 7px solid #fbfaf6;
-  display: block;
-  content: "";
+  border-style: solid;
+  border-width: 6px 4px 0 4px;
+  border-color: #8a8a8a transparent transparent transparent;
 }
-.ct-scorecard-tabs span.current-title:first-child {
-  margin-left: 0;
-}
-.ct-scorecard-tabs span.current-title:first-child:after {
-  display: none;
-}
-.ct-scorecard-tabs .arrow-block {
+.ct-scorecard-tabs .link-wrapper {
   position: relative;
   display: inline-block;
-  margin-left: 5px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
 }
-.ct-scorecard-tabs .arrow-block:after {
+.ct-scorecard-tabs .link-wrapper:after {
   content: '';
   border: solid #fff;
   border-width: 0 2px 2px 0;
@@ -18391,36 +18363,27 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
-.ct-scorecard-tabs .arrow-block:last-child:after {
-  display: none;
+.ct-scorecard-tabs .link-wrapper:last-child {
+  margin-left: 15px;
 }
-.ct-scorecard-tabs .arrow-block:first-child:after {
-  content: '';
-  border: solid #fff;
-  border-width: 0 2px 2px 0;
-  opacity: .2;
-  display: inline-block;
-  padding: 4px;
-  border-radius: 0;
-  margin: 0;
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-.ct-scorecard-tabs .active-trail {
-  position: relative;
-}
-.ct-scorecard-tabs .active-trail:after {
-  content: '';
+.ct-scorecard-tabs .link-wrapper:last-child:after {
   position: absolute;
-  right: 5px;
-  top: 53%;
-  transform: translateY(-50%);
-  display: inline-block;
+  left: 50%;
+  bottom: -17px;
+  transform: rotate(0deg);
+  margin-left: -5px;
+  opacity: 1;
   width: 0;
   height: 0;
+  padding: 0;
   border-style: solid;
-  border-width: 6px 4px 0 4px;
-  border-color: #8a8a8a transparent transparent transparent;
+  border-width: 0 7.5px 10px 7.5px;
+  border-color: transparent transparent #ffffff transparent;
+  display: block;
+  content: "";
+}
+.ct-scorecard-tabs .menu-has-children {
+  display: inline-block;
 }
 
 .ct-scorecard-main .row {
