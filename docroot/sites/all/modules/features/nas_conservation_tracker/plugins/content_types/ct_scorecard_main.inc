@@ -50,8 +50,8 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   drupal_add_js([
     'nas_conservation_tracker' => [
       'scorecardId' => $data['id'],
-      'selected_units' => 0,
-      'visible_sites' => [],
+      'selectedUnits' => 0,
+      'visibleSites' => [],
       'scale' => variable_get('nas_conservation_tracker_scale', $scale),
     ],
   ], 'setting');

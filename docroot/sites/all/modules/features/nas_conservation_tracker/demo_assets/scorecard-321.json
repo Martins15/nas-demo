@@ -4,6 +4,7 @@
   "subtitle": "",
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_coastal_carolinas_hero.jpg",
   "settings": {
+    "tabDefault": "actions",
     "threats": {
       "scale": [
         "county",
@@ -50,7 +51,7 @@
         "longitude": "-73.59191894531251",
         "zoom": "6"
       },
-      "iframe": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/Proposed CBRS - NC District 3 close up.pdf",
+      "iframe": "//web4.audubon.org/scidev/coasts_actions/carolinas.html",
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_actions.png",
       "tagLine": "Conservation interventions by Audubon field staff and partners as classifed by the Conservation Measures Partnership",
       "title": "The Coastal Barrier Resources System saves lives, money and coastal resources",
