@@ -26,4 +26,3 @@
     <span class="current-title">Black Oystercatcher</span>
   </div>
 </div>
-/-->

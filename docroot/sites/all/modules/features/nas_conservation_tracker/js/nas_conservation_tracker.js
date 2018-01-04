@@ -699,8 +699,9 @@
 
           links.each(function(){
             var link = $(this);
+            link.wrap( "<span class='arrow-block'></span>" );
             if (link.html() === spacies || link.html() === strategies) {
-              link.appendTo('.custom-dropdown');
+              link.parent().appendTo('.custom-dropdown');
             }
           })
 
