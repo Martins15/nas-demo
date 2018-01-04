@@ -632,7 +632,6 @@
     return mainRows;
   }
 
-
   // Common helper functions.
   function getLocation() {
     var loc = window.location.href;

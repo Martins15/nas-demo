@@ -107,6 +107,7 @@
                   var tabData = response.data.data;
                   tabData.settings.overview = tabData.settings[currentName];
                   tabData.settings.overview.preparedLink = {'target': '_self'};
+                  console.log('tabData',tabData);
                   if (angular.isDefined(tabData.settings.overview.image)) {
                     tabData.settings.overview.preparedLink.class = 'colorbox-load';
                     tabData.settings.overview.preparedLink.href = tabData.settings.overview.image + '?iframe=false';
@@ -122,6 +123,18 @@
                     tabData.settings.overview.preparedLink.href = tabData.settings.overview.link;
                     tabData.settings.overview.preparedLink.target = '_blank';
                   }
+                  else if (angular.isDefined(tabData.settings.overview.youtube)) {
+                    var width = $(window).width() * 0.75;
+                    var height = $(window).height() * 0.9;
+                    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+                    var match = tabData.settings.overview.youtube.match(regExp);
+                    var yid = (match&&match[7].length==11) ? match[7] : false;
+                    if (yid) {
+                      var youtube = 'https://www.youtube.com/embed/' + yid;
+                      tabData.settings.overview.preparedLink.class = 'colorbox-load youtube';
+                      tabData.settings.overview.preparedLink.href = youtube + '?iframe=true&width=' + width + '&height=' + height;
+                    }
+                   }
 
                   // Add partners array to scope.
                   // If partners tabs.
