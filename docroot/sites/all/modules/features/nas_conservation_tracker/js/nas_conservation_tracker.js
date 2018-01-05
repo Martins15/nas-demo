@@ -42,7 +42,7 @@
     });
 
     if (!angular.isDefined(json) || !angular.isDefined(json.sites) || json.sites.length == 0) {
-      $('.leaflet-container').after('<div class="no-data-overlay">' + Drupal.t('No data to display') + '</div>');
+      $('.leaflet-container').after('<div class="no-data-overlay">' + Drupal.t('No data') + '</div>');
     }
 
     if (angular.isDefined(json) && angular.isDefined(json.sites)) {
