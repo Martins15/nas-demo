@@ -18725,6 +18725,14 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   background-color: #707070;
 }
 
+.link-textfield {
+  display: none;
+}
+
+#cboxTitle {
+  background: none;
+}
+
 .species-filter {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
