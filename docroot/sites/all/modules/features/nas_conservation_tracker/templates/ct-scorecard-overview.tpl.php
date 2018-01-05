@@ -15,7 +15,7 @@
             </ul>
         </div>
         <div class="text-wrap columns large-6">
-            <div class="text-wrap__content" ng-cloak>
+            <div class="text-wrap__content hide-for-medium hide-for-small" ng-cloak>
                 <div class="threats" ng-class="{'active': isActiveTab === 'threats'}">
                     <h4>Threats</h4>
                     <p><?php print $data['settings']['threats']['tagLine'] ?></p>
@@ -44,8 +44,8 @@
             <div class="bird-page body-item {{value}}-tab-wrapper" ng-cloak  ng-class="{'active': isActive === value}">
 
                 <div class="title-wrap">
-                    <div class="title-wrap__title columns tiny-9"><h3>{{tab.settings.overview.title}}</h3></div>
-                    <div class="title-wrap__print  columns large-3 hide-for-medium hide-for-small">
+                    <div class="title-wrap__title columns tiny-8"><h3>{{tab.settings.overview.title}}</h3></div>
+                    <div class="title-wrap__print  columns large-4 hide-for-medium hide-for-small">
                         <a href="#" class="img-block print"></a> <a href="#" class="img-block download">Download</a>
                     </div>
                 </div>
