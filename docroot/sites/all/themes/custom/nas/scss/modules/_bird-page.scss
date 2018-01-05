@@ -3,12 +3,14 @@
 .help-bg-white {
   background: $white;
 }
+
 .help-img-full {
   img {
     width: 100%;
     height: auto;
   }
 }
+
 $dark-bg-bird: #1c1c1c;
 $brownish-grey: #76736c;
 $darkish-grey: #404040;
@@ -120,11 +122,13 @@ $gray-lightish: #9b9b9b;
     line-height: 1.21;
   }
 }
+
 .page-conservation-tracker-scorecard-black-oystercatcher {
   .global-content.with-padding {
     padding-top: 50px;
   }
 }
+
 .map-items.bird-page {
   background: $bg-map-bird;
   margin-top: 10px;
@@ -135,6 +139,7 @@ $gray-lightish: #9b9b9b;
     }
   }
 }
+
 .map-item {
   width: 96%;
   margin-left: 2%;
@@ -159,6 +164,7 @@ $gray-lightish: #9b9b9b;
     }
   }
 }
+
 .diagram-wrap {
   // @todo Update after add 3d.
   padding-bottom: 20px;
@@ -187,6 +193,7 @@ $gray-lightish: #9b9b9b;
     font-family: $font-sans;
   }
 }
+
 .objectives-wrap {
   .map-title {
     margin-bottom: 30px;
@@ -218,6 +225,7 @@ $gray-lightish: #9b9b9b;
     }
   }
 }
+
 .help-wrap-items-map-items {
   .map-title {
     margin-bottom: 30px;
@@ -341,7 +349,6 @@ $gray-lightish: #9b9b9b;
   }
 }
 
-
 .progress-wrap {
   background: $grey-bg-bird;
   margin-bottom: 10px;
@@ -389,6 +396,7 @@ $gray-lightish: #9b9b9b;
     color: $orange-bird;
   }
 }
+
 .ct-item-nav-conservation {
   background: $grey-menu-bird;
   overflow: hidden;
@@ -475,6 +483,7 @@ $gray-lightish: #9b9b9b;
     }
   }
 }
+
 // Style for slider.
 .slider-element.bird-page {
   padding: 30px 0;
@@ -485,6 +494,7 @@ $gray-lightish: #9b9b9b;
     width: 100%;
   }
 }
+
 .slider-element {
   &__title-wrap {
     text-align: center;
@@ -550,6 +560,7 @@ $gray-lightish: #9b9b9b;
     }
   }
 }
+
 .tabs-ng-content {
   .bird-page {
     display: none;
@@ -565,7 +576,37 @@ $gray-lightish: #9b9b9b;
 .ct-scorecard-tabs {
   background: $dark-bg-bird;
   color: $white;
-
+  position: relative;
+  min-height: 50px;
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    z-index: 2;
+    opacity: 0.8;
+    display: block;
+    background: -moz-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(125,185,232,0) 100%);
+    background: -webkit-linear-gradient(left, rgba(0,0,0,1) 0%,rgba(125,185,232,0) 100%);
+    background: linear-gradient(to right, rgba(0,0,0,1) 0%,rgba(125,185,232,0) 100%);
+    @include breakpoint(large-up) {
+      background: transparent;
+      width: 0;
+      height: 0;
+    }
+  }
+  &__help {
+    width: 130%;
+    position: absolute;
+    left: -30%;
+    @include breakpoint(large-up) {
+      width: 100%;
+      position: relative;
+      left: 0;
+    }
+  }
   .custom-dropdown {
     display: none;
     position: absolute;
@@ -576,9 +617,9 @@ $gray-lightish: #9b9b9b;
     list-style: none;
     z-index: 2;
     background: white;
-    -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.41);
-    -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.41);
-    box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.41);
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.41);
+    -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.41);
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.41);
     .active-trail {
       display: none;
     }
@@ -590,7 +631,6 @@ $gray-lightish: #9b9b9b;
       }
     }
   }
-
 
   a {
     font-size: 17px;
@@ -643,20 +683,22 @@ $gray-lightish: #9b9b9b;
     &:last-child {
       margin-left: 15px;
       &:after {
-        position: absolute;
-        left: 50%;
-        bottom: -17px;
-        transform: rotate(0deg);
-        margin-left: -5px;
-        opacity: 1;
-        width: 0;
-        height: 0;
-        padding: 0;
-        border-style: solid;
-        border-width: 0 7.5px 10px 7.5px;
-        border-color: transparent transparent #ffffff transparent;
-        display: block;
-        content: "";
+        @include breakpoint(large-up) {
+          position: absolute;
+          left: 50%;
+          bottom: -17px;
+          transform: rotate(0deg);
+          margin-left: -5px;
+          opacity: 1;
+          width: 0;
+          height: 0;
+          padding: 0;
+          border-style: solid;
+          border-width: 0 7.5px 10px 7.5px;
+          border-color: transparent transparent #ffffff transparent;
+          display: block;
+          content: "";
+        }
       }
     }
   }
@@ -665,14 +707,7 @@ $gray-lightish: #9b9b9b;
     display: inline-block;
   }
 
-
-
 }
-
-
-
-
-
 
 .ct-scorecard-main {
   .row {
@@ -757,6 +792,7 @@ $gray-lightish: #9b9b9b;
     display: none;
   }
 }
+
 .help-wrap-items-map-items {
   @include breakpoint(large-up) {
     position: relative;
@@ -771,6 +807,7 @@ $gray-lightish: #9b9b9b;
     margin-right: 15.27777777777778%;
   }
 }
+
 .wrap-map-diagram {
   position: relative;
   @include breakpoint(large-up) {
@@ -779,13 +816,16 @@ $gray-lightish: #9b9b9b;
     overflow: hidden;
   }
 }
+
 .leaflet-container,
 .ct-scorecard-main {
   background: $bg-map-bird;
 }
+
 .ct-scorecard-main {
   position: relative;
 }
+
 .node-type-ct-scorecard {
   .hero-header {
     padding-right: 0;
@@ -848,6 +888,7 @@ $gray-lightish: #9b9b9b;
     }
   }
 }
+
 .no-data-overlay {
   width: 100%;
   height: 100%;
@@ -862,6 +903,7 @@ $gray-lightish: #9b9b9b;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   color: #666;
 }
+
 .legend {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 16px;
@@ -888,6 +930,7 @@ $gray-lightish: #9b9b9b;
   }
 
 }
+
 .partners-wrap {
   &.columns {
     width: 90%;
@@ -959,16 +1002,19 @@ $gray-lightish: #9b9b9b;
     }
   }
 }
+
 .bird-page {
   ul li {
     padding-bottom: 10px;
   }
 }
+
 .ct-scorecard-main {
   .controls-link {
     display: none
   }
 }
+
 #nas-conservation-tracker-map-form {
   .form-item-map-type {
     float: left;
@@ -989,6 +1035,7 @@ $gray-lightish: #9b9b9b;
 .leaflet-top .leaflet-control {
   margin-top: 23px;
 }
+
 .leaflet-bar {
   a {
     &.leaflet-control-zoom-out,
@@ -1006,11 +1053,29 @@ $gray-lightish: #9b9b9b;
 
 }
 
-
 .link-textfield {
   display: none;
 }
 
 #cboxTitle {
   background: none;
+}
+
+.page-content.nas-cta-tabs-angular-processed,
+.page-content.nas-cta-tabs-angular-processed {
+  margin-bottom: 0;
+  > * {
+    margin-bottom: 0;
+  }
+}
+
+.ct-scorecard-header {
+  .curtain-content {
+    .row {
+      padding-bottom: 30px;
+      @media screen and (min-width: 768px) {
+        padding-bottom: 25px;
+      }
+    }
+  }
 }

@@ -4,6 +4,7 @@
  */
 ?>
 <div class="ct-scorecard-tabs">
+    <div class="ct-scorecard-tabs__help">
   <div class="row">
     <?php foreach ($menu_tree as $item): ?>
      <span class="link-wrapper"> <?php print $item['markup']; ?></span>
@@ -19,4 +20,5 @@
       <?php endif; ?>
     <?php endforeach; ?>
   </div>
+    </div>
 </div>
