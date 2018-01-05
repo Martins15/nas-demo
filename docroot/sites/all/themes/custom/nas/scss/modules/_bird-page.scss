@@ -910,7 +910,8 @@ $gray-lightish: #9b9b9b;
       top: 0;
       margin: 0;
       right: calc(572px + 16%);
-      width: 25%;
+      width: 29%;
+
     }
     .partners-wrap__partner {
       display: block;
@@ -1006,3 +1007,10 @@ $gray-lightish: #9b9b9b;
 }
 
 
+.link-textfield {
+  display: none;
+}
+
+#cboxTitle {
+  background: none;
+}

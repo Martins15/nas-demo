@@ -18653,7 +18653,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     top: 0;
     margin: 0;
     right: calc(572px + 16%);
-    width: 25%;
+    width: 29%;
   }
 }
 .partners-wrap.columns .partners-wrap__partner {
@@ -18741,6 +18741,14 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .leaflet-bar a.leaflet-control-zoom-out:hover, .leaflet-bar a.leaflet-control-zoom-in:hover {
   background-color: #707070;
+}
+
+.link-textfield {
+  display: none;
+}
+
+#cboxTitle {
+  background: none;
 }
 
 .species-filter {
