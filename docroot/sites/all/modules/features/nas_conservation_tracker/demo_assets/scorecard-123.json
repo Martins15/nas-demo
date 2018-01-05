@@ -4,6 +4,8 @@
   "subtitle": "Heamatopus bachmani",
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_black_oystercatcher_hero.jpg",
   "settings": {
+    "menuParent": "Species",
+    "tabDefault": "actions",
     "threats": {
       "map": {
         "latitude": "38.020098201368114",
@@ -27,7 +29,7 @@
         "longitude": "-114.63378906250001",
         "zoom": "6"
       },
-      "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/BLOY_NaturalScene_mockup_v1.jpg",
+      "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/bloy_ca.jpg",
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_bloy_actions.png",
       "tagLine": "Conservation interventions by Audubon field staff and partners as classifed by the Conservation Measures Partnership",
       "title": "Monitoring productivity since 2012",

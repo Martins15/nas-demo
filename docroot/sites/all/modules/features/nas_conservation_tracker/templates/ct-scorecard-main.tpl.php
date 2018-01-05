@@ -14,7 +14,15 @@
       <div class="diagram-wrap help-bg-white columns map-item large-8">
         <div class="map-item__inner-help">
           <div class="diagram-wrap__title">
-            <h4 class="map-title">Action Categories</h4>
+            <h4 class="map-title">
+              <span class="map-span-title">
+                Action Categories
+              </span>
+              <span class="tooltip">
+                <span class="icon"></span>
+                <span class="text">Lorem ipsum dolor sit amet.</span>
+              </span>
+            </h4>
             <div class="trigger">
               <h5>Display Actions</h5>
               <div class="switch">
@@ -22,7 +30,7 @@
                 <label for="checkActions"></label>
               </div>
             </div>
-            <p>Sites: <span id="site-count">0</span></p>
+            <p>Sites in selected/visible area(s): <span id="site-count">0</span></p>
           </div>
           <div class="diagram-item">
             <?php print $actions; ?>
@@ -32,7 +40,14 @@
       <div class="objectives-wrap help-bg-white columns map-item large-8">
         <div class="map-item__inner-help">
           <div class="objectives-wrap__title">
-            <h4 class="map-title">Objectives</h4></div>
+            <h4 class="map-title">
+              Objectives
+              <span class="tooltip">
+                <span class="icon"></span>
+                <span class="text">Lorem ipsum dolor sit amet.</span>
+              </span>
+            </h4>
+          </div>
           <div class="objectives-wrap__wrap-items">
             <?php print $objectives; ?>
           </div>

@@ -49,12 +49,12 @@
                         <a href="#" class="img-block print"></a> <a href="#" class="img-block download">Download</a>
                     </div>
                 </div>
-                <div class="body-wrap columns large-8">
+                <div class="body-wrap columns large-7">
                     <div class="body-wrap__body-text">
                         <p ng-bind-html="tab.settings.overview.description"></p>
                     </div>
                 </div>
-                <div class="video-wrap columns large-4">
+                <div class="video-wrap columns large-5">
                     <div class="video-wrap__item help-img-full">
                         <a class="{{tab.settings.overview.preparedLink.class}}" href="{{tab.settings.overview.preparedLink.href}}" target="{{tab.settings.overview.preparedLink.target}}">
                             <img ng-if="tab.settings.overview.thumbnail !== ''"
@@ -72,4 +72,5 @@
             </div>
         </div>
     </div>
+    {{tabLoaded()}}
 </div>

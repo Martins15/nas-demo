@@ -9,10 +9,10 @@
 
     // @todo load from backend
     var linkArray = ['threats', 'actions', 'responses', 'partners']
-      , pathName = window.location.pathname
-      , pathArray = window.location.pathname.split('/')
-      , lastName = pathArray.slice(-1)[0]
-      , activeUrl = '';
+        , pathName = window.location.pathname
+        , pathArray = window.location.pathname.split('/')
+        , lastName = pathArray.slice(-1)[0]
+        , activeUrl = '';
 
     $('head').append('<base href="' + settings.basePath + '">');
 
@@ -30,9 +30,10 @@
       'ui.router',
       'ngStorage',
       'duScroll'
-    ]).directive('tabsRepeatDirective', function() {
-      return function($scope, element, attrs) {
-        if ($scope.$last){
+    ]).directive('tabsRepeatDirective', function () {
+      return function ($scope, element, attrs) {
+        if ($scope.$last) {
+
           // Drupal.attachBehaviors($('.body-item '));
         }
       };
@@ -55,8 +56,8 @@
         rewriteLinks: false
       });
 
-      linkArray.forEach(function(item) {
-          $stateProvider.state(item, {url: activeUrl + '/' + item});
+      linkArray.forEach(function (item) {
+        $stateProvider.state(item, {url: activeUrl + '/' + item});
       });
 
     });
@@ -70,8 +71,13 @@
         };
 
         var tabsArray = [];
-        linkArray.forEach(function(item) {
-          tabsArray.push({heading: item, route: item, active: false, class: item});
+        linkArray.forEach(function (item) {
+          tabsArray.push({
+            heading: item,
+            route: item,
+            active: false,
+            class: item
+          });
         });
 
         $scope.tabs = tabsArray;
@@ -83,30 +89,56 @@
           $scope.isActiveTab = $state.current.name;
         });
 
+
       }
     ]);
 
     NativeCtaApp.controller('Content', [
       '$scope', '$stateParams', '$state', '$rootScope', '$http',
       function ($scope, $stateParams, $state, $rootScope, $http) {
-      // @todo update var.
+        // @todo update var.
 
-       var idItem = Drupal.settings.nas_conservation_tracker.scorecardId;
+        var idItem = Drupal.settings.nasConservationTracker.scorecardId;
+        $scope.tabLoaded = function () {
+          if (Drupal.settings.nasConservationTracker.currentTab == 'responses') {
+            $('.trigger').show();
+          }
+          else {
+            $('.trigger').hide();
+          }
+
+          if (Drupal.settings.nasConservationTracker.currentTab == 'partners') {
+            $('.no-data-overlay').remove();
+            $('.leaflet-container').hide();
+            $('#nas-conservation-tracker-map-form').hide();
+            $('.partners-wrap:not(.ng-hide)').prependTo('.wrap-map-diagram');
+          }
+          else {
+            $('.leaflet-container').show();
+            $('#nas-conservation-tracker-map-form').show();
+          }
+          setTimeout(function () {
+            Drupal.attachBehaviors($('.' + Drupal.settings.nasConservationTracker.currentTab + '-tab-wrapper'));
+          }, 500);
+
+        }
+
 
         // Load json file.
         function getContent(currentName) {
           if (linkArray.indexOf(currentName) > -1) {
-            Drupal.settings.nas_conservation_tracker.tabsOverview = Drupal.settings.nas_conservation_tracker.tabsOverview || {};
-            Drupal.settings.nas_conservation_tracker.tabsData = Drupal.settings.nas_conservation_tracker.tabsData || {};
+            Drupal.settings.nasConservationTracker.tabsOverview = Drupal.settings.nasConservationTracker.tabsOverview || {};
+            Drupal.settings.nasConservationTracker.tabsData = Drupal.settings.nasConservationTracker.tabsData || {};
 
             // Load data via ajax only once.
-            if (!angular.isDefined(Drupal.settings.nas_conservation_tracker.tabsOverview[currentName])) {
+            if (!angular.isDefined(Drupal.settings.nasConservationTracker.tabsOverview[currentName])) {
               // @todo take from backend
               $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + currentName)
                 .then(function (response) {
                   var tabData = response.data.data;
                   tabData.settings.overview = tabData.settings[currentName];
                   tabData.settings.overview.preparedLink = {'target': '_self'};
+                  console.log('tabData',tabData);
                   if (angular.isDefined(tabData.settings.overview.image)) {
                     tabData.settings.overview.preparedLink.class = 'colorbox-load';
                     tabData.settings.overview.preparedLink.href = tabData.settings.overview.image + '?iframe=false';
@@ -122,51 +154,54 @@
                     tabData.settings.overview.preparedLink.href = tabData.settings.overview.link;
                     tabData.settings.overview.preparedLink.target = '_blank';
                   }
+                  else if (angular.isDefined(tabData.settings.overview.youtube)) {
+                    var width = $(window).width() * 0.75;
+                    var height = $(window).height() * 0.9;
+                    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+                    var match = tabData.settings.overview.youtube.match(regExp);
+                    var yid = (match&&match[7].length==11) ? match[7] : false;
+                    if (yid) {
+                      var youtube = 'https://www.youtube.com/embed/' + yid;
+                      tabData.settings.overview.preparedLink.class = 'colorbox-load youtube';
+                      tabData.settings.overview.preparedLink.href = youtube + '?iframe=true&width=' + width + '&height=' + height;
+                    }
+                  }
 
                   // Add partners array to scope.
                   // If partners tabs.
                   if (currentName === 'partners') {
-                      tabData.settings.overview.partners = tabData.partners;
+                    tabData.settings.overview.partners = tabData.partners;
                   }
 
                   tabData.settings.tabs = linkArray;
-                  Drupal.settings.nas_conservation_tracker.tabsOverview[currentName] = tabData;
-                  Drupal.settings.nas_conservation_tracker.tabsData[currentName] = response.data.data;
+                  Drupal.settings.nasConservationTracker.tabsOverview[currentName] = tabData;
+                  Drupal.settings.nasConservationTracker.tabsData[currentName] = response.data.data;
                   $scope['tab'] = tabData;
                   updateTabData(response.data.data);
-
                 });
             }
             else {
-              // Make sure url was changed.
-              setTimeout(function(){
-                  $scope['tab'] = Drupal.settings.nas_conservation_tracker.tabsOverview[currentName];
-                  updateTabData(Drupal.settings.nas_conservation_tracker.tabsData[currentName]);
-                  Drupal.attachBehaviors($('.' + currentName + '-tab-wrapper'));
-                  $scope.$apply();
-
-              }, 500);
+              $scope['tab'] = Drupal.settings.nasConservationTracker.tabsOverview[currentName];
+              updateTabData(Drupal.settings.nasConservationTracker.tabsData[currentName]);
             }
 
           }
         }
+
         function updateTabData(data) {
           if (angular.isDefined(data)) {
-            Drupal.settings.nas_conservation_tracker.json_data = data;
-            Drupal.nas_conservation_tracker_init_map();
-            Drupal.nas_conservation_tracker_init_charts();
+            Drupal.settings.nasConservationTracker.jsonData = data;
+            Drupal.nasCtInitMap();
+            Drupal.nasCtInitCharts();
           }
         }
 
+
         // On load.
         $rootScope.$on('$stateChangeSuccess', function (event, transition) {
+          Drupal.settings.nasConservationTracker.currentTab = $state['current']['name'];
           getContent($state['current']['name']);
           $scope.isActive = transition.name;
-
-          setTimeout(function(){
-            Drupal.attachBehaviors($('.' + $state['current']['name'] + '-tab-wrapper'));
-          }, 1000);
-
         });
 
         // On change.
@@ -178,10 +213,6 @@
         $rootScope.$on("$locationChangeSuccess", function (event, next, current) {
           // Placeholder.
         });
-
-
-
-
       }
     ]);
 
