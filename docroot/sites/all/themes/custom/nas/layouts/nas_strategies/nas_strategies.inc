@@ -23,3 +23,24 @@ $plugin = array(
   ),
 );
 
+$libs = [
+  'nas_master_native_plants' => [
+    'angularjs',
+    'angularjs-ui-router',
+    'angularjs-sanitize',
+    'angularjs-cookies',
+    'angularjs-animate',
+    'angularjs-storage',
+    'angularjs-scroll',
+  ],
+];
+
+foreach ($libs as $module => $libs) {
+  foreach ($libs as $lib) {
+    drupal_add_library($module, $lib);
+  }
+}
+
+if (module_exists('nas_conservation_tracker')) {
+  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/srt_tabs.js');
+}

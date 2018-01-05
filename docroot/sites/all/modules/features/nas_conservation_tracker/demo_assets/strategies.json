@@ -3,6 +3,28 @@
   "name": "Strategies",
   "subtitle": "We maximize our conservation results by focusing on five key strategies critical for birds.",
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_black_oystercatcher_hero.jpg",
+  "menu": {
+    "coasts": {
+      "name": "Coasts",
+      "link": "coasts"
+    },
+    "working_lands": {
+      "name": "Working Lands",
+      "link": "working-lands"
+    },
+    "water": {
+      "name": "Water",
+      "link": "water"
+    },
+    "bird_friendly_communities": {
+      "name": "Bird-friendly communities",
+      "link": "bird-friendly-communities"
+    },
+    "climate": {
+      "name": "Climate",
+      "link": "climate"
+    }
+  },
   "coasts": {
     "title": "Coasts",
     "description": "We focus on four landscapes dominated by private lands where birds and habitat are most threatened: California’s Central Valley; the sagebrush ecosystem of the interior West; North American grasslands, including the Chihuahuan Desert; and eastern forests."
