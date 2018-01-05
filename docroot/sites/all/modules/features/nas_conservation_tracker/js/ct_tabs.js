@@ -138,7 +138,7 @@
                   var tabData = response.data.data;
                   tabData.settings.overview = tabData.settings[currentName];
                   tabData.settings.overview.preparedLink = {'target': '_self'};
-                  $('.video-wrap a').attr('class', '').unbind('click');
+
                   if (angular.isDefined(tabData.settings.overview.image)) {
                     tabData.settings.overview.preparedLink.class = 'colorbox-load';
                     tabData.settings.overview.preparedLink.href = tabData.settings.overview.image + '?iframe=false';
@@ -166,6 +166,7 @@
                       tabData.settings.overview.preparedLink.href = youtube + '?iframe=true&width=' + width + '&height=' + height;
                     }
                   }
+                  $('.video-wrap a').attr('class', tabData.settings.overview.preparedLink.class).unbind('click');
 
                   // Add partners array to scope.
                   // If partners tabs.
