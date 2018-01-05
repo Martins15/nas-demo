@@ -138,7 +138,7 @@
                   var tabData = response.data.data;
                   tabData.settings.overview = tabData.settings[currentName];
                   tabData.settings.overview.preparedLink = {'target': '_self'};
-                  console.log('tabData',tabData);
+                  $('.video-wrap a').attr('class', '').unbind('click');
                   if (angular.isDefined(tabData.settings.overview.image)) {
                     tabData.settings.overview.preparedLink.class = 'colorbox-load';
                     tabData.settings.overview.preparedLink.href = tabData.settings.overview.image + '?iframe=false';
