@@ -89,7 +89,6 @@
           $scope.isActiveTab = $state.current.name;
         });
 
-
       }
     ]);
 
@@ -219,5 +218,24 @@
 
     angular.bootstrap(document.getElementsByTagName('body')[0], ['NativeCta']);
   };
+
+  // Drupal.behaviors.cta_mobile_menu = {
+  //   attach: function (context, settings) {
+  //     console.log(1);
+  //     $( document ).ready(function() {
+  //       $('.ct-item-nav-conservation li', context).each(function () {
+  //         if($(this).hasClass('true')) {
+  //           console.log(2);
+  //           var $classActive = $(this).attr('class'),
+  //             $textActive = $(this).text();
+  //           console.log($classActive);
+  //           console.log($textActive);
+  //           $('<li class='+$classActive +'>+ $textActive +</li>').appendTo('.mobile-active');
+  //         }
+  //       });
+  //     });
+  //   }
+  // };
+
 })(jQuery);
 

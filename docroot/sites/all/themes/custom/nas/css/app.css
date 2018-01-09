@@ -3744,7 +3744,7 @@ h1.centered, h2.centered, h3.centered, h4.centered, h5.centered,
   }
 }
 
-.ct-item-nav-conservation .menu-wrap ul, .species-filter .alphabet-block ul {
+.species-filter .alphabet-block ul {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -17757,7 +17757,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .bird-page.body-item .body-wrap {
-  margin-bottom: 175px;
+  margin-bottom: 50px;
 }
 @media only screen and (min-width: 768px) {
   .bird-page.body-item .body-wrap {
@@ -17782,6 +17782,24 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .bird-page.body-item .partners-wrap {
   width: 100%;
   overflow: hidden;
+}
+.bird-page.body-item .partner {
+  min-height: 120px;
+}
+.bird-page.body-item .partner p {
+  font-size: 16px;
+  line-height: 22px;
+}
+.bird-page.body-item .partner__state {
+  margin: 0 0 6px;
+}
+.bird-page.body-item .partner__state span {
+  font-size: 14px;
+}
+.bird-page.body-item .partner__name {
+  margin: 0;
+  padding: 4px 0;
+  font-weight: 600;
 }
 .bird-page.body-item .title-wrap__print {
   color: #9b9b9b;
@@ -17828,10 +17846,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   float: left;
   margin-left: 50px;
 }
-.bird-page.body-item h3 {
-  font-size: 33px;
-  line-height: 1.21;
-}
 
 .page-conservation-tracker-scorecard-black-oystercatcher .global-content.with-padding {
   padding-top: 50px;
@@ -17840,7 +17854,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .map-items.bird-page {
   background: #212121;
   margin-top: 10px;
-  padding-top: 10px;
+}
+@media only screen and (min-width: 768px) {
+  .map-items.bird-page {
+    margin-top: 20px;
+  }
 }
 .map-items.bird-page.demo-block .row {
   background: url("../img/bird-page/map.png") no-repeat center center;
@@ -17860,7 +17878,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 .map-item__inner-help {
-  padding: 25px 17.5px 0;
+  padding: 25px 0 0;
+}
+@media only screen and (min-width: 768px) {
+  .map-item__inner-help {
+    padding: 25px 17.5px 0;
+  }
 }
 .map-item .map-title {
   margin-bottom: 0;
@@ -17875,11 +17898,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
-.diagram-wrap {
-  padding-bottom: 20px;
-  margin-top: 200px;
-  margin-bottom: 10px;
-}
 @media only screen and (min-width: 768px) {
   .diagram-wrap {
     margin-bottom: 10px;
@@ -17939,6 +17957,24 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
+.help-wrap-items-map-items {
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  z-index: 999;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+@media only screen and (min-width: 768px) {
+  .help-wrap-items-map-items {
+    margin-right: 10px;
+    padding-bottom: 0;
+    margin-top: 80px;
+    margin-bottom: 0;
+    position: relative;
+    bottom: inherit;
+  }
+}
 .help-wrap-items-map-items .map-title {
   margin-bottom: 30px;
   position: relative;
@@ -18109,51 +18145,150 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .ct-item-nav-conservation {
   background: #fbfaf6;
-  overflow: hidden;
   padding: 10px 0;
 }
 @media only screen and (min-width: 768px) {
   .ct-item-nav-conservation {
     padding: 30px 0;
+    overflow: hidden;
   }
 }
 .ct-item-nav-conservation .menu-wrap {
-  padding-right: 50px;
+  position: relative;
+  background: #fbfaf6;
+  text-align: center;
+}
+@media only screen and (min-width: 768px) {
+  .ct-item-nav-conservation .menu-wrap {
+    text-align: left;
+    padding-right: 50px;
+  }
 }
 .ct-item-nav-conservation .menu-wrap ul {
   list-style: none;
   margin: 0;
+  position: absolute;
+  display: none;
+  background: #fbfaf6;
+  width: 100%;
 }
-.ct-item-nav-conservation .menu-wrap li {
+@media only screen and (min-width: 768px) {
+  .ct-item-nav-conservation .menu-wrap ul {
+    display: block;
+    position: relative;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+  }
+}
+.ct-item-nav-conservation .menu-wrap ul.open {
+  display: block;
+  left: 0;
+  z-index: 2;
+}
+@media only screen and (min-width: 768px) {
+  .ct-item-nav-conservation .menu-wrap ul.open {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+  }
+}
+.ct-item-nav-conservation .menu-wrap ul.open > .true {
+  background: #fff;
+}
+@media only screen and (min-width: 768px) {
+  .ct-item-nav-conservation .menu-wrap ul.open > .true {
+    background: transparent;
+  }
+}
+.ct-item-nav-conservation .menu-wrap li a,
+.ct-item-nav-conservation .menu-wrap .mobile-active {
   cursor: pointer;
   background-size: auto 38px;
   height: 40px;
-  background-position: left center;
+  background-position: 10px center;
   background-repeat: no-repeat;
-  padding-left: 50px;
+  padding-left: 60px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   line-height: 40px;
   font-size: 16px;
   text-transform: capitalize;
   font-family: "Lato", sans-serif;
+  color: #222222;
+  display: inline-block;
 }
 @media only screen and (min-width: 768px) {
-  .ct-item-nav-conservation .menu-wrap li {
+  .ct-item-nav-conservation .menu-wrap li a,
+  .ct-item-nav-conservation .menu-wrap .mobile-active {
     width: 60px;
     height: 60px;
+    margin-top: 0;
+    margin-bottom: 0;
     font-size: 0;
     opacity: .2;
     background-position: center;
     background-size: contain;
     padding: 0;
   }
-  .ct-item-nav-conservation .menu-wrap li:hover {
+  .ct-item-nav-conservation .menu-wrap li a:hover,
+  .ct-item-nav-conservation .menu-wrap .mobile-active:hover {
     opacity: 1;
   }
 }
+.ct-item-nav-conservation .menu-wrap li a.true,
+.ct-item-nav-conservation .menu-wrap .mobile-active.true {
+  background-color: #fff;
+}
 @media only screen and (min-width: 768px) {
-  .ct-item-nav-conservation .menu-wrap li.true {
+  .ct-item-nav-conservation .menu-wrap li a.true,
+  .ct-item-nav-conservation .menu-wrap .mobile-active.true {
     font-weight: bold;
     opacity: 1;
+    background-color: transparent;
+  }
+}
+.ct-item-nav-conservation .menu-wrap .mobile-active {
+  display: inline-block;
+  padding-right: 0;
+}
+@media only screen and (min-width: 768px) {
+  .ct-item-nav-conservation .menu-wrap .mobile-active {
+    display: none;
   }
 }
 .ct-item-nav-conservation .menu-wrap .threats {
@@ -18292,6 +18427,41 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-scorecard-tabs {
   background: #1c1c1c;
   color: #fff;
+  position: relative;
+  min-height: 50px;
+}
+.ct-scorecard-tabs:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  z-index: 2;
+  opacity: 0.8;
+  display: block;
+  background: -moz-linear-gradient(left, black 0%, rgba(125, 185, 232, 0) 100%);
+  background: -webkit-linear-gradient(left, black 0%, rgba(125, 185, 232, 0) 100%);
+  background: linear-gradient(to right, #000000 0%, rgba(125, 185, 232, 0) 100%);
+}
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-tabs:before {
+    background: transparent;
+    width: 0;
+    height: 0;
+  }
+}
+.ct-scorecard-tabs__help {
+  width: 130%;
+  position: absolute;
+  left: -30%;
+}
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-tabs__help {
+    width: 100%;
+    position: relative;
+    left: 0;
+  }
 }
 .ct-scorecard-tabs .custom-dropdown {
   display: none;
@@ -18366,21 +18536,23 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-scorecard-tabs .link-wrapper:last-child {
   margin-left: 15px;
 }
-.ct-scorecard-tabs .link-wrapper:last-child:after {
-  position: absolute;
-  left: 50%;
-  bottom: -17px;
-  transform: rotate(0deg);
-  margin-left: -5px;
-  opacity: 1;
-  width: 0;
-  height: 0;
-  padding: 0;
-  border-style: solid;
-  border-width: 0 7.5px 10px 7.5px;
-  border-color: transparent transparent #ffffff transparent;
-  display: block;
-  content: "";
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-tabs .link-wrapper:last-child:after {
+    position: absolute;
+    left: 50%;
+    bottom: -17px;
+    transform: rotate(0deg);
+    margin-left: -5px;
+    opacity: 1;
+    width: 0;
+    height: 0;
+    padding: 0;
+    border-style: solid;
+    border-width: 0 7.5px 10px 7.5px;
+    border-color: transparent transparent #ffffff transparent;
+    display: block;
+    content: "";
+  }
 }
 .ct-scorecard-tabs .menu-has-children {
   display: inline-block;
@@ -18395,20 +18567,42 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 .ct-scorecard-main .leaflet-container {
+  position: absolute;
+  top: 0;
   width: 100%;
 }
+.ct-scorecard-main .leaflet-container .leaflet-bottom.leaflet-right .leaflet-control-attribution.leaflet-control {
+  display: none;
+}
+.ct-scorecard-main .leaflet-container .leaflet-control-zoom {
+  display: none;
+}
 @media only screen and (min-width: 768px) {
-  .ct-scorecard-main .leaflet-container {
-    position: absolute;
-    top: 0;
-    width: 100%;
+  .ct-scorecard-main .leaflet-container .leaflet-control-zoom {
+    display: block;
+  }
+}
+.ct-scorecard-main .leaflet-container .leaflet-bottom.leaflet-left {
+  top: 10px;
+  bottom: inherit;
+}
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-main .leaflet-container .leaflet-bottom.leaflet-left {
+    top: inherit;
+    bottom: 0;
   }
 }
 .ct-scorecard-main #nas-conservation-tracker-map-form {
   position: absolute;
-  left: 70px;
+  right: 15px;
   top: 33px;
   z-index: 999;
+}
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-main #nas-conservation-tracker-map-form {
+    left: 70px;
+    right: inherit;
+  }
 }
 .ct-scorecard-main #nas-conservation-tracker-map-form .form-item-map-type.form-type-radios {
   font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
@@ -18480,7 +18674,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     clear: both;
   }
 }
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1025px) {
   .help-wrap-items-map-items {
     margin-right: 15.27777777777778%;
   }
@@ -18488,12 +18682,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .wrap-map-diagram {
   position: relative;
+  background: #212121;
+  overflow: hidden;
+  min-height: 1300px;
 }
 @media only screen and (min-width: 768px) {
   .wrap-map-diagram {
     min-height: 800px;
-    background: #212121;
-    overflow: hidden;
   }
 }
 
@@ -18632,7 +18827,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 @media screen and (min-width: 1000px) {
   .partners-wrap.columns {
     position: absolute;
-    top: 0;
+    top: 10px;
     margin: 0;
     right: calc(572px + 16%);
     width: 29%;
@@ -18687,6 +18882,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: none;
 }
 
+.partners-wrap.columns ~ .help-wrap-items-map-items {
+  position: relative;
+}
+
 .bird-page ul li {
   padding-bottom: 10px;
 }
@@ -18731,6 +18930,24 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 #cboxTitle {
   background: none;
+}
+
+.page-content.nas-cta-tabs-angular-processed,
+.page-content.nas-cta-tabs-angular-processed {
+  margin-bottom: 0;
+}
+.page-content.nas-cta-tabs-angular-processed > *,
+.page-content.nas-cta-tabs-angular-processed > * {
+  margin-bottom: 0;
+}
+
+.ct-scorecard-header .curtain-content .row {
+  padding-bottom: 30px;
+}
+@media screen and (min-width: 768px) {
+  .ct-scorecard-header .curtain-content .row {
+    padding-bottom: 25px;
+  }
 }
 
 .species-filter {
