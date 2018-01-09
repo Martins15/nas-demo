@@ -8,9 +8,9 @@
  * Create scorecard node(s).
  */
 function nas_conservation_tracker_update_7002() {
-  global $base_url;
-  $demo_url = $base_url . '/sites/all/modules/features/nas_conservation_tracker/demo_assets';
-  variable_set('nas_conservation_tracker_endpoint', $demo_url);
+//  global $base_url;
+//  $demo_url = $base_url . '/sites/all/modules/features/nas_conservation_tracker/demo_assets';
+//  variable_set('nas_conservation_tracker_endpoint', $demo_url);
 
   // Black Oystercatcher.
   $data = nas_conservation_tracker_get_json('scorecard-123');

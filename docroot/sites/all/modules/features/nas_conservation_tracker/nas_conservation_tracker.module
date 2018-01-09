@@ -176,6 +176,7 @@ function nas_conservation_tracker_get_json($path) {
 
   if (empty($json_data)) {
     $json_url = rtrim(variable_get('nas_conservation_tracker_endpoint', $demo_url), '\/') . '/' . $path . '.json';
+    watchdog('ct debug', 'JSON URL - ' . $json_url);
     $request = drupal_http_request($json_url);
     $json_data = drupal_json_decode($request->data);
     if (variable_get('nas_conservation_tracker_api_cache_enabled', TRUE)) {
