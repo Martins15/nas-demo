@@ -230,3 +230,109 @@ function nas_conservation_tracker_node_view($node, $view_mode, $langcode) {
     }
   }
 }
+
+/**
+ * Implements hook_cron().
+ */
+function nas_conservation_tracker_cron() {
+  nas_conservation_tracker_load_species();
+}
+
+/**
+ * Load species from datahub and create custom entities.
+ */
+function nas_conservation_tracker_load_species() {
+  $path = 'species';
+  $cid = 'nas_conservation_tracker:' . md5($path);
+  cache_clear_all($cid, 'cache');
+  $data = nas_conservation_tracker_get_json($path);
+  // Bundle name same as entity name.
+  $entity_type = 'ct_species';
+  foreach ($data as $species) {
+    $entity = nas_conservation_tracker_get_entity($species['id'], $entity_type);
+    if (!$entity) {
+      $entity = entity_create($entity_type, array('type' => $entity_type));
+    }
+    $wrapper = entity_metadata_wrapper($entity_type, $entity);
+    //echo'<pre>';
+    //print_r($wrapper);
+    //die;
+    if (!empty($species['id'])) {
+      $wrapper->field_ct_remote_id->set($species['id']);
+    }
+    if (!empty($species['commonName'])) {
+      $wrapper->title->set($species['commonName']);
+      $wrapper->field_ct_common_name->set($species['commonName']);
+    }
+    if (!empty($species['scientificName'])) {
+      $wrapper->field_ct_scientific_name->set($species['scientificName']);
+    }
+    if (!empty($species['scoreCard'])) {
+      $wrapper->field_ct_score_card->set($species['scoreCard']);
+      $wrapper->field_ct_score_card_url->set(nas_conservation_tracker_scorecard_url($species['scoreCard']));
+    }
+    if (!empty($species['image'])) {
+      $wrapper->field_ct_image->set($species['image']);
+    }
+    if (!empty($species['dropped'])) {
+      $wrapper->field_ct_dropped->set($species['dropped']);
+    }
+    if (!empty($species['climateStatus'])) {
+      $wrapper->field_ct_climate_status->set($species['climateStatus']);
+    }
+    if (!empty($species['stateOfBirds'])) {
+      $wrapper->field_ct_state_of_birds->set($species['stateOfBirds']);
+    }
+    if (!empty($species['alphaCode'])) {
+      $wrapper->field_ct_alpha_code->set($species['alphaCode']);
+    }
+    if (!empty($species['parent'])) {
+      $wrapper->field_ct_parent->set($species['parent']);
+    }
+    if (!empty($species['strategyInitiativeId'])) {
+      $wrapper->field_ct_strategy_initiative_id->set($species['strategyInitiativeId']);
+    }
+    if (!empty($species['iucn'])) {
+      $wrapper->field_ct_iucn->set($species['iucn']);
+    }
+    if (!empty($species['guild'])) {
+      $wrapper->field_ct_guild->set($species['guild']);
+    }
+    $wrapper->save();
+  }
+}
+
+/**
+ * Load entity by remote id.
+ */
+function nas_conservation_tracker_get_entity($remote_id, $entity_type) {
+  $entities = array();
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', $entity_type)
+    ->fieldCondition('field_ct_remote_id', 'value', $remote_id, '=');
+  $result = $query->execute();
+  if (isset($result[$entity_type])) {
+    $entity_ids = array_keys($result[$entity_type]);
+    $entity = entity_load($entity_type, $entity_ids);
+  }
+  return current($entity);
+}
+
+/**
+ * Implements hook_search_api_index_reindex().
+ */
+function nas_conservation_tracker_search_api_index_reindex(SearchApiIndex $index, $clear = FALSE) {
+  nas_conservation_tracker_load_species();
+}
+
+function nas_conservation_tracker_scorecard_url($scorecard) {
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->entityCondition('bundle', 'ct_scorecard')
+    ->fieldCondition('field_scorecard_id', 'value', (int)$scorecard, '=')
+    ->execute();
+  $nid = current(array_keys($result['node']));
+  return drupal_get_path_alias('node/' . $nid);
+}
+
