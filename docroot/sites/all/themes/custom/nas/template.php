@@ -2029,6 +2029,15 @@ function nas_preprocess_asc_landing_page(&$vars) {
 }
 
 /**
+ * Preprocess function for views_view_fields theme.
+ */
+function nas_preprocess_views_view_fields(&$vars) {
+  if ($vars['view']->name == 'ct_species') {
+
+  }
+}
+
+/**
  * Helper function to provide color_mode_gradient and color_mode_text variables.
  */
 function _nas_color_mode(&$variables) {

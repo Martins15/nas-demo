@@ -20879,3 +20879,8 @@ ul.clearing-thumbs {
     margin: 0 85px;
   }
 }
+
+.bird-card-illustration .no-scorecard img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
