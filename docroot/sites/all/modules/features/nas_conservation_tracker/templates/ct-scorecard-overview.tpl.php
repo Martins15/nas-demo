@@ -6,16 +6,16 @@
 <div class="tabs ct-item-nav-conservation" ng-cloak data-ng-controller="Tabs">
     <div class="row">
         <div class="menu-wrap columns large-6">
-            <ul>
-                <li
-                        ng-repeat="tab in tabs"
-                        ui-sref="{{ tab.route }}"
-                        class="{{tab.heading}} {{tab.active}}">{{ tab.heading }}
+            <div class="mobile-active {{isActiveTab}}" for="{{isActiveTab}}" ng-click="toggle = ! toggle">{{isActiveTab}}</div>
+            <ul ng-class="{'open' : toggle }" ng-click="toggle = ! toggle">
+                <li ng-repeat="tab in tabs" class="{{tab.active}}">
+                    <a ui-sref="{{ tab.route }}"
+                       class="{{tab.heading}} {{tab.active}}">{{ tab.heading }}</a>
                 </li>
             </ul>
         </div>
         <div class="text-wrap columns large-6">
-            <div class="text-wrap__content" ng-cloak>
+            <div class="text-wrap__content  hide-for-tiny hide-for-medium hide-for-small" ng-cloak>
                 <div class="threats" ng-class="{'active': isActiveTab === 'threats'}">
                     <h4>Threats</h4>
                     <p><?php print $data['settings']['threats']['tagLine'] ?></p>
@@ -44,8 +44,8 @@
             <div class="bird-page body-item {{value}}-tab-wrapper" ng-cloak  ng-class="{'active': isActive === value}">
 
                 <div class="title-wrap">
-                    <div class="title-wrap__title columns tiny-9"><h3>{{tab.settings.overview.title}}</h3></div>
-                    <div class="title-wrap__print  columns large-3 hide-for-medium hide-for-small">
+                    <div class="title-wrap__title columns large-8"><h3>{{tab.settings.overview.title}}</h3></div>
+                    <div class="title-wrap__print  columns large-4  hide-for-tiny hide-for-medium hide-for-small">
                         <a href="#" class="img-block print"></a> <a href="#" class="img-block download">Download</a>
                     </div>
                 </div>
@@ -63,9 +63,10 @@
                     </div>
                 </div>
                 <div class="partners-wrap columns" ng-show="{{value === 'partners'}}">
-                    <div class="partners-wrap__partner partner" ng-repeat="partner in tab.settings.overview.partners">
-                        <div class="partner__state">{{partner.state}}</div>
-                        <div class="partner__name">{{partner.name}}</div>
+                    <div class="partners-wrap__partner partner large-4 medium-12 columns" ng-repeat="partner in tab.settings.overview.partners">
+                        <div class="partner__state"><p><span>State:</span> {{partner.state}}</p></div>
+                        <div class="partner__name"><p>{{partner.name}}</p></div>
+                        <div class="partner__chapter"  ng-if="partner.chapter.length > 0"><p>Audubon Chapter</p></div>
                     </div>
                 </div>
             </div>

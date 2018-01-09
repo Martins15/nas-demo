@@ -42,7 +42,7 @@
     });
 
     if (!angular.isDefined(json) || !angular.isDefined(json.sites) || json.sites.length == 0) {
-      $('.leaflet-container').after('<div class="no-data-overlay">' + Drupal.t('No data to display') + '</div>');
+      $('.leaflet-container').after('<div class="no-data-overlay">' + Drupal.t('No data') + '</div>');
     }
 
     if (angular.isDefined(json) && angular.isDefined(json.sites)) {
@@ -142,23 +142,24 @@
         }
       });
 
+
+
+      $radios.change(function () {
+        resetMap();
+        scaleMapTo($(this).val());
+      });
+
+      $(window).resize(function () {
+        rebuildVisibleArea($visibleArea, classes);
+      });
+
+      $reset.click(function (e) {
+        e.preventDefault();
+        resetMap();
+      });
+
       lMap.initiated = true;
-
     }
-
-    $radios.change(function () {
-      scaleMapTo($(this).val());
-    });
-
-    $(window).resize(function () {
-      rebuildVisibleArea($visibleArea, classes);
-    });
-
-    $reset.click(function (e) {
-      e.preventDefault();
-      resetMap();
-    });
-
     // Helper functions.
 
     function detectCounty(site, marker) {
@@ -250,6 +251,7 @@
     }
 
     function resetMap() {
+      var loc = getLocation();
       if (Drupal.settings.nasConservationTracker.scale[loc]) {
         var latlng = L.latLng(
           Drupal.settings.nasConservationTracker.jsonData.settings[loc].map.latitude,
@@ -268,7 +270,8 @@
     }
 
     function isUnit(layer) {
-      return (layer.feature && layer.feature.constructor == LPolygon);
+      return (layer.feature);
+      //return (layer.feature && layer.feature.constructor == LPolygon);
     }
 
     function isSite(layer) {
@@ -307,7 +310,6 @@
       var polygons = {};
 
       lMap.eachLayer(function (layer) {
-
         if (isUnit(layer)) {
           // Remove present polygons.
           lMap.removeLayer(layer);
@@ -690,8 +692,10 @@
         var $ul = $breadcrumbBlock.find('ul.custom-dropdown');
         $breadcrumbBlock.find('.menu-has-children').hover(function () {
           $ul.show();
+          $('.active-trail').addClass('hover');
         }, function () {
           $ul.hide();
+          $('.active-trail').removeClass('hover');
         });
       }
     }

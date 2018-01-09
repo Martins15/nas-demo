@@ -4,11 +4,12 @@
  */
 ?>
 <div class="ct-scorecard-tabs">
+    <div class="ct-scorecard-tabs__help">
   <div class="row">
     <?php foreach ($menu_tree as $item): ?>
-      <?php print $item['markup']; ?>
+     <span class="link-wrapper"> <?php print $item['markup']; ?></span>
       <?php if (isset($item['children'])): ?>
-        <div class="menu-has-children">
+        <div class="link-wrapper menu-has-children">
           <?php print $item['children'][0]['markup']; ?>
           <ul class="custom-dropdown">
           <?php foreach ($item['children'] as $child): ?>
@@ -19,4 +20,5 @@
       <?php endif; ?>
     <?php endforeach; ?>
   </div>
+    </div>
 </div>

@@ -89,7 +89,6 @@
           $scope.isActiveTab = $state.current.name;
         });
 
-
       }
     ]);
 
@@ -100,6 +99,12 @@
 
         var idItem = Drupal.settings.nasConservationTracker.scorecardId;
         $scope.tabLoaded = function () {
+          if (Drupal.settings.nasConservationTracker.currentTab == 'responses') {
+            $('.trigger').show();
+          }
+          else {
+            $('.trigger').hide();
+          }
 
           if (Drupal.settings.nasConservationTracker.currentTab == 'partners') {
             $('.no-data-overlay').remove();
@@ -132,7 +137,7 @@
                   var tabData = response.data.data;
                   tabData.settings.overview = tabData.settings[currentName];
                   tabData.settings.overview.preparedLink = {'target': '_self'};
-                  console.log('tabData',tabData);
+
                   if (angular.isDefined(tabData.settings.overview.image)) {
                     tabData.settings.overview.preparedLink.class = 'colorbox-load';
                     tabData.settings.overview.preparedLink.href = tabData.settings.overview.image + '?iframe=false';
@@ -160,6 +165,7 @@
                       tabData.settings.overview.preparedLink.href = youtube + '?iframe=true&width=' + width + '&height=' + height;
                     }
                   }
+                  $('.video-wrap a').attr('class', tabData.settings.overview.preparedLink.class).unbind('click');
 
                   // Add partners array to scope.
                   // If partners tabs.
@@ -212,5 +218,24 @@
 
     angular.bootstrap(document.getElementsByTagName('body')[0], ['NativeCta']);
   };
+
+  // Drupal.behaviors.cta_mobile_menu = {
+  //   attach: function (context, settings) {
+  //     console.log(1);
+  //     $( document ).ready(function() {
+  //       $('.ct-item-nav-conservation li', context).each(function () {
+  //         if($(this).hasClass('true')) {
+  //           console.log(2);
+  //           var $classActive = $(this).attr('class'),
+  //             $textActive = $(this).text();
+  //           console.log($classActive);
+  //           console.log($textActive);
+  //           $('<li class='+$classActive +'>+ $textActive +</li>').appendTo('.mobile-active');
+  //         }
+  //       });
+  //     });
+  //   }
+  // };
+
 })(jQuery);
 
