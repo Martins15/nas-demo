@@ -117,10 +117,10 @@ $gray-lightish: #9b9b9b;
       }
     }
   }
-  h3 {
-    font-size: 33px;
-    line-height: 1.21;
-  }
+  //h3 {
+  //  font-size: 33px;
+  //  line-height: 1.21;
+  //}
 }
 
 .page-conservation-tracker-scorecard-black-oystercatcher {
@@ -151,7 +151,10 @@ $gray-lightish: #9b9b9b;
     margin-right: 0;
   }
   &__inner-help {
-    padding: $padding-item;
+    padding: 25px 0 0;
+    @include breakpoint(large-up) {
+      padding: $padding-item;
+    }
   }
   .map-title {
     margin-bottom: 0;
@@ -166,10 +169,6 @@ $gray-lightish: #9b9b9b;
 }
 
 .diagram-wrap {
-  // @todo Update after add 3d.
-  padding-bottom: 20px;
-  margin-top: 200px;
-  margin-bottom: 10px;
   @include breakpoint(large-up) {
     margin-bottom: 10px;
     margin-top: 0;
@@ -227,6 +226,19 @@ $gray-lightish: #9b9b9b;
 }
 
 .help-wrap-items-map-items {
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  z-index: 999;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  @include breakpoint(large-up) {
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    bottom: inherit;
+  }
   .map-title {
     margin-bottom: 30px;
     position: relative;
@@ -717,11 +729,13 @@ $gray-lightish: #9b9b9b;
     }
   }
   .leaflet-container {
-    width: 100%;
-    @include breakpoint(large-up) {
       position: absolute;
       top: 0;
       width: 100%;
+    .leaflet-bottom.leaflet-right {
+      .leaflet-control-attribution.leaflet-control {
+        display: none;
+      }
     }
   }
 
@@ -810,10 +824,11 @@ $gray-lightish: #9b9b9b;
 
 .wrap-map-diagram {
   position: relative;
+  background: $bg-map-bird;
+  overflow: hidden;
+  min-height: 1300px;
   @include breakpoint(large-up) {
     min-height: 800px;
-    background: $bg-map-bird;
-    overflow: hidden;
   }
 }
 

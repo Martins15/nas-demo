@@ -17846,10 +17846,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   float: left;
   margin-left: 50px;
 }
-.bird-page.body-item h3 {
-  font-size: 33px;
-  line-height: 1.21;
-}
 
 .page-conservation-tracker-scorecard-black-oystercatcher .global-content.with-padding {
   padding-top: 50px;
@@ -17878,7 +17874,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 .map-item__inner-help {
-  padding: 25px 17.5px 0;
+  padding: 25px 0 0;
+}
+@media only screen and (min-width: 768px) {
+  .map-item__inner-help {
+    padding: 25px 17.5px 0;
+  }
 }
 .map-item .map-title {
   margin-bottom: 0;
@@ -17893,11 +17894,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
-.diagram-wrap {
-  padding-bottom: 20px;
-  margin-top: 200px;
-  margin-bottom: 10px;
-}
 @media only screen and (min-width: 768px) {
   .diagram-wrap {
     margin-bottom: 10px;
@@ -17957,6 +17953,23 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
+.help-wrap-items-map-items {
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  z-index: 999;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+@media only screen and (min-width: 768px) {
+  .help-wrap-items-map-items {
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    bottom: inherit;
+  }
+}
 .help-wrap-items-map-items .map-title {
   margin-bottom: 30px;
   position: relative;
@@ -18450,14 +18463,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 .ct-scorecard-main .leaflet-container {
+  position: absolute;
+  top: 0;
   width: 100%;
 }
-@media only screen and (min-width: 768px) {
-  .ct-scorecard-main .leaflet-container {
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
+.ct-scorecard-main .leaflet-container .leaflet-bottom.leaflet-right .leaflet-control-attribution.leaflet-control {
+  display: none;
 }
 .ct-scorecard-main #nas-conservation-tracker-map-form {
   position: absolute;
@@ -18543,12 +18554,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .wrap-map-diagram {
   position: relative;
+  background: #212121;
+  overflow: hidden;
+  min-height: 1300px;
 }
 @media only screen and (min-width: 768px) {
   .wrap-map-diagram {
     min-height: 800px;
-    background: #212121;
-    overflow: hidden;
   }
 }
 
