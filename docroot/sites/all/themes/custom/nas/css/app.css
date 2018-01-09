@@ -17854,7 +17854,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .map-items.bird-page {
   background: #212121;
   margin-top: 10px;
-  padding-top: 10px;
+}
+@media only screen and (min-width: 768px) {
+  .map-items.bird-page {
+    margin-top: 20px;
+  }
 }
 .map-items.bird-page.demo-block .row {
   background: url("../img/bird-page/map.png") no-repeat center center;
@@ -17963,8 +17967,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .help-wrap-items-map-items {
+    margin-right: 10px;
     padding-bottom: 0;
-    margin-top: 0;
+    margin-top: 80px;
     margin-bottom: 0;
     position: relative;
     bottom: inherit;
@@ -18459,7 +18464,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .ct-scorecard-main .row {
-    min-height: 800px;
+    min-height: 900px;
   }
 }
 .ct-scorecard-main .leaflet-container {
@@ -18470,11 +18475,35 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-scorecard-main .leaflet-container .leaflet-bottom.leaflet-right .leaflet-control-attribution.leaflet-control {
   display: none;
 }
+.ct-scorecard-main .leaflet-container .leaflet-control-zoom {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-main .leaflet-container .leaflet-control-zoom {
+    display: block;
+  }
+}
+.ct-scorecard-main .leaflet-container .leaflet-bottom.leaflet-left {
+  top: 0;
+  bottom: inherit;
+}
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-main .leaflet-container .leaflet-bottom.leaflet-left {
+    top: inherit;
+    bottom: 0;
+  }
+}
 .ct-scorecard-main #nas-conservation-tracker-map-form {
   position: absolute;
-  left: 70px;
+  right: 15px;
   top: 33px;
   z-index: 999;
+}
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-main #nas-conservation-tracker-map-form {
+    left: 70px;
+    right: inherit;
+  }
 }
 .ct-scorecard-main #nas-conservation-tracker-map-form .form-item-map-type.form-type-radios {
   font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
@@ -18546,7 +18575,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     clear: both;
   }
 }
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1025px) {
   .help-wrap-items-map-items {
     margin-right: 15.27777777777778%;
   }
@@ -18560,7 +18589,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .wrap-map-diagram {
-    min-height: 800px;
+    min-height: 900px;
   }
 }
 

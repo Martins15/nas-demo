@@ -132,7 +132,9 @@ $gray-lightish: #9b9b9b;
 .map-items.bird-page {
   background: $bg-map-bird;
   margin-top: 10px;
-  padding-top: 10px;
+  @include breakpoint(large-up) {
+    margin-top: 20px;
+  }
   &.demo-block {
     .row {
       background: url("../img/bird-page/map.png") no-repeat center center;
@@ -233,8 +235,9 @@ $gray-lightish: #9b9b9b;
   bottom: 10px;
   width: 100%;
   @include breakpoint(large-up) {
+    margin-right: 10px;
     padding-bottom: 0;
-    margin-top: 0;
+    margin-top: 80px;
     margin-bottom: 0;
     position: relative;
     bottom: inherit;
@@ -725,7 +728,7 @@ $gray-lightish: #9b9b9b;
   .row {
     position: relative;
     @include breakpoint(large-up) {
-      min-height: 800px;
+      min-height: 900px;
     }
   }
   .leaflet-container {
@@ -737,13 +740,31 @@ $gray-lightish: #9b9b9b;
         display: none;
       }
     }
+    .leaflet-control-zoom {
+      display: none;
+      @include breakpoint(large-up) {
+        display: block;
+      }
+    }
+    .leaflet-bottom.leaflet-left {
+      top: 0;
+      bottom: inherit;
+      @include breakpoint(large-up) {
+        top: inherit;
+        bottom: 0;
+      }
+    }
   }
 
   #nas-conservation-tracker-map-form {
     position: absolute;
-    left: 70px;
+    right: 15px;
     top: 33px;
     z-index: 999;
+    @include breakpoint(large-up) {
+      left: 70px;
+      right: inherit;
+    }
     .form-item-map-type.form-type-radios {
       font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
       > label {
@@ -817,7 +838,7 @@ $gray-lightish: #9b9b9b;
     float: right;
     clear: both;
   }
-  @media only screen and (min-width: 1000px) {
+  @media only screen and (min-width: 1025px) {
     margin-right: 15.27777777777778%;
   }
 }
@@ -828,7 +849,7 @@ $gray-lightish: #9b9b9b;
   overflow: hidden;
   min-height: 1300px;
   @include breakpoint(large-up) {
-    min-height: 800px;
+    min-height: 900px;
   }
 }
 
