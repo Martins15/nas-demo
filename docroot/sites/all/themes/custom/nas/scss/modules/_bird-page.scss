@@ -772,7 +772,7 @@ $gray-lightish: #9b9b9b;
   .row {
     position: relative;
     @include breakpoint(large-up) {
-      min-height: 900px;
+      min-height: 800px;
     }
   }
   .leaflet-container {
@@ -893,7 +893,7 @@ $gray-lightish: #9b9b9b;
   overflow: hidden;
   min-height: 1300px;
   @include breakpoint(large-up) {
-    min-height: 900px;
+    min-height: 800px;
   }
 }
 

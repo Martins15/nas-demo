@@ -18563,7 +18563,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .ct-scorecard-main .row {
-    min-height: 900px;
+    min-height: 800px;
   }
 }
 .ct-scorecard-main .leaflet-container {
@@ -18688,7 +18688,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .wrap-map-diagram {
-    min-height: 900px;
+    min-height: 800px;
   }
 }
 
