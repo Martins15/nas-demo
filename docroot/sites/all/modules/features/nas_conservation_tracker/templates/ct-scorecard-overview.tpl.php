@@ -6,11 +6,11 @@
 <div class="tabs ct-item-nav-conservation" ng-cloak data-ng-controller="Tabs">
     <div class="row">
         <div class="menu-wrap columns large-6">
-            <ul>
-                <li
-                        ng-repeat="tab in tabs"
-                        ui-sref="{{ tab.route }}"
-                        class="{{tab.heading}} {{tab.active}}">{{ tab.heading }}
+            <div class="mobile-active {{isActiveTab}}" for="{{isActiveTab}}" ng-click="toggle = ! toggle">{{isActiveTab}}</div>
+            <ul ng-class="{'open' : toggle }" ng-click="toggle = ! toggle">
+                <li ng-repeat="tab in tabs" class="{{tab.active}}">
+                    <a ui-sref="{{ tab.route }}"
+                       class="{{tab.heading}} {{tab.active}}">{{ tab.heading }}</a>
                 </li>
             </ul>
         </div>

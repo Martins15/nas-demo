@@ -25,7 +25,7 @@ $gray-lightish: #9b9b9b;
 
 .bird-page.body-item {
   .body-wrap {
-    margin-bottom: 175px;
+    margin-bottom: 50px;
     @include breakpoint(large-up) {
       margin-bottom: 0;
     }
@@ -414,32 +414,67 @@ $gray-lightish: #9b9b9b;
 
 .ct-item-nav-conservation {
   background: $grey-menu-bird;
-  overflow: hidden;
   padding: 10px 0;
   @include breakpoint(large-up) {
     padding: 30px 0;
+    overflow: hidden;
   }
   .menu-wrap {
-    padding-right: 50px;
+    position: relative;
+    background: $grey-menu-bird;
+    text-align: center;
+    @include breakpoint(large-up) {
+      text-align: left;
+      padding-right: 50px;
+    }
     ul {
       list-style: none;
       margin: 0;
-      @extend %content-between;
+      position: absolute;
+      display: none;
+      background: $grey-menu-bird;
+      width: 100%;
+      @include breakpoint(large-up) {
+        display: block;
+        position: relative;
+        @include content-between();
+      }
+      &.open {
+        display: block;
+        left: 0;
+        z-index: 2;
+        @include breakpoint(large-up) {
+          @include content-between();
+        }
+        > .true {
+          background: $white;
+          @include breakpoint(large-up) {
+            background: transparent;
+          }
+        }
+      }
     }
-    li {
+    li a,
+    .mobile-active {
       cursor: pointer;
       background-size: auto 38px;
       height: 40px;
-      background-position: left center;
+      background-position: 10px center;
       background-repeat: no-repeat;
-      padding-left: 50px;
+      padding-left: 60px;
+      margin-top: 10px;
+      margin-bottom: 10px;
       line-height: 40px;
       font-size: 16px;
       text-transform: capitalize;
       font-family: $lato-font;
+      color: #222222;
+      display: inline-block;
       @include breakpoint(large-up) {
         width: 60px;
         height: 60px;
+        margin-top: 0;
+        margin-bottom: 0;
         font-size: 0;
         opacity: .2;
         background-position: center;
@@ -450,10 +485,19 @@ $gray-lightish: #9b9b9b;
         }
       }
       &.true {
+        background-color: $white;
         @include breakpoint(large-up) {
           font-weight: bold;
           opacity: 1;
+          background-color: transparent;
         }
+      }
+    }
+    .mobile-active {
+      display: inline-block;
+      padding-right: 0;
+      @include breakpoint(large-up) {
+        display: none;
       }
     }
     .threats {
@@ -747,7 +791,7 @@ $gray-lightish: #9b9b9b;
       }
     }
     .leaflet-bottom.leaflet-left {
-      top: 0;
+      top: 10px;
       bottom: inherit;
       @include breakpoint(large-up) {
         top: inherit;
@@ -986,11 +1030,10 @@ $gray-lightish: #9b9b9b;
     }
     @media screen and (min-width: 1000px) {
       position: absolute;
-      top: 0;
+      top: 10px;
       margin: 0;
       right: calc(572px + 16%);
       width: 29%;
-
     }
     .partners-wrap__partner {
       display: block;
@@ -1037,6 +1080,10 @@ $gray-lightish: #9b9b9b;
       }
     }
   }
+}
+
+.partners-wrap.columns ~ .help-wrap-items-map-items {
+  position: relative;
 }
 
 .bird-page {
