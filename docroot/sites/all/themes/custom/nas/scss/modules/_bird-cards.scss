@@ -107,6 +107,11 @@
   bottom: 0;
 }
 
+.bird-card-illustration .no-scorecard img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
 // Variants
 
 .bird-card.small {
