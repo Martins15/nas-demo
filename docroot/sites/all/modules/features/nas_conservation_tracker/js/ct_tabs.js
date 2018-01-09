@@ -142,27 +142,33 @@
                     tabData.settings.overview.preparedLink.class = 'colorbox-load';
                     tabData.settings.overview.preparedLink.href = tabData.settings.overview.image + '?iframe=false';
                   }
-                  else if (angular.isDefined(tabData.settings.overview.iframe)) {
-                    tabData.settings.overview.preparedLink.class = 'colorbox-load';
-                    var width = $(window).width() * 0.75;
-                    var height = $(window).height() * 0.9;
-                    tabData.settings.overview.preparedLink.href = tabData.settings.overview.iframe + '?width=' + width + '&height=' + height + '&iframe=true';
-                  }
-                  else if (angular.isDefined(tabData.settings.overview.link)) {
-                    tabData.settings.overview.preparedLink.class = 'overview-link';
-                    tabData.settings.overview.preparedLink.href = tabData.settings.overview.link;
-                    tabData.settings.overview.preparedLink.target = '_blank';
-                  }
-                  else if (angular.isDefined(tabData.settings.overview.youtube)) {
-                    var width = $(window).width() * 0.75;
-                    var height = $(window).height() * 0.9;
-                    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-                    var match = tabData.settings.overview.youtube.match(regExp);
-                    var yid = (match&&match[7].length==11) ? match[7] : false;
-                    if (yid) {
-                      var youtube = 'https://www.youtube.com/embed/' + yid;
-                      tabData.settings.overview.preparedLink.class = 'colorbox-load youtube';
-                      tabData.settings.overview.preparedLink.href = youtube + '?iframe=true&width=' + width + '&height=' + height;
+                  else {
+                    if (angular.isDefined(tabData.settings.overview.iframe)) {
+                      tabData.settings.overview.preparedLink.class = 'colorbox-load';
+                      var width = $(window).width() * 0.75;
+                      var height = $(window).height() * 0.9;
+                      tabData.settings.overview.preparedLink.href = tabData.settings.overview.iframe + '?width=' + width + '&height=' + height + '&iframe=true';
+                    }
+                    else {
+                      if (angular.isDefined(tabData.settings.overview.link)) {
+                        tabData.settings.overview.preparedLink.class = 'overview-link';
+                        tabData.settings.overview.preparedLink.href = tabData.settings.overview.link;
+                        tabData.settings.overview.preparedLink.target = '_blank';
+                      }
+                      else {
+                        if (angular.isDefined(tabData.settings.overview.youtube)) {
+                          var width = $(window).width() * 0.75;
+                          var height = $(window).height() * 0.9;
+                          var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+                          var match = tabData.settings.overview.youtube.match(regExp);
+                          var yid = (match && match[7].length == 11) ? match[7] : false;
+                          if (yid) {
+                            var youtube = 'https://www.youtube.com/embed/' + yid;
+                            tabData.settings.overview.preparedLink.class = 'colorbox-load youtube';
+                            tabData.settings.overview.preparedLink.href = youtube + '?iframe=true&width=' + width + '&height=' + height;
+                          }
+                        }
+                      }
                     }
                   }
                   $('.video-wrap a').attr('class', tabData.settings.overview.preparedLink.class).unbind('click');
@@ -219,23 +225,28 @@
     angular.bootstrap(document.getElementsByTagName('body')[0], ['NativeCta']);
   };
 
-  // Drupal.behaviors.cta_mobile_menu = {
-  //   attach: function (context, settings) {
-  //     console.log(1);
-  //     $( document ).ready(function() {
-  //       $('.ct-item-nav-conservation li', context).each(function () {
-  //         if($(this).hasClass('true')) {
-  //           console.log(2);
-  //           var $classActive = $(this).attr('class'),
-  //             $textActive = $(this).text();
-  //           console.log($classActive);
-  //           console.log($textActive);
-  //           $('<li class='+$classActive +'>+ $textActive +</li>').appendTo('.mobile-active');
-  //         }
-  //       });
-  //     });
-  //   }
-  // };
+  Drupal.behaviors.cta_fixed_header = {
+    attach: function (context, settings) {
+      var cloneHeader = $('.global-header', context).clone(true),
+        $bodyWrap = $('body'),
+        ctHeader = $('.ct-scorecard-header', context).clone(),
+        bgImage = $('.ct-scorecard-header .hero-image img').attr('src');
+
+      // Clone header and image on top.
+      cloneHeader.addClass('clone-header');
+      ctHeader.addClass('clone-header');
+
+      $(document).ready(function () {
+        // Prepend to body clone html.
+        $bodyWrap.prepend(ctHeader);
+        $bodyWrap.prepend(cloneHeader);
+        // Wrap clone element.
+        cloneHeader.add(ctHeader).wrapAll('<div class="curtain" style="background-color: #fff; background-image: url(' + bgImage + ');"></div>');
+        // Wrap element for work scroll image.
+        $('body > .global-header, .panel-display.panel-1col, .mailing-list, .global-footer', context).wrapAll('<div class="curtain-wrapper"></div>');
+      });
+    }
+  };
 
 })(jQuery);
 

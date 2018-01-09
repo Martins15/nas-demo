@@ -648,18 +648,18 @@
     return currentTab;
   }
 
-  Drupal.behaviors.nasCtScrollToNext = {
-    attach: function (context, settings) {
-      $(".curtain-arrow.storecard").once(function () {
-        $(".curtain-arrow.storecard").click(function (e) {
-          e.preventDefault();
-          $('html, body').animate({
-            scrollTop: $(".ct-scorecard-tabs").offset().top
-          }, 1000);
-        });
-      });
-    }
-  };
+  // Drupal.behaviors.nasCtScrollToNext = {
+  //   attach: function (context, settings) {
+  //     $(".curtain-arrow.storecard").once(function () {
+  //       $(".curtain-arrow.storecard").click(function (e) {
+  //         e.preventDefault();
+  //         $('html, body').animate({
+  //           scrollTop: $(".ct-scorecard-tabs").offset().top
+  //         }, 1000);
+  //       });
+  //     });
+  //   }
+  // };
 
   Drupal.behaviors.nasCtMapControlsToggle = {
     attach: function (context, settings) {
