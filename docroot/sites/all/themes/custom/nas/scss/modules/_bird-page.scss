@@ -1168,7 +1168,7 @@ $gray-lightish: #9b9b9b;
     }
   }
   &.clone-header {
-    height: calc(100% - 170px);
+    position: initial;
     .hero-image {
         display: none;
     }
@@ -1180,4 +1180,19 @@ $gray-lightish: #9b9b9b;
       display: block;
     }
   }
+}
+
+.global-header.clone-header {
+  background: transparent;
+  .dont-miss {
+    display: none;
+  }
+}
+
+.show-hide-text {
+  position: relative;
+  overflow: hidden;
+ .banner-text {
+   transition: bottom .3s;
+ }
 }
