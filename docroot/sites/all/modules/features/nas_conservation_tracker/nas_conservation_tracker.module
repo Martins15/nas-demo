@@ -315,8 +315,8 @@ function nas_conservation_tracker_get_entity($remote_id, $entity_type) {
   if (isset($result[$entity_type])) {
     $entity_ids = array_keys($result[$entity_type]);
     $entity = entity_load($entity_type, $entity_ids);
+    return current($entity);
   }
-  return current($entity);
 }
 
 /**
@@ -335,5 +335,23 @@ function nas_conservation_tracker_scorecard_url($scorecard) {
     ->execute();
   $nid = current(array_keys($result['node']));
   return drupal_get_path_alias('node/' . $nid);
+}
+
+function nas_conservation_tracker_get_image($name) {
+  $files = file_load_multiple(array(), array('filename' => $name));
+  $file =  reset($files);
+  if (empty($file)) {
+    $image_url = variable_get('nas_conservation_tracker_endpoint') . '/' . $name;
+    if (file_exists($image_url)) {
+      $file = file_save_data(file_get_contents($image_url), 'public://' . basename($image_url));
+      $file->status = 1;
+      return $file->fid;
+    }
+    return FALSE;
+  }
+  else {
+    return $file->fid;
+  }
+
 }
 

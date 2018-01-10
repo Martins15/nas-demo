@@ -25,7 +25,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
   $page->conf = array(
     'admin_paths' => FALSE,
   );
-  $page->language = 'und';
+  $page->language = 'en';
   $page->tpid = 0;
   $page->default_handlers = array();
   $handler = new stdClass();
@@ -247,7 +247,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'summary' => 'Introducing a new series profiling people, wildlife, and conservation programs threatened by federal budget cuts. ',
       ),
       'curtain_html' => array(
-        'image' => '129405',
+        'image' => nas_conservation_tracker_get_image('landing_page_hero.jpg'), //'129405',
         'header_color_mode' => 'light',
         'disable_gradient' => 0,
         'header_bg' => '-1',
@@ -377,7 +377,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
           'top_text' => '',
           'title' => 'Strategies',
           'bottom_text' => 'We maximize our conservation results by focusing on five key strategies critical for birds.',
-          'image' => '129402',
+          'image' => nas_conservation_tracker_get_image('landing_page_strategies.jpg'), //'129402',
           'image_link' => '/1',
           'color_mode' => 'dark',
           'gradient' => 1,
@@ -386,7 +386,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
           'top_text' => '',
           'title' => 'Species',
           'bottom_text' => 'Audubon\'s priority bird species are birds of significant conservation need, for which our actions, over time, can lead to measur',
-          'image' => '129403',
+          'image' => nas_conservation_tracker_get_image('landing_page_species.jpg'), //'129403',
           'image_link' => '/2',
           'color_mode' => 'dark',
           'gradient' => 1,
@@ -395,7 +395,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
           'top_text' => '',
           'title' => 'Landscapes',
           'bottom_text' => 'Audubon\'s work is "place-based" and enables our network to partner with local managers, businesses, and stakeholders to achieve ',
-          'image' => '129404',
+          'image' => nas_conservation_tracker_get_image('landing_page_landscapes.jpg'), //'129404',
           'image_link' => '/3',
           'color_mode' => 'dark',
           'gradient' => 1,
