@@ -225,28 +225,5 @@
     angular.bootstrap(document.getElementsByTagName('body')[0], ['NativeCta']);
   };
 
-  Drupal.behaviors.cta_fixed_header = {
-    attach: function (context, settings) {
-      var cloneHeader = $('.global-header', context).clone(true),
-        $bodyWrap = $('body'),
-        ctHeader = $('.ct-scorecard-header', context).clone(),
-        bgImage = $('.ct-scorecard-header .hero-image img').attr('src');
-
-      // Clone header and image on top.
-      cloneHeader.addClass('clone-header');
-      ctHeader.addClass('clone-header');
-
-      $(document).ready(function () {
-        // Prepend to body clone html.
-        $bodyWrap.prepend(ctHeader);
-        $bodyWrap.prepend(cloneHeader);
-        // Wrap clone element.
-        cloneHeader.add(ctHeader).wrapAll('<div class="curtain" style="background-color: #fff; background-image: url(' + bgImage + ');"></div>');
-        // Wrap element for work scroll image.
-        $('body > .global-header, .panel-display.panel-1col, .mailing-list, .global-footer', context).wrapAll('<div class="curtain-wrapper"></div>');
-      });
-    }
-  };
-
 })(jQuery);
 
