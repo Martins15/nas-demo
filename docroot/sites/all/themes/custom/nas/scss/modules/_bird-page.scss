@@ -1161,4 +1161,23 @@ $gray-lightish: #9b9b9b;
       }
     }
   }
+  .hero-image {
+    display: block;
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+  &.clone-header {
+    height: calc(100% - 170px);
+    .hero-image {
+        display: none;
+    }
+  }
+  .curtain-arrow {
+    display: none;
+    cursor: pointer;
+    @media screen and (min-width: 768px) {
+      display: block;
+    }
+  }
 }

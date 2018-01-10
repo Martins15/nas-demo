@@ -18949,6 +18949,29 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     padding-bottom: 25px;
   }
 }
+.ct-scorecard-header .hero-image {
+  display: block;
+}
+@media screen and (min-width: 768px) {
+  .ct-scorecard-header .hero-image {
+    display: none;
+  }
+}
+.ct-scorecard-header.clone-header {
+  height: calc(100% - 170px);
+}
+.ct-scorecard-header.clone-header .hero-image {
+  display: none;
+}
+.ct-scorecard-header .curtain-arrow {
+  display: none;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .ct-scorecard-header .curtain-arrow {
+    display: block;
+  }
+}
 
 .species-filter {
   font-family: "Source Sans Pro", Verdana, sans-serif;
