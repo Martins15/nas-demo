@@ -247,7 +247,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'summary' => 'Introducing a new series profiling people, wildlife, and conservation programs threatened by federal budget cuts. ',
       ),
       'curtain_html' => array(
-        'image' => nas_conservation_tracker_get_image('landing_page_hero.jpg'), //'129405',
+        'image' => nas_conservation_tracker_get_image('landing_page_hero.jpg'),
         'header_color_mode' => 'light',
         'disable_gradient' => 0,
         'header_bg' => '-1',
@@ -464,6 +464,337 @@ function nas_conservation_tracker_default_page_manager_pages() {
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['conservation_tracker'] = $page;
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'conservation_tracker_landscapes';
+  $page->task = 'page';
+  $page->admin_title = 'Conservation tracker Landscapes';
+  $page->admin_description = '';
+  $page->path = 'conservation-tracker/landscapes';
+  $page->access = array();
+  $page->menu = array();
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->language = 'und';
+  $page->tpid = 0;
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_conservation_tracker_landscapes__panel_context_bc0c32dd-d62f-4b08-9f8e-5ae183483ede';
+  $handler->task = 'page';
+  $handler->subtask = 'conservation_tracker_landscapes';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'ipe',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+  );
+  $display = new panels_display();
+  $display->layout = 'nas_frontpage';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'header' => NULL,
+      'top' => NULL,
+      'featured_top' => NULL,
+      'featured' => NULL,
+      'bird_news' => NULL,
+      'conservation_section' => NULL,
+      'more_headlines' => NULL,
+      'editorial_cards' => NULL,
+      'main' => NULL,
+      'cards_set' => NULL,
+      'footer' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '5cd8c51c-eab0-4afa-a6b5-0208df82f301';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-22959f2c-f24b-4187-a26f-a19c3681b6ee';
+    $pane->panel = 'featured_top';
+    $pane->type = 'nas_panes_frontpage_featured';
+    $pane->subtype = 'nas_panes_frontpage_featured';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title_heading' => 'h2',
+      'variant' => 'curtain_html',
+      'curtain_simple' => array(
+        'image' => 0,
+        'mobile_image' => 0,
+        'header_color_mode' => 'dark',
+        'disable_gradient' => 0,
+        'header_bg' => '1',
+        'header_position' => 'right',
+        'title' => '',
+        'title_link' => '',
+        'blue_text' => '',
+        'blue_text_link' => '',
+        'summary' => '',
+      ),
+      'hero_image' => array(
+        'image' => 0,
+        'header_color_mode' => 'dark',
+        'disable_gradient' => 0,
+        'title' => '',
+        'title_link' => '',
+        'blue_text' => '',
+        'blue_text_link' => '',
+      ),
+      'curtain_3stories' => array(
+        'image' => 0,
+        'header_color_mode' => 'dark',
+        'disable_gradient' => 0,
+        'title' => '',
+        'title_link' => '',
+        'action_text' => '',
+        'action_text_link' => '',
+        'articles' => array(
+          0 => array(
+            'entity_reference' => FALSE,
+            'title' => '',
+            'slug_link' => array(
+              'title' => '',
+              'url' => '',
+            ),
+          ),
+          'add_more' => 'Add more stories',
+        ),
+        'count' => 1,
+      ),
+      'curtain_package' => array(
+        'image' => 0,
+        'header_color_mode' => 'dark',
+        'bg_color_mode' => 'dark',
+        'title' => array(
+          'title' => '',
+          'url' => '',
+        ),
+        'slug_link' => array(
+          'title' => '',
+          'url' => '',
+        ),
+        'action_item' => array(
+          'title' => '',
+          'url' => '',
+        ),
+        'summary' => '',
+        'articles' => array(
+          0 => array(
+            'entity_reference' => FALSE,
+            'title' => '',
+            'slug_link' => array(
+              'title' => '',
+              'url' => '',
+            ),
+          ),
+          'add_more' => 'Add more stories',
+        ),
+        'count' => 1,
+      ),
+      'curtain_video' => array(
+        'header_color_mode' => 'dark',
+        'disable_gradient' => 0,
+        'image' => 0,
+        'video' => 0,
+        'attribution' => array(
+          'caption' => '',
+          'credits' => '',
+        ),
+        'bg_color' => '',
+        'position' => 'cover',
+        'place' => 'center',
+        'title' => array(
+          'title' => '',
+          'url' => '',
+        ),
+        'slug_link' => array(
+          'title' => '',
+          'url' => '',
+        ),
+        'summary' => '',
+      ),
+      'curtain_html' => array(
+        'image' => nas_conservation_tracker_get_image('landscapes_hero.jpg'),
+        'header_color_mode' => 'none',
+        'disable_gradient' => 0,
+        'header_bg' => '-1',
+        'header_position' => 'left',
+        'summary' => 'Landscapes',
+      ),
+      'form_build_id' => 'form-l8WRzSBUyiy6abzIw2kjdZfrazJ_hPC16vx2C_IPA88',
+      'form_token' => 'GU0YQdAtdC0VjtaGzqiHQopraEKhA1sRTiW2fPF37lI',
+      'form_id' => 'frontpage_featured_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '22959f2c-f24b-4187-a26f-a19c3681b6ee';
+    $display->content['new-22959f2c-f24b-4187-a26f-a19c3681b6ee'] = $pane;
+    $display->panels['featured_top'][0] = 'new-22959f2c-f24b-4187-a26f-a19c3681b6ee';
+    $pane = new stdClass();
+    $pane->pid = 'new-359bb005-bec2-4169-9c07-0f9643c7c629';
+    $pane->panel = 'footer';
+    $pane->type = 'nas_stay_abreast_pane';
+    $pane->subtype = 'nas_stay_abreast_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'headline' => 'Stay abreast of Audubon',
+      'caption' => 'Our email newsletter shares the latest programs and initiatives.',
+      'nas_external_integration' => array(
+        'provider' => 'every_action',
+        'id' => 'q2XV7OpjIE2SKrwPpdiFuA2',
+        'apikey' => '',
+        'token' => '',
+        'embed_script' => '',
+        'embed_script_js' => '',
+        'get_lists' => 'Get mailing lists from external provider',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '359bb005-bec2-4169-9c07-0f9643c7c629';
+    $display->content['new-359bb005-bec2-4169-9c07-0f9643c7c629'] = $pane;
+    $display->panels['footer'][0] = 'new-359bb005-bec2-4169-9c07-0f9643c7c629';
+    $pane = new stdClass();
+    $pane->pid = 'new-07e9cadc-afd7-4229-bfab-f4f0dd99cb82';
+    $pane->panel = 'footer';
+    $pane->type = 'nas_footer_pane';
+    $pane->subtype = 'nas_footer_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'logo_path' => 'public://footer-logo.png',
+      'title' => '',
+      'mission' => '',
+      'copyright' => '',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '07e9cadc-afd7-4229-bfab-f4f0dd99cb82';
+    $display->content['new-07e9cadc-afd7-4229-bfab-f4f0dd99cb82'] = $pane;
+    $display->panels['footer'][1] = 'new-07e9cadc-afd7-4229-bfab-f4f0dd99cb82';
+    $pane = new stdClass();
+    $pane->pid = 'new-e7cf524e-3b01-4f70-a410-04d0e6f07ac6';
+    $pane->panel = 'header';
+    $pane->type = 'pane_messages';
+    $pane->subtype = 'pane_messages';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e7cf524e-3b01-4f70-a410-04d0e6f07ac6';
+    $display->content['new-e7cf524e-3b01-4f70-a410-04d0e6f07ac6'] = $pane;
+    $display->panels['header'][0] = 'new-e7cf524e-3b01-4f70-a410-04d0e6f07ac6';
+    $pane = new stdClass();
+    $pane->pid = 'new-2c041272-281a-45fe-99bf-a5bf14babb5f';
+    $pane->panel = 'header';
+    $pane->type = 'nas_menu_header_big';
+    $pane->subtype = 'nas_menu_header_big';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '2c041272-281a-45fe-99bf-a5bf14babb5f';
+    $display->content['new-2c041272-281a-45fe-99bf-a5bf14babb5f'] = $pane;
+    $display->panels['header'][1] = 'new-2c041272-281a-45fe-99bf-a5bf14babb5f';
+    $pane = new stdClass();
+    $pane->pid = 'new-52ab7af6-56f0-4c40-879a-f79076f54f65';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_don_t_miss';
+    $pane->subtype = 'nas_menu_header_don_t_miss';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '52ab7af6-56f0-4c40-879a-f79076f54f65';
+    $display->content['new-52ab7af6-56f0-4c40-879a-f79076f54f65'] = $pane;
+    $display->panels['top'][0] = 'new-52ab7af6-56f0-4c40-879a-f79076f54f65';
+    $pane = new stdClass();
+    $pane->pid = 'new-598be747-16d0-493f-bb64-252b58aab684';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_big';
+    $pane->subtype = 'nas_menu_header_big';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '598be747-16d0-493f-bb64-252b58aab684';
+    $display->content['new-598be747-16d0-493f-bb64-252b58aab684'] = $pane;
+    $display->panels['top'][1] = 'new-598be747-16d0-493f-bb64-252b58aab684';
+  $display->hide_title = PANELS_TITLE_NONE;
+  $display->title_pane = 'new-e7cf524e-3b01-4f70-a410-04d0e6f07ac6';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['conservation_tracker_landscapes'] = $page;
 
   return $pages;
 
