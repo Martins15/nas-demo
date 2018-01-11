@@ -8,6 +8,8 @@
  * Implements hook_install()
  */
 function nas_conservation_tracker_install() {
+  variable_set('nas_i18n_redirect_ignore', array('conservation-tracker', 'conservation-tracker/landscapes'));
+
   // Create scorecard node(s).
 
   // Black Oystercatcher.
