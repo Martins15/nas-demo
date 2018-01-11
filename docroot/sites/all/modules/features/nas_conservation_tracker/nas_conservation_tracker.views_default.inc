@@ -28,6 +28,8 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
+  $handler->display->display_options['query']['options']['entity_access'] = 0;
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
   $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['exposed_form']['options']['bef'] = array(
@@ -248,10 +250,10 @@ function nas_conservation_tracker_views_default_views() {
     51 => 0,
     56 => 0,
   );
-  $handler->display->display_options['filters']['search_api_views_fulltext']['mode'] = 'filter';
-  $handler->display->display_options['filters']['search_api_views_fulltext']['min_length'] = '1';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['min_length'] = '3';
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
-    'title' => 'title',
+    'field_ct_common_name' => 'field_ct_common_name',
+    'field_ct_scientific_name' => 'field_ct_scientific_name',
   );
   /* Filter criterion: Indexed CT Species: Strategy initiative ID */
   $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['id'] = 'field_ct_strategy_initiative_id';
