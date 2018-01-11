@@ -106,15 +106,17 @@ function nas_conservation_tracker_default_search_api_index() {
       "cron_limit" : "50",
       "fields" : {
         "field_ct_climate_status" : { "type" : "string" },
+        "field_ct_common_name" : { "type" : "text" },
         "field_ct_guild" : { "type" : "string" },
         "field_ct_image" : { "type" : "string" },
+        "field_ct_letter" : { "type" : "string" },
         "field_ct_remote_id" : { "type" : "integer" },
         "field_ct_scientific_name" : { "type" : "text" },
         "field_ct_score_card_url" : { "type" : "uri" },
         "field_ct_strategy_initiative_id" : { "type" : "integer" },
         "id" : { "type" : "integer" },
         "search_api_language" : { "type" : "string" },
-        "title" : { "type" : "text" }
+        "search_api_url" : { "type" : "uri" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
@@ -127,8 +129,8 @@ function nas_conservation_tracker_default_search_api_index() {
           "weight" : "0",
           "settings" : { "lang_field" : "", "languages" : [] }
         },
-        "search_api_alter_add_viewed_entity" : { "status" : 1, "weight" : "0", "settings" : { "mode" : "teaser" } },
-        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_url" : { "status" : 1, "weight" : "0", "settings" : [] },
         "search_api_metatag_alter_callback" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] }
       },
@@ -212,11 +214,6 @@ function nas_conservation_tracker_default_search_api_server() {
             "type" : "integer",
             "boost" : "1.0"
           },
-          "title" : {
-            "table" : "search_api_db_ct_species_index_text",
-            "type" : "text",
-            "boost" : "1.0"
-          },
           "field_ct_scientific_name" : {
             "table" : "search_api_db_ct_species_index_text",
             "type" : "text",
@@ -262,6 +259,23 @@ function nas_conservation_tracker_default_search_api_server() {
             "table" : "search_api_db_ct_species_index",
             "column" : "field_ct_score_card_url",
             "type" : "uri",
+            "boost" : "1.0"
+          },
+          "search_api_url" : {
+            "table" : "search_api_db_ct_species_index",
+            "column" : "search_api_url",
+            "type" : "uri",
+            "boost" : "1.0"
+          },
+          "field_ct_common_name" : {
+            "table" : "search_api_db_ct_species_index_text",
+            "type" : "text",
+            "boost" : "1.0"
+          },
+          "field_ct_letter" : {
+            "table" : "search_api_db_ct_species_index",
+            "column" : "field_ct_letter",
+            "type" : "string",
             "boost" : "1.0"
           }
         }
