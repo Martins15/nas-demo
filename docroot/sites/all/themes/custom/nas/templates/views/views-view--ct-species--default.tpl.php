@@ -42,8 +42,16 @@
       <?php endif; ?>
 
       <?php if ($exposed): ?>
-        <div class="view-filters">
-          <?php print $exposed; ?>
+        <div class="help-wrap-items">
+          <div class="filter-block columns large-3">
+            <?php print $exposed; ?>
+            <?php print $reset; ?>
+          </div>
+          <div class="wrap-items-show columns large-9">
+            <div class="alphabet-block">
+              <?php print $alphabet; ?>
+            </div>
+          </div>
         </div>
       <?php endif; ?>
 
