@@ -1,0 +1,119 @@
+<?php
+
+/**
+ * @file
+ * Content type plugin for CT.
+ */
+$plugin = [
+  'title' => t('CT Landscapes Main'),
+  'description' => t('Displays CT Landscapes Main Content'),
+  'single' => TRUE,
+  'content_types' => ['ct_landscapes_main'],
+  'render callback' => 'nas_conservation_tracker_landscapes_main_render',
+  //'required context' => new ctools_context_required(t('Node'), 'node'),
+  'edit form' => 'nas_conservation_tracker_landscapes_main_edit_form',
+  'category' => 'NAS Conservation Tracker',
+];
+
+/**
+ * Render callback function.
+ *
+ * @param $subtype
+ * @param $conf
+ *
+ * @param $args
+ * @param $context
+ *
+ * @return stdClass
+ */
+function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args, $context) {
+  $arg = arg();
+  $path = array_pop($arg);
+  $block = new stdClass();
+
+  //$data = nas_conservation_tracker_get_json('scorecard-' . $scorecard_id);
+
+
+  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/landscapes.js');
+//    drupal_add_js([
+//      'nasConservationTracker' => [
+//
+////        'scorecardId' => $data['id'],
+////        'selectedUnits' => 0,
+////        'visibleSites' => [],
+////        'scale' => variable_get('nas_conservation_tracker_scale', $scale),
+//      ],
+//    ], 'setting');
+
+  //  $libs = [
+  //    'nas_master_native_plants' => [
+  //      'angularjs',
+  //      'angularjs-ui-router',
+  //      'angularjs-sanitize',
+  //      'angularjs-cookies',
+  //      'angularjs-animate',
+  //      'angularjs-storage',
+  //      'angularjs-scroll',
+  //    ],
+  //  ];
+  //
+  //  foreach ($libs as $module => $libs) {
+  //    foreach ($libs as $lib) {
+  //      drupal_add_library($module, $lib);
+  //    }
+  //  }
+  $js_path = drupal_get_path('module', 'nas_conservation_tracker') . '/js/';
+  drupal_add_js($js_path . 'nas_conservation_tracker_landscapes.js', [
+    'weight' => 999,
+    'group' => JS_THEME,
+  ]);
+
+  // Map.
+  $map_info = current(leaflet_map_get_info());
+  $map_info['settings']['layerControl'] = TRUE;
+  $map_info['layers']['earth']['urlTemplate'] = '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+  // TODO make it configrable via form.
+  $map_info['settings']['zoomDefault'] = 3;
+  $map_info['settings']['zoom'] = 3;
+  $map_info['center'] = [
+    'lat' => '25.020098201368114',
+    'lon' => '-114.63378906250001',
+  ];
+  $features = [
+  ];
+  $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_landscapes_map_height', '900') . 'px');
+
+
+  $vars = [
+    'map' => render($map),
+  ];
+
+  $block->content = theme('ct_landscapes_main', $vars);
+
+  return $block;
+}
+
+
+/**
+ * Ctools edit form.
+ *
+ * @param $form
+ * @param $form_state
+ *
+ * @return mixed
+ */
+function nas_conservation_tracker_landscapes_main_edit_form($form, &$form_state) {
+  $conf = $form_state['conf'];
+  // some code TBD.
+  return $form;
+}
+
+/**
+ * Ctools edit form submit handler.
+ *
+ * @param $form
+ * @param $form_state
+ */
+function nas_conservation_tracker_landscapes_main_edit_form_submit($form, &$form_state) {
+
+}
