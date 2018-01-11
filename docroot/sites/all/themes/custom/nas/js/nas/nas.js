@@ -141,6 +141,64 @@ var Nas = Nas || {};
     }
   };
 
+  // Drupal.behaviors.alah = {
+  //   attach: function (context, settings) {
+  //   //$('.global-footer')
+  //     $.fn.isInViewport = function() {
+  //       var elementTop = $(this).offset().top;
+  //       var elementBottom = elementTop + $(this).outerHeight() - 5000;
+  //
+  //       var viewportTop = $(window).scrollTop();
+  //       var viewportBottom = viewportTop + $(window).height();
+  //
+  //       return elementBottom > viewportTop && elementTop < viewportBottom;
+  //     };
+  //
+  //     var lol3 = $('body');
+  //     var lol2 = $('body').height();
+  //     var lol1 = $('.global-footer');
+  //     var lol = $('.global-footer').height();
+  //     lol3.css( "min-height", "2500px" );
+  //     $(window).on('resize scroll', function() {
+  //       if($('.global-footer').isInViewport()){
+  //         lol3.css( "min-height", lol2 );
+  //       }
+  //     });
+  //   }
+  // };
+
+  Drupal.behaviors.animateBlock = {
+    attach: function (context, settings) {
+      var wrapBlock = $('.show-hide-text', context);
+
+      if(wrapBlock.length) {
+        wrapBlock.each(function () {
+         var $bannerBlock = $('.banner-text', this),
+           $bannerHeight = $('.banner-text', this).outerHeight(true),
+           $titleHeight = $('.banner-title', this).outerHeight(true),
+          heightAnimate = '-' + ($bannerHeight - $titleHeight - 25) + 'px';
+          $bannerBlock.css('bottom', heightAnimate);
+
+          var isTouchDevice = is_touch_device(),
+            showEvent = isTouchDevice ? 'touchstart' : 'mouseenter',
+            hideEvent = isTouchDevice ? 'touchstart' : 'mouseleave';
+
+          $(this).on(showEvent, function () {
+            $bannerBlock.css('bottom', 0);
+          });
+          $(this).on(hideEvent, function () {
+            $bannerBlock.css('bottom', heightAnimate);
+          });
+
+          function is_touch_device() {
+            return 'ontouchstart' in window || navigator.maxTouchPoints;
+          };
+
+        })
+      }
+    }
+  };
+
   // Prevent equalization if stacked.
   Drupal.behaviors.frontpageEqualizer = {
     attach: function (context, settings) {

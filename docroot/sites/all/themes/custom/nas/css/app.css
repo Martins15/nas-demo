@@ -18988,9 +18988,26 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .show-hide-text {
   position: relative;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 .show-hide-text .banner-text {
+  top: inherit;
   transition: bottom .3s;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0) 100%);
+}
+.show-hide-text .banner-gradient-overlay-horizontal {
+  background: transparent;
+}
+.show-hide-text .banner {
+  margin-bottom: 0;
+}
+
+.conservation-tracker-in {
+  margin-bottom: 20px;
+}
+
+.conservation-tracker-custom-pane {
+  padding-bottom: 40px;
 }
 
 .species-filter {

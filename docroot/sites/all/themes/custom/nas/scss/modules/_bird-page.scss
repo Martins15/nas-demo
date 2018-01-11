@@ -1192,7 +1192,24 @@ $gray-lightish: #9b9b9b;
 .show-hide-text {
   position: relative;
   overflow: hidden;
+  margin-bottom: 20px;
  .banner-text {
+   top: inherit;
    transition: bottom .3s;
+   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0) 100%);
  }
+  .banner-gradient-overlay-horizontal {
+    background: transparent;
+  }
+  .banner {
+    margin-bottom: 0;
+  }
+}
+
+.conservation-tracker-in {
+  margin-bottom: 20px;
+}
+
+.conservation-tracker-custom-pane {
+  padding-bottom: 40px;
 }

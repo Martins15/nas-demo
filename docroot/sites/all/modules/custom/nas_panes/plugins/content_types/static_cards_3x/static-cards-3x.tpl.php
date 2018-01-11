@@ -6,11 +6,11 @@
  */
 ?>
 
-<div class="row banner-set static-cards-multiple <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
+<div class="row banner-set static-cards-multiple conservation-tracker-in <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
   <?php print $contextual_links; ?>
 
   <?php foreach ($items as $item) : ?>
-    <div class="large-4 columns">
+    <div class="large-4 columns show-hide-text">
       <div class="banner <?php print $item['color_mode']; ?>-bg bg-respond"
            style="background-image: url(<?php print $item['image_url']; ?>);"
            data-bg-small="<?php print $item['image_url_mobile']; ?>"
