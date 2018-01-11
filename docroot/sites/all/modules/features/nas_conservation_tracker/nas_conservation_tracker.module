@@ -263,6 +263,7 @@ function nas_conservation_tracker_load_species() {
     if (!empty($species['commonName'])) {
       $wrapper->title->set($species['commonName']);
       $wrapper->field_ct_common_name->set($species['commonName']);
+      $wrapper->field_ct_letter->set(strtolower(substr($species['commonName'], 0, 1)));
     }
     if (!empty($species['scientificName'])) {
       $wrapper->field_ct_scientific_name->set($species['scientificName']);
@@ -334,5 +335,13 @@ function nas_conservation_tracker_scorecard_url($scorecard) {
     ->execute();
   $nid = current(array_keys($result['node']));
   return drupal_get_path_alias('node/' . $nid);
+}
+
+function nas_conservation_tracker_form_views_exposed_form_alter(&$form, &$form_state) {
+  if ($form['#id'] == 'views-exposed-form-ct-species-default') {
+    $form['search']['#attributes'] = array(
+      'placeholder' => t('Search'),
+    );
+  }
 }
 
