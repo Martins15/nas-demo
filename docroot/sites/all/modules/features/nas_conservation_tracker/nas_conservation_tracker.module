@@ -264,6 +264,7 @@ function nas_conservation_tracker_load_species() {
     if (!empty($species['commonName'])) {
       $wrapper->title->set($species['commonName']);
       $wrapper->field_ct_common_name->set($species['commonName']);
+      $wrapper->field_ct_letter->set(strtolower(substr($species['commonName'], 0, 1)));
     }
     if (!empty($species['scientificName'])) {
       $wrapper->field_ct_scientific_name->set($species['scientificName']);
@@ -337,6 +338,14 @@ function nas_conservation_tracker_scorecard_url($scorecard) {
   return drupal_get_path_alias('node/' . $nid);
 }
 
+function nas_conservation_tracker_form_views_exposed_form_alter(&$form, &$form_state) {
+  if ($form['#id'] == 'views-exposed-form-ct-species-default') {
+    $form['search']['#attributes'] = array(
+      'placeholder' => t('Search'),
+    );
+  }
+}
+
 function nas_conservation_tracker_get_image($name) {
   $files = file_load_multiple(array(), array('filename' => $name));
   $file =  reset($files);
@@ -352,6 +361,28 @@ function nas_conservation_tracker_get_image($name) {
   else {
     return $file->fid;
   }
-
+}
+/**
+ * Implements hook_preprocess_HOOK.
+ */
+function nas_conservation_tracker_preprocess_views_view(&$vars) {
+  $view = $vars['view'];
+  if ($view->name == 'ct_species') {
+    $page = page_manager_get_current_page();
+    $vars['alphabet'] = '';
+    $vars['reset'] = '';
+    if ($page && !empty($page['subtask']['subtask']->path)) {
+      $letters = array(
+        'title' => '',
+        'type' => 'ul',
+        'attributes' => array('class' => 'alphabet-block__alphabet'),
+      );
+      foreach (range('a','z') as $letter) {
+        $letters['items'][$letter] = l(strtoupper($letter), $page['subtask']['subtask']->path . '/' . $letter);
+      }
+      $vars['alphabet'] = theme_item_list($letters);
+      $vars['reset'] = l(t('Reset Filters'), $page['subtask']['subtask']->path, array('attribures' => array('class' => 'reset-filters')));
+    }
+  }
 }
 
