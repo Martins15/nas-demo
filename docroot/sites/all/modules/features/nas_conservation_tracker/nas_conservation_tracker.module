@@ -154,6 +154,12 @@ function nas_conservation_tracker_theme() {
       ),
       'template' => 'templates/ct-scorecard-carousel',
     ),
+    'ct_landscapes_main' => array(
+      'variables' => array(
+        'map' => NULL,
+      ),
+      'template' => 'templates/ct-landscapes-main',
+    ),
   );
   return $theme;
 }

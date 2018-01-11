@@ -1,0 +1,322 @@
+[
+  {
+    "id": 0,
+    "name": "Arctic Coasts",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Pacific",
+    "status": "At work"
+  },
+  {
+    "id": 1,
+    "name": "Brazil - North Coast",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Atlantic",
+    "status": "Scoping"
+  },
+  {
+    "id": 2,
+    "name": "Coastal Carolinas",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Atlantic",
+    "status": "At work"
+  },
+  {
+    "id": 3,
+    "name": "Colombia - Choco",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Pacific",
+    "status": "Future"
+  },
+  {
+    "id": 4,
+    "name": "Colombia Coast",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Atlantic",
+    "status": "Future"
+  },
+  {
+    "id": 5,
+    "name": "Delaware - Chesapeake Bay",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Atlantic",
+    "status": "Future"
+  },
+  {
+    "id": 6,
+    "name": "Georgia - Florida",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Atlantic",
+    "status": "At work"
+  },
+  {
+    "id": 7,
+    "name": "Grays Harbor and Willapa Bay",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Pacific",
+    "status": "Future"
+  },
+  {
+    "id": 8,
+    "name": "Gulf Coast",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Mississippi",
+    "status": "At work"
+  },
+  {
+    "id": 9,
+    "name": "Gulf of Maine",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Atlantic",
+    "status": "At work"
+  },
+  {
+    "id": 10,
+    "name": "Guyana Mudflats",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Atlantic",
+    "status": "Scoping"
+  },
+  {
+    "id": 11,
+    "name": "Laguna Madre",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Central",
+    "status": "Future"
+  },
+  {
+    "id": 12,
+    "name": "Long Island Sound",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Atlantic",
+    "status": "At work"
+  },
+  {
+    "id": 13,
+    "name": "Panama Bay",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Pacific",
+    "status": "At work"
+  },
+  {
+    "id": 14,
+    "name": "Peru - Paracas",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Pacific",
+    "status": "Scoping"
+  },
+  {
+    "id": 15,
+    "name": "San Francisco Bay",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Pacific",
+    "status": "At work"
+  },
+  {
+    "id": 16,
+    "name": "Bering Sea and Islands",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Pacific",
+    "status": "At work"
+  },
+  {
+    "id": 17,
+    "name": "Unimak Pass",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Pacific",
+    "status": "At work"
+  },
+  {
+    "id": 18,
+    "name": "Veracruz",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Central",
+    "status": "Scoping"
+  },
+  {
+    "id": 19,
+    "name": "Yucatan",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Central, Mississippi",
+    "status": "Scoping"
+  },
+  {
+    "id": 20,
+    "name": "Chiloe Island",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Pacific",
+    "status": "Scoping"
+  },
+  {
+    "id": 21,
+    "name": "The Bahamas",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Atlantic",
+    "status": "At work"
+  },
+  {
+    "id": 22,
+    "name": "Gulf of California",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Pacific",
+    "status": "Scoping"
+  },
+  {
+    "id": 23,
+    "name": "Argentina",
+    "strategy": {
+      "id": 1,
+      "name": "Coasts"
+    },
+    "flyway": "Atlantic",
+    "status": "Scoping"
+  },
+  {
+    "id": 24,
+    "name": "Colorado River Basin and Delta",
+    "strategy": {
+      "id": 3,
+      "name": "Water"
+    },
+    "flyway": "Central",
+    "status": "At Work"
+  },
+  {
+    "id": 25,
+    "name": "Everglades",
+    "strategy": {
+      "id": 3,
+      "name": "Water"
+    },
+    "flyway": "Atlantic",
+    "status": "At Work"
+  },
+  {
+    "id": 26,
+    "name": "Great Lakes",
+    "strategy": {
+      "id": 3,
+      "name": "Water"
+    },
+    "flyway": "Mississippi",
+    "status": "At Work"
+  },
+  {
+    "id": 27,
+    "name": "Saline Lakes",
+    "strategy": {
+      "id": 3,
+      "name": "Water"
+    },
+    "flyway": "Pacific, Central",
+    "status": "At Work"
+  },
+  {
+    "id": 28,
+    "name": "Sagebrush of the Intermountain West",
+    "strategy": {
+      "id": 2,
+      "name": "Working Lands"
+    },
+    "flyway": "Pacific, Central",
+    "status": "At Work"
+  },
+  {
+    "id": 29,
+    "name": "Central Valley of California",
+    "strategy": {
+      "id": 2,
+      "name": "Working Lands"
+    },
+    "flyway": "Pacific",
+    "status": "At Work"
+  },
+  {
+    "id": 30,
+    "name": "Great Plains and Chihuahan Desert",
+    "strategy": {
+      "id": 2,
+      "name": "Working Lands"
+    },
+    "flyway": "Central",
+    "status": "At Work"
+  },
+  {
+    "id": 31,
+    "name": "Eastern Forests",
+    "strategy": {
+      "id": 2,
+      "name": "Working Lands"
+    },
+    "flyway": "Atlantic",
+    "status": "At Work"
+  }
+]
