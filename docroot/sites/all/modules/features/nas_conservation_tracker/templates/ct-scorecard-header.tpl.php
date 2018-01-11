@@ -4,8 +4,6 @@
  */
 ?>
 <div class="ct-scorecard-header bg-respond hero small dark-gradient light-text">
-  <div class="curtain-content-up">
-  </div>
   <div class="hero-image">
     <?php print $image; ?>
   </div>
@@ -19,6 +17,6 @@
         </div>
       </div>
     </div>
-    <a href="#" class="curtain-arrow storecard"></a>
+    <div class="curtain-arrow storecard"></div>
   </div>
 </div>

@@ -5034,6 +5034,11 @@ small {
   bottom: 0;
 }
 
+.bird-card-illustration .no-scorecard img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
 .bird-card.small {
   max-width: 160px;
 }
@@ -18949,6 +18954,61 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     padding-bottom: 25px;
   }
 }
+.ct-scorecard-header .hero-image {
+  display: block;
+}
+@media screen and (min-width: 768px) {
+  .ct-scorecard-header .hero-image {
+    display: none;
+  }
+}
+.ct-scorecard-header.clone-header {
+  position: initial;
+}
+.ct-scorecard-header.clone-header .hero-image {
+  display: none;
+}
+.ct-scorecard-header .curtain-arrow {
+  display: none;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .ct-scorecard-header .curtain-arrow {
+    display: block;
+  }
+}
+
+.global-header.clone-header {
+  background: transparent;
+}
+.global-header.clone-header .dont-miss {
+  display: none;
+}
+
+.show-hide-text {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.show-hide-text .banner-text {
+  top: inherit;
+  transition: bottom .3s;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0) 100%);
+}
+.show-hide-text .banner-gradient-overlay-horizontal {
+  background: transparent;
+}
+.show-hide-text .banner {
+  margin-bottom: 0;
+}
+
+.conservation-tracker-in {
+  margin-bottom: 20px;
+}
+
+.conservation-tracker-custom-pane {
+  padding-bottom: 40px;
+}
 
 .species-filter {
   font-family: "Source Sans Pro", Verdana, sans-serif;
@@ -20878,9 +20938,4 @@ ul.clearing-thumbs {
   .page-conservation-tracker .conservation-tracker-custom-pane {
     margin: 0 85px;
   }
-}
-
-.bird-card-illustration .no-scorecard img {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
 }

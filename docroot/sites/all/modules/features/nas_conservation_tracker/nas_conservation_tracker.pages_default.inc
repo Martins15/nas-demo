@@ -15,7 +15,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Conservation tracker';
   $page->admin_description = '';
-  $page->path = 'conservation_tracker';
+  $page->path = 'conservation-tracker';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
@@ -25,7 +25,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
   $page->conf = array(
     'admin_paths' => FALSE,
   );
-  $page->language = 'und';
+  $page->language = 'en';
   $page->tpid = 0;
   $page->default_handlers = array();
   $handler = new stdClass();
@@ -114,8 +114,8 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
-      'form_build_id' => 'form-H81ktEJPw1hk6XjnnU69CbAVMw_lr1pyZzFb0LgOqtY',
-      'form_token' => 'V1eqhEoNBcxSrk5i8w_5yghZLIkOxhxB-4V2OreLo84',
+      'form_build_id' => 'form-5vIjJwf8LgeRFql7gTbYukiPSVl1CHCDahWPOZ3OShM',
+      'form_token' => 'kkY3HKMZsS3NfuEkcZYvRkBBOKIaghBXsIZwCAv4Huw',
       'form_id' => 'frontpage_featured_form',
       'nas_panes_resave_panel' => TRUE,
       'header_color_mode' => 'dark',
@@ -247,7 +247,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'summary' => 'Introducing a new series profiling people, wildlife, and conservation programs threatened by federal budget cuts. ',
       ),
       'curtain_html' => array(
-        'image' => '125710',
+        'image' => nas_conservation_tracker_get_image('landing_page_hero.jpg'),
         'header_color_mode' => 'light',
         'disable_gradient' => 0,
         'header_bg' => '-1',
@@ -377,7 +377,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
           'top_text' => '',
           'title' => 'Strategies',
           'bottom_text' => 'We maximize our conservation results by focusing on five key strategies critical for birds.',
-          'image' => '125707',
+          'image' => nas_conservation_tracker_get_image('landing_page_strategies.jpg'), //'129402',
           'image_link' => '/1',
           'color_mode' => 'dark',
           'gradient' => 1,
@@ -385,8 +385,8 @@ function nas_conservation_tracker_default_page_manager_pages() {
         1 => array(
           'top_text' => '',
           'title' => 'Species',
-          'bottom_text' => '',
-          'image' => '125708',
+          'bottom_text' => 'Audubon\'s priority bird species are birds of significant conservation need, for which our actions, over time, can lead to measur',
+          'image' => nas_conservation_tracker_get_image('landing_page_species.jpg'), //'129403',
           'image_link' => '/2',
           'color_mode' => 'dark',
           'gradient' => 1,
@@ -394,15 +394,15 @@ function nas_conservation_tracker_default_page_manager_pages() {
         2 => array(
           'top_text' => '',
           'title' => 'Landscapes',
-          'bottom_text' => '',
-          'image' => '125709',
+          'bottom_text' => 'Audubon\'s work is "place-based" and enables our network to partner with local managers, businesses, and stakeholders to achieve ',
+          'image' => nas_conservation_tracker_get_image('landing_page_landscapes.jpg'), //'129404',
           'image_link' => '/3',
           'color_mode' => 'dark',
           'gradient' => 1,
         ),
       ),
-      'form_build_id' => 'form--zVHPduWPLkHkdTJ1KpBkQ6LtdHrj7fDv-xpeSbOcuE',
-      'form_token' => 'xdG1Cts4FAIDNJY46ff_PQ9qrpeDjAGz005aejcLZJ8',
+      'form_build_id' => 'form-lxnF3n8RNXuxZy-TNruRTUPJ-ulCNOWxutEn8kz4t2g',
+      'form_token' => '7J4ODUVhVZH0gY59cCQbv4ycLpGEnfpx0X5-8ueV010',
       'form_id' => 'static_cards_3x_form',
     );
     $pane->cache = array();
@@ -428,15 +428,16 @@ function nas_conservation_tracker_default_page_manager_pages() {
       'title' => '',
       'body' => '<div class="large-8 row space-top space-bottom" style="margin:auto;">
 	<div class="conservation-tracker-custom-pane">
-		<h3>Learn about our 5 core conservation strategies, and track their impact on priority species and landscapes via our new Conservation Tracker!</h3>
+		<h3>Learn about our core conservation strategies, and track their impact on priority species and landscapes via our new Conservation Tracker!</h3>
 
-		<p><span>The Conservation Tracker is an interactive, visualization tool that increases transparency and accountability. Audubon is committed to measuring the biological impact of our conservation strategies by investing in a system that hold us accountable to our board and funders for progress against key biological, financial and engagement goals.</span></p>
+		<p><span>The Conservation Tracker is an interactive, visualization tool that increases transparency and accountability. Audubon is committed to measuring the biological impact of our conservation strategies by investing in a system that holds us accountable to our board and funders for progress against quantifiable objectives. The Conservation Tracker is an interactive, visualization tool that increases transparency and accountability. Audubon is committed to measuring the biological impact of our conservation strategies by investing in a system that holds us accountable to our board and funders for progress against quantifiable objectives. The Conservation Tracker is an interactive, visualization tool that increases transparency and accountability. Audubon is committed to measuring the biological impact of our conservation strategies by investing in a system that holds us accountable to our board and funders for progress against quantifiable objectives. </span></p>
+		<p><span>The Conservation Tracker is an interactive, visualization tool that increases transparency and accountability. Audubon is committed to measuring the biological impact of our conservation strategies by investing in a system that holds us accountable to our board and funders for progress against quantifiable objectives. The Conservation Tracker is an interactive, visualization tool that increases transparency and accountability. Audubon is committed to measuring the biological impact of our conservation strategies by investing in a system that holds us accountable to our board and funders for progress against quantifiable objectives. The Conservation Tracker is an interactive, visualization tool that increases transparency and accountability. Audubon is committed to measuring the biological impact of our conservation strategies by investing in a system that holds us accountable to our board and funders for progress against quantifiable objectives. </span></p>
 	</div>
 </div>
 ',
       'format' => 'full_html',
       'substitute' => TRUE,
-      'form_build_id' => 'form-zagI2S3dI8SSPOrUSt_ytsc29LpI0AY9mM9EK6WOwGA',
+      'form_build_id' => 'form-uq4vLHdJa9uDb5MCABKU6JKX-hqgIYF7B1oP-x6MXJM',
       'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
@@ -444,7 +445,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
       'name' => '',
       'category' => '',
       'admin_description' => '',
-      'form_token' => 'bibtndKCHHSNx5zOMgaYAVoL_MfhvX0rh-MqJ4rANGw',
+      'form_token' => '7yH7EZaIx9-rgTxXjpw_fRZglnPMv-gpHgKRpKe48uU',
       'form_id' => 'ctools_custom_content_type_edit_form',
       'override_title_left_margin' => 0,
     );
@@ -459,33 +460,188 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->uuid = '5512ff18-9379-4c46-9d8f-b0cc9fd57ec3';
     $display->content['new-5512ff18-9379-4c46-9d8f-b0cc9fd57ec3'] = $pane;
     $display->panels['main'][1] = 'new-5512ff18-9379-4c46-9d8f-b0cc9fd57ec3';
+  $display->hide_title = PANELS_TITLE_NONE;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['conservation_tracker'] = $page;
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'conservation_tracker_landscapes';
+  $page->task = 'page';
+  $page->admin_title = 'Conservation tracker Landscapes';
+  $page->admin_description = '';
+  $page->path = 'conservation-tracker/landscapes';
+  $page->access = array();
+  $page->menu = array();
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->language = 'und';
+  $page->tpid = 0;
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_conservation_tracker_landscapes__panel_context_bc0c32dd-d62f-4b08-9f8e-5ae183483ede';
+  $handler->task = 'page';
+  $handler->subtask = 'conservation_tracker_landscapes';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'ipe',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+  );
+  $display = new panels_display();
+  $display->layout = 'nas_frontpage';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'header' => NULL,
+      'top' => NULL,
+      'featured_top' => NULL,
+      'featured' => NULL,
+      'bird_news' => NULL,
+      'conservation_section' => NULL,
+      'more_headlines' => NULL,
+      'editorial_cards' => NULL,
+      'main' => NULL,
+      'cards_set' => NULL,
+      'footer' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '5cd8c51c-eab0-4afa-a6b5-0208df82f301';
+  $display->content = array();
+  $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-c6095b2c-6610-42f6-a44a-25486f9c97a5';
-    $pane->panel = 'main';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->pid = 'new-22959f2c-f24b-4187-a26f-a19c3681b6ee';
+    $pane->panel = 'featured_top';
+    $pane->type = 'nas_panes_frontpage_featured';
+    $pane->subtype = 'nas_panes_frontpage_featured';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => '',
-      'title' => '',
-      'body' => '<div class="large-8 row space-top space-bottom double" style="margin:auto;"><div class="conservation-tracker-custom-pane">
-	<p><span>By shifting our emphasis from staff effort to biological outcomes, we are more likely to successfully achieve our goals and protect birds and their habitats over the long term. In addition, funders are investing in our work and expect to hear about the return on investment. This platform will also help us tell our Audubon story better through interactive reports with high-quality data visualizations, and allow for efficiencies of scale that a big NGO should have.</span></p>
-</div></div>
-',
-      'format' => 'full_html',
-      'substitute' => TRUE,
-      'form_build_id' => 'form-hGLneyKANIaesEl_HGlYs4lOmXDj636XNB_sb7HHX8U',
-      'override_title' => 0,
-      'override_title_text' => '',
       'override_title_heading' => 'h2',
-      'reusable' => 0,
-      'name' => '',
-      'category' => '',
-      'admin_description' => '',
-      'form_token' => 'bibtndKCHHSNx5zOMgaYAVoL_MfhvX0rh-MqJ4rANGw',
-      'form_id' => 'ctools_custom_content_type_edit_form',
-      'override_title_left_margin' => 0,
+      'variant' => 'curtain_html',
+      'curtain_simple' => array(
+        'image' => 0,
+        'mobile_image' => 0,
+        'header_color_mode' => 'dark',
+        'disable_gradient' => 0,
+        'header_bg' => '1',
+        'header_position' => 'right',
+        'title' => '',
+        'title_link' => '',
+        'blue_text' => '',
+        'blue_text_link' => '',
+        'summary' => '',
+      ),
+      'hero_image' => array(
+        'image' => 0,
+        'header_color_mode' => 'dark',
+        'disable_gradient' => 0,
+        'title' => '',
+        'title_link' => '',
+        'blue_text' => '',
+        'blue_text_link' => '',
+      ),
+      'curtain_3stories' => array(
+        'image' => 0,
+        'header_color_mode' => 'dark',
+        'disable_gradient' => 0,
+        'title' => '',
+        'title_link' => '',
+        'action_text' => '',
+        'action_text_link' => '',
+        'articles' => array(
+          0 => array(
+            'entity_reference' => FALSE,
+            'title' => '',
+            'slug_link' => array(
+              'title' => '',
+              'url' => '',
+            ),
+          ),
+          'add_more' => 'Add more stories',
+        ),
+        'count' => 1,
+      ),
+      'curtain_package' => array(
+        'image' => 0,
+        'header_color_mode' => 'dark',
+        'bg_color_mode' => 'dark',
+        'title' => array(
+          'title' => '',
+          'url' => '',
+        ),
+        'slug_link' => array(
+          'title' => '',
+          'url' => '',
+        ),
+        'action_item' => array(
+          'title' => '',
+          'url' => '',
+        ),
+        'summary' => '',
+        'articles' => array(
+          0 => array(
+            'entity_reference' => FALSE,
+            'title' => '',
+            'slug_link' => array(
+              'title' => '',
+              'url' => '',
+            ),
+          ),
+          'add_more' => 'Add more stories',
+        ),
+        'count' => 1,
+      ),
+      'curtain_video' => array(
+        'header_color_mode' => 'dark',
+        'disable_gradient' => 0,
+        'image' => 0,
+        'video' => 0,
+        'attribution' => array(
+          'caption' => '',
+          'credits' => '',
+        ),
+        'bg_color' => '',
+        'position' => 'cover',
+        'place' => 'center',
+        'title' => array(
+          'title' => '',
+          'url' => '',
+        ),
+        'slug_link' => array(
+          'title' => '',
+          'url' => '',
+        ),
+        'summary' => '',
+      ),
+      'curtain_html' => array(
+        'image' => nas_conservation_tracker_get_image('landscapes_hero.jpg'),
+        'header_color_mode' => 'none',
+        'disable_gradient' => 0,
+        'header_bg' => '-1',
+        'header_position' => 'left',
+        'summary' => 'Landscapes',
+      ),
+      'form_build_id' => 'form-l8WRzSBUyiy6abzIw2kjdZfrazJ_hPC16vx2C_IPA88',
+      'form_token' => 'GU0YQdAtdC0VjtaGzqiHQopraEKhA1sRTiW2fPF37lI',
+      'form_id' => 'frontpage_featured_form',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -493,16 +649,153 @@ function nas_conservation_tracker_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'c6095b2c-6610-42f6-a44a-25486f9c97a5';
-    $display->content['new-c6095b2c-6610-42f6-a44a-25486f9c97a5'] = $pane;
-    $display->panels['main'][2] = 'new-c6095b2c-6610-42f6-a44a-25486f9c97a5';
+    $pane->uuid = '22959f2c-f24b-4187-a26f-a19c3681b6ee';
+    $display->content['new-22959f2c-f24b-4187-a26f-a19c3681b6ee'] = $pane;
+    $display->panels['featured_top'][0] = 'new-22959f2c-f24b-4187-a26f-a19c3681b6ee';
+    $pane = new stdClass();
+    $pane->pid = 'new-359bb005-bec2-4169-9c07-0f9643c7c629';
+    $pane->panel = 'footer';
+    $pane->type = 'nas_stay_abreast_pane';
+    $pane->subtype = 'nas_stay_abreast_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'headline' => 'Stay abreast of Audubon',
+      'caption' => 'Our email newsletter shares the latest programs and initiatives.',
+      'nas_external_integration' => array(
+        'provider' => 'every_action',
+        'id' => 'q2XV7OpjIE2SKrwPpdiFuA2',
+        'apikey' => '',
+        'token' => '',
+        'embed_script' => '',
+        'embed_script_js' => '',
+        'get_lists' => 'Get mailing lists from external provider',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '359bb005-bec2-4169-9c07-0f9643c7c629';
+    $display->content['new-359bb005-bec2-4169-9c07-0f9643c7c629'] = $pane;
+    $display->panels['footer'][0] = 'new-359bb005-bec2-4169-9c07-0f9643c7c629';
+    $pane = new stdClass();
+    $pane->pid = 'new-07e9cadc-afd7-4229-bfab-f4f0dd99cb82';
+    $pane->panel = 'footer';
+    $pane->type = 'nas_footer_pane';
+    $pane->subtype = 'nas_footer_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'logo_path' => 'public://footer-logo.png',
+      'title' => '',
+      'mission' => '',
+      'copyright' => '',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '07e9cadc-afd7-4229-bfab-f4f0dd99cb82';
+    $display->content['new-07e9cadc-afd7-4229-bfab-f4f0dd99cb82'] = $pane;
+    $display->panels['footer'][1] = 'new-07e9cadc-afd7-4229-bfab-f4f0dd99cb82';
+    $pane = new stdClass();
+    $pane->pid = 'new-e7cf524e-3b01-4f70-a410-04d0e6f07ac6';
+    $pane->panel = 'header';
+    $pane->type = 'pane_messages';
+    $pane->subtype = 'pane_messages';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e7cf524e-3b01-4f70-a410-04d0e6f07ac6';
+    $display->content['new-e7cf524e-3b01-4f70-a410-04d0e6f07ac6'] = $pane;
+    $display->panels['header'][0] = 'new-e7cf524e-3b01-4f70-a410-04d0e6f07ac6';
+    $pane = new stdClass();
+    $pane->pid = 'new-2c041272-281a-45fe-99bf-a5bf14babb5f';
+    $pane->panel = 'header';
+    $pane->type = 'nas_menu_header_big';
+    $pane->subtype = 'nas_menu_header_big';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '2c041272-281a-45fe-99bf-a5bf14babb5f';
+    $display->content['new-2c041272-281a-45fe-99bf-a5bf14babb5f'] = $pane;
+    $display->panels['header'][1] = 'new-2c041272-281a-45fe-99bf-a5bf14babb5f';
+    $pane = new stdClass();
+    $pane->pid = 'new-52ab7af6-56f0-4c40-879a-f79076f54f65';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_don_t_miss';
+    $pane->subtype = 'nas_menu_header_don_t_miss';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '52ab7af6-56f0-4c40-879a-f79076f54f65';
+    $display->content['new-52ab7af6-56f0-4c40-879a-f79076f54f65'] = $pane;
+    $display->panels['top'][0] = 'new-52ab7af6-56f0-4c40-879a-f79076f54f65';
+    $pane = new stdClass();
+    $pane->pid = 'new-598be747-16d0-493f-bb64-252b58aab684';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_big';
+    $pane->subtype = 'nas_menu_header_big';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '598be747-16d0-493f-bb64-252b58aab684';
+    $display->content['new-598be747-16d0-493f-bb64-252b58aab684'] = $pane;
+    $display->panels['top'][1] = 'new-598be747-16d0-493f-bb64-252b58aab684';
   $display->hide_title = PANELS_TITLE_NONE;
-  $display->title_pane = '0';
+  $display->title_pane = 'new-e7cf524e-3b01-4f70-a410-04d0e6f07ac6';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
-  $pages['conservation_tracker'] = $page;
+  $pages['conservation_tracker_landscapes'] = $page;
 
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
