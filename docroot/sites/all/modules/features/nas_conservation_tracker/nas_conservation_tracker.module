@@ -279,8 +279,8 @@ function nas_conservation_tracker_load_species() {
     if (!empty($species['dropped'])) {
       $wrapper->field_ct_dropped->set($species['dropped']);
     }
-    if (!empty($species['climateStatus'])) {
-      $wrapper->field_ct_climate_status->set($species['climateStatus']);
+    if (!empty($species['audubonClimateStatus'])) {
+      $wrapper->field_ct_climate_status->set($species['audubonClimateStatus']);
     }
     if (!empty($species['stateOfBirds'])) {
       $wrapper->field_ct_state_of_birds->set($species['stateOfBirds']);
@@ -368,21 +368,21 @@ function nas_conservation_tracker_get_image($name) {
 function nas_conservation_tracker_preprocess_views_view(&$vars) {
   $view = $vars['view'];
   if ($view->name == 'ct_species') {
-    $page = page_manager_get_current_page();
-    $vars['alphabet'] = '';
-    $vars['reset'] = '';
-    if ($page && !empty($page['subtask']['subtask']->path)) {
-      $letters = array(
-        'title' => '',
-        'type' => 'ul',
-        'attributes' => array('class' => 'alphabet-block__alphabet'),
-      );
-      foreach (range('a','z') as $letter) {
-        $letters['items'][$letter] = l(strtoupper($letter), $page['subtask']['subtask']->path . '/' . $letter);
-      }
-      $vars['alphabet'] = theme_item_list($letters);
-      $vars['reset'] = l(t('Reset Filters'), $page['subtask']['subtask']->path, array('attribures' => array('class' => 'reset-filters')));
+    $path = db_select('page_manager_pages', 'pmp')
+      ->fields('pmp', array('path'))
+      ->condition('name', 'ct_species_view')
+      ->execute()
+      ->fetchField();
+    $letters = array(
+      'title' => '',
+      'type' => 'ul',
+      'attributes' => array('class' => 'alphabet-block__alphabet'),
+    );
+    foreach (range('a','z') as $letter) {
+      $letters['items'][$letter] = l(strtoupper($letter), $path . '/' . $letter);
     }
+    $vars['alphabet'] = theme_item_list($letters);
+    $vars['reset'] = l(t('Reset Filters'), $path, array('attribures' => array('class' => 'reset-filters')));
   }
 }
 
