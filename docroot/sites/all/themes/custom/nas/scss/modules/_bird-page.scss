@@ -1013,27 +1013,30 @@ $gray-lightish: #9b9b9b;
 
 .partners-wrap {
   &.columns {
-    width: 90%;
+    width: calc(100% - 20px);
     margin: 20px auto;
     position: relative;
     background: white;
     padding: 30px 15px;
+    float: none;
+    overflow: hidden;
     @media screen and (min-width: 768px) {
-      position: absolute;
+      position: relative;
       top: 0;
-      margin: 0;
-      right: calc(572px + 10px);
-      width: 23%;
+      width: 90%;
       -webkit-column-count: 2;
       -moz-column-count: 2;
       column-count: 2;
+      margin: 80px auto 40px;
     }
     @media screen and (min-width: 1000px) {
-      position: absolute;
-      top: 10px;
-      margin: 0;
-      right: calc(572px + 16%);
       width: 29%;
+      margin-left: 14%;
+      float: left;
+    }
+    @media screen and (min-width: 1500px) {
+      width: 30%;
+      margin-left: 18%;
     }
     .partners-wrap__partner {
       display: block;
@@ -1084,6 +1087,17 @@ $gray-lightish: #9b9b9b;
 
 .partners-wrap.columns ~ .help-wrap-items-map-items {
   position: relative;
+  clear: inherit;
+  @media screen and (min-width: 1000px) {
+    width: 50%;
+  }
+  @media only screen and (min-width: 1025px) {
+    margin-right: 5%;
+  }
+  @media screen and (min-width: 1500px) {
+    width: 62.66666666666667%;
+    margin-right: 15.27777777777778%;
+  }
 }
 
 .bird-page {
