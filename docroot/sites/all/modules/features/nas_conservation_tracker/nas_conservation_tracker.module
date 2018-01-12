@@ -6,6 +6,8 @@
 
 include_once 'nas_conservation_tracker.features.inc';
 
+define('NAS_CT_JS_PATH', drupal_get_path('module', 'nas_conservation_tracker') . '/js/');
+
 /**
  * Implements hook_ctools_plugin_directory().
  */
@@ -398,7 +400,8 @@ function nas_conservation_tracker_get_image($name) {
 function nas_conservation_tracker_preprocess_views_view(&$vars) {
   $view = $vars['view'];
   if ($view->name == 'ct_species') {
-    $path = db_select('page_manager_pages', 'pmp')
+    $components = drupal_parse_url(request_uri());
+    $view_path = '/' . db_select('page_manager_pages', 'pmp')
       ->fields('pmp', array('path'))
       ->condition('name', 'ct_species_view')
       ->execute()
@@ -408,11 +411,13 @@ function nas_conservation_tracker_preprocess_views_view(&$vars) {
       'type' => 'ul',
       'attributes' => array('class' => 'alphabet-block__alphabet'),
     );
-    foreach (range('a','z') as $letter) {
-      $letters['items'][$letter] = l(strtoupper($letter), $path . '/' . $letter);
+    foreach (range('a', 'z') as $letter) {
+      $letters['items'][$letter] = l(strtoupper($letter), url($view_path . '/' . $letter), array('query' => $components['query'], 'html' => TRUE));
     }
     $vars['alphabet'] = theme_item_list($letters);
-    $vars['reset'] = l(t('Reset Filters'), $path, array('attribures' => array('class' => 'reset-filters')));
+    $vars['reset'] = l(t('Reset Filters'), $view_path);
+    drupal_add_js(NAS_CT_JS_PATH . 'nas_conservation_tracker_species.js');
+    drupal_add_js(array('nasConservationTracker' => array('speciesPath' => $view_path)), 'setting');
   }
 }
 

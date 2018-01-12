@@ -68,11 +68,11 @@
           var marker = L.marker(site.latLon, {icon: dot});
           var text = site.name;
           var categories = [];
-          for (var j = 0 in site.actions) {
-            for (var l = 0 in site.actions[j].categories) {
-              if (categories.indexOf(site.actions[j].categories[l].name) < 0) {
-                text += ("<br/><small>" + site.actions[j].categories[l].name + "</small>");
-                categories.push(site.actions[j].categories[l].name);
+          for (var j = 0 in site[loc]) {
+            for (var l = 0 in site[loc][j].categories) {
+              if (categories.indexOf(site[loc][j].categories[l].name) < 0) {
+                text += ("<br/><small>" + site[loc][j].categories[l].name + "</small>");
+                categories.push(site[loc][j].categories[l].name);
               }
             }
           }

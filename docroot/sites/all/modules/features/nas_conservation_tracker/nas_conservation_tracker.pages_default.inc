@@ -843,6 +843,9 @@ function nas_conservation_tracker_default_page_manager_pages() {
       'header' => NULL,
       'main' => NULL,
       'cards' => NULL,
+      'top' => NULL,
+      'menu_bar' => NULL,
+      'cards_set' => NULL,
     ),
   );
   $display->cache = array();
@@ -850,6 +853,79 @@ function nas_conservation_tracker_default_page_manager_pages() {
   $display->uuid = 'c6109b61-8117-4845-b4fb-c2a95888fd29';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-c06b4037-cc86-4abd-8338-7f27ab8949f6';
+    $pane->panel = 'main';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '<div class="ct-species-header bg-respond hero small dark-gradient light-text">
+	<div class="hero-image"><img alt="Species" src="/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_black_oystercatcher_hero.jpg" /></div>
+	<div>
+		<div class="row">
+			<div class="hero-header">
+				<div class="columns large-12 large-centered">
+					<h1 class="hero-title">Species</h1>
+					<p class="hero-blurb">Audubon&rsquo;s priority bird species are birds of significant conservation need, for which our actions, over time, can lead to measurable improvements in status.</p>
+				</div>
+			</div>
+		</div>
+		<div class="curtain-arrow storecard">&nbsp;</div>
+	</div>
+</div>
+',
+      'format' => 'html',
+      'substitute' => TRUE,
+      'form_build_id' => 'form-fSudubSP-7dA-75fXiPeQNcQ7USGo86SOViaYE1PzO0',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+      'reusable' => 0,
+      'name' => '',
+      'category' => '',
+      'admin_description' => '',
+      'form_token' => '_ruURNGSUZDRh0t42V1m-Oa460XE2IbfwACocLjLaRk',
+      'form_id' => 'ctools_custom_content_type_edit_form',
+      'override_title_left_margin' => 0,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c06b4037-cc86-4abd-8338-7f27ab8949f6';
+    $display->content['new-c06b4037-cc86-4abd-8338-7f27ab8949f6'] = $pane;
+    $display->panels['main'][0] = 'new-c06b4037-cc86-4abd-8338-7f27ab8949f6';
+    $pane = new stdClass();
+    $pane->pid = 'new-c142d323-944e-4eb0-bda4-051e3aca3965';
+    $pane->panel = 'main';
+    $pane->type = 'block';
+    $pane->subtype = 'menu-menu-ct-menu';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'c142d323-944e-4eb0-bda4-051e3aca3965';
+    $display->content['new-c142d323-944e-4eb0-bda4-051e3aca3965'] = $pane;
+    $display->panels['main'][1] = 'new-c142d323-944e-4eb0-bda4-051e3aca3965';
     $pane = new stdClass();
     $pane->pid = 'new-65a8594f-6c86-4348-ab14-face41231ace';
     $pane->panel = 'main';
@@ -880,11 +956,11 @@ function nas_conservation_tracker_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '65a8594f-6c86-4348-ab14-face41231ace';
     $display->content['new-65a8594f-6c86-4348-ab14-face41231ace'] = $pane;
-    $display->panels['main'][0] = 'new-65a8594f-6c86-4348-ab14-face41231ace';
+    $display->panels['main'][2] = 'new-65a8594f-6c86-4348-ab14-face41231ace';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
