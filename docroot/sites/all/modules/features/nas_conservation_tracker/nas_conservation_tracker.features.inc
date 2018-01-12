@@ -116,7 +116,8 @@ function nas_conservation_tracker_default_search_api_index() {
         "field_ct_strategy_initiative_id" : { "type" : "integer" },
         "id" : { "type" : "integer" },
         "search_api_language" : { "type" : "string" },
-        "search_api_url" : { "type" : "uri" }
+        "search_api_url" : { "type" : "uri" },
+        "title" : { "type" : "string" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
@@ -136,15 +137,22 @@ function nas_conservation_tracker_default_search_api_index() {
       },
       "processors" : {
         "search_api_case_ignore" : {
-          "status" : 0,
+          "status" : 1,
           "weight" : "0",
-          "settings" : { "fields" : { "title" : true, "field_ct_scientific_name" : true } }
+          "settings" : { "fields" : {
+              "field_ct_scientific_name" : true,
+              "field_ct_common_name" : true,
+              "field_ct_climate_status" : true,
+              "field_ct_guild" : true,
+              "field_ct_letter" : true
+            }
+          }
         },
         "search_api_html_filter" : {
           "status" : 0,
           "weight" : "10",
           "settings" : {
-            "fields" : { "title" : true, "field_ct_scientific_name" : true },
+            "fields" : { "field_ct_scientific_name" : true },
             "title" : 0,
             "alt" : 1,
             "tags" : "h1 = 5\\r\\nh2 = 3\\r\\nh3 = 2\\r\\nstrong = 2\\r\\nb = 2\\r\\nem = 1.5\\r\\nu = 1.5"
@@ -153,13 +161,13 @@ function nas_conservation_tracker_default_search_api_index() {
         "search_api_transliteration" : {
           "status" : 0,
           "weight" : "15",
-          "settings" : { "fields" : { "title" : true, "field_ct_scientific_name" : true } }
+          "settings" : { "fields" : { "field_ct_scientific_name" : true } }
         },
         "search_api_tokenizer" : {
           "status" : 0,
           "weight" : "20",
           "settings" : {
-            "fields" : { "title" : true, "field_ct_scientific_name" : true },
+            "fields" : { "field_ct_scientific_name" : true },
             "spaces" : "[^[:alnum:]]",
             "ignorable" : "[\\u0027]"
           }
@@ -168,7 +176,7 @@ function nas_conservation_tracker_default_search_api_index() {
           "status" : 0,
           "weight" : "30",
           "settings" : {
-            "fields" : { "title" : true, "field_ct_scientific_name" : true },
+            "fields" : { "field_ct_scientific_name" : true },
             "file" : "",
             "stopwords" : "but\\r\\ndid\\r\\nthe this that those\\r\\netc"
           }
@@ -206,7 +214,7 @@ function nas_conservation_tracker_default_search_api_server() {
     "options" : {
       "database" : "default:default",
       "min_chars" : "3",
-      "partial_matches" : 0,
+      "partial_matches" : 1,
       "indexes" : { "ct_species_index" : {
           "id" : {
             "table" : "search_api_db_ct_species_index",
@@ -275,6 +283,12 @@ function nas_conservation_tracker_default_search_api_server() {
           "field_ct_letter" : {
             "table" : "search_api_db_ct_species_index",
             "column" : "field_ct_letter",
+            "type" : "string",
+            "boost" : "1.0"
+          },
+          "title" : {
+            "table" : "search_api_db_ct_species_index",
+            "column" : "title",
             "type" : "string",
             "boost" : "1.0"
           }

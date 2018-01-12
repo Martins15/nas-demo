@@ -153,6 +153,13 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['header']['area']['empty'] = TRUE;
   $handler->display->display_options['header']['area']['content'] = 'Use the tools below to find species by keyword search, by letter alphabetically, or via the filters to the left';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'No results found';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
   /* Field: Indexed CT Species: Score card URL */
   $handler->display->display_options['fields']['field_ct_score_card_url']['id'] = 'field_ct_score_card_url';
   $handler->display->display_options['fields']['field_ct_score_card_url']['table'] = 'search_api_index_ct_species_index';
@@ -249,6 +256,14 @@ function nas_conservation_tracker_views_default_views() {
     41 => 0,
     51 => 0,
     56 => 0,
+  );
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group_info']['label'] = 'Fulltext search';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group_info']['identifier'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group_info']['remember'] = FALSE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group_info']['group_items'] = array(
+    1 => array(),
+    2 => array(),
+    3 => array(),
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['min_length'] = '3';
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
@@ -406,11 +421,13 @@ function nas_conservation_tracker_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Use the tools below to find species by keyword search, by letter alphabetically, or via the filters to the left'),
+    t('No results found'),
     t('#'),
     t('has-scorecard'),
     t('no-scorecard'),
     t('<img src="[field_ct_image]" />'),
     t('All'),
+    t('Fulltext search'),
     t('Strategies'),
     t('GUILD'),
     t('Threat status'),
