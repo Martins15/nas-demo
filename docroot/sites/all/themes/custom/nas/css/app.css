@@ -19407,9 +19407,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-width: 0 3px 3px 0;
 }
 
+#nas-conservation-tracker-landscapes-map-form {
+  margin: 0 10px;
+}
 @media only screen and (min-width: 768px) {
   #nas-conservation-tracker-landscapes-map-form {
     max-width: 230px;
+    margin: 0;
   }
 }
 #nas-conservation-tracker-landscapes-map-form .form-item.form-type-radios, #nas-conservation-tracker-landscapes-map-form .form-item.form-type-checkboxes {
@@ -19417,6 +19421,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding: 15px;
   background: #303030;
   color: #fff;
+}
+@media only screen and (min-width: 768px) {
+  #nas-conservation-tracker-landscapes-map-form .form-item.form-type-radios, #nas-conservation-tracker-landscapes-map-form .form-item.form-type-checkboxes {
+    margin-bottom: 3px;
+  }
 }
 #nas-conservation-tracker-landscapes-map-form .form-item input {
   margin: 0;

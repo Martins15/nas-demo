@@ -413,8 +413,10 @@ $text-gray-filter: #9b9b9b;
 
 // Style for /conservation-tracker/landscapes page.
 #nas-conservation-tracker-landscapes-map-form {
+  margin: 0 10px;
   @include breakpoint(large-up) {
     max-width: 230px;
+    margin: 0;
   }
   .form-item {
     &.form-type-radios,
@@ -423,6 +425,9 @@ $text-gray-filter: #9b9b9b;
       padding: 15px;
       background: $dark-bg-filter;
       color: $white;
+      @include breakpoint(large-up) {
+        margin-bottom: 3px;
+      }
     }
     input {
       margin: 0;
