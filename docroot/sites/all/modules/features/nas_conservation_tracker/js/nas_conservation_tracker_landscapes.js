@@ -87,23 +87,11 @@
     polygons.addTo(lMap);
 
     function getPolygonEvents(feature, layer) {
-      // layer.on('click', function (event) {
-      //   layer.feature.properties.selected =
-      // !layer.feature.properties.selected; if
-      // (layer.feature.properties.selected) { layer.setStyle(styleSelected); }
-      // else { layer.setStyle(styleActive); } rebuildChartsBySelection(); });
+      // Placeholder.
     }
 
     function getPolygonStyle(feature) {
       var style = {};
-      // Object.assign(style, styleActive);
-      //
-      // var k = 0;
-      // for (var i in Drupal.settings.nasConservationTracker.currentMap.range)
-      // { if
-      // (Drupal.settings.nasConservationTracker.currentMap.rows[feature.properties.machineName]
-      // >= Drupal.settings.nasConservationTracker.currentMap.range[i]) { k =
-      // i; } }
 
       var color = colors[feature.properties.unit.strategy.name.toLowerCase()];
       style.fillColor = color;
@@ -117,7 +105,7 @@
       this.properties = {
         machineName: name.toLowerCase().replace(/\s/g, ''),
         name: name,
-        flyway: flyway.toLowerCase(),
+        flyway: flyway,
         unit: unit,
         selected: false,
       };
@@ -137,10 +125,10 @@
           if ($(el).attr('type') == 'radio') {
             filters.strategy = $(el).val();
           }
-          else if($(el).attr('name').indexOf('status') === 0) {
+          else if ($(el).attr('name').indexOf('status') === 0) {
             filters.status.push($(el).val());
           }
-          else if($(el).attr('name').indexOf('flyways') === 0) {
+          else if ($(el).attr('name').indexOf('flyways') === 0) {
             filters.flyways.push($(el).val());
           }
         });
@@ -150,11 +138,21 @@
         var selectedLandscapes = [];
         for (var i = 0; i < allLandscapes.length; i++) {
           if (allLandscapes[i].strategy.name.toLowerCase() == filters.strategy
-              && filters.status.indexOf(allLandscapes[i].status.toLowerCase()) >= 0
-              && filters.flyways.indexOf(allLandscapes[i].flyway.toLowerCase()) >= 0) {
-            selectedLandscapes.push(allLandscapes[i]);
+              && filters.status.indexOf(allLandscapes[i].status.toLowerCase()) >= 0) {
+
+            var hasAllFlyways = true;
+            for (var j = 0; j < allLandscapes[i].flyway.length; j++) {
+              if (filters.flyways.indexOf(allLandscapes[i].flyway[j].name.toLowerCase()) == -1) {
+                hasAllFlyways = false;
+              }
+            }
+            if (hasAllFlyways) {
+              selectedLandscapes.push(allLandscapes[i]);
+            }
+
           }
         }
+
         Drupal.nasCtInitLandscapesMap(selectedLandscapes);
       });
 

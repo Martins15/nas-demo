@@ -1,3 +1,4 @@
+
 [
   {
     "id": 0,
@@ -6,7 +7,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Pacific",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      }
+    ],
     "status": "At work"
   },
   {
@@ -16,7 +22,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "Scoping"
   },
   {
@@ -26,7 +37,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "At work"
   },
   {
@@ -36,7 +52,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Pacific",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      }
+    ],
     "status": "Future"
   },
   {
@@ -46,7 +67,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "Future"
   },
   {
@@ -56,7 +82,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "Future"
   },
   {
@@ -66,7 +97,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "At work"
   },
   {
@@ -76,7 +112,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Pacific",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      }
+    ],
     "status": "Future"
   },
   {
@@ -86,7 +127,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Mississippi",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Mississippi"
+      }
+    ],
     "status": "At work"
   },
   {
@@ -96,7 +142,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "At work"
   },
   {
@@ -106,7 +157,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "Scoping"
   },
   {
@@ -116,7 +172,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Central",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Central"
+      }
+    ],
     "status": "Future"
   },
   {
@@ -126,7 +187,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "At work"
   },
   {
@@ -136,7 +202,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Pacific",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      }
+    ],
     "status": "At work"
   },
   {
@@ -146,7 +217,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Pacific",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      }
+    ],
     "status": "Scoping"
   },
   {
@@ -156,7 +232,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Pacific",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      }
+    ],
     "status": "At work"
   },
   {
@@ -166,7 +247,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Pacific",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      }
+    ],
     "status": "At work"
   },
   {
@@ -176,7 +262,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Pacific",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      }
+    ],
     "status": "At work"
   },
   {
@@ -186,7 +277,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Central",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Central"
+      }
+    ],
     "status": "Scoping"
   },
   {
@@ -196,7 +292,16 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Central, Mississippi",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Central"
+      },
+      {
+        "id": 1,
+        "name": "Mississippi"
+      }
+    ],
     "status": "Scoping"
   },
   {
@@ -206,7 +311,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Pacific",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      }
+    ],
     "status": "Scoping"
   },
   {
@@ -216,7 +326,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "At work"
   },
   {
@@ -226,7 +341,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Pacific",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      }
+    ],
     "status": "Scoping"
   },
   {
@@ -236,7 +356,12 @@
       "id": 1,
       "name": "Coasts"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "Scoping"
   },
   {
@@ -246,7 +371,12 @@
       "id": 3,
       "name": "Water"
     },
-    "flyway": "Central",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Central"
+      }
+    ],
     "status": "At Work"
   },
   {
@@ -256,7 +386,12 @@
       "id": 3,
       "name": "Water"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "At Work"
   },
   {
@@ -266,7 +401,12 @@
       "id": 3,
       "name": "Water"
     },
-    "flyway": "Mississippi",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Mississippi"
+      }
+    ],
     "status": "At Work"
   },
   {
@@ -276,7 +416,16 @@
       "id": 3,
       "name": "Water"
     },
-    "flyway": "Pacific, Central",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      },
+      {
+        "id": 1,
+        "name": "Central"
+      }
+    ],
     "status": "At Work"
   },
   {
@@ -286,7 +435,16 @@
       "id": 2,
       "name": "Working Lands"
     },
-    "flyway": "Pacific, Central",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      },
+      {
+        "id": 1,
+        "name": "Central"
+      }
+    ],
     "status": "At Work"
   },
   {
@@ -296,7 +454,12 @@
       "id": 2,
       "name": "Working Lands"
     },
-    "flyway": "Pacific",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Pacific"
+      }
+    ],
     "status": "At Work"
   },
   {
@@ -306,7 +469,12 @@
       "id": 2,
       "name": "Working Lands"
     },
-    "flyway": "Central",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Central"
+      }
+    ],
     "status": "At Work"
   },
   {
@@ -316,7 +484,12 @@
       "id": 2,
       "name": "Working Lands"
     },
-    "flyway": "Atlantic",
+    "flyway": [
+      {
+        "id": 0,
+        "name": "Atlantic"
+      }
+    ],
     "status": "At Work"
   }
 ]
