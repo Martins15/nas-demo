@@ -101,7 +101,7 @@ function nas_conservation_tracker_landscapes_map_form($form, &$form_state) {
     'strategies' => [
       '#type' => 'radios',
       '#title' => t('Strategies'),
-      '#default_value' => '',
+      '#default_value' => 'coasts',
       '#options' => [
         'coasts' => t('Coasts'),
         'working lands' => t('Working Lands'),

@@ -33,6 +33,8 @@
   {
     "id": 2,
     "name": "Coastal Carolinas",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/coastal_carolinas_preview.jpg",
+    "scorecardId": 321,
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -228,6 +230,7 @@
   {
     "id": 15,
     "name": "San Francisco Bay",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/san_francisco_bay_preview.jpg",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -397,6 +400,7 @@
   {
     "id": 26,
     "name": "Great Lakes",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/great_lakes_preview.jpg",
     "strategy": {
       "id": 3,
       "name": "Water"
@@ -465,6 +469,7 @@
   {
     "id": 30,
     "name": "Great Plains and Chihuahan Desert",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/great_plains_and_chihuahan_desert_preview.jpg",
     "strategy": {
       "id": 2,
       "name": "Working Lands"
