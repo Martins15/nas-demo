@@ -6,6 +6,38 @@ $dark-bg-filter: #303030;
 $dark-border-filter: #1c1c1c;
 $text-gray-filter: #9b9b9b;
 
+@mixin style-input() {
+  input[type="radio"], input[type="checkbox"] {
+    position: absolute;
+    left: -999em;
+  }
+  label {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    &:before {
+      content: '';
+      position: absolute;
+      top: .25em;
+      left: -2px;
+      width: 14px;
+      height: 14px;
+    }
+  }
+  input[type="checkbox"] + label:before,
+  input[type="radio"] + label:before {
+    border: 1px solid $bord-filter;
+    background: transparent;
+  }
+  input[type="radio"] + label:before {
+    border-radius: 50%;
+  }
+  input[type="checkbox"]:checked + label:before,
+  input[type="radio"]:checked + label:before {
+    background: $bord-filter;
+  }
+}
+
 .species-filter {
   margin-bottom: 40px;
   font-family: $font-sans;
@@ -89,6 +121,7 @@ $text-gray-filter: #9b9b9b;
       padding: 0;
     }
     .form-item.form-type-radio {
+      @include style-input();
       padding: 15px;
       border-bottom: 1px solid #dfdfdf;
       input {
@@ -342,6 +375,73 @@ $text-gray-filter: #9b9b9b;
         }
       }
       margin-bottom: 15px;
+    }
+  }
+}
+
+.dark-style {
+  margin-bottom: 20px;
+  .first-level {
+    > li {
+      color: $white;
+      background: $dark-bg-filter;
+      border: 1px solid $dark-border-filter;
+      margin-bottom: 0;
+    }
+  }
+  .second-level {
+    li {
+      border-bottom: 1px solid $dark-border-filter;
+      opacity: .5;
+    }
+  }
+  i {
+    opacity: .5;
+  }
+  i.plus {
+    &:before,
+    &:after {
+      background-color: $white;
+    }
+  }
+  i.down {
+    border: solid $white;
+    border-width: 0 3px 3px 0;
+  }
+}
+
+
+// Style for /conservation-tracker/landscapes page.
+#nas-conservation-tracker-landscapes-map-form {
+  @include breakpoint(large-up) {
+    max-width: 230px;
+  }
+  .form-item {
+    &.form-type-radios,
+    &.form-type-checkboxes {
+      margin-bottom: 10px;
+      padding: 15px;
+      background: $dark-bg-filter;
+      color: $white;
+    }
+    input {
+      margin: 0;
+    }
+    label {
+      color: $white;
+      font-size: 25px;
+      &.option {
+        font-size: 17px;
+      }
+    }
+    .form-type-radio,
+    .form-type-checkbox {
+      @include style-input();
+      padding: 5px 0;
+      opacity: .5;
+      &:last-child {
+        padding: 5px 0 0;
+      }
     }
   }
 }
