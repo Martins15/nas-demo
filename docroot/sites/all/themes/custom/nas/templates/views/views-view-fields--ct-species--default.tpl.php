@@ -23,7 +23,7 @@
  * @ingroup views_templates
  */
 ?>
-<div class="columns tiny-6 medium-4 large-3 <?php print $classes; ?>">
+<div class="columns tiny-12 medium-4 large-4 <?php print $classes; ?>">
   <figure class="bird-card">
     <div class="bird-card-illustration">
       <?php print $fields['field_ct_image']->content; ?>

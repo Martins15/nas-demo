@@ -19033,7 +19033,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .species-filter {
+  margin-bottom: 40px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter {
+    margin-bottom: 60px;
+  }
 }
 .species-filter .text-info {
   background: #fbfaf6;
@@ -19074,18 +19080,173 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     width: 100%;
   }
 }
-.species-filter .alphabet-block li {
+.species-filter .alphabet-block li a {
   font-size: 24px;
   color: #76736c;
+  cursor: pointer;
 }
-.species-filter .filter-block__search {
+.species-filter .alphabet-block li a.active, .species-filter .alphabet-block li a:hover {
+  color: #89774f;
+}
+.species-filter .filter-block {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block {
+    display: block;
+  }
+}
+.species-filter .filter-block .views-widget .form-radios {
+  font-family: "Lato", sans-serif;
+  width: 100%;
+  padding: 15px 0;
   margin-bottom: 10px;
+  background: #fbfaf6;
+  border: 1px solid #dfdfdf;
 }
-.species-filter .filter-block__search input {
+.species-filter .filter-block fieldset.collapsible {
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.species-filter .filter-block fieldset.collapsible legend {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+.species-filter .filter-block .views-exposed-form .views-exposed-widget {
+  width: 100%;
+  padding: 0;
+}
+.species-filter .filter-block .form-item.form-type-radio {
+  padding: 15px;
+  border-bottom: 1px solid #dfdfdf;
+}
+.species-filter .filter-block .form-item.form-type-radio input[type="radio"], .species-filter .filter-block .form-item.form-type-radio input[type="checkbox"] {
+  position: absolute;
+  left: -999em;
+}
+.species-filter .filter-block .form-item.form-type-radio label {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+}
+.species-filter .filter-block .form-item.form-type-radio label:before {
+  content: '';
+  position: absolute;
+  top: .25em;
+  left: -2px;
+  width: 14px;
+  height: 14px;
+}
+.species-filter .filter-block .form-item.form-type-radio input[type="checkbox"] + label:before,
+.species-filter .filter-block .form-item.form-type-radio input[type="radio"] + label:before {
+  border: 1px solid #dfdfdf;
+  background: transparent;
+}
+.species-filter .filter-block .form-item.form-type-radio input[type="radio"] + label:before {
+  border-radius: 50%;
+}
+.species-filter .filter-block .form-item.form-type-radio input[type="checkbox"]:checked + label:before,
+.species-filter .filter-block .form-item.form-type-radio input[type="radio"]:checked + label:before {
+  background: #dfdfdf;
+}
+.species-filter .filter-block .form-item.form-type-radio input {
+  margin: 0;
+}
+.species-filter .filter-block .form-item.form-type-radio:last-child {
+  padding: 15px 15px 0;
+  border-bottom: 0;
+}
+.species-filter .filter-block .option {
+  font-size: 17px;
+}
+.species-filter .filter-block .fieldset-legend {
+  position: relative;
+}
+.species-filter .filter-block .fieldset-title {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0 15px;
+  color: #000;
+  font-size: 25px;
+  font-weight: normal;
+}
+.species-filter .filter-block .fieldset-title .fieldset-legend-prefix {
+  display: block;
+  right: 10px;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  clip: inherit;
+  transform: translateY(-50%);
+  font-size: 0;
+}
+.species-filter .filter-block .fieldset-title .fieldset-legend-prefix:before, .species-filter .filter-block .fieldset-title .fieldset-legend-prefix:after {
+  content: '';
+  position: absolute;
+  transition: transform .25s ease-out;
+  border-radius: 2px;
+  background-color: #404040;
+}
+.species-filter .filter-block .fieldset-title .fieldset-legend-prefix:before {
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%) rotate(90deg);
+}
+.species-filter .filter-block .fieldset-title .fieldset-legend-prefix:after {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: transparent;
+}
+.species-filter .filter-block .collapsed .fieldset-title .fieldset-legend-prefix:before {
+  transform: translateX(-50%) rotate(0);
+}
+.species-filter .filter-block .collapsed .fieldset-title .fieldset-legend-prefix:after {
+  background-color: #404040;
+}
+.species-filter .filter-block input[type='text'] {
   border: 1px solid #dfdfdf;
   border-radius: 0;
   box-shadow: none;
   margin: 0;
+  padding-right: 30px;
+}
+.species-filter .filter-block .form-item-search {
+  position: relative;
+  margin-bottom: 15px;
+}
+.species-filter .filter-block .form-item-search:before, .species-filter .filter-block .form-item-search:after {
+  content: '';
+  position: absolute;
+}
+.species-filter .filter-block .form-item-search:before {
+  width: 10px;
+  height: 10px;
+  right: 15px;
+  top: 18px;
+  transform: translateY(-50%);
+  border: 2px solid #404040;
+  border-radius: 100px;
+}
+.species-filter .filter-block .form-item-search:after {
+  right: 10px;
+  width: 5px;
+  top: 22px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  border: 2px solid #404040;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 .species-filter .filter-block__menu-block ul {
   list-style: none;
@@ -19205,6 +19366,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border: solid #fff;
   border-width: 0 3px 3px 0;
 }
+@media only screen and (min-width: 768px) {
+  .species-filter .birds-wrap {
+    float: left;
+  }
+}
 .species-filter .birds-wrap__title {
   margin-bottom: 15px;
 }
@@ -19215,6 +19381,166 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .species-filter .birds-wrap__title h4 {
     font-size: 33px;
   }
+}
+
+.dark-style {
+  margin-bottom: 20px;
+}
+.dark-style .first-level > li {
+  color: #fff;
+  background: #303030;
+  border: 1px solid #1c1c1c;
+  margin-bottom: 0;
+}
+.dark-style .second-level li {
+  border-bottom: 1px solid #1c1c1c;
+  opacity: .5;
+}
+.dark-style i {
+  opacity: .5;
+}
+.dark-style i.plus:before, .dark-style i.plus:after {
+  background-color: #fff;
+}
+.dark-style i.down {
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+}
+
+#nas-conservation-tracker-landscapes-map-form {
+  margin: 0 10px;
+}
+@media only screen and (min-width: 768px) {
+  #nas-conservation-tracker-landscapes-map-form {
+    position: absolute;
+    z-index: 999;
+    width: 25%;
+    max-width: 230px;
+    margin: 50px 0 0 15.27777777777778%;
+  }
+}
+#nas-conservation-tracker-landscapes-map-form .form-item.form-type-radios, #nas-conservation-tracker-landscapes-map-form .form-item.form-type-checkboxes {
+  margin-bottom: 10px;
+  padding: 15px;
+  background: #303030;
+  color: #fff;
+}
+@media only screen and (min-width: 768px) {
+  #nas-conservation-tracker-landscapes-map-form .form-item.form-type-radios, #nas-conservation-tracker-landscapes-map-form .form-item.form-type-checkboxes {
+    margin-bottom: 3px;
+  }
+}
+#nas-conservation-tracker-landscapes-map-form .form-item input {
+  margin: 0;
+}
+#nas-conservation-tracker-landscapes-map-form .form-item label {
+  position: relative;
+  color: #fff;
+  font-size: 25px;
+}
+#nas-conservation-tracker-landscapes-map-form .form-item label.option {
+  font-size: 17px;
+}
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-radio,
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-checkbox {
+  padding: 5px 0;
+  opacity: .5;
+}
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-radio input[type="radio"], #nas-conservation-tracker-landscapes-map-form .form-item .form-type-radio input[type="checkbox"],
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-checkbox input[type="radio"],
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-checkbox input[type="checkbox"] {
+  position: absolute;
+  left: -999em;
+}
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-radio label,
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-checkbox label {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+}
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-radio label:before,
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-checkbox label:before {
+  content: '';
+  position: absolute;
+  top: .25em;
+  left: -2px;
+  width: 14px;
+  height: 14px;
+}
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-radio input[type="checkbox"] + label:before,
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-radio input[type="radio"] + label:before,
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-checkbox input[type="checkbox"] + label:before,
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-checkbox input[type="radio"] + label:before {
+  border: 1px solid #dfdfdf;
+  background: transparent;
+}
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-radio input[type="radio"] + label:before,
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-checkbox input[type="radio"] + label:before {
+  border-radius: 50%;
+}
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-radio input[type="checkbox"]:checked + label:before,
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-radio input[type="radio"]:checked + label:before,
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-checkbox input[type="checkbox"]:checked + label:before,
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-checkbox input[type="radio"]:checked + label:before {
+  background: #dfdfdf;
+}
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-radio:last-child,
+#nas-conservation-tracker-landscapes-map-form .form-item .form-type-checkbox:last-child {
+  padding: 5px 0 0;
+}
+#nas-conservation-tracker-landscapes-map-form .form-type-radios > label ~ div,
+#nas-conservation-tracker-landscapes-map-form .form-type-checkboxes > label ~ div {
+  display: none;
+}
+#nas-conservation-tracker-landscapes-map-form .form-type-radios > label.js-open ~ div,
+#nas-conservation-tracker-landscapes-map-form .form-type-checkboxes > label.js-open ~ div {
+  display: block;
+}
+#nas-conservation-tracker-landscapes-map-form i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  cursor: pointer;
+}
+#nas-conservation-tracker-landscapes-map-form i.plus {
+  width: 12px;
+  height: 12px;
+}
+#nas-conservation-tracker-landscapes-map-form i.plus:before, #nas-conservation-tracker-landscapes-map-form i.plus:after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: transform 0.25s ease-out;
+}
+#nas-conservation-tracker-landscapes-map-form i.plus:before {
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+#nas-conservation-tracker-landscapes-map-form i.plus:after {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+}
+#nas-conservation-tracker-landscapes-map-form i.plus.js-open:before {
+  transform: rotate(90deg);
+}
+#nas-conservation-tracker-landscapes-map-form i.plus.js-open:after {
+  background: transparent;
+}
+
+.ct-landscapes-main {
+  position: relative;
+}
+.ct-landscapes-main .wrap-map-diagram .ct-leaflet-site {
+  border-radius: 50px;
+  background: transparent;
 }
 
 .sidebar, .article-sidebar {
