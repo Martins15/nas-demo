@@ -450,3 +450,9 @@ $text-gray-filter: #9b9b9b;
     }
   }
 }
+.wrap-map-diagram {
+  .ct-leaflet-site {
+    border-radius: 50px;
+    background: transparent;
+  }
+}
