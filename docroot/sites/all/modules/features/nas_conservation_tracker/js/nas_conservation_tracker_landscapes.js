@@ -69,15 +69,15 @@
 
       var dot = L.divIcon({iconSize: [12, 12], className: 'ct-leaflet-site'});
       var marker = L.marker(location.latLon, {icon: dot});
-      var text = location.name,
+      var text = '<div class="text-wrap bg-white">' + location.name + '</div>',
           minWidth = 50;
       if (location.imagePreview) {
-        text = '<img class="landscape-popup-preview" src="' + location.imagePreview + '" alt="" /><br />' + text;
+        text = '<img class="landscape-popup-preview" src="' + location.imagePreview + '" alt="" />' + text;
         minWidth = 300;
       }
 
       if (location.scorecardUrl) {
-        text += '<br/><a href="' + location.scorecardUrl + '">' + Drupal.t('See Interactive Report') + '</a>';
+        text += '<div class="link-wrap bg-white"><a href="' + location.scorecardUrl + '">' + Drupal.t('See Interactive Report') + '</a></div>';
       }
       console.log(location);
       marker.options.location = location;

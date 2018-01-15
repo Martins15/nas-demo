@@ -512,4 +512,37 @@ $text-gray-filter: #9b9b9b;
       background: transparent;
     }
   }
+  .leaflet-popup {
+    .leaflet-popup-content-wrapper {
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+    }
+    .bg-white {
+      padding: 5px 15px;
+      overflow: hidden;
+      background: $white;
+      line-height: 1.1;
+    }
+    .leaflet-popup-content {
+      margin: 0;
+      font-family: $font-sans;
+      img {
+        float: left;
+      }
+    }
+    .text-wrap {
+      font-size: 23px;
+      text-align: left;
+    }
+    .link-wrap {
+      a {
+        color: #0AA8E3;
+        font-size: 15px;
+      }
+    }
+    .leaflet-popup-close-button {
+      display: none;
+    }
+  }
 }
