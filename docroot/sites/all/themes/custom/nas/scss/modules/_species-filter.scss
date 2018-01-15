@@ -95,7 +95,7 @@ $text-gray-filter: #9b9b9b;
       display: block;
     }
     .views-widget {
-       .form-radios {
+      .form-radios {
         font-family: $lato-font;
         width: 100%;
         padding: 15px 0;
@@ -410,13 +410,15 @@ $text-gray-filter: #9b9b9b;
   }
 }
 
-
 // Style for /conservation-tracker/landscapes page.
 #nas-conservation-tracker-landscapes-map-form {
   margin: 0 10px;
   @include breakpoint(large-up) {
+    position: absolute;
+    z-index: 999;
+    width: 25%;
     max-width: 230px;
-    margin: 0;
+    margin: 50px 0 0 15.27777777777778%;
   }
   .form-item {
     &.form-type-radios,
@@ -433,6 +435,7 @@ $text-gray-filter: #9b9b9b;
       margin: 0;
     }
     label {
+      position: relative;
       color: $white;
       font-size: 25px;
       &.option {
@@ -449,10 +452,64 @@ $text-gray-filter: #9b9b9b;
       }
     }
   }
+  .form-type-radios,
+  .form-type-checkboxes {
+    > label ~ div {
+      display: none;
+    }
+    > label.js-open ~ div {
+      display: block;
+    }
+  }
+  i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    cursor: pointer;
+  }
+  i.plus {
+    width: 12px;
+    height: 12px;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      background-color: $white;
+      border-radius: 2px;
+      transition: transform 0.25s ease-out;
+    }
+    &:before {
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      transform: translateX(-50%);
+    }
+    &:after {
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      transform: translateY(-50%);
+    }
+    &.js-open {
+      &:before {
+        transform: rotate(90deg);
+      }
+      &:after {
+        background: transparent;
+      }
+    }
+  }
 }
-.wrap-map-diagram {
-  .ct-leaflet-site {
-    border-radius: 50px;
-    background: transparent;
+
+.ct-landscapes-main {
+  position: relative;
+  .wrap-map-diagram {
+    .ct-leaflet-site {
+      border-radius: 50px;
+      background: transparent;
+    }
   }
 }
