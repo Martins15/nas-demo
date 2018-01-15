@@ -73,9 +73,9 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
       drupal_add_library($module, $lib);
     }
   }
-  $js_path = drupal_get_path('module', 'nas_conservation_tracker') . '/js/';
-  drupal_add_js($js_path . 'ct_tabs.js');
-  drupal_add_js($js_path . 'nas_conservation_tracker.js', [
+
+  drupal_add_js(NAS_CT_JS_PATH . 'ct_tabs.js');
+  drupal_add_js(NAS_CT_JS_PATH . 'nas_conservation_tracker.js', [
     'weight' => 999,
     'group' => JS_THEME,
   ]);
