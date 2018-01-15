@@ -19033,7 +19033,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .species-filter {
+  margin-bottom: 40px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter {
+    margin-bottom: 60px;
+  }
 }
 .species-filter .text-info {
   background: #fbfaf6;
@@ -19074,18 +19080,144 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     width: 100%;
   }
 }
-.species-filter .alphabet-block li {
+.species-filter .alphabet-block li a {
   font-size: 24px;
   color: #76736c;
+  cursor: pointer;
 }
-.species-filter .filter-block__search {
+.species-filter .alphabet-block li a.active, .species-filter .alphabet-block li a:hover {
+  color: #89774f;
+}
+.species-filter .filter-block {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block {
+    display: block;
+  }
+}
+.species-filter .filter-block .views-widget .form-radios {
+  font-family: "Lato", sans-serif;
+  width: 100%;
+  padding: 15px 0;
   margin-bottom: 10px;
+  background: #fbfaf6;
+  border: 1px solid #dfdfdf;
 }
-.species-filter .filter-block__search input {
+.species-filter .filter-block fieldset.collapsible {
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.species-filter .filter-block fieldset.collapsible legend {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+.species-filter .filter-block .views-exposed-form .views-exposed-widget {
+  width: 100%;
+  padding: 0;
+}
+.species-filter .filter-block .form-item.form-type-radio {
+  padding: 15px;
+  border-bottom: 1px solid #dfdfdf;
+}
+.species-filter .filter-block .form-item.form-type-radio input {
+  margin: 0;
+}
+.species-filter .filter-block .form-item.form-type-radio:last-child {
+  padding: 15px 15px 0;
+  border-bottom: 0;
+}
+.species-filter .filter-block .option {
+  font-size: 17px;
+}
+.species-filter .filter-block .fieldset-legend {
+  position: relative;
+}
+.species-filter .filter-block .fieldset-title {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0 15px;
+  color: #000;
+  font-size: 25px;
+  font-weight: normal;
+}
+.species-filter .filter-block .fieldset-title .fieldset-legend-prefix {
+  display: block;
+  right: 10px;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  clip: inherit;
+  transform: translateY(-50%);
+  font-size: 0;
+}
+.species-filter .filter-block .fieldset-title .fieldset-legend-prefix:before, .species-filter .filter-block .fieldset-title .fieldset-legend-prefix:after {
+  content: '';
+  position: absolute;
+  transition: transform .25s ease-out;
+  border-radius: 2px;
+  background-color: #404040;
+}
+.species-filter .filter-block .fieldset-title .fieldset-legend-prefix:before {
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%) rotate(90deg);
+}
+.species-filter .filter-block .fieldset-title .fieldset-legend-prefix:after {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: transparent;
+}
+.species-filter .filter-block .collapsed .fieldset-title .fieldset-legend-prefix:before {
+  transform: translateX(-50%) rotate(0);
+}
+.species-filter .filter-block .collapsed .fieldset-title .fieldset-legend-prefix:after {
+  background-color: #404040;
+}
+.species-filter .filter-block input[type='text'] {
   border: 1px solid #dfdfdf;
   border-radius: 0;
   box-shadow: none;
   margin: 0;
+  padding-right: 30px;
+}
+.species-filter .filter-block .form-item-search {
+  position: relative;
+  margin-bottom: 15px;
+}
+.species-filter .filter-block .form-item-search:before, .species-filter .filter-block .form-item-search:after {
+  content: '';
+  position: absolute;
+}
+.species-filter .filter-block .form-item-search:before {
+  width: 10px;
+  height: 10px;
+  right: 15px;
+  top: 18px;
+  transform: translateY(-50%);
+  border: 2px solid #404040;
+  border-radius: 100px;
+}
+.species-filter .filter-block .form-item-search:after {
+  right: 10px;
+  width: 5px;
+  top: 22px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  border: 2px solid #404040;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 .species-filter .filter-block__menu-block ul {
   list-style: none;
@@ -19204,6 +19336,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .filter-block__menu-block.dark-style i.down {
   border: solid #fff;
   border-width: 0 3px 3px 0;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .birds-wrap {
+    float: left;
+  }
 }
 .species-filter .birds-wrap__title {
   margin-bottom: 15px;

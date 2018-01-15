@@ -62,9 +62,9 @@
       <?php endif; ?>
 
       <?php if ($rows): ?>
-        <div class="birds-wrap">
+        <div class="birds-wrap medium-12 large-9">
           <div class="space-bottom double bird-card-grid-container">
-            <?php print $rows; ?>
+                <?php print $rows; ?>
           </div>
         </div>
       <?php elseif ($empty): ?>

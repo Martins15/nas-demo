@@ -7,7 +7,11 @@ $dark-border-filter: #1c1c1c;
 $text-gray-filter: #9b9b9b;
 
 .species-filter {
+  margin-bottom: 40px;
   font-family: $font-sans;
+  @include breakpoint(large-up) {
+    margin-bottom: 60px;
+  }
   .text-info {
     background: $gray-menu-filter;
     padding: 10px 20px;
@@ -42,18 +46,153 @@ $text-gray-filter: #9b9b9b;
       }
     }
     li {
-      font-size: 24px;
-      color: $brownish-grey;
+      a {
+        font-size: 24px;
+        color: $brownish-grey;
+        cursor: pointer;
+        &.active,
+        &:hover {
+          color: #89774f;
+        }
+      }
     }
   }
   .filter-block {
-    &__search {
-      margin-bottom: 10px;
-      input {
+    display: none;
+    @include breakpoint(large-up) {
+      display: block;
+    }
+    .views-widget {
+       .form-radios {
+        font-family: $lato-font;
+        width: 100%;
+        padding: 15px 0;
+        margin-bottom: 10px;
+        background: $gray-menu-filter;
         border: 1px solid $bord-filter;
-        border-radius: 0;
-        box-shadow: none;
+      }
+    }
+    fieldset.collapsible {
+      height: auto;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      legend {
+        width: 100%;
         margin: 0;
+        padding: 0;
+        background: transparent;
+      }
+    }
+    .views-exposed-form .views-exposed-widget {
+      width: 100%;
+      padding: 0;
+    }
+    .form-item.form-type-radio {
+      padding: 15px;
+      border-bottom: 1px solid #dfdfdf;
+      input {
+        margin: 0;
+      }
+      &:last-child {
+        padding: 15px 15px 0;
+        border-bottom: 0;
+      }
+    }
+    .option {
+      font-size: 17px;
+    }
+    .fieldset-legend {
+      position: relative;
+    }
+    .fieldset-title {
+      display: block;
+      position: relative;
+      width: 100%;
+      margin-bottom: 0;
+      padding: 0 15px;
+      color: $black;
+      font-size: 25px;
+      font-weight: normal;
+      .fieldset-legend-prefix {
+        display: block;
+        right: 10px;
+        bottom: 0;
+        width: 12px;
+        height: 12px;
+        clip: inherit;
+        transform: translateY(-50%);
+        font-size: 0;
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          transition: transform .25s ease-out;
+          border-radius: 2px;
+          background-color: $dark-filter;
+        }
+        &:before {
+          top: 0;
+          left: 50%;
+          width: 2px;
+          height: 100%;
+          transform: translateX(-50%) rotate(90deg);
+        }
+        &:after {
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          transform: translateY(-50%);
+          background: transparent;
+        }
+      }
+    }
+    .collapsed {
+      .fieldset-title {
+        .fieldset-legend-prefix {
+          &:before {
+            transform: translateX(-50%) rotate(0);
+          }
+          &:after {
+            background-color: $dark-filter;
+          }
+        }
+      }
+    }
+    input[type='text'] {
+      border: 1px solid $bord-filter;
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0;
+      padding-right: 30px;
+    }
+    .form-item-search {
+      position: relative;
+      margin-bottom: 15px;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+      }
+      &:before {
+        width: 10px;
+        height: 10px;
+        right: 15px;
+        top: 18px;
+        transform: translateY(-50%);
+        border: 2px solid $dark-filter;
+        border-radius: 100px;
+      }
+      &:after {
+        right: 10px;
+        width: 5px;
+        top: 22px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        border: 2px solid $dark-filter;
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
       }
     }
     &__menu-block {
@@ -192,6 +331,9 @@ $text-gray-filter: #9b9b9b;
     }
   }
   .birds-wrap {
+    @include breakpoint(large-up) {
+      float: left;
+    }
     &__title {
       h4 {
         font-size: 28px;
