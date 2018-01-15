@@ -35,7 +35,7 @@
       }
     });
 
-    var polygons = [];
+    //var polygons = [];
     for (var i = 0; i < data.length; i++) {
 
       // Display locations (dots).
@@ -69,22 +69,65 @@
 
       var dot = L.divIcon({iconSize: [12, 12], className: 'ct-leaflet-site'});
       var marker = L.marker(location.latLon, {icon: dot});
-      var text = location.name;
+      var text = location.name,
+          minWidth = 50;
+      if (location.imagePreview) {
+        text = '<img class="landscape-popup-preview" src="' + location.imagePreview + '" alt="" /><br />' + text;
+        minWidth = 300;
+      }
 
-      marker.bindTooltip(text).addTo(lMap);
-      polygons[name] = new LPolygon(
-          name,
-          location.polygon,
-          location.flyway,
-          location
-      );
+      if (location.scorecardUrl) {
+        text += '<br/><a href="' + location.scorecardUrl + '">' + Drupal.t('See Interactive Report') + '</a>';
+      }
+      console.log(location);
+      marker.options.location = location;
+      marker.on('mouseover', function (e) {
+        var location = e.target.options.location;
+        var name = location.name.toLowerCase();
+        var polygons = {};
+        polygons[name] = new LPolygon(
+            name,
+            location.polygon,
+            location.flyway,
+            location
+        );
+
+        var polygons = L.geoJson({
+          type: 'FeatureCollection',
+          features: Object.values(polygons)
+        }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
+
+        polygons.addTo(lMap);
+
+      });
+      marker.on('mouseout', function (e) {
+        lMap.eachLayer(function (layer) {
+
+          if (layer.feature && layer.feature.properties && layer.feature.properties.machineName==getMachineName(e.target.options.location.name)) {
+            lMap.removeLayer(layer);
+            return;
+          }
+        });
+      });
+
+
+      marker.bindPopup(text, {
+        minWidth: minWidth
+      }).addTo(lMap);
+      // polygons[name] = new LPolygon(
+      //     name,
+      //     location.polygon,
+      //     location.flyway,
+      //     location
+      // );
     }
 
-    var polygons = L.geoJson({
-      type: 'FeatureCollection',
-      features: Object.values(polygons)
-    }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
-    polygons.addTo(lMap);
+    // var polygons = L.geoJson({
+    //   type: 'FeatureCollection',
+    //   features: Object.values(polygons)
+    // }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
+
+    //polygons.addTo(lMap);
 
     function getPolygonEvents(feature, layer) {
       // Placeholder.
@@ -103,7 +146,7 @@
     function LPolygon(name, coordinates, flyway, unit, type = 'Polygon') {
       this.type = 'Feature';
       this.properties = {
-        machineName: name.toLowerCase().replace(/\s/g, ''),
+        machineName:  getMachineName(name),
         name: name,
         flyway: flyway,
         unit: unit,
@@ -115,11 +158,20 @@
       };
     }
 
+    function getMachineName(name) {
+      return name.toLowerCase().replace(/\s/g, '');
+    }
+
 
     lMap.scrollWheelZoom.disable();
+
     if (!lMap.initiated) {
+      lMap.initiated = true;
       var $filterElement = $('#nas-conservation-tracker-landscapes-map-form input');
-      $filterElement.on('change', function () {
+      $filterElement.on('change', updateFilters);
+      updateFilters();
+
+      function updateFilters() {
         var filters = {'strategy': null, 'status': [], 'flyways': []};
         $filterElement.filter(':checked').each(function (index, el) {
           if ($(el).attr('type') == 'radio') {
@@ -154,7 +206,7 @@
         }
 
         Drupal.nasCtInitLandscapesMap(selectedLandscapes);
-      });
+      }
 
       lMap.on('click', function () {
         if (lMap.scrollWheelZoom.enabled()) {
@@ -164,7 +216,7 @@
           lMap.scrollWheelZoom.enable();
         }
       });
-      lMap.initiated = true;
+
     }
   }
 
