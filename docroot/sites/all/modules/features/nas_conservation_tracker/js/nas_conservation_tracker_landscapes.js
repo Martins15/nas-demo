@@ -13,12 +13,12 @@
 
   Drupal.behaviors.nasCtInitLandscapes = {
     attach: function (context, settings) {
-      console.log('START!');
       $.get(
           '/conservation-tracker/ajax/landscapes',
           function (data) {
-            console.log('DATA', data);
-            Drupal.nasCtInitLandscapesMap(data.data);
+            Drupal.settings.nasConservationTracker = Drupal.settings.nasConservationTracker || {};
+            Drupal.settings.nasConservationTracker.landscapes = data.data;
+            Drupal.nasCtInitLandscapesMap([]);
           }
       );
     }
@@ -72,17 +72,13 @@
       var text = location.name;
 
       marker.bindTooltip(text).addTo(lMap);
-      console.log('COORDINATES', location.polygon);
       polygons[name] = new LPolygon(
           name,
           location.polygon,
           location.flyway,
           location
       );
-
-
     }
-    console.log('POLYGONS', polygons);
 
     var polygons = L.geoJson({
       type: 'FeatureCollection',
@@ -91,28 +87,11 @@
     polygons.addTo(lMap);
 
     function getPolygonEvents(feature, layer) {
-      // layer.on('click', function (event) {
-      //   layer.feature.properties.selected = !layer.feature.properties.selected;
-      //   if (layer.feature.properties.selected) {
-      //     layer.setStyle(styleSelected);
-      //   }
-      //   else {
-      //     layer.setStyle(styleActive);
-      //   }
-      //   rebuildChartsBySelection();
-      // });
+      // Placeholder.
     }
 
     function getPolygonStyle(feature) {
       var style = {};
-      // Object.assign(style, styleActive);
-      //
-      // var k = 0;
-      // for (var i in Drupal.settings.nasConservationTracker.currentMap.range) {
-      //   if (Drupal.settings.nasConservationTracker.currentMap.rows[feature.properties.machineName] >= Drupal.settings.nasConservationTracker.currentMap.range[i]) {
-      //     k = i;
-      //   }
-      // }
 
       var color = colors[feature.properties.unit.strategy.name.toLowerCase()];
       style.fillColor = color;
@@ -126,7 +105,7 @@
       this.properties = {
         machineName: name.toLowerCase().replace(/\s/g, ''),
         name: name,
-        flyway: flyway.toLowerCase(),
+        flyway: flyway,
         unit: unit,
         selected: false,
       };
@@ -139,14 +118,43 @@
 
     lMap.scrollWheelZoom.disable();
     if (!lMap.initiated) {
-      // Event linsteners.
-      // lMap.on('moveend', function () {
-      //
-      // });
-      //
-      // lMap.on('zoomend', function () {
-      //
-      // });
+      var $filterElement = $('#nas-conservation-tracker-landscapes-map-form input');
+      $filterElement.on('change', function () {
+        var filters = {'strategy': null, 'status': [], 'flyways': []};
+        $filterElement.filter(':checked').each(function (index, el) {
+          if ($(el).attr('type') == 'radio') {
+            filters.strategy = $(el).val();
+          }
+          else if ($(el).attr('name').indexOf('status') === 0) {
+            filters.status.push($(el).val());
+          }
+          else if ($(el).attr('name').indexOf('flyways') === 0) {
+            filters.flyways.push($(el).val());
+          }
+        });
+        Drupal.settings.nasConservationTracker.mapFilters = filters;
+
+        var allLandscapes = Drupal.settings.nasConservationTracker.landscapes;
+        var selectedLandscapes = [];
+        for (var i = 0; i < allLandscapes.length; i++) {
+          if (allLandscapes[i].strategy.name.toLowerCase() == filters.strategy
+              && filters.status.indexOf(allLandscapes[i].status.toLowerCase()) >= 0) {
+
+            var hasAllFlyways = true;
+            for (var j = 0; j < allLandscapes[i].flyway.length; j++) {
+              if (filters.flyways.indexOf(allLandscapes[i].flyway[j].name.toLowerCase()) == -1) {
+                hasAllFlyways = false;
+              }
+            }
+            if (hasAllFlyways) {
+              selectedLandscapes.push(allLandscapes[i]);
+            }
+
+          }
+        }
+
+        Drupal.nasCtInitLandscapesMap(selectedLandscapes);
+      });
 
       lMap.on('click', function () {
         if (lMap.scrollWheelZoom.enabled()) {
