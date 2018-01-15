@@ -168,4 +168,19 @@
     }
   }
 
+  Drupal.behaviors.nasCtAccordion = {
+    attach: function (context) {
+      // Create accordion for form items.
+      $('#nas-conservation-tracker-landscapes-map-form > div > .form-item', context).each(function () {
+        var labelBlock = $('> label', this);
+        labelBlock.append('<i class="plus"></i>');
+        labelBlock.click(function (e) {
+          e.preventDefault();
+          $(this).toggleClass('js-open');
+          $('i', this).toggleClass('js-open');
+        })
+      });
+    }
+  };
+
 })(jQuery, window.Drupal);
