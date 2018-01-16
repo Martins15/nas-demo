@@ -69,6 +69,7 @@ features[menu_custom][] = menu-ct-menu
 features[node][] = ct_scorecard
 features[page_manager_pages][] = conservation_tracker
 features[page_manager_pages][] = conservation_tracker_landscapes
+features[page_manager_pages][] = conservation_tracker_strategies
 features[page_manager_pages][] = ct_species_view
 features[panelizer_defaults][] = node:ct_scorecard:default
 features[search_api_index][] = ct_species_index
