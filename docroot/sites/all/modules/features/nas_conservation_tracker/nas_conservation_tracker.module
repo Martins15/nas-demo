@@ -344,6 +344,9 @@ function nas_conservation_tracker_load_species() {
     if (!empty($species['strategyInitiativeId'])) {
       $wrapper->field_ct_strategy_initiative_id->set($species['strategyInitiativeId']);
     }
+    if (!empty($species['strategies'])) {
+      $wrapper->field_ct_strategies->set($species['strategies']);
+    }
     if (!empty($species['iucn'])) {
       $wrapper->field_ct_iucn->set($species['iucn']);
     }
