@@ -39,8 +39,9 @@
         <p><?php print $header; ?></p>
       </div>
     <?php endif; ?>
-    <?php if ($exposed): ?>
-      <div class="help-wrap-items">
+    
+    <div class="help-wrap-items">
+      <?php if ($exposed): ?>
         <div class="filter-block columns large-3">
           <?php print $exposed; ?>
           <div id="reset-filters">
@@ -52,8 +53,16 @@
             <?php print $alphabet; ?>
           </div>
         </div>
-      </div>
-    <?php endif; ?>
+      <?php endif; ?>
+
+      <?php if ($rows): ?>
+        <div class="birds-wrap medium-12 large-9">
+          <div class="space-bottom double bird-card-grid-container">
+            <?php print $rows; ?>
+          </div>
+        </div>
+      <?php endif; ?>
+    </div>
 
     <?php if ($attachment_before): ?>
       <div class="attachment attachment-before">

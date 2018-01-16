@@ -234,6 +234,11 @@ function nas_conservation_tracker_get_landscapes_json() {
   $result = array('data' => array(), 'success' => 0);
 
     $data = nas_conservation_tracker_get_json('landscapes');
+    foreach ($data as $key => $item) {
+      if (!empty($item['scorecardId'])) {
+        $data[$key]['scorecardUrl'] = url(drupal_get_path_alias('node/' . nas_get_scorecard_by_id($item['scorecardId'])));
+      }
+    }
 
     $result['data'] = $data;
     if (!empty($result['data'])) {
@@ -241,6 +246,19 @@ function nas_conservation_tracker_get_landscapes_json() {
     }
 
   drupal_json_output($result);
+}
+
+function nas_get_scorecard_by_id($id) {
+  if (!is_numeric($id)) {
+    return FALSE;
+  }
+  $nid = db_select('field_data_field_scorecard_id', 'fs')
+    ->fields('fs', array('entity_id'))
+    ->condition('fs.field_scorecard_id_value', $id)
+    ->execute()
+    ->fetchField();
+
+  return !empty($nid) ? $nid : FALSE;
 }
 
 

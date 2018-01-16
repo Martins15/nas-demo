@@ -26,7 +26,7 @@ $plugin = [
  *
  * @return stdClass
  */
-function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args, $context) {
+function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args, $context) {watchdog('ct debug', 'URA!!!!!!!!!');
   $arg = arg();
   $path = array_pop($arg);
   $block = new stdClass();
@@ -83,14 +83,54 @@ function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args,
   ];
   $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_landscapes_map_height', '900') . 'px');
 
+  $form = drupal_get_form('nas_conservation_tracker_landscapes_map_form');
 
   $vars = [
     'map' => render($map),
+    'form' => render($form),
   ];
 
   $block->content = theme('ct_landscapes_main', $vars);
 
   return $block;
+}
+
+function nas_conservation_tracker_landscapes_map_form($form, &$form_state) {
+  $form = [
+    '#action' => '#',
+    'strategies' => [
+      '#type' => 'radios',
+      '#title' => t('Strategies'),
+      '#default_value' => 'coasts',
+      '#options' => [
+        'coasts' => t('Coasts'),
+        'working lands' => t('Working Lands'),
+        'water' => t('Water'),
+      ],
+    ],
+    'status' => [
+      '#type' => 'checkboxes',
+      '#title' => t('Action Status'),
+      '#default_value' => array('at work', 'scoping', 'future'),
+      '#options' => [
+        'at work' => t('At work'),
+        'scoping' => t('Scoping'),
+        'future' => t('Future'),
+      ],
+    ],
+    'flyways' => [
+      '#type' => 'checkboxes',
+      '#title' => t('Flyways'),
+      '#default_value' => array('pacific', 'atlantic', 'mississippi', 'central'),
+      '#options' => [
+        'pacific' => t('Pacific'),
+        'atlantic' => t('Atlantic'),
+        'mississippi' => t('Mississippi'),
+        'central' => t('Central'),
+      ],
+    ],
+  ];
+  return $form;
 }
 
 
