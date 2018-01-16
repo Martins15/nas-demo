@@ -81,6 +81,7 @@ features[variable][] = language_content_type_ct_scorecard
 features[variable][] = menu_options_ct_scorecard
 features[variable][] = menu_parent_ct_scorecard
 features[variable][] = nas_conservation_tracker_owl
+features[variable][] = nas_i18n_redirect_ignore
 features[variable][] = node_options_ct_scorecard
 features[variable][] = node_preview_ct_scorecard
 features[variable][] = node_submitted_ct_scorecard

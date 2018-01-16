@@ -11,7 +11,7 @@ $plugin = array(
   'single' => TRUE,
   'content_types' => array('ct_scorecard_carousel'),
   'render callback' => 'nas_conservation_tracker_scorecard_carousel_render',
-  'required context' => new ctools_context_required(t('Node'), 'node'),
+  //'required context' => new ctools_context_required(t('Node'), 'node'),
   'edit form' => 'nas_conservation_tracker_scorecard_carousel_edit_form',
   'category' => 'NAS Conservation Tracker',
 );
