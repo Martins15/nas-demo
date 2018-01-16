@@ -182,6 +182,18 @@ function nas_conservation_tracker_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'nas_i18n_redirect_ignore';
+  $strongarm->value = array(
+    0 => 'conservation-tracker',
+    1 => 'conservation-tracker/species',
+    2 => 'conservation-tracker/strategies',
+    3 => 'conservation-tracker/landscapes',
+  );
+  $export['nas_i18n_redirect_ignore'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_ct_scorecard';
   $strongarm->value = array(
     0 => 'status',
