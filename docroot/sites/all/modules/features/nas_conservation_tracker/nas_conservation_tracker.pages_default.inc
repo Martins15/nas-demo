@@ -376,7 +376,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
           'title' => 'Strategies',
           'bottom_text' => 'We maximize our conservation results by focusing on five key strategies critical for birds.',
           'image' => nas_conservation_tracker_get_image('landing_page_strategies.jpg'),
-          'image_link' => 'conservation-tracker/strategies',
+          'image_link' => '/conservation-tracker/strategies',
           'color_mode' => 'dark',
           'gradient' => 1,
         ),
