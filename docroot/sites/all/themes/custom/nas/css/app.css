@@ -19542,6 +19542,35 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-radius: 50px;
   background: transparent;
 }
+.ct-landscapes-main .leaflet-popup .leaflet-popup-content-wrapper {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+.ct-landscapes-main .leaflet-popup .bg-white {
+  padding: 5px 15px;
+  overflow: hidden;
+  background: #fff;
+  line-height: 1.1;
+}
+.ct-landscapes-main .leaflet-popup .leaflet-popup-content {
+  margin: 0;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.ct-landscapes-main .leaflet-popup .leaflet-popup-content img {
+  float: left;
+}
+.ct-landscapes-main .leaflet-popup .text-wrap {
+  font-size: 23px;
+  text-align: left;
+}
+.ct-landscapes-main .leaflet-popup .link-wrap a {
+  color: #0AA8E3;
+  font-size: 15px;
+}
+.ct-landscapes-main .leaflet-popup .leaflet-popup-close-button {
+  display: none;
+}
 
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
