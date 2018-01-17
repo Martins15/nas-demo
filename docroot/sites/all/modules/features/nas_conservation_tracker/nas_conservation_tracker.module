@@ -435,10 +435,39 @@ function nas_conservation_tracker_preprocess_views_view(&$vars) {
     foreach (range('a', 'z') as $letter) {
       $letters['items'][$letter] = l(strtoupper($letter), url($view_path . '/' . $letter), array('query' => $components['query'], 'html' => TRUE));
     }
+    $reset = array(
+      '#type' => 'markup',
+      '#markup' => theme('container', array(
+        'element' => array(
+          '#children' => l(t('Reset Filters'), $view_path),
+          '#id' => 'reset-filters',
+        ),
+      )),
+    );
+    $refine = nas_conservation_tracker_refine_button('species');
     $vars['alphabet'] = theme_item_list($letters);
-    $vars['reset'] = l(t('Reset Filters'), $view_path);
+    $vars['reset'] = drupal_render($reset);
+    $vars['refine_listing'] = drupal_render($refine);
     drupal_add_js(NAS_CT_JS_PATH . 'nas_conservation_tracker_species.js');
     drupal_add_js(array('nasConservationTracker' => array('speciesPath' => $view_path)), 'setting');
   }
 }
 
+function nas_conservation_tracker_refine_button($type) {
+  return array(
+    '#type' => 'markup',
+    '#markup' => theme('container', array(
+      'element' => array(
+        '#children' => l(t('Refine Listing'), ''),
+        '#id' => 'refine-listing-' . $type,
+        '#attributes' => array(
+          'class' => array(
+            'hide-for-large',
+            'hide-for-xlarge',
+            'nas-ct-refine-listing',
+          ),
+        ),
+      ),
+    )),
+  );
+}
