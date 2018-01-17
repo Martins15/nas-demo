@@ -84,11 +84,12 @@ function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args,
   $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_landscapes_map_height', '900') . 'px');
 
   $form = drupal_get_form('nas_conservation_tracker_landscapes_map_form');
+  $refine_button = nas_conservation_tracker_refine_button('landscapes');
 
   $vars = [
     'map' => render($map),
     'form' => render($form),
-    'refine_listing' => render(nas_conservation_tracker_refine_button('landscapes')),
+    'refine_listing' => render($refine_button),
   ];
 
   $block->content = theme('ct_landscapes_main', $vars);

@@ -13,7 +13,7 @@ function nas_conservation_tracker_menu_default_menu_links() {
   // Exported menu link: menu-ct-menu_conservation-tracker:<front>
   $menu_links['menu-ct-menu_conservation-tracker:<front>'] = array(
     'menu_name' => 'menu-ct-menu',
-    'link_path' => '<front>',
+    'link_path' => 'conservation-tracker',
     'router_path' => '',
     'link_title' => 'Conservation Tracker',
     'options' => array(
@@ -33,7 +33,7 @@ function nas_conservation_tracker_menu_default_menu_links() {
   // Exported menu link: menu-ct-menu_landscapes:<front>
   $menu_links['menu-ct-menu_landscapes:<front>'] = array(
     'menu_name' => 'menu-ct-menu',
-    'link_path' => '<front>',
+    'link_path' => 'conservation-tracker/landscapes',
     'router_path' => '',
     'link_title' => 'Landscapes',
     'options' => array(
@@ -54,7 +54,7 @@ function nas_conservation_tracker_menu_default_menu_links() {
   // Exported menu link: menu-ct-menu_species:<front>
   $menu_links['menu-ct-menu_species:<front>'] = array(
     'menu_name' => 'menu-ct-menu',
-    'link_path' => '<front>',
+    'link_path' => 'conservation-tracker/species',
     'router_path' => '',
     'link_title' => 'Species',
     'options' => array(
