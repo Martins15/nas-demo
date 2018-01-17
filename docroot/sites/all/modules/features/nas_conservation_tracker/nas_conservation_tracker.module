@@ -170,6 +170,12 @@ function nas_conservation_tracker_theme() {
       ),
       'template' => 'templates/ct-landscapes-main',
     ),
+    'ct_strategies_main' => array(
+      'variables' => array(
+
+      ),
+      'template' => 'templates/ct-strategies-main',
+    ),
   );
   return $theme;
 }
@@ -307,9 +313,6 @@ function nas_conservation_tracker_load_species() {
       $entity = entity_create($entity_type, array('type' => $entity_type));
     }
     $wrapper = entity_metadata_wrapper($entity_type, $entity);
-    //echo'<pre>';
-    //print_r($wrapper);
-    //die;
     if (!empty($species['id'])) {
       $wrapper->field_ct_remote_id->set($species['id']);
     }

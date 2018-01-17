@@ -651,7 +651,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'summary' => '',
       ),
       'curtain_html' => array(
-        'image' => nas_conservation_tracker_get_image('landscapes_hero.jpg'),
+        'image' => '125687',
         'header_color_mode' => 'light',
         'disable_gradient' => 0,
         'header_bg' => '-1',
@@ -1212,6 +1212,52 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->uuid = 'afc23321-47b9-464a-ac32-e6b8c8c5e50c';
     $display->content['new-afc23321-47b9-464a-ac32-e6b8c8c5e50c'] = $pane;
     $display->panels['header'][1] = 'new-afc23321-47b9-464a-ac32-e6b8c8c5e50c';
+    $pane = new stdClass();
+    $pane->pid = 'new-e0317e63-9e61-456d-9b09-568686c16f46';
+    $pane->panel = 'main';
+    $pane->type = 'block';
+    $pane->subtype = 'menu-menu-ct-menu';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e0317e63-9e61-456d-9b09-568686c16f46';
+    $display->content['new-e0317e63-9e61-456d-9b09-568686c16f46'] = $pane;
+    $display->panels['main'][0] = 'new-e0317e63-9e61-456d-9b09-568686c16f46';
+    $pane = new stdClass();
+    $pane->pid = 'new-0f1f2099-c7c0-47b4-9248-dd64ba27862b';
+    $pane->panel = 'main';
+    $pane->type = 'ct_strategies_main';
+    $pane->subtype = 'ct_strategies_main';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '0f1f2099-c7c0-47b4-9248-dd64ba27862b';
+    $display->content['new-0f1f2099-c7c0-47b4-9248-dd64ba27862b'] = $pane;
+    $display->panels['main'][1] = 'new-0f1f2099-c7c0-47b4-9248-dd64ba27862b';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -1387,7 +1433,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'summary' => '',
       ),
       'curtain_html' => array(
-        'image' => nas_conservation_tracker_get_image('species_hero.jpg'),
+        'image' => '108396',
         'header_color_mode' => 'light',
         'disable_gradient' => 0,
         'header_bg' => '-1',
@@ -1566,15 +1612,19 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
+      'override_title' => 1,
+      'override_title_text' => '<none>',
+      'override_title_heading' => 'span',
     );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'default',
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'nas-ct-menu',
+    );
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
