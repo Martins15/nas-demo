@@ -88,6 +88,7 @@ function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args,
   $vars = [
     'map' => render($map),
     'form' => render($form),
+    'refine_listing' => render(nas_conservation_tracker_refine_button('landscapes')),
   ];
 
   $block->content = theme('ct_landscapes_main', $vars);
