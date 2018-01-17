@@ -722,7 +722,8 @@ $gray-lightish: #9b9b9b;
     }
   }
 
-  .link-wrapper {
+  .link-wrapper,
+  .first.expanded > a {
     position: relative;
     display: inline-block;
     font-family: "Source Sans Pro", Verdana, sans-serif;
@@ -761,11 +762,51 @@ $gray-lightish: #9b9b9b;
       }
     }
   }
-
   .menu-has-children {
     display: inline-block;
   }
-
+  &.nas-ct-menu {
+    li {
+      padding: 0;
+    }
+    .menu {
+      margin-left: 0;
+      .first.expanded{
+        margin-left: 0;
+      }
+      ul {
+        display: inline-block;
+        a {
+          color: #919191;
+          &.active {
+            position: relative;
+            color: $white;
+            &:after {
+              content: '';
+              display: block;
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              width: 0;
+              height: 0;
+              margin-left: -5px;
+              padding: 0;
+              transform: rotate(0deg);
+              border-width: 0 7.5px 10px;
+              border-style: solid;
+              border-color: transparent transparent #fff;
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+    li {
+      display: inline-block;
+      position: relative;
+      margin: 0;
+    }
+  }
 }
 
 .ct-scorecard-main {
@@ -784,14 +825,8 @@ $gray-lightish: #9b9b9b;
         display: none;
       }
     }
-    .leaflet-control-zoom {
-      display: none;
-      @include breakpoint(large-up) {
-        display: block;
-      }
-    }
     .leaflet-bottom.leaflet-left {
-      top: 10px;
+      top: 140px;
       bottom: inherit;
       @include breakpoint(large-up) {
         top: inherit;
