@@ -8,7 +8,12 @@
  * Implements hook_install()
  */
 function nas_conservation_tracker_install() {
-  variable_set('nas_i18n_redirect_ignore', array('conservation-tracker', 'conservation-tracker/landscapes'));
+  variable_set('nas_i18n_redirect_ignore', array(
+    'conservation-tracker',
+    'conservation-tracker/species',
+    'conservation-tracker/strategies',
+    'conservation-tracker/landscapes')
+  );
 
   // Create scorecard node(s).
 
@@ -20,13 +25,15 @@ function nas_conservation_tracker_install() {
   $node->uid = 1;
   $node->language = LANGUAGE_NONE;
   $node->title = $data['name'];
-  $node->field_scorecard_id[LANGUAGE_NONE][]['value'] = $data['id'];
+  $node->field_scorecard_id = array(LANGUAGE_NONE => array(array('value' => $data['id'])));
   $node = node_submit($node);
   node_save($node);
 
-  $path = array('source' => 'node/' . $node->nid,
+  $path = array(
+    'source' => 'node/' . $node->nid,
     'alias' => 'conservation-tracker/scorecard/black-oystercatcher',
-    'language' => $node->language);
+    'language' => $node->language,
+  );
 
   path_save($path);
 
@@ -39,13 +46,15 @@ function nas_conservation_tracker_install() {
   $node->uid = 1;
   $node->language = LANGUAGE_NONE;
   $node->title = $data['name'];
-  $node->field_scorecard_id[LANGUAGE_NONE][]['value'] = $data['id'];
+  $node->field_scorecard_id = array(LANGUAGE_NONE => array(array('value' => $data['id'])));
   $node = node_submit($node);
   node_save($node);
 
-  $path = array('source' => 'node/' . $node->nid,
+  $path = array(
+    'source' => 'node/' . $node->nid,
     'alias' => 'conservation-tracker/scorecard/coastal-carolinas',
-    'language' => $node->language);
+    'language' => $node->language,
+  );
 
   path_save($path);
 

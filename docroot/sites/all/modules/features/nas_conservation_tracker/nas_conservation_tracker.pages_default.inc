@@ -272,7 +272,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'footer';
     $pane->type = 'nas_stay_abreast_pane';
     $pane->subtype = 'nas_stay_abreast_pane';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'headline' => 'Stay abreast of Audubon',
@@ -652,11 +652,11 @@ function nas_conservation_tracker_default_page_manager_pages() {
       ),
       'curtain_html' => array(
         'image' => nas_conservation_tracker_get_image('landscapes_hero.jpg'),
-        'header_color_mode' => 'none',
+        'header_color_mode' => 'light',
         'disable_gradient' => 0,
         'header_bg' => '-1',
         'header_position' => 'left',
-        'summary' => 'Landscapes',
+        'summary' => '<h1>Landscapes</h1>',
       ),
       'form_build_id' => 'form-l8WRzSBUyiy6abzIw2kjdZfrazJ_hPC16vx2C_IPA88',
       'form_token' => 'GU0YQdAtdC0VjtaGzqiHQopraEKhA1sRTiW2fPF37lI',
@@ -1028,7 +1028,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'summary' => '',
       ),
       'curtain_html' => array(
-        'image' => '108396',
+        'image' => nas_conservation_tracker_get_image('species_hero.jpg'),
         'header_color_mode' => 'light',
         'disable_gradient' => 0,
         'header_bg' => '-1',
