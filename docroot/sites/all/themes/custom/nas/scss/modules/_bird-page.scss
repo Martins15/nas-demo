@@ -1246,6 +1246,9 @@ $gray-lightish: #9b9b9b;
    top: inherit;
    transition: bottom .3s;
    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0) 100%);
+   @media screen and (max-width: 767px) {
+     bottom: 0 !important;
+   }
  }
   .banner-gradient-overlay-horizontal {
     background: transparent;
