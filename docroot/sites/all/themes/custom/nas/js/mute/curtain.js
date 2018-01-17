@@ -9,6 +9,8 @@
         // Tracking curtain movement and status
         self.height = 0;
         self.buffer = 20;
+        self.bodyHeight = 0;
+        self.bufferScreen = 0;
 
         self.init = function() {
           window.scrollTo(0, 1);
@@ -31,7 +33,13 @@
         };
 
         self.setup = function() {
-          $body.css({"min-height": $body.height()});
+          self.bodyHeight = $body.height();
+          self.bufferScreen = self.getTotalHeight() * 2 - $body.height();
+          if (self.bufferScreen < 0) {
+            self.bufferScreen = 0;
+          }
+
+          $body.css({"min-height": self.bodyHeight});
 
           self.setCurtainFocus(true);
           self.bind();
@@ -56,7 +64,7 @@
           var scrollFactor = document.documentElement.scrollTop || $(document).scrollTop();
 
           // If we're scrolled down past the curtain, let the page scroll
-          if(scrollFactor > self.getTotalHeight()) {
+          if((scrollFactor + self.bufferScreen) > self.getTotalHeight()) {
             self.setCurtainFocus(true);
           }
           // And if we're not, make sure the curtain is all that scrolls
@@ -69,11 +77,11 @@
           self.updateHeight();
 
           if (state) {
-            $wrapper.attr("style", "margin-top: " + self.getTotalHeight() + "px");
+            $wrapper.attr("style", "margin-top: " + self.getTotalHeight() + "px;");
             $wrapper.removeClass("on");
           } 
           else {
-            $wrapper.attr("style", "margin-bottom: " + self.getTotalHeight() + "px");
+            $wrapper.attr("style", "margin-bottom: " + self.getTotalHeight() + "px; margin-top: " + (self.bufferScreen - self.buffer) + "px;");
             $wrapper.addClass("on");
           }
         };
@@ -101,6 +109,7 @@
             duration: 400,
             complete: function() {
               self.bind();
+              self.handleScroll();
             }
           });
         };
