@@ -784,14 +784,8 @@ $gray-lightish: #9b9b9b;
         display: none;
       }
     }
-    .leaflet-control-zoom {
-      display: none;
-      @include breakpoint(large-up) {
-        display: block;
-      }
-    }
     .leaflet-bottom.leaflet-left {
-      top: 10px;
+      top: 140px;
       bottom: inherit;
       @include breakpoint(large-up) {
         top: inherit;

@@ -18579,16 +18579,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-scorecard-main .leaflet-container .leaflet-bottom.leaflet-right .leaflet-control-attribution.leaflet-control {
   display: none;
 }
-.ct-scorecard-main .leaflet-container .leaflet-control-zoom {
-  display: none;
-}
-@media only screen and (min-width: 768px) {
-  .ct-scorecard-main .leaflet-container .leaflet-control-zoom {
-    display: block;
-  }
-}
 .ct-scorecard-main .leaflet-container .leaflet-bottom.leaflet-left {
-  top: 10px;
+  top: 140px;
   bottom: inherit;
 }
 @media only screen and (min-width: 768px) {
