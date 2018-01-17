@@ -39,7 +39,7 @@
         <p><?php print $header; ?></p>
       </div>
     <?php endif; ?>
-    
+
     <div class="help-wrap-items">
       <?php if ($exposed): ?>
         <div class="filter-block columns large-3">
