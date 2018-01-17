@@ -180,10 +180,3 @@ function nas_conservation_tracker_scorecard_main_edit_form($form, &$form_state) 
 function nas_conservation_tracker_scorecard_main_edit_form_submit($form, &$form_state) {
 
 }
-
-// @TODO Update include js files.
-$path = current_path();
-if ($path == 'conservation-tracker') {
-  $js_path = drupal_get_path('module', 'nas_conservation_tracker') . '/js/';
-  drupal_add_js($js_path . 'conservation_page.js');
-}

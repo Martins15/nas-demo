@@ -27,78 +27,84 @@
  * @ingroup views_templates
  */
 ?>
-<section class="global-content with-padding static-page-content">
-  <div class="<?php print $classes; ?> row">
-    <div class="species-filter">
-      <?php print render($title_prefix); ?>
-      <?php if ($title): ?>
-        <?php print $title; ?>
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
-      <?php if ($header): ?>
-        <div class="text-info">
-          <p><?php print $header; ?></p>
-        </div>
-      <?php endif; ?>
+<div class="<?php print $classes; ?> row">
+  <div class="species-filter">
+    <?php print render($title_prefix); ?>
+    <?php if ($title): ?>
+      <?php print $title; ?>
+    <?php endif; ?>
+    <?php print render($title_suffix); ?>
+    <?php if ($header): ?>
+      <div class="text-info">
+        <p><?php print $header; ?></p>
+      </div>
+    <?php endif; ?>
 
+    <div class="help-wrap-items">
       <?php if ($exposed): ?>
-        <div class="help-wrap-items">
-          <div class="filter-block columns large-3">
-            <?php print $exposed; ?>
-            <?php print $reset; ?>
-          </div>
-          <div class="wrap-items-show columns large-9">
-            <div class="alphabet-block">
-              <?php print $alphabet; ?>
-            </div>
-          </div>
+        <div class="filter-block columns large-3">
+          <?php print $exposed; ?>
+          <?php print $reset; ?>
+          <?php echo $refine_listing; ?>
         </div>
-      <?php endif; ?>
-
-      <?php if ($attachment_before): ?>
-        <div class="attachment attachment-before">
-          <?php print $attachment_before; ?>
+        <div class="wrap-items-show columns large-9">
+          <div class="alphabet-block">
+            <?php print $alphabet; ?>
+          </div>
         </div>
       <?php endif; ?>
 
       <?php if ($rows): ?>
         <div class="birds-wrap medium-12 large-9">
           <div class="space-bottom double bird-card-grid-container">
-                <?php print $rows; ?>
+            <?php print $rows; ?>
           </div>
         </div>
-      <?php elseif ($empty): ?>
-        <div class="view-empty">
-          <?php print $empty; ?>
-        </div>
       <?php endif; ?>
-      <div class="clearfix"></div>
-      <?php if ($pager): ?>
-        <?php print $pager; ?>
-      <?php endif; ?>
-
-      <?php if ($attachment_after): ?>
-        <div class="attachment attachment-after">
-          <?php print $attachment_after; ?>
-        </div>
-      <?php endif; ?>
-
-      <?php if ($more): ?>
-        <?php print $more; ?>
-      <?php endif; ?>
-
-      <?php if ($footer): ?>
-        <div class="view-footer">
-          <?php print $footer; ?>
-        </div>
-      <?php endif; ?>
-
-      <?php if ($feed_icon): ?>
-        <div class="feed-icon">
-          <?php print $feed_icon; ?>
-        </div>
-      <?php endif; ?>
-
     </div>
+
+    <?php if ($attachment_before): ?>
+      <div class="attachment attachment-before">
+        <?php print $attachment_before; ?>
+      </div>
+    <?php endif; ?>
+
+    <?php if ($rows): ?>
+      <div class="birds-wrap">
+        <div class="space-bottom double bird-card-grid-container">
+          <?php print $rows; ?>
+        </div>
+      </div>
+    <?php elseif ($empty): ?>
+      <div class="view-empty">
+        <?php print $empty; ?>
+      </div>
+    <?php endif; ?>
+    <div class="clearfix"></div>
+    <?php if ($pager): ?>
+      <?php print $pager; ?>
+    <?php endif; ?>
+
+    <?php if ($attachment_after): ?>
+      <div class="attachment attachment-after">
+        <?php print $attachment_after; ?>
+      </div>
+    <?php endif; ?>
+
+    <?php if ($more): ?>
+      <?php print $more; ?>
+    <?php endif; ?>
+
+    <?php if ($footer): ?>
+      <div class="view-footer">
+        <?php print $footer; ?>
+      </div>
+    <?php endif; ?>
+
+    <?php if ($feed_icon): ?>
+      <div class="feed-icon">
+        <?php print $feed_icon; ?>
+      </div>
+    <?php endif; ?>
   </div>
-</section>
+</div>

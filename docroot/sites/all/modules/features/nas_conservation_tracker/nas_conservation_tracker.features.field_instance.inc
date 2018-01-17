@@ -1020,6 +1020,86 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'ct_species-ct_species-field_ct_strategies'
+  $field_instances['ct_species-ct_species-field_ct_strategies'] = array(
+    'bundle' => 'ct_species',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 17,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'ct_species',
+    'field_name' => 'field_ct_strategies',
+    'label' => 'Strategies',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'absolute_urls' => 'absolute_urls',
+          'full_html' => 'full_html',
+          'html' => 'html',
+          'map' => 'map',
+          'php_code' => 'php_code',
+          'plain_text' => 'plain_text',
+          'video' => 'video',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'absolute_urls' => array(
+              'weight' => -6,
+            ),
+            'full_html' => array(
+              'weight' => -10,
+            ),
+            'html' => array(
+              'weight' => -8,
+            ),
+            'map' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => 11,
+            ),
+            'plain_text' => array(
+              'weight' => -5,
+            ),
+            'video' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'quiz_result' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 18,
+    ),
+  );
+
   // Exported field_instance: 'ct_species-ct_species-field_ct_strategy_initiative_id'
   $field_instances['ct_species-ct_species-field_ct_strategy_initiative_id'] = array(
     'bundle' => 'ct_species',
@@ -1299,6 +1379,7 @@ function nas_conservation_tracker_field_default_field_instances() {
   t('Score card URL');
   t('Scorecard ID');
   t('State of birds');
+  t('Strategies');
   t('Strategy initiative ID');
 
   return $field_instances;

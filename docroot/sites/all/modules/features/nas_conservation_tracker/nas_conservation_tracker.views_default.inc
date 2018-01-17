@@ -62,8 +62,8 @@ function nas_conservation_tracker_views_default_views() {
         ),
       ),
     ),
-    'field_ct_strategy_initiative_id' => array(
-      'bef_format' => 'bef',
+    'field_ct_strategies' => array(
+      'bef_format' => 'default',
       'slider_options' => array(
         'bef_slider_min' => '0',
         'bef_slider_max' => '99999',
@@ -270,47 +270,35 @@ function nas_conservation_tracker_views_default_views() {
     'field_ct_common_name' => 'field_ct_common_name',
     'field_ct_scientific_name' => 'field_ct_scientific_name',
   );
-  /* Filter criterion: Indexed CT Species: Strategy initiative ID */
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['id'] = 'field_ct_strategy_initiative_id';
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['table'] = 'search_api_index_ct_species_index';
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['field'] = 'field_ct_strategy_initiative_id';
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['group'] = 1;
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['expose']['operator_id'] = 'field_ct_strategy_initiative_id_op';
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['expose']['label'] = 'Strategies';
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['expose']['operator'] = 'field_ct_strategy_initiative_id_op';
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['expose']['identifier'] = 'field_ct_strategy_initiative_id';
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    6 => 0,
-    16 => 0,
-    31 => 0,
-    36 => 0,
-    41 => 0,
-    51 => 0,
-    56 => 0,
-  );
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['is_grouped'] = TRUE;
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['group_info']['label'] = 'Strategies';
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['group_info']['identifier'] = 'strategies';
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['group_info']['widget'] = 'radios';
-  $handler->display->display_options['filters']['field_ct_strategy_initiative_id']['group_info']['group_items'] = array(
+  /* Filter criterion: Indexed CT Species: Strategies */
+  $handler->display->display_options['filters']['field_ct_strategies']['id'] = 'field_ct_strategies';
+  $handler->display->display_options['filters']['field_ct_strategies']['table'] = 'search_api_index_ct_species_index';
+  $handler->display->display_options['filters']['field_ct_strategies']['field'] = 'field_ct_strategies';
+  $handler->display->display_options['filters']['field_ct_strategies']['group'] = 1;
+  $handler->display->display_options['filters']['field_ct_strategies']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_ct_strategies']['expose']['operator_id'] = 'field_ct_strategies_op';
+  $handler->display->display_options['filters']['field_ct_strategies']['expose']['label'] = 'Strategies';
+  $handler->display->display_options['filters']['field_ct_strategies']['expose']['operator'] = 'field_ct_strategies_op';
+  $handler->display->display_options['filters']['field_ct_strategies']['expose']['identifier'] = 'field_ct_strategies';
+  $handler->display->display_options['filters']['field_ct_strategies']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['field_ct_strategies']['group_info']['label'] = 'Strategies';
+  $handler->display->display_options['filters']['field_ct_strategies']['group_info']['identifier'] = 'strategies';
+  $handler->display->display_options['filters']['field_ct_strategies']['group_info']['widget'] = 'radios';
+  $handler->display->display_options['filters']['field_ct_strategies']['group_info']['group_items'] = array(
     1 => array(
-      'title' => '',
+      'title' => 'Working Lands',
       'operator' => '=',
-      'value' => '',
+      'value' => 'Working Lands',
     ),
     2 => array(
-      'title' => '',
+      'title' => 'Coasts',
       'operator' => '=',
-      'value' => '',
+      'value' => 'Coasts',
     ),
     3 => array(
-      'title' => '',
+      'title' => 'Water',
       'operator' => '=',
-      'value' => '',
+      'value' => 'Water',
     ),
   );
   /* Filter criterion: Indexed CT Species: GUILD */
