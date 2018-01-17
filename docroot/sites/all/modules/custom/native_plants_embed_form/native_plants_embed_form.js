@@ -28,7 +28,7 @@ function nativePlantsEmbedForm() {
   var homePathToModule = '/sites/all/modules/custom/native_plants_embed_form'
     , homePath = script.src.substring(0, script.src.indexOf(homePathToModule));
   addAssets('script', 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js');
-  addAssets('link', homePath + homePathToModule + '/native_plants_embed_form.min.css');
+  addAssets('link', homePath + homePathToModule + '/native_plants_embed_form.css');
   addAssets('link', 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
 
   var parent = script.parentElement
@@ -36,7 +36,7 @@ function nativePlantsEmbedForm() {
     , nativePlantsEmbedFormSettings = (typeof window.nativePlantsEmbedFormSettings === 'undefined')
       ? {color_scheme: 'white', shape: 'square'}
       : window.nativePlantsEmbedFormSettings;
-
+  div.className = 'native-plants-everyaction';
   div.innerHTML =
     '<div class="ngp-form ' +
     nativePlantsEmbedFormSettings.color_scheme +
@@ -47,7 +47,7 @@ function nativePlantsEmbedForm() {
     ' data-fastaction-endpoint="https://fastaction.ngpvan.com"' +
     ' data-inline-errors="true"' +
     ' data-fastaction-nologin="true"' +
-    ' data-databag="everybody">' +
+    ' data-databag="nobody">' +
     '</div>';
   parent.insertBefore(div, script.nextSibling);
 }
