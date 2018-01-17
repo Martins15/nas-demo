@@ -9,4 +9,5 @@ sites/*/private
 # Ignore other paths
 sites/all/themes/custom/nas/.sass-cache
 sites/all/themes/custom/nas_amp/.sass-cache
+sites/all/modules/custom/native_plants_embed_form/.sass-cache
 local_reinstall.yml
