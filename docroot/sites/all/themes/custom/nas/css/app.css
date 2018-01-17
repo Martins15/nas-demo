@@ -18521,12 +18521,14 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-width: 6px 4px 0 4px;
   border-color: #8a8a8a transparent transparent transparent;
 }
-.ct-scorecard-tabs .link-wrapper {
+.ct-scorecard-tabs .link-wrapper,
+.ct-scorecard-tabs .first.expanded > a {
   position: relative;
   display: inline-block;
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
-.ct-scorecard-tabs .link-wrapper:after {
+.ct-scorecard-tabs .link-wrapper:after,
+.ct-scorecard-tabs .first.expanded > a:after {
   content: '';
   border: solid #fff;
   border-width: 0 2px 2px 0;
@@ -18538,11 +18540,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
-.ct-scorecard-tabs .link-wrapper:last-child {
+.ct-scorecard-tabs .link-wrapper:last-child,
+.ct-scorecard-tabs .first.expanded > a:last-child {
   margin-left: 15px;
 }
 @media only screen and (min-width: 768px) {
-  .ct-scorecard-tabs .link-wrapper:last-child:after {
+  .ct-scorecard-tabs .link-wrapper:last-child:after,
+  .ct-scorecard-tabs .first.expanded > a:last-child:after {
     position: absolute;
     left: 50%;
     bottom: -17px;
@@ -18561,6 +18565,46 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .ct-scorecard-tabs .menu-has-children {
   display: inline-block;
+}
+.ct-scorecard-tabs.nas-ct-menu li {
+  padding: 0;
+}
+.ct-scorecard-tabs.nas-ct-menu .menu {
+  margin-left: 0;
+}
+.ct-scorecard-tabs.nas-ct-menu .menu .first.expanded {
+  margin-left: 0;
+}
+.ct-scorecard-tabs.nas-ct-menu .menu ul {
+  display: inline-block;
+}
+.ct-scorecard-tabs.nas-ct-menu .menu ul a {
+  color: #919191;
+}
+.ct-scorecard-tabs.nas-ct-menu .menu ul a.active {
+  position: relative;
+  color: #fff;
+}
+.ct-scorecard-tabs.nas-ct-menu .menu ul a.active:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  padding: 0;
+  transform: rotate(0deg);
+  border-width: 0 7.5px 10px;
+  border-style: solid;
+  border-color: transparent transparent #fff;
+  opacity: 1;
+}
+.ct-scorecard-tabs.nas-ct-menu li {
+  display: inline-block;
+  position: relative;
+  margin: 0;
 }
 
 .ct-scorecard-main .row {
