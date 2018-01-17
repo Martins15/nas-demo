@@ -1445,6 +1445,10 @@ function nas_preprocess_panels_pane(&$vars) {
       $vars['title_suffix'] = '</div></div>';
     }
   }
+  if ($vars['pane']->type == 'block' && $vars['pane']->subtype == 'menu-menu-ct-menu') {
+    $vars['content']['#prefix'] = '<div class="row nas-ct-menu">';
+    $vars['content']['#suffix'] = '</div>';
+  }
 }
 
 /**
@@ -1698,24 +1702,6 @@ function nas_preprocess_views_view(&$vars) {
   $class_array = explode(' ', $class);
   if (in_array('equalizer', $class_array)) {
     $vars['equalizer'] = TRUE;
-  }
-
-  if ($view->name == 'ct_species') {
-    $page = page_manager_get_current_page();
-    $vars['alphabet'] = '';
-    $vars['reset'] = '';
-    if ($page && !empty($page['subtask']['subtask']->path)) {
-      $letters = array(
-        'title' => '',
-        'type' => 'ul',
-        'attributes' => array('class' => 'alphabet-block__alphabet'),
-      );
-      foreach (range('a','z') as $letter) {
-        $letters['items'][$letter] = l(strtoupper($letter), $page['subtask']['subtask']->path . '/' . $letter);
-      }
-      $vars['alphabet'] = theme_item_list($letters);
-      $vars['reset'] = l(t('Reset Filters'), $page['subtask']['subtask']->path, array('attribures' => array('class' => 'reset-filters')));
-    }
   }
 }
 
