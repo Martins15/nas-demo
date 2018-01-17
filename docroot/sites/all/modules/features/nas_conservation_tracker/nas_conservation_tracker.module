@@ -22,6 +22,8 @@ function nas_conservation_tracker_ctools_plugin_directory($module, $plugin) {
  */
 function nas_conservation_tracker_init() {
   drupal_add_css(drupal_get_path('module', 'nas_conservation_tracker'), '/css/nas_conservation_tracker.css');
+  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/conservation_page.js');
+
   _nas_conservation_tracker_get_real_path(TRUE);
 }
 
