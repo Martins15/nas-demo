@@ -56,10 +56,18 @@
 
       <?php if ($rows): ?>
         <div class="birds-wrap medium-12 large-9">
-          <div class="space-bottom double bird-card-grid-container">
+          <div class="view-content space-bottom double bird-card-grid-container">
             <?php print $rows; ?>
           </div>
         </div>
+      <?php elseif ($empty): ?>
+        <div class="view-empty">
+          <?php print $empty; ?>
+        </div>
+      <?php endif; ?>
+      <div class="clearfix"></div>
+      <?php if ($pager): ?>
+        <?php print $pager; ?>
       <?php endif; ?>
     </div>
 
@@ -67,22 +75,6 @@
       <div class="attachment attachment-before">
         <?php print $attachment_before; ?>
       </div>
-    <?php endif; ?>
-
-    <?php if ($rows): ?>
-      <div class="birds-wrap">
-        <div class="space-bottom double bird-card-grid-container">
-          <?php print $rows; ?>
-        </div>
-      </div>
-    <?php elseif ($empty): ?>
-      <div class="view-empty">
-        <?php print $empty; ?>
-      </div>
-    <?php endif; ?>
-    <div class="clearfix"></div>
-    <?php if ($pager): ?>
-      <?php print $pager; ?>
     <?php endif; ?>
 
     <?php if ($attachment_after): ?>
