@@ -808,8 +808,11 @@ $gray-lightish: #9b9b9b;
           color: #919191;
           &.active {
             position: relative;
-            padding: 15px;
+            padding: 15px 5px;
             color: $white;
+            @include breakpoint(large-up) {
+              padding: 15px;
+            }
             &:after {
               content: '';
               display: block;
