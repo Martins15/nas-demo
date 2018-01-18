@@ -797,7 +797,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'top';
     $pane->type = 'nas_menu_header_don_t_miss';
     $pane->subtype = 'nas_menu_header_don_t_miss';
-    $pane->shown = FALSE;
+    $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
@@ -816,7 +816,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'top';
     $pane->type = 'nas_menu_header_big';
     $pane->subtype = 'nas_menu_header_big';
-    $pane->shown = FALSE;
+    $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
