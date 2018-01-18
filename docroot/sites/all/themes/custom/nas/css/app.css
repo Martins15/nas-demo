@@ -19142,6 +19142,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: fixed;
   z-index: 999;
   bottom: 0;
+  left: 0;
   width: 100%;
   background-color: #303030;
   color: #fff;
@@ -19207,15 +19208,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .alphabet-block li a.active, .species-filter .alphabet-block li a:hover {
   color: #89774f;
 }
-.species-filter .filter-block {
-  display: none;
-}
-@media only screen and (min-width: 768px) {
-  .species-filter .filter-block {
-    display: block;
-  }
-}
-.species-filter .filter-block > div a {
+.species-filter .filter-block > div:not(.nas-ct-refine-listing) a {
   display: block;
   position: relative;
   margin: 0 auto;
@@ -19224,8 +19217,16 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   background-color: #EDECEA;
   color: #838078;
 }
-.species-filter .filter-block > div a:hover {
+.species-filter .filter-block > div:not(.nas-ct-refine-listing) a:hover {
   opacity: 0.8;
+}
+.species-filter .filter-block form {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block form {
+    display: block;
+  }
 }
 .species-filter .filter-block .views-widget-filter-field_ct_letter {
   display: none;
@@ -19395,9 +19396,14 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin-bottom: 10px;
   background: #fbfaf6;
   border: 1px solid #dfdfdf;
-  padding: 15px;
+  padding: 5px 15px;
   font-size: 25px;
   position: relative;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block__menu-block .first-level > li {
+    padding: 15px;
+  }
 }
 .species-filter .filter-block__menu-block .first-level > li.js-open {
   padding: 15px 15px 0;
@@ -19500,6 +19506,31 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border: solid #fff;
   border-width: 0 3px 3px 0;
 }
+.species-filter .filter-block .js-open-mobile .fieldset-title,
+.species-filter .filter-block .js-open-mobile .form-item.form-type-radio label {
+  color: #fff;
+}
+.species-filter .filter-block .js-open-mobile .views-widget .form-radios,
+.species-filter .filter-block .js-open-mobile .form-item.form-type-radio {
+  border: 0;
+}
+.species-filter .filter-block .js-open-mobile .views-widget .form-radios {
+  background: #303030;
+}
+.species-filter .filter-block .js-open-mobile .form-item.form-type-radio {
+  opacity: .5;
+}
+.species-filter .filter-block .js-open-mobile .fieldset-title .fieldset-legend-prefix:before, .species-filter .filter-block .js-open-mobile .fieldset-title .fieldset-legend-prefix:after {
+  background-color: #fff;
+}
+.species-filter .filter-block .js-open-mobile input[type='text'] {
+  color: #fff;
+  background: transparent;
+  border: 1px solid #303030;
+}
+.species-filter .filter-block .js-open-mobile .form-item-search:before, .species-filter .filter-block .js-open-mobile .form-item-search:after {
+  border: 2px solid #949494;
+}
 @media only screen and (min-width: 768px) {
   .species-filter .birds-wrap {
     float: left;
@@ -19543,59 +19574,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 #nas-conservation-tracker-landscapes-map-form {
   display: none;
-}
-#nas-conservation-tracker-landscapes-map-form.js-open-mobile {
-  display: block;
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0 10px;
-  background-color: #1c1c1c;
-}
-#nas-conservation-tracker-landscapes-map-form.js-open-mobile > div {
-  margin-top: 25px;
-}
-#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  margin-top: 20px;
-  overflow: hidden;
-  color: #fff;
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 18px;
-}
-#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form span {
-  position: relative;
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  overflow: hidden;
-  cursor: pointer;
-}
-#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form span:before {
-  content: '';
-  position: absolute;
-  height: 2px;
-  width: 100%;
-  top: 50%;
-  left: 0;
-  margin-top: -1px;
-  background: #fff;
-  transform: rotate(45deg);
-}
-#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form span:after {
-  content: '';
-  position: absolute;
-  height: 2px;
-  width: 100%;
-  top: 50%;
-  left: 0;
-  margin-top: -1px;
-  background: #fff;
-  transform: rotate(-45deg);
 }
 @media only screen and (min-width: 768px) {
   #nas-conservation-tracker-landscapes-map-form {
@@ -19767,6 +19745,76 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .js-overflow .global-footer,
 .js-overflow .mailing-list {
   z-index: -1;
+}
+
+#nas-conservation-tracker-landscapes-map-form.js-open-mobile,
+.filter-block form.js-open-mobile {
+  display: block;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px 70px;
+  background-color: #1c1c1c;
+  overflow-y: scroll;
+}
+#nas-conservation-tracker-landscapes-map-form.js-open-mobile > div,
+.filter-block form.js-open-mobile > div {
+  margin-top: 25px;
+}
+#nas-conservation-tracker-landscapes-map-form.js-open-mobile > div a,
+.filter-block form.js-open-mobile > div a {
+  display: block;
+  background: #303030;
+  color: #fff;
+  line-height: 60px;
+  text-align: center;
+}
+#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form,
+.filter-block form.js-open-mobile .title-form {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin-top: 20px;
+  overflow: hidden;
+  color: #fff;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+}
+#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form span,
+.filter-block form.js-open-mobile .title-form span {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  overflow: hidden;
+  cursor: pointer;
+}
+#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form span:before,
+.filter-block form.js-open-mobile .title-form span:before {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+  background: #fff;
+  transform: rotate(45deg);
+}
+#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form span:after,
+.filter-block form.js-open-mobile .title-form span:after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+  background: #fff;
+  transform: rotate(-45deg);
 }
 
 .sidebar, .article-sidebar {

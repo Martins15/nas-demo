@@ -90,11 +90,7 @@ $text-gray-filter: #9b9b9b;
     }
   }
   .filter-block {
-    display: none;
-    @include breakpoint(large-up) {
-      display: block;
-    }
-    > div {
+    > div:not(.nas-ct-refine-listing) {
       a {
         display: block;
         position: relative;
@@ -106,6 +102,12 @@ $text-gray-filter: #9b9b9b;
         &:hover {
           opacity: 0.8;
         }
+      }
+    }
+    form {
+      display: none;
+      @include breakpoint(large-up) {
+        display: block;
       }
     }
     .views-widget-filter-field_ct_letter {
@@ -260,9 +262,12 @@ $text-gray-filter: #9b9b9b;
           margin-bottom: 10px;
           background: $gray-menu-filter;
           border: 1px solid $bord-filter;
-          padding: 15px;
+          padding: 5px 15px;
           font-size: 25px;
           position: relative;
+          @include breakpoint(large-up) {
+            padding: 15px;
+          }
           &.js-open {
             padding: 15px 15px 0;
             cursor: pointer;
@@ -379,6 +384,39 @@ $text-gray-filter: #9b9b9b;
         }
       }
     }
+    .js-open-mobile {
+      .fieldset-title,
+      .form-item.form-type-radio label {
+        color: $white;
+      }
+      .views-widget .form-radios,
+      .form-item.form-type-radio {
+        border: 0;
+      }
+      .views-widget .form-radios {
+        background: $dark-bg-filter;
+      }
+      .form-item.form-type-radio {
+        opacity: .5;
+      }
+      .fieldset-title .fieldset-legend-prefix{
+        &:before,
+        &:after {
+          background-color: $white;
+        }
+      }
+      input[type='text'] {
+        color: $white;
+        background: transparent;
+        border: 1px solid $dark-bg-filter;
+      }
+      .form-item-search {
+        &:before,
+        &:after {
+          border: 2px solid #949494;
+        }
+      }
+    }
   }
   .birds-wrap {
     @include breakpoint(large-up) {
@@ -430,60 +468,6 @@ $text-gray-filter: #9b9b9b;
 // Style for /conservation-tracker/landscapes page.
 #nas-conservation-tracker-landscapes-map-form {
   display: none;
-  &.js-open-mobile {
-    display: block;
-    position: fixed;
-    z-index: 999;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    padding: 0 10px;
-    background-color: #1c1c1c;
-    > div {
-      margin-top: 25px;
-    }
-    .title-form {
-      display: flex;
-      justify-content: space-between;
-      align-content: center;
-      margin-top: 20px;
-      overflow: hidden;
-      color: $white;
-      font-family: $font-sans;
-      font-size: 18px;
-      span {
-          position: relative;
-          display: inline-block;
-          width: 15px;
-          height: 15px;
-          overflow: hidden;
-          cursor: pointer;
-          &:before {
-            content: '';
-            position: absolute;
-            height: 2px;
-            width: 100%;
-            top: 50%;
-            left: 0;
-            margin-top: -1px;
-            background: $white;
-            transform: rotate(45deg);
-          }
-          &:after {
-            content: '';
-            position: absolute;
-            height: 2px;
-            width: 100%;
-            top: 50%;
-            left: 0;
-            margin-top: -1px;
-            background: $white;
-            transform: rotate(-45deg);
-          }
-
-      }
-    }
-  }
   @include breakpoint(large-up) {
     display: block;
     position: absolute;
@@ -625,5 +609,72 @@ $text-gray-filter: #9b9b9b;
   .global-footer,
   .mailing-list {
     z-index: -1;
+  }
+}
+
+#nas-conservation-tracker-landscapes-map-form,
+.filter-block form {
+  &.js-open-mobile {
+    display: block;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px 70px;
+    background-color: #1c1c1c;
+    overflow-y: scroll;
+    > div {
+      margin-top: 25px;
+      a {
+        display: block;
+        background: $dark-bg-filter;
+        color: $white;
+        line-height: 60px;
+        text-align: center;
+      }
+    }
+    .title-form {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      margin-top: 20px;
+      overflow: hidden;
+      color: $white;
+      font-family: $font-sans;
+      font-size: 18px;
+      span {
+        position: relative;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        overflow: hidden;
+        cursor: pointer;
+        &:before {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 100%;
+          top: 50%;
+          left: 0;
+          margin-top: -1px;
+          background: $white;
+          transform: rotate(45deg);
+        }
+        &:after {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 100%;
+          top: 50%;
+          left: 0;
+          margin-top: -1px;
+          background: $white;
+          transform: rotate(-45deg);
+        }
+
+      }
+    }
   }
 }
