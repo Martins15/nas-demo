@@ -485,6 +485,7 @@ $text-gray-filter: #9b9b9b;
     }
   }
   @include breakpoint(large-up) {
+    display: block;
     position: absolute;
     z-index: 999;
     width: 25%;

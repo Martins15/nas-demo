@@ -19599,6 +19599,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   #nas-conservation-tracker-landscapes-map-form {
+    display: block;
     position: absolute;
     z-index: 999;
     width: 25%;
