@@ -1840,6 +1840,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->uuid = '65a8594f-6c86-4348-ab14-face41231ace';
     $display->content['new-65a8594f-6c86-4348-ab14-face41231ace'] = $pane;
     $display->panels['main'][1] = 'new-65a8594f-6c86-4348-ab14-face41231ace';
+
     $pane = new stdClass();
     $pane->pid = 'new-8ac17764-1ce7-4da0-ac88-284361fbcd6d';
     $pane->panel = 'top';
