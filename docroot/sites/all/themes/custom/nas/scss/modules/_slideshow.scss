@@ -13,6 +13,9 @@
       margin-top: -60px;
     }
   }
+  &.hidden {
+    visibility: hidden;
+  }
 }
 
 .hero-image .slideshow img {

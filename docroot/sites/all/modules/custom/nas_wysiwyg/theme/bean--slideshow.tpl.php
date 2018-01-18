@@ -33,7 +33,7 @@
  * @see template_process()
  */
 ?>
-<div class="slideshow clearfix">
+<div class="slideshow clearfix hidden">
   <?php if ($count > 1): ?>
     <div class="slideshow-indicator row">
       <div class="column large-offset-9 large-3">
