@@ -59,6 +59,7 @@ features[field_instance][] = node-ct_scorecard-body
 features[field_instance][] = node-ct_scorecard-field_scorecard_id
 features[menu_custom][] = menu-ct-menu
 features[node][] = ct_scorecard
+features[page_manager_handlers][] = site_template__panel_context_6566baf3-a13e-4f69-bd59-8aa83bdb9bd0
 features[page_manager_pages][] = conservation_tracker
 features[page_manager_pages][] = conservation_tracker_landscapes
 features[page_manager_pages][] = conservation_tracker_strategies
