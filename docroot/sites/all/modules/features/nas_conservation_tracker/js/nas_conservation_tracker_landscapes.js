@@ -79,7 +79,7 @@
       if (location.scorecardUrl) {
         text += '<div class="link-wrap bg-white"><a href="' + location.scorecardUrl + '">' + Drupal.t('See Interactive Report') + '</a></div>';
       }
-      console.log(location);
+
       marker.options.location = location;
       marker.on('mouseover', function (e) {
         var location = e.target.options.location;
@@ -134,7 +134,7 @@
     }
 
     function getPolygonStyle(feature) {
-      var style = {};
+      var style = {fillOpacity: 1};
 
       var color = colors[feature.properties.unit.strategy.name.toLowerCase()];
       style.fillColor = color;
@@ -208,14 +208,14 @@
         Drupal.nasCtInitLandscapesMap(selectedLandscapes);
       }
 
-      lMap.on('click', function () {
-        if (lMap.scrollWheelZoom.enabled()) {
-          lMap.scrollWheelZoom.disable();
-        }
-        else {
-          lMap.scrollWheelZoom.enable();
-        }
-      });
+      // lMap.on('click', function () {
+      //   if (lMap.scrollWheelZoom.enabled()) {
+      //     lMap.scrollWheelZoom.disable();
+      //   }
+      //   else {
+      //     lMap.scrollWheelZoom.enable();
+      //   }
+      // });
 
     }
   }

@@ -75,13 +75,21 @@ function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args,
   // TODO make it configrable via form.
   $map_info['settings']['zoomDefault'] = 3;
   $map_info['settings']['zoom'] = 3;
+  $map_info['settings']['zoomControl'] = FALSE;
+  $map_info['settings']['dragging'] = FALSE;
+  $map_info['settings']['touchZoom'] = FALSE;
+  $map_info['settings']['doubleClickZoom'] = FALSE;
+  $map_info['settings']['scrollWheelZoom'] = FALSE;
+  $map_info['settings']['boxZoom'] = FALSE;
+  $map_info['settings']['keyboard'] = FALSE;
+
   $map_info['center'] = [
-    'lat' => '25.020098201368114',
+    'lat' => '18.020098201368114',
     'lon' => '-114.63378906250001',
   ];
   $features = [
   ];
-  $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_landscapes_map_height', '900') . 'px');
+  $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_landscapes_map_height', '990') . 'px');
 
   $form = drupal_get_form('nas_conservation_tracker_landscapes_map_form');
   $refine_button = nas_conservation_tracker_refine_button('landscapes');

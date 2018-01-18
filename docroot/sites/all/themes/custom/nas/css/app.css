@@ -18525,14 +18525,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-width: 6px 4px 0 4px;
   border-color: #8a8a8a transparent transparent transparent;
 }
-.ct-scorecard-tabs .link-wrapper,
-.ct-scorecard-tabs .first.expanded > a {
+.ct-scorecard-tabs .link-wrapper {
   position: relative;
   display: inline-block;
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
-.ct-scorecard-tabs .link-wrapper:after,
-.ct-scorecard-tabs .first.expanded > a:after {
+.ct-scorecard-tabs .link-wrapper:after {
   content: '';
   border: solid #fff;
   border-width: 0 2px 2px 0;
@@ -18544,13 +18542,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
-.ct-scorecard-tabs .link-wrapper:last-child,
-.ct-scorecard-tabs .first.expanded > a:last-child {
+.ct-scorecard-tabs .link-wrapper:last-child {
   margin-left: 15px;
 }
 @media only screen and (min-width: 768px) {
-  .ct-scorecard-tabs .link-wrapper:last-child:after,
-  .ct-scorecard-tabs .first.expanded > a:last-child:after {
+  .ct-scorecard-tabs .link-wrapper:last-child:after {
     position: absolute;
     left: 50%;
     bottom: -17px;
@@ -18573,10 +18569,28 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-scorecard-tabs.nas-ct-menu li {
   padding: 0;
 }
-.ct-scorecard-tabs.nas-ct-menu .menu {
-  margin-left: 0;
+.ct-scorecard-tabs.nas-ct-menu li a {
+  padding: 15px;
 }
-.ct-scorecard-tabs.nas-ct-menu .menu .first.expanded {
+.ct-scorecard-tabs.nas-ct-menu li a:hover {
+  background: transparent;
+  color: #fff;
+}
+.ct-scorecard-tabs.nas-ct-menu .first.last > a:after {
+  content: '';
+  position: relative;
+  right: inherit;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  opacity: .2;
+  display: inline-block;
+  padding: 4px;
+  border-radius: 0;
+  margin: 0 7px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.ct-scorecard-tabs.nas-ct-menu .menu {
   margin-left: 0;
 }
 .ct-scorecard-tabs.nas-ct-menu .menu ul {
@@ -18587,12 +18601,14 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .ct-scorecard-tabs.nas-ct-menu .menu ul a.active {
   position: relative;
+  padding: 15px;
   color: #fff;
 }
 .ct-scorecard-tabs.nas-ct-menu .menu ul a.active:after {
   content: '';
   display: block;
   position: absolute;
+  top: inherit;
   bottom: 0;
   left: 50%;
   width: 0;
@@ -19057,6 +19073,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transition: bottom .3s;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0) 100%);
 }
+@media screen and (max-width: 767px) {
+  .show-hide-text .banner-text {
+    bottom: 0 !important;
+  }
+}
 .show-hide-text .banner-gradient-overlay-horizontal {
   background: transparent;
 }
@@ -19070,6 +19091,28 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .conservation-tracker-custom-pane {
   padding-bottom: 40px;
+}
+
+.conservation-tracker-pages .curtain-card h1 {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 37px;
+  letter-spacing: normal;
+  line-height: .92;
+  text-align: left;
+}
+@media only screen and (min-width: 768px) {
+  .conservation-tracker-pages .curtain-card h1 {
+    font-size: 64px;
+  }
+}
+.conservation-tracker-pages .homepage-first-row {
+  display: none;
+}
+.conservation-tracker-pages.landscapes-page .ct-scorecard-tabs.nas-ct-menu .menu ul a.active:after {
+  border-color: transparent;
 }
 
 .species-filter {

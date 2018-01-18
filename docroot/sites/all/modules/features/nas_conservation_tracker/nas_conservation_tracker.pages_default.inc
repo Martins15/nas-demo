@@ -41,7 +41,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     'no_blocks' => 0,
     'pipeline' => 'ipe',
     'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
+    'body_classes_to_add' => 'conservation-tracker-pages',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
@@ -424,7 +424,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<div class="large-8 row space-top space-bottom" style="margin:auto;">
+      'body' => '<div class="columns large-8 row space-top space-bottom" style="margin:auto;">
 	<div class="conservation-tracker-custom-pane">
 		<h3>Learn about our core conservation strategies, and track their impact on priority species and landscapes via our new Conservation Tracker!</h3>
 		<p><span>The Conservation Tracker is an interactive, visualization tool that increases transparency and accountability. Audubon is committed to measuring the biological impact of our conservation strategies by investing in a system that holds us accountable to our board and funders for progress against quantifiable objectives. </span></p>		
@@ -515,7 +515,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     'no_blocks' => 0,
     'pipeline' => 'ipe',
     'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
+    'body_classes_to_add' => 'conservation-tracker-pages landscapes-page',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
@@ -797,7 +797,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'top';
     $pane->type = 'nas_menu_header_don_t_miss';
     $pane->subtype = 'nas_menu_header_don_t_miss';
-    $pane->shown = FALSE;
+    $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
@@ -816,7 +816,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'top';
     $pane->type = 'nas_menu_header_big';
     $pane->subtype = 'nas_menu_header_big';
-    $pane->shown = FALSE;
+    $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
@@ -892,7 +892,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     'no_blocks' => 0,
     'pipeline' => 'ipe',
     'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
+    'body_classes_to_add' => 'conservation-tracker-pages',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
@@ -1294,7 +1294,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     'no_blocks' => 1,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
+    'body_classes_to_add' => 'conservation-tracker-pages',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
@@ -1666,6 +1666,46 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->uuid = 'e3d63f31-c612-4b1b-994b-538b6e253fd5';
     $display->content['new-e3d63f31-c612-4b1b-994b-538b6e253fd5'] = $pane;
     $display->panels['main'][2] = 'new-e3d63f31-c612-4b1b-994b-538b6e253fd5';
+
+    $pane = new stdClass();
+    $pane->pid = 'new-8a484010-61ab-4a7b-8700-9b6b796d5efa';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_don_t_miss';
+    $pane->subtype = 'nas_menu_header_don_t_miss';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8a484010-61ab-4a7b-8700-9b6b796d5efa';
+    $display->content['new-8a484010-61ab-4a7b-8700-9b6b796d5efa'] = $pane;
+    $display->panels['top'][0] = 'new-8a484010-61ab-4a7b-8700-9b6b796d5efa';
+    $pane = new stdClass();
+    $pane->pid = 'new-34a2847d-bb44-466a-86a0-b9a67e91ca6a';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_big';
+    $pane->subtype = 'nas_menu_header_big';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '34a2847d-bb44-466a-86a0-b9a67e91ca6a';
+  $display->content['new-34a2847d-bb44-466a-86a0-b9a67e91ca6a'] = $pane;
+  $display->panels['top'][1] = 'new-34a2847d-bb44-466a-86a0-b9a67e91ca6a';
+
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
