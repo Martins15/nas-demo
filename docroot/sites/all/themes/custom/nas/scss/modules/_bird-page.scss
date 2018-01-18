@@ -1306,4 +1306,12 @@ $gray-lightish: #9b9b9b;
       }
     }
   }
+  .homepage-first-row {
+    display: none;
+  }
+  &.landscapes-page {
+    .ct-scorecard-tabs.nas-ct-menu .menu ul a.active:after {
+      border-color: transparent;
+    }
+  }
 }

@@ -19108,6 +19108,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     font-size: 64px;
   }
 }
+.conservation-tracker-pages .homepage-first-row {
+  display: none;
+}
+.conservation-tracker-pages.landscapes-page .ct-scorecard-tabs.nas-ct-menu .menu ul a.active:after {
+  border-color: transparent;
+}
 
 .species-filter {
   margin-bottom: 40px;

@@ -515,7 +515,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     'no_blocks' => 0,
     'pipeline' => 'ipe',
     'body_classes_to_remove' => '',
-    'body_classes_to_add' => 'conservation-tracker-pages',
+    'body_classes_to_add' => 'conservation-tracker-pages landscapes-page',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
