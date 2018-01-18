@@ -82,7 +82,13 @@ DirectoryIndex index.php index.html index.htm
   # downloaded.
   RewriteRule "(^|/)\." - [F]
 
+
+
   # Custom redirect rules.
+
+  RewriteCond %{HTTP_HOST} ^ct.nas.ffwua.com$ [NC]
+  RewriteCond %{HTTPS} on
+  RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
   # If there any hardcoded links to nasprod.
   RewriteCond %{HTTP_HOST} ^nasprod\.audubon\.org [NC]
