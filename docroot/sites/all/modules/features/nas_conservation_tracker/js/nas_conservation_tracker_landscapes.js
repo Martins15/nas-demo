@@ -233,11 +233,19 @@
         })
       });
       var $linkFilter =  $('.nas-ct-refine-listing', context);
-      $linkFilter.appendTo('body', context);
+      var $formFilter = $('#nas-conservation-tracker-landscapes-map-form', context);
+      var textLink = $linkFilter.text();
+       $linkFilter.appendTo('body', context);
+
+      $('<div class="title-form hide-for-large hide-for-xlarge"><p>'+ textLink +'</p><span class="js-exit"></span></div>').prependTo($formFilter);
       $linkFilter.click(function (e) {
         e.preventDefault();
-        $('#nas-conservation-tracker-landscapes-map-form', context).toggleClass('js-open-mobile');
+        $formFilter.toggleClass('js-open-mobile');
         $('body').toggleClass('js-overflow');
+      })
+      $('.js-exit').click(function () {
+        $formFilter.removeClass('js-open-mobile');
+        $('body').removeClass('js-overflow');
       })
     }
   };
