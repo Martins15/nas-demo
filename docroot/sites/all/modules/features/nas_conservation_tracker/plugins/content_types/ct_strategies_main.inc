@@ -50,6 +50,7 @@ function nas_conservation_tracker_strategies_main_render($subtype, $conf, $args,
  */
 function nas_conservation_tracker_strategies_main_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
+
   // some code TBD.
   return $form;
 }

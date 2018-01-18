@@ -4,1077 +4,959 @@
     "commonName": "American Avocet",
     "scientificName": "Recurvirostra americana",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "AMAV",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "wetland",
+    "strategies": "Water"
   },
   {
     "id": 2,
     "commonName": "American Oystercatcher",
     "scientificName": "Haematopus palliatus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "AMOY",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Least Concern",
+    "group": "shorebird",
+    "strategies": "Coasts"
   },
   {
     "id": 3,
     "commonName": "American White Pelican",
     "scientificName": "Pelecanus erythrorhynchos",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "AWPE",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterbird",
+    "strategies": "Water"
   },
   {
     "id": 4,
     "commonName": "American Woodcock",
     "scientificName": "Scolopax minor",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "AMWO",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "shorebird",
+    "strategies": "Working Lands"
   },
   {
     "id": 5,
     "commonName": "Bald Eagle (Southern)",
     "scientificName": "Haliaeetus leucocephalus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "BAEA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "wetland",
+    "strategies": "Water"
   },
   {
     "id": 6,
-    "commonName": "Bell\\u0027s Vireo",
+    "commonName": "Bell's Vireo",
     "scientificName": "Vireo bellii",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "BEVI",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "NT",
-    "guild": ""
+    "iucn": "Near Threatened",
+    "group": "landbird",
+    "strategies": ""
   },
   {
     "id": 7,
     "commonName": "Black Oystercatcher",
     "scientificName": "Haematopus bachmani",
     "scoreCard": 123,
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "BLOY",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Least Concern",
+    "group": "shorebird",
+    "strategies": "Coasts"
   },
   {
     "id": 8,
     "commonName": "Black Skimmer",
     "scientificName": "Rynchops niger",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "BLSK",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterbird",
+    "strategies": "Coasts"
   },
   {
     "id": 9,
     "commonName": "Black-necked Stilt",
     "scientificName": "Himantopus mexicanus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Stable",
-    "stateOfBirds": "",
+    "stateOfBirds": "Low",
     "alphaCode": "BNST",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "shorebird",
+    "strategies": "Working Lands"
   },
   {
     "id": 10,
     "commonName": "Black-throated Blue Warbler",
     "scientificName": "Setophaga caerulescens",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "BTBW",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 11,
     "commonName": "Bobolink",
     "scientificName": "Dolichonyx oryzivorus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "BOBO",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 12,
     "commonName": "Brown Pelican",
     "scientificName": "Pelecanus occidentalis",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "BRPE",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterbird",
+    "strategies": "Coasts"
   },
   {
     "id": 13,
     "commonName": "Brown-headed Nuthatch",
     "scientificName": "Sitta pusilla",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "BHNU",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 14,
     "commonName": "Canada Warbler",
     "scientificName": "Cardellina canadensis",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "CAWA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 15,
     "commonName": "Cerulean Warbler",
     "scientificName": "Setophaga cerulea",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "CERW",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "VU",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Vulnerable",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 16,
     "commonName": "Clapper Rail",
     "scientificName": "Rallus crepitans",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "CLRA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterbird",
+    "strategies": "Coasts"
   },
   {
     "id": 17,
     "commonName": "Eared Grebe",
     "scientificName": "Podiceps nigricollis",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "EAGR",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "wetland",
+    "strategies": "Water"
   },
   {
     "id": 18,
     "commonName": "Florida Grasshopper Sparrow",
     "scientificName": "Ammodramus s. floridanus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "FGSP",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Water"
   },
   {
     "id": 19,
     "commonName": "Florida Scrub Jay",
     "scientificName": "Aphelocoma coerulescens",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "FLSJ",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "VU",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Vulnerable",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 20,
     "commonName": "Golden-winged Warbler",
     "scientificName": "Vermivora chrysoptera",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "GWWA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "NT",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Near Threatened",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 21,
     "commonName": "Greater Sage-Grouse",
     "scientificName": "Centrocercus urophasianus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "GRSG",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "NT",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Near Threatened",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 22,
     "commonName": "Hooded Warbler",
     "scientificName": "Setophaga citrina",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "HOWA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 23,
     "commonName": "Hudsonian Godwit",
     "scientificName": "Limosa haemastica",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "HUGO",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "NT",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Near Threatened",
+    "group": "shorebird",
+    "strategies": "Coasts"
   },
   {
     "id": 24,
     "commonName": "King Rail",
     "scientificName": "Rallus elegans",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "KIRA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterbird",
+    "strategies": "Water"
   },
   {
     "id": 25,
     "commonName": "Least Bittern",
     "scientificName": "Ixobrychus exilis",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "LEBI",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterbird",
+    "strategies": "Water"
   },
   {
     "id": 26,
     "commonName": "Least Tern",
     "scientificName": "Sternula antillarum",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "LETE",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Coasts",
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterbird",
+    "strategies": "Coasts,Water"
   },
   {
     "id": 27,
     "commonName": "Lesser Prairie Chicken",
     "scientificName": "Tympanuchus pallidicinctus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "LEPC",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "NT",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Near Threatened",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 28,
     "commonName": "Long-billed Curlew",
     "scientificName": "Numenius americanus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "LBCU",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Coasts",
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "shorebird",
+    "strategies": "Coasts,Working Lands"
   },
   {
     "id": 29,
     "commonName": "Marbled Godwit",
     "scientificName": "Limosa fedoa",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "MAGO",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Least Concern",
+    "group": "shorebird",
+    "strategies": "Coasts"
   },
   {
     "id": 30,
     "commonName": "Northern Bobwhite",
     "scientificName": "Colinus virginianus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "NOBO",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "NT",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Near Threatened",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 31,
     "commonName": "Piping Plover",
     "scientificName": "Charadrius melodus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "PIPL",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "NT",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Near Threatened",
+    "group": "shorebird",
+    "strategies": "Coasts"
   },
   {
     "id": 32,
     "commonName": "Prairie Warbler",
     "scientificName": "Setophaga discolor",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "PRAW",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 33,
     "commonName": "Prothonotary Warbler",
     "scientificName": "Protonotaria citrea",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "PROW",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Water"
   },
   {
     "id": 34,
     "commonName": "Red Knot",
     "scientificName": "Calidris canutus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "REKN",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Least Concern",
+    "group": "shorebird",
+    "strategies": "Coasts"
   },
   {
     "id": 35,
     "commonName": "Reddish Egret",
     "scientificName": "Egretta rufescens",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "REEG",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "NT",
-    "guild": "",
-    "strategies": [
-      "Coasts",
-      "Water"
-    ]
+    "iucn": "Near Threatened",
+    "group": "waterbird",
+    "strategies": "Coasts, Water"
   },
   {
     "id": 36,
-    "commonName": "Ridgway\\u0027s Rail (Yuma)",
+    "commonName": "Ridgway's Rail (Yuma)",
     "scientificName": "Rallus obsoletus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "RIRA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "NT",
-    "guild": ""
+    "iucn": "Near Threatened",
+    "group": "waterbird",
+    "strategies": ""
   },
   {
     "id": 37,
     "commonName": "Roseate Spoonbill",
     "scientificName": "Platalea ajaja",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "ROSP",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterbird",
+    "strategies": "Water"
   },
   {
     "id": 38,
     "commonName": "Rose-breasted Grosbeak",
     "scientificName": "Pheucticus ludovicianus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "RBGR",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 39,
     "commonName": "Ruddy Duck",
     "scientificName": "Oxyura jamaicensis",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Stable",
-    "stateOfBirds": "",
+    "stateOfBirds": "Low",
     "alphaCode": "RUDU",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterfowl",
+    "strategies": "Water"
   },
   {
     "id": 40,
     "commonName": "Saltmarsh Sparrow",
     "scientificName": "Ammodramus caudacutus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "SALS",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "VU",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Vulnerable",
+    "group": "landbird",
+    "strategies": "Coasts"
   },
   {
     "id": 41,
     "commonName": "Sandhill Crane",
     "scientificName": "Antigone canadensis",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "SACR",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water",
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterbird",
+    "strategies": "Water,Working Lands"
   },
   {
     "id": 42,
     "commonName": "Scarlet Tanager",
     "scientificName": "Piranga olivacea",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "SCTA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Water"
   },
   {
     "id": 43,
     "commonName": "Semipalmated Sandpiper",
     "scientificName": "Calidris pusilla",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Stable",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "SESA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "NT",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Near Threatened",
+    "group": "shorebird",
+    "strategies": "Coasts"
   },
   {
     "id": 44,
     "commonName": "Snail Kite",
     "scientificName": "Rostrhamus sociabilis",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Stable",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "SNKI",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "wetland",
+    "strategies": "Water"
   },
   {
     "id": 45,
     "commonName": "Snowy Plover",
     "scientificName": "Charadrius nivosus",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "SNPL",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Coasts",
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "shorebird",
+    "strategies": "Coasts ,Water"
   },
   {
     "id": 46,
     "commonName": "Sooty Shearwater",
     "scientificName": "Ardenna grisea",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "No Data",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "SOSH",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "NT",
-    "guild": "",
-    "strategies": [
-      "Coasts"
-    ]
+    "iucn": "Near Threatened",
+    "group": "waterbird",
+    "strategies": "Coasts"
   },
   {
     "id": 47,
     "commonName": "Summer Tanager",
     "scientificName": "Piranga rubra",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Stable",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "SUTA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Water"
   },
   {
     "id": 48,
-    "commonName": "Swainson\\u0027s Hawk",
+    "commonName": "Swainson's Hawk",
     "scientificName": "Piranga rubra",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "SUTA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": ""
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": ""
   },
   {
     "id": 49,
-    "commonName": "Swainson\\u0027s Warbler",
+    "commonName": "Swainson's Warbler",
     "scientificName": "Limnothlypis swainsonii",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "SWWA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 50,
     "commonName": "Tricolored Blackbird",
     "scientificName": "Agelaius tricolor",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "TRBL",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "EN",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Endangered",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 51,
     "commonName": "Upland Sandpiper",
     "scientificName": "Bartramia longicauda",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "UPSA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "shorebird",
+    "strategies": "Working Lands"
   },
   {
     "id": 52,
     "commonName": "Western Meadowlark",
     "scientificName": "Sturnella neglecta",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "WEME",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 53,
     "commonName": "Western Sandpiper",
     "scientificName": "Calidris mauri",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Stable",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "WESA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Coasts",
-      "Water",
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "shorebird",
+    "strategies": "Coasts,Water,Working Lands"
   },
   {
     "id": 56,
     "commonName": "White-faced Ibis",
     "scientificName": "Plegadis chihi",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Low",
     "alphaCode": "WFIB",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterbird",
+    "strategies": "Water"
   },
   {
     "id": 57,
     "commonName": "Willow Flycatcher (Southwestern)",
     "scientificName": "Empidonax traillii",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "WIFL",
     "parent": "",
     "strategyInitiative": "",
-
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Water"
   },
   {
     "id": 58,
-    "commonName": "Wilson\\u0027s Phalarope",
+    "commonName": "Wilson's Phalarope",
     "scientificName": "Phalaropus tricolor",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Endangered",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "WIPH",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": ""
+    "iucn": "Least Concern",
+    "group": "shorebird",
+    "strategies": ""
   },
   {
     "id": 59,
     "commonName": "Wood Stork",
     "scientificName": "Mycteria americana",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "WOST",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water"
-    ]
+    "iucn": "Least Concern",
+    "group": "waterbird",
+    "strategies": "Water"
   },
   {
     "id": 60,
     "commonName": "Wood Thrush",
     "scientificName": "Hylocichla mustelina",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Threatened",
-    "stateOfBirds": "",
+    "stateOfBirds": "High",
     "alphaCode": "WOTH",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Working Lands"
   },
   {
     "id": 61,
     "commonName": "Yellow Warbler",
     "scientificName": "Setophaga petechia",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Stable",
-    "stateOfBirds": "",
+    "stateOfBirds": "Low",
     "alphaCode": "YEWA",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water",
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Water,Working Lands"
   },
   {
     "id": 62,
     "commonName": "Yellow-Breasted Chat",
     "scientificName": "Icteria virens",
     "scoreCard": "",
-    "image": "\\/sites\\/all\\/modules\\/features\\/nas_conservation_tracker\\/demo_assets\\/oyster-teaser.jpg",
+    "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/oyster-teaser.jpg",
     "dropped": "",
     "audubonClimateStatus": "Stable",
-    "stateOfBirds": "",
+    "stateOfBirds": "Moderate",
     "alphaCode": "YBCH",
     "parent": "",
     "strategyInitiative": "",
-    "iucn": "LC",
-    "guild": "",
-    "strategies": [
-      "Water",
-      "Working Lands"
-    ]
+    "iucn": "Least Concern",
+    "group": "landbird",
+    "strategies": "Water,Working Lands"
   }
 ]

@@ -14,6 +14,13 @@
       else {
         $a.hide();
       }
+      $('#species-aplphabet li a').click(function (e) {
+        e.preventDefault();
+        //alert($(this).data('letter'));
+        //$(this).parent().addClass('active').siblings().removeClass('active');
+        $('input[name="letter"]').val($(this).data('letter'));
+        $('input#edit-submit-ct-species').click();
+      })
     }
   };
 })(jQuery, window.Drupal);

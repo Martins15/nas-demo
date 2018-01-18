@@ -118,13 +118,13 @@ function nas_conservation_tracker_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_ct_guild'
-  $field_bases['field_ct_guild'] = array(
+  // Exported field_base: 'field_ct_group'
+  $field_bases['field_ct_group'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_ct_guild',
+    'field_name' => 'field_ct_group',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
