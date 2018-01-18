@@ -442,11 +442,8 @@ function nas_conservation_tracker_get_image($name) {
 function nas_conservation_tracker_preprocess_views_view(&$vars) {
   $view = $vars['view'];
   if ($view->name == 'ct_species') {
-    $view_path = '/' . db_select('page_manager_pages', 'pmp')
-      ->fields('pmp', array('path'))
-      ->condition('name', 'ct_species_view')
-      ->execute()
-      ->fetchField();
+    //$view_path = (request_path() == 'views/ajax') ? $_SERVER['HTTP_REFERER'] : request_path();
+    $view_path = '/conservation-tracker/species';
     $letters = array(
       'title' => '',
       'type' => 'ul',

@@ -247,7 +247,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'summary' => 'Introducing a new series profiling people, wildlife, and conservation programs threatened by federal budget cuts. ',
       ),
       'curtain_html' => array(
-        'image' => nas_conservation_tracker_get_image('landing_page_hero.jpg'),
+        'image' => '125683',
         'header_color_mode' => 'light',
         'disable_gradient' => 0,
         'header_bg' => '-1',
@@ -375,7 +375,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
           'top_text' => '',
           'title' => 'Strategies',
           'bottom_text' => 'We maximize our conservation results by focusing on five key strategies critical for birds.',
-          'image' => nas_conservation_tracker_get_image('landing_page_strategies.jpg'),
+          'image' => '125684',
           'image_link' => '/conservation-tracker/strategies',
           'color_mode' => 'dark',
           'gradient' => 1,
@@ -384,7 +384,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
           'top_text' => '',
           'title' => 'Species',
           'bottom_text' => 'Audubon\'s priority bird species are birds of significant conservation need, for which our actions, over time, can lead to measur',
-          'image' => nas_conservation_tracker_get_image('landing_page_species.jpg'),
+          'image' => '125685',
           'image_link' => '/conservation-tracker/species',
           'color_mode' => 'dark',
           'gradient' => 1,
@@ -393,7 +393,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
           'top_text' => '',
           'title' => 'Landscapes',
           'bottom_text' => 'Audubon\'s work is "place-based" and enables our network to partner with local managers, businesses, and stakeholders to achieve ',
-          'image' => nas_conservation_tracker_get_image('landing_page_landscapes.jpg'),
+          'image' => '125686',
           'image_link' => '/conservation-tracker/landscapes',
           'color_mode' => 'dark',
           'gradient' => 1,
@@ -1098,7 +1098,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'summary' => 'Introducing a new series profiling people, wildlife, and conservation programs threatened by federal budget cuts. ',
       ),
       'curtain_html' => array(
-        'image' => nas_conservation_tracker_get_image('landing_page_hero.jpg'),
+        'image' => '125683',
         'header_color_mode' => 'light',
         'disable_gradient' => 0,
         'header_bg' => '-1',
@@ -1666,7 +1666,6 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->uuid = 'e3d63f31-c612-4b1b-994b-538b6e253fd5';
     $display->content['new-e3d63f31-c612-4b1b-994b-538b6e253fd5'] = $pane;
     $display->panels['main'][2] = 'new-e3d63f31-c612-4b1b-994b-538b6e253fd5';
-
     $pane = new stdClass();
     $pane->pid = 'new-8a484010-61ab-4a7b-8700-9b6b796d5efa';
     $pane->panel = 'top';
@@ -1703,9 +1702,8 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '34a2847d-bb44-466a-86a0-b9a67e91ca6a';
-  $display->content['new-34a2847d-bb44-466a-86a0-b9a67e91ca6a'] = $pane;
-  $display->panels['top'][1] = 'new-34a2847d-bb44-466a-86a0-b9a67e91ca6a';
-
+    $display->content['new-34a2847d-bb44-466a-86a0-b9a67e91ca6a'] = $pane;
+    $display->panels['top'][1] = 'new-34a2847d-bb44-466a-86a0-b9a67e91ca6a';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
