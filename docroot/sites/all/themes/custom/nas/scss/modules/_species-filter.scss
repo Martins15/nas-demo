@@ -94,6 +94,23 @@ $text-gray-filter: #9b9b9b;
     @include breakpoint(large-up) {
       display: block;
     }
+    > div {
+      a {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        padding: 10px;
+        text-align: center;
+        background-color: #EDECEA;
+        color: #838078;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+    .views-widget-filter-field_ct_letter {
+      display: none;
+    }
     .views-widget {
       .form-radios {
         font-family: $lato-font;
@@ -412,8 +429,63 @@ $text-gray-filter: #9b9b9b;
 
 // Style for /conservation-tracker/landscapes page.
 #nas-conservation-tracker-landscapes-map-form {
-  margin: 0 10px;
+  display: none;
+  &.js-open-mobile {
+    display: block;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    background-color: #1c1c1c;
+    > div {
+      margin-top: 25px;
+    }
+    .title-form {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      margin-top: 20px;
+      overflow: hidden;
+      color: $white;
+      font-family: $font-sans;
+      font-size: 18px;
+      span {
+          position: relative;
+          display: inline-block;
+          width: 15px;
+          height: 15px;
+          overflow: hidden;
+          cursor: pointer;
+          &:before {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            margin-top: -1px;
+            background: $white;
+            transform: rotate(45deg);
+          }
+          &:after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            margin-top: -1px;
+            background: $white;
+            transform: rotate(-45deg);
+          }
+
+      }
+    }
+  }
   @include breakpoint(large-up) {
+    display: block;
     position: absolute;
     z-index: 999;
     width: 25%;
@@ -544,5 +616,14 @@ $text-gray-filter: #9b9b9b;
     .leaflet-popup-close-button {
       display: none;
     }
+  }
+}
+
+.js-overflow {
+  overflow: hidden;
+  .global-header,
+  .global-footer,
+  .mailing-list {
+    z-index: -1;
   }
 }
