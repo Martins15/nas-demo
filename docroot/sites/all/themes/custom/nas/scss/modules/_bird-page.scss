@@ -692,12 +692,16 @@ $gray-lightish: #9b9b9b;
   }
 
   a {
-    font-size: 17px;
+    font-size: 14px;
     text-align: left;
-    padding: 15px;
+    padding: 15px 10px;
     color: $white;
     font-family: $font-sans;
     display: inline-block;
+    @include breakpoint(large-up) {
+      padding: 15px;
+      font-size: 17px;
+    }
     &.active-trail {
       position: relative;
       padding-right: 25px;
@@ -768,7 +772,10 @@ $gray-lightish: #9b9b9b;
     li {
       padding: 0;
       a {
-        padding: 15px;
+        padding: 15px 5px;
+        @include breakpoint(large-up) {
+          padding: 15px;
+        }
         &:hover {
           background: transparent;
           color: $white;
@@ -1313,5 +1320,28 @@ $gray-lightish: #9b9b9b;
     .ct-scorecard-tabs.nas-ct-menu .menu ul a.active:after {
       border-color: transparent;
     }
+    .leaflet-control-layers-toggle {
+      display: none;
+    }
+    padding-bottom: 60px;
+    @include breakpoint(large-up) {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.nas-ct-refine-listing {
+  a {
+    display: block;
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    width: 100%;
+    background-color: #303030;
+    color: $white;
+    font-family: $font-sans;
+    font-size: 18px;
+    line-height: 60px;
+    text-align: center;
   }
 }
