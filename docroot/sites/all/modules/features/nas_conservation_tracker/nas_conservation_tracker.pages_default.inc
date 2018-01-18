@@ -23,7 +23,7 @@ function nas_conservation_tracker_default_page_manager_handlers() {
     'no_blocks' => 1,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
+    'body_classes_to_add' => 'conservation-tracker-pages',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),

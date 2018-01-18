@@ -19215,6 +19215,21 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     display: block;
   }
 }
+.species-filter .filter-block > div a {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  background-color: #EDECEA;
+  color: #838078;
+}
+.species-filter .filter-block > div a:hover {
+  opacity: 0.8;
+}
+.species-filter .filter-block .views-widget-filter-field_ct_letter {
+  display: none;
+}
 .species-filter .filter-block .views-widget .form-radios {
   font-family: "Lato", sans-serif;
   width: 100%;
@@ -19540,10 +19555,51 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   background-color: #1c1c1c;
 }
 #nas-conservation-tracker-landscapes-map-form.js-open-mobile > div {
-  margin-top: 15%;
+  margin-top: 25px;
+}
+#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin-top: 20px;
+  overflow: hidden;
+  color: #fff;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+}
+#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form span {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  overflow: hidden;
+  cursor: pointer;
+}
+#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form span:before {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+  background: #fff;
+  transform: rotate(45deg);
+}
+#nas-conservation-tracker-landscapes-map-form.js-open-mobile .title-form span:after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+  background: #fff;
+  transform: rotate(-45deg);
 }
 @media only screen and (min-width: 768px) {
   #nas-conservation-tracker-landscapes-map-form {
+    display: block;
     position: absolute;
     z-index: 999;
     width: 25%;
