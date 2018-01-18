@@ -170,6 +170,12 @@ function nas_conservation_tracker_theme() {
       ),
       'template' => 'templates/ct-landscapes-main',
     ),
+    'ct_strategies_main' => array(
+      'variables' => array(
+
+      ),
+      'template' => 'templates/ct-strategies-main',
+    ),
   );
   return $theme;
 }
@@ -307,9 +313,6 @@ function nas_conservation_tracker_load_species() {
       $entity = entity_create($entity_type, array('type' => $entity_type));
     }
     $wrapper = entity_metadata_wrapper($entity_type, $entity);
-    //echo'<pre>';
-    //print_r($wrapper);
-    //die;
     if (!empty($species['id'])) {
       $wrapper->field_ct_remote_id->set($species['id']);
     }
@@ -347,13 +350,19 @@ function nas_conservation_tracker_load_species() {
       $wrapper->field_ct_strategy_initiative_id->set($species['strategyInitiativeId']);
     }
     if (!empty($species['strategies'])) {
-      $wrapper->field_ct_strategies->set($species['strategies']);
+      if (is_array($species['strategies'])) {
+        $strategies = $species['strategies'];
+      }
+      else {
+        $strategies = array_map('trim', explode(',', $species['strategies']));
+      }
+      $wrapper->field_ct_strategies->set($strategies);
     }
     if (!empty($species['iucn'])) {
       $wrapper->field_ct_iucn->set($species['iucn']);
     }
-    if (!empty($species['guild'])) {
-      $wrapper->field_ct_guild->set($species['guild']);
+    if (!empty($species['group'])) {
+      $wrapper->field_ct_group->set($species['group']);
     }
     $wrapper->save();
   }
@@ -394,10 +403,20 @@ function nas_conservation_tracker_scorecard_url($scorecard) {
 }
 
 function nas_conservation_tracker_form_views_exposed_form_alter(&$form, &$form_state) {
-  if ($form['#id'] == 'views-exposed-form-ct-species-default') {
+  if ($form['#id'] == 'views-exposed-form-ct-species-block') {
     $form['search']['#attributes'] = array(
       'placeholder' => t('Search'),
     );
+    $form['letter']['#attributes']['class'] = array(
+      'hide-for-xlarge',
+      'hide-for-large',
+      'hide-for-mediun',
+      'hide-for-small',
+      'hide-for-tiny',
+    );
+    if (isset($form['letter']['#options']['All'])) {
+      unset($form['letter']['#options']['All']);
+    }
   }
 }
 
@@ -423,7 +442,6 @@ function nas_conservation_tracker_get_image($name) {
 function nas_conservation_tracker_preprocess_views_view(&$vars) {
   $view = $vars['view'];
   if ($view->name == 'ct_species') {
-    $components = drupal_parse_url(request_uri());
     $view_path = '/' . db_select('page_manager_pages', 'pmp')
       ->fields('pmp', array('path'))
       ->condition('name', 'ct_species_view')
@@ -432,10 +450,17 @@ function nas_conservation_tracker_preprocess_views_view(&$vars) {
     $letters = array(
       'title' => '',
       'type' => 'ul',
-      'attributes' => array('class' => 'alphabet-block__alphabet'),
+      'attributes' => array(
+        'id' => 'species-aplphabet',
+        'class' => 'alphabet-block__alphabet'
+      ),
     );
     foreach (range('a', 'z') as $letter) {
-      $letters['items'][$letter] = l(strtoupper($letter), url($view_path . '/' . $letter), array('query' => $components['query'], 'html' => TRUE));
+      $attr = array('data-letter' => $letter);
+      if (isset($_GET['letter']) && $letter == $_GET['letter']) {
+        $attr['class'][] = 'active';
+      }
+      $letters['items'][$letter] = l(strtoupper($letter), $view_path, array('attributes' => $attr));
     }
     $reset = array(
       '#type' => 'markup',

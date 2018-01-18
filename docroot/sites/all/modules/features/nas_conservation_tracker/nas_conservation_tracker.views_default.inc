@@ -45,6 +45,30 @@ function nas_conservation_tracker_views_default_views() {
       'secondary_label' => 'Advanced options',
       'secondary_collapse_override' => '0',
     ),
+    'field_ct_letter' => array(
+      'bef_format' => 'default',
+      'slider_options' => array(
+        'bef_slider_min' => '0',
+        'bef_slider_max' => '99999',
+        'bef_slider_step' => '1',
+        'bef_slider_animate' => '',
+        'bef_slider_orientation' => 'horizontal',
+      ),
+      'more_options' => array(
+        'autosubmit' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
     'search_api_views_fulltext' => array(
       'bef_format' => 'default',
       'more_options' => array(
@@ -63,32 +87,6 @@ function nas_conservation_tracker_views_default_views() {
       ),
     ),
     'field_ct_strategies' => array(
-      'bef_format' => 'default',
-      'slider_options' => array(
-        'bef_slider_min' => '0',
-        'bef_slider_max' => '99999',
-        'bef_slider_step' => '1',
-        'bef_slider_animate' => '',
-        'bef_slider_orientation' => 'horizontal',
-      ),
-      'more_options' => array(
-        'bef_select_all_none' => FALSE,
-        'bef_collapsible' => 1,
-        'autosubmit' => 0,
-        'is_secondary' => 0,
-        'any_label' => '',
-        'bef_filter_description' => '',
-        'tokens' => array(
-          'available' => array(
-            0 => 'global_types',
-          ),
-        ),
-        'rewrite' => array(
-          'filter_rewrite_values' => '',
-        ),
-      ),
-    ),
-    'field_ct_guild' => array(
       'bef_format' => 'bef',
       'slider_options' => array(
         'bef_slider_min' => '0',
@@ -140,9 +138,67 @@ function nas_conservation_tracker_views_default_views() {
         ),
       ),
     ),
+    'field_ct_group' => array(
+      'bef_format' => 'bef',
+      'slider_options' => array(
+        'bef_slider_min' => '0',
+        'bef_slider_max' => '99999',
+        'bef_slider_step' => '1',
+        'bef_slider_animate' => '',
+        'bef_slider_orientation' => 'horizontal',
+      ),
+      'more_options' => array(
+        'bef_select_all_none' => FALSE,
+        'bef_collapsible' => 1,
+        'autosubmit' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
+    'field_ct_iucn' => array(
+      'bef_format' => 'bef',
+      'slider_options' => array(
+        'bef_slider_min' => '0',
+        'bef_slider_max' => '99999',
+        'bef_slider_step' => '1',
+        'bef_slider_animate' => '',
+        'bef_slider_orientation' => 'horizontal',
+      ),
+      'more_options' => array(
+        'bef_select_all_none' => FALSE,
+        'bef_collapsible' => 1,
+        'autosubmit' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
   );
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '30';
+  $handler->display->display_options['pager']['type'] = 'load_more';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '18';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['advance']['content_class'] = '.view-content.bird-card-grid-container';
+  $handler->display->display_options['pager']['options']['effects']['type'] = 'fade';
+  $handler->display->display_options['pager']['options']['effects']['speed'] = 'fast';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -221,20 +277,45 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['sorts']['field_ct_score_card_url']['table'] = 'search_api_index_ct_species_index';
   $handler->display->display_options['sorts']['field_ct_score_card_url']['field'] = 'field_ct_score_card_url';
   $handler->display->display_options['sorts']['field_ct_score_card_url']['order'] = 'DESC';
-  /* Contextual filter: Indexed CT Species: Letter */
-  $handler->display->display_options['arguments']['field_ct_letter']['id'] = 'field_ct_letter';
-  $handler->display->display_options['arguments']['field_ct_letter']['table'] = 'search_api_index_ct_species_index';
-  $handler->display->display_options['arguments']['field_ct_letter']['field'] = 'field_ct_letter';
-  $handler->display->display_options['arguments']['field_ct_letter']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['field_ct_letter']['default_argument_type'] = 'raw';
-  $handler->display->display_options['arguments']['field_ct_letter']['default_argument_options']['index'] = '2';
-  $handler->display->display_options['arguments']['field_ct_letter']['default_argument_options']['use_alias'] = TRUE;
-  $handler->display->display_options['arguments']['field_ct_letter']['default_argument_skip_url'] = TRUE;
-  $handler->display->display_options['arguments']['field_ct_letter']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_ct_letter']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['field_ct_letter']['validate']['fail'] = 'ignore';
-  $handler->display->display_options['arguments']['field_ct_letter']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['field_ct_letter']['not'] = 0;
+  /* Filter criterion: Indexed CT Species: Letter */
+  $handler->display->display_options['filters']['field_ct_letter']['id'] = 'field_ct_letter';
+  $handler->display->display_options['filters']['field_ct_letter']['table'] = 'search_api_index_ct_species_index';
+  $handler->display->display_options['filters']['field_ct_letter']['field'] = 'field_ct_letter';
+  $handler->display->display_options['filters']['field_ct_letter']['group'] = 1;
+  $handler->display->display_options['filters']['field_ct_letter']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_ct_letter']['expose']['operator_id'] = 'field_ct_letter_op';
+  $handler->display->display_options['filters']['field_ct_letter']['expose']['operator'] = 'field_ct_letter_op';
+  $handler->display->display_options['filters']['field_ct_letter']['expose']['identifier'] = 'letter';
+  $handler->display->display_options['filters']['field_ct_letter']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+    16 => 0,
+    31 => 0,
+    36 => 0,
+    41 => 0,
+    51 => 0,
+    56 => 0,
+  );
+  $handler->display->display_options['filters']['field_ct_letter']['group_info']['identifier'] = 'letter';
+  $handler->display->display_options['filters']['field_ct_letter']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => '',
+      'operator' => '=',
+      'value' => '',
+    ),
+    2 => array(
+      'title' => '',
+      'operator' => '=',
+      'value' => '',
+    ),
+    3 => array(
+      'title' => '',
+      'operator' => '=',
+      'value' => '',
+    ),
+  );
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_ct_species_index';
@@ -301,49 +382,6 @@ function nas_conservation_tracker_views_default_views() {
       'value' => 'Water',
     ),
   );
-  /* Filter criterion: Indexed CT Species: GUILD */
-  $handler->display->display_options['filters']['field_ct_guild']['id'] = 'field_ct_guild';
-  $handler->display->display_options['filters']['field_ct_guild']['table'] = 'search_api_index_ct_species_index';
-  $handler->display->display_options['filters']['field_ct_guild']['field'] = 'field_ct_guild';
-  $handler->display->display_options['filters']['field_ct_guild']['group'] = 1;
-  $handler->display->display_options['filters']['field_ct_guild']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_ct_guild']['expose']['operator_id'] = 'field_ct_guild_op';
-  $handler->display->display_options['filters']['field_ct_guild']['expose']['label'] = 'GUILD';
-  $handler->display->display_options['filters']['field_ct_guild']['expose']['operator'] = 'field_ct_guild_op';
-  $handler->display->display_options['filters']['field_ct_guild']['expose']['identifier'] = 'field_ct_guild';
-  $handler->display->display_options['filters']['field_ct_guild']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    6 => 0,
-    16 => 0,
-    31 => 0,
-    36 => 0,
-    41 => 0,
-    51 => 0,
-    56 => 0,
-  );
-  $handler->display->display_options['filters']['field_ct_guild']['is_grouped'] = TRUE;
-  $handler->display->display_options['filters']['field_ct_guild']['group_info']['label'] = 'GUILD';
-  $handler->display->display_options['filters']['field_ct_guild']['group_info']['identifier'] = 'guild';
-  $handler->display->display_options['filters']['field_ct_guild']['group_info']['widget'] = 'radios';
-  $handler->display->display_options['filters']['field_ct_guild']['group_info']['group_items'] = array(
-    1 => array(
-      'title' => '',
-      'operator' => '=',
-      'value' => '',
-    ),
-    2 => array(
-      'title' => '',
-      'operator' => '=',
-      'value' => '',
-    ),
-    3 => array(
-      'title' => '',
-      'operator' => '=',
-      'value' => '',
-    ),
-  );
   /* Filter criterion: Indexed CT Species: Audubon climate status */
   $handler->display->display_options['filters']['field_ct_climate_status']['id'] = 'field_ct_climate_status';
   $handler->display->display_options['filters']['field_ct_climate_status']['table'] = 'search_api_index_ct_species_index';
@@ -387,6 +425,83 @@ function nas_conservation_tracker_views_default_views() {
       'value' => 'Stable',
     ),
   );
+  /* Filter criterion: Indexed CT Species: Group */
+  $handler->display->display_options['filters']['field_ct_group']['id'] = 'field_ct_group';
+  $handler->display->display_options['filters']['field_ct_group']['table'] = 'search_api_index_ct_species_index';
+  $handler->display->display_options['filters']['field_ct_group']['field'] = 'field_ct_group';
+  $handler->display->display_options['filters']['field_ct_group']['group'] = 1;
+  $handler->display->display_options['filters']['field_ct_group']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_ct_group']['expose']['operator_id'] = 'field_ct_group_op';
+  $handler->display->display_options['filters']['field_ct_group']['expose']['label'] = 'Group';
+  $handler->display->display_options['filters']['field_ct_group']['expose']['operator'] = 'field_ct_group_op';
+  $handler->display->display_options['filters']['field_ct_group']['expose']['identifier'] = 'field_ct_group';
+  $handler->display->display_options['filters']['field_ct_group']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['field_ct_group']['group_info']['label'] = 'Group';
+  $handler->display->display_options['filters']['field_ct_group']['group_info']['identifier'] = 'group';
+  $handler->display->display_options['filters']['field_ct_group']['group_info']['widget'] = 'radios';
+  $handler->display->display_options['filters']['field_ct_group']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => 'Wetland',
+      'operator' => '=',
+      'value' => 'wetland',
+    ),
+    2 => array(
+      'title' => 'Shorebird',
+      'operator' => '=',
+      'value' => 'shorebird',
+    ),
+    3 => array(
+      'title' => 'Waterbird',
+      'operator' => '=',
+      'value' => 'waterbird',
+    ),
+    4 => array(
+      'title' => 'Landbird',
+      'operator' => '=',
+      'value' => 'landbird',
+    ),
+    5 => array(
+      'title' => 'Waterfowl',
+      'operator' => '=',
+      'value' => 'waterfowl',
+    ),
+  );
+  /* Filter criterion: Indexed CT Species: IUCN */
+  $handler->display->display_options['filters']['field_ct_iucn']['id'] = 'field_ct_iucn';
+  $handler->display->display_options['filters']['field_ct_iucn']['table'] = 'search_api_index_ct_species_index';
+  $handler->display->display_options['filters']['field_ct_iucn']['field'] = 'field_ct_iucn';
+  $handler->display->display_options['filters']['field_ct_iucn']['group'] = 1;
+  $handler->display->display_options['filters']['field_ct_iucn']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_ct_iucn']['expose']['operator_id'] = 'field_ct_iucn_op';
+  $handler->display->display_options['filters']['field_ct_iucn']['expose']['label'] = 'IUCN';
+  $handler->display->display_options['filters']['field_ct_iucn']['expose']['operator'] = 'field_ct_iucn_op';
+  $handler->display->display_options['filters']['field_ct_iucn']['expose']['identifier'] = 'field_ct_iucn';
+  $handler->display->display_options['filters']['field_ct_iucn']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['field_ct_iucn']['group_info']['label'] = 'IUCN';
+  $handler->display->display_options['filters']['field_ct_iucn']['group_info']['identifier'] = 'iucn';
+  $handler->display->display_options['filters']['field_ct_iucn']['group_info']['widget'] = 'radios';
+  $handler->display->display_options['filters']['field_ct_iucn']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => 'Least Concern',
+      'operator' => '=',
+      'value' => 'Least Concern',
+    ),
+    2 => array(
+      'title' => 'Near Threatened',
+      'operator' => '=',
+      'value' => 'Near Threatened',
+    ),
+    3 => array(
+      'title' => 'Vulnerable',
+      'operator' => '=',
+      'value' => 'Vulnerable',
+    ),
+    4 => array(
+      'title' => 'Endangered',
+      'operator' => '=',
+      'value' => 'Endangered',
+    ),
+  );
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
@@ -408,18 +523,19 @@ function nas_conservation_tracker_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('Load more'),
     t('Use the tools below to find species by keyword search, by letter alphabetically, or via the filters to the left'),
     t('No results found'),
     t('#'),
     t('has-scorecard'),
     t('no-scorecard'),
     t('<img src="[field_ct_image]" />'),
-    t('All'),
     t('Fulltext search'),
     t('Strategies'),
-    t('GUILD'),
     t('Threat status'),
     t('Threat Status'),
+    t('Group'),
+    t('IUCN'),
     t('Block'),
   );
   $export['ct_species'] = $view;

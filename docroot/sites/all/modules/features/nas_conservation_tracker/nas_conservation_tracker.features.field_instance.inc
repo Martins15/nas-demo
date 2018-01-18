@@ -303,8 +303,8 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_guild'
-  $field_instances['ct_species-ct_species-field_ct_guild'] = array(
+  // Exported field_instance: 'ct_species-ct_species-field_ct_group'
+  $field_instances['ct_species-ct_species-field_ct_group'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
     'deleted' => 0,
@@ -315,18 +315,18 @@ function nas_conservation_tracker_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 13,
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'ct_species',
-    'field_name' => 'field_ct_guild',
-    'label' => 'GUILD',
+    'field_name' => 'field_ct_group',
+    'label' => 'Group',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -379,7 +379,7 @@ function nas_conservation_tracker_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 19,
     ),
   );
 
@@ -1368,7 +1368,7 @@ function nas_conservation_tracker_field_default_field_instances() {
   t('Common name');
   t('Dropped');
   t('Enter a scorecard ID related to this node');
-  t('GUILD');
+  t('Group');
   t('IUCN');
   t('Image');
   t('Letter');

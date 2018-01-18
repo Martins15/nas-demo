@@ -107,12 +107,14 @@ function nas_conservation_tracker_default_search_api_index() {
       "fields" : {
         "field_ct_climate_status" : { "type" : "string" },
         "field_ct_common_name" : { "type" : "text" },
-        "field_ct_guild" : { "type" : "string" },
+        "field_ct_group" : { "type" : "string" },
         "field_ct_image" : { "type" : "string" },
+        "field_ct_iucn" : { "type" : "string" },
         "field_ct_letter" : { "type" : "string" },
         "field_ct_remote_id" : { "type" : "integer" },
         "field_ct_scientific_name" : { "type" : "text" },
         "field_ct_score_card_url" : { "type" : "uri" },
+        "field_ct_state_of_birds" : { "type" : "string" },
         "field_ct_strategies" : { "type" : "list\\u003Cstring\\u003E" },
         "id" : { "type" : "integer" },
         "search_api_language" : { "type" : "string" },
@@ -245,12 +247,6 @@ function nas_conservation_tracker_default_search_api_server() {
             "type" : "string",
             "boost" : "1.0"
           },
-          "field_ct_guild" : {
-            "table" : "search_api_db_ct_species_index",
-            "column" : "field_ct_guild",
-            "type" : "string",
-            "boost" : "1.0"
-          },
           "search_api_language" : {
             "table" : "search_api_db_ct_species_index",
             "column" : "search_api_language",
@@ -290,6 +286,24 @@ function nas_conservation_tracker_default_search_api_server() {
             "table" : "search_api_db_ct_species_index_field_ct_strategies",
             "column" : "value",
             "type" : "list\\u003Cstring\\u003E",
+            "boost" : "1.0"
+          },
+          "field_ct_state_of_birds" : {
+            "table" : "search_api_db_ct_species_index",
+            "column" : "field_ct_state_of_birds",
+            "type" : "string",
+            "boost" : "1.0"
+          },
+          "field_ct_iucn" : {
+            "table" : "search_api_db_ct_species_index",
+            "column" : "field_ct_iucn",
+            "type" : "string",
+            "boost" : "1.0"
+          },
+          "field_ct_group" : {
+            "table" : "search_api_db_ct_species_index",
+            "column" : "field_ct_group",
+            "type" : "string",
             "boost" : "1.0"
           }
         }
