@@ -232,6 +232,13 @@
           $('i', this).toggleClass('js-open');
         })
       });
+      var $linkFilter =  $('.nas-ct-refine-listing', context);
+      $linkFilter.appendTo('body', context);
+      $linkFilter.click(function (e) {
+        e.preventDefault();
+        $('#nas-conservation-tracker-landscapes-map-form', context).toggleClass('js-open-mobile');
+        $('body').toggleClass('js-overflow');
+      })
     }
   };
 

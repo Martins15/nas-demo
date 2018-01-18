@@ -412,7 +412,20 @@ $text-gray-filter: #9b9b9b;
 
 // Style for /conservation-tracker/landscapes page.
 #nas-conservation-tracker-landscapes-map-form {
-  margin: 0 10px;
+  display: none;
+  &.js-open-mobile {
+    display: block;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    background-color: #1c1c1c;
+    > div {
+      margin-top: 15%;
+    }
+  }
   @include breakpoint(large-up) {
     position: absolute;
     z-index: 999;
@@ -544,5 +557,14 @@ $text-gray-filter: #9b9b9b;
     .leaflet-popup-close-button {
       display: none;
     }
+  }
+}
+
+.js-overflow {
+  overflow: hidden;
+  .global-header,
+  .global-footer,
+  .mailing-list {
+    z-index: -1;
   }
 }
