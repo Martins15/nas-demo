@@ -435,7 +435,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'footer';
     $pane->type = 'nas_stay_abreast_pane';
     $pane->subtype = 'nas_stay_abreast_pane';
-    $pane->shown = FALSE;
+    $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'headline' => 'Stay abreast of Audubon',
@@ -642,6 +642,44 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->uuid = 'b74c2744-ed75-42bd-8adf-46d42397e927';
     $display->content['new-b74c2744-ed75-42bd-8adf-46d42397e927'] = $pane;
     $display->panels['main'][2] = 'new-b74c2744-ed75-42bd-8adf-46d42397e927';
+    $pane = new stdClass();
+    $pane->pid = 'new-735a1761-929d-4ff4-9cb5-f8d7b7826ae5';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_don_t_miss';
+    $pane->subtype = 'nas_menu_header_don_t_miss';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '735a1761-929d-4ff4-9cb5-f8d7b7826ae5';
+    $display->content['new-735a1761-929d-4ff4-9cb5-f8d7b7826ae5'] = $pane;
+    $display->panels['top'][0] = 'new-735a1761-929d-4ff4-9cb5-f8d7b7826ae5';
+    $pane = new stdClass();
+    $pane->pid = 'new-0f3fbb43-4b27-45df-8d07-80e036f1dca4';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_big';
+    $pane->subtype = 'nas_menu_header_big';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '0f3fbb43-4b27-45df-8d07-80e036f1dca4';
+    $display->content['new-0f3fbb43-4b27-45df-8d07-80e036f1dca4'] = $pane;
+    $display->panels['top'][1] = 'new-0f3fbb43-4b27-45df-8d07-80e036f1dca4';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -1802,6 +1840,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->uuid = '65a8594f-6c86-4348-ab14-face41231ace';
     $display->content['new-65a8594f-6c86-4348-ab14-face41231ace'] = $pane;
     $display->panels['main'][1] = 'new-65a8594f-6c86-4348-ab14-face41231ace';
+
     $pane = new stdClass();
     $pane->pid = 'new-8ac17764-1ce7-4da0-ac88-284361fbcd6d';
     $pane->panel = 'top';

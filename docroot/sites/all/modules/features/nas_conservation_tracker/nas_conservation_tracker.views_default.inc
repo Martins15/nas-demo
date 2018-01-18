@@ -100,7 +100,7 @@ function nas_conservation_tracker_views_default_views() {
         'bef_collapsible' => 1,
         'autosubmit' => 0,
         'is_secondary' => 0,
-        'any_label' => '',
+        'any_label' => 'All',
         'bef_filter_description' => '',
         'tokens' => array(
           'available' => array(
@@ -126,7 +126,7 @@ function nas_conservation_tracker_views_default_views() {
         'bef_collapsible' => 1,
         'autosubmit' => 0,
         'is_secondary' => 0,
-        'any_label' => '',
+        'any_label' => 'All',
         'bef_filter_description' => '',
         'tokens' => array(
           'available' => array(
@@ -152,7 +152,7 @@ function nas_conservation_tracker_views_default_views() {
         'bef_collapsible' => 1,
         'autosubmit' => 0,
         'is_secondary' => 0,
-        'any_label' => '',
+        'any_label' => 'All',
         'bef_filter_description' => '',
         'tokens' => array(
           'available' => array(
@@ -178,7 +178,7 @@ function nas_conservation_tracker_views_default_views() {
         'bef_collapsible' => 1,
         'autosubmit' => 0,
         'is_secondary' => 0,
-        'any_label' => '',
+        'any_label' => 'All',
         'bef_filter_description' => '',
         'tokens' => array(
           'available' => array(
@@ -516,6 +516,7 @@ function nas_conservation_tracker_views_default_views() {
     t('Desc'),
     t('Select any filter and click on Apply to see results'),
     t('Advanced options'),
+    t('All'),
     t('Items per page'),
     t('- All -'),
     t('Offset'),
