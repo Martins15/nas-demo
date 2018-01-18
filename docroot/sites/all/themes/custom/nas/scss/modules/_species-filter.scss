@@ -328,6 +328,15 @@ $text-gray-filter: #9b9b9b;
   }
 }
 
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 // Style for /conservation-tracker/landscapes page.
 #nas-conservation-tracker-landscapes-map-form {
   display: none;
@@ -375,6 +384,8 @@ $text-gray-filter: #9b9b9b;
   .form-type-checkboxes {
     > label ~ div {
       display: none;
+      -webkit-animation: fadeIn 1s;
+      animation: fadeIn 1s;
     }
     > label.js-open ~ div {
       display: block;

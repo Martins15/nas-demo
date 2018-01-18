@@ -1331,6 +1331,10 @@ $gray-lightish: #9b9b9b;
       padding-bottom: 0;
     }
   }
+  .mailing-list {
+    position: relative;
+    z-index: 999;
+  }
 }
 
 .nas-ct-refine-listing {

@@ -19141,6 +19141,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     padding-bottom: 0;
   }
 }
+.conservation-tracker-pages .mailing-list {
+  position: relative;
+  z-index: 999;
+}
 
 .nas-ct-refine-listing a {
   display: block;
@@ -19454,6 +19458,22 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-width: 0 3px 3px 0;
 }
 
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 #nas-conservation-tracker-landscapes-map-form {
   display: none;
 }
@@ -19539,6 +19559,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 #nas-conservation-tracker-landscapes-map-form .form-type-radios > label ~ div,
 #nas-conservation-tracker-landscapes-map-form .form-type-checkboxes > label ~ div {
   display: none;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
 }
 #nas-conservation-tracker-landscapes-map-form .form-type-radios > label.js-open ~ div,
 #nas-conservation-tracker-landscapes-map-form .form-type-checkboxes > label.js-open ~ div {
