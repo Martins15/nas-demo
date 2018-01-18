@@ -19215,6 +19215,21 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     display: block;
   }
 }
+.species-filter .filter-block > div a {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  background-color: #EDECEA;
+  color: #838078;
+}
+.species-filter .filter-block > div a:hover {
+  opacity: 0.8;
+}
+.species-filter .filter-block .views-widget-filter-field_ct_letter {
+  display: none;
+}
 .species-filter .filter-block .views-widget .form-radios {
   font-family: "Lato", sans-serif;
   width: 100%;

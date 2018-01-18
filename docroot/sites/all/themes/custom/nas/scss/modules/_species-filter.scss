@@ -94,6 +94,23 @@ $text-gray-filter: #9b9b9b;
     @include breakpoint(large-up) {
       display: block;
     }
+    > div {
+      a {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        padding: 10px;
+        text-align: center;
+        background-color: #EDECEA;
+        color: #838078;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+    .views-widget-filter-field_ct_letter {
+      display: none;
+    }
     .views-widget {
       .form-radios {
         font-family: $lato-font;
