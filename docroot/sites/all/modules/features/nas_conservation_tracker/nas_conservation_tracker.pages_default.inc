@@ -424,7 +424,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<div class="columns large-8 row space-top space-bottom" style="margin:auto;">
+      'body' => '<div class="large-8 row space-top space-bottom" style="margin:auto;">
 	<div class="conservation-tracker-custom-pane">
 		<h3>Learn about our core conservation strategies, and track their impact on priority species and landscapes via our new Conservation Tracker!</h3>
 		<p><span>The Conservation Tracker is an interactive, visualization tool that increases transparency and accountability. Audubon is committed to measuring the biological impact of our conservation strategies by investing in a system that holds us accountable to our board and funders for progress against quantifiable objectives. </span></p>		
