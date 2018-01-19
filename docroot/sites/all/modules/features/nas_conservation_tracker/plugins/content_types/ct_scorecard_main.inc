@@ -43,7 +43,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   $scale = array(
     'actions' => array('county', 'state', 'flyway'),
     'threats' => array('county', 'state', 'flyway'),
-    'responses' => array('state'),
+    'response' => array('state'),
   );
 
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/units.js');

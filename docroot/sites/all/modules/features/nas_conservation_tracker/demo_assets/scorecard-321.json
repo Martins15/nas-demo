@@ -25,12 +25,12 @@
       "objectives": [
         {
           "description": "Reduce human disturbance at 67 sites",
-          "tooltip": "Reduce human disturbance at 67 sites",
+          "tooltip": "",
           "value": ""
         },
         {
           "description": "Expand Coastal Barrier Resources Act (CBRA) to incorporate  an additional 6000 acres in the Carolinas and modernize the statute to account for climate change impacts",
-          "tooltip": "Expand Coastal Barrier Resources Act (CBRA) to incorporate  an additional 6000 acres in the Carolinas and modernize the statute to account for climate change impacts",
+          "tooltip": "",
           "value": ""
         }
       ],
@@ -54,13 +54,13 @@
       },
       "iframe": "//web4.audubon.org/scidev/coasts_actions/carolinas.html",
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_actions.png",
-      "tagLine": "Conservation interventions by Audubon field staff and partners as classifed by the Conservation Measures Partnership",
+      "tagLine": "Conservation interventions by Audubon field staff and partners as classifed by the Open Standards for the Practice of Conservation",
       "title": "The Coastal Barrier Resources System saves lives, money and coastal resources",
       "description": "<ul><li>Expand and modernize Coastal Barrier Resources Act (CBRA)</li><li>Material from dredging activity is used to reduce storm damage, promote public safety, restore habitat, enhance shorelines, promote recreation, and reduce disposal costs</li><li>Monitoring is needed to assess populations, demography, habitat use, and impacts of sea level rise on marsh-dependent species</li><li>Nature-based strategies or \"green infrastructure\" such as marshes, oyster beds and seagrass, can mitigate  climate change impacts, and provide economic and environmental benefits to coastal communities</li></ul>",
       "objectives": [
         {
           "description": "Protect and restore 200,000 acres of coastal marshes and marsh migration corridors",
-          "tooltip": "Protect and restore 200,000 acres of coastal marshes and marsh migration corridors",
+          "tooltip": "",
           "value": ""
         },
         {
@@ -70,7 +70,7 @@
         },
         {
           "description": "Increase volunteers at 30 sites and community engagement to improve and sustain long-term stewardship and advocacy programs",
-          "tooltip": "Increase volunteers at 30 sites and community engagement to improve and sustain long-term stewardship and advocacy programs",
+          "tooltip": "",
           "value": ""
         }
       ],
@@ -81,7 +81,7 @@
         "operation": "sum"
       }
     },
-    "responses": {
+    "response": {
       "scale": [
         "state"
       ],
@@ -93,19 +93,19 @@
       "iframe": "//web4.audubon.org/scidev/cbc_trends/carolinas.html",
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_response.png",
       "tagLine": "Quantifying the effectiveness of our conservation actions using scientifically-sound metrics",
-      "title": "AMOY productivity varies widely across the NC coast",
+      "title": "American Oystercatcher productivity varies widely across the Coastal Carolinas landscape",
       "description": "<ul><li>Understanding the drivers of this variation will help us better manage the species</li><li>Recent research suggests that average productivity of 0.63 chicks per pair per year leads to stable populations</li><li>American Oystercatcher abundance during winter appears to be stable</li></ul>",
       "objectives": [
         {
           "description": "Increase abundance of coastal birds",
-          "tooltip": "Increase abundance of coastal birds",
+          "tooltip": "",
           "value": ""
         }
       ],
       "chart": {
         "type": "data",
         "chart_type": "linegraph",
-        "value_type": "Productivity",
+        "value_type": "American Oystercatcher Productivity",
         "key_type": "Year",
         "operation": "avg"
       }
@@ -124,7 +124,7 @@
       "objectives": [
         {
           "description": "Work with Audubon’s network and other partners to advocate for at least 5 state and local solutions that protect key habitat areas through science and advocacy.",
-          "tooltip": "Work with Audubon’s network and other partners to advocate for at least 5 state and local solutions that protect key habitat areas through science and advocacy.",
+          "tooltip": "",
           "value": ""
         }
       ]
@@ -8449,7 +8449,7 @@
       }
     ]
   },
-  "responses": {
+  "response": {
     "sites":
     [
       {

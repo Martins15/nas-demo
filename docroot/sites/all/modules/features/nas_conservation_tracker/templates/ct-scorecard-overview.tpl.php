@@ -24,9 +24,9 @@
                     <h4>Actions</h4>
                     <p><?php print $data['settings']['actions']['tagLine'] ?></p>
                 </div>
-                <div class="responses"  ng-class="{'active': isActiveTab === 'responses'}">
-                    <h4>Responses</h4>
-                    <p><?php print $data['settings']['responses']['tagLine'] ?></p>
+                <div class="response"  ng-class="{'active': isActiveTab === 'response'}">
+                    <h4>Response</h4>
+                    <p><?php print $data['settings']['response']['tagLine'] ?></p>
                 </div>
                 <div class="partners"  ng-class="{'active': isActiveTab === 'partners'}">
                     <h4>Partners</h4>
