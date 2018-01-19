@@ -18234,6 +18234,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     -ms-flex-pack: justify;
     -webkit-justify-content: space-between;
     justify-content: space-between;
+    z-index: 0;
   }
 }
 .ct-item-nav-conservation .menu-wrap ul.open > .true {
@@ -19161,6 +19162,26 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   text-align: center;
 }
 
+@-webkit-keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+}
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0;
+  }
+}
 .species-filter {
   margin-bottom: 40px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
@@ -19217,7 +19238,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .alphabet-block li a.active, .species-filter .alphabet-block li a:hover {
   color: #89774f;
 }
-.species-filter .filter-block > div:not(.nas-ct-refine-listing) a {
+.species-filter .filter-block form {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block form {
+    display: block;
+  }
+}
+.species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a {
   display: block;
   position: relative;
   margin: 0 auto;
@@ -19226,16 +19255,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   background-color: #EDECEA;
   color: #838078;
 }
-.species-filter .filter-block > div:not(.nas-ct-refine-listing) a:hover {
+.species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a:hover {
   opacity: 0.8;
-}
-.species-filter .filter-block form {
-  display: none;
-}
-@media only screen and (min-width: 768px) {
-  .species-filter .filter-block form {
-    display: block;
-  }
 }
 .species-filter .filter-block .views-widget-filter-field_ct_letter {
   display: none;
@@ -19416,6 +19437,23 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .species-filter .filter-block .js-open-mobile .form-item-search:before, .species-filter .filter-block .js-open-mobile .form-item-search:after {
   border: 2px solid #949494;
+}
+.species-filter .birds-wrap {
+  position: relative;
+}
+.species-filter .birds-wrap.js-preload:after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  border-radius: 100%;
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: sk-scaleout 1.0s infinite ease-in-out;
 }
 @media only screen and (min-width: 768px) {
   .species-filter .birds-wrap {
