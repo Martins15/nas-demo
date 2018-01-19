@@ -34,10 +34,6 @@
 
         self.setup = function() {
           self.bodyHeight = $body.height();
-          self.bufferScreen = self.getTotalHeight() * 2 - $body.height();
-          if (self.bufferScreen < 0) {
-            self.bufferScreen = 0;
-          }
 
           $body.css({"min-height": self.bodyHeight});
 
@@ -62,6 +58,10 @@
 
         self.handleScroll = function(e) {
           var scrollFactor = document.documentElement.scrollTop || $(document).scrollTop();
+          self.bufferScreen = self.getTotalHeight() * 2 - self.bodyHeight;
+          if (self.bufferScreen < 0) {
+            self.bufferScreen = 0;
+          }
 
           // If we're scrolled down past the curtain, let the page scroll
           if((scrollFactor + self.bufferScreen) > self.getTotalHeight()) {
@@ -117,8 +117,9 @@
         self.init();
       }
 
+
       var $curtain = $('.curtain'),
-        $ipe_editing = $('.panels-ipe-editing');
+          $ipe_editing = $('.panels-ipe-editing');
 
       if ($curtain.length) {
         if ($ipe_editing.length === 0) {
@@ -133,6 +134,9 @@
           Drupal.curtain.reset();
         }
       }
+
+
+
     }
   };
 })(jQuery);
