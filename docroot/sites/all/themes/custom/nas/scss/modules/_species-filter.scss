@@ -90,11 +90,7 @@ $text-gray-filter: #9b9b9b;
     }
   }
   .filter-block {
-    display: none;
-    @include breakpoint(large-up) {
-      display: block;
-    }
-    > div {
+    > div:not(.nas-ct-refine-listing) {
       a {
         display: block;
         position: relative;
@@ -106,6 +102,12 @@ $text-gray-filter: #9b9b9b;
         &:hover {
           opacity: 0.8;
         }
+      }
+    }
+    form {
+      display: none;
+      @include breakpoint(large-up) {
+        display: block;
       }
     }
     .views-widget-filter-field_ct_letter {
@@ -245,137 +247,36 @@ $text-gray-filter: #9b9b9b;
         border-bottom-right-radius: 12px;
       }
     }
-    &__menu-block {
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        font-family: $lato-font;
-        p {
-          position: relative;
-        }
+    .js-open-mobile {
+      .fieldset-title,
+      .form-item.form-type-radio label {
+        color: $white;
       }
-      .first-level {
-        > li {
-          margin-bottom: 10px;
-          background: $gray-menu-filter;
-          border: 1px solid $bord-filter;
-          padding: 15px;
-          font-size: 25px;
-          position: relative;
-          &.js-open {
-            padding: 15px 15px 0;
-            cursor: pointer;
-            i {
-              &:before {
-                transform: rotate(90deg);
-              }
-              &:after {
-                background: transparent;
-              }
-            }
-          }
-        }
+      .views-widget .form-radios,
+      .form-item.form-type-radio {
+        border: 0;
       }
-      .second-level {
-        margin: 0 -15px;
-        li {
-          border-bottom: 1px solid $bord-filter;
-          padding: 15px;
-          font-size: 17px;
-          p {
-            padding-left: 24px;
-            padding-right: 10px;
-            &:before {
-              content: '';
-              position: absolute;
-              left: 0;
-              top: 50%;
-              transform: translateY(-50%);
-              width: 14px;
-              height: 14px;
-              border-radius: 50%;
-              border: 1px solid $bord-filter;
-            }
-          }
-          &.js-open {
-            i {
-              transform: rotate(-135deg);
-              -webkit-transform: rotate(-135deg);
-            }
-          }
-        }
+      .views-widget .form-radios {
+        background: $dark-bg-filter;
       }
-      i {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 0;
-        cursor: pointer;
+      .form-item.form-type-radio {
+        opacity: .5;
       }
-      i.plus {
-        width: 12px;
-        height: 12px;
+      .fieldset-title .fieldset-legend-prefix{
         &:before,
         &:after {
-          content: "";
-          position: absolute;
-          background-color: $dark-filter;
-          border-radius: 2px;
-          transition: transform 0.25s ease-out;
+          background-color: $white;
         }
-        &:before {
-          top: 0;
-          left: 50%;
-          width: 2px;
-          height: 100%;
-          transform: translateX(-50%);
-        }
+      }
+      input[type='text'] {
+        color: $white;
+        background: transparent;
+        border: 1px solid $dark-bg-filter;
+      }
+      .form-item-search {
+        &:before,
         &:after {
-          top: 50%;
-          left: 0;
-          width: 100%;
-          height: 2px;
-          transform: translateY(-50%);
-        }
-      }
-      i.down {
-        border: solid $dark-filter;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 3px;
-        border-radius: 3px;
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-      }
-      &.dark-style {
-        margin-bottom: 20px;
-        .first-level {
-          > li {
-            color: $white;
-            background: $dark-bg-filter;
-            border: 1px solid $dark-border-filter;
-            margin-bottom: 0;
-          }
-        }
-        .second-level {
-          li {
-            border-bottom: 1px solid $dark-border-filter;
-            opacity: .5;
-          }
-        }
-        i {
-          opacity: .5;
-        }
-        i.plus {
-          &:before,
-          &:after {
-            background-color: $white;
-          }
-        }
-        i.down {
-          border: solid $white;
-          border-width: 0 3px 3px 0;
+          border: 2px solid #949494;
         }
       }
     }
@@ -427,63 +328,18 @@ $text-gray-filter: #9b9b9b;
   }
 }
 
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 // Style for /conservation-tracker/landscapes page.
 #nas-conservation-tracker-landscapes-map-form {
   display: none;
-  &.js-open-mobile {
-    display: block;
-    position: fixed;
-    z-index: 999;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    padding: 0 10px;
-    background-color: #1c1c1c;
-    > div {
-      margin-top: 25px;
-    }
-    .title-form {
-      display: flex;
-      justify-content: space-between;
-      align-content: center;
-      margin-top: 20px;
-      overflow: hidden;
-      color: $white;
-      font-family: $font-sans;
-      font-size: 18px;
-      span {
-          position: relative;
-          display: inline-block;
-          width: 15px;
-          height: 15px;
-          overflow: hidden;
-          cursor: pointer;
-          &:before {
-            content: '';
-            position: absolute;
-            height: 2px;
-            width: 100%;
-            top: 50%;
-            left: 0;
-            margin-top: -1px;
-            background: $white;
-            transform: rotate(45deg);
-          }
-          &:after {
-            content: '';
-            position: absolute;
-            height: 2px;
-            width: 100%;
-            top: 50%;
-            left: 0;
-            margin-top: -1px;
-            background: $white;
-            transform: rotate(-45deg);
-          }
-
-      }
-    }
-  }
   @include breakpoint(large-up) {
     display: block;
     position: absolute;
@@ -528,6 +384,8 @@ $text-gray-filter: #9b9b9b;
   .form-type-checkboxes {
     > label ~ div {
       display: none;
+      -webkit-animation: fadeIn 1s;
+      animation: fadeIn 1s;
     }
     > label.js-open ~ div {
       display: block;
@@ -625,5 +483,72 @@ $text-gray-filter: #9b9b9b;
   .global-footer,
   .mailing-list {
     z-index: -1;
+  }
+}
+
+#nas-conservation-tracker-landscapes-map-form,
+.filter-block form {
+  &.js-open-mobile {
+    display: block;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px 70px;
+    background-color: #1c1c1c;
+    overflow-y: scroll;
+    > div {
+      margin-top: 25px;
+      a {
+        display: block;
+        background: $dark-bg-filter;
+        color: $white;
+        line-height: 60px;
+        text-align: center;
+      }
+    }
+    .title-form {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      margin-top: 20px;
+      overflow: hidden;
+      color: $white;
+      font-family: $font-sans;
+      font-size: 18px;
+      span {
+        position: relative;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        overflow: hidden;
+        cursor: pointer;
+        &:before {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 100%;
+          top: 50%;
+          left: 0;
+          margin-top: -1px;
+          background: $white;
+          transform: rotate(45deg);
+        }
+        &:after {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 100%;
+          top: 50%;
+          left: 0;
+          margin-top: -1px;
+          background: $white;
+          transform: rotate(-45deg);
+        }
+
+      }
+    }
   }
 }

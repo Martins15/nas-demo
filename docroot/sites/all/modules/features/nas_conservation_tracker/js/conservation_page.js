@@ -32,4 +32,36 @@
     }
   };
 
+
+  Drupal.behaviors.nasCtForm = {
+    attach: function (context) {
+
+      var $linkFilter = $('.nas-ct-refine-listing', context);
+      var $formFilter = $('#nas-conservation-tracker-landscapes-map-form', context);
+      var $blockFilter = $('.filter-block form', context);
+      var wrapForm = '';
+      var textLink = $linkFilter.text();
+      $linkFilter.appendTo('body', context);
+
+      if ($formFilter.length) {
+        wrapForm = $formFilter;
+      }
+      if ($blockFilter.length) {
+        $blockFilter.append($('.filter-block > div', context));
+        wrapForm = $blockFilter;
+      }
+
+      $('<div class="title-form hide-for-large hide-for-xlarge"><p>' + textLink + '</p><span class="js-exit"></span></div>').prependTo(wrapForm);
+      $linkFilter.click(function (e) {
+        e.preventDefault();
+        wrapForm.toggleClass('js-open-mobile');
+        $('body').toggleClass('js-overflow');
+      });
+      $('.js-exit').click(function () {
+        wrapForm.removeClass('js-open-mobile');
+        $('body').removeClass('js-overflow');
+      })
+    }
+  };
+
 })(jQuery);
