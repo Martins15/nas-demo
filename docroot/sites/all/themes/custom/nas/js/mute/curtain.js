@@ -38,7 +38,7 @@
           if (self.bufferScreen < 0) {
             self.bufferScreen = 0;
           }
-
+          
           $body.css({"min-height": self.bodyHeight});
 
           self.setCurtainFocus(true);
@@ -117,22 +117,26 @@
         self.init();
       }
 
-      var $curtain = $('.curtain'),
-        $ipe_editing = $('.panels-ipe-editing');
+      $(window).load(function(){
+        var $curtain = $('.curtain'),
+            $ipe_editing = $('.panels-ipe-editing');
 
-      if ($curtain.length) {
-        if ($ipe_editing.length === 0) {
-          if (typeof Drupal.curtain === 'undefined') {
-            Drupal.curtain = new Curtain($curtain);
+        if ($curtain.length) {
+          if ($ipe_editing.length === 0) {
+            if (typeof Drupal.curtain === 'undefined') {
+              Drupal.curtain = new Curtain($curtain);
+            }
+            else {
+              // Drupal.curtain.init();
+            }
           }
           else {
-            // Drupal.curtain.init();
+            Drupal.curtain.reset();
           }
         }
-        else {
-          Drupal.curtain.reset();
-        }
-      }
+      });
+
+
     }
   };
 })(jQuery);

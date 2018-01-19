@@ -143,7 +143,10 @@
     }
 
     // Constructors.
-    function LPolygon(name, coordinates, flyway, unit, type = 'Polygon') {
+    function LPolygon(name, coordinates, flyway, unit, type) {
+      if (!type) {
+        type = 'Polygon';
+      }
       this.type = 'Feature';
       this.properties = {
         machineName:  getMachineName(name),
