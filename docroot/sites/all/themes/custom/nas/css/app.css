@@ -19373,6 +19373,63 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transform: translateY(-50%);
   background: transparent;
 }
+.species-filter .filter-block .wrap-items .form-radios,
+.species-filter .filter-block #edit-iucn-wrapper .form-radios {
+  border: 0;
+}
+.species-filter .filter-block .wrap-items #edit-iucn,
+.species-filter .filter-block #edit-iucn-wrapper #edit-iucn {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.species-filter .filter-block .wrap-items #edit-iucn-wrapper,
+.species-filter .filter-block #edit-iucn-wrapper #edit-iucn-wrapper {
+  margin-bottom: 0;
+}
+.species-filter .filter-block .wrap-items .fieldset-title,
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title {
+  padding-left: 25px;
+  font-size: 17px;
+  cursor: pointer;
+}
+.species-filter .filter-block .wrap-items .fieldset-title span,
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  bottom: inherit;
+  width: 8px;
+  height: 8px;
+  padding: 3px;
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+  border: solid #404040;
+  border-width: 0 2px 2px 0;
+  border-radius: 0;
+}
+.species-filter .filter-block .wrap-items .fieldset-title span:before, .species-filter .filter-block .wrap-items .fieldset-title span:after,
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span:before,
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span:after {
+  border-color: transparent;
+  background-color: transparent;
+}
+.species-filter .filter-block .wrap-items .fieldset-title span.js-down,
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span.js-down {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.species-filter .filter-block .wrap-items .collapsed .fieldset-title span,
+.species-filter .filter-block #edit-iucn-wrapper .collapsed .fieldset-title span {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.species-filter .filter-block #edit-iucn-wrapper {
+  margin-bottom: 0;
+}
+.species-filter .filter-block .wrap-items {
+  padding: 15px 0;
+  border-bottom: 1px solid #dfdfdf;
+}
 .species-filter .filter-block .collapsed .fieldset-title .fieldset-legend-prefix:before {
   transform: translateX(-50%) rotate(0);
 }
