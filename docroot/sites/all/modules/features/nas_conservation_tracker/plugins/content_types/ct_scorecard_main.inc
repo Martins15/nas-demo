@@ -142,9 +142,9 @@ function nas_conservation_tracker_map_form($form, &$form_state) {
       '#title' => t('SCALE CONTROLS'),
       '#default_value' => 'county',
       '#options' => [
+        'flyway' => t('Flyway'),
         'state' => t('State'),
         'county' => t('County'),
-        'flyway' => t('Flyway'),
       ],
     ],
     'map_reset' => [
