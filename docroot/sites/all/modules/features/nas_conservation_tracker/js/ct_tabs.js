@@ -8,7 +8,7 @@
     $('body').addClass('nas-cta-tabs-angular-processed');
 
     // @todo load from backend
-    var linkArray = ['threats', 'actions', 'responses', 'partners']
+    var linkArray = ['threats', 'actions', 'response', 'partners']
         , pathName = window.location.pathname
         , pathArray = window.location.pathname.split('/')
         , lastName = pathArray.slice(-1)[0]
@@ -99,7 +99,7 @@
 
         var idItem = Drupal.settings.nasConservationTracker.scorecardId;
         $scope.tabLoaded = function () {
-          if (Drupal.settings.nasConservationTracker.currentTab == 'responses') {
+          if (Drupal.settings.nasConservationTracker.currentTab == 'response') {
             $('.trigger').show();
           }
           else {

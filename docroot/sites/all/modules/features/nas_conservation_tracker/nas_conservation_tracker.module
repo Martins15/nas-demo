@@ -33,7 +33,7 @@ function nas_conservation_tracker_init() {
 function _nas_conservation_tracker_get_real_path($load = FALSE) {
   $current_sections = $sections = arg();
   $path = array_pop($sections);
-  $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
+  $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'response', 'partners'));
   if (in_array($path, $types)) {
     $alias = implode('/', $sections);
     $source = drupal_get_normal_path($alias);
@@ -230,7 +230,7 @@ function nas_conservation_tracker_get_scorecard_json($id, $type = 'actions') {
   $result = array('data' => array(), 'success' => 0);
   if (!empty($id) && is_numeric($id)) {
     $data = nas_conservation_tracker_get_json('scorecard-' . $id);
-    $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
+    $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'response', 'partners'));
     if (!in_array($type, $types)) {
       $type = 'actions';
     }
@@ -294,7 +294,7 @@ function nas_conservation_tracker_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'ct_scorecard' && $view_mode == 'full') {
     $arg = arg();
     $path = array_pop($arg);
-    $tabs = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'responses', 'partners'));
+    $tabs = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'response', 'partners'));
     if (!in_array($path, $tabs)) {
       $json = nas_conservation_tracker_get_json('scorecard-' . $node->field_scorecard_id[LANGUAGE_NONE][0]['value']);
       $tab = (!empty($json['settings']['tabDefault']) && in_array($json['settings']['tabDefault'], $tabs)) ?

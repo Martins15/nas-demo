@@ -8,7 +8,7 @@
     $('body').addClass('nas-strategies-tabs-angular-processed');
 
     // @todo load from backend
-    var linkArray = ['threats', 'actions', 'responses', 'partners']
+    var linkArray = ['threats', 'actions', 'response', 'partners']
       , pathName = window.location.pathname
       , pathArray = window.location.pathname.split('/')
       , lastName = pathArray.slice(-1)[0]
