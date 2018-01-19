@@ -90,24 +90,24 @@ $text-gray-filter: #9b9b9b;
     }
   }
   .filter-block {
-    > div:not(.nas-ct-refine-listing) {
-      a {
-        display: block;
-        position: relative;
-        margin: 0 auto;
-        padding: 10px;
-        text-align: center;
-        background-color: #EDECEA;
-        color: #838078;
-        &:hover {
-          opacity: 0.8;
-        }
-      }
-    }
     form {
       display: none;
       @include breakpoint(large-up) {
         display: block;
+      }
+      > div:not(.nas-ct-refine-listing) {
+       > a {
+          display: block;
+          position: relative;
+          margin: 0 auto;
+          padding: 10px;
+          text-align: center;
+          background-color: #EDECEA;
+          color: #838078;
+          &:hover {
+            opacity: 0.8;
+          }
+        }
       }
     }
     .views-widget-filter-field_ct_letter {

@@ -19218,7 +19218,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .alphabet-block li a.active, .species-filter .alphabet-block li a:hover {
   color: #89774f;
 }
-.species-filter .filter-block > div:not(.nas-ct-refine-listing) a {
+.species-filter .filter-block form {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block form {
+    display: block;
+  }
+}
+.species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a {
   display: block;
   position: relative;
   margin: 0 auto;
@@ -19227,16 +19235,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   background-color: #EDECEA;
   color: #838078;
 }
-.species-filter .filter-block > div:not(.nas-ct-refine-listing) a:hover {
+.species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a:hover {
   opacity: 0.8;
-}
-.species-filter .filter-block form {
-  display: none;
-}
-@media only screen and (min-width: 768px) {
-  .species-filter .filter-block form {
-    display: block;
-  }
 }
 .species-filter .filter-block .views-widget-filter-field_ct_letter {
   display: none;
