@@ -387,8 +387,11 @@
               <tr style="padding: 0; text-align: left; vertical-align: top">
                 <td height="56" style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; height: 56px; hyphens: auto; line-height: 24px; margin: 0; padding: 0; text-align: left; vertical-align: middle; word-wrap: break-word" valign="middle">
                   <h1 style="Margin: 0; Margin-bottom: 15px; color: #fefefe; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 24px; font-weight: 300; line-height: 24px; margin: 0 !important; margin-bottom: 15px; padding: 0; text-align: left; word-wrap: normal">
-                    <a href="http://www.audubon.org/native-plants" style="Margin: 0; color: inherit !important; font-family: inherit; font-weight: inherit; line-height: inherit; margin: 0; padding: 0; text-align: left; text-decoration: none"><?php print t('Audubon Native Plants Database'); ?></a>
+                    <a href="http://www.audubon.org/native-plants" style="Margin: 0; color: inherit !important; font-family: inherit; font-weight: inherit; line-height: inherit; margin: 0; padding: 0; text-align: left; text-decoration: none"><?php print t('Native Plants Database'); ?></a>
                   </h1>
+                </td>
+                <td height="56" style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; height: 56px; hyphens: auto; line-height: 24px; margin: 0; padding: 0; text-align: right; vertical-align: middle; word-wrap: break-word" valign="middle">
+                  <a href="http://www.audubon.org/native-plants" style="margin: 0; color: #fefefe; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 14px; font-weight: inherit; line-height: inherit; margin: 0; padding: 0; text-align: inherit; text-decoration: none;"><?php print t('The Coleman and Susan Burke Center for Native Plants'); ?></a>
                 </td>
               </tr>
             </table>
