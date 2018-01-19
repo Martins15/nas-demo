@@ -45,6 +45,20 @@ function _nas_conservation_tracker_get_real_path($load = FALSE) {
       return $source;
     }
   }
+  elseif (arg(0) == 'conservation-tracker' && arg(1) == 'strategies') {
+    foreach (nas_conservation_tracker_get_json('strategies') as $strategy) {
+      if (arg(3) == $strategy['link']) {
+        $alias = implode('/', $sections);
+        $source = drupal_get_normal_path($alias);
+        if ($load) {
+          menu_execute_active_handler($source);
+          drupal_exit();
+        }
+        break;
+      }
+    }
+    return $source;
+  }
 
   return  implode('/', $current_sections);
 }
@@ -172,7 +186,7 @@ function nas_conservation_tracker_theme() {
     ),
     'ct_strategies_main' => array(
       'variables' => array(
-
+        'strategies' => NULL,
       ),
       'template' => 'templates/ct-strategies-main',
     ),

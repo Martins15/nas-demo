@@ -64,54 +64,54 @@ function nas_conservation_tracker_install() {
   // Update config for colorbox.
   variable_set('colorbox_load', TRUE);
   variable_set('colorbox_inline', TRUE);
-
-  // Update images for Landing page.
-  $page_name = 'conservation_tracker';
-  $page = page_manager_page_load($page_name);
-  page_manager_page_save($page);
-
-  $handlers = page_manager_load_sorted_handlers(array('name' => 'page'), $page_name, $enabled = FALSE);
-  ctools_get_plugins('page_manager', 'task_handlers', 'panel_context');
-
-  $assets_path = variable_get('nas_conservation_tracker_endpoint');
-
-  foreach ($handlers as $handler) {
-    // Each handler/variant has an associate display in Panels which
-    // is the object we actually want to load and save.
-    $display = panels_panel_context_get_display($handler);
-    $save = FALSE;
-
-    // The panes are stored in a property called 'content'.
-    foreach ($display->content as &$pane) {
-      // Add country code as a value to vary by.
-      if ($pane->type == 'nas_panes_frontpage_featured' && $pane->subtype == 'nas_panes_frontpage_featured') {
-        $save = TRUE;
-        $image_url = $assets_path . '/landing_page_hero.jpg';
-        $file = file_save_data(file_get_contents($image_url), 'public://' . basename($image_url));
-        $file->status = 1;
-        $pane->configuration['curtain_html']['image'] = $file->fid;
-      }
-      elseif ($pane->type == 'static_cards_3x' && $pane->subtype == 'static_cards_3x') {
-        $save = TRUE;
-
-        $image_urls = array(
-          $assets_path . '/landing_page_strategies.jpg',
-          $assets_path . '/landing_page_species.jpg',
-          $assets_path . '/landing_page_landscapes.jpg',
-        );
-
-        foreach ($image_urls as $key => $image_url) {
-          $file = file_save_data(file_get_contents($image_url), 'public://' . basename($image_url));
-          $file->status = 1;
-          $pane->configuration['items'][$key]['image'] = $file->fid;
-        }
-
-      }
-    }
-    // Only save the display if changes were actually made.
-    if ($save) {
-      panels_save_display($display);
-    }
-  }
+//
+//  // Update images for Landing page.
+//  $page_name = 'conservation_tracker';
+//  $page = page_manager_page_load($page_name);
+//  page_manager_page_save($page);
+//
+//  $handlers = page_manager_load_sorted_handlers(array('name' => 'page'), $page_name, $enabled = FALSE);
+//  ctools_get_plugins('page_manager', 'task_handlers', 'panel_context');
+//
+//  $assets_path = variable_get('nas_conservation_tracker_endpoint');
+//
+//  foreach ($handlers as $handler) {
+//    // Each handler/variant has an associate display in Panels which
+//    // is the object we actually want to load and save.
+//    $display = panels_panel_context_get_display($handler);
+//    $save = FALSE;
+//
+//    // The panes are stored in a property called 'content'.
+//    foreach ($display->content as &$pane) {
+//      // Add country code as a value to vary by.
+//      if ($pane->type == 'nas_panes_frontpage_featured' && $pane->subtype == 'nas_panes_frontpage_featured') {
+//        $save = TRUE;
+//        $image_url = $assets_path . '/landing_page_hero.jpg';
+//        $file = file_save_data(file_get_contents($image_url), 'public://' . basename($image_url));
+//        $file->status = 1;
+//        $pane->configuration['curtain_html']['image'] = $file->fid;
+//      }
+//      elseif ($pane->type == 'static_cards_3x' && $pane->subtype == 'static_cards_3x') {
+//        $save = TRUE;
+//
+//        $image_urls = array(
+//          $assets_path . '/landing_page_strategies.jpg',
+//          $assets_path . '/landing_page_species.jpg',
+//          $assets_path . '/landing_page_landscapes.jpg',
+//        );
+//
+//        foreach ($image_urls as $key => $image_url) {
+//          $file = file_save_data(file_get_contents($image_url), 'public://' . basename($image_url));
+//          $file->status = 1;
+//          $pane->configuration['items'][$key]['image'] = $file->fid;
+//        }
+//
+//      }
+//    }
+//    // Only save the display if changes were actually made.
+//    if ($save) {
+//      panels_save_display($display);
+//    }
+//  }
 
 }
