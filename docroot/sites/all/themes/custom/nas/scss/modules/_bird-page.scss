@@ -445,6 +445,7 @@ $gray-lightish: #9b9b9b;
         z-index: 2;
         @include breakpoint(large-up) {
           @include content-between();
+          z-index: 0;
         }
         > .true {
           background: $white;
