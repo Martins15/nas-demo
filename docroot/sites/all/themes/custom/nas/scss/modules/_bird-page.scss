@@ -445,6 +445,7 @@ $gray-lightish: #9b9b9b;
         z-index: 2;
         @include breakpoint(large-up) {
           @include content-between();
+          z-index: 0;
         }
         > .true {
           background: $white;
@@ -808,8 +809,11 @@ $gray-lightish: #9b9b9b;
           color: #919191;
           &.active {
             position: relative;
-            padding: 15px;
+            padding: 15px 5px;
             color: $white;
+            @include breakpoint(large-up) {
+              padding: 15px;
+            }
             &:after {
               content: '';
               display: block;
@@ -1328,6 +1332,10 @@ $gray-lightish: #9b9b9b;
       padding-bottom: 0;
     }
   }
+  .mailing-list {
+    position: relative;
+    z-index: 999;
+  }
 }
 
 .nas-ct-refine-listing {
@@ -1336,6 +1344,7 @@ $gray-lightish: #9b9b9b;
     position: fixed;
     z-index: 999;
     bottom: 0;
+    left: 0;
     width: 100%;
     background-color: #303030;
     color: $white;
