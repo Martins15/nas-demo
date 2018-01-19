@@ -1,5 +1,5 @@
 {
-  "id": "1",
+  "id": 1,
   "name": "Coasts",
   "tagline": "Audubon's Coasts initiative focuses on the most threatened and iconic bird species that rely on coastal habitats—estuaries, islands, beaches, and the marine environment—throughout the hemisphere.",
   "settings": {},
@@ -15,16 +15,18 @@
         {
           "group": "Conservation Goals",
           "list": [
-            "Increase or stabilize the populations of 20 flagship bird species by reducing threats in 4 priority landscapes",
-            "Increase the acreage of working lands in bird-friendly management programs to 500,000 acres per year.",
-            "Audubon will continue its leadership role with 11 states, multiple federal agencies, and thousands of private-sector stakeholders to implement Greater Sage-Grouse recovery plans. These plans will now cover 67,000,000 acres, and if successfully implemented, ultimately mean protecting more than 350 additional species.",
-            "Increase the amount of public and private funding available to private landowners to adopt bird-friendly land management practices by 10 percent. (In a new Farm Bill alone, this could be as much as $300 million annually.)"
+            "Guide populations of 16 flagship species on a path to recovery and stability by reducing threats at 500 of the most important sites throughout the Western Hemisphere.",
+            "Protect and/or enhance the resiliency of 300,000 acres of coastal habitats that are essential to flagship species.",
+            "Strengthen coastal policies that will promote healthy coastal ecosystems and adaptability to future change for the benefit of birds, other wildlife and people.",
+            "Ensure sustainable forage fisheries through the development of management plans for key fish species, following the California model, and reduce threats to coastal birds from oil/gas development and transportation.",
+            "Develop am integrated and unified platform to collect data and measure outcomes of conservation actions and evaluate progress towards goals."
           ]
         },
         {
-          "group": "Engagement Goal",
+          "group": "Engagement Goals",
           "list": [
-            "Through robust outreach engage 10,000 land managers in bird-friendly land management practices."
+            "Expand the Coastal Stewardship Program to include 10,000 volunteers, 130 chapters, 13 state programs, and new partners to support conservation at 500 priority sites.",
+            "Develop a diverse communications strategy to support on-the-ground stewardship and other conservation strategies such that 250,000 people are moved to take action to advance costal bird conservation."
           ]
         }
       ]
