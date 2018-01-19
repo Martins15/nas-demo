@@ -1,0 +1,125 @@
+{
+  "id": "1",
+  "name": "Coasts",
+  "tagline": "Audubon's Coasts initiative focuses on the most threatened and iconic bird species that rely on coastal habitats—estuaries, islands, beaches, and the marine environment—throughout the hemisphere.",
+  "settings": {},
+  "tabs": {
+    "overview": {
+      "title": "Overview",
+      "description": "Protecting and restoring coastlines will strengthen populations of shorebirds while preserving the places they need to survive throughout their lives. The work needed to accomplish this goal will also protect coastal communities against the threat of sea-level rise due to a changing climate.  By focusing on the biggest threats to 16 flagship bird species and the places they depend on, we will maximize our conservation impact and help build resilient coastlines. Those 16 flagship species represent at least 375 others as well as the ecosystems upon which they depend.",
+      "progress": "71"
+    },
+    "goals": {
+      "title": "Goals",
+      "goals": [
+        {
+          "group": "Conservation Goals",
+          "list": [
+            "Increase or stabilize the populations of 20 flagship bird species by reducing threats in 4 priority landscapes",
+            "Increase the acreage of working lands in bird-friendly management programs to 500,000 acres per year.",
+            "Audubon will continue its leadership role with 11 states, multiple federal agencies, and thousands of private-sector stakeholders to implement Greater Sage-Grouse recovery plans. These plans will now cover 67,000,000 acres, and if successfully implemented, ultimately mean protecting more than 350 additional species.",
+            "Increase the amount of public and private funding available to private landowners to adopt bird-friendly land management practices by 10 percent. (In a new Farm Bill alone, this could be as much as $300 million annually.)"
+          ]
+        },
+        {
+          "group": "Engagement Goal",
+          "list": [
+            "Through robust outreach engage 10,000 land managers in bird-friendly land management practices."
+          ]
+        }
+      ]
+    },
+    "partners": {
+      "title": "Partners",
+      "list": [
+        "US Fish and Wildlife Service",
+        "Roger Tory Peterson Institute",
+        "Connecticut Department of Energy and Environmental Protection",
+        "The Nature Conservancy",
+        "Conserve Wildlife Foundation of New Jersey",
+        "Virginia Department of Game and Inland Fisheries",
+        "National Park Service",
+        "National Estuarine Research Reserves",
+        "North Carolina Wildlife Resources Commission",
+        "South Carolina Department of Natural Resources",
+        "United States Geological Survey",
+        "South Carolina Coastal Conservation League",
+        "Georgia Department of Natural Resources",
+        "Florida Department of Natural Resources",
+        "Bahamas National Trust",
+        "Environment Canada",
+        "Virginia Tech",
+        "SAVE Brazil",
+        "Manomet",
+        "Western Hemisphere Shorebird Reserve Network",
+        "Calidris",
+        "Colombian regional corporations",
+        "Aves Argentina",
+        "Fundacion Inalafquen",
+        "Pronatura NE",
+        "Pronatura Veracruz",
+        "Pronatura Yucatan",
+        "Universidad Nacional Autónoma de México",
+        "Grupo de Ecologia y Conservación de Islas",
+        "Gulf Coast Bird Observatory",
+        "Centro de Estudio y Conservación del Patrimonio Natural",
+        "Municipalities of Buenaventura",
+        "SalvaNatura",
+        "Audubon Organizations: Audubon ME",
+        "Audubon MA",
+        "NJ Audubon",
+        "Panama Audubon Society"
+      ]
+    },
+    "initiatives": {
+      "title": "Initiatives",
+      "list": [
+        "Coastal Stewardship",
+        "Coastal Resiliency",
+        "Marine Conservation"
+      ]
+    },
+    "priority_species": {
+      "title": "Priority Species",
+      "list": [
+        "American Woodcock",
+        "Bell's Vireo",
+        "Black-necked Stilt",
+        "Black-throated Blue Warbler",
+        "Bobolink",
+        "Brown-headed Nuthatch",
+        "Canada Warbler",
+        "Cerulean Warbler",
+        "Florida Scrub Jay",
+        "Golden-winged Warbler",
+        "Greater Sage-Grouse",
+        "Hooded Warbler",
+        "Lesser Prairie Chicken",
+        "Long-billed Curlew",
+        "Northern Bobwhite",
+        "Prairie Warbler",
+        "Rose-breasted Grosbeak",
+        "Sandhill Crane",
+        "Swainson's Hawk",
+        "Swainson's Warbler",
+        "Tricolored Blackbird",
+        "Upland sandpiper",
+        "Western Meadowlark",
+        "Western Sandpiper",
+        "Wood Thrush",
+        "Yellow Warbler",
+        "Yellow-Breasted Chat"
+      ]
+    },
+    "priority_landscapes": {
+      "title": "Priority Landscapes",
+      "list": [
+        "Great Plains",
+        "Chihuahuan Desert",
+        "Eastern Forests",
+        "California's  Central Valley",
+        "Sagebrush of the Intemountain West"
+      ]
+    }
+  }
+}
