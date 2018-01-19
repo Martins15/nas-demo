@@ -34,11 +34,7 @@
 
         self.setup = function() {
           self.bodyHeight = $body.height();
-          self.bufferScreen = self.getTotalHeight() * 2 - $body.height();
-          if (self.bufferScreen < 0) {
-            self.bufferScreen = 0;
-          }
-          
+
           $body.css({"min-height": self.bodyHeight});
 
           self.setCurtainFocus(true);
@@ -62,6 +58,10 @@
 
         self.handleScroll = function(e) {
           var scrollFactor = document.documentElement.scrollTop || $(document).scrollTop();
+          self.bufferScreen = self.getTotalHeight() * 2 - self.bodyHeight;
+          if (self.bufferScreen < 0) {
+            self.bufferScreen = 0;
+          }
 
           // If we're scrolled down past the curtain, let the page scroll
           if((scrollFactor + self.bufferScreen) > self.getTotalHeight()) {
@@ -117,24 +117,24 @@
         self.init();
       }
 
-      $(window).load(function(){
-        var $curtain = $('.curtain'),
-            $ipe_editing = $('.panels-ipe-editing');
 
-        if ($curtain.length) {
-          if ($ipe_editing.length === 0) {
-            if (typeof Drupal.curtain === 'undefined') {
-              Drupal.curtain = new Curtain($curtain);
-            }
-            else {
-              // Drupal.curtain.init();
-            }
+      var $curtain = $('.curtain'),
+          $ipe_editing = $('.panels-ipe-editing');
+
+      if ($curtain.length) {
+        if ($ipe_editing.length === 0) {
+          if (typeof Drupal.curtain === 'undefined') {
+            Drupal.curtain = new Curtain($curtain);
           }
           else {
-            Drupal.curtain.reset();
+            // Drupal.curtain.init();
           }
         }
-      });
+        else {
+          Drupal.curtain.reset();
+        }
+      }
+
 
 
     }
