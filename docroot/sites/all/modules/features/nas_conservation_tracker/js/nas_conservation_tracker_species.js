@@ -23,4 +23,20 @@
       })
     }
   };
+
+  Drupal.behaviors.styleAjaxViews = {
+    attach: function (context, settings) {
+
+      var viewsWrap = $('.view-ct-species'),
+        itemsWrap = $('.birds-wrap'),
+        classPreload = 'js-preload';
+
+      viewsWrap.ajaxStart(function(){
+        itemsWrap.fadeTo(300, 0.5).addClass(classPreload);
+      });
+      viewsWrap.ajaxSuccess(function(){
+        itemsWrap.fadeTo(300, 1.0).removeClass(classPreload);
+      })
+    }
+  };
 })(jQuery, window.Drupal);
