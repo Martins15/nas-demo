@@ -19,6 +19,7 @@ function nas_conservation_tracker_install() {
 
   // Black Oystercatcher.
   $data = nas_conservation_tracker_get_json('scorecard-123');
+  watchdog('ct debug', print_r($data, TRUE));
   $node = new StdClass();
   $node->type = 'ct_scorecard';
   $node->status = 1;
@@ -28,6 +29,7 @@ function nas_conservation_tracker_install() {
   $node->field_scorecard_id = array(LANGUAGE_NONE => array(array('value' => $data['id'])));
   $node = node_submit($node);
   node_save($node);
+  watchdog('ct debug', print_r($node, TRUE));
 
   $path = array(
     'source' => 'node/' . $node->nid,
@@ -40,6 +42,7 @@ function nas_conservation_tracker_install() {
 
   // Coastal Carolinas.
   $data = nas_conservation_tracker_get_json('scorecard-321');
+  watchdog('ct debug', print_r($data, TRUE));
   $node = new StdClass();
   $node->type = 'ct_scorecard';
   $node->status = 1;
@@ -49,6 +52,7 @@ function nas_conservation_tracker_install() {
   $node->field_scorecard_id = array(LANGUAGE_NONE => array(array('value' => $data['id'])));
   $node = node_submit($node);
   node_save($node);
+  watchdog('ct debug', print_r($node, TRUE));
 
   $path = array(
     'source' => 'node/' . $node->nid,
@@ -64,6 +68,17 @@ function nas_conservation_tracker_install() {
   // Update config for colorbox.
   variable_set('colorbox_load', TRUE);
   variable_set('colorbox_inline', TRUE);
+
+  $tooltips = array(
+    'actions' => 'Actions are classified according to the Open Standards for the Practice of Conservation: <a href="http://cmp-openstandards.org/tools/threats-and-actions-taxonomies">http://cmp-openstandards.org/tools/threats-and-actions-taxonomies</a>',
+    'actions_objectives' => 'To quantify progress towards measurable objectives related to conservation interventions designed to address threats',
+    'threats' => 'Threats are classified according to the Open Standards for the Practice of Conservation: <a href="http://cmp-openstandards.org/tools/threats-and-actions-taxonomies">http://cmp-openstandards.org/tools/threats-and-actions-taxonomies</a>',
+    'threats_objectives' => 'To quantify progress towards measurable objectives related to direct threat reduction',
+    'response' => 'Measures of reproductive success such as productivity are the most informative metrics because threats frequently impact nesting birds and reduce hatching or fledging success.',
+    'response_objectives' => 'To quantify progress towards measurable objectives related to the biological response of birds to our conservation actions',
+    'partners_objectives' => 'To quantify progress towards measurable objectives related to expanding our reach through collaborative conservation efforts',
+  );
+  variable_set('nas_conservation_tracker_tooltips', $tooltips);
 //
 //  // Update images for Landing page.
 //  $page_name = 'conservation_tracker';

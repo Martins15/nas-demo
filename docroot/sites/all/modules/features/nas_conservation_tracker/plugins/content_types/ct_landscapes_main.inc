@@ -26,7 +26,7 @@ $plugin = [
  *
  * @return stdClass
  */
-function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args, $context) {watchdog('ct debug', 'URA!!!!!!!!!');
+function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args, $context) {
   $arg = arg();
   $path = array_pop($arg);
   $block = new stdClass();
