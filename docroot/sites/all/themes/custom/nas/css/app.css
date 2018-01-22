@@ -19353,7 +19353,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .filter-block .fieldset-title .fieldset-legend-prefix {
   display: block;
   right: 10px;
-  bottom: 0;
+  top: 50%;
   width: 12px;
   height: 12px;
   clip: inherit;
@@ -19395,14 +19395,17 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .filter-block #edit-iucn-wrapper #edit-iucn-wrapper {
   margin-bottom: 0;
 }
-.species-filter .filter-block .wrap-items .fieldset-title,
-.species-filter .filter-block #edit-iucn-wrapper .fieldset-title {
+.species-filter .filter-block .wrap-items .fieldset-title, .species-filter .filter-block .wrap-items.second,
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title,
+.species-filter .filter-block #edit-iucn-wrapper.second {
   padding-left: 25px;
   font-size: 17px;
+  text-align: left;
   cursor: pointer;
 }
-.species-filter .filter-block .wrap-items .fieldset-title span,
-.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span {
+.species-filter .filter-block .wrap-items .fieldset-title span, .species-filter .filter-block .wrap-items.second span,
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span,
+.species-filter .filter-block #edit-iucn-wrapper.second span {
   display: inline-block;
   position: absolute;
   top: 50%;
@@ -19412,18 +19415,29 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding: 3px;
   -webkit-transform: rotate(-135deg);
   transform: rotate(-135deg);
-  border: solid #404040;
+  border: solid #fff;
   border-width: 0 2px 2px 0;
   border-radius: 0;
 }
-.species-filter .filter-block .wrap-items .fieldset-title span:before, .species-filter .filter-block .wrap-items .fieldset-title span:after,
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block .wrap-items .fieldset-title span, .species-filter .filter-block .wrap-items.second span,
+  .species-filter .filter-block #edit-iucn-wrapper .fieldset-title span,
+  .species-filter .filter-block #edit-iucn-wrapper.second span {
+    border: solid #404040;
+    border-width: 0 2px 2px 0;
+  }
+}
+.species-filter .filter-block .wrap-items .fieldset-title span:before, .species-filter .filter-block .wrap-items .fieldset-title span:after, .species-filter .filter-block .wrap-items.second span:before, .species-filter .filter-block .wrap-items.second span:after,
 .species-filter .filter-block #edit-iucn-wrapper .fieldset-title span:before,
-.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span:after {
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span:after,
+.species-filter .filter-block #edit-iucn-wrapper.second span:before,
+.species-filter .filter-block #edit-iucn-wrapper.second span:after {
   border-color: transparent;
   background-color: transparent;
 }
-.species-filter .filter-block .wrap-items .fieldset-title span.js-down,
-.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span.js-down {
+.species-filter .filter-block .wrap-items .fieldset-title span.js-down, .species-filter .filter-block .wrap-items.second span.js-down,
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span.js-down,
+.species-filter .filter-block #edit-iucn-wrapper.second span.js-down {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
@@ -19437,7 +19451,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .species-filter .filter-block .wrap-items {
   padding: 15px 0;
-  border-bottom: 1px solid #dfdfdf;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block .wrap-items {
+    border-bottom: 1px solid #dfdfdf;
+  }
 }
 .species-filter .filter-block .collapsed .fieldset-title .fieldset-legend-prefix:before {
   transform: translateX(-50%) rotate(0);
@@ -19493,7 +19511,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .filter-block .js-open-mobile .form-item.form-type-radio {
   opacity: .5;
 }
-.species-filter .filter-block .js-open-mobile .fieldset-title .fieldset-legend-prefix:before, .species-filter .filter-block .js-open-mobile .fieldset-title .fieldset-legend-prefix:after {
+.species-filter .filter-block .js-open-mobile .fieldset-title:not(.second) .fieldset-legend-prefix:before, .species-filter .filter-block .js-open-mobile .fieldset-title:not(.second) .fieldset-legend-prefix:after {
   background-color: #fff;
 }
 .species-filter .filter-block .js-open-mobile input[type='text'] {
