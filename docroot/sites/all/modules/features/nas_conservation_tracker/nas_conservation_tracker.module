@@ -450,6 +450,7 @@ function nas_conservation_tracker_get_image($name) {
     return $file->fid;
   }
 }
+
 /**
  * Implements hook_preprocess_HOOK.
  */
