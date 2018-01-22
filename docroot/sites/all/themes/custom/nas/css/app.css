@@ -19145,6 +19145,18 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .conservation-tracker-custom-pane {
   padding-bottom: 40px;
 }
+.conservation-tracker-custom-pane h3 {
+  margin-bottom: 15px;
+  font-size: 33px;
+  font-weight: 300;
+  line-height: 1.15;
+}
+@media only screen and (min-width: 768px) {
+  .conservation-tracker-custom-pane h3 {
+    margin-bottom: 20px;
+    letter-spacing: .5px;
+  }
+}
 
 .conservation-tracker-pages .curtain-card h1 {
   margin: 0;
