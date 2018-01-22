@@ -19549,6 +19549,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .filter-block .js-open-mobile .form-item-search:before, .species-filter .filter-block .js-open-mobile .form-item-search:after {
   border: 2px solid #949494;
 }
+.species-filter .filter-block .ajax-progress.ajax-progress-throbber {
+  display: none;
+}
 .species-filter .birds-wrap {
   position: relative;
 }

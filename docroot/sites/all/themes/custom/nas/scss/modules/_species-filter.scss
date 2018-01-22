@@ -361,6 +361,9 @@ $text-gray-filter: #9b9b9b;
         }
       }
     }
+    .ajax-progress.ajax-progress-throbber {
+      display: none;
+    }
   }
   .birds-wrap {
     position: relative;
