@@ -377,7 +377,7 @@
       $(window).resize(function(){
         stickyResize();
       });
-      $(".article-image > img").once('articleImageLazyLoad', function () {
+      $(".article-image > img, .article-image > a > img").once('articleImageLazyLoad', function () {
 
 
 
@@ -397,8 +397,8 @@
           .wrap('<div class="ll-wrapper"></div>')
           .parent()
             .css({
-              backgroundColor: '#e1e1e1',
-              display: 'inline-block'
+              //backgroundColor: '#e1e1e1',
+              display: 'inline-block',
             });
 
 
@@ -422,6 +422,7 @@
                     opacity: 0
                   })
                   .animate({opacity: 1}, 1000);
+
               };
               image.src = $img.data('src');
               inview.destroy();

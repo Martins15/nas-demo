@@ -9504,7 +9504,7 @@ body.touch .primary-sub-nav-index {
   position: relative;
   width: 100%;
 }
-.article-text figure:not(.article-video-container) .ll-wrapper img {
+.article-text figure:not(.article-video-container) .ll-wrapper img:not(.articleImageLazyLoad-processed) {
   position: absolute;
   top: 0;
   left: 0;
