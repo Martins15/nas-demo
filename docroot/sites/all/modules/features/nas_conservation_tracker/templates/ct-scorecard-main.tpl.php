@@ -20,7 +20,7 @@
               </span>
               <span class="tooltip">
                 <span class="icon"></span>
-                <span class="text">Lorem ipsum dolor sit amet.</span>
+                <span class="text" id="tooltip-text"><?php print $tooltip; ?></span>
               </span>
             </h4>
             <div class="trigger">
@@ -44,7 +44,7 @@
               Objectives
               <span class="tooltip">
                 <span class="icon"></span>
-                <span class="text">Lorem ipsum dolor sit amet.</span>
+                <span class="text" id="tooltip-objectives-text"><?php print $tooltip_objectives; ?></span>
               </span>
             </h4>
           </div>

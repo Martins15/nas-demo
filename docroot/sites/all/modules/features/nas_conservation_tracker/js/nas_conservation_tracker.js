@@ -512,6 +512,13 @@
       objectivesTips.push(tooltip);
     }
 
+    // Update tooltips.
+    var tooltipMain = tabSettings.tooltip ?
+      tabSettings.tooltip : Drupal.settings.nasConservationTracker.tooltipsDefault[loc];
+    var tooltipObjectives = tabSettings.objectives.tooltip ?
+      tabSettings.objectives.tooltip : Drupal.settings.nasConservationTracker.tooltipsDefault[loc + '_objectives'];
+    $('#tooltip-text').html(tooltipMain);
+    $('#tooltip-objectives-text-text').html(tooltipObjectives);
 
     // Charts.
     var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
