@@ -115,3 +115,19 @@ function nas_conservation_tracker_install() {
 //  }
 
 }
+
+/**
+ * Set default tooltip text.
+ */
+function nas_conservation_tracker_update_7006() {
+  $tooltips = array(
+    'actions' => 'Actions are classified according to the Open Standards for the Practice of Conservation: <a href="http://cmp-openstandards.org/tools/threats-and-actions-taxonomies">http://cmp-openstandards.org/tools/threats-and-actions-taxonomies</a>',
+    'actions_objectives' => 'To quantify progress towards measurable objectives related to conservation interventions designed to address threats',
+    'threats' => 'Threats are classified according to the Open Standards for the Practice of Conservation: <a href="http://cmp-openstandards.org/tools/threats-and-actions-taxonomies">http://cmp-openstandards.org/tools/threats-and-actions-taxonomies</a>',
+    'threats_objectives' => 'To quantify progress towards measurable objectives related to direct threat reduction',
+    'response' => 'Measures of reproductive success such as productivity are the most informative metrics because threats frequently impact nesting birds and reduce hatching or fledging success.',
+    'response_objectives' => 'To quantify progress towards measurable objectives related to the biological response of birds to our conservation actions',
+    'partners_objectives' => 'To quantify progress towards measurable objectives related to expanding our reach through collaborative conservation efforts',
+  );
+  variable_set('nas_conservation_tracker_tooltips', $tooltips);
+}

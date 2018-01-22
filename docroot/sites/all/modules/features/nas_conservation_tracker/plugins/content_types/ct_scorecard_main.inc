@@ -45,6 +45,12 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
     'threats' => array('county', 'state', 'flyway'),
     'response' => array('state'),
   );
+  $tooltips = variable_get('nas_conservation_tracker_tooltips', array());
+  if ($tooltips) {
+    foreach ($tooltips as $key => $tooltip) {
+      $tooltips[$key] = t($tooltip);
+    }
+  }
 
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/units.js');
   drupal_add_js([
@@ -53,6 +59,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
       'selectedUnits' => 0,
       'visibleSites' => [],
       'scale' => variable_get('nas_conservation_tracker_scale', $scale),
+      'tooltipsDefault' => $tooltips,
     ],
   ], 'setting');
 
@@ -127,6 +134,8 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
     'map' => render($map),
     'actions' => d3_draw($actions_chart),
     'objectives' => d3_draw($objectives_chart),
+    'tooltip' => $tooltips[$path],
+    'tooltip_objectives' => $tooltips[$path . '_objectives'],
   ];
 
   $block->content = theme('ct_scorecard_main', $vars);
