@@ -430,6 +430,7 @@ $gray-lightish: #9b9b9b;
     ul {
       list-style: none;
       margin: 0;
+      padding-bottom: 10px;
       position: absolute;
       display: none;
       background: $grey-menu-bird;
@@ -437,6 +438,7 @@ $gray-lightish: #9b9b9b;
       @include breakpoint(large-up) {
         display: block;
         position: relative;
+        padding-bottom: 0;
         @include content-between();
       }
       &.open {
@@ -507,8 +509,13 @@ $gray-lightish: #9b9b9b;
     .actions {
       background-image: url("../img/bird-page/second-item.png");
     }
-    .responses {
+    .response {
+      position: static;
+      width: auto;
       background-image: url("../img/bird-page/third-item.png");
+      @include breakpoint(large-up) {
+        width: 60px;
+      }
     }
     .partners {
       background-image: url("../img/bird-page/fourth-item.png");

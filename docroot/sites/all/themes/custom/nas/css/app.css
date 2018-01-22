@@ -18176,6 +18176,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-item-nav-conservation .menu-wrap ul {
   list-style: none;
   margin: 0;
+  padding-bottom: 10px;
   position: absolute;
   display: none;
   background: #fbfaf6;
@@ -18185,6 +18186,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .ct-item-nav-conservation .menu-wrap ul {
     display: block;
     position: relative;
+    padding-bottom: 0;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -18307,8 +18309,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-item-nav-conservation .menu-wrap .actions {
   background-image: url("../img/bird-page/second-item.png");
 }
-.ct-item-nav-conservation .menu-wrap .responses {
+.ct-item-nav-conservation .menu-wrap .response {
+  position: static;
+  width: auto;
   background-image: url("../img/bird-page/third-item.png");
+}
+@media only screen and (min-width: 768px) {
+  .ct-item-nav-conservation .menu-wrap .response {
+    width: 60px;
+  }
 }
 .ct-item-nav-conservation .menu-wrap .partners {
   background-image: url("../img/bird-page/fourth-item.png");
