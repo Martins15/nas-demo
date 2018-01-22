@@ -84,30 +84,111 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
   }
   elseif ($vars['elements']['#bundle'] == 'slideshow') {
     $entity = $vars['elements']['#entity'];
+    $is_stacked = field_get_items('bean', $entity, 'field_stack_images_on_each_other');
+    if ($is_stacked = !empty($is_stacked[0]['value'])) {
+      $vars['theme_hook_suggestions'][] = 'bean__slideshow_stacked';
+    }
     // Get Title.
     $get_title = field_get_items('bean', $entity, 'field_wysiwyg_slideshow_title');
     $vars['title'] = !empty($get_title[0]['value']) ? $get_title[0]['value'] : '';
     // Get images.
-    $get_images = field_get_items('bean', $entity, 'field_wysiwyg_images');
+    if (!$get_images = field_get_items('bean', $entity, 'field_wysiwyg_images')) {
+      return;
+    }
+
     $slides = array();
-    if (!empty($get_images)) {
-      foreach ($get_images as $key => $image) {
-        $file = file_load($image['fid']);
-        $slides[$key]['image'] = theme('image_style', array(
-          'style_name' => 'wysiwyg_slide',
+    foreach ($get_images as $key => $image) {
+      $file = file_load($image['fid']);
+      if (!isset($file->metadata['width'], $file->metadata['height'])) {
+        $info = image_get_info($file->uri);
+
+        if (is_array($info)) {
+          $file->metadata['width'] = $info['width'];
+          $file->metadata['height'] = $info['height'];
+        }
+      }
+
+      if ($is_stacked) {
+        $slides[$key]['image'] = nas_wysiwyg_slides_image(array(
+          'style_name' => 'bean_wysiwyg_full_width',
           'path' => nas_alters_local_image_uri($file->uri),
           'width' => $file->metadata['width'],
           'height' => $file->metadata['height'],
         ));
-        $slides[$key]['caption'] = _nas_panes_format_image_attribution($file);
       }
-      $vars['slides'] = $slides;
-      $vars['count'] = count($get_images);
-      $if_stacked = field_get_items('bean', $entity, 'field_stack_images_on_each_other');
-      if (!empty($if_stacked[0]['value'])) {
-        $vars['theme_hook_suggestions'][] = 'bean__slideshow_stacked';
+
+      if (empty($slides[$key]['image'])) {
+      $slides[$key]['image'] = theme('image_style', array(
+          'style_name' => $is_stacked ? 'bean_wysiwyg_full_width' : 'wysiwyg_slide',
+          'path' => nas_alters_local_image_uri($file->uri),
+          'width' => $file->metadata['width'],
+          'height' => $file->metadata['height'],
+        ));
+      }
+      $slides[$key]['caption'] = _nas_panes_format_image_attribution($file);
+    }
+    $vars['slides'] = $slides;
+  }
+}
+
+/**
+ * Preprocess images for lazy-loading.
+ */
+function nas_wysiwyg_slides_image($variables) {
+  if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name'])) {
+
+    $attributes = (!empty($variables['attributes'])) ? $variables['attributes'] : array();
+    $noscript_attributes = $attributes;
+
+    if (_lazy_loader_enabled() || in_array($variables['style_name'], ['bean_wysiwyg_full_width'])) {
+
+      $url = parse_url(file_create_url($variables['path']));
+      $path = $url['path'];
+      //$attributes['data-src'] = $path;
+      $attributes['src'] = $path . '?lazyload=1';
+      // Path to dummy placeholder image, to be replaced by actual image.
+      $image_placeholder = trim(variable_get('lazyloader_placeholder', LAZYLOADER_PLACEHOLDER));
+      //$attributes['lazy-src'] = $image_placeholder ? base_path() . $image_placeholder : url(drupal_get_path('module', 'lazyloader') . '/image_placeholder.gif');
+      $noscript_attributes['src'] = $path;
+
+      // Integrate with Responsive Webdesign module.
+      if (module_exists('rdwimages')) {
+        global $_rwdimages_set;
+        if ($_rwdimages_set['enabled']) {
+          $attributes['class'] = array('rwdimage');
+        }
+      }
+
+    }
+    else {
+      $attributes['src'] = file_create_url($variables['path']);
+    }
+
+    foreach (array('width', 'height', 'alt', 'title', 'style') as $key) {
+      if (isset($variables[$key])) {
+        $attributes[$key] = $variables[$key];
+      }
+      if (isset($variables[$key])) {
+        $noscript_attributes[$key] = $variables[$key];
       }
     }
+
+    $noscript = '';
+    if (!empty($attributes['data-src'])) {
+      $noscript = '<noscript><img' . drupal_attributes($noscript_attributes) . ' /></noscript>';
+    }
+
+    return '<img' . drupal_attributes($attributes) . ' />' . $noscript;
+  }
+}
+
+function nas_wysiwyg_preprocess_colorbox_image_formatter(&$variables) {
+  $item = &$variables['item'];
+  if (isset($item['metadata']['height']) && !isset($item['height'])) {
+    $item['height'] = $item['metadata']['height'];
+  }
+  if (isset($item['metadata']['width']) && !isset($item['width'])) {
+    $item['width'] = $item['metadata']['width'];
   }
 }
 
@@ -311,5 +392,14 @@ function nas_wysiwyg_wysiwyg_plugin($editor) {
         'load' => TRUE,
       ),
     );
+  }
+}
+
+/**
+ * Implementation of hook_preprocess_field().
+ */
+function nas_wysiwyg_preprocess_field(&$variables) {
+  if (!empty($variables['element']['#field_type']) && ($variables['element']['#field_type'] == 'text_with_summary' || $variables['element']['#field_type'] =='text_long')) {
+    $variables['items']['0']['#markup'] = preg_replace('/src="([^"]*)" lazy-/', '', $variables['items']['0']['#markup']);
   }
 }
