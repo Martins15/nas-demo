@@ -40,6 +40,7 @@
 <div class="global-content with-padding tabs-ng-content"
      data-ng-controller="Content">
     <div class="row">
+        <div class="js-preloader" ng-show="startLoad"></div>
         <div ng-repeat="(key, value) in tab.settings.tabs" tabs-repeat-directive>
             <div class="bird-page body-item {{value}}-tab-wrapper" ng-cloak  ng-class="{'active': isActive === value}">
 

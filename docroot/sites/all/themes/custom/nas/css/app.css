@@ -18437,6 +18437,33 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .tabs-ng-content .bird-page.active {
   display: block;
 }
+.tabs-ng-content .row {
+  position: relative;
+}
+.tabs-ng-content .js-preloader {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background: #fff;
+}
+.tabs-ng-content .js-preloader:after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 30%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  border-radius: 100%;
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: sk-scaleout 1.0s infinite ease-in-out;
+}
 @media only screen and (min-width: 768px) {
   .tabs-ng-content {
     padding-bottom: 60px;
@@ -19352,8 +19379,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .species-filter .filter-block .fieldset-title .fieldset-legend-prefix {
   display: block;
-  right: 10px;
   top: 50%;
+  right: 10px;
   width: 12px;
   height: 12px;
   clip: inherit;
