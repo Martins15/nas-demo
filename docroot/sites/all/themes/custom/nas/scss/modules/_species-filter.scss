@@ -398,6 +398,34 @@ $text-gray-filter: #9b9b9b;
       }
       margin-bottom: 15px;
     }
+    .bird-card {
+      padding: 0 0 50px;
+    }
+    .bird-card-caption {
+      padding: 0 10px;
+    }
+    .bird-card-illustration {
+      @include breakpoint(large-up) {
+        height: 230px;
+      }
+      .field-content {
+        @include breakpoint(large-up) {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      img {
+        @include breakpoint(large-up) {
+          width: 100%;
+          max-width: inherit;
+          height: auto;
+          max-height: initial;
+        }
+      }
+    }
   }
 }
 
