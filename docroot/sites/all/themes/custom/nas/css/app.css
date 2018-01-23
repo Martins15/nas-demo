@@ -19002,7 +19002,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media screen and (min-width: 1020px) {
   .partners-wrap.columns .partners-wrap__partner:before {
-    top: 11px;
+    top: 7px;
   }
 }
 .partners-wrap.columns .partners-wrap__partner .partner__state {
