@@ -10,7 +10,7 @@ $color-orange:                  #E18400;
 $color-tomato:                  #F15936;
 $color-bright-blue:             #0AA8E3;
 $color-pea-green:               #7BA701;
-
+$pumpkin: #e18400;
 // Secondary colors
 $color-dark-gray:               #262626;
 $color-text-gray:               #404040;
@@ -20,6 +20,7 @@ $color-light-gray:              #d4d4d4;
 $color-lighter-gray:            #f4f4f4;
 $color-middle-gray:             #aaa;
 $color-bone-white:              #FBFAF6;
+$grey-landing: #979797;
 
 // Native plants colors
 $color-red:                     #cd1818;
@@ -36,10 +37,11 @@ $color-twitter:                 #67afeb;
 // -----------
 // Font Stacks
 // -----------
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
 $font-serif:                    "Noto Serif", Georgia, serif;
 $font-sans:                     "Source Sans Pro", Verdana, sans-serif;
-
+$lato-font: 'Lato', sans-serif;
 // -----
 // Sizes
 // -----
