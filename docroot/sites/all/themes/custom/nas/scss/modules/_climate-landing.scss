@@ -43,6 +43,14 @@
   .gray-left-border {
     border-left: 1px solid $grey-landing;
   }
+  .gray-border {
+    &--left {
+      border-left: 1px solid $grey-landing;
+    }
+    &--right {
+      border-right: 1px solid $grey-landing;
+    }
+  }
   .center-items-in-wrap {
     position: relative;
     p {
@@ -56,4 +64,37 @@
     line-height: 1.17;
     text-align: left;
   }
+  .item-bird-card {
+    .text-after {
+      color: $color-text-gray;
+      font-family: $font-sans;
+      font-size: 14px;
+      text-align: right;
+    }
+    &__text-wrap {
+      p {
+        margin-bottom: 18px;
+      }
+    }
+  }
+  .item-with-bird-card {
+    margin-bottom: 90px;
+  }
+  .map-wrap {
+    margin-bottom: 70px;
+  }
+  .item-bird-sliders {
+    margin-bottom: 25px;
+  }
+  .single-slider {
+    margin-bottom: 35px;
+    &__text-bird {
+      color: $color-text-gray;
+      font-family: $font-sans;
+      font-size: 14px;
+      line-height: normal;
+    }
+  }
+
+
 }

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Lato");
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -17898,6 +17899,92 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .welcome-card.orange .welcome-card-banner {
   background-color: #dd7537;
+}
+
+.climate-landing .hero-title {
+  margin-bottom: 15px;
+}
+.climate-landing .hero-paragraph-text {
+  color: #fff;
+  font-size: 24px;
+  text-align: left;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+}
+.climate-landing .static-page-content h2 {
+  color: #262626;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 38px;
+  letter-spacing: -.1px;
+  line-height: 1.16;
+  text-align: left;
+}
+.climate-landing .wrap-help {
+  overflow: hidden;
+}
+.climate-landing .percent-wrap {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.climate-landing .percent-wrap__percent-item {
+  color: #e18400;
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+}
+.climate-landing .percent-wrap__small-text {
+  color: #404040;
+  font-size: 14px;
+  line-height: 1;
+  text-align: left;
+}
+.climate-landing .percent-wrap__text-item {
+  font-size: 16px;
+}
+.climate-landing .gray-left-border {
+  border-left: 1px solid #979797;
+}
+.climate-landing .gray-border--left {
+  border-left: 1px solid #979797;
+}
+.climate-landing .gray-border--right {
+  border-right: 1px solid #979797;
+}
+.climate-landing .center-items-in-wrap {
+  position: relative;
+}
+.climate-landing .item-bird__title {
+  color: #262626;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 24px;
+  line-height: 1.17;
+  text-align: left;
+}
+.climate-landing .item-bird-card .text-after {
+  color: #404040;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
+  text-align: right;
+}
+.climate-landing .item-bird-card__text-wrap p {
+  margin-bottom: 18px;
+}
+.climate-landing .item-with-bird-card {
+  margin-bottom: 90px;
+}
+.climate-landing .map-wrap {
+  margin-bottom: 70px;
+}
+.climate-landing .item-bird-sliders {
+  margin-bottom: 25px;
+}
+.climate-landing .single-slider {
+  margin-bottom: 35px;
+}
+.climate-landing .single-slider__text-bird {
+  color: #404040;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
+  line-height: normal;
 }
 
 .title-letter {
