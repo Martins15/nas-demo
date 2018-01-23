@@ -18268,14 +18268,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .ct-item-nav-conservation .menu-wrap li a,
   .ct-item-nav-conservation .menu-wrap .mobile-active {
     width: 60px;
-    height: 60px;
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 0;
+    padding: 65px 0 0;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 400;
     opacity: .2;
     background-position: center;
     background-size: contain;
-    padding: 0;
   }
   .ct-item-nav-conservation .menu-wrap li a:hover,
   .ct-item-nav-conservation .menu-wrap .mobile-active:hover {
@@ -18289,7 +18290,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 @media only screen and (min-width: 768px) {
   .ct-item-nav-conservation .menu-wrap li a.true,
   .ct-item-nav-conservation .menu-wrap .mobile-active.true {
-    font-weight: bold;
+    font-weight: 400;
     opacity: 1;
     background-color: transparent;
   }
