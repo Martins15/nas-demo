@@ -19492,6 +19492,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .filter-block .wrap-items {
   padding: 15px 0;
 }
+.species-filter .filter-block .wrap-items .help-items.js-close {
+  display: none;
+}
 @media only screen and (min-width: 768px) {
   .species-filter .filter-block .wrap-items {
     border-bottom: 1px solid #dfdfdf;
