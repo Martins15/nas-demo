@@ -40,7 +40,7 @@
       "objectives": [{
         "description": "<ul><li>Protect or restore intertidal habitat for Black Oystercatcher</li><li>Continue monitoring productivity along the California coast and improve our recent population viability assessment <sup>1</sup>",
         "tooltip": "To quantify progress towards measurable objectives related to conservation interventions designed to address threats",
-        "value": ""
+        "value": "33"
       }],
       "chart": {
         "type": "actions",
@@ -98,7 +98,8 @@
   "actions": {
     "sites":
 
-    [{
+    [
+      {
       "id": 0,
       "name": "Agua Hediondo Lagoon",
       "latitude": "33.14182",
