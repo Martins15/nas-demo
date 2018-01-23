@@ -246,6 +246,7 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['fields']['field_ct_image']['alter']['path'] = '[field_ct_score_card_url]';
   $handler->display->display_options['fields']['field_ct_image']['element_class'] = '[field_ct_score_card_url_1]';
   $handler->display->display_options['fields']['field_ct_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_ct_image']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_ct_image']['type'] = 'text_plain';
   $handler->display->display_options['fields']['field_ct_image']['settings'] = array(
     'title_style' => '_none',
@@ -272,11 +273,10 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['fields']['field_ct_scientific_name']['element_type'] = 'p';
   $handler->display->display_options['fields']['field_ct_scientific_name']['element_class'] = 'scientific-name';
   $handler->display->display_options['fields']['field_ct_scientific_name']['element_label_colon'] = FALSE;
-  /* Sort criterion: Indexed CT Species: Score card URL */
-  $handler->display->display_options['sorts']['field_ct_score_card_url']['id'] = 'field_ct_score_card_url';
-  $handler->display->display_options['sorts']['field_ct_score_card_url']['table'] = 'search_api_index_ct_species_index';
-  $handler->display->display_options['sorts']['field_ct_score_card_url']['field'] = 'field_ct_score_card_url';
-  $handler->display->display_options['sorts']['field_ct_score_card_url']['order'] = 'DESC';
+  /* Sort criterion: Indexed CT Species: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'search_api_index_ct_species_index';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
   /* Filter criterion: Indexed CT Species: Letter */
   $handler->display->display_options['filters']['field_ct_letter']['id'] = 'field_ct_letter';
   $handler->display->display_options['filters']['field_ct_letter']['table'] = 'search_api_index_ct_species_index';
