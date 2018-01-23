@@ -5,19 +5,27 @@
 ?>
 <section class="ct-landscapes-main">
   <div class="row">
-    <ul>
-      <!-- Tabs with imgs /-->
-      <?php foreach ($strategies as $strategy): ?>
-        <li class="<?php print $strategy['class'] ?>">
-          <a href="<?php print $strategy['link'] ?>"><?php print $strategy['name'] ?></a>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-    <div>
-      <div><!-- Title and tagline /--></div>
+    <div ng-app="nasCtStrategies" ng-controller="tabs">
+      <tabset>
+        <tab ng-repeat="tab in tabs" heading="{{tab.name}}" select="getContent($index)" active="tab.active" disabled="tab.disabled">
+          <div ng-hide="!tab.isLoaded">
+            <div>
+              <h4>{{tab.name}}</h4>
+              <div>
+                <p>{{tab.tagline}}</p>
+              </div>
+            </div>
+            <div>
+              <h5>Strategy Breakdown</h5>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <div ng-hide="tab.isLoaded">Loading...</div>
+        </tab>
+      </tabset>
     </div>
-  </div>
-  <div class="row">
-    <div><!-- Main content of strategy /--></div>
   </div>
 </section>

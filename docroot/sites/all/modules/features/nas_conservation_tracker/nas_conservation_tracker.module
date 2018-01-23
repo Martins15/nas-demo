@@ -132,7 +132,7 @@ function nas_conservation_tracker_theme() {
         'name' => NULL,
         'subtitle' => NULL,
         'image' => NULL,
-        'description' => NULL,
+        'credit' => NULL,
       ),
       'template' => 'templates/ct-scorecard-header',
     ),
@@ -521,4 +521,39 @@ function nas_conservation_tracker_refine_button($type) {
       ),
     )),
   );
+}
+
+function nas_conservation_tracker_add_base($href = NULL) {
+  if (!$href) {
+    $href = base_path();
+  }
+  $base = array(
+    '#tag' => 'base',
+    '#attributes' => array(
+      'href' => $href,
+    ),
+  );
+  drupal_add_html_head($base, 'nas_conservation_tracker_base');
+}
+
+function nas_conservation_tracker_include_angular() {
+  drupal_add_css('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css', array('type' => 'external'));
+  drupal_add_js('http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js');
+  $libs = [
+    'nas_master_native_plants' => [
+      'angularjs',
+      'angularjs-ui-router',
+      'angularjs-ui-bootstrap',
+      'angularjs-sanitize',
+      'angularjs-cookies',
+      'angularjs-animate',
+      'angularjs-storage',
+      'angularjs-scroll',
+    ],
+  ];
+  foreach ($libs as $module => $libs) {
+    foreach ($libs as $lib) {
+      drupal_add_library($module, $lib);
+    }
+  }
 }

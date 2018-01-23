@@ -33,22 +33,29 @@ function nas_conservation_tracker_strategies_main_render($subtype, $conf, $args,
 
   $data = nas_conservation_tracker_get_json('strategies');
 
-  $page = page_manager_get_current_page();
+  //$page = page_manager_get_current_page();
 
   //dpm($page);
+//'/' . arg(0) . '/' . arg(1) . '/'
+  nas_conservation_tracker_add_base();
 
+  nas_conservation_tracker_include_angular();
   drupal_add_js(NAS_CT_JS_PATH . 'nas_conservation_tracker_strategies.js');
-  drupal_add_js(array('nasConservationTracker' => array('strategies' => $data)), 'setting');
+  drupal_add_js(array('nasConservationTracker' => array(
+    'strategies' => $data,
+    'basePath' => '/' . arg(0) . '/' . arg(1),
+  )), 'setting');
 
+  /*
   foreach ($data as $strategy) {
     $strategies[$strategy['link']] = array(
       'name' => $strategy['name'],
       'link' => '/' . arg(0) . '/' . arg(1) . '/' . $strategy['link'],
       'class' => 'strategy-' . $strategy['link'],
     );
-  }
+  }*/
 
-  $vars = array('strategies' => $strategies);
+  $vars = array('strategies' => $data);
 
   $block->content = theme('ct_strategies_main', $vars);
 

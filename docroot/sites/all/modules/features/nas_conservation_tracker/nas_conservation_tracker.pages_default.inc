@@ -416,6 +416,11 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'header_bg' => '-1',
         'header_position' => 'left',
         'summary' => '<h1>Conservation Tracker</h1>
+<div class="hero-attribution">
+      <p class="column">
+      <span class="hero-attribution-text">American Avocet. Photo: Melissa Groo/Audubon Photography Awards</span>
+      </p>
+    </div>
 ',
       ),
     );
@@ -857,7 +862,12 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'disable_gradient' => 0,
         'header_bg' => '-1',
         'header_position' => 'left',
-        'summary' => '<h1>Landscapes</h1>',
+        'summary' => '<h1>Landscapes</h1>
+<div class="hero-attribution">
+      <p class="column">
+      <span class="hero-attribution-text">Great Blue Heron. Photo: Mike Fernandez/Audubon</span>
+      </p>
+    </div>',
       ),
       'form_build_id' => 'form-l8WRzSBUyiy6abzIw2kjdZfrazJ_hPC16vx2C_IPA88',
       'form_token' => 'GU0YQdAtdC0VjtaGzqiHQopraEKhA1sRTiW2fPF37lI',
@@ -1305,7 +1315,12 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'header_bg' => '-1',
         'header_position' => 'left',
         'summary' => '<h1>Strategies</h1>
-<em>We maximize our conservation results by focusing on five key strategies critical for birds.</em>',
+<em>We maximize our conservation results by focusing on five key strategies critical for birds.</em>
+<div class="hero-attribution">
+      <p class="column">
+      <span class="hero-attribution-text">Wilson\'s Warbler. Photo: Camilla Cerea/Audubon</span>
+      </p>
+    </div>',
       ),
     );
     $pane->cache = array();
@@ -1639,7 +1654,11 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'disable_gradient' => 0,
         'header_bg' => '-1',
         'header_position' => 'left',
-        'summary' => '<h1>Species</h1>',
+        'summary' => '<h1>Species</h1><div class="hero-attribution">
+      <p class="column">
+      <span class="hero-attribution-text">Piping Plover. Photo: Melissa Groo/Audubon Photography Awards</span>
+      </p>
+    </div>',
       ),
       'form_build_id' => 'form-KC_-UiBYZXEUw5w2xt_Vh-LRPHC0Z3Pv-CmI5CEszGA',
       'form_token' => 'UCl3vvQ79cgATDx_IYRbtI458KdA7stLAOL6e8VpvN8',

@@ -63,24 +63,8 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
     ],
   ], 'setting');
 
-  $libs = [
-    'nas_master_native_plants' => [
-      'angularjs',
-      'angularjs-ui-router',
-      'angularjs-sanitize',
-      'angularjs-cookies',
-      'angularjs-animate',
-      'angularjs-storage',
-      'angularjs-scroll',
-    ],
-  ];
-
-  foreach ($libs as $module => $libs) {
-    foreach ($libs as $lib) {
-      drupal_add_library($module, $lib);
-    }
-  }
-
+  nas_conservation_tracker_add_base();
+  nas_conservation_tracker_include_angular();
   drupal_add_js(NAS_CT_JS_PATH . 'ct_tabs.js');
   drupal_add_js(NAS_CT_JS_PATH . 'nas_conservation_tracker.js', [
     'weight' => 999,
@@ -151,9 +135,9 @@ function nas_conservation_tracker_map_form($form, &$form_state) {
       '#title' => t('SCALE CONTROLS'),
       '#default_value' => 'county',
       '#options' => [
-        'flyway' => t('Flyway'),
-        'state' => t('State'),
         'county' => t('County'),
+        'state' => t('State'),
+        'flyway' => t('Flyway'),
       ],
     ],
     'map_reset' => [
