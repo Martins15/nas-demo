@@ -14,8 +14,6 @@
         , lastName = pathArray.slice(-1)[0]
         , activeUrl = '';
 
-    $('head').append('<base href="' + settings.basePath + '">');
-
     if (linkArray.indexOf(lastName) > -1) {
       activeUrl = pathArray.slice(0, -1).join('/');
     }
