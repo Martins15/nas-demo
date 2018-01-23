@@ -18036,6 +18036,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transition: all 0.5s;
   box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.75);
 }
+@media screen and (min-width: 768px) {
+  .help-wrap-items-map-items .map-title .tooltip .text {
+    width: 300px;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
 .help-wrap-items-map-items .map-title .tooltip:hover .text {
   top: 20px;
   opacity: 1;
@@ -19491,6 +19498,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .species-filter .filter-block .wrap-items {
   padding: 15px 0;
+}
+.species-filter .filter-block .wrap-items .help-items.js-close {
+  display: none;
 }
 @media only screen and (min-width: 768px) {
   .species-filter .filter-block .wrap-items {

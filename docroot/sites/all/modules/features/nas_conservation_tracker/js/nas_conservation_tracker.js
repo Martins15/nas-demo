@@ -42,7 +42,7 @@
     });
 
     if (!angular.isDefined(json) || !angular.isDefined(json.sites) || json.sites.length == 0) {
-      $('.leaflet-container').after('<div class="no-data-overlay">' + Drupal.t('No data') + '</div>');
+      $('.leaflet-container').after('<div class="no-data-overlay">' + Drupal.t('Data collection pending') + '</div>');
     }
 
     if (angular.isDefined(json) && angular.isDefined(json.sites)) {
@@ -524,7 +524,15 @@
     var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
     objectives.update({rows: objectivesRows, tooltips: objectivesTips});
     if (objectivesRows.length > 0) {
-      $('.objectives-wrap').show();
+     var objectWrap = $('.objectives-wrap');
+
+     // Check if array and if empty hide block.
+      if ($.isArray(objectivesRows) && objectivesRows[0][0].length === 0) {
+        objectWrap.hide();
+      } else {
+        objectWrap.show();
+      }
+
       overall = Math.round(overall / objectivesRows.length);
       updateOverall(overall);
 
