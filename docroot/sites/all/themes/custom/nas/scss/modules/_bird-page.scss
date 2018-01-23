@@ -475,14 +475,15 @@ $gray-lightish: #9b9b9b;
       display: inline-block;
       @include breakpoint(large-up) {
         width: 60px;
-        height: 60px;
         margin-top: 0;
         margin-bottom: 0;
-        font-size: 0;
+        padding: 65px 0 0;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 400;
         opacity: .2;
         background-position: center;
         background-size: contain;
-        padding: 0;
         &:hover {
           opacity: 1;
         }
@@ -490,7 +491,7 @@ $gray-lightish: #9b9b9b;
       &.true {
         background-color: $white;
         @include breakpoint(large-up) {
-          font-weight: bold;
+          font-weight: 400;
           opacity: 1;
           background-color: transparent;
         }
@@ -1332,6 +1333,16 @@ $gray-lightish: #9b9b9b;
 
 .conservation-tracker-custom-pane {
   padding-bottom: 40px;
+  h3 {
+    margin-bottom: 15px;
+    font-size: 33px;
+    font-weight: 300;
+    line-height: 1.15;
+    @include breakpoint(large-up) {
+      margin-bottom: 20px;
+      letter-spacing: .5px;
+    }
+  }
 }
 
 // Style for pages /conservation-tracker and /conservation-tracker/*
