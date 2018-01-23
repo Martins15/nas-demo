@@ -37,7 +37,7 @@ function nas_conservation_tracker_scorecard_carousel_render($subtype, $conf, $ar
       $vars['items'][] = array(
         'title' => $item['title'],
         'category' => $item['category'],
-        'href' => $item['href'],
+        'href' => nas_conservation_tracker_scorecard_url($item['id']),
       );
     }
     $owl = '//cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js';

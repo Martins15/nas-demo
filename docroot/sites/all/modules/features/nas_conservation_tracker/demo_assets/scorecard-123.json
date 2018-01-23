@@ -2,6 +2,7 @@
   "id": "123",
   "name": "Black Oystercatcher",
   "subtitle": "Haematopus bachmani",
+  "credit": "Photo: Kathleen Kitto/Audubon Photography Awards",
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_black_oystercatcher_hero.jpg",
   "settings": {
     "menuParent": "Species",
@@ -39,7 +40,7 @@
       "objectives": [{
         "description": "<ul><li>Protect or restore intertidal habitat for Black Oystercatcher</li><li>Continue monitoring productivity along the California coast and improve our recent population viability assessment <sup>1</sup>",
         "tooltip": "To quantify progress towards measurable objectives related to conservation interventions designed to address threats",
-        "value": ""
+        "value": "33"
       }],
       "chart": {
         "type": "actions",
@@ -58,7 +59,7 @@
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_bloy_response.png",
       "tagLine": "Quantifying the effectiveness of our conservation actions using scientifically-sound metrics",
       "title": "California intertidal is critical for the Black Oystercatcher population<sup>2</sup>",
-      "description": "<ul><li>Until recently little was known of its status and distribution in California</li><li>Over 1300 birds and over 170 nests were detected in California, more than previously documented</li><li>We estimate 4000-6000 Black Oystercatchers in California, suggesting the state provides critical habitat for the species. Productivity monitoring from 2012-2016 has found a statewide fledge success (fledged chicks per pair per year) of between 0.41-0.49.</li><li>Audubon Christmas Bird Count shows significant increase in wintering oystercatchers between 1966 and 2017 <sup>3</sup></li></ul>",
+      "description": "<ul><li>Until recently little was known of its status and distribution in California</li><li>Over 1300 birds and over 170 nests were detected in California, more than previously documented</li><li>We estimate 4000-6000 Black Oystercatchers in California, suggesting the state provides critical habitat for the species.</li><li>Productivity monitoring from 2012-2016 has found a statewide fledge success (fledged chicks per pair per year) of between 0.41-0.49.</li><li>Audubon Christmas Bird Count shows significant increase in wintering oystercatchers between 1966 and 2017 <sup>3</sup></li></ul>",
       "tooltip": "Measures of reproductive success such as productivity are the most informative metrics because threats frequently impact nesting birds and reduce hatching or fledging success.",
       "objectives": [{
         "description": "Maintain or increase current statewide fledge success",
@@ -97,7 +98,8 @@
   "actions": {
     "sites":
 
-    [{
+    [
+      {
       "id": 0,
       "name": "Agua Hediondo Lagoon",
       "latitude": "33.14182",
