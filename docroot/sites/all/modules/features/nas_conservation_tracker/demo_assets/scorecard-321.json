@@ -2,6 +2,7 @@
   "id": "321",
   "name": "Coastal Carolinas",
   "subtitle": "",
+  "credit": "Photo: Walker Golder",
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_coastal_carolinas_hero.jpg",
   "settings": {
     "menuParent": "Landscapes",

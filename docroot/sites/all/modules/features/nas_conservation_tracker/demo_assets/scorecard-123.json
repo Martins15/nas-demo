@@ -2,6 +2,7 @@
   "id": "123",
   "name": "Black Oystercatcher",
   "subtitle": "Haematopus bachmani",
+  "credit": "Photo: Kathleen Kitto/Audubon Photography Awards",
   "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_black_oystercatcher_hero.jpg",
   "settings": {
     "menuParent": "Species",

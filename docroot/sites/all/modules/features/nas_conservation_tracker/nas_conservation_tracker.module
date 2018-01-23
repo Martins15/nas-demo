@@ -132,7 +132,7 @@ function nas_conservation_tracker_theme() {
         'name' => NULL,
         'subtitle' => NULL,
         'image' => NULL,
-        'description' => NULL,
+        'credit' => NULL,
       ),
       'template' => 'templates/ct-scorecard-header',
     ),

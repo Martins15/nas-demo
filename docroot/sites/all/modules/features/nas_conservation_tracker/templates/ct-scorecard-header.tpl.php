@@ -13,8 +13,12 @@
         <div class="columns large-12 large-centered">
           <h1 class="hero-title"><?php print $name; ?></h1>
           <p class="hero-blurb"><?php print $subtitle; ?></p>
-<!--          <p>--><?php //print $description; ?><!--</p>-->
         </div>
+      </div>
+      <div class="hero-attribution">
+        <p class="column">
+          <span class="hero-attribution-text"><?php print $credit; ?></span>
+        </p>
       </div>
     </div>
     <div class="curtain-arrow storecard"></div>

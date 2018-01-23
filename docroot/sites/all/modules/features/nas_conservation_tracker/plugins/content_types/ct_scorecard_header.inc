@@ -28,12 +28,13 @@ $plugin = array(
 function nas_conservation_tracker_scorecard_header_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $node = menu_get_object('node', 1,_nas_conservation_tracker_get_real_path());
-  $id = $node->field_scorecard_id[$node->language][0]['value'];
+  $id = $node->field_scorecard_id[LANGUAGE_NONE][0]['value'];
   $data = nas_conservation_tracker_get_json('scorecard-' . $id);
 
   $vars = array(
     'name' => isset($data['name']) ? $data['name'] : '',
     'subtitle' => isset($data['subtitle']) ? $data['subtitle'] : '',
+    'credit' => isset($data['credit']) ? $data['credit'] : '',
     'image' => isset($data['image']) ?
       theme_image(array('path' => $data['image'], 'alt' => $data['name'], 'attributes' =>array())) : '',
   );
