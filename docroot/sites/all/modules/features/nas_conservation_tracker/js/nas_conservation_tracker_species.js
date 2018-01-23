@@ -48,6 +48,9 @@
         $('.form-item', threatWrap).wrapAll('<div class="wrap-items"><div class="help-items"></div>');
         $('<div class="fieldset-title second">Audubon Climate<span class="fieldset-legend-prefix"></span></div>').prependTo('.wrap-items');
         $('#edit-iucn-wrapper',context).insertAfter('.wrap-items');
+
+        $('#edit-iucn .collapsible').addClass('collapsed').find('.fieldset-wrapper').hide();
+
       });
 
       var wrapItems = $('.help-items');
@@ -56,19 +59,21 @@
 
       // Hide block by default.
       wrapItems.addClass(classHide);
-      $('.fieldset-title.second span').addClass('js-down');
+      $('.fieldset-title.second span', context).addClass('js-down');
 
-      $('.fieldset-title.second').click(function (e) {
-        e.preventDefault();
-        if (wrapItems.hasClass(classHide)) {
-          wrapItems.slideDown('fast').removeClass('js-close');
-          $('span', this).removeClass('js-down');
-        } else {
-          wrapItems.slideUp('fast').addClass('js-close');
-          $('span', this).addClass('js-down');
-        }
-
+      $('.fieldset-title.second').once(function () {
+        $('.fieldset-title.second', context).click(function (e) {
+          e.preventDefault();
+          if (wrapItems.hasClass(classHide)) {
+            wrapItems.slideDown('fast').removeClass('js-close');
+            $('span', this).removeClass('js-down');
+          } else {
+            wrapItems.slideUp('fast').addClass('js-close');
+            $('span', this).addClass('js-down');
+          }
+        });
       })
+
     }
   };
 
