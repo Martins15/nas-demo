@@ -8,6 +8,9 @@
  * Implements hook_install()
  */
 function nas_conservation_tracker_install() {
+  // Revert conservation tracker feature.
+  features_revert_module('nas_conservation_tracker');
+
   variable_set('nas_i18n_redirect_ignore', array(
     'conservation-tracker',
     'conservation-tracker/species',
@@ -62,10 +65,7 @@ function nas_conservation_tracker_install() {
 
   path_save($path);
 
-  // Revert conservation tracker feature.
-  features_revert_module('nas_conservation_tracker');
-
-  // Update config for colorbox.
+    // Update config for colorbox.
   variable_set('colorbox_load', TRUE);
   variable_set('colorbox_inline', TRUE);
 

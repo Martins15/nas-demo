@@ -6,9 +6,9 @@
 (function ($, Drupal) {
 
   var colors = {
-    'water': '#0073c4',
-    'coasts': '#d6a53e',
-    'working lands': '#006e0f'
+    'water': '#54b5af',
+    'coasts': '#007db6',
+    'working lands': '#8a6540'
   };
 
   Drupal.behaviors.nasCtInitLandscapes = {

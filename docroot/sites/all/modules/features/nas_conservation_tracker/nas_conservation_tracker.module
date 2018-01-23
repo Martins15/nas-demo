@@ -412,8 +412,13 @@ function nas_conservation_tracker_scorecard_url($scorecard) {
     ->entityCondition('bundle', 'ct_scorecard')
     ->fieldCondition('field_scorecard_id', 'value', (int)$scorecard, '=')
     ->execute();
-  $nid = current(array_keys($result['node']));
-  return drupal_get_path_alias('node/' . $nid);
+  if ($result) {
+    $nid = current(array_keys($result['node']));
+    return drupal_get_path_alias('node/' . $nid);
+  }
+  else {
+    return FALSE;
+  }
 }
 
 function nas_conservation_tracker_form_views_exposed_form_alter(&$form, &$form_state) {
