@@ -291,6 +291,11 @@ $gray-lightish: #9b9b9b;
         z-index: 2;
         transition: all 0.5s;
         box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.75);
+        @media screen and (min-width: 768px) {
+          width: 300px;
+          padding: 10px;
+          font-size: 14px;
+        }
       }
       &:hover {
         .text {
@@ -1179,7 +1184,7 @@ $gray-lightish: #9b9b9b;
           top: 4px;
         }
         @media screen and (min-width: 1020px) {
-          top: 11px;
+          top: 7px;
         }
       }
       .partner__state {

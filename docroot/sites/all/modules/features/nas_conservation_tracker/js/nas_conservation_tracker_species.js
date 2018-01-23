@@ -54,6 +54,10 @@
       var wrapMainItems = $('.wrap-items');
       var classHide = 'js-close';
 
+      // Hide block by default.
+      wrapItems.addClass(classHide);
+      $('.fieldset-title.second span').addClass('js-down');
+
       $('.fieldset-title.second').click(function (e) {
         e.preventDefault();
         if (wrapItems.hasClass(classHide)) {

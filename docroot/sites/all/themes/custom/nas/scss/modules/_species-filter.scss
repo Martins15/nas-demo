@@ -277,6 +277,9 @@ $text-gray-filter: #9b9b9b;
     }
     .wrap-items {
       padding: 15px 0;
+      .help-items.js-close {
+        display: none;
+      }
       @include breakpoint(large-up) {
         border-bottom: 1px solid #dfdfdf;
       }
