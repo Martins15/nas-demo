@@ -18176,6 +18176,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-item-nav-conservation .menu-wrap ul {
   list-style: none;
   margin: 0;
+  padding-bottom: 10px;
   position: absolute;
   display: none;
   background: #fbfaf6;
@@ -18185,6 +18186,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .ct-item-nav-conservation .menu-wrap ul {
     display: block;
     position: relative;
+    padding-bottom: 0;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -18266,14 +18268,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .ct-item-nav-conservation .menu-wrap li a,
   .ct-item-nav-conservation .menu-wrap .mobile-active {
     width: 60px;
-    height: 60px;
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 0;
+    padding: 65px 0 0;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 400;
     opacity: .2;
     background-position: center;
     background-size: contain;
-    padding: 0;
   }
   .ct-item-nav-conservation .menu-wrap li a:hover,
   .ct-item-nav-conservation .menu-wrap .mobile-active:hover {
@@ -18287,7 +18290,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 @media only screen and (min-width: 768px) {
   .ct-item-nav-conservation .menu-wrap li a.true,
   .ct-item-nav-conservation .menu-wrap .mobile-active.true {
-    font-weight: bold;
+    font-weight: 400;
     opacity: 1;
     background-color: transparent;
   }
@@ -18307,8 +18310,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-item-nav-conservation .menu-wrap .actions {
   background-image: url("../img/bird-page/second-item.png");
 }
-.ct-item-nav-conservation .menu-wrap .responses {
+.ct-item-nav-conservation .menu-wrap .response {
+  position: static;
+  width: auto;
   background-image: url("../img/bird-page/third-item.png");
+}
+@media only screen and (min-width: 768px) {
+  .ct-item-nav-conservation .menu-wrap .response {
+    width: 60px;
+  }
 }
 .ct-item-nav-conservation .menu-wrap .partners {
   background-image: url("../img/bird-page/fourth-item.png");
@@ -18427,6 +18437,33 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .tabs-ng-content .bird-page.active {
   display: block;
+}
+.tabs-ng-content .row {
+  position: relative;
+}
+.tabs-ng-content .js-preloader {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  background: #fff;
+}
+.tabs-ng-content .js-preloader:after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 30%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  border-radius: 100%;
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: sk-scaleout 1.0s infinite ease-in-out;
 }
 @media only screen and (min-width: 768px) {
   .tabs-ng-content {
@@ -19109,6 +19146,18 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .conservation-tracker-custom-pane {
   padding-bottom: 40px;
 }
+.conservation-tracker-custom-pane h3 {
+  margin-bottom: 15px;
+  font-size: 33px;
+  font-weight: 300;
+  line-height: 1.15;
+}
+@media only screen and (min-width: 768px) {
+  .conservation-tracker-custom-pane h3 {
+    margin-bottom: 20px;
+    letter-spacing: .5px;
+  }
+}
 
 .conservation-tracker-pages .curtain-card h1 {
   margin: 0;
@@ -19343,8 +19392,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .species-filter .filter-block .fieldset-title .fieldset-legend-prefix {
   display: block;
+  top: 50%;
   right: 10px;
-  bottom: 0;
   width: 12px;
   height: 12px;
   clip: inherit;
@@ -19386,14 +19435,17 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .filter-block #edit-iucn-wrapper #edit-iucn-wrapper {
   margin-bottom: 0;
 }
-.species-filter .filter-block .wrap-items .fieldset-title,
-.species-filter .filter-block #edit-iucn-wrapper .fieldset-title {
+.species-filter .filter-block .wrap-items .fieldset-title, .species-filter .filter-block .wrap-items.second,
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title,
+.species-filter .filter-block #edit-iucn-wrapper.second {
   padding-left: 25px;
   font-size: 17px;
+  text-align: left;
   cursor: pointer;
 }
-.species-filter .filter-block .wrap-items .fieldset-title span,
-.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span {
+.species-filter .filter-block .wrap-items .fieldset-title span, .species-filter .filter-block .wrap-items.second span,
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span,
+.species-filter .filter-block #edit-iucn-wrapper.second span {
   display: inline-block;
   position: absolute;
   top: 50%;
@@ -19403,18 +19455,29 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding: 3px;
   -webkit-transform: rotate(-135deg);
   transform: rotate(-135deg);
-  border: solid #404040;
+  border: solid #fff;
   border-width: 0 2px 2px 0;
   border-radius: 0;
 }
-.species-filter .filter-block .wrap-items .fieldset-title span:before, .species-filter .filter-block .wrap-items .fieldset-title span:after,
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block .wrap-items .fieldset-title span, .species-filter .filter-block .wrap-items.second span,
+  .species-filter .filter-block #edit-iucn-wrapper .fieldset-title span,
+  .species-filter .filter-block #edit-iucn-wrapper.second span {
+    border: solid #404040;
+    border-width: 0 2px 2px 0;
+  }
+}
+.species-filter .filter-block .wrap-items .fieldset-title span:before, .species-filter .filter-block .wrap-items .fieldset-title span:after, .species-filter .filter-block .wrap-items.second span:before, .species-filter .filter-block .wrap-items.second span:after,
 .species-filter .filter-block #edit-iucn-wrapper .fieldset-title span:before,
-.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span:after {
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span:after,
+.species-filter .filter-block #edit-iucn-wrapper.second span:before,
+.species-filter .filter-block #edit-iucn-wrapper.second span:after {
   border-color: transparent;
   background-color: transparent;
 }
-.species-filter .filter-block .wrap-items .fieldset-title span.js-down,
-.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span.js-down {
+.species-filter .filter-block .wrap-items .fieldset-title span.js-down, .species-filter .filter-block .wrap-items.second span.js-down,
+.species-filter .filter-block #edit-iucn-wrapper .fieldset-title span.js-down,
+.species-filter .filter-block #edit-iucn-wrapper.second span.js-down {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
@@ -19428,7 +19491,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .species-filter .filter-block .wrap-items {
   padding: 15px 0;
-  border-bottom: 1px solid #dfdfdf;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block .wrap-items {
+    border-bottom: 1px solid #dfdfdf;
+  }
 }
 .species-filter .filter-block .collapsed .fieldset-title .fieldset-legend-prefix:before {
   transform: translateX(-50%) rotate(0);
@@ -19484,7 +19551,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .species-filter .filter-block .js-open-mobile .form-item.form-type-radio {
   opacity: .5;
 }
-.species-filter .filter-block .js-open-mobile .fieldset-title .fieldset-legend-prefix:before, .species-filter .filter-block .js-open-mobile .fieldset-title .fieldset-legend-prefix:after {
+.species-filter .filter-block .js-open-mobile .fieldset-title:not(.second) .fieldset-legend-prefix:before, .species-filter .filter-block .js-open-mobile .fieldset-title:not(.second) .fieldset-legend-prefix:after {
   background-color: #fff;
 }
 .species-filter .filter-block .js-open-mobile input[type='text'] {
@@ -19494,6 +19561,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .species-filter .filter-block .js-open-mobile .form-item-search:before, .species-filter .filter-block .js-open-mobile .form-item-search:after {
   border: 2px solid #949494;
+}
+.species-filter .filter-block .ajax-progress.ajax-progress-throbber {
+  display: none;
 }
 .species-filter .birds-wrap {
   position: relative;

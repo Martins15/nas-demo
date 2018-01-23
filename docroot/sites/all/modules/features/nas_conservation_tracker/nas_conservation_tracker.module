@@ -21,7 +21,7 @@ function nas_conservation_tracker_ctools_plugin_directory($module, $plugin) {
  * Implements hook_init().
  */
 function nas_conservation_tracker_init() {
-  drupal_add_css(drupal_get_path('module', 'nas_conservation_tracker'), '/css/nas_conservation_tracker.css');
+  drupal_add_css(drupal_get_path('module', 'nas_conservation_tracker') . '/css/nas_conservation_tracker.css');
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/conservation_page.js');
 
   _nas_conservation_tracker_get_real_path(TRUE);
@@ -436,7 +436,7 @@ function nas_conservation_tracker_form_views_exposed_form_alter(&$form, &$form_s
 
 function nas_conservation_tracker_get_image($name) {
   $files = file_load_multiple(array(), array('filename' => $name));
-  $file =  reset($files);
+  $file = reset($files);
   if (empty($file)) {
     $image_url = variable_get('nas_conservation_tracker_endpoint') . '/' . $name;
     if (file_exists($image_url)) {
@@ -447,6 +447,13 @@ function nas_conservation_tracker_get_image($name) {
     return FALSE;
   }
   else {
+    if (!file_exists($file->uri)) {
+      $image_url = variable_get('nas_conservation_tracker_endpoint') . '/' . $name;
+      if (file_exists($image_url)) {
+        file_put_contents('public://' . basename($image_url), file_get_contents($image_url));
+        return $file->fid;
+      }
+    }
     return $file->fid;
   }
 }

@@ -94,7 +94,6 @@
       '$scope', '$stateParams', '$state', '$rootScope', '$http',
       function ($scope, $stateParams, $state, $rootScope, $http) {
         // @todo update var.
-
         var idItem = Drupal.settings.nasConservationTracker.scorecardId;
         $scope.tabLoaded = function () {
           if (Drupal.settings.nasConservationTracker.currentTab == 'response') {
@@ -126,10 +125,10 @@
           if (linkArray.indexOf(currentName) > -1) {
             Drupal.settings.nasConservationTracker.tabsOverview = Drupal.settings.nasConservationTracker.tabsOverview || {};
             Drupal.settings.nasConservationTracker.tabsData = Drupal.settings.nasConservationTracker.tabsData || {};
-
             // Load data via ajax only once.
             if (!angular.isDefined(Drupal.settings.nasConservationTracker.tabsOverview[currentName])) {
               // @todo take from backend
+             $scope.startLoad = true;
               $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + currentName)
                 .then(function (response) {
                   var tabData = response.data.data;
@@ -182,7 +181,9 @@
                   Drupal.settings.nasConservationTracker.tabsData[currentName] = response.data.data;
                   $scope['tab'] = tabData;
                   updateTabData(response.data.data);
-                });
+                }).finally(function() {
+                $scope.startLoad = false;
+              });
             }
             else {
               $scope['tab'] = Drupal.settings.nasConservationTracker.tabsOverview[currentName];

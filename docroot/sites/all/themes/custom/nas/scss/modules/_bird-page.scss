@@ -430,6 +430,7 @@ $gray-lightish: #9b9b9b;
     ul {
       list-style: none;
       margin: 0;
+      padding-bottom: 10px;
       position: absolute;
       display: none;
       background: $grey-menu-bird;
@@ -437,6 +438,7 @@ $gray-lightish: #9b9b9b;
       @include breakpoint(large-up) {
         display: block;
         position: relative;
+        padding-bottom: 0;
         @include content-between();
       }
       &.open {
@@ -473,14 +475,15 @@ $gray-lightish: #9b9b9b;
       display: inline-block;
       @include breakpoint(large-up) {
         width: 60px;
-        height: 60px;
         margin-top: 0;
         margin-bottom: 0;
-        font-size: 0;
+        padding: 65px 0 0;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 400;
         opacity: .2;
         background-position: center;
         background-size: contain;
-        padding: 0;
         &:hover {
           opacity: 1;
         }
@@ -488,7 +491,7 @@ $gray-lightish: #9b9b9b;
       &.true {
         background-color: $white;
         @include breakpoint(large-up) {
-          font-weight: bold;
+          font-weight: 400;
           opacity: 1;
           background-color: transparent;
         }
@@ -507,8 +510,13 @@ $gray-lightish: #9b9b9b;
     .actions {
       background-image: url("../img/bird-page/second-item.png");
     }
-    .responses {
+    .response {
+      position: static;
+      width: auto;
       background-image: url("../img/bird-page/third-item.png");
+      @include breakpoint(large-up) {
+        width: 60px;
+      }
     }
     .partners {
       background-image: url("../img/bird-page/fourth-item.png");
@@ -626,6 +634,33 @@ $gray-lightish: #9b9b9b;
     display: none;
     &.active {
       display: block;
+    }
+  }
+  .row {
+    position: relative;
+  }
+  .js-preloader {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    background: $white;
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      top: 30%;
+      left: 50%;
+      width: 150px;
+      height: 150px;
+      transform: translate(-50%, -50%);
+      background-color: #333;
+      border-radius: 100%;
+      -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+      animation: sk-scaleout 1.0s infinite ease-in-out;
     }
   }
   @include breakpoint(large-up) {
@@ -1298,6 +1333,16 @@ $gray-lightish: #9b9b9b;
 
 .conservation-tracker-custom-pane {
   padding-bottom: 40px;
+  h3 {
+    margin-bottom: 15px;
+    font-size: 33px;
+    font-weight: 300;
+    line-height: 1.15;
+    @include breakpoint(large-up) {
+      margin-bottom: 20px;
+      letter-spacing: .5px;
+    }
+  }
 }
 
 // Style for pages /conservation-tracker and /conservation-tracker/*

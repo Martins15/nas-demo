@@ -187,8 +187,8 @@ $text-gray-filter: #9b9b9b;
       font-weight: normal;
       .fieldset-legend-prefix {
         display: block;
+        top: 50%;
         right: 10px;
-        bottom: 0;
         width: 12px;
         height: 12px;
         clip: inherit;
@@ -231,9 +231,11 @@ $text-gray-filter: #9b9b9b;
       #edit-iucn-wrapper {
         margin-bottom: 0;
       }
-      .fieldset-title {
+      .fieldset-title,
+      &.second {
         padding-left: 25px;
         font-size: 17px;
+        text-align: left;
         cursor: pointer;
         span {
           display: inline-block;
@@ -245,9 +247,13 @@ $text-gray-filter: #9b9b9b;
           padding: 3px;
           -webkit-transform: rotate(-135deg);
           transform: rotate(-135deg);
-          border: solid $dark-filter;
+          border: solid $white;
           border-width: 0 2px 2px 0;
           border-radius: 0;
+          @include breakpoint(large-up) {
+            border: solid $dark-filter;
+            border-width: 0 2px 2px 0;
+          }
           &:before,
           &:after {
             border-color: transparent;
@@ -271,7 +277,9 @@ $text-gray-filter: #9b9b9b;
     }
     .wrap-items {
       padding: 15px 0;
-      border-bottom: 1px solid #dfdfdf;
+      @include breakpoint(large-up) {
+        border-bottom: 1px solid #dfdfdf;
+      }
     }
     .collapsed {
       .fieldset-title {
@@ -335,7 +343,7 @@ $text-gray-filter: #9b9b9b;
       .form-item.form-type-radio {
         opacity: .5;
       }
-      .fieldset-title .fieldset-legend-prefix{
+      .fieldset-title:not(.second) .fieldset-legend-prefix{
         &:before,
         &:after {
           background-color: $white;
@@ -352,6 +360,9 @@ $text-gray-filter: #9b9b9b;
           border: 2px solid #949494;
         }
       }
+    }
+    .ajax-progress.ajax-progress-throbber {
+      display: none;
     }
   }
   .birds-wrap {
