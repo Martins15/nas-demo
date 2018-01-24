@@ -1,0 +1,48 @@
+{
+  "id": 4,
+  "name": "Bird-friendly communities",
+  "tagline": "Where birds thrive, people prosper. From urban centers to rural towns, each community can provide important habitat for native birds. In turn, birds offer us a richer, more beautiful, and healthful place to live.",
+  "settings": {},
+  "tabs": {
+    "overview": {
+      "title": "Overview",
+      "description": "Audubon's Bird-Friendly Communities conservation programs protect and restore bird populations in America's cities and towns. In environments that are primarily defined by human infrastructure (that is, by homes, roads, buildings, pavement, lawns, industrial complexes, etc.), birds need food, shelter, safe passage, and places to raise their young. Communities that are bird-friendly meet those needs for birds through individual and collective actions by community members and leaders – actions that also contribute to more sustainable and healthy human societies.",
+      "progress": "71"
+    },
+    "goals": {
+      "title": "Goals",
+      "goals": [{
+        "group": "",
+        "list": [
+          "Plants for Birds: Native plants support the food web on which birds depend, and they provide shelter and nest sites for birds. In September 2016, we launched an ambitious national program, with an initial 12- to 18-month goal to engage 50,000 people to put 1 million native plants in the ground, creating more food and habitat for birds and helping shift the national conversation about landscaping. Five-year outcome targets are as follows:<ul><li>Put 5-10 million new native plants in the ground through the activities of individuals and the Audubon network by 2020, creating and sustaining habitat for birds and an educated, committed network of advocates for change.</li><li>Recruit 200,000 climate advocates and 65,000 water program advocates.</li><li>Engage in at least 500 community-level programs and partnerships to establish more native plants, demonstrate solutions, and create demand for change.</li><li>Identify and pursue 2-3 approaches to expand the use of native plants at scale nationwide, setting the stage for meaningful changes in public policy, supply chains, industry practices, etc.</li></ul>",
+          "Bird-Friendly Buildings: Glass and lights present major hazards to birds, killing hundreds of millions of birds each year. In a handful of locations, Audubon has been a leader in understanding and addressing these effects on birds, and now through a strong national program, we will target the following five-year outcomes:<ul><li>Publish and promote industry-leading educational resources about the problem and solutions in order to get actionable information in the hands of activists and decision makers and raise awareness about the problem.</li><li>Develop data systems and data-collection approaches, and implement them at scale in the field, so that scientists studying the problem and activists and decision makers have access to better data about the impact of human-built structures on birds and the effects of solutions.</li><li>Evaluate at least 100 urban areas (at least 20 in each flyway) for problematic buildings and lighting regimes and, of those that demonstrate significant problems with bird mortality, implement local programs to reduce bird deaths measurably.</li><li>Pass the Federal Bird-Safe Buildings Act, secure executive orders in at least five states, and secure local ordinances or resolutions in at least 50 cities nationwide.</li><li>Identify and pursue 2-3 approaches to effect system-level changes in industry, manufacturing, design, or similar fields nationwide, setting the stage for meaningful changes in public policy, supply chains, industry practices, etc.</li></ul>"
+        ]
+      }]
+    },
+    "partners": {
+      "title": "Partners",
+      "list": [
+        "Local retailers",
+        "faith congregations",
+        "volunteer groups",
+        "corporations such as Aveda",
+        "Walmart",
+        "Lowe's",
+        "Home Depot",
+        "Bank of America",
+        "Verizon",
+        "Boeing",
+        "Duke Energy"
+      ]
+    },
+    "initiatives": {
+      "title": "Initiatives",
+      "list": [
+        "Plants for Birds",
+        "Bird-friendly Buildings"
+      ]
+    },
+    "priority_species": {},
+    "priority_landscapes": {}
+  }
+}
