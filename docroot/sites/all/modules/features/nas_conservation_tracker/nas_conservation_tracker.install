@@ -65,6 +65,28 @@ function nas_conservation_tracker_install() {
 
   path_save($path);
 
+  // Coastal Carolinas.
+  $data = nas_conservation_tracker_get_json('scorecard-456');
+  watchdog('ct debug', print_r($data, TRUE));
+  $node = new StdClass();
+  $node->type = 'ct_scorecard';
+  $node->status = 1;
+  $node->uid = 1;
+  $node->language = LANGUAGE_NONE;
+  $node->title = $data['name'];
+  $node->field_scorecard_id = array(LANGUAGE_NONE => array(array('value' => $data['id'])));
+  $node = node_submit($node);
+  node_save($node);
+  watchdog('ct debug', print_r($node, TRUE));
+
+  $path = array(
+    'source' => 'node/' . $node->nid,
+    'alias' => 'conservation-tracker/scorecard/conservation-ranching',
+    'language' => $node->language,
+  );
+
+  path_save($path);
+
     // Update config for colorbox.
   variable_set('colorbox_load', TRUE);
   variable_set('colorbox_inline', TRUE);
