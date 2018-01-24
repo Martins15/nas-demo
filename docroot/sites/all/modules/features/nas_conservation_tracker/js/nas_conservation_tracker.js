@@ -490,7 +490,7 @@
     var json = Drupal.settings.nasConservationTracker.jsonData[loc];
     var objectivesRows = [];
     var objectivesTips = [];
-    var overall = 0;
+    var overall = 0, overallCount = 0;
     var sites = (Drupal.settings.nasConservationTracker.visibleSites.length > 0) ?
         Drupal.settings.nasConservationTracker.visibleSites :
         json.sites;
@@ -501,6 +501,7 @@
       if ($.isNumeric(objectives[j].value)) {
         objectivesRows.push([objectives[j].description, objectives[j].value]);
         overall += parseFloat(objectives[j].value);
+        overallCount++;
       }
       else {
         objectivesRows.push([objectives[j].description, -1]);
@@ -533,7 +534,7 @@
         objectWrap.show();
       }
 
-      overall = Math.round(overall / objectivesRows.length);
+      overall = Math.round(overall / overallCount);
       updateOverall(overall);
 
       function updateOverall(overall) {
