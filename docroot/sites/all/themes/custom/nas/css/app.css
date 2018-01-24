@@ -5000,7 +5000,8 @@ small {
 }
 .bird-card-caption .common-name {
   margin-bottom: 5px;
-  font-size: 21px;
+  font-size: 18px;
+  white-space: nowrap;
 }
 .bird-card-caption .common-name a {
   color: #404040 !important;
@@ -19612,7 +19613,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding: 0 0 50px;
 }
 .species-filter .birds-wrap .bird-card-caption {
-  padding: 0 10px;
+  padding: 0 8px;
 }
 @media only screen and (min-width: 768px) {
   .species-filter .birds-wrap .bird-card-illustration {

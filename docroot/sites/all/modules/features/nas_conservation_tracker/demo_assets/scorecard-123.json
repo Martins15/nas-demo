@@ -38,7 +38,12 @@
       "description": "<ul><li>Monitoring and research to track the health of Black Oystercatcher populations by measuring productivity</li><li>Engagement to increase public awareness of oystercatchers, including signs, magnets, pamphlets, lectures, and conversations with coastal users and business owners</li><li>Habitat management and restoration to protect and enhance Black Oystercatcher populations and other societal benefits</li></ul>",
       "tooltip": "Actions are classified according to the Open Standards for the Practice of Conservation: <a href='http://cmp-openstandards.org/tools/threats-and-actions-taxonomies'>http://cmp-openstandards.org/tools/threats-and-actions-taxonomies</a>",
       "objectives": [{
-        "description": "<ul><li>Protect or restore intertidal habitat for Black Oystercatcher</li><li>Continue monitoring productivity along the California coast and improve our recent population viability assessment <sup>1</sup>",
+        "description": "Protect or restore intertidal habitat for Black Oystercatcher",
+        "tooltip": "",
+        "value": ""
+      },
+        {
+        "description": "Continue monitoring productivity along the California coast and improve our recent population viability assessment <sup>1</sup>",
         "tooltip": "To quantify progress towards measurable objectives related to conservation interventions designed to address threats",
         "value": "33"
       }],
