@@ -1,11 +1,4 @@
 //@todo Move to file
-$gray-menu-filter: #fbfaf6;
-$bord-filter: #dfdfdf;
-$dark-filter: #404040;
-$dark-bg-filter: #303030;
-$dark-border-filter: #1c1c1c;
-$text-gray-filter: #9b9b9b;
-
 @-webkit-keyframes sk-scaleout {
   0% { -webkit-transform: scale(0) }
   100% {
@@ -25,37 +18,6 @@ $text-gray-filter: #9b9b9b;
     }
 }
 
-@mixin style-input() {
-  input[type="radio"], input[type="checkbox"] {
-    position: absolute;
-    left: -999em;
-  }
-  label {
-    display: block;
-    position: relative;
-    padding-left: 25px;
-    &:before {
-      content: '';
-      position: absolute;
-      top: .25em;
-      left: -2px;
-      width: 14px;
-      height: 14px;
-    }
-  }
-  input[type="checkbox"] + label:before,
-  input[type="radio"] + label:before {
-    border: 1px solid $bord-filter;
-    background: transparent;
-  }
-  input[type="radio"] + label:before {
-    border-radius: 50%;
-  }
-  input[type="checkbox"]:checked + label:before,
-  input[type="radio"]:checked + label:before {
-    background: $bord-filter;
-  }
-}
 
 .species-filter {
   margin-bottom: 40px;

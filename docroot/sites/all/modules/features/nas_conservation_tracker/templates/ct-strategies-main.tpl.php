@@ -8,7 +8,9 @@
     <div ng-app="nasCtStrategies" ng-controller="tabs">
       <tabset>
         <tab ng-repeat="tab in tabs" heading="{{tab.name}}" select="getContent($index)" active="tab.active" disabled="tab.disabled">
-
+          <tab-heading ng-class="getClass($index)">
+            {{tab.name}}
+          </tab-heading>
           <div ng-hide="!tab.isLoaded">
             <div>
               <h4>{{tab.name}}</h4>
