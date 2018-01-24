@@ -2,7 +2,6 @@
  * @file
  * NAS CT Custom JS.
  */
-
 (function ($, Drupal) {
   Drupal.behaviors.nasCtStrategies = {
     attach: function (context, settings) {
@@ -23,6 +22,7 @@
           var strategy = settings.nasConservationTracker.strategies[i];
           strategy.isLoaded = false;
           strategy.content = [];
+
           links.push(strategy.link);
           $scope.tabs.push(strategy);
         }
@@ -39,18 +39,19 @@
 
 
         $scope.getContent = function(index) {
-          //alert('ffefergrefwefwe');
+
           /* see if we have data already */
           $location.path(settings.nasConservationTracker.basePath + '/' + $scope.tabs[index].link);
           if (!$scope.tabs[index].isLoaded) {
             /* or make request for data delayed to show Loading... */
             $timeout(function () {
-
-              //$http.get(jsonFile).then(function(res){
-              $scope.tabs[index].content = 'content of' + index;
-              console.log($scope.tabs[index]);
-              $scope.tabs[index].isLoaded = true;
-              //});
+              var jsonFile = '/conservation-tracker/ajax/strategy/' + $scope.tabs[index].id;
+              $http.get(jsonFile).then(function(data){
+                console.log('DATA', data);
+                $scope.tabs[index].content['name'] = 'content of' + index;
+                console.log($scope.tabs[index]);
+                $scope.tabs[index].isLoaded = true;
+              });
 
             }, 100);
           }

@@ -1445,7 +1445,7 @@ function nas_preprocess_panels_pane(&$vars) {
       $vars['title_suffix'] = '</div></div>';
     }
   }
-  if ($vars['pane']->type == 'block' && $vars['pane']->subtype == 'menu-menu-ct-menu') {
+  if ($vars['pane']->type == 'block' && $vars['pane']->subtype == 'menu-menu-ct-menu' && is_array($vars['content'])) {
     $vars['content']['#prefix'] = '<div class="ct-scorecard-tabs nas-ct-menu"><div class="ct-scorecard-tabs__help"><div class="row">';
     $vars['content']['#suffix'] = '</div></div></div>';
   }
