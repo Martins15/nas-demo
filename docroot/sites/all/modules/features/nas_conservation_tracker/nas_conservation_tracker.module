@@ -54,10 +54,10 @@ function _nas_conservation_tracker_get_real_path($load = FALSE) {
           menu_execute_active_handler($source);
           drupal_exit();
         }
-        break;
+        return $source;
       }
     }
-    return $source;
+
   }
 
   return  implode('/', $current_sections);
@@ -78,6 +78,13 @@ function nas_conservation_tracker_menu() {
   $items['conservation-tracker/ajax/landscapes'] = array (
     'title' => 'Get data for landscapes',
     'page callback' => 'nas_conservation_tracker_get_landscapes_json',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['conservation-tracker/ajax/strategy/%'] = array (
+    'title' => 'Get data for strategy',
+    'page callback' => 'nas_conservation_tracker_get_strategy_json',
+    'page arguments' => array(3),
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
@@ -266,6 +273,25 @@ function nas_conservation_tracker_get_landscapes_json() {
     if (!empty($result['data'])) {
       $result['success'] = 1;
     }
+
+  drupal_json_output($result);
+}
+
+/**
+ * Get Score card data.
+ * @param $id
+ */
+function nas_conservation_tracker_get_strategy_json($id) {
+
+  $result = array('data' => array(), 'success' => 0);
+  if (!empty($id) && is_numeric($id)) {
+    $data = nas_conservation_tracker_get_json('strategies-' . $id);
+
+    $result['data'] = $data;
+    if (!empty($result['data'])) {
+      $result['success'] = 1;
+    }
+  }
 
   drupal_json_output($result);
 }
@@ -538,7 +564,7 @@ function nas_conservation_tracker_add_base($href = NULL) {
 
 function nas_conservation_tracker_include_angular() {
   drupal_add_css('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css', array('type' => 'external'));
-  drupal_add_js('http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js');
+  drupal_add_js('//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js', 'external');
   $libs = [
     'nas_master_native_plants' => [
       'angularjs',
