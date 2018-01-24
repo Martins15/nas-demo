@@ -21,8 +21,7 @@
         for (var i in settings.nasConservationTracker.strategies) {
           var strategy = settings.nasConservationTracker.strategies[i];
           strategy.isLoaded = false;
-          strategy.content = [];
-
+          //strategy.content = [];
           links.push(strategy.link);
           $scope.tabs.push(strategy);
         }
@@ -49,9 +48,10 @@
             /* or make request for data delayed to show Loading... */
             $timeout(function () {
               var jsonFile = '/conservation-tracker/ajax/strategy/' + $scope.tabs[index].id;
-              $http.get(jsonFile).then(function(data){
-                console.log('DATA', data);
-                $scope.tabs[index].content['name'] = 'content of' + index;
+              $http.get(jsonFile).then(function(result){
+                console.log('DATA', result);
+                $scope.tabs[index].subTabs = result.data.data.tabs;
+                $scope.tabs[index].tagline = result.data.data.tagline;
                 console.log($scope.tabs[index]);
                 $scope.tabs[index].isLoaded = true;
               });
