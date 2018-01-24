@@ -17,6 +17,7 @@
 
           $(document).on('respond', function(e) {
             if(e.size == "tiny" || e.size == "small" || e.size == "medium") {
+              console.log('ON RESPOND', e.size);
               self.reset();
             }
             else if(e.size == "large") {
@@ -77,7 +78,7 @@
           self.updateHeight();
 
           if (state) {
-            $wrapper.attr("style", "margin-top: " + self.getTotalHeight() + "px;");
+            $wrapper.attr("style", "margin-top: " + (self.getTotalHeight() - self.buffer) + "px;");
             $wrapper.removeClass("on");
           } 
           else {
