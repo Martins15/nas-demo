@@ -1367,6 +1367,14 @@ $gray-lightish: #9b9b9b;
       }
     }
   }
+  .column,
+  .row.space-bottom {
+    position: static;
+  }
+  .hero-attribution {
+    position: absolute;
+    right: 0;
+  }
   .homepage-first-row {
     display: none;
   }
