@@ -1412,3 +1412,12 @@ $gray-lightish: #9b9b9b;
     text-align: center;
   }
 }
+
+#nas-conservation-tracker-map-form {
+  .form-item.form-type-radio {
+    @include style-input();
+    input {
+      margin: 0;
+    }
+  }
+}

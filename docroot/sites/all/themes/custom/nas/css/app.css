@@ -19227,6 +19227,39 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   text-align: center;
 }
 
+#nas-conservation-tracker-map-form .form-item.form-type-radio input[type="radio"], #nas-conservation-tracker-map-form .form-item.form-type-radio input[type="checkbox"] {
+  position: absolute;
+  left: -999em;
+}
+#nas-conservation-tracker-map-form .form-item.form-type-radio label {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+}
+#nas-conservation-tracker-map-form .form-item.form-type-radio label:before {
+  content: '';
+  position: absolute;
+  top: .25em;
+  left: -2px;
+  width: 14px;
+  height: 14px;
+}
+#nas-conservation-tracker-map-form .form-item.form-type-radio input[type="checkbox"] + label:before,
+#nas-conservation-tracker-map-form .form-item.form-type-radio input[type="radio"] + label:before {
+  border: 1px solid #dfdfdf;
+  background: transparent;
+}
+#nas-conservation-tracker-map-form .form-item.form-type-radio input[type="radio"] + label:before {
+  border-radius: 50%;
+}
+#nas-conservation-tracker-map-form .form-item.form-type-radio input[type="checkbox"]:checked + label:before,
+#nas-conservation-tracker-map-form .form-item.form-type-radio input[type="radio"]:checked + label:before {
+  background: #dfdfdf;
+}
+#nas-conservation-tracker-map-form .form-item.form-type-radio input {
+  margin: 0;
+}
+
 @-webkit-keyframes sk-scaleout {
   0% {
     -webkit-transform: scale(0);
