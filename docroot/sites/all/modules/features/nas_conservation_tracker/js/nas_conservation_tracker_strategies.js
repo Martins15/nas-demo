@@ -37,6 +37,9 @@
         }
         settings.nasConservationTracker.strategies[active].active = true;
 
+        $scope.getClass = function(index) {
+          return 'tab-' + $scope.tabs[index].link;
+        }
 
         $scope.getContent = function(index) {
 

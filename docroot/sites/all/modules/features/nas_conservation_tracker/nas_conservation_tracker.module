@@ -564,7 +564,7 @@ function nas_conservation_tracker_add_base($href = NULL) {
 
 function nas_conservation_tracker_include_angular() {
   drupal_add_css('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css', array('type' => 'external'));
-  drupal_add_js('//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js', 'external');
+  drupal_add_js('//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js', 'external');
   $libs = [
     'nas_master_native_plants' => [
       'angularjs',
