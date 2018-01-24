@@ -19967,9 +19967,146 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .ct-strategies-main .ct-strategies-tabs-wrap > div {
-  padding: 30px 0;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 30px;
   overflow: hidden;
-  background: #fbfaf6;
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav-tabs > li > a {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav-tabs > .active > a,
+.ct-strategies-main .ct-strategies-tabs-wrap .nav-tabs > .active > a:hover,
+.ct-strategies-main .ct-strategies-tabs-wrap .nav-tabs > .active > a:focus {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav-tabs > li > a:hover, .ct-strategies-main .ct-strategies-tabs-wrap .nav-tabs > li > a:focus {
+  border-color: transparent;
+  background-color: transparent;
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs {
+  position: relative;
+  text-align: center;
+  list-style: none;
+  margin: 0;
+  padding-bottom: 10px;
+  border: 0;
+  width: 100%;
+}
+@media only screen and (min-width: 768px) {
+  .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs {
+    display: block;
+    position: relative;
+    width: 60%;
+    padding-right: 50px;
+    padding-bottom: 0;
+    text-align: left;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+  }
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs li,
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .mobile-active {
+  cursor: pointer;
+  background-size: auto 38px;
+  height: 40px;
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  padding-left: 60px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 40px;
+  font-size: 14px;
+  display: inline-block;
+}
+@media only screen and (min-width: 768px) {
+  .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs li,
+  .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .mobile-active {
+    width: 90px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 65px 0 0;
+    opacity: .2;
+    background-position: center;
+    background-size: auto;
+  }
+  .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs li:hover,
+  .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .mobile-active:hover {
+    opacity: 1;
+  }
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs li.true,
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .mobile-active.true {
+  background-color: #fff;
+}
+@media only screen and (min-width: 768px) {
+  .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs li.true,
+  .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .mobile-active.true {
+    font-weight: 400;
+    opacity: 1;
+    background-color: transparent;
+  }
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs li.active,
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .mobile-active.active {
+  opacity: 1;
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs a {
+  color: #222222;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .mobile-active {
+  display: inline-block;
+  padding-right: 0;
+}
+@media only screen and (min-width: 768px) {
+  .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .mobile-active {
+    display: none;
+  }
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .coasts {
+  background-image: url("../img/strategies/1.png");
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .working-lands {
+  background-image: url("../img/strategies/2.png");
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .water {
+  background-image: url("../img/strategies/3.png");
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .bird-friendly-communities {
+  background-image: url("../img/strategies/4.png");
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .climate {
+  background-image: url("../img/strategies/5.png");
+}
+.ct-strategies-main .tab-content {
+  padding-top: 60px;
 }
 
 .sidebar, .article-sidebar {
