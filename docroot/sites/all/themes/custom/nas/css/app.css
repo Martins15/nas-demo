@@ -19182,6 +19182,14 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     font-size: 64px;
   }
 }
+.conservation-tracker-pages .column,
+.conservation-tracker-pages .row.space-bottom {
+  position: static;
+}
+.conservation-tracker-pages .hero-attribution, .conservation-tracker-pages .hero-attribution-fullscreen {
+  position: absolute;
+  right: 0;
+}
 .conservation-tracker-pages .homepage-first-row {
   display: none;
 }
