@@ -19966,6 +19966,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   transform: rotate(-45deg);
 }
 
+.ct-strategies-main .ct-strategies-tabs-wrap > div {
+  padding: 30px 0;
+  overflow: hidden;
+  background: #fbfaf6;
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
