@@ -551,7 +551,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
         1 => array(
           'top_text' => '',
           'title' => 'Species',
-          'bottom_text' => 'Audubon\'s priority bird species are birds of significant conservation need, for which our actions, over time, can lead to measur',
+          'bottom_text' => 'Audubon\'s priority bird species are birds of significant conservation need, for which our actions, over time, can lead to measurable improvements in status.',
           'image' => nas_conservation_tracker_get_image('landing_page_species.jpg'),
           'image_link' => '/conservation-tracker/species',
           'color_mode' => 'dark',
@@ -560,7 +560,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
         2 => array(
           'top_text' => '',
           'title' => 'Landscapes',
-          'bottom_text' => 'Audubon\'s work is "place-based" and enables our network to partner with local managers, businesses, and stakeholders to achieve ',
+          'bottom_text' => 'Audubon\'s work is "place-based" and enables our network to partner with local managers, businesses, and stakeholders to achieve conservation success.',
           'image' => nas_conservation_tracker_get_image('landing_page_landscapes.jpg'),
           'image_link' => '/conservation-tracker/landscapes',
           'color_mode' => 'dark',
