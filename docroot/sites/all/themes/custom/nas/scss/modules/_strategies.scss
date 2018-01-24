@@ -1,0 +1,181 @@
+.ct-strategies-main {
+  overflow: hidden;
+  .ct-strategies-tabs-wrap {
+    > div {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 100px auto 0;
+      // Todo update !!!!
+     // overflow: hidden;
+    }
+    //&.open {
+    //  display: block;
+    //  left: 0;
+    //  z-index: 2;
+    //  @include breakpoint(large-up) {
+    //    @include content-between();
+    //    z-index: 0;
+    //  }
+    //  > .true {
+    //    background: $white;
+    //    @include breakpoint(large-up) {
+    //      background: transparent;
+    //    }
+    //  }
+    //}
+    .nav-tabs>li>a {
+      margin: 0;
+      padding: 0;
+      line-height: normal;
+    }
+    .nav-tabs>.active>a,
+    .nav-tabs>.active>a:hover,
+    .nav-tabs>.active>a:focus {
+      padding: 0;
+      border: 0;
+      background-color: transparent;
+    }
+    .nav-tabs>li>a:hover, .nav-tabs>li>a:focus {
+      border-color: transparent;
+      background-color: transparent;
+    }
+    .nav.nav-tabs {
+      position: relative;
+      text-align: center;
+      list-style: none;
+      margin: 0;
+      padding-bottom: 10px;
+      border: 0;
+      //position: absolute;
+      //display: none;
+      width: 100%;
+      @include breakpoint(large-up) {
+        display: block;
+        position: relative;
+        width: 50%;
+        padding-top: 30px;
+        padding-right: 50px;
+        padding-bottom: 0;
+        text-align: left;
+        @include content-between();
+      }
+      li,
+      .mobile-active {
+        cursor: pointer;
+        background-size: auto 38px;
+        height: 40px;
+        background-position: 10px center;
+        background-repeat: no-repeat;
+        padding-left: 60px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        line-height: 40px;
+        font-size: 14px;
+        display: inline-block;
+        @include breakpoint(large-up) {
+          width: 90px;
+          height: auto;
+          margin-top: 0;
+          margin-bottom: 0;
+          padding: 60px 0 0;
+          opacity: .2;
+          background-position: center top;
+          background-size: auto;
+          &:hover {
+            opacity: 1;
+          }
+        }
+        &.true {
+          background-color: $white;
+          @include breakpoint(large-up) {
+            font-weight: 400;
+            opacity: 1;
+            background-color: transparent;
+          }
+        }
+        &.active {
+          opacity: 1;
+        }
+      }
+      a {
+        color: #222222;
+        font-family: $lato-font;
+        text-align: center;
+        text-transform: capitalize;
+        font-weight: 400;
+      }
+      .mobile-active {
+        display: inline-block;
+        padding-right: 0;
+        @include breakpoint(large-up) {
+          display: none;
+        }
+      }
+      .coasts {
+        background-image: url("../img/strategies/1.png");
+      }
+      .working-lands {
+        background-image: url("../img/strategies/2.png");
+      }
+      .water {
+        background-image: url("../img/strategies/3.png");
+      }
+      .bird-friendly-communities {
+        background-image: url("../img/strategies/4.png");
+      }
+      .climate {
+        background-image: url("../img/strategies/5.png");
+      }
+    }
+  }
+  
+  .tab-content {
+    padding-top: 60px;
+  }
+  .text-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-left: 50px;
+    border-left: 1px solid #d9d9d9;
+    h4 {
+      @include breakpoint(large-up) {
+        font-size: 33px;
+        font-weight: 300;
+        line-height: 1.21;
+        margin: 0;
+        color: $black;
+      }
+    }
+    p {
+      @include breakpoint(large-up) {
+        font-size: 14px;
+        line-height: normal;
+        color: $brownish-grey;
+      }
+    }
+  }
+  .tab-content {
+overflow: inherit;
+  }
+  .wrap-strategy-breakdown {
+    position: relative;
+    background: $bg-map;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: $bg-map;
+    }
+    &:before {
+      left: -100%;
+    }
+    &:after {
+      right: -100%;
+    }
+  }
+}
