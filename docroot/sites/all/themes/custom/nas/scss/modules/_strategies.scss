@@ -1,11 +1,13 @@
 .ct-strategies-main {
+  overflow: hidden;
   .ct-strategies-tabs-wrap {
     > div {
+      position: relative;
       width: 100%;
       max-width: 1000px;
-      margin: 0 auto;
-      padding-top: 30px;
-      overflow: hidden;
+      margin: 100px auto 0;
+      // Todo update !!!!
+     // overflow: hidden;
     }
     //&.open {
     //  display: block;
@@ -51,7 +53,8 @@
       @include breakpoint(large-up) {
         display: block;
         position: relative;
-        width: 60%;
+        width: 50%;
+        padding-top: 30px;
         padding-right: 50px;
         padding-bottom: 0;
         text-align: left;
@@ -72,11 +75,12 @@
         display: inline-block;
         @include breakpoint(large-up) {
           width: 90px;
+          height: auto;
           margin-top: 0;
           margin-bottom: 0;
-          padding: 65px 0 0;
+          padding: 60px 0 0;
           opacity: .2;
-          background-position: center;
+          background-position: center top;
           background-size: auto;
           &:hover {
             opacity: 1;
@@ -128,5 +132,50 @@
   
   .tab-content {
     padding-top: 60px;
+  }
+  .text-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-left: 50px;
+    border-left: 1px solid #d9d9d9;
+    h4 {
+      @include breakpoint(large-up) {
+        font-size: 33px;
+        font-weight: 300;
+        line-height: 1.21;
+        margin: 0;
+        color: $black;
+      }
+    }
+    p {
+      @include breakpoint(large-up) {
+        font-size: 14px;
+        line-height: normal;
+        color: $brownish-grey;
+      }
+    }
+  }
+  .tab-content {
+overflow: inherit;
+  }
+  .wrap-strategy-breakdown {
+    position: relative;
+    background: $bg-map;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: $bg-map;
+    }
+    &:before {
+      left: -100%;
+    }
+    &:after {
+      right: -100%;
+    }
   }
 }
