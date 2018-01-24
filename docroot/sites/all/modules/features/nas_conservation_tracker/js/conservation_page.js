@@ -4,8 +4,10 @@
     attach: function (context, settings) {
       $('body').once('curtainFix', function(){
         setTimeout(function(){
-          Drupal.curtain.reset();
-          Drupal.curtain.setup();
+          if (Drupal.curtain) {
+            Drupal.curtain.reset();
+            Drupal.curtain.setup();
+          }
         }, 500);
       });
 
