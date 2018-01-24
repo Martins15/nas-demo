@@ -118,8 +118,8 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
     'map' => render($map),
     'actions' => d3_draw($actions_chart),
     'objectives' => d3_draw($objectives_chart),
-    'tooltip' => $tooltips[$path],
-    'tooltip_objectives' => $tooltips[$path . '_objectives'],
+    'tooltip' => !empty($tooltips[$path]) ? $tooltips[$path] : '',
+    'tooltip_objectives' => !empty($tooltips[$path . '_objectives']) ?  $tooltips[$path . '_objectives']: '',
   ];
 
   $block->content = theme('ct_scorecard_main', $vars);

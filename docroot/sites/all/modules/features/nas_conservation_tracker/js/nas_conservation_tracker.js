@@ -524,7 +524,7 @@
     // Charts.
     var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
     objectives.update({rows: objectivesRows, tooltips: objectivesTips});
-    if (objectivesRows.length > 0) {
+    if (overallCount > 0) {
      var objectWrap = $('.objectives-wrap');
 
      // Check if array and if empty hide block.
