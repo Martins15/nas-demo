@@ -487,7 +487,7 @@
   Drupal.nasCtInitCharts = function () {
     // Charts. TODO make it look good
     var loc = getLocation();
-    var json = Drupal.settings.nasConservationTracker.jsonData[loc];
+    var json = Drupal.settings.nasConservationTracker.jsonData[loc] ? Drupal.settings.nasConservationTracker.jsonData[loc] : [];
     var objectivesRows = [];
     var objectivesTips = [];
     var overall = 0, overallCount = 0;
@@ -526,7 +526,7 @@
     // Charts.
     var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
     objectives.update({rows: objectivesRows, tooltips: objectivesTips});
-    if (overallCount > 0) {
+    if (objectivesRows.length > 0) {
      var objectWrap = $('.objectives-wrap');
 
      // Check if array and if empty hide block.
@@ -536,6 +536,13 @@
         objectWrap.show();
       }
 
+
+    }
+    else {
+      $('.objectives-wrap').hide();
+    }
+console.log('OVERALL', overall, overallCount);
+    if (overall > 0 && overallCount > 0) {
       overall = Math.round(overall / overallCount);
       updateOverall(overall);
 
@@ -550,12 +557,6 @@
 
         $overallWrapper.find('progress').val(overall);
       }
-    }
-    else {
-      $('.objectives-wrap').hide();
-    }
-
-    if (overall > 0) {
       $('.progress-wrap').show();
     }
     else {
