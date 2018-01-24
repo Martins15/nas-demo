@@ -20,13 +20,13 @@
               <div class="wrap-strategy-breakdown">
                   <div id="strategy-breakdown-left">
                       <h5>Strategy Breakdown</h5>
-                      <div ng-if="tab.subTabs.overview">
+                      <div ng-if="tab.subTabs.overview" class="item-menu" ng-class="{ active: isSet(1) }" ng-click="setTab(1)">
                           {{tab.subTabs.overview.title}}
                       </div>
-                      <div ng-if="tab.subTabs.goals">
+                      <div ng-if="tab.subTabs.goals" class="item-menu" ng-class="{ active: isSet(2) }" ng-click="setTab(2)">
                           {{tab.subTabs.goals.title}}
                       </div>
-                      <div ng-if="tab.subTabs.partners">
+                      <div ng-if="tab.subTabs.partners" class="item-menu" ng-class="{ active: isSet(3) }" ng-click="setTab(3)">
                           {{tab.subTabs.partners.title}}
                       </div>
                       <div ng-if="tab.subTabs.initiatives">
@@ -49,7 +49,7 @@
                       </div>
                   </div>
                   <div id="strategy-breakdown-right">
-                      <div ng-if="tab.subTabs.overview">
+                      <div ng-if="tab.subTabs.overview" ng-show="isSet(1)">
                           <div class="progress-wrap map-item large-8">
                               <div class="map-item__inner-help">
                                   <div class="progress-wrap__title">
@@ -62,7 +62,7 @@
                           </div>
                           <p>{{tab.subTabs.overview.description}}</p>
                       </div>
-                      <div ng-if="tab.subTabs.goals">
+                      <div ng-if="tab.subTabs.goals" ng-show="isSet(2)">
                           {{tab.subTabs.goals.title}}
                           <ul>
                               <li ng-repeat="goalGroup in tab.subTabs.goals.goals">
@@ -73,7 +73,7 @@
                               </li>
                           </ul>
                       </div>
-                      <div ng-if="tab.subTabs.partners">
+                      <div ng-if="tab.subTabs.partners" ng-click="setTab(3)">
                           {{tab.subTabs.partners.title}}
                           <ul>
                               <li ng-repeat="partner in tab.subTabs.partners.list">{{partner}}</li>
