@@ -7,7 +7,7 @@
     <div class="ct-strategies-tabs-wrap" ng-app="nasCtStrategies" ng-controller="tabs">
       <tabset>
         <tab ng-repeat="tab in tabs" heading="{{tab.name}}" class="{{tab.link}}" select="getContent($index)" active="tab.active" disabled="tab.disabled">
-          <tab-heading ng-class="getClass($index)">
+          <tab-heading class="link" ng-class="getClass($index)">
             {{tab.name}}
           </tab-heading>
           <div ng-hide="!tab.isLoaded">
