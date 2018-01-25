@@ -7,6 +7,7 @@
 include_once 'nas_conservation_tracker.features.inc';
 
 define('NAS_CT_JS_PATH', drupal_get_path('module', 'nas_conservation_tracker') . '/js/');
+define('NAS_CT_CSV_PATH', variable_get('file_public_path') . '/conservation_tracker_csv');
 
 /**
  * Implements hook_ctools_plugin_directory().
@@ -85,6 +86,13 @@ function nas_conservation_tracker_menu() {
     'title' => 'Get data for strategy',
     'page callback' => 'nas_conservation_tracker_get_strategy_json',
     'page arguments' => array(3),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['conservation-tracker/csv/%/%'] = array (
+    'title' => 'Download CSV file for score card',
+    'page callback' => 'nas_conservation_tracker_download_csv',
+    'page arguments' => array(2, 3),
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
@@ -222,6 +230,9 @@ function nas_conservation_tracker_get_json($path) {
     watchdog('ct debug', 'JSON URL - ' . $json_url);
     $request = drupal_http_request($json_url);
     $json_data = drupal_json_decode($request->data);
+    if (strpos($path, 'scorecard') !== FALSE) {
+      nas_conservation_tracker_csv_cache_update($json_data);
+    }
     if (variable_get('nas_conservation_tracker_api_cache_enabled', TRUE)) {
       cache_set($cid, $json_data);
     }
@@ -431,7 +442,8 @@ function nas_conservation_tracker_search_api_index_reindex(SearchApiIndex $index
   nas_conservation_tracker_load_species();
 }
 
-function nas_conservation_tracker_scorecard_url($scorecard) {
+function nas_conservation_tracker_scorecard_nid($scorecard) {
+  $nid = FALSE;
   $query = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
     ->propertyCondition('status', NODE_PUBLISHED)
@@ -440,6 +452,13 @@ function nas_conservation_tracker_scorecard_url($scorecard) {
     ->execute();
   if ($result) {
     $nid = current(array_keys($result['node']));
+  }
+  return $nid;
+}
+
+function nas_conservation_tracker_scorecard_url($scorecard) {
+  $nid = nas_conservation_tracker_scorecard_nid($scorecard);
+  if ($nid) {
     return drupal_get_path_alias('node/' . $nid);
   }
   else {
@@ -581,4 +600,88 @@ function nas_conservation_tracker_include_angular() {
       drupal_add_library($module, $lib);
     }
   }
+}
+
+function nas_conservation_tracker_download_csv($tab, $scorecard_id) {
+  $filename = nas_conservation_tracker_csv_name($tab, $scorecard_id);
+  if (file_exists($filename)) {
+    drupal_goto($filename);
+  }
+  else {
+    drupal_not_found();
+  }
+}
+
+function nas_conservation_tracker_csv_name($tab, $scorecard_id, $real = FALSE) {
+  $node = node_load(nas_conservation_tracker_scorecard_nid($scorecard_id));
+  if ($node) {
+    $file = '/' . preg_replace('@[^a-z0-9-]+@','-', strtolower($node->title)) . '-' . $tab . '.csv';
+    return $real ? drupal_realpath(NAS_CT_CSV_PATH) . $file : NAS_CT_CSV_PATH . $file;
+  }
+}
+
+function nas_conservation_tracker_csv_cache_update($json_data) {
+  $tabs = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'response', 'partners'));
+  $disabled = array('partners');
+  foreach ($tabs as $tab) {
+    if (!in_array($tab, $disabled)) {
+      $filename = nas_conservation_tracker_csv_name($tab, $json_data['id'], TRUE);
+      if (file_exists($filename)) {
+        drupal_unlink($filename);
+      }
+      $file = fopen($filename, 'w');
+      $csv = call_user_func('nas_conservation_tracker_csv_get_' . $tab, $json_data);
+      foreach ($csv as $fields) {
+        fputcsv($file, $fields);
+      }
+      fclose($fp);
+    }
+  }
+}
+
+function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
+  $head = array(t('Name'), t('Latitude'), t('Longitude'), t('Flyway'), t('State'));
+  $csv = array('head' => $head);
+  $max = 0;
+  foreach ($json_data[$tab]['sites'] as $key => $site) {
+    $csv[$key] = array(
+      $site['name'],
+      $site['latitude'],
+      $site['longitude'],
+      $site['state'],
+      $site['flyway'],
+    );
+    $categories = array();
+    foreach ($site[$tab] as $item) {
+      foreach ($item['categories'] as $category) {
+        if (!in_array($category['name'], $categories)) {
+          $categories[] = $category['name'];
+        }
+      }
+    }
+    foreach ($categories as $cat) {
+      $csv[$key][] = $cat;
+    }
+    $count = count($categories);
+    if ($count > $max) {
+      $max = $count;
+    }
+  }
+  for ($i = 1; $i <= $max; $i++) {
+    $csv['head'][] = t('Category @i', array('@i' => $i));
+  }
+  return $csv;
+}
+
+function nas_conservation_tracker_csv_get_actions($json_data) {
+  return nas_conservation_tracker_csv_get_sites('actions', $json_data);
+}
+
+function nas_conservation_tracker_csv_get_threats($json_data) {
+  return nas_conservation_tracker_csv_get_sites('threats', $json_data);
+}
+
+function nas_conservation_tracker_csv_get_response($json_data) {
+  $csv = array();
+  return $csv;
 }
