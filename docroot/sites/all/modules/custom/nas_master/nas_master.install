@@ -4459,6 +4459,9 @@ function nas_master_update_7307() {
  * Generate deppzoom images.
  */
 function nas_master_update_7309() {
+  if ($_ENV['AH_SITE_ENVIRONMENT'] == 'prod') {
+    return;
+  }
   $efq = new EntityFieldQuery();
   $efq->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'boa');
