@@ -104,9 +104,10 @@
         }
       ],
       "chart": {
+        "title": "American Oystercatcher Productivity",
         "type": "data",
         "chart_type": "linegraph",
-        "value_type": "American Oystercatcher Productivity",
+        "value_type": "Productivity",
         "key_type": "Year",
         "operation": "avg"
       }
