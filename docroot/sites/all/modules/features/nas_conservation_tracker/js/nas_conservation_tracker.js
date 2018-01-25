@@ -513,6 +513,8 @@
       objectivesTips.push(tooltip);
     }
 
+    prepCsv(sites);
+
     // Update tooltips.
     var tooltipMain = tabSettings.tooltip ?
       tabSettings.tooltip : Drupal.settings.nasConservationTracker.tooltipsDefault[loc];
@@ -547,10 +549,10 @@ console.log('OVERALL', overall, overallCount);
       function updateOverall(overall) {
         $overallWrapper = $('.progress-item');
         if (overall > 40) {
-          $overallWrapper.find('p').css('width', overall + '%').attr('data-value', overall);
+          $overallWrapper.find('p').css('width', overall + '%').data('value', overall);
         }
         else {
-          $overallWrapper.find('p').css('width', '40%').attr('data-value', overall);
+          $overallWrapper.find('p').css('width', '40%').data('value', overall);
         }
 
         $overallWrapper.find('progress').val(overall);
@@ -592,6 +594,21 @@ console.log('OVERALL', overall, overallCount);
     }
   };
 
+  function prepCsv(sites) {
+    csvRows = [[Drupal.t('Name'), Drupal.t('Latitude'), Drupal.t('Longitude'), Drupal.t('Flyway'), Drupal.t('State')]];
+    sites.forEach(function(site) {
+      csvRows.push([site.name.replace(',', ' '), site.latitude, site.longitude, site.flyway, site.state]);
+    });
+    csvContent = "data:text/csv;charset=utf-8,";
+    csvRows.forEach(function(rowArray) {
+      let row = rowArray.join(",");
+      csvContent += row + "\r\n";
+    });
+    var encodedUri = encodeURI(csvContent);
+    var $a = $('#download-csv');
+    $a.prop('href', encodedUri);
+    $a.prop('download', getLocation() + '-data.csv');
+  }
 
   function getChartData(sites, tabSettings) {
     if (typeof tabSettings == 'undefined') {
