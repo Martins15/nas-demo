@@ -34,6 +34,7 @@
         $radios = $('input[name="map_type"]'),
         $reset = $('#edit-map-reset');
 
+
     // Delete existing sites from map.
     lMap.eachLayer(function (layer) {
       if (layer._leaflet_id !== 'earth' && !layer._layers) {
@@ -107,6 +108,9 @@
           $(this).parent().hide();
         }
         else {
+          if ($(this).val() == scale[0]) {
+            $(this).prop('checked', true).change();
+          }
           $(this).parent().show();
         }
       }
@@ -125,6 +129,7 @@
     if (!lMap.initiated) {
       // Event linsteners.
       lMap.on('moveend', function () {
+        //console.log('CENTER', lMap.getCenter());
         rebuildChartsByZoom($visibleArea);
       });
 
@@ -259,7 +264,11 @@
         );
         lMap.setView(latlng, Drupal.settings.nasConservationTracker.jsonData.settings[loc].map.zoom);
         resetSelection();
-        scaleMapTo(Drupal.settings.nasConservationTracker.scale[loc][0]);
+
+        var scale = Drupal.settings.nasConservationTracker.jsonData.settings[loc].scale ?
+            Drupal.settings.nasConservationTracker.jsonData.settings[loc].scale : Drupal.settings.nasConservationTracker.scale[loc];
+
+        scaleMapTo(scale[0]);
         Drupal.nasCtInitCharts();
       }
     }
@@ -487,7 +496,7 @@
   Drupal.nasCtInitCharts = function () {
     // Charts. TODO make it look good
     var loc = getLocation();
-    var json = Drupal.settings.nasConservationTracker.jsonData[loc] ? Drupal.settings.nasConservationTracker.jsonData[loc] : [];
+    var json = Drupal.settings.nasConservationTracker.jsonData[loc] ? Drupal.settings.nasConservationTracker.jsonData[loc] : {sites:[]};
     var objectivesRows = [];
     var objectivesTips = [];
     var overall = 0, overallCount = 0;
@@ -495,6 +504,10 @@
         Drupal.settings.nasConservationTracker.visibleSites :
         json.sites;
     var tabSettings = Drupal.settings.nasConservationTracker.jsonData.settings[loc];
+
+    if (!sites) {
+      sites = [];
+    }
 
     var objectives = tabSettings.objectives;
     for (var j = 0 in objectives) {
@@ -541,7 +554,7 @@
     else {
       $('.objectives-wrap').hide();
     }
-console.log('OVERALL', overall, overallCount);
+
     if (overall > 0 && overallCount > 0) {
       overall = Math.round(overall / overallCount);
       updateOverall(overall);
@@ -567,7 +580,8 @@ console.log('OVERALL', overall, overallCount);
 
     if (mainRows.length > 0) {
       var $diagram = $('.diagram-wrap');
-      $diagram.find('.map-title .map-span-title').text(tabSettings.chart.value_type);
+      var chartTitle = tabSettings.chart.title ? tabSettings.chart.title : tabSettings.chart.value_type;
+      $diagram.find('.map-title .map-span-title').text(chartTitle);
       $diagram.show();
 
       if (tabSettings.chart.chart_type == 'linegraph') {
@@ -601,7 +615,7 @@ console.log('OVERALL', overall, overallCount);
     });
     csvContent = "data:text/csv;charset=utf-8,";
     csvRows.forEach(function(rowArray) {
-      let row = rowArray.join(",");
+      var row = rowArray.join(",");
       csvContent += row + "\r\n";
     });
     var encodedUri = encodeURI(csvContent);
@@ -611,6 +625,7 @@ console.log('OVERALL', overall, overallCount);
   }
 
   function getChartData(sites, tabSettings) {
+
     if (typeof tabSettings == 'undefined') {
       var loc = getLocation();
       tabSettings = Drupal.settings.nasConservationTracker.jsonData.settings[loc];
