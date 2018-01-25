@@ -38,7 +38,17 @@
 
         $scope.getClass = function(index) {
           return 'tab-' + $scope.tabs[index].link;
-        }
+        };
+
+        $scope.tab = 1;
+
+        $scope.setTab = function(newTab){
+          $scope.tab = newTab;
+        };
+
+        $scope.isSet = function(tabNum){
+          return $scope.tab === tabNum;
+        };
 
         $scope.getContent = function(index) {
 
