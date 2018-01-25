@@ -37,11 +37,6 @@
     </div>
 </div>
 
-<div class="row">
-  <div class="title-wrap__print  columns large-4  hide-for-tiny hide-for-medium hide-for-small">
-    <a href="#" class="img-block print"></a> <a href="#" id="download-csv" class="img-block download">Download</a>
-  </div>
-</div>
 <div class="global-content with-padding tabs-ng-content"
      data-ng-controller="Content">
     <div class="row">
@@ -51,6 +46,9 @@
 
                 <div class="title-wrap">
                     <div class="title-wrap__title columns large-8"><h3 ng-bind-html="tab.settings.overview.title"></h3></div>
+                    <div ng-if="value !== 'partners'" class="title-wrap__print  columns large-4  hide-for-tiny hide-for-medium hide-for-small">
+                      <a href="#" class="img-block print"></a> <a href="/conservation-tracker/csv/{{value}}/<?php print $data['id'] ?>" id="download-csv" class="img-block download">Download</a>
+                    </div>
                 </div>
                 <div class="body-wrap columns large-7">
                     <div class="body-wrap__body-text">

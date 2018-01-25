@@ -526,8 +526,6 @@
       objectivesTips.push(tooltip);
     }
 
-    prepCsv(sites);
-
     // Update tooltips.
     var tooltipMain = tabSettings.tooltip ?
       tabSettings.tooltip : Drupal.settings.nasConservationTracker.tooltipsDefault[loc];
@@ -607,22 +605,6 @@
       $('.diagram-wrap').hide();
     }
   };
-
-  function prepCsv(sites) {
-    csvRows = [[Drupal.t('Name'), Drupal.t('Latitude'), Drupal.t('Longitude'), Drupal.t('Flyway'), Drupal.t('State')]];
-    sites.forEach(function(site) {
-      csvRows.push([site.name.replace(',', ' '), site.latitude, site.longitude, site.flyway, site.state]);
-    });
-    csvContent = "data:text/csv;charset=utf-8,";
-    csvRows.forEach(function(rowArray) {
-      var row = rowArray.join(",");
-      csvContent += row + "\r\n";
-    });
-    var encodedUri = encodeURI(csvContent);
-    var $a = $('#download-csv');
-    $a.prop('href', encodedUri);
-    $a.prop('download', getLocation() + '-data.csv');
-  }
 
   function getChartData(sites, tabSettings) {
 
