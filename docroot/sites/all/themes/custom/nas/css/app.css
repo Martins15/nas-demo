@@ -19332,9 +19332,16 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 24px;
   color: #76736c;
   cursor: pointer;
+  font-weight: 400;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .alphabet-block li a {
+    font-size: 18px;
+  }
 }
 .species-filter .alphabet-block li a.active, .species-filter .alphabet-block li a:hover {
-  color: #89774f;
+  font-weight: bold;
+  color: #000;
 }
 .species-filter .filter-block form {
   display: none;
@@ -19349,12 +19356,14 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: relative;
   margin: 0 auto;
   padding: 10px;
+  font-size: 16px;
   text-align: center;
-  background-color: #EDECEA;
-  color: #838078;
+  border-radius: 6px;
+  background-color: #7AA926;
+  color: #fff;
 }
 .species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a:hover {
-  opacity: 0.8;
+  opacity: .9;
 }
 .species-filter .filter-block .views-widget-filter-field_ct_letter {
   display: none;
