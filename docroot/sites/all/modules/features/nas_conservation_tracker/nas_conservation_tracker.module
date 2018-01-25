@@ -634,7 +634,7 @@ function nas_conservation_tracker_csv_cache_update($json_data) {
       foreach ($csv as $fields) {
         fputcsv($file, $fields);
       }
-      fclose($fp);
+      fclose($file);
     }
   }
 }
@@ -652,6 +652,9 @@ function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
       $site['flyway'],
     );
     $categories = array();
+    if (empty($site[$tab]) || count($site[$tab]) == 0 ) {
+      $site[$tab] = array();
+    }
     foreach ($site[$tab] as $item) {
       foreach ($item['categories'] as $category) {
         if (!in_array($category['name'], $categories)) {
