@@ -25,6 +25,7 @@
           links.push(strategy.link);
           $scope.tabs.push(strategy);
         }
+
         if (location.pathname !== settings.nasConservationTracker.basePath) {
           var link = window.location.pathname.split('/').slice(-1)[0];
           for (var j in settings.nasConservationTracker.strategies) {
@@ -37,6 +38,7 @@
         settings.nasConservationTracker.strategies[active].active = true;
 
         $scope.getClass = function(index) {
+
           return 'tab-' + $scope.tabs[index].link;
         };
 
@@ -49,15 +51,15 @@
             $timeout(function () {
               var jsonFile = '/conservation-tracker/ajax/strategy/' + $scope.tabs[index].id;
               $http.get(jsonFile).then(function(result){
-                console.log('DATA', result);
+                //console.log('DATA', result);
                 $scope.tabs[index].subTabs = result.data.data.tabs;
                 $scope.tabs[index].tagline = result.data.data.tagline;
-                console.log($scope.tabs[index]);
                 $scope.tabs[index].isLoaded = true;
               });
-
             }, 100);
           }
+          $scope.isActiveTab = $scope.tabs[index].name;
+          $scope.isActiveTabLink = $scope.tabs[index].link;
         };
 
         $scope.tab = 1;
@@ -69,7 +71,6 @@
         $scope.isSet = function(tabNum){
           return $scope.tab === tabNum;
         };
-
       };
 
 

@@ -5,25 +5,8 @@
       position: relative;
       width: 100%;
       max-width: 1000px;
-      margin: 100px auto 0;
-      // Todo update !!!!
-     // overflow: hidden;
+      margin: 20px auto 0;
     }
-    //&.open {
-    //  display: block;
-    //  left: 0;
-    //  z-index: 2;
-    //  @include breakpoint(large-up) {
-    //    @include content-between();
-    //    z-index: 0;
-    //  }
-    //  > .true {
-    //    background: $white;
-    //    @include breakpoint(large-up) {
-    //      background: transparent;
-    //    }
-    //  }
-    //}
     .nav-tabs>li>a {
       margin: 0;
       padding: 0;
@@ -61,12 +44,14 @@
         @include content-between();
       }
       li {
+        width: 100%;
         @include breakpoint(large-up) {
           width: 90px;
         }
       }
       li .link,
       .mobile-active {
+        display: inline-block;
         cursor: pointer;
         background-size: auto 38px;
         height: 40px;
@@ -75,31 +60,22 @@
         padding-left: 60px;
         margin-top: 10px;
         margin-bottom: 10px;
-        line-height: 40px;
         font-size: 14px;
-        line-height: 1;
-        display: inline-block;
+        line-height: 40px;
+        opacity: .2;
         @include breakpoint(large-up) {
           width: 90px;
           height: auto;
           margin-top: 0;
           margin-bottom: 0;
           padding: 60px 0 0;
-          opacity: .2;
+          line-height: 1;
           background-position: center top;
           background-size: auto;
           &:hover {
             opacity: 1;
           }
         }
-        //&.true {
-        //  background-color: $white;
-        //  @include breakpoint(large-up) {
-        //    font-weight: 400;
-        //    opacity: 1;
-        //    background-color: transparent;
-        //  }
-        //}
         &.active {
           opacity: 1;
         }
@@ -117,9 +93,12 @@
       a {
         color: #222222;
         font-family: $lato-font;
-        text-align: center;
-        text-transform: capitalize;
         font-weight: 400;
+        text-align: left;
+        text-transform: capitalize;
+        @include breakpoint(large-up) {
+          text-align: center;
+        }
       }
       .mobile-active {
         display: inline-block;
@@ -145,16 +124,22 @@
       }
     }
   }
-  
+
   .tab-content {
-    padding-top: 60px;
+    @include breakpoint(large-up) {
+      padding-top: 60px;
+    }
   }
   .text-wrap {
+    display: none;
     position: absolute;
     top: 0;
     right: 0;
     padding-left: 50px;
     border-left: 1px solid #d9d9d9;
+    @include breakpoint(large-up) {
+      display: block;
+    }
     h4 {
       @include breakpoint(large-up) {
         font-size: 33px;
@@ -177,9 +162,12 @@
   }
   .wrap-strategy-breakdown {
     position: relative;
-    padding: 50px 0;
-    background: $bg-map;
-    @extend %content-between;
+    padding: 0 0 50px;
+    background: url("../img/strategies/map.png") no-repeat center top $bg-map;
+    @include breakpoint(large-up) {
+      min-height: 700px;
+      padding: 50px 0;
+    }
     &:before,
     &:after {
       content: '';
@@ -196,31 +184,63 @@
       right: -100%;
     }
   }
-  #strategy-breakdown-left {
-    width: 230px;
+  .help-wrap-over {
+    @include breakpoint(large-up) {
+      width: 100%;
+      overflow: hidden;
+    }
+  }
+   #strategy-breakdown-left {
+    width: 100%;
     background: $dark-bg-filter;
     color: $white;
     font-family: $font-sans;
+     @include breakpoint(large-up) {
+       width: 230px;
+       float: left;
+     }
     h5 {
       margin-bottom: 0;
       padding: 15px 15px 5px;
       color: $white;
       font-family: $font-sans;
       font-size: 25px;
-      font-weight: 600;
+      font-weight: 500;
       line-height: 1.2;
-      text-align: left;
+      text-align: center;
+      @include breakpoint(large-up) {
+        text-align: left;
+      }
     }
     .active {
       span {
-        color: #f15936;
+        color: $orange-ct;
       }
     }
   }
   #strategy-breakdown-right {
-    width: 400px;
+    width: 100%;
     padding: 20px;
     background: $white;
+    @include breakpoint(large-up) {
+      width: 400px;
+      max-height: 400px;
+      float: right;
+      overflow: hidden;
+      overflow-y: scroll;
+    }
+    h5, p, ul {
+      font-family: $font-sans;
+    }
+    p, ul {
+      font-size: 14px;
+    }
+    h5 {
+      margin-bottom: 20px;
+      color: #222;
+      font-size: 33px;
+      font-weight: 500;
+    }
   }
   .item-menu {
     display: block;
@@ -229,8 +249,61 @@
     background: $dark-bg-filter;
     color: $white;
     font-size: 17px;
-    font-weight: 600;
-    text-align: left;
+    font-weight: 500;
+    text-align: center;
     cursor: pointer;
+    @include breakpoint(large-up) {
+      text-align: left;
+    }
+  }
+  .loader-tabs {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      margin-bottom: 50px;
+      background: $white;
+      &:after {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        top: 30%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        transform: translate(-50%, -50%);
+        background-color: #333;
+        border-radius: 100%;
+        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+        animation: sk-scaleout 1.0s infinite ease-in-out;
+      }
+    }
+  .progress-wrap {
+    background: transparent;
+  }
+  .map-item__inner-help {
+    padding: 0;
+  }
+  .progress-item {
+    background: #E0E0E0;
+    height: 8px;
+    border-radius: 5px;
+    p {
+      display: block;
+      height: 8px;
+      margin-top: -9px;
+      border-radius: 5px;
+      background: $orange-ct;
+    }
+  }
+  .map-title {
+    margin-top: 5px;
+    color: $orange-ct;
+    font-size: 15px;
+  }
+  .progress-wrap p[data-value]:after{
+    top: 12px;
+    font-size: 15px;
   }
 }
