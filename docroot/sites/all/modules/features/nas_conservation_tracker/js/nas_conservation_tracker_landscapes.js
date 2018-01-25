@@ -177,6 +177,7 @@
       function updateFilters() {
         var filters = {'strategy': null, 'status': [], 'flyways': []};
         $filterElement.filter(':checked').each(function (index, el) {
+          
           if ($(el).attr('type') == 'radio') {
             filters.strategy = $(el).val();
           }
@@ -235,6 +236,7 @@
           $('i', this).toggleClass('js-open');
         })
       });
+      $('.form-item-strategies label', context).click().parent().find('input[value="coasts"]').click();
     }
   };
 
