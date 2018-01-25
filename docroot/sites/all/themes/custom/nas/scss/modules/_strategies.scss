@@ -211,12 +211,19 @@
       line-height: 1.2;
       text-align: left;
     }
+    .active {
+      span {
+        color: #f15936;
+      }
+    }
   }
   #strategy-breakdown-right {
     width: 400px;
+    padding: 20px;
     background: $white;
   }
   .item-menu {
+    display: block;
     padding: 10px 15px;
     border-bottom: 1px solid $bg-map;;
     background: $dark-bg-filter;
@@ -224,8 +231,6 @@
     font-size: 17px;
     font-weight: 600;
     text-align: left;
-    &.active {
-      color: #f15936;
-    }
+    cursor: pointer;
   }
 }

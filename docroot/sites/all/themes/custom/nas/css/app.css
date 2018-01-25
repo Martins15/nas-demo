@@ -20175,11 +20175,16 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   line-height: 1.2;
   text-align: left;
 }
+.ct-strategies-main #strategy-breakdown-left .active span {
+  color: #f15936;
+}
 .ct-strategies-main #strategy-breakdown-right {
   width: 400px;
+  padding: 20px;
   background: #fff;
 }
 .ct-strategies-main .item-menu {
+  display: block;
   padding: 10px 15px;
   border-bottom: 1px solid #1c1c1c;
   background: #303030;
@@ -20187,9 +20192,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 17px;
   font-weight: 600;
   text-align: left;
-}
-.ct-strategies-main .item-menu.active {
-  color: #f15936;
+  cursor: pointer;
 }
 
 .sidebar, .article-sidebar {
