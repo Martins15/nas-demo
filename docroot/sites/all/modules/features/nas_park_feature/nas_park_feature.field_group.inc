@@ -30,7 +30,8 @@ function nas_park_feature_field_group_info() {
       4 => 'field_location_link',
       5 => 'field_park_id',
       6 => 'field_park_location',
-      7 => 'locations',
+      7 => 'field_park_area',
+      8 => 'locations',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

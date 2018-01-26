@@ -1973,7 +1973,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_link',
-    'label' => 'Park website',
+    'label' => 'Website',
     'required' => 0,
     'settings' => array(
       'attributes' => array(
@@ -2002,7 +2002,7 @@ function nas_park_feature_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -2089,7 +2089,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_location_link',
-    'label' => 'More link',
+    'label' => 'More',
     'required' => 0,
     'settings' => array(
       'attributes' => array(
@@ -2118,7 +2118,147 @@ function nas_park_feature_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 6,
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-park-field_park_area'
+  $field_instances['node-park-field_park_area'] = array(
+    'bundle' => 'park',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 25,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_park_area',
+    'label' => 'Size',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'absolute_urls' => 'absolute_urls',
+          'full_html' => 'full_html',
+          'html' => 'html',
+          'map' => 'map',
+          'php_code' => 'php_code',
+          'plain_text' => 'plain_text',
+          'video' => 'video',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'absolute_urls' => array(
+              'weight' => -6,
+            ),
+            'full_html' => array(
+              'weight' => -10,
+            ),
+            'html' => array(
+              'weight' => -8,
+            ),
+            'map' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => 11,
+            ),
+            'plain_text' => array(
+              'weight' => -5,
+            ),
+            'video' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'quiz_result' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 5,
     ),
   );
 
@@ -2641,7 +2781,7 @@ function nas_park_feature_field_default_field_instances() {
         'html5_geolocation' => 0,
       ),
       'type' => 'geofield_latlon',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -2814,7 +2954,7 @@ function nas_park_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -3119,7 +3259,7 @@ function nas_park_feature_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Interactive content');
-  t('More link');
+  t('More');
   t('Number of Current Species description summer');
   t('Number of Current Species description winter');
   t('Number of Current Species summer');
@@ -3132,7 +3272,6 @@ function nas_park_feature_field_default_field_instances() {
   t('Park id');
   t('Park location');
   t('Park map');
-  t('Park website');
   t('Potential Colonizations description summer');
   t('Potential Colonizations description winter');
   t('Potential Colonizations summer');
@@ -3141,7 +3280,9 @@ function nas_park_feature_field_default_field_instances() {
   t('Potential Extirpations description winter');
   t('Potential Extirpations summer');
   t('Potential Extirpations winter');
+  t('Size');
   t('State');
+  t('Website');
 
   return $field_instances;
 }

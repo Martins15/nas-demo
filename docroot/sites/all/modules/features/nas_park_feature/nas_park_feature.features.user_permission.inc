@@ -15,7 +15,7 @@ function nas_park_feature_user_default_permissions() {
     'name' => 'administer panelizer node park choice',
     'roles' => array(
       'super' => 'super',
-      ),
+    ),
     'module' => 'panelizer',
   );
 

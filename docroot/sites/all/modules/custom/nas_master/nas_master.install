@@ -4454,3 +4454,10 @@ function nas_master_update_7307() {
     'nas_nurseries_near_you_feature' => array('views_default'),
   ));
 }
+
+/**
+ * Enable nas_climate.
+ */
+function nas_master_update_7314() {
+  module_enable(array('nas_climate'));
+}

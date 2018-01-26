@@ -19,7 +19,7 @@ function nas_park_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'locations' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
         'metatags' => array(
           'weight' => '6',
