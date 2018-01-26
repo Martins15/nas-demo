@@ -104,7 +104,7 @@
         }
       ],
       "chart": {
-        "title": "American Oystercatcher Productivity",
+        "title": "Am. Oystercatcher Productivity",
         "type": "data",
         "chart_type": "linegraph",
         "value_type": "Productivity",
@@ -118,7 +118,7 @@
         "longitude": "-73.59191894531251",
         "zoom": "6"
       },
-      "youtube": "https://youtu.be/RDBbmZALHIU",
+      "youtube": "//youtu.be/RDBbmZALHIU",
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_partners.png",
       "tagLine": "Our work is co-developed and often led by partner organizations and stakeholders",
       "title": "Audubon has established partnerships with 25 NGOs, state and federal agencies, and independent researchers to protect and restore the Coastal Carolinas landscape",

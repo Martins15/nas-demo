@@ -115,7 +115,10 @@
           }
           setTimeout(function () {
             Drupal.attachBehaviors($('.' + Drupal.settings.nasConservationTracker.currentTab + '-tab-wrapper'));
-            console.log('CURTAIN SETUP');
+            // Fix for conflict with GTM, where event handler was executed earlier then colorbox.
+            $('.video-wrap a.colorbox-load').click(function (e) {
+              e.preventDefault();
+            });
             Drupal.curtain.reset();
             Drupal.curtain.setup();
           }, 500);
@@ -163,7 +166,7 @@
                           var match = tabData.settings.overview.youtube.match(regExp);
                           var yid = (match && match[7].length == 11) ? match[7] : false;
                           if (yid) {
-                            var youtube = 'https://www.youtube.com/embed/' + yid;
+                            var youtube = '//www.youtube.com/embed/' + yid;
                             tabData.settings.overview.preparedLink.class = 'colorbox-load youtube';
                             tabData.settings.overview.preparedLink.href = youtube + '?iframe=true&width=' + width + '&height=' + height;
                           }
@@ -171,6 +174,7 @@
                       }
                     }
                   }
+
                   $('.video-wrap a').attr('class', tabData.settings.overview.preparedLink.class).unbind('click');
 
                   // Add partners array to scope.
