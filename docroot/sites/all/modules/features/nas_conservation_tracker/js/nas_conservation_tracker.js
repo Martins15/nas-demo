@@ -240,7 +240,8 @@
 
     function getPolygonStyle(feature) {
       var style = {};
-      Object.assign(style, styleActive);
+      //Object.assign(style, styleActive);
+      style = $.extend({}, styleActive);
 
       var k = 0;
       for (var i in Drupal.settings.nasConservationTracker.currentMap.range) {
@@ -343,7 +344,10 @@
               break;
             case 'state':
               var state = Drupal.settings.nasCtUnitData[layer.properties.flyway]['states'][layer.properties.state];
-              var stateData = Object.values(state['counties']);
+              var stateData = Object.keys(state['counties']).map(function(e) {
+                return state['counties'][e];
+              });
+
               polygons[layer.properties.state] = new LPolygon(
                 state.name,
                 state.geometry.coordinates,
@@ -355,7 +359,10 @@
               break;
             case 'flyway':
               var flyway = Drupal.settings.nasCtUnitData[layer.properties.flyway];
-              var flyData = Object.values(flyway.states);
+              // var flyData = Object.keys(flyway.states).map(function(e) {
+              //   return flyway.states[e];
+              // });
+
               polygons[layer.properties.flyway] = new LPolygon(
                 layer.properties.flyway,
                 flyway.coordinates,
@@ -368,7 +375,11 @@
         }
       });
 
-      if (Object.values(polygons).length > 0) {
+      var polygonsVals =Object.keys(polygons).map(function (e) {
+        return polygons[e];
+      });
+
+      if (polygonsVals.length > 0) {
         Drupal.settings.nasConservationTracker.currentMap.rows = {};
         var min, max;
 
@@ -464,9 +475,10 @@
           legend.addTo(lMap);
         }
 
+
         var polygons = L.geoJson({
           type: 'FeatureCollection',
-          features: Object.values(polygons)
+          features: polygonsVals
         }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
         polygons.addTo(lMap);
       }
@@ -559,11 +571,11 @@
 
       function updateOverall(overall) {
         $overallWrapper = $('.progress-item');
-        if (overall > 40) {
-          $overallWrapper.find('p').css('width', overall + '%').data('value', overall);
+        if (0 && overall > 40) {
+          $overallWrapper.find('p').css('width', overall + '%').attr('data-value', overall).data('value', overall);
         }
         else {
-          $overallWrapper.find('p').css('width', '40%').data('value', overall);
+          $overallWrapper.find('p').css('width', '40%').attr('data-value', overall).data('value', overall);
         }
 
         $overallWrapper.find('progress').val(overall);
@@ -675,25 +687,11 @@
       currentTab = Drupal.settings.nasConservationTracker.currentTab;
     }
     else {
-      // todo make it work if there are GET parameters in url.
       var loc = window.location.href;
       currentTab = loc.split("/").slice(-1)[0];
     }
     return currentTab;
   }
-
-  // Drupal.behaviors.nasCtScrollToNext = {
-  //   attach: function (context, settings) {
-  //     $(".curtain-arrow.storecard").once(function () {
-  //       $(".curtain-arrow.storecard").click(function (e) {
-  //         e.preventDefault();
-  //         $('html, body').animate({
-  //           scrollTop: $(".ct-scorecard-tabs").offset().top
-  //         }, 1000);
-  //       });
-  //     });
-  //   }
-  // };
 
   Drupal.behaviors.nasFixedHeader = {
     attach: function (context, settings) {
@@ -759,3 +757,9 @@
   };
 
 })(jQuery, window.Drupal);
+
+Number.isInteger = Number.isInteger || function(value) {
+  return typeof value === "number" &&
+      isFinite(value) &&
+      Math.floor(value) === value;
+};

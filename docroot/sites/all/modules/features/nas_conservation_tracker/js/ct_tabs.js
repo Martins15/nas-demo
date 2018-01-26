@@ -119,8 +119,10 @@
             $('.video-wrap a.colorbox-load').click(function (e) {
               e.preventDefault();
             });
-            Drupal.curtain.reset();
-            Drupal.curtain.setup();
+            if (Drupal.curtain) {
+              Drupal.curtain.reset();
+              Drupal.curtain.setup();
+            }
           }, 500);
 
         }
