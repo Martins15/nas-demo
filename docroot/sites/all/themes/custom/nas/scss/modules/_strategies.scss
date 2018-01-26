@@ -219,15 +219,19 @@
     }
   }
   #strategy-breakdown-right {
-    width: 100%;
-    padding: 20px;
-    background: $white;
-    @include breakpoint(large-up) {
-      width: 400px;
-      max-height: 400px;
-      float: right;
-      overflow: hidden;
-      overflow-y: scroll;
+    > div {
+      width: 100%;
+      padding: 20px;
+      background: $white;
+      -webkit-animation: fadeIn 0.3s;
+      animation: fadeIn 0.3s;
+      @include breakpoint(large-up) {
+        width: 400px;
+        max-height: 400px;
+        float: right;
+        overflow: hidden;
+        overflow-y: scroll;
+      }
     }
     h5, p, ul {
       font-family: $font-sans;
