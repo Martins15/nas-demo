@@ -192,7 +192,56 @@
 
     <section class="global-content with-padding static-page-content">
       <div class="row">
-        <div class="switch-wrap"></div>
+        <div class="switch-wrap">
+          <div class="container">
+            <div class="tab-slider--nav">
+              <ul class="tab-slider--tabs">
+                <li class="tab-slider--trigger active" rel="tab1">Summer</li>
+                <li class="tab-slider--trigger" rel="tab2">Winter</li>
+              </ul>
+            </div>
+            <div class="tab-slider--container">
+              <div id="tab1" class="tab-slider--body winter-tab">
+                <div class="container-data-tabs">
+
+                  <ul class="tabs-content">
+                    <li class="tabs-content__link link current columns large-3" data-tab="tab-1">
+                      <p class="link__title">Number of Current Species</p>
+                      <p class="link__number">83</p>
+                    </li>
+                    <li class="tabs-content__link link columns large-3" data-tab="tab-2">
+                      <p class="link__title">Potential Extirpations</p>
+                      <p class="link__number">15</p>
+                    </li>
+                    <li class="tabs-content__link link columns large-3" data-tab="tab-3">
+                      <p class="link__title down red">Potential Colonizations</p>
+                      <p class="link__number up green">36</p>
+                    </li>
+                    <div class="not-link columns link large-3">
+                      <p class="link__title">Overall Park Trend</p>
+                      <p class="link__text">High Potential Colonization</p>
+                    </div>
+                  </ul>
+
+                  <div data-content="tab-1" class="tab-content current">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </div>
+                  <div data-content="tab-2" class="tab-content">
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </div>
+                  <div data-content="tab-3" class="tab-content">
+                    1Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </div>
+
+                </div>
+              </div>
+              <div id="tab2" class="tab-slider--body summer-tab">
+                <h2>Second Tab</h2>
+                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="form-container green">
         <div class="row">
@@ -349,7 +398,7 @@
     <script src="../../js/mute/custom.modernizr.js"></script>
     <script src="../../js/vendor/foundation/foundation.min.js"></script>
     <script src="../../js/mute/foundation.js"></script>
-    <script src="../../js/nas/native-plants.js"></script>
+    <script src="park-page.js"></script>
 
   </body>
 </html>

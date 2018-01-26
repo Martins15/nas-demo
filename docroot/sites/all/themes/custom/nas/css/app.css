@@ -18087,6 +18087,117 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   text-shadow: 0 1px 6px rgba(80, 80, 80, 0.75);
 }
 
+.switch-wrap {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+
+.tab-slider--nav {
+  width: 100%;
+  text-align: center;
+}
+.tab-slider--nav .slide {
+  float: none;
+}
+
+.tab-slider--tabs {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  border-radius: 35px;
+  overflow: hidden;
+  background: #d8d8d8;
+  user-select: none;
+}
+.tab-slider--tabs:after {
+  content: "";
+  width: 50%;
+  background: #969696;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 250ms ease-in-out;
+  border-radius: 35px;
+}
+.tab-slider--tabs.slide:after {
+  left: 50%;
+}
+.tab-slider--trigger {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  padding: 11px 20px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  display: inline-block;
+  transition: color 250ms ease-in-out;
+  user-select: none;
+}
+.tab-slider--trigger.active {
+  color: #fff;
+}
+.tab-slider--body {
+  margin-bottom: 20px;
+}
+
+ul.tabs-content {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+}
+ul.tabs-content .link {
+  position: relative;
+  padding-bottom: 10px;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 1px solid #979797;
+}
+ul.tabs-content .link__title {
+  color: #404040;
+  font-size: 20px;
+  font-weight: 400;
+}
+ul.tabs-content .link__number {
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 1;
+}
+ul.tabs-content .link__text {
+  color: #e18400;
+  font-size: 36px;
+  line-height: 1;
+}
+ul.tabs-content .link.current:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  width: 14px;
+  height: 14px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  border-top: 1px solid #979797;
+  border-left: 1px solid #979797;
+  background: #fff;
+}
+
+.tab-content {
+  display: none;
+  width: 100%;
+  overflow: hidden;
+}
+.tab-content.current {
+  display: inherit;
+}
+
 .title-letter {
   display: block;
   float: left;

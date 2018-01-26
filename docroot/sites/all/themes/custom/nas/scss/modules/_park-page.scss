@@ -1,0 +1,123 @@
+$base-margin: 20px;
+$tab-height: 35px;
+$tab-border-radius: 35px;
+$grey-park: #d8d8d8;
+$grey-active-park: #969696;
+
+.switch-wrap {
+  font-family: $font-sans;
+}
+
+.tab-slider--nav {
+  width: 100%;
+  text-align: center;
+  .slide {
+    float: none;
+  }
+}
+
+.tab-slider {
+  &--tabs {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    border-radius: $tab-border-radius;
+    overflow: hidden;
+    background: $grey-park;
+    user-select: none;
+    &:after {
+      content: "";
+      width: 50%;
+      background: $grey-active-park;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: all 250ms ease-in-out;
+      border-radius: $tab-border-radius;
+    }
+    &.slide:after {
+      left: 50%;
+    }
+  }
+  &--trigger {
+    font-size: 18px;
+    line-height: 1;
+    font-weight: bold;
+    color: $white;
+    text-align: center;
+    padding: 11px $base-margin;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    display: inline-block;
+    transition: color 250ms ease-in-out;
+    user-select: none;
+    &.active {
+      color: $white;
+    }
+  }
+  &--body {
+    margin-bottom: $base-margin;
+  }
+}
+
+.winter-tab {
+
+}
+
+ul.tabs-content {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  .link {
+    position: relative;
+    padding-bottom: 10px;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 1px solid $grey-landing;
+    &__title {
+      color: $color-text-gray;
+      font-size: 20px;
+      font-weight: 400;
+    }
+    &__number {
+      font-size: 72px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    &__text {
+      color: $pumpkin;
+      font-size: 36px;
+      line-height: 1;
+    }
+    &.current {
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        width: 14px;
+        height: 14px;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        border-top: 1px solid $grey-landing;
+        border-left: 1px solid $grey-landing;
+        background: $white;
+      }
+    }
+  }
+}
+.tab-content {
+  display: none;
+  width: 100%;
+  overflow: hidden;
+  &.current {
+    display: inherit;
+  }
+}
