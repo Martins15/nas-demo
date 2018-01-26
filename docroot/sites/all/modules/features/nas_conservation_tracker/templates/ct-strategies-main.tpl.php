@@ -62,7 +62,7 @@
                                 </div>
                                 <p>{{tab.subTabs.overview.description}}</p>
                             </div>
-                            <div ng-if="tab.subTabs.goals" ng-show="isSet(2)">
+                            <div ng-if="tab.subTabs.goals.goals" ng-show="isSet(2)">
                                 <h5>{{tab.subTabs.goals.title}}</h5>
                                 <ul>
                                     <li ng-repeat="goalGroup in tab.subTabs.goals.goals">
@@ -75,7 +75,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div ng-if="tab.subTabs.partners" ng-show="isSet(3)">
+                            <div ng-if="tab.subTabs.partners.list" ng-show="isSet(3)">
                                 <h5>{{tab.subTabs.partners.title}}</h5>
                                 <ul>
                                     <li ng-repeat="partner in tab.subTabs.partners.list">
@@ -83,7 +83,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div ng-if="tab.subTabs.initiatives" ng-show="isSet(4)">
+                            <div ng-if="tab.subTabs.initiatives.list" ng-show="isSet(4)">
                                 <h5>{{tab.subTabs.initiatives.title}}</h5>
                                 <ul>
                                     <li ng-repeat="initiative in tab.subTabs.initiatives.list">
@@ -91,7 +91,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div ng-if="tab.subTabs.priority_species" ng-show="isSet(5)">
+                            <div ng-if="tab.subTabs.priority_species.list" ng-show="isSet(5)">
                                 <h5>{{tab.subTabs.priority_species.title}}</h5>
                                 <ul>
                                     <li ng-repeat="species in tab.subTabs.priority_species.list">
@@ -99,7 +99,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div ng-if="tab.subTabs.priority_landscapes" ng-show="isSet(6)">
+                            <div ng-if="tab.subTabs.priority_landscapes.list" ng-show="isSet(6)">
                                 <h5>{{tab.subTabs.priority_landscapes.title}}</h5>
                                 <ul>
                                     <li ng-repeat="landscape in tab.subTabs.priority_landscapes.list">
