@@ -4454,3 +4454,40 @@ function nas_master_update_7307() {
     'nas_nurseries_near_you_feature' => array('views_default'),
   ));
 }
+
+/**
+ * Generate deppzoom images.
+ */
+function nas_master_update_7309() {
+  if ($_ENV['AH_SITE_ENVIRONMENT'] == 'prod') {
+    return;
+  }
+  $efq = new EntityFieldQuery();
+  $efq->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'boa');
+
+  $result = $efq->execute();
+  if (isset($result['node'])) {
+    $dirname = 'public://deepzoom';
+    if (!is_dir($dirname)) {
+      mkdir($dirname);
+      drupal_chmod($dirname);
+    }
+    $nids = array_keys($result['node']);
+    $nodes = entity_load('node', $nids);
+    foreach ($nodes as $node) {
+      if (!$field_items = field_get_items('node', $node, 'field_boa_illustration')) {
+        continue;
+      }
+      if (!file_exists($field_items[0]['uri'])) {
+        continue;
+      }
+      $md5_file = md5_file($field_items[0]['uri']);
+      $dzi_filename = $dirname . '/' . $md5_file . '.dzi';
+      if (file_exists($dzi_filename)) {
+        continue;
+      }
+      file_put_contents($dzi_filename, '');
+    }
+  }
+}
