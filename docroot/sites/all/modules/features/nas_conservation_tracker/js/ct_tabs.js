@@ -115,7 +115,10 @@
           }
           setTimeout(function () {
             Drupal.attachBehaviors($('.' + Drupal.settings.nasConservationTracker.currentTab + '-tab-wrapper'));
-            console.log('CURTAIN SETUP');
+            // Fix for conflict with GTM, where event handler was executed earlier then colorbox.
+            $('.video-wrap a.colorbox-load').click(function (e) {
+              e.preventDefault();
+            });
             Drupal.curtain.reset();
             Drupal.curtain.setup();
           }, 500);

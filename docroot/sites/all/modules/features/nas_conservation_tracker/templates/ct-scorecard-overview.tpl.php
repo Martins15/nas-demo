@@ -57,7 +57,7 @@
                 </div>
                 <div class="video-wrap columns large-5">
                     <div class="video-wrap__item help-img-full">
-                        <a class="{{tab.settings.overview.preparedLink.class}}" href="{{tab.settings.overview.preparedLink.href}}" target="{{tab.settings.overview.preparedLink.target}}" onclick="return false;">
+                        <a class="{{tab.settings.overview.preparedLink.class}}" href="{{tab.settings.overview.preparedLink.href}}" target="{{tab.settings.overview.preparedLink.target}}">
                             <img ng-if="tab.settings.overview.thumbnail !== ''"
                                  src={{tab.settings.overview.thumbnail}} alt="">
                         </a>
