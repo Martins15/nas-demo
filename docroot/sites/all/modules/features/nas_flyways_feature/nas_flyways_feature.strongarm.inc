@@ -91,6 +91,39 @@ function nas_flyways_feature_strongarm() {
       'about_page_related_teaser' => array(
         'custom_settings' => FALSE,
       ),
+      'fb_instant_article' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'custom_settings' => TRUE,
+      ),
+      'amp' => array(
+        'custom_settings' => FALSE,
+      ),
+      'ical' => array(
+        'custom_settings' => FALSE,
+      ),
+      'nas_engagement_cards_full_width' => array(
+        'custom_settings' => FALSE,
+      ),
+      'nas_engagement_cards_full_width_half_black' => array(
+        'custom_settings' => FALSE,
+      ),
+      'editorial_card_3x' => array(
+        'custom_settings' => FALSE,
+      ),
+      'editorial_card_4x' => array(
+        'custom_settings' => FALSE,
+      ),
+      'editorial_grid_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'nas_teaser_related_news' => array(
+        'custom_settings' => FALSE,
+      ),
+      'question' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -104,10 +137,24 @@ function nas_flyways_feature_strongarm() {
           'weight' => '3',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'language' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__flyway'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_flyway';
+  $strongarm->value = '2';
+  $export['language_content_type_flyway'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -157,62 +204,86 @@ function nas_flyways_feature_strongarm() {
     'view modes' => array(
       'page_manager' => array(
         'status' => 1,
+        'substitute' => '',
         'default' => 1,
         'choice' => 1,
       ),
       'default' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'teaser' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'search_result' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_teaser_small' => array(
         'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_teaser_no_section_link' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_featured' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_featured_small' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_related_features' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_teaser' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_editorial_card' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
     ),
   );
   $export['panelizer_defaults_node_flyway'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'panelizer_node:flyway:page_manager_selection';
+  $strongarm->value = 'node:flyway:default';
+  $export['panelizer_node:flyway:page_manager_selection'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -748,6 +819,16 @@ function nas_flyways_feature_strongarm() {
   $strongarm->name = 'scheduler_publish_enable_flyway';
   $strongarm->value = 1;
   $export['scheduler_publish_enable_flyway'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_flyway';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_flyway'] = $strongarm;
 
   return $export;
 }
