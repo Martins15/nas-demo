@@ -94,7 +94,9 @@
 
         var polygons = L.geoJson({
           type: 'FeatureCollection',
-          features: Object.values(polygons)
+          features: Object.keys(polygons).map(function (e) {
+            return polygons[e];
+          })
         }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
 
         polygons.addTo(lMap);
