@@ -13,11 +13,11 @@
   <?php print $context_links; ?>
   <?php if ($type == 'simple'): ?>
     <div class="row">
-      <div class="columns">
-        <div class="">
+      <div class="columns list-of-park">
+        <div class="div list-of-park__current-page">
           <a class="" href="#"><?php print $current_park_title ?></a>
         </div>
-        <div class="">
+        <div class="list-of-park__others-page">
           <?php foreach ($parks as $nid => $park_title): ?>
             <a href="node/<?php print $nid ?>"><?php print $park_title ?></a>
           <?php endforeach; ?>

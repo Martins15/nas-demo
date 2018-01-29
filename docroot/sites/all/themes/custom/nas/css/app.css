@@ -18198,6 +18198,51 @@ ul.tabs-content .link.current:after {
   display: inherit;
 }
 
+.node-type-park {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.node-type-park .hero-image:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
+}
+.node-type-park .park_top {
+  margin-bottom: 25px;
+}
+.node-type-park .list-of-park {
+  position: absolute;
+  bottom: 15px;
+}
+.node-type-park .list-of-park__current-page {
+  position: relative;
+  z-index: 1;
+}
+.node-type-park .list-of-park__current-page a {
+  color: #fff;
+  font-size: 48px;
+  letter-spacing: .4px;
+}
+.node-type-park .list-of-park__others-page {
+  display: none;
+}
+.node-type-park .park_info {
+  font-size: 16px;
+}
+.node-type-park .park_info > .field {
+  display: inline-block;
+  margin-right: 30px;
+}
+.node-type-park .park_info > .field:last-child {
+  margin-right: 0;
+}
+.node-type-park .park_info .field-label {
+  font-weight: normal;
+}
+
 .title-letter {
   display: block;
   float: left;

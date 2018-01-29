@@ -113,11 +113,62 @@ ul.tabs-content {
     }
   }
 }
+
 .tab-content {
   display: none;
   width: 100%;
   overflow: hidden;
   &.current {
     display: inherit;
+  }
+}
+
+// Style for content park page.
+.node-type-park {
+  font-family: $font-sans;
+  .hero-image {
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 110px;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), #000000);
+    }
+
+  }
+  .park_top {
+    margin-bottom: 25px;
+  }
+  .list-of-park {
+    position: absolute;
+    bottom: 15px;
+    &__current-page {
+      position: relative;
+      z-index: 1;
+      a {
+        color: $white;
+        font-size: 48px;
+        letter-spacing: .4px;
+      }
+    }
+    // Todo update style for drop down list pg items.
+    &__others-page {
+      display: none;
+    }
+  }
+  .park_info {
+    font-size: 16px;
+    > .field {
+      display: inline-block;
+      margin-right: 30px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .field-label {
+      font-weight: normal;
+    }
   }
 }
