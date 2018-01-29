@@ -65,9 +65,9 @@
                             <div ng-if="tab.subTabs.goals.goals" ng-show="isSet(2)">
                                 <h5>{{tab.subTabs.goals.title}}</h5>
                                 <ul>
-                                    <li ng-repeat="goalGroup in tab.subTabs.goals.goals">
-                                        {{goalGroup.group}}
-                                        <ul ng-if="goalGroup.list">
+                                    <li class="drop-down-header" ng-repeat="goalGroup in tab.subTabs.goals.goals">
+                                        <span class="drop-down-header__item item-header" ng-click="toggle = !toggle" ng-class="{'js-show' : toggle}">{{goalGroup.group}}<i></i></span>
+                                        <ul class="second-level-hide-style" ng-if="goalGroup.list">
                                             <li ng-repeat="goal in goalGroup.list">
                                                 {{goal}}
                                             </li>
