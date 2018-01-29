@@ -172,7 +172,8 @@ function nas_conservation_tracker_update_7006() {
 /**
  * Prep dir for csv.
  */
-function nas_conservation_tracker_update_7008() {
+function nas_conservation_tracker_update_7009() {
   $dir = NAS_CT_CSV_PATH;
   drupal_mkdir($dir);
+  file_prepare_directory($dir);
 }
