@@ -211,7 +211,7 @@
 
       graph.append('g')
           .attr('class', 'voronoi')
-          .attr('opacity', 0)
+          .attr('opacity', 0.0001)
           .selectAll('g.voronoi').data(voronoi(vertices).map(function (d, i) {
         return {path: "M" + d.join("L") + "Z", vertex: vertices[i]};
       }).filter(function (n) {

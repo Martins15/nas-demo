@@ -699,7 +699,10 @@ function nas_conservation_tracker_default_page_manager_pages() {
   $page->admin_title = 'Conservation tracker Landscapes';
   $page->admin_description = '';
   $page->path = 'conservation-tracker/landscapes';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -1429,29 +1432,6 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $display->content['new-afc23321-47b9-464a-ac32-e6b8c8c5e50c'] = $pane;
     $display->panels['header'][1] = 'new-afc23321-47b9-464a-ac32-e6b8c8c5e50c';
     $pane = new stdClass();
-    $pane->pid = 'new-e0317e63-9e61-456d-9b09-568686c16f46';
-    $pane->panel = 'main';
-    $pane->type = 'block';
-    $pane->subtype = 'menu-menu-ct-menu';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'e0317e63-9e61-456d-9b09-568686c16f46';
-    $display->content['new-e0317e63-9e61-456d-9b09-568686c16f46'] = $pane;
-    $display->panels['main'][0] = 'new-e0317e63-9e61-456d-9b09-568686c16f46';
-    $pane = new stdClass();
     $pane->pid = 'new-0f1f2099-c7c0-47b4-9248-dd64ba27862b';
     $pane->panel = 'main';
     $pane->type = 'ct_strategies_main';
@@ -1469,11 +1449,72 @@ function nas_conservation_tracker_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '0f1f2099-c7c0-47b4-9248-dd64ba27862b';
     $display->content['new-0f1f2099-c7c0-47b4-9248-dd64ba27862b'] = $pane;
-    $display->panels['main'][1] = 'new-0f1f2099-c7c0-47b4-9248-dd64ba27862b';
+    $display->panels['main'][0] = 'new-0f1f2099-c7c0-47b4-9248-dd64ba27862b';
+    $pane = new stdClass();
+    $pane->pid = 'new-aee21c8a-ad3e-4529-a84b-8de9b13a49a9';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_don_t_miss';
+    $pane->subtype = 'nas_menu_header_don_t_miss';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'aee21c8a-ad3e-4529-a84b-8de9b13a49a9';
+    $display->content['new-aee21c8a-ad3e-4529-a84b-8de9b13a49a9'] = $pane;
+    $display->panels['top'][0] = 'new-aee21c8a-ad3e-4529-a84b-8de9b13a49a9';
+    $pane = new stdClass();
+    $pane->pid = 'new-ceb3ddb0-88bd-4428-a196-184d04315aea';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_big';
+    $pane->subtype = 'nas_menu_header_big';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'ceb3ddb0-88bd-4428-a196-184d04315aea';
+    $display->content['new-ceb3ddb0-88bd-4428-a196-184d04315aea'] = $pane;
+    $display->panels['top'][1] = 'new-ceb3ddb0-88bd-4428-a196-184d04315aea';
+    $pane = new stdClass();
+    $pane->pid = 'new-6e4e4ead-abcb-473c-a246-c72200c5be6b';
+    $pane->panel = 'top';
+    $pane->type = 'block';
+    $pane->subtype = 'menu-menu-ct-menu';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '6e4e4ead-abcb-473c-a246-c72200c5be6b';
+    $display->content['new-6e4e4ead-abcb-473c-a246-c72200c5be6b'] = $pane;
+    $display->panels['top'][2] = 'new-6e4e4ead-abcb-473c-a246-c72200c5be6b';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -1859,7 +1900,25 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->uuid = '65a8594f-6c86-4348-ab14-face41231ace';
     $display->content['new-65a8594f-6c86-4348-ab14-face41231ace'] = $pane;
     $display->panels['main'][1] = 'new-65a8594f-6c86-4348-ab14-face41231ace';
-
+    $pane = new stdClass();
+    $pane->pid = 'new-6f2ba587-03a2-4ebd-8143-fd6ffe8c0d76';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_don_t_miss';
+    $pane->subtype = 'nas_menu_header_don_t_miss';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '6f2ba587-03a2-4ebd-8143-fd6ffe8c0d76';
+    $display->content['new-6f2ba587-03a2-4ebd-8143-fd6ffe8c0d76'] = $pane;
+    $display->panels['top'][0] = 'new-6f2ba587-03a2-4ebd-8143-fd6ffe8c0d76';
     $pane = new stdClass();
     $pane->pid = 'new-8ac17764-1ce7-4da0-ac88-284361fbcd6d';
     $pane->panel = 'top';
@@ -1874,11 +1933,11 @@ function nas_conservation_tracker_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '8ac17764-1ce7-4da0-ac88-284361fbcd6d';
     $display->content['new-8ac17764-1ce7-4da0-ac88-284361fbcd6d'] = $pane;
-    $display->panels['top'][0] = 'new-8ac17764-1ce7-4da0-ac88-284361fbcd6d';
+    $display->panels['top'][1] = 'new-8ac17764-1ce7-4da0-ac88-284361fbcd6d';
     $pane = new stdClass();
     $pane->pid = 'new-c142d323-944e-4eb0-bda4-051e3aca3965';
     $pane->panel = 'top';
@@ -1897,11 +1956,11 @@ function nas_conservation_tracker_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = 'c142d323-944e-4eb0-bda4-051e3aca3965';
     $display->content['new-c142d323-944e-4eb0-bda4-051e3aca3965'] = $pane;
-    $display->panels['top'][1] = 'new-c142d323-944e-4eb0-bda4-051e3aca3965';
+    $display->panels['top'][2] = 'new-c142d323-944e-4eb0-bda4-051e3aca3965';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

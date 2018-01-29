@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
   Drupal.behaviors.curtain = {
     attach: function (context, settings) {
       function Curtain($curtain) {
@@ -12,15 +12,15 @@
         self.bodyHeight = 0;
         self.bufferScreen = 0;
 
-        self.init = function() {
+        self.init = function () {
           window.scrollTo(0, 1);
 
-          $(document).on('respond', function(e) {
-            if(e.size == "tiny" || e.size == "small" || e.size == "medium") {
+          $(document).on('respond', function (e) {
+            if (e.size == "tiny" || e.size == "small" || e.size == "medium") {
               console.log('ON RESPOND', e.size);
               self.reset();
             }
-            else if(e.size == "large") {
+            else if (e.size == "large") {
               if ($body.is('.force-curtain-fallback')) {
                 self.reset();
               }
@@ -30,10 +30,16 @@
             }
           });
 
-          $('.curtain-arrow').on('click', self.unfurl);
+          $('.curtain-arrow').click(function(e){
+            e.preventDefault();
+          });
+          $('.curtain-arrow').on('click', function () {
+            self.arrowClick = true;
+            self.unfurl();
+          });
         };
 
-        self.setup = function() {
+        self.setup = function () {
           self.bodyHeight = $body.height();
 
           $body.css({"min-height": self.bodyHeight});
@@ -42,22 +48,22 @@
           self.bind();
         };
 
-        self.reset = function() {
+        self.reset = function () {
           $body.removeAttr("style");
           $wrapper.removeClass("on").removeAttr("style");
 
           self.unbind();
         };
 
-        self.bind = function() {
+        self.bind = function () {
           $(window).on('scroll', self.handleScroll);
         };
 
-        self.unbind = function() {
+        self.unbind = function () {
           $(window).off('scroll');
         };
 
-        self.handleScroll = function(e) {
+        self.handleScroll = function (e) {
           var scrollFactor = document.documentElement.scrollTop || $(document).scrollTop();
           self.bufferScreen = self.getTotalHeight() * 2 - self.bodyHeight;
           if (self.bufferScreen < 0) {
@@ -65,7 +71,7 @@
           }
 
           // If we're scrolled down past the curtain, let the page scroll
-          if((scrollFactor + self.bufferScreen) > self.getTotalHeight()) {
+          if ((scrollFactor + self.bufferScreen) > self.getTotalHeight()) {
             self.setCurtainFocus(true);
           }
           // And if we're not, make sure the curtain is all that scrolls
@@ -74,32 +80,32 @@
           }
         };
 
-        self.setCurtainFocus = function(state) {
+        self.setCurtainFocus = function (state) {
           self.updateHeight();
 
           if (state) {
             $wrapper.attr("style", "margin-top: " + (self.getTotalHeight() - self.buffer) + "px;");
             $wrapper.removeClass("on");
-          } 
+          }
           else {
-            $wrapper.attr("style", "margin-bottom: " + self.getTotalHeight() + "px; margin-top: " + (self.bufferScreen - self.buffer) + "px;");
+            $wrapper.attr("style", "margin-bottom: " + self.getTotalHeight() + "px; margin-top: " + self.bufferScreen + "px;");
             $wrapper.addClass("on");
           }
         };
 
         // Update the height of the curtain, in case it's changed
-        self.updateHeight = function() {
+        self.updateHeight = function () {
           self.height = $curtain.height();
           return self.height;
         };
 
         // Curtain height plus an arbitrary buffer
-        self.getTotalHeight = function() {
+        self.getTotalHeight = function () {
           return self.height + self.buffer;
         };
 
-        self.unfurl = function() {
-          var scrollFactor = self.height + self.buffer;
+        self.unfurl = function () {
+          var scrollFactor = self.height ;
 
           // Unbind for a second
           self.unbind();
@@ -108,9 +114,13 @@
             scrollTop: scrollFactor
           }, {
             duration: 400,
-            complete: function() {
+            complete: function () {
               self.bind();
               self.handleScroll();
+              if (self.bufferScreen > 0 && self.arrowClick) {
+                self.arrowClick = false;
+                self.unfurl();
+              }
             }
           });
         };
@@ -135,7 +145,6 @@
           Drupal.curtain.reset();
         }
       }
-
 
 
     }

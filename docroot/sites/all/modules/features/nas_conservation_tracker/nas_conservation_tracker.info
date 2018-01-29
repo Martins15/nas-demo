@@ -11,6 +11,7 @@ dependencies[] = leaflet
 dependencies[] = menu
 dependencies[] = nas_bird_type_feature
 dependencies[] = number
+dependencies[] = search_api
 dependencies[] = search_api_db
 dependencies[] = title
 dependencies[] = views_load_more
