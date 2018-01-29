@@ -249,6 +249,14 @@ function nas_conservation_tracker_get_scorecard_json($id, $type = 'actions') {
   if (!empty($id) && is_numeric($id)) {
     $data = nas_conservation_tracker_get_json('scorecard-' . $id);
     $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'response', 'partners'));
+    if ($type == 'partners') {
+      usort($data[$type], function($item1, $item2) {
+        if ($item1['name'] == $item2['name']) {
+          return 0;
+        }
+        return $item1['name'] < $item2['name'] ? -1 : 1;
+      });
+    }
     if (!in_array($type, $types)) {
       $type = 'actions';
     }
@@ -293,11 +301,16 @@ function nas_conservation_tracker_get_landscapes_json() {
  * @param $id
  */
 function nas_conservation_tracker_get_strategy_json($id) {
-
   $result = array('data' => array(), 'success' => 0);
   if (!empty($id) && is_numeric($id)) {
     $data = nas_conservation_tracker_get_json('strategies-' . $id);
-
+    dpm($data);
+    usort($data['tabs']['partners']['list'], function($item1, $item2) {
+      if ($item1 == $item2) {
+        return 0;
+      }
+      return $item1 < $item2 ? -1 : 1;
+    });
     $result['data'] = $data;
     if (!empty($result['data'])) {
       $result['success'] = 1;
