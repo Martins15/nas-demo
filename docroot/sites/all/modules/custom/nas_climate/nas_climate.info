@@ -1,0 +1,5 @@
+name = NAS Climate
+core = 7.x
+description = Main module for climate section.
+package = Climate
+dependencies[] = nas_park_feature
