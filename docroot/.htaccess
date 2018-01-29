@@ -299,7 +299,7 @@ DirectoryIndex index.php index.html index.htm
   RewriteCond %{ENV:AH_SITE_ENVIRONMENT} !^prod$
   RewriteCond %{HTTP_HOST} !^www.audubon.org$
   RewriteCond %{REQUEST_URI} ^/sites/[^\/]*/files/footer-logo\.png$ [OR]
-  RewriteCond %{REQUEST_URI} ^/sites/[^\/]*/files/egret-64x64_0\.png$ [OR]
+  RewriteCond %{REQUEST_URI} ^/sites/[^\/]*/files/egret-64x64_0\.png$
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.*)$ http://www.audubon.org/$1 [QSA,L]
