@@ -18242,6 +18242,22 @@ ul.tabs-content .link.current:after {
 .node-type-park .park_info .field-label {
   font-weight: normal;
 }
+.node-type-park .park_info .field-name-field-park-map-image,
+.node-type-park .park_info .field-name-field-park-description {
+  float: left;
+}
+.node-type-park .park_info .field-name-field-park-map-image {
+  max-width: 135px;
+}
+.node-type-park .park_info .field-name-field-park-map-image img {
+  width: 100%;
+}
+.node-type-park .park_info .field-name-field-park-description {
+  width: calc(100% - 165px);
+}
+.node-type-park .park_info .field-name-field-park-description p {
+  line-height: 1.38;
+}
 
 .title-letter {
   display: block;

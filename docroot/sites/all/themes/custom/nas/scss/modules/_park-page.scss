@@ -170,5 +170,21 @@ ul.tabs-content {
     .field-label {
       font-weight: normal;
     }
+    .field-name-field-park-map-image,
+    .field-name-field-park-description {
+      float: left;
+    }
+    .field-name-field-park-map-image {
+      max-width: 135px;
+      img {
+        width: 100%;
+      }
+    }
+    .field-name-field-park-description {
+      width: calc(100% - 165px);
+      p {
+        line-height: 1.38;
+      }
+    }
   }
 }
