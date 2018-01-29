@@ -594,7 +594,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
       'title' => '',
       'body' => '<div class="large-8 row space-top space-bottom" style="margin:auto;">
 	<div class="conservation-tracker-custom-pane">
-		<h3>Learn about our core conservation strategies, and track their impact on priority species and landscapes via our new Conservation Tracker!</h3>
+		<h3>Learn about our core conservation <a href="/conservation-tracker/strategies" class="link"><b>strategies</b></a>, and track their impact on priority <a href="/conservation-tracker/species" class="link"><b>species</b></a> and <a href="/conservation-tracker/landscapes" class="link"><b>landscapes</b></a> via our new Conservation Tracker!</h3>
 		<p><span>The Conservation Tracker is an interactive, visualization tool that increases transparency and accountability. Audubon is committed to measuring the biological impact of our conservation strategies by investing in a system that holds us accountable to our board and funders for progress against quantifiable objectives. </span></p>		
 	</div>
 </div>

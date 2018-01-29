@@ -17757,6 +17757,42 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   float: right;
 }
 
+@-webkit-keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+}
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .help-bg-white {
   background: #fff;
 }
@@ -19260,26 +19296,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin: 0;
 }
 
-@-webkit-keyframes sk-scaleout {
-  0% {
-    -webkit-transform: scale(0);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    opacity: 0;
-  }
-}
-@keyframes sk-scaleout {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 0;
-  }
-}
 .species-filter {
   margin-bottom: 40px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
@@ -19332,9 +19348,16 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 24px;
   color: #76736c;
   cursor: pointer;
+  font-weight: 400;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .alphabet-block li a {
+    font-size: 18px;
+  }
 }
 .species-filter .alphabet-block li a.active, .species-filter .alphabet-block li a:hover {
-  color: #89774f;
+  color: #000;
+  font-weight: bold;
 }
 .species-filter .filter-block form {
   display: none;
@@ -19349,12 +19372,14 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: relative;
   margin: 0 auto;
   padding: 10px;
+  font-size: 16px;
   text-align: center;
-  background-color: #EDECEA;
-  color: #838078;
+  border-radius: 6px;
+  background-color: #7AA926;
+  color: #fff;
 }
 .species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a:hover {
-  opacity: 0.8;
+  opacity: .9;
 }
 .species-filter .filter-block .views-widget-filter-field_ct_letter {
   display: none;
@@ -19703,22 +19728,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-width: 0 3px 3px 0;
 }
 
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 #nas-conservation-tracker-landscapes-map-form {
   display: none;
 }
@@ -20217,13 +20226,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-strategies-main #strategy-breakdown-left .active span {
   color: #f15936;
 }
-.ct-strategies-main #strategy-breakdown-right {
+.ct-strategies-main #strategy-breakdown-right > div {
   width: 100%;
   padding: 20px;
   background: #fff;
+  -webkit-animation: fadeIn 0.3s;
+  animation: fadeIn 0.3s;
 }
 @media only screen and (min-width: 768px) {
-  .ct-strategies-main #strategy-breakdown-right {
+  .ct-strategies-main #strategy-breakdown-right > div {
     width: 400px;
     max-height: 400px;
     float: right;
