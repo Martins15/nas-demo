@@ -93,7 +93,7 @@
                             </div>
                             <div ng-if="tab.subTabs.priority_species.list" ng-show="isSet(5)">
                                 <h5>{{tab.subTabs.priority_species.title}}</h5>
-                                <ul>
+                                <ul class="two-column-content">
                                     <li ng-repeat="species in tab.subTabs.priority_species.list">
                                         {{species}}
                                     </li>
