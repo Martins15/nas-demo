@@ -110,7 +110,7 @@ function nas_flyways_feature_panelizer_defaults() {
     $pane->panel = 'bottom';
     $pane->type = 'nas_panes_flyway_in_the_news';
     $pane->subtype = 'nas_panes_flyway_in_the_news';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'buttons' => array(

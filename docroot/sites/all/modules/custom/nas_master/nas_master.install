@@ -4454,3 +4454,19 @@ function nas_master_update_7307() {
     'nas_nurseries_near_you_feature' => array('views_default'),
   ));
 }
+
+/**
+ * Revert nas_flyway_feature, enable nas_climate.
+ */
+function nas_master_update_7314() {
+  features_revert(array(
+    'nas_flyways_feature' => array(
+      'field_base',
+      'field_instance',
+      'taxonomy',
+      'panelizer_defaults',
+      'strongarm',
+    )
+  ));
+  module_enable(array('nas_climate'));
+}

@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * For hook_update_X functions.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function nas_climate_install() {
+  $map = array(
+    'Alabama' => 'us',
+    'Alaska' => 'us',
+    'Arizona' => 'us',
+    'Arkansas' => 'us',
+    'California' => 'us',
+    'Colorado' => 'us',
+    'Connecticut' => 'us',
+    'Delaware' => 'us',
+    'District of Columbia' => 'us',
+    'Florida' => 'us',
+    'Georgia' => 'us',
+    'Idaho' => 'us',
+    'Illinois' => 'us',
+    'Indiana' => 'us',
+    'Iowa' => 'us',
+    'Kansas' => 'us',
+    'Kentucky' => 'us',
+    'Louisiana' => 'us',
+    'Maine' => 'us',
+    'Maryland' => 'us',
+    'Massachusetts' => 'us',
+    'Michigan' => 'us',
+    'Minnesota' => 'us',
+    'Mississippi' => 'us',
+    'Missouri' => 'us',
+    'Montana' => 'us',
+    'Nebraska' => 'us',
+    'Nevada' => 'us',
+    'New Hampshire' => 'us',
+    'New Jersey' => 'us',
+    'New Mexico' => 'us',
+    'New York' => 'us',
+    'North Carolina' => 'us',
+    'North Dakota' => 'us',
+    'Ohio' => 'us',
+    'Oklahoma' => 'us',
+    'Ontario' => 'us',
+    'Oregon' => 'us',
+    'Pennsylvania' => 'us',
+    'Rhode Island' => 'us',
+    'South Carolina' => 'us',
+    'South Dakota' => 'us',
+    'Tennessee' => 'us',
+    'Texas' => 'us',
+    'Utah' => 'us',
+    'Vermont' => 'us',
+    'Virginia' => 'us',
+    'Washington' => 'us',
+    'West Virginia' => 'us',
+    'Wisconsin' => 'us',
+    'Wyoming' => 'us',
+    'British Columbia' => 'ca',
+    'Alberta' => 'ca',
+    'Manitoba' => 'ca',
+    'New Brunswick' => 'ca',
+    'Newfoundland and Labrador' => 'ca',
+    'Northwest Territories' => 'ca',
+    'Nova Scotia' => 'ca',
+    'Nunavut' => 'ca',
+    'Prince Edward Island' => 'ca',
+    'Quebec' => 'ca',
+    'Saskatchewan' => 'ca',
+    'Yukon' => 'ca',
+  );
+  $vocabulary = taxonomy_vocabulary_machine_name_load('us_and_canada_states');
+  $terms = taxonomy_get_tree($vocabulary->vid);
+  foreach ($terms as $item) {
+    $term = taxonomy_term_load($item->tid);
+    $term->field_country_us_ca[LANGUAGE_NONE][0]['value'] = $map[$term->name];
+    taxonomy_term_save($term);
+  }
+}

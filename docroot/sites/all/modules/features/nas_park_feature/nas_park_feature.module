@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Park feature feature.
+ */
+
+include_once 'nas_park_feature.features.inc';
