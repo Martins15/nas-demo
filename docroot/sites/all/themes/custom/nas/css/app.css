@@ -18151,6 +18151,12 @@ ul.tabs-content {
   overflow: hidden;
   list-style: none;
 }
+ul.tabs-content .red {
+  color: #d0021b;
+}
+ul.tabs-content .green {
+  color: #417505;
+}
 ul.tabs-content .link {
   position: relative;
   padding-bottom: 10px;
@@ -18171,6 +18177,7 @@ ul.tabs-content .link__number {
 ul.tabs-content .link__text {
   color: #e18400;
   font-size: 36px;
+  font-weight: 600;
   line-height: 1;
 }
 ul.tabs-content .link.current:after {
@@ -18192,10 +18199,26 @@ ul.tabs-content .link.current:after {
 .tab-content {
   display: none;
   width: 100%;
+  margin-top: 10px;
   overflow: hidden;
 }
 .tab-content.current {
   display: inherit;
+}
+.tab-content .tab-bird-container {
+  margin-top: 20px;
+}
+
+.park-body {
+  margin-bottom: 50px;
+}
+.park-body__title {
+  margin-bottom: 10px;
+  font-size: 38px;
+  line-height: 1.15;
+}
+.park-body__body-text {
+  font-size: 16px;
 }
 
 .node-type-park {
