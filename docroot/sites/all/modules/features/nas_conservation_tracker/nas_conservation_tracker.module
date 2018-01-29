@@ -685,6 +685,41 @@ function nas_conservation_tracker_csv_get_threats($json_data) {
 }
 
 function nas_conservation_tracker_csv_get_response($json_data) {
-  $csv = array();
+  $main_rows = array();
+  $additional = array();
+  $op = $json_data['settings']['response']['chart']['operation'];
+  if ($json_data['settings']['response']['chart']['type'] == 'data') {
+    foreach ($json_data['response']['sites'] as $key => $site) {
+      if (!empty($site['data'])) {
+        foreach ($site['data'] as $key => $data) {
+          if ($data['value_type']['name'] == $json_data['settings']['response']['chart']['value_type'] &&
+            $data['key_type']['name'] == $json_data['settings']['response']['chart']['key_type']) {
+            if (empty($main_rows[$data['key']])) {
+              $main_rows[$data['key']] = 0;
+            }
+            switch ($op) {
+              case 'sum':
+                $main_rows[$data['key']] += (float)$data['value'];
+                break;
+              case 'avg':
+                $main_rows[$data['key']] += (float)$data['value'];
+                if (empty($additional[$data['key']])) {
+                  $additional[$data['key']] = array('count' => 0);
+                }
+                $additional[$data['key']]['count']++;
+                break;
+            }
+          }
+        }
+      }
+    }
+  }
+  $csv = array('head' => array($json_data['settings']['response']['chart']['key_type'], $json_data['settings']['response']['chart']['value_type']));
+  foreach ($main_rows as $key => $value) {
+    if ($op == 'avg') {
+      $value = round($value / $additional[$key]['count'], 2);
+    }
+    $csv[] = array($key, $value);
+  };
   return $csv;
 }
