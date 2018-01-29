@@ -304,12 +304,9 @@ function nas_conservation_tracker_get_strategy_json($id) {
   $result = array('data' => array(), 'success' => 0);
   if (!empty($id) && is_numeric($id)) {
     $data = nas_conservation_tracker_get_json('strategies-' . $id);
-    usort($data['tabs']['partners']['list'], function($item1, $item2) {
-      if ($item1 == $item2) {
-        return 0;
-      }
-      return $item1 < $item2 ? -1 : 1;
-    });
+    if (!empty($data['tabs']['partners']['list'])) {
+      sort($data['tabs']['partners']['list']);
+    }
     $result['data'] = $data;
     if (!empty($result['data'])) {
       $result['success'] = 1;
