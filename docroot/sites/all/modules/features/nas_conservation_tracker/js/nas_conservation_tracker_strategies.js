@@ -60,6 +60,7 @@
           }
           $scope.isActiveTab = $scope.tabs[index].name;
           $scope.isActiveTabLink = $scope.tabs[index].link;
+          $scope.toggle = false;
         };
 
         $scope.tab = 1;
