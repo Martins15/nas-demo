@@ -27,41 +27,12 @@ $plugin = [
  * @return stdClass
  */
 function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args, $context) {
-  $arg = arg();
-  $path = array_pop($arg);
   $block = new stdClass();
-
-  //$data = nas_conservation_tracker_get_json('scorecard-' . $scorecard_id);
 
 
   drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/landscapes.js');
-//    drupal_add_js([
-//      'nasConservationTracker' => [
-//
-////        'scorecardId' => $data['id'],
-////        'selectedUnits' => 0,
-////        'visibleSites' => [],
-////        'scale' => variable_get('nas_conservation_tracker_scale', $scale),
-//      ],
-//    ], 'setting');
+  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/units.js');
 
-  //  $libs = [
-  //    'nas_master_native_plants' => [
-  //      'angularjs',
-  //      'angularjs-ui-router',
-  //      'angularjs-sanitize',
-  //      'angularjs-cookies',
-  //      'angularjs-animate',
-  //      'angularjs-storage',
-  //      'angularjs-scroll',
-  //    ],
-  //  ];
-  //
-  //  foreach ($libs as $module => $libs) {
-  //    foreach ($libs as $lib) {
-  //      drupal_add_library($module, $lib);
-  //    }
-  //  }
   $js_path = drupal_get_path('module', 'nas_conservation_tracker') . '/js/';
   drupal_add_js($js_path . 'nas_conservation_tracker_landscapes.js', [
     'weight' => 999,
@@ -85,7 +56,7 @@ function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args,
 
   $map_info['center'] = [
     'lat' => '18.020098201368114',
-    'lon' => '-114.63378906250001',
+    'lon' => '-108.63378906250001',
   ];
   $features = [
   ];

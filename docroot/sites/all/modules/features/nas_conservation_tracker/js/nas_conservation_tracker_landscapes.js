@@ -9,6 +9,12 @@
     'water': '#54b5af',
     'coasts': '#007db6',
     'working lands': '#8a6540'
+  },
+  flywayColors = {
+    'pacific': '#cfccc4',
+    'central': '#f5da9d',
+    'mississippi': '#ccda9b',
+    'atlantic': '#b9dde8'
   };
 
   Drupal.behaviors.nasCtInitLandscapes = {
@@ -30,10 +36,17 @@
 
     // Delete existing sites from map.
     lMap.eachLayer(function (layer) {
-      if (layer._leaflet_id !== 'earth' && !layer._layers) {
+      if (layer._leaflet_id !== 'earth' && !layer._layers && !isFlyway(layer)) {
         lMap.removeLayer(layer);
       }
     });
+
+    function isFlyway(layer) {
+      if (layer.feature && layer.feature.properties && layer.feature.properties.unit.type == 'flyway') {
+        return true;
+      }
+      return false;
+    }
 
     //var polygons = [];
     for (var i = 0; i < data.length; i++) {
@@ -136,11 +149,23 @@
     }
 
     function getPolygonStyle(feature) {
-      var style = {fillOpacity: 1};
 
-      var color = colors[feature.properties.unit.strategy.name.toLowerCase()];
-      style.fillColor = color;
-      style.color = color;
+      if (feature.properties.unit.type && feature.properties.unit.type == 'flyway') {
+        var style = {fillOpacity: 0.2, opacity: 0.1};
+
+        var color = flywayColors[feature.properties.name.toLowerCase()];
+        style.fillColor = color;
+        style.color = color;
+
+      }
+      else {
+        var style = {fillOpacity: 1};
+
+        var color = colors[feature.properties.unit.strategy.name.toLowerCase()];
+        style.fillColor = color;
+        style.color = color;
+      }
+
       return style;
     }
 
@@ -175,6 +200,28 @@
       var $filterElement = $('#nas-conservation-tracker-landscapes-map-form input');
       $filterElement.on('change', updateFilters);
       updateFilters();
+
+      var flywayPolygons = [];
+      for (var flyway in Drupal.settings.nasCtUnitData) {
+
+        var unit = {'type': 'flyway'};
+        // name, coordinates, flyway, unit, type
+        var flywayItem = new LPolygon(
+            flyway,
+            Drupal.settings.nasCtUnitData[flyway].coordinates,
+            flyway,
+            unit,
+            ''
+        );
+
+        flywayPolygons.push(flywayItem);
+      }
+
+      var polygons = L.geoJson({
+        type: 'FeatureCollection',
+        features: flywayPolygons
+      }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
+      polygons.addTo(lMap);
 
       function updateFilters() {
         var filters = {'strategy': null, 'status': [], 'flyways': []};
