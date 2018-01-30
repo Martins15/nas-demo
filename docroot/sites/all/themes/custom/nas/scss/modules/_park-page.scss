@@ -6,7 +6,6 @@ $grey-active-park: #969696;
 $red-park: #d0021b;
 $green-park: #417505;
 
-
 .switch-wrap {
   font-family: $font-sans;
 }
@@ -212,5 +211,45 @@ ul.tabs-content {
         line-height: 1.38;
       }
     }
+  }
+}
+
+.form-container {
+  &.green {
+    background: $green-landing;
+    padding: 15px 0;
+  }
+  .inner {
+    float: left;
+    width: 50%;
+  }
+  label, select {
+    margin-bottom: 0;
+  }
+  &__text {
+    label {
+      color: $white;
+      font-family: $font-sans;
+      font-size: 33px;
+      line-height: 1.15;
+    }
+  }
+  select {
+    width: 100%;
+    height: 45px;
+    padding: 5px 10px;
+    border: solid 1px #d4d4d4;
+    border-radius: 8px;
+    background-color: $white;
+    box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+  }
+  .bird-select {
+    //select {
+    //  display: none;
+    //  &:first-child {
+    //    display: block;
+    //  }
+    //}
   }
 }

@@ -26,15 +26,21 @@
     </div>
   <?php endif; ?>
   <?php if ($type == 'extended'): ?>
+  <div class="form-container green">
     <div class="row">
       <div class="columns">
-        <div class="native-plants-green-row">
+            <div class="form-container__text inner">
           <label for="parks_map_terms"><?php print $select_park_label ?></label>
-          <select id="parks_map_terms">
-            <?php foreach ($parks_map_terms as $tid => $map): ?>
-              <option value="<?php print $tid ?>"><?php print $map['title'] ?></option>
-            <?php endforeach; ?>
-          </select>
+            </div>
+            <div class="form-container__form inner">
+                <div class="state-select columns large-3">
+                    <select id="parks_map_terms">
+                      <?php foreach ($parks_map_terms as $tid => $map): ?>
+                          <option value="<?php print $tid ?>"><?php print $map['title'] ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="bird-select columns large-9">
           <?php foreach ($parks_map_terms as $tid => $map): ?>
             <select id="<?php print $tid ?>">
               <?php foreach ($map['nodes'] as $nid => $park_title): ?>
@@ -42,8 +48,10 @@
               <?php endforeach; ?>
             </select>
           <?php endforeach; ?>
-        </div>
+            </div>
+            </div>
       </div>
     </div>
+  </div>
   <?php endif; ?>
 </div>
