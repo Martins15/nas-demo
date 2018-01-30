@@ -115,7 +115,9 @@
             </tab>
         </tabset>
     </div>
-    <div class="wrap-map-diagram">
+    <div class="ct-landscapes-main strategies-page-inside">
+    <div class="wrap-map-diagram ">
       <?php print $map; ?>
+    </div>
     </div>
 </section>
