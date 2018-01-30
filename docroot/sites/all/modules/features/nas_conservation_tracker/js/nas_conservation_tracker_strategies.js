@@ -83,6 +83,7 @@
           $scope.isActiveTab = $scope.tabs[index].name;
           $scope.isActiveTabLink = $scope.tabs[index].link;
 
+
           console.log('ID',$scope.tabs[index].id);
           var strategiesMap = {'coasts': 'coasts', 'working-lands': 'working lands', 'water': 'water', 'bird-friendly-communities': '', 'climate': ''};
 
@@ -94,6 +95,9 @@
           }
           console.log('FILTERS11111', filters);
           Drupal.nasConservationTracker.updateLandscapesFilters(filters);
+
+          $scope.toggle = false;
+
         };
 
         $scope.tab = 1;

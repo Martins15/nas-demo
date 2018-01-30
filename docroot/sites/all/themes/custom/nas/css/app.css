@@ -19139,7 +19139,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 .ct-scorecard-header.clone-header {
-  position: initial;
+  position: static;
 }
 .ct-scorecard-header.clone-header .hero-image {
   display: none;
@@ -20116,17 +20116,32 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .coasts .link {
   background-image: url("../img/strategies/1.png");
 }
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .coasts.active .link {
+  background-image: url("../img/strategies/1-1.png");
+}
 .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .working-lands .link {
   background-image: url("../img/strategies/2.png");
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .working-lands.active .link {
+  background-image: url("../img/strategies/2-1.png");
 }
 .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .water .link {
   background-image: url("../img/strategies/3.png");
 }
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .water.active .link {
+  background-image: url("../img/strategies/3-1.png");
+}
 .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .bird-friendly-communities .link {
   background-image: url("../img/strategies/4.png");
 }
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .bird-friendly-communities.active .link {
+  background-image: url("../img/strategies/4-1.png");
+}
 .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .climate .link {
   background-image: url("../img/strategies/5.png");
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .climate.active .link {
+  background-image: url("../img/strategies/5-1.png");
 }
 @media only screen and (min-width: 768px) {
   .ct-strategies-main .tab-content {
@@ -20319,6 +20334,49 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-strategies-main .progress-wrap p[data-value]:after {
   top: 12px;
   font-size: 15px;
+}
+.ct-strategies-main .two-column-content {
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+  margin-left: 0;
+}
+.ct-strategies-main .two-column-content li {
+  margin-left: 10px;
+}
+.ct-strategies-main .second-level-hide-style {
+  display: none;
+  margin-left: 15px;
+  -webkit-animation: fadeIn .3s;
+  animation: fadeIn .3s;
+}
+.ct-strategies-main .drop-down-header .item-header {
+  display: block;
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+.ct-strategies-main .drop-down-header .item-header i {
+  display: inline-block;
+  position: absolute;
+  top: 40%;
+  right: 0;
+  bottom: inherit;
+  width: 8px;
+  height: 8px;
+  padding: 3px;
+  -webkit-transform: rotate(45deg) translateY(-50%);
+  transform: rotate(45deg);
+  border: solid #404040;
+  border-width: 0 2px 2px 0;
+  border-radius: 0;
+}
+.ct-strategies-main .drop-down-header .item-header.js-show i {
+  -webkit-transform: rotate(-135deg) translateY(-50%);
+  transform: rotate(-135deg);
+}
+.ct-strategies-main .drop-down-header__item.js-show ~ .second-level-hide-style {
+  display: block;
 }
 
 .sidebar, .article-sidebar {
