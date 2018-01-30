@@ -96,18 +96,24 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
   }
   $nids = array_keys($result['node']);
   $parks = entity_load('node', $nids);
+  unset($parks[$node->nid]);
   if ($conf['park_select_type'] == 'extended') {
+    $parks_map_terms = array();
     foreach ($parks as $nid => $park) {
       $term = field_get_items('node', $park, 'field_state');
       $term = taxonomy_term_load($term[0]['tid']);
+      $parks_map_terms[$term->tid]['tid'] = $term->tid;
       $parks_map_terms[$term->tid]['title'] = $term->name;
-      $parks_map_terms[$term->tid]['nodes'][$park->nid] = $park->title;
+      $parks_map_terms[$term->tid]['nodes'][$park->nid] = array(
+        'title' => $park->title,
+        'alias' => drupal_get_path_alias('node/' . $park->nid),
+      );
     }
+    drupal_add_js(array('parksMapTerms' => $parks_map_terms), 'setting');
   }
   foreach ($parks as $nid => $park) {
     $parks[$nid] = $park->title;
   }
-  unset($parks[$node->nid]);
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
   $block = new stdClass();
   $block->content = array(
@@ -115,7 +121,6 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
     '#background_color' => $conf['background_color'],
     '#context_links' => $contextual_links,
     '#parks' => $parks,
-    '#parks_map_terms' => !empty($parks_map_terms) ? $parks_map_terms : NULL,
     '#type' => $conf['park_select_type'],
     '#select_park_label' => $conf['select_park_label'],
     '#current_park_title' => $node->title,
@@ -136,7 +141,6 @@ function park_select_bar_theme(&$theme, $plugin) {
       'type' => '',
       'current_park_title' => '',
       'select_park_label' => '',
-      'parks_map_terms' => '',
     ),
     'template' => 'park-select-bar',
     'path' => $plugin['path'],
