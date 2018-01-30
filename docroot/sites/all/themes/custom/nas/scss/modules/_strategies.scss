@@ -179,7 +179,7 @@
   .wrap-strategy-breakdown {
     position: relative;
     padding: 0 0 50px;
-    background: url("../img/strategies/map.png") no-repeat center top $bg-map;
+    //background: url("../img/strategies/map.png") no-repeat center top $bg-map;
     @include breakpoint(large-up) {
       min-height: 700px;
       padding: 50px 0;
@@ -302,10 +302,13 @@
         width: 100px;
         height: 100px;
         transform: translate(-50%, -50%);
-        background-color: $white;
+        background-color: #333;
         border-radius: 100%;
         -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
         animation: sk-scaleout 1.0s infinite ease-in-out;
+        @include breakpoint(large-up) {
+          background-color: $white;
+        }
       }
     }
   .progress-wrap {
@@ -385,13 +388,15 @@
 }
 
 .strategies-page-inside {
-  display: none;
-  position: absolute;
-  height: 700px;
-  top: 200px;
-  width: 100%;
   @include breakpoint(large-up) {
     display: block;
+    position: absolute;
+    height: 700px;
+    top: 200px;
+    width: 100%;
+  }
+  .wrap-map-diagram {
+    min-height: auto;
   }
   .leaflet-control-layers {
     display: none;

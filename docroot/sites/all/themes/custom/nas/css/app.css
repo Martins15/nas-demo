@@ -20184,7 +20184,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-strategies-main .wrap-strategy-breakdown {
   position: relative;
   padding: 0 0 50px;
-  background: url("../img/strategies/map.png") no-repeat center top #1c1c1c;
 }
 @media only screen and (min-width: 768px) {
   .ct-strategies-main .wrap-strategy-breakdown {
@@ -20314,10 +20313,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   width: 100px;
   height: 100px;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: #333;
   border-radius: 100%;
   -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
   animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+@media only screen and (min-width: 768px) {
+  .ct-strategies-main .loader-tabs:after {
+    background-color: #fff;
+  }
 }
 .ct-strategies-main .progress-wrap {
   background: transparent;
@@ -20390,17 +20394,17 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: block;
 }
 
-.strategies-page-inside {
-  display: none;
-  position: absolute;
-  height: 700px;
-  top: 200px;
-  width: 100%;
-}
 @media only screen and (min-width: 768px) {
   .strategies-page-inside {
     display: block;
+    position: absolute;
+    height: 700px;
+    top: 200px;
+    width: 100%;
   }
+}
+.strategies-page-inside .wrap-map-diagram {
+  min-height: auto;
 }
 .strategies-page-inside .leaflet-control-layers {
   display: none;
