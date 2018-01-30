@@ -110,17 +110,32 @@
       .coasts .link {
         background-image: url("../img/strategies/1.png");
       }
+      .coasts.active .link {
+        background-image: url("../img/strategies/1-1.png");
+      }
       .working-lands .link {
         background-image: url("../img/strategies/2.png");
+      }
+      .working-lands.active .link {
+        background-image: url("../img/strategies/2-1.png");
       }
       .water .link {
         background-image: url("../img/strategies/3.png");
       }
+      .water.active .link {
+        background-image: url("../img/strategies/3-1.png");
+      }
       .bird-friendly-communities .link {
         background-image: url("../img/strategies/4.png");
       }
-      .climate .link{
+      .bird-friendly-communities.active .link {
+        background-image: url("../img/strategies/4-1.png");
+      }
+      .climate .link {
         background-image: url("../img/strategies/5.png");
+      }
+      .climate.active .link {
+        background-image: url("../img/strategies/5-1.png");
       }
     }
   }

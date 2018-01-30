@@ -20116,17 +20116,32 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .coasts .link {
   background-image: url("../img/strategies/1.png");
 }
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .coasts.active .link {
+  background-image: url("../img/strategies/1-1.png");
+}
 .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .working-lands .link {
   background-image: url("../img/strategies/2.png");
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .working-lands.active .link {
+  background-image: url("../img/strategies/2-1.png");
 }
 .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .water .link {
   background-image: url("../img/strategies/3.png");
 }
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .water.active .link {
+  background-image: url("../img/strategies/3-1.png");
+}
 .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .bird-friendly-communities .link {
   background-image: url("../img/strategies/4.png");
 }
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .bird-friendly-communities.active .link {
+  background-image: url("../img/strategies/4-1.png");
+}
 .ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .climate .link {
   background-image: url("../img/strategies/5.png");
+}
+.ct-strategies-main .ct-strategies-tabs-wrap .nav.nav-tabs .climate.active .link {
+  background-image: url("../img/strategies/5-1.png");
 }
 @media only screen and (min-width: 768px) {
   .ct-strategies-main .tab-content {
