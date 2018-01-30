@@ -29,19 +29,18 @@
     <div class="row">
       <div class="columns">
         <div class="native-plants-green-row">
-          <label for=""><?php print $select_park_label ?></label>
+          <label for="parks_map_terms"><?php print $select_park_label ?></label>
+          <select id="parks_map_terms">
+            <?php foreach ($parks_map_terms as $tid => $map): ?>
+              <option value="<?php print $tid ?>"><?php print $map['title'] ?></option>
+            <?php endforeach; ?>
+          </select>
           <?php foreach ($parks_map_terms as $tid => $map): ?>
-            <ul>
-              <li class="<?php print $tid ?>"><?php print $map['title'] ?>
-                <ul>
-                  <?php foreach ($map['nodes'] as $nid => $park_title): ?>
-                    <li>
-                      <a href="node/<?php print $nid ?>"><?php print $park_title ?></a>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
-              </li>
-            </ul>
+            <select id="<?php print $tid ?>">
+              <?php foreach ($map['nodes'] as $nid => $park_title): ?>
+                <option value="<?php print $nid ?>"><?php print $park_title ?></option>
+              <?php endforeach; ?>
+            </select>
           <?php endforeach; ?>
         </div>
       </div>
