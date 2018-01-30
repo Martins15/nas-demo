@@ -39,6 +39,7 @@
                   <option value="<?php /*print $tid */?>"><?php /*print $map['title'] */?></option>
                 <?php /*endforeach; */?>
               </select>-->
+                <select name="parks" id="parks-select"></select>
             </div>
             <div class="bird-select columns large-9">
 <!--              <?php /*foreach ($parks_map_terms as $tid => $map): */?>
@@ -48,6 +49,7 @@
                   <?php /*endforeach; */?>
                 </select>
               --><?php /*endforeach; */?>
+                <select name="state" id="state-select"></select>
             </div>
           </div>
         </div>
