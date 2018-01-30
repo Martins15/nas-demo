@@ -145,14 +145,22 @@
 
                   if (angular.isDefined(tabData.settings.overview.image)) {
                     tabData.settings.overview.preparedLink.class = 'colorbox-load';
-                    tabData.settings.overview.preparedLink.href = tabData.settings.overview.image + '?iframe=false';
+                    var sign = '?';
+                    if (tabData.settings.overview.image.indexOf('?') > -1) {
+                      sign = '&';
+                    }
+                    tabData.settings.overview.preparedLink.href = tabData.settings.overview.image + sign + 'iframe=false';
                   }
                   else {
                     if (angular.isDefined(tabData.settings.overview.iframe)) {
                       tabData.settings.overview.preparedLink.class = 'colorbox-load';
                       var width = $(window).width() * 0.75;
                       var height = $(window).height() * 0.9;
-                      tabData.settings.overview.preparedLink.href = tabData.settings.overview.iframe + '?width=' + width + '&height=' + height + '&iframe=true';
+                      var sign = '?';
+                      if (tabData.settings.overview.iframe.indexOf('?') > -1) {
+                        sign = '&';
+                      }
+                      tabData.settings.overview.preparedLink.href = tabData.settings.overview.iframe + sign + 'width=' + width + '&height=' + height + '&iframe=true';
                     }
                     else {
                       if (angular.isDefined(tabData.settings.overview.link)) {
@@ -170,7 +178,11 @@
                           if (yid) {
                             var youtube = '//www.youtube.com/embed/' + yid;
                             tabData.settings.overview.preparedLink.class = 'colorbox-load youtube';
-                            tabData.settings.overview.preparedLink.href = youtube + '?iframe=true&width=' + width + '&height=' + height;
+                            var sign = '?';
+                            if (youtube.indexOf('?') > -1) {
+                              sign = '&';
+                            }
+                            tabData.settings.overview.preparedLink.href = youtube + sign + 'iframe=true&width=' + width + '&height=' + height;
                           }
                         }
                       }

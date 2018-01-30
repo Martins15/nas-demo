@@ -56,7 +56,7 @@ function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args,
 
   $map_info['center'] = [
     'lat' => '18.020098201368114',
-    'lon' => '-108.63378906250001',
+    'lon' => '-102.33378906250001',
   ];
   $features = [
   ];

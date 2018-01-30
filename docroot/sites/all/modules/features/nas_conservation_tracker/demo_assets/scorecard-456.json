@@ -18,8 +18,8 @@
         "longitude": "-89.01123046875001",
         "zoom": "5"
       },
-      "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/coastal_carolinas_cbrs.png",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_threats.png",
+      "iframe": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/acr_brochure_printable.pdf",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_threats.png",
       "tagLine": "Anthropogenic pressures on birds, habitats they rely on, and/or an entire ecosystem",
       "title": "Over 50% of North America’s vast native grasslands that originally covered over 300 million acres have been lost due to:",
       "description": "<ul><li>Conversion to row crop agriculture</li><li>Woody shrub encroachment due to fire supression and prairie dog declines</li><li>Urbanization and energy development</li><li>Unsustainable livestock management practices</li><li>Desertification</li><li>Short-term and localized landowner incentive programs</li><li>Failed policy approaches</li></ul>",
@@ -41,8 +41,8 @@
         "longitude": "-89.01123046875001",
         "zoom": "5"
       },
-      "iframe": "//web4.audubon.org/scidev/coasts_actions/carolinas.html",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_actions.png",
+      "image": "//web4.audubon.org/scidev/images/conservation_ranching.png",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_actions.png",
       "tagLine": "Conservation interventions by Audubon field staff and partners as classifed by the Open Standards for the Practice of Conservation",
       "title": "Program Goals:",
       "description": "<ul><li>Leverage Audubon’s brand to drive consumer interest in ecologically sustainable beef production</li><li>Develop market-based conservation solutions that help land managers increase their profitability while adopting bird-friendly land management practices.</li><li>Audubon’s policy team, working with a coalition of stakeholders, will engage in reauthorization of the U.S. Farm Bill to promote policies and increase funding available to landowners for conservation</li></ul>",
@@ -77,8 +77,8 @@
         "longitude": "-89.01123046875001",
         "zoom": "5"
       },
-      "iframe": "//web4.audubon.org/scidev/cbc_trends/carolinas.html",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_response.png",
+      "iframe": "//audubon.maps.arcgis.com/apps/webappviewer/index.html?id=3fe2d54c685a46eaad9d5f60949d4e5d",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_response.png",
       "tagLine": "Quantifying the effectiveness of our conservation actions using scientifically-sound metrics",
       "title": "Grassland birds have suffered sharp declines over the past half century",
       "description": "<ul><li>We will measure the impact of the Conservation Ranching program with a novel index of ecological resilience, the Bird Friendliness Index or \"BFI\"</li></ul>",
@@ -103,8 +103,8 @@
         "longitude": "-89.01123046875001",
         "zoom": "5"
       },
-      "youtube": "//youtu.be/RDBbmZALHIU",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_partners.png",
+      "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/how_it_works_inforgraphic_2.jpg",
+      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_partners.png",
       "tagLine": "Our work is co-developed and often led by partner organizations and stakeholders",
       "title": "Audubon works with domestic and international partners to promote sustainable ranching and expand and coordinate grassland bird conservation work across Canada, the US and Mexico",
       "description": "The infographic on the right outlines the collaborative roles of Audubon staff, ranchers enrolled in the program, and retail partners in the implementation of the Conservation Ranching Program.",
