@@ -26,36 +26,48 @@ $plugin = [
  * @return stdClass
  */
 function nas_conservation_tracker_strategies_main_render($subtype, $conf, $args, $context) {
-  $arg = arg();
-  $path = array_pop($arg);
   $block = new stdClass();
-  $strategies = array();
 
   $data = nas_conservation_tracker_get_json('strategies');
-
-  //$page = page_manager_get_current_page();
-
-  //dpm($page);
-//'/' . arg(0) . '/' . arg(1) . '/'
   nas_conservation_tracker_add_base();
 
   nas_conservation_tracker_include_angular();
+  drupal_add_js(NAS_CT_JS_PATH . 'landscapes.js');
   drupal_add_js(NAS_CT_JS_PATH . 'nas_conservation_tracker_strategies.js');
   drupal_add_js(array('nasConservationTracker' => array(
     'strategies' => $data,
     'basePath' => '/' . arg(0) . '/' . arg(1),
   )), 'setting');
 
-  /*
-  foreach ($data as $strategy) {
-    $strategies[$strategy['link']] = array(
-      'name' => $strategy['name'],
-      'link' => '/' . arg(0) . '/' . arg(1) . '/' . $strategy['link'],
-      'class' => 'strategy-' . $strategy['link'],
-    );
-  }*/
 
-  $vars = array('strategies' => $data);
+  // Map.
+  $map_info = current(leaflet_map_get_info());
+  $map_info['settings']['layerControl'] = TRUE;
+  $map_info['layers']['earth']['urlTemplate'] = '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+  // TODO make it configrable via form.
+  $map_info['settings']['zoomDefault'] = 3;
+  $map_info['settings']['zoom'] = 3;
+  $map_info['settings']['zoomControl'] = FALSE;
+  $map_info['settings']['dragging'] = FALSE;
+  $map_info['settings']['touchZoom'] = FALSE;
+  $map_info['settings']['doubleClickZoom'] = FALSE;
+  $map_info['settings']['scrollWheelZoom'] = FALSE;
+  $map_info['settings']['boxZoom'] = FALSE;
+  $map_info['settings']['keyboard'] = FALSE;
+
+  $map_info['center'] = [
+    'lat' => '18.020098201368114',
+    'lon' => '-108.63378906250001',
+  ];
+  $features = [
+  ];
+  $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_landscapes_map_height', '990') . 'px');
+
+
+  $vars = array(
+    'map' => render($map),
+    'strategies' => $data
+  );
 
   $block->content = theme('ct_strategies_main', $vars);
 

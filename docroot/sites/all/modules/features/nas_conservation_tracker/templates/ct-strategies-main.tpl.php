@@ -115,4 +115,7 @@
             </tab>
         </tabset>
     </div>
+    <div class="wrap-map-diagram">
+      <?php print $map; ?>
+    </div>
 </section>

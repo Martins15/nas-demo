@@ -3,6 +3,26 @@
  * NAS CT Custom JS.
  */
 (function ($, Drupal) {
+  Drupal.behaviors.nasCtInitStrategies = {
+    attach: function (context, settings) {
+      $.get(
+          '/conservation-tracker/ajax/landscapes',
+          function (data) {
+            Drupal.settings.nasConservationTracker = Drupal.settings.nasConservationTracker || {};
+            Drupal.settings.nasConservationTracker.landscapes = data.data;
+            Drupal.nasCtInitLandscapesMap([]);
+
+            var filters = {strategy: "coasts", status: 'all', flyways: 'all'};
+            Drupal.nasConservationTracker.updateLandscapesFilters(filters);
+
+
+
+          }
+      );
+    }
+  };
+
+
   Drupal.behaviors.nasCtStrategies = {
     attach: function (context, settings) {
       //alert('fdgfdf');
@@ -50,6 +70,8 @@
             /* or make request for data delayed to show Loading... */
             $timeout(function () {
               var jsonFile = '/conservation-tracker/ajax/strategy/' + $scope.tabs[index].id;
+
+
               $http.get(jsonFile).then(function(result){
                 //console.log('DATA', result);
                 $scope.tabs[index].subTabs = result.data.data.tabs;
@@ -60,6 +82,18 @@
           }
           $scope.isActiveTab = $scope.tabs[index].name;
           $scope.isActiveTabLink = $scope.tabs[index].link;
+
+          console.log('ID',$scope.tabs[index].id);
+          var strategiesMap = {'coasts': 'coasts', 'working-lands': 'working lands', 'water': 'water', 'bird-friendly-communities': '', 'climate': ''};
+
+          if (strategiesMap[$scope.tabs[index].id]) {
+            var filters = {strategy: strategiesMap[$scope.tabs[index].id], status: 'all', flyways: 'all'};
+          }
+          else {
+            var filters = {'strategy': null, 'status': [], 'flyways': []};
+          }
+          console.log('FILTERS11111', filters);
+          Drupal.nasConservationTracker.updateLandscapesFilters(filters);
         };
 
         $scope.tab = 1;
