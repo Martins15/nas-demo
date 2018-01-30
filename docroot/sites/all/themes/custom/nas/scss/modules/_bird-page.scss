@@ -1291,7 +1291,7 @@ $gray-lightish: #9b9b9b;
     }
   }
   &.clone-header {
-    position: initial;
+    position: static;
     .hero-image {
         display: none;
     }
