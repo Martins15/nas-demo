@@ -86,7 +86,6 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
   if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
     $conf = array_merge($plugin['defaults'], $conf);
   }
-//  dpm($conf);
   $node = $contexts->data;
   $efq = new EntityFieldQuery();
   $efq->entityCondition('entity_type', 'node')
@@ -97,7 +96,7 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
   }
   $nids = array_keys($result['node']);
   $parks = entity_load('node', $nids);
-  if($conf['park_select_type'] == 'extended'){
+  if ($conf['park_select_type'] == 'extended') {
     foreach ($parks as $nid => $park) {
       $term = field_get_items('node', $park, 'field_state');
       $term = taxonomy_term_load($term[0]['tid']);
@@ -109,9 +108,7 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
     $parks[$nid] = $park->title;
   }
   unset($parks[$node->nid]);
-
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
-
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'park_select_bar',
