@@ -1,5 +1,6 @@
 .ct-strategies-main {
   overflow: hidden;
+  position: relative;
   .ct-strategies-tabs-wrap {
     > div {
       position: relative;
@@ -144,31 +145,31 @@
     @include breakpoint(large-up) {
       padding-top: 60px;
     }
-  }
-  .text-wrap {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding-left: 50px;
-    border-left: 1px solid #d9d9d9;
-    @include breakpoint(large-up) {
-      display: block;
-    }
-    h4 {
+    .text-wrap {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding-left: 50px;
+      border-left: 1px solid #d9d9d9;
       @include breakpoint(large-up) {
-        font-size: 33px;
-        font-weight: 300;
-        line-height: 1.21;
-        margin: 0;
-        color: $black;
+        display: block;
       }
-    }
-    p {
-      @include breakpoint(large-up) {
-        font-size: 14px;
-        line-height: normal;
-        color: $brownish-grey;
+      h4 {
+        @include breakpoint(large-up) {
+          font-size: 33px;
+          font-weight: 300;
+          line-height: 1.21;
+          margin: 0;
+          color: $black;
+        }
+      }
+      p {
+        @include breakpoint(large-up) {
+          font-size: 14px;
+          line-height: normal;
+          color: $brownish-grey;
+        }
       }
     }
   }
@@ -182,6 +183,7 @@
     @include breakpoint(large-up) {
       min-height: 700px;
       padding: 50px 0;
+      background: none;
     }
     &:before,
     &:after {
@@ -204,6 +206,11 @@
       width: 100%;
       overflow: hidden;
     }
+  }
+  #strategy-breakdown-left,
+  #strategy-breakdown-right {
+    position: relative;
+    z-index: 999;
   }
    #strategy-breakdown-left {
     width: 100%;
@@ -277,12 +284,15 @@
   }
   .loader-tabs {
       position: relative;
-      z-index: 1;
+      z-index: 9999;
       width: 100%;
       height: 100%;
       min-height: 300px;
       margin-bottom: 50px;
-      background: $white;
+     // background: $white;
+    @include breakpoint(large-up) {
+      min-height: 500px;
+    }
       &:after {
         content: '';
         position: absolute;
@@ -292,7 +302,7 @@
         width: 100px;
         height: 100px;
         transform: translate(-50%, -50%);
-        background-color: #333;
+        background-color: $white;
         border-radius: 100%;
         -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
         animation: sk-scaleout 1.0s infinite ease-in-out;
@@ -372,4 +382,19 @@
   .drop-down-header__item.js-show ~ .second-level-hide-style{
     display: block;
   }
+}
+
+.strategies-page-inside {
+  display: none;
+  position: absolute;
+  height: 700px;
+  top: 200px;
+  width: 100%;
+  @include breakpoint(large-up) {
+    display: block;
+  }
+  .leaflet-control-layers {
+    display: none;
+  }
+
 }
