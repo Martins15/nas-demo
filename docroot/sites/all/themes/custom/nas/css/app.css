@@ -19139,7 +19139,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 .ct-scorecard-header.clone-header {
-  position: initial;
+  position: static;
 }
 .ct-scorecard-header.clone-header .hero-image {
   display: none;
