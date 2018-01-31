@@ -20183,7 +20183,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .ct-strategies-main .wrap-strategy-breakdown {
   position: relative;
-  padding: 0 0 50px;
 }
 @media only screen and (min-width: 768px) {
   .ct-strategies-main .wrap-strategy-breakdown {
