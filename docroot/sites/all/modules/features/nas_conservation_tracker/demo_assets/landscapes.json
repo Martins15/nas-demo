@@ -369,7 +369,7 @@
   },
   {
     "id": 24,
-    "name": "Colorado River Basin and Delta",
+    "name": "Colorado River Basin and Tributaries",
     "strategy": {
       "id": 3,
       "name": "Water"
@@ -468,7 +468,7 @@
   },
   {
     "id": 30,
-    "name": "Great Plains and Chihuahan Desert",
+    "name": "Great Plains",
     "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/great_plains_and_chihuahan_desert_preview.jpg",
     "strategy": {
       "id": 2,
