@@ -178,7 +178,7 @@
   }
   .wrap-strategy-breakdown {
     position: relative;
-    padding: 0 0 50px;
+    //padding: 0 0 50px;
     //background: url("../img/strategies/map.png") no-repeat center top $bg-map;
     @include breakpoint(large-up) {
       min-height: 700px;
@@ -362,13 +362,13 @@
       i {
         display: inline-block;
         position: absolute;
-        top: 40%;
+        top: 8px;
         right: 0;
         bottom: inherit;
         width: 8px;
         height: 8px;
         padding: 3px;
-        -webkit-transform: rotate(45deg) translateY(-50%);
+        -webkit-transform: rotate(45deg);
         transform: rotate(45deg);
         border: solid $dark-filter;
         border-width: 0 2px 2px 0;
@@ -376,7 +376,7 @@
       }
       &.js-show {
         i {
-          -webkit-transform: rotate(-135deg) translateY(-50%);
+          -webkit-transform: rotate(-135deg);
           transform: rotate(-135deg);
         }
       }
