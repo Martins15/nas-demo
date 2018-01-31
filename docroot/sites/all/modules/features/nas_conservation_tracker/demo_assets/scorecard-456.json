@@ -16,7 +16,8 @@
       "map": {
         "latitude": "40.212440718286466",
         "longitude": "-89.01123046875001",
-        "zoom": "5"
+        "zoom": "5",
+        "markersZoom": "4"
       },
       "iframe": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/acr_brochure_printable.pdf",
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_threats.png",
@@ -39,7 +40,8 @@
       "map": {
         "latitude": "40.212440718286466",
         "longitude": "-89.01123046875001",
-        "zoom": "5"
+        "zoom": "5",
+        "markersZoom": "5"
       },
       "image": "//web4.audubon.org/scidev/images/conservation_ranching.png",
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_actions.png",
@@ -64,7 +66,8 @@
         "chart_type": "bar",
         "value_type": "Acreage",
         "key_type": "State",        
-        "operation": "sum"
+        "operation": "sum",
+        "count_copy": "Ranches in selected/visible area(s): "
       }
     },
     "response": {
@@ -75,7 +78,8 @@
       "map": {
         "latitude": "40.212440718286466",
         "longitude": "-89.01123046875001",
-        "zoom": "5"
+        "zoom": "5",
+        "markersZoom": "4"
       },
       "iframe": "//audubon.maps.arcgis.com/apps/webappviewer/index.html?id=3fe2d54c685a46eaad9d5f60949d4e5d",
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_response.png",
@@ -101,7 +105,8 @@
       "map": {
         "latitude": "40.212440718286466",
         "longitude": "-89.01123046875001",
-        "zoom": "5"
+        "zoom": "5",
+        "markersZoom": "4"
       },
       "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/how_it_works_inforgraphic_2.jpg",
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_partners.png",

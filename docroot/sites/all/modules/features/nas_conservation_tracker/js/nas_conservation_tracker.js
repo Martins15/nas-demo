@@ -6,33 +6,33 @@
 (function ($, Drupal) {
 
   var colors = {
-    response: ['#74c476','#41ab5d','#238b45','#006d2c','#00441b'],
-    actions: ['#6baed6','#4292c6','#2171b5','#08519c','#08306b'],
-    threats: ['#f768a1','#dd3497','#ae017e','#7a0177','#49006a']
+    response: ['#74c476', '#41ab5d', '#238b45', '#006d2c', '#00441b'],
+    actions: ['#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'],
+    threats: ['#f768a1', '#dd3497', '#ae017e', '#7a0177', '#49006a']
   };
 
   Drupal.nasCtInitMap = function () {
 
     var lMap = Drupal.settings.leaflet['0'].lMap,
-        styleActive = {
-          weight: 2,
-          opacity: 0.3,
-          fillOpacity: 0.3,
-        },
-        styleSelected = {
-          weight: 2,
-          opacity: 0.7,
-          fillOpacity: 0.7,
-        },
-        classes = {
-          site: 'ct-leaflet-site',
-          visibleArea: 'ct-visible-area',
-          charts: 'help-wrap-items-map-items',
-        },
-        loc = getLocation(),
-        json = Drupal.settings.nasConservationTracker.jsonData[loc],
-        $radios = $('input[name="map_type"]'),
-        $reset = $('#edit-map-reset');
+      styleActive = {
+        weight: 2,
+        opacity: 0.3,
+        fillOpacity: 0.3,
+      },
+      styleSelected = {
+        weight: 2,
+        opacity: 0.7,
+        fillOpacity: 0.7,
+      },
+      classes = {
+        site: 'ct-leaflet-site',
+        visibleArea: 'ct-visible-area',
+        charts: 'help-wrap-items-map-items',
+      },
+      loc = getLocation(),
+      json = Drupal.settings.nasConservationTracker.jsonData[loc],
+      $radios = $('input[name="map_type"]'),
+      $reset = $('#edit-map-reset');
 
 
     // Delete existing sites from map.
@@ -99,8 +99,9 @@
     }
 
     // Set correct scaling options.
-    $radios.each(function() {
-      // Get scaling optons from json. Fallback to global settings if not defined.
+    $radios.each(function () {
+      // Get scaling optons from json. Fallback to global settings if not
+      // defined.
       var scale = Drupal.settings.nasConservationTracker.jsonData.settings[loc].scale ?
         Drupal.settings.nasConservationTracker.jsonData.settings[loc].scale : Drupal.settings.nasConservationTracker.scale[loc];
       if (scale) {
@@ -148,7 +149,6 @@
       });
 
 
-
       $radios.change(function () {
         resetMap();
         scaleMapTo($(this).val());
@@ -165,6 +165,7 @@
 
       lMap.initiated = true;
     }
+
     // Helper functions.
 
     function detectCounty(site, marker) {
@@ -206,10 +207,10 @@
             var x = parseInt(iconOffset.left.toFixed());
             var y = parseInt(iconOffset.top.toFixed()) - parseInt(area.offset().top.toFixed());
             if (
-                y >= 0 &&
-                x >= 0 &&
-                x <= w &&
-                y <= h) {
+              y >= 0 &&
+              x >= 0 &&
+              x <= w &&
+              y <= h) {
               Drupal.settings.nasConservationTracker.visibleSites.push(layer.properties.site);
             }
           }
@@ -267,7 +268,7 @@
         resetSelection();
 
         var scale = Drupal.settings.nasConservationTracker.jsonData.settings[loc].scale ?
-            Drupal.settings.nasConservationTracker.jsonData.settings[loc].scale : Drupal.settings.nasConservationTracker.scale[loc];
+          Drupal.settings.nasConservationTracker.jsonData.settings[loc].scale : Drupal.settings.nasConservationTracker.scale[loc];
 
         scaleMapTo(scale[0]);
         Drupal.nasCtInitCharts();
@@ -289,7 +290,14 @@
     }
 
     function showMarkers() {
-      var visibility = lMap.getZoom() > 6 ? 'visible' : 'hidden';
+      var markersZoom = 7;
+      if (Drupal.settings.nasConservationTracker.jsonData.settings[loc] && Drupal.settings.nasConservationTracker.jsonData.settings[loc].map.markersZoom) {
+        markersZoom = Drupal.settings.nasConservationTracker.jsonData.settings[loc].map.markersZoom;
+      }
+
+      //console.log('MARKER ZOOM',
+      // Drupal.settings.nasConservationTracker.jsonData.settings[loc].map.markersZoom);
+      var visibility = lMap.getZoom() >= markersZoom ? 'visible' : 'hidden';
       $('.' + classes.site).css('visibility', visibility);
     }
 
@@ -299,9 +307,9 @@
         for (var i = 0, j = polyPoints[subPoints].length - 1; i < polyPoints[subPoints].length; j = i++) {
           // Y is before X in data coming from unit-data.js
           var xi = polyPoints[subPoints][i][1],
-              yi = polyPoints[subPoints][i][0];
+            yi = polyPoints[subPoints][i][0];
           var xj = polyPoints[subPoints][j][1],
-              yj = polyPoints[subPoints][j][0];
+            yj = polyPoints[subPoints][j][0];
           var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
           if (intersect) {
             inside = !inside;
@@ -344,7 +352,7 @@
               break;
             case 'state':
               var state = Drupal.settings.nasCtUnitData[layer.properties.flyway]['states'][layer.properties.state];
-              var stateData = Object.keys(state['counties']).map(function(e) {
+              var stateData = Object.keys(state['counties']).map(function (e) {
                 return state['counties'][e];
               });
 
@@ -375,7 +383,7 @@
         }
       });
 
-      var polygonsVals =Object.keys(polygons).map(function (e) {
+      var polygonsVals = Object.keys(polygons).map(function (e) {
         return polygons[e];
       });
 
@@ -443,10 +451,10 @@
             // Remove reference from map
             delete map.legendControl;
           },
-          getContent: function() {
+          getContent: function () {
             var content = '',
-            min = Drupal.settings.nasConservationTracker.currentMap.min,
-            max = Drupal.settings.nasConservationTracker.currentMap.max;
+              min = Drupal.settings.nasConservationTracker.currentMap.min,
+              max = Drupal.settings.nasConservationTracker.currentMap.max;
             var loc = getLocation();
             // If only one element is displayed
             if (min == max) {
@@ -460,8 +468,8 @@
                 max = Number(max).toFixed(2);
               }
               content = '<div class="legend-color" style="background: linear-gradient(to bottom, '
-                  + colors[loc][4] + ' 0%,' + colors[loc][0] + ' 100%);"><div class="legend-max">'
-                  + max + '</div><div class="legend-min">' + min + '</div></div>';
+                + colors[loc][4] + ' 0%,' + colors[loc][0] + ' 100%);"><div class="legend-max">'
+                + max + '</div><div class="legend-min">' + min + '</div></div>';
             }
 
             return content;
@@ -508,13 +516,13 @@
   Drupal.nasCtInitCharts = function () {
     // Charts. TODO make it look good
     var loc = getLocation();
-    var json = Drupal.settings.nasConservationTracker.jsonData[loc] ? Drupal.settings.nasConservationTracker.jsonData[loc] : {sites:[]};
+    var json = Drupal.settings.nasConservationTracker.jsonData[loc] ? Drupal.settings.nasConservationTracker.jsonData[loc] : {sites: []};
     var objectivesRows = [];
     var objectivesTips = [];
     var overall = 0, overallCount = 0;
     var sites = (Drupal.settings.nasConservationTracker.visibleSites.length > 0) ?
-        Drupal.settings.nasConservationTracker.visibleSites :
-        json.sites;
+      Drupal.settings.nasConservationTracker.visibleSites :
+      json.sites;
     var tabSettings = Drupal.settings.nasConservationTracker.jsonData.settings[loc];
 
     if (!sites) {
@@ -550,12 +558,13 @@
     var objectives = Drupal.d3.ct_circular('d3-objectives', {rows: []});
     objectives.update({rows: objectivesRows, tooltips: objectivesTips});
     if (objectivesRows.length > 0) {
-     var objectWrap = $('.objectives-wrap');
+      var objectWrap = $('.objectives-wrap');
 
-     // Check if array and if empty hide block.
+      // Check if array and if empty hide block.
       if ($.isArray(objectivesRows) && objectivesRows[0][0].length === 0) {
         objectWrap.hide();
-      } else {
+      }
+      else {
         objectWrap.show();
       }
 
@@ -580,6 +589,7 @@
 
         $overallWrapper.find('progress').val(overall);
       }
+
       $('.progress-wrap').show();
     }
     else {
@@ -611,6 +621,13 @@
         graphColor: [colors[loc][1]],
       });
       $('#site-count').text(sites.length);
+      if (tabSettings.chart.count_copy) {
+        $('#site-count-copy').text(tabSettings.chart.count_copy);
+      }
+      else {
+        $('#site-count-copy').text(Drupal.t('Sites in selected/visible area(s): '));
+      }
+
 
     }
     else {
@@ -727,7 +744,7 @@
   };
 
   Drupal.behaviors.nasCtOwl = {
-    attach: function(context, settings) {
+    attach: function (context, settings) {
       $("#ct-scorecard-owl").owlCarousel({
         'items': 4,
         'paginationSpeed': 100,
@@ -758,8 +775,8 @@
 
 })(jQuery, window.Drupal);
 
-Number.isInteger = Number.isInteger || function(value) {
+Number.isInteger = Number.isInteger || function (value) {
   return typeof value === "number" &&
-      isFinite(value) &&
-      Math.floor(value) === value;
+    isFinite(value) &&
+    Math.floor(value) === value;
 };
