@@ -9,19 +9,27 @@ define('NAS_MENU_MAIN_NAVIGATION', 'menu-header-big-main-menu');
 define('NAS_MENU_ACTIVE_CLASS', 'current-parent');
 
 /**
- * Implements hook_menu_attribute_info().
+ * Implements hook_menu_attribute_info_alter().
  */
 function nas_menu_menu_attribute_info_alter(array &$attributes) {
-  // Add a Tabindex attribute.
-  $attributes['liclass'] = array(
-    'label' => t('List item class'),
-    'description' => t('Specifies class of LI element.'),
-  );
-
   // Remove the Access Key attribute.
   foreach (array('accesskey', 'title', 'id', 'name', 'rel', 'style', 'target') as $key) {
     unset($attributes[$key]);
   }
+}
+
+/**
+ * Implements hook_menu_attribute_info().
+ */
+function nas_menu_menu_attribute_info() {
+  // Add a liclass attribute.
+  $info['liclass'] = array(
+    'label' => t('List item class'),
+    'description' => t('Specifies class of LI element.'),
+    'scope' => array(MENU_ATTRIBUTES_ITEM),
+  );
+
+  return $info;
 }
 
 /**

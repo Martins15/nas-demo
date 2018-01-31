@@ -50,6 +50,7 @@
            },
            onHide: function (colpkr) {
              $(colpkr).fadeOut(500);
+             $("#" + target + " .color_picker").find("input").blur();
              return false;
            },
            onChange: function (hsb, hex, rgb) {

@@ -5,10 +5,10 @@ package = Chaos tool suite
 core = 7.x
 
 files[] = page_manager_search.entity.inc
-
-; Information added by drupal.org packaging script on 2013-10-01
-version = "7.x-1.1+0-dev"
+files[] = tests/page_manager_search.test
+; Information added by Drupal.org packaging script on 2016-06-08
+version = "7.x-1.2"
 core = "7.x"
 project = "page_manager_search"
-datestamp = "1380621917"
+datestamp = "1465386453"
 
