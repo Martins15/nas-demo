@@ -5,3 +5,17 @@
  */
 
 include_once 'nas_park_feature.features.inc';
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function nas_park_feature_form_park_node_form_alter(&$form, &$form_state, $form_id) {
+  $states = $form['field_state'][LANGUAGE_NONE]['#options'];
+  unset($states['_none']);
+  foreach ($states as $tid => $title) {
+    $term = taxonomy_term_load($tid);
+    if($term->field_country_us_ca[LANGUAGE_NONE][0]['value'] != 'us') {
+      unset($form['field_state'][LANGUAGE_NONE]['#options'][$tid]);
+    }
+  }
+}
