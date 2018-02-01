@@ -20,7 +20,8 @@
               </span>
               <span class="tooltip">
                 <span class="icon"></span>
-                <span class="text" id="tooltip-text"><?php print $tooltip; ?></span>
+                <span class="text"
+                      id="tooltip-text"><?php print $tooltip; ?></span>
               </span>
             </h4>
             <div class="trigger">
@@ -30,7 +31,9 @@
                 <label for="checkActions"></label>
               </div>
             </div>
-            <p>Sites in selected/visible area(s): <span id="site-count">0</span></p>
+            <p><span
+                id="site-count-copy">Sites in selected/visible area(s): </span><span
+                id="site-count">0</span></p>
           </div>
           <div class="diagram-item">
             <?php print $actions; ?>
@@ -44,7 +47,8 @@
               Objectives
               <span class="tooltip">
                 <span class="icon"></span>
-                <span class="text" id="tooltip-objectives-text"><?php print $tooltip_objectives; ?></span>
+                <span class="text"
+                      id="tooltip-objectives-text"><?php print $tooltip_objectives; ?></span>
               </span>
             </h4>
           </div>
