@@ -44,25 +44,29 @@
                             </div>
                         </div>
                         <div id="strategy-breakdown-right">
-                            <div ng-if="tab.subTabs.overview" ng-show="isSet(1)">
+                            <div ng-if="tab.subTabs.overview" ng-show="isSet(1)" class="strategy-left-item" ng-class="{'js-show-wrap' : toggle_wrap}">
+                                <i class="plus" ng-click="toggle_wrap = !toggle_wrap"></i>
                                 <h5>{{tab.subTabs.overview.title}}</h5>
-                                <div class="progress-wrap map-item large-8">
-                                    <div class="map-item__inner-help">
-                                        <div class="progress-wrap__title">
-                                        <div class="progress-item">
-                                            <p style="width:{{tab.subTabs.overview.progress}}%"
-                                               data-value="{{tab.subTabs.overview.progress}}"></p>
-                                            <progress max="100"
-                                                      value="{{tab.subTabs.overview.progress}}"
-                                                      class="html5"></progress>
+                                <div class="js-hide-show-help-wrap">
+                                    <div class="progress-wrap map-item large-8">
+                                        <div class="map-item__inner-help">
+                                            <div class="progress-wrap__title">
+                                                <div class="progress-item">
+                                                    <p style="width:{{tab.subTabs.overview.progress}}%"
+                                                       data-value="{{tab.subTabs.overview.progress}}"></p>
+                                                    <progress max="100"
+                                                              value="{{tab.subTabs.overview.progress}}"
+                                                              class="html5"></progress>
+                                                </div>
+                                                <h4 class="map-title">Overall
+                                                    Progress</h4></div>
                                         </div>
-                                            <h4 class="map-title">Overall
-                                                Progress</h4></div>
                                     </div>
+                                    <p>{{tab.subTabs.overview.description}}</p>
                                 </div>
-                                <p>{{tab.subTabs.overview.description}}</p>
                             </div>
-                            <div ng-if="tab.subTabs.goals.goals" ng-show="isSet(2)">
+                            <div ng-if="tab.subTabs.goals.goals" ng-show="isSet(2)" ng-class="{'js-show-wrap' : toggle_wrap}">
+                                <i class="plus" ng-click="toggle_wrap = !toggle_wrap"></i>
                                 <h5>{{tab.subTabs.goals.title}}</h5>
                                 <ul>
                                     <li class="drop-down-header" ng-repeat="goalGroup in tab.subTabs.goals.goals">
@@ -75,7 +79,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div ng-if="tab.subTabs.partners.list" ng-show="isSet(3)">
+                            <div ng-if="tab.subTabs.partners.list" ng-show="isSet(3)" ng-class="{'js-show-wrap' : toggle_wrap}">
+                                <i class="plus" ng-click="toggle_wrap = !toggle_wrap"></i>
                                 <h5>{{tab.subTabs.partners.title}}</h5>
                                 <ul>
                                     <li ng-repeat="partner in tab.subTabs.partners.list">
@@ -83,7 +88,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div ng-if="tab.subTabs.initiatives.list" ng-show="isSet(4)">
+                            <div ng-if="tab.subTabs.initiatives.list" ng-show="isSet(4)" ng-class="{'js-show-wrap' : toggle_wrap}">
+                                <i class="plus" ng-click="toggle_wrap = !toggle_wrap"></i>
                                 <h5>{{tab.subTabs.initiatives.title}}</h5>
                                 <ul>
                                     <li ng-repeat="initiative in tab.subTabs.initiatives.list">
@@ -91,7 +97,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div ng-if="tab.subTabs.priority_species.list" ng-show="isSet(5)">
+                            <div ng-if="tab.subTabs.priority_species.list" ng-show="isSet(5)" ng-class="{'js-show-wrap' : toggle_wrap}">
+                                <i class="plus" ng-click="toggle_wrap = !toggle_wrap"></i>
                                 <h5>{{tab.subTabs.priority_species.title}}</h5>
                                 <ul class="two-column-content">
                                     <li ng-repeat="species in tab.subTabs.priority_species.list">
@@ -99,7 +106,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div ng-if="tab.subTabs.priority_landscapes.list" ng-show="isSet(6)">
+                            <div ng-if="tab.subTabs.priority_landscapes.list" ng-show="isSet(6)" ng-class="{'js-show-wrap' : toggle_wrap}">
+                                <i class="plus" ng-click="toggle_wrap = !toggle_wrap"></i>
                                 <h5>{{tab.subTabs.priority_landscapes.title}}</h5>
                                 <ul>
                                     <li ng-repeat="landscape in tab.subTabs.priority_landscapes.list">

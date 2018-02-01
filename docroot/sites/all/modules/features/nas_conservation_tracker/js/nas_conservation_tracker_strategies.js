@@ -112,7 +112,7 @@
           Drupal.nasConservationTracker.updateLandscapesFilters(filters);
 
           $scope.toggle = false;
-
+          $scope.toggle_wrap = false;
         };
 
         $scope.tab = 1;

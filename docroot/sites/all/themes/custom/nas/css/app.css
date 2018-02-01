@@ -20246,7 +20246,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .ct-strategies-main #strategy-breakdown-left .active span {
   color: #f15936;
 }
+.ct-strategies-main .strategy-left-item {
+  position: relative;
+}
 .ct-strategies-main #strategy-breakdown-right > div {
+  position: relative;
   width: 100%;
   padding: 20px;
   background: #fff;
@@ -20273,6 +20277,67 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   color: #222;
   font-size: 33px;
   font-weight: 500;
+}
+.ct-strategies-main #strategy-breakdown-right i.plus {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  top: 25px;
+  right: 15px;
+  width: 15px;
+  height: 15px;
+}
+@media only screen and (min-width: 768px) {
+  .ct-strategies-main #strategy-breakdown-right i.plus {
+    display: block;
+  }
+}
+.ct-strategies-main #strategy-breakdown-right i.plus:before, .ct-strategies-main #strategy-breakdown-right i.plus:after {
+  content: "";
+  position: absolute;
+  background-color: #404040;
+  border-radius: 2px;
+  transition: transform 0.25s ease-out;
+}
+.ct-strategies-main #strategy-breakdown-right i.plus:before {
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  transform: rotate(90deg);
+}
+.ct-strategies-main #strategy-breakdown-right i.plus:after {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: transparent;
+}
+.ct-strategies-main #strategy-breakdown-right .js-show-wrap {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+.ct-strategies-main #strategy-breakdown-right .js-show-wrap * {
+  opacity: 0;
+}
+.ct-strategies-main #strategy-breakdown-right .js-show-wrap i {
+  display: block;
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 70%;
+  margin: 6px;
+  padding: 10px;
+  opacity: 1;
+}
+.ct-strategies-main #strategy-breakdown-right .js-show-wrap i:before {
+  transform: translateX(-50%);
+}
+.ct-strategies-main #strategy-breakdown-right .js-show-wrap i:after {
+  background-color: #404040;
 }
 .ct-strategies-main .item-menu {
   display: block;
