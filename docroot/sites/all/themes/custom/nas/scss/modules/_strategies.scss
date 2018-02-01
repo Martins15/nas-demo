@@ -309,13 +309,14 @@
     .js-show-wrap {
       width: 40px;
       height: 40px;
+      overflow: hidden;
       padding: 0;
       * {
         opacity: 0;
       }
       i {
         display: block;
-        position: relative;
+        z-index: 2;
         top: 0;
         right: 0;
         width: 70%;
@@ -422,6 +423,7 @@
       display: block;
       position: relative;
       width: 100%;
+      padding-right: 10px;
       cursor: pointer;
       i {
         display: inline-block;
@@ -462,6 +464,7 @@
   .wrap-map-diagram {
     min-height: auto;
   }
+
   .leaflet-control-layers {
     display: none;
   }
