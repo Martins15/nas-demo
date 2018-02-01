@@ -215,7 +215,7 @@ function nas_conservation_tracker_default_search_api_server() {
     "class" : "search_api_db_service",
     "options" : {
       "database" : "default:default",
-      "min_chars" : "3",
+      "min_chars" : "1",
       "partial_matches" : 1,
       "indexes" : { "ct_species_index" : {
           "id" : {

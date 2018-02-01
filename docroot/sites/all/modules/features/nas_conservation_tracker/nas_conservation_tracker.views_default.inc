@@ -346,7 +346,7 @@ function nas_conservation_tracker_views_default_views() {
     2 => array(),
     3 => array(),
   );
-  $handler->display->display_options['filters']['search_api_views_fulltext']['min_length'] = '3';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['min_length'] = '1';
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
     'field_ct_common_name' => 'field_ct_common_name',
     'field_ct_scientific_name' => 'field_ct_scientific_name',
