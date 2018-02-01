@@ -240,8 +240,12 @@
       }
     }
   }
+  .strategy-left-item {
+    position: relative;
+  }
   #strategy-breakdown-right {
     > div {
+      position: relative;
       width: 100%;
       padding: 20px;
       background: $white;
@@ -266,6 +270,67 @@
       color: #222;
       font-size: 33px;
       font-weight: 500;
+    }
+    i.plus {
+      display: none;
+      position: absolute;
+      cursor: pointer;
+      top: 25px;
+      right: 15px;
+      width: 15px;
+      height: 15px;
+      @include breakpoint(large-up) {
+        display: block;
+      }
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        background-color: $color-text-gray;
+        border-radius: 2px;
+        transition: transform 0.25s ease-out;
+      }
+      &:before {
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        transform: rotate(90deg);
+      }
+      &:after {
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        transform: translateY(-50%);
+        background: transparent;
+      }
+    }
+    .js-show-wrap {
+      width: 40px;
+      height: 40px;
+      overflow: hidden;
+      padding: 0;
+      * {
+        opacity: 0;
+      }
+      i {
+        display: block;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        width: 70%;
+        height: 70%;
+        margin: 6px;
+        padding: 10px;
+        opacity: 1;
+        &:before {
+          transform: translateX(-50%);
+        }
+        &:after {
+          background-color: $color-text-gray;
+        }
+      }
     }
   }
   .item-menu {
@@ -358,6 +423,7 @@
       display: block;
       position: relative;
       width: 100%;
+      padding-right: 10px;
       cursor: pointer;
       i {
         display: inline-block;
@@ -398,6 +464,7 @@
   .wrap-map-diagram {
     min-height: auto;
   }
+
   .leaflet-control-layers {
     display: none;
   }
