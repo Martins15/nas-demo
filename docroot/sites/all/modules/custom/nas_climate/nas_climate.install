@@ -81,4 +81,6 @@ function nas_climate_install() {
     $term->field_country_us_ca[LANGUAGE_NONE][0]['value'] = $map[$term->name];
     taxonomy_term_save($term);
   }
+  
+  module_enable(array('park_bird_import'));
 }
