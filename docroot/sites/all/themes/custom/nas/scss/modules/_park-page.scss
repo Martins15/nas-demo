@@ -7,6 +7,8 @@ $red-park: #d0021b;
 $green-park: #417505;
 
 .switch-wrap {
+  position: relative;
+  z-index: 0;
   font-family: $font-sans;
 }
 
@@ -210,6 +212,47 @@ ul.tabs-content {
       p {
         line-height: 1.38;
       }
+    }
+  }
+  .hero {
+    overflow: inherit;
+  }
+  .hero-header {
+    padding-bottom: 0;
+    h1 {
+      position: relative;
+      margin: 0;
+      padding-bottom: 15px;
+      cursor: pointer;
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 20px;
+        border-style: solid;
+        border-width: 10px 10px 0 10px;
+        border-color: $white transparent transparent transparent;
+        vertical-align: middle;
+      }
+    }
+  }
+  .drop-down-items {
+    position: relative;
+    z-index: 9;
+  }
+  .drop-down-list {
+    display: none;
+    position: absolute;
+    padding: 20px;
+    background: $white;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    a {
+      display: block;
+      margin-bottom: 5px;
+      color: $color-text-gray;
+      font-size: 38px;
+      line-height: 1.2;
     }
   }
 }

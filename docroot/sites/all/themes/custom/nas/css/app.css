@@ -18088,6 +18088,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .switch-wrap {
+  position: relative;
+  z-index: 0;
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 
@@ -18280,6 +18282,47 @@ ul.tabs-content .link.current:after {
 }
 .node-type-park .park_info .field-name-field-park-description p {
   line-height: 1.38;
+}
+.node-type-park .hero {
+  overflow: inherit;
+}
+.node-type-park .hero-header {
+  padding-bottom: 0;
+}
+.node-type-park .hero-header h1 {
+  position: relative;
+  margin: 0;
+  padding-bottom: 15px;
+  cursor: pointer;
+}
+.node-type-park .hero-header h1:after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 20px;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #fff transparent transparent transparent;
+  vertical-align: middle;
+}
+.node-type-park .drop-down-items {
+  position: relative;
+  z-index: 9;
+}
+.node-type-park .drop-down-list {
+  display: none;
+  position: absolute;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.node-type-park .drop-down-list a {
+  display: block;
+  margin-bottom: 5px;
+  color: #404040;
+  font-size: 38px;
+  line-height: 1.2;
 }
 
 .form-container.green {

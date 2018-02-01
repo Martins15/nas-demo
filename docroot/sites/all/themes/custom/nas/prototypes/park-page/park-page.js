@@ -37,6 +37,11 @@
         $(this).addClass('current');
         //$("."+tab_id).addClass('current');
         $(".container-data-tabs").find("[data-content='" + tab_id + "']").addClass('current');
+      });
+
+      $('.node-type-park .hero-header h1').click(function (e) {
+        e.preventDefault();
+        $('.drop-down-list').slideToggle('fast');
       })
     }
   };
