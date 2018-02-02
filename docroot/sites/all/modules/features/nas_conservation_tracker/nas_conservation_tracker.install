@@ -159,6 +159,9 @@ function nas_conservation_tracker_install() {
 //    }
 //  }
 
+  $index = search_api_index_load('ct_species_index', TRUE);
+  $index->reindex();
+  search_api_index_items($index);
 }
 
 /**
@@ -185,3 +188,26 @@ function nas_conservation_tracker_update_7009() {
   drupal_mkdir($dir);
   file_prepare_directory($dir);
 }
+
+/**
+ * Revert conservation tracker.
+ */
+/*
+function nas_conservation_tracker_update_7010() {
+  $module = 'nas_conservation_tracker';
+  $feature = features_get_features($module);
+  $components = array_keys($feature->info['features']);
+  features_revert(array($module => $components));
+}
+*/
+
+/**
+ * Reindex species.
+ */
+/*
+function nas_conservation_tracker_update_7011() {
+  $index = search_api_index_load('ct_species_index', TRUE);
+  $index->reindex();
+  search_api_index_items($index);
+}
+*/
