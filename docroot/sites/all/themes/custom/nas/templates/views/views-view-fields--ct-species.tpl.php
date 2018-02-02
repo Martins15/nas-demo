@@ -26,7 +26,9 @@
 <div class="columns tiny-12 medium-4 large-4 <?php print $classes; ?>">
   <figure class="bird-card">
     <div class="bird-card-illustration">
+      <?php if (!empty($fields['field_ct_image']->content)): ?>
       <?php print $fields['field_ct_image']->content; ?>
+      <?php endif; ?>
     </div>
     <figcaption class="bird-card-caption">
       <?php print $fields['field_ct_common_name']->content; ?>

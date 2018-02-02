@@ -14,26 +14,34 @@
       else {
         $a.hide();
       }
+      var $form = $('#views-exposed-form-ct-species-default');
+
       $('#species-aplphabet li a').click(function (e) {
         e.preventDefault();
         $('input[name="letter"]').val($(this).data('letter'));
-        $('#views-exposed-form-ct-species-default input[type="radio"][value="All"]').prop("checked", true);
-        $('#views-exposed-form-ct-species-default input[name="search"]').val('');
+        $form.find('input[type="radio"][value="All"]').prop("checked", true);
+        $form.find('input[name="search"]').val('');
         $('input#edit-submit-ct-species').click();
       });
 
-      $('#views-exposed-form-ct-species-default input[type="radio"]').change(function (e) {
-        $('#views-exposed-form-ct-species-default input[type="radio"][name!="' + e.target.name + '"][value="All"]').prop("checked", true);
-        $('#views-exposed-form-ct-species-default input[type="text"]').val('');
+      $form.find('input[type="radio"]').change(function (e) {
+        $form.find('input[type="radio"][name!="' + e.target.name + '"][value="All"]').prop("checked", true);
+        $form.find('input[type="text"]').val('');
       });
 
-      $('#views-exposed-form-ct-species-default input[type="text"]').on('input', function (e) {
-        $('#views-exposed-form-ct-species-default input[type="radio"][value="All"]').prop("checked", true);
-        $('#views-exposed-form-ct-species-default input[name="letter"]').val('');
+      $form.find('input[type="text"]').on('input', function (e) {
+        $form.find('input[type="radio"][value="All"]').prop("checked", true);
+        $form.find('input[name="letter"]').val('');
+      });
+
+
+      $form.ajaxComplete(function(event, xhr, settings) {
+        if (Drupal.curtain) {
+          Drupal.curtain.reset();
+          Drupal.curtain.setup();
+        }
       });
     }
-
-
   };
 
   Drupal.behaviors.styleAjaxViews = {

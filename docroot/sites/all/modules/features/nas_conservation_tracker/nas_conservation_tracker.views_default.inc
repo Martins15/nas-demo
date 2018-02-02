@@ -200,6 +200,7 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['pager']['options']['effects']['type'] = 'fade';
   $handler->display->display_options['pager']['options']['effects']['speed'] = 'fast';
   $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = '[field_ct_score_card_url_1]-wrapper';
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Header: Global: Text area */
@@ -207,7 +208,7 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
-  $handler->display->display_options['header']['area']['content'] = 'Use the tools below to find species by keyword search, by letter alphabetically, or via the filters to the left';
+  $handler->display->display_options['header']['area']['content'] = 'Use the tools below to find priority species by keyword search, by letter alphabetically, or via the filters to the left';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -235,6 +236,7 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['fields']['field_ct_score_card_url_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_ct_score_card_url_1']['empty'] = 'no-scorecard';
   $handler->display->display_options['fields']['field_ct_score_card_url_1']['empty_zero'] = TRUE;
+  $handler->display->display_options['fields']['field_ct_score_card_url_1']['hide_alter_empty'] = FALSE;
   /* Field: Indexed CT Species: Image */
   $handler->display->display_options['fields']['field_ct_image']['id'] = 'field_ct_image';
   $handler->display->display_options['fields']['field_ct_image']['table'] = 'search_api_index_ct_species_index';
@@ -346,7 +348,7 @@ function nas_conservation_tracker_views_default_views() {
     2 => array(),
     3 => array(),
   );
-  $handler->display->display_options['filters']['search_api_views_fulltext']['min_length'] = '3';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['min_length'] = '1';
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
     'field_ct_common_name' => 'field_ct_common_name',
     'field_ct_scientific_name' => 'field_ct_scientific_name',
@@ -525,7 +527,7 @@ function nas_conservation_tracker_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Load more'),
-    t('Use the tools below to find species by keyword search, by letter alphabetically, or via the filters to the left'),
+    t('Use the tools below to find priority species by keyword search, by letter alphabetically, or via the filters to the left'),
     t('No results found'),
     t('#'),
     t('has-scorecard'),

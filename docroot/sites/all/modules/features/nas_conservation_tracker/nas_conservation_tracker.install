@@ -36,7 +36,7 @@ function nas_conservation_tracker_install() {
 
   $path = array(
     'source' => 'node/' . $node->nid,
-    'alias' => 'conservation-tracker/scorecard/black-oystercatcher',
+    'alias' => 'conservation-tracker/interactive-report/black-oystercatcher',
     'language' => $node->language,
   );
 
@@ -59,7 +59,7 @@ function nas_conservation_tracker_install() {
 
   $path = array(
     'source' => 'node/' . $node->nid,
-    'alias' => 'conservation-tracker/scorecard/coastal-carolinas',
+    'alias' => 'conservation-tracker/interactive-report/coastal-carolinas',
     'language' => $node->language,
   );
 
@@ -81,7 +81,7 @@ function nas_conservation_tracker_install() {
 
   $path = array(
     'source' => 'node/' . $node->nid,
-    'alias' => 'conservation-tracker/scorecard/conservation-ranching',
+    'alias' => 'conservation-tracker/interactive-report/conservation-ranching',
     'language' => $node->language,
   );
 
@@ -91,6 +91,8 @@ function nas_conservation_tracker_install() {
   variable_set('colorbox_load', TRUE);
   variable_set('colorbox_inline', TRUE);
 
+
+  // Set default tooltip text.
   $tooltips = array(
     'actions' => 'Actions are classified according to the Open Standards for the Practice of Conservation: <a href="http://cmp-openstandards.org/tools/threats-and-actions-taxonomies">http://cmp-openstandards.org/tools/threats-and-actions-taxonomies</a>',
     'actions_objectives' => 'To quantify progress towards measurable objectives related to conservation interventions designed to address threats',
@@ -101,6 +103,12 @@ function nas_conservation_tracker_install() {
     'partners_objectives' => 'To quantify progress towards measurable objectives related to expanding our reach through collaborative conservation efforts',
   );
   variable_set('nas_conservation_tracker_tooltips', $tooltips);
+
+
+  // Prep dir for csv.
+  $dir = NAS_CT_CSV_PATH;
+  drupal_mkdir($dir);
+  file_prepare_directory($dir);
 //
 //  // Update images for Landing page.
 //  $page_name = 'conservation_tracker';
