@@ -22,6 +22,8 @@ docker_sql_db: drupal
 docker_prod_image: nas.ffwua.com:5000/dbprod
 docker_registry: nas.ffwua.com:5000
 docker_demo_sql_host: 172.18.254.253
+docker_demo_ct_sql_host: 172.18.254.201
+docker_demo_climate_sql_host: 172.18.254.202
 build_number: 0
 # @todo Backport old NAS approach
 solr_core: 'default'
