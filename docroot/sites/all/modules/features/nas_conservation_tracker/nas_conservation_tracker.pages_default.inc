@@ -1312,7 +1312,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
         'summary' => 'Introducing a new series profiling people, wildlife, and conservation programs threatened by federal budget cuts. ',
       ),
       'curtain_html' => array(
-        'image' => nas_conservation_tracker_get_image('landing_page_hero.jpg'),
+        'image' => nas_conservation_tracker_get_image('strategies_hero.jpg'),
         'header_color_mode' => 'light',
         'disable_gradient' => 0,
         'header_bg' => '-1',
