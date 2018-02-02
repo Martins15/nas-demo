@@ -67,7 +67,7 @@ conservation-tracker/strategies',
     $pane->panel = 'footer';
     $pane->type = 'nas_stay_abreast_pane';
     $pane->subtype = 'nas_stay_abreast_pane';
-    $pane->shown = FALSE;
+    $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'headline' => 'Stay abreast of Audubon',
@@ -91,7 +91,7 @@ conservation-tracker/strategies',
     $pane->panel = 'footer';
     $pane->type = 'nas_footer_pane';
     $pane->subtype = 'nas_footer_pane';
-    $pane->shown = FALSE;
+    $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'logo_path' => 'public://footer-logo.png',
@@ -892,7 +892,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'footer';
     $pane->type = 'nas_stay_abreast_pane';
     $pane->subtype = 'nas_stay_abreast_pane';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'headline' => 'Stay abreast of Audubon',
@@ -926,7 +926,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'footer';
     $pane->type = 'nas_footer_pane';
     $pane->subtype = 'nas_footer_pane';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'logo_path' => 'public://footer-logo.png',
@@ -1342,7 +1342,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'footer';
     $pane->type = 'nas_stay_abreast_pane';
     $pane->subtype = 'nas_stay_abreast_pane';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'headline' => 'Stay abreast of Audubon',
@@ -1374,7 +1374,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'footer';
     $pane->type = 'nas_footer_pane';
     $pane->subtype = 'nas_footer_pane';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'logo_path' => 'public://footer-logo.png',
@@ -1721,7 +1721,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'footer';
     $pane->type = 'nas_stay_abreast_pane';
     $pane->subtype = 'nas_stay_abreast_pane';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'headline' => '',
@@ -1755,7 +1755,7 @@ function nas_conservation_tracker_default_page_manager_pages() {
     $pane->panel = 'footer';
     $pane->type = 'nas_footer_pane';
     $pane->subtype = 'nas_footer_pane';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'logo_path' => 'public://footer-logo.png',
