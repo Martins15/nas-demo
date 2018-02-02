@@ -31,11 +31,15 @@ function nas_boa_plates_page_access($node) {
 }
 
 /**
- * Implements hook_node_view().
+ * Implements ctools_render_alter().
  */
-function nas_boa_plates_node_view($node, $view_mode, $langcode) {
-  if ($node->type == 'boa' && $view_mode == 'full') {
-    _nas_boa_plates_doheader();
+function nas_boa_plates_ctools_render_alter($info, $page, $context) {
+  if ($page) {
+    foreach ($context['contexts'] AS $ctools_context) {
+      if ($ctools_context->data->type == 'boa' && $ctools_context->data->panelizer_view_mode == 'page_manager') {
+        _nas_boa_plates_doheader();
+      }
+    }
   }
 }
 
