@@ -1251,13 +1251,16 @@ function nas_image($variables) {
     'boa_mail_subscription',
     'engagement_card_full_width',
     'engagement_card_full_width_half_black',
+    'article_hero_inline',
+    'bean_wysiwyg_full_width',
   );
+
   // List of styles for not applying of lazyloader.
   $exclude_lazyloader_styles = array(
     'engagement_card',
     'boa_mail_subscription',
   );
-  if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name']) && !in_array($variables['style_name'], $exclude_lazyloader_styles)) {
+  if (!isset($_GET['amp']) && module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name']) && !in_array($variables['style_name'], $exclude_lazyloader_styles)) {
     $attributes = $variables['attributes'];
     $noscript_attributes = $variables['attributes'];
 
@@ -1276,7 +1279,7 @@ function nas_image($variables) {
       if (module_exists('rdwimages')) {
         global $_rwdimages_set;
         if ($_rwdimages_set['enabled']) {
-          $attributes['class'] = array('rwdimage');
+          $attributes['class'] = ['rwdimage'];
         }
       }
 
@@ -1285,7 +1288,7 @@ function nas_image($variables) {
       $attributes['src'] = file_create_url($variables['path']);
     }
 
-    foreach (array('width', 'height', 'alt', 'title', 'style') as $key) {
+    foreach (['width', 'height', 'alt', 'title', 'style'] as $key) {
       if (isset($variables[$key])) {
         $attributes[$key] = $variables[$key];
       }
@@ -1293,20 +1296,17 @@ function nas_image($variables) {
         $noscript_attributes[$key] = $variables[$key];
       }
     }
+  }
 
+  // Run lazyloader manually cause lazyloader_theme_registry_alter is overridden by nas_theme_registry_alter.
+  if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name'])) {
     if (isset($variables['style_name']) && in_array($variables['style_name'], $remove_attr_for)) {
-      unset($attributes['width']);
-      unset($attributes['height']);
-      unset($noscript_attributes['width']);
-      unset($noscript_attributes['height']);
+      unset($variables['attributes']['width']);
+      unset($variables['attributes']['height']);
+      unset($variables['width']);
+      unset($variables['height']);
     }
-
-    $noscript = '';
-    if (!empty($attributes['data-src'])) {
-      $noscript = '<noscript><img' . drupal_attributes($noscript_attributes) . ' /></noscript>';
-    }
-
-    return '<img' . drupal_attributes($attributes) . ' />' . $noscript;
+    return theme_lazyloader_image($variables);
   }
   else {
     $attributes = $variables['attributes'];

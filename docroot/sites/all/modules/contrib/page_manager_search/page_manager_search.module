@@ -25,6 +25,7 @@ function page_manager_search_entity_info() {
     'label' => t('Page manager'),
     'controller class' => 'PageManagerSearchEntityController',
     'uri callback' => 'page_manager_search_uri',
+    'base table' => 'page_manager_pages',
     'entity keys' => array(
       'id' => 'pid',
     ),
@@ -50,7 +51,7 @@ function page_manager_search_uri($ids) {
  * Helper function; Convert Page manager page machine name to a decimal
  * conversion of the MD5 hash.
  */
-function page_manager_search_machine_name_to_dec($machine_name, $length = 10) {
+function page_manager_search_machine_name_to_dec($machine_name, $length = 9) {
   // As not every subtask has a PID we need to convert the subtask id to a
   // decimal reprisentation. I'm uncertain of whether the truncated decimal
   // conversion of an MD5 hash is unique enough, but I have limited
@@ -63,7 +64,7 @@ function page_manager_search_machine_name_to_dec($machine_name, $length = 10) {
 /**
  * Helper functon; Get Page manager page(s) by decimal conversion of MD5 hash.
  */
-function page_manager_search_get_pages_by_dec($dec = NULL, $length = 10) {
+function page_manager_search_get_pages_by_dec($dec = NULL, $length = 9) {
   $items = &drupal_static('__FUNCTION__');
 
   // Build list of SIDs.
@@ -82,7 +83,7 @@ function page_manager_search_get_pages_by_dec($dec = NULL, $length = 10) {
 /**
  *
  */
-function page_manager_search_pseudo_entity_load($dec, $length = 10) {
+function page_manager_search_pseudo_entity_load($dec, $length = 9) {
   module_load_include('inc', 'page_manager', 'plugins/tasks/page');
 
   $subtask = page_manager_search_get_pages_by_dec($dec, $length);

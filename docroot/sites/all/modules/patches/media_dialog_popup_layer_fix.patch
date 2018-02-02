@@ -1,0 +1,15 @@
+diff --git a/css/media.css b/css/media.css
+index 2397a17..f6b71a4 100644
+--- a/css/media.css
++++ b/css/media.css
+@@ -11,6 +11,10 @@
+   padding: 0;
+ }
+
++.ui-front {
++  z-index: 10001 !important;
++}
++
+ .ui-dialog.media-wrapper .ui-dialog-content {
+   padding: 0;
+ }
