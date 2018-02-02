@@ -21,8 +21,8 @@
       },
       styleSelected = {
         weight: 2,
-        opacity: 0.7,
-        fillOpacity: 0.7,
+        opacity: 0.9,
+        fillOpacity: 0.3,
       },
       classes = {
         site: 'ct-leaflet-site',
