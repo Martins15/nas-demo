@@ -43,6 +43,7 @@ function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args,
   $map_info = current(leaflet_map_get_info());
   $map_info['settings']['layerControl'] = TRUE;
   $map_info['layers']['earth']['urlTemplate'] = '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+  $map_info['layers']['earth']['options'] = array('attribution' => 'Mapnik | ESRI');
   // TODO make it configrable via form.
   $map_info['settings']['zoomDefault'] = 3;
   $map_info['settings']['zoom'] = 3;
