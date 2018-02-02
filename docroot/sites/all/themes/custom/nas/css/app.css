@@ -18793,6 +18793,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin-top: 2px;
   font-size: 13px;
   display: none;
+  overflow: hidden;
 }
 .ct-scorecard-main #nas-conservation-tracker-map-form .form-item-map-type.form-type-radios #edit-map-type label {
   color: #fff;
