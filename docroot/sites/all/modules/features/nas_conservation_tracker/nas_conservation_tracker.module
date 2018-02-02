@@ -639,7 +639,7 @@ function nas_conservation_tracker_csv_cache_update($json_data) {
         drupal_unlink($filename);
       }
       $file = fopen($filename, 'w');
-      $csv = call_user_func('nas_conservation_tracker_csv_get_' . $tab, $json_data);
+      $csv = nas_conservation_tracker_csv_get_sites($tab, $json_data);
       foreach ($csv as $fields) {
         fputcsv($file, $fields);
       }
@@ -652,83 +652,62 @@ function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
   $head = array(t('Name'), t('Latitude'), t('Longitude'), t('Flyway'), t('State'));
   $csv = array('head' => $head);
   $max = 0;
+  $chart_type = $json_data['settings'][$tab]['chart']['type'];
   foreach ($json_data[$tab]['sites'] as $key => $site) {
-    $csv[$key] = array(
+    $site_info = array(
       $site['name'],
       $site['latitude'],
       $site['longitude'],
       $site['state'],
       $site['flyway'],
     );
+    $csv[$key] = $site_info;
     $categories = array();
     if (empty($site[$tab]) || count($site[$tab]) == 0 ) {
       $site[$tab] = array();
     }
-    foreach ($site[$tab] as $item) {
-      foreach ($item['categories'] as $category) {
-        if (!in_array($category['name'], $categories)) {
-          $categories[] = $category['name'];
+    if (in_array($chart_type, array('actions', 'threats'))) {
+      foreach ($site[$chart_type] as $item) {
+        if (!empty($item['categories'])) {
+          foreach ($item['categories'] as $category) {
+            if (!in_array($category['name'], $categories)) {
+              $categories[] = $category['name'];
+            }
+          }
         }
       }
+      foreach ($categories as $cat) {
+        $csv[$key][] = $cat;
+      }
+      $count = count($categories);
+      if ($count > $max) {
+        $max = $count;
+      }
     }
-    foreach ($categories as $cat) {
-      $csv[$key][] = $cat;
-    }
-    $count = count($categories);
-    if ($count > $max) {
-      $max = $count;
-    }
-  }
-  for ($i = 1; $i <= $max; $i++) {
-    $csv['head'][] = t('Category @i', array('@i' => $i));
-  }
-  return $csv;
-}
-
-function nas_conservation_tracker_csv_get_actions($json_data) {
-  return nas_conservation_tracker_csv_get_sites('actions', $json_data);
-}
-
-function nas_conservation_tracker_csv_get_threats($json_data) {
-  return nas_conservation_tracker_csv_get_sites('threats', $json_data);
-}
-
-function nas_conservation_tracker_csv_get_response($json_data) {
-  $main_rows = array();
-  $additional = array();
-  $op = $json_data['settings']['response']['chart']['operation'];
-  if ($json_data['settings']['response']['chart']['type'] == 'data') {
-    foreach ($json_data['response']['sites'] as $key => $site) {
-      if (!empty($site['data'])) {
-        foreach ($site['data'] as $key => $data) {
-          if ($data['value_type']['name'] == $json_data['settings']['response']['chart']['value_type'] &&
-            $data['key_type']['name'] == $json_data['settings']['response']['chart']['key_type']) {
-            if (empty($main_rows[$data['key']])) {
-              $main_rows[$data['key']] = 0;
-            }
-            switch ($op) {
-              case 'sum':
-                $main_rows[$data['key']] += (float)$data['value'];
-                break;
-              case 'avg':
-                $main_rows[$data['key']] += (float)$data['value'];
-                if (empty($additional[$data['key']])) {
-                  $additional[$data['key']] = array('count' => 0);
-                }
-                $additional[$data['key']]['count']++;
-                break;
-            }
+    elseif ($chart_type == 'data') {
+      foreach ($site['data'] as $datakey => $data) {
+        if ($data['value_type']['name'] == $json_data['settings']['response']['chart']['value_type'] &&
+          $data['key_type']['name'] == $json_data['settings']['response']['chart']['key_type']) {
+          $csvkey = $key . $datakey;
+          $csv[$csvkey] = $site_info;
+          if (!empty($data['key'])) {
+            $csv[$csvkey][] = $data['key'];
+          }
+          if (!empty($data['value'])) {
+            $csv[$csvkey][] = $data['value'];
           }
         }
       }
     }
   }
-  $csv = array('head' => array($json_data['settings']['response']['chart']['key_type'], $json_data['settings']['response']['chart']['value_type']));
-  foreach ($main_rows as $key => $value) {
-    if ($op == 'avg') {
-      $value = round($value / $additional[$key]['count'], 2);
+  if (in_array($chart_type, array('actions', 'threats'))) {
+    for ($i = 1; $i <= $max; $i++) {
+      $csv['head'][] = t('Category @i', array('@i' => $i));
     }
-    $csv[] = array($key, $value);
-  };
+  }
+  elseif ($chart_type == 'data') {
+    $csv['head'][] = t($json_data['settings'][$tab]['chart']['key_type']);
+    $csv['head'][] = t($json_data['settings'][$tab]['chart']['value_type']);
+  }
   return $csv;
 }
