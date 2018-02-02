@@ -208,7 +208,7 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
-  $handler->display->display_options['header']['area']['content'] = 'Use the tools below to find species by keyword search, by letter alphabetically, or via the filters to the left';
+  $handler->display->display_options['header']['area']['content'] = 'Use the tools below to find priority species by keyword search, by letter alphabetically, or via the filters to the left';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -527,7 +527,7 @@ function nas_conservation_tracker_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Load more'),
-    t('Use the tools below to find species by keyword search, by letter alphabetically, or via the filters to the left'),
+    t('Use the tools below to find priority species by keyword search, by letter alphabetically, or via the filters to the left'),
     t('No results found'),
     t('#'),
     t('has-scorecard'),
