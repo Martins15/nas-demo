@@ -200,6 +200,7 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['pager']['options']['effects']['type'] = 'fade';
   $handler->display->display_options['pager']['options']['effects']['speed'] = 'fast';
   $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = '[field_ct_score_card_url_1]-wrapper';
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Header: Global: Text area */
@@ -235,6 +236,7 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['fields']['field_ct_score_card_url_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_ct_score_card_url_1']['empty'] = 'no-scorecard';
   $handler->display->display_options['fields']['field_ct_score_card_url_1']['empty_zero'] = TRUE;
+  $handler->display->display_options['fields']['field_ct_score_card_url_1']['hide_alter_empty'] = FALSE;
   /* Field: Indexed CT Species: Image */
   $handler->display->display_options['fields']['field_ct_image']['id'] = 'field_ct_image';
   $handler->display->display_options['fields']['field_ct_image']['table'] = 'search_api_index_ct_species_index';
