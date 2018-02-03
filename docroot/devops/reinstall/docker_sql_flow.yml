@@ -80,12 +80,12 @@
 
 - name: Downloading registry_rebuild
   sudo: yes
-  shell: "{{ php_env_vars }} drush -y dl registry_rebuild"
+  shell: |
+    {{ php_env_vars }} drush -y dl registry_rebuild
+    # drush cc drush has to happen outside of the docroot or it may fail if sites needs a registry_rebuild run first
+    cd $HOME
+    {{ php_env_vars }} drush cc drush
   when: rebuild_registry and registry_rebuild_installed.stdout == "0"
-
-- name: Clear drush cache
-  sudo: yes
-  shell: "{{ php_env_vars }} drush cc drush"
 
 - name: Rebuilding drupal registry
   sudo: yes
