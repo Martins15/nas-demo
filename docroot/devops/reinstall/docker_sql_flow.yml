@@ -30,6 +30,16 @@
   when: existing_container_name is defined and existing_container_name == "demo"
   ignore_errors: true
 
+- name: Delete "demo_ct" container
+  shell: docker rm -f {{ mysql_db }}
+  when: existing_container_name is defined and existing_container_name == "demo_ct"
+  ignore_errors: true
+
+- name: Delete "demo_climate" container
+  shell: docker rm -f {{ mysql_db }}
+  when: existing_container_name is defined and existing_container_name == "demo_climate"
+  ignore_errors: true
+
 - name: Update source image
   shell: docker pull {{ docker_prod_image }}
 
@@ -47,11 +57,11 @@
   when: existing_container_name is defined and existing_container_name == "demo"
 
 - name: Run docker container for "demo_ct"
-  shell: docker run --net buildnet --ip {{ docker_demo_ct_sql_host }} --name {{ mysql_db }} -di {{ docker_prod_image }}
+  shell: docker run --net buildnet --ip {{ docker_demo_sql_host }} --name {{ mysql_db }} -di {{ docker_prod_image }}
   when: existing_container_name is defined and existing_container_name == "demo_ct"
 
 - name: Run docker container for "demo_climate"
-  shell: docker run --net buildnet --ip {{ docker_demo_climate_sql_host }} --name {{ mysql_db }} -di {{ docker_prod_image }}
+  shell: docker run --net buildnet --ip {{ docker_demo_sql_host }} --name {{ mysql_db }} -di {{ docker_prod_image }}
   when: existing_container_name is defined and existing_container_name == "demo_climate"
 
 - name: Run mysql within docker container
