@@ -11,6 +11,8 @@ function nas_conservation_tracker_install() {
   // Revert conservation tracker feature.
   features_revert_module('nas_conservation_tracker');
 
+  variable_set('nas_conservation_tracker_endpoint', './sites/all/modules/features/nas_conservation_tracker/demo_assets');
+
   variable_set('nas_i18n_redirect_ignore', array(
     'conservation-tracker',
     'conservation-tracker/species',
