@@ -47,16 +47,17 @@ function nas_mobapp_endpoint_get_endpoint() {
       global $base_url;
       $item['title'] = trim($view_result->node_title);
       $item['summary'] = !empty($view_result->field_body[0]['rendered']['#markup']) ? strip_tags($view_result->field_body[0]['rendered']['#markup']) : '';
-      $item['url'] = $base_url . '/node/' . $view_result->nid;
       $item['position'] = $view_result->nodequeue_nodes_node_position;
       $uri = '';
       if ($type == 'article') {
+        $item['url'] = $base_url . '/node/' . $view_result->nid;
         $item['slug'] = !empty($view_result->taxonomy_term_data_node_name) ? $view_result->taxonomy_term_data_node_name : '';
         if (!empty($view_result->field_field_hero_image_1[0]['raw']['file']->uri)) {
           $uri = $view_result->field_field_hero_image_1[0]['raw']['file']->uri;
         }
       }
       else {
+        $item['url'] = !empty($view_result->field_field_link[0]['raw']['display_url']) ? $view_result->field_field_link[0]['raw']['display_url'] : '';
         $item['slug'] = !empty($view_result->field_field_slug[0]['rendered']['#markup']) ? $view_result->field_field_slug[0]['rendered']['#markup'] : '';
         if (!empty($view_result->field_field_image[0]['raw']['uri'])) {
           $uri = $view_result->field_field_image[0]['raw']['uri'];

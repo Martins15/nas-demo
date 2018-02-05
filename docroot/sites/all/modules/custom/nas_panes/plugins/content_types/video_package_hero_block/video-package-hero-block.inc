@@ -116,7 +116,10 @@ function video_package_hero_block_render($subtype, $conf, $args, $context) {
   }
 
   $file = file_load($conf['video']);
-  $video = file_create_url($file->uri);
+  $video = '';
+  if (!empty($file)) {
+    $video = file_create_url($file->uri);
+  }
 
   $path = drupal_get_path('theme', 'nas') . '/prototypes/video-page-2/';
 
@@ -147,14 +150,17 @@ function video_package_hero_block_render($subtype, $conf, $args, $context) {
         $path . 'vendor/jquery.waypoints.min.js' => array(
           'type' => 'file',
           'group' => JS_LIBRARY,
+          'weight' => 10,
         ),
         $path . 'vendor/inview.min.js' => array(
           'type' => 'file',
           'group' => JS_LIBRARY,
+          'weight' => 20,
         ),
         $path . 'vendor/sticky.min.js' => array(
           'type' => 'file',
           'group' => JS_LIBRARY,
+          'weight' => 20,
         ),
         $path . 'video-package-auto.js' => array(
           'type' => 'file',

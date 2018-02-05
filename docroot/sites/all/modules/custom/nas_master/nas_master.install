@@ -4557,3 +4557,52 @@ function nas_master_update_7313() {
     }
   }
 }
+
+/**
+ * Preparing for generate deppzoom images.
+ */
+function nas_master_update_7314() {
+  $efq = new EntityFieldQuery();
+  $efq->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'boa');
+
+  $result = $efq->execute();
+  $images = array();
+  if (isset($result['node'])) {
+    $dirname = 'public://deepzoom';
+    if (!is_dir($dirname)) {
+      mkdir($dirname);
+      drupal_chmod($dirname);
+    }
+    $nids = array_keys($result['node']);
+    $nodes = entity_load('node', $nids);
+    foreach ($nodes as $node) {
+      if (!$field_items = field_get_items('node', $node, 'field_boa_illustration')) {
+        continue;
+      }
+      if (!file_exists($field_items[0]['uri'])) {
+        continue;
+      }
+      $md5_file = md5_file($field_items[0]['uri']);
+      $images[$md5_file] = $field_items[0]['uri'];
+      $md5_file_path = $dirname . '/' . $md5_file . '.dzi';
+      if (file_exists($md5_file_path)) {
+        $file = file_get_contents($md5_file_path);
+        if(empty($file)) {
+          file_unmanaged_delete($md5_file_path);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Revert nas_mobapp_endpoint.
+ */
+function nas_master_update_7315() {
+  features_revert(array(
+    'nas_mobapp_endpoint' => array(
+      'views_default',
+    ),
+  ));
+}
