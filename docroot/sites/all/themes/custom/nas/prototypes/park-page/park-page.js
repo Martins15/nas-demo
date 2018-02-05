@@ -2,25 +2,31 @@
 
   Drupal.behaviors.tabParkPage = {
     attach: function (context, settings) {
-      var tabsItem = $('.tab-slider--tabs', context);
-      var tabsNav = $('.tab-slider--nav li', context);
-      var tabsBody = $('.tab-slider--body', context);
+      var tabsItem = $('.tab-slider--tabs', context)
+        , tabsNav = $('.tab-slider--nav li', context)
+        , tabsBody = $('.tab-slider--body', context)
+        , seasonSwitch = $('#edit-field-park-season-value')
+        , formSubmit = $('#edit-submit-park-bird-trends');
 
       $("document").ready(function () {
         tabsBody.hide();
         $(".tab-slider--body:first").show();
+        tabsItem.find('li:first').addClass('active');
       });
 
       tabsNav.click(function () {
         tabsBody.hide();
         var activeTab = $(this).attr("rel");
         $("#" + activeTab).fadeIn();
-        if ($(this).attr("rel") === "tab2") {
+        if ($(this).attr("rel") === "season_winter") {
           tabsItem.addClass('slide');
+          $(seasonSwitch).val(2);
         }
         else {
           tabsItem.removeClass('slide');
+          $(seasonSwitch).val(1);
         }
+        $(formSubmit).click();
         tabsNav.removeClass("active");
         $(this).addClass("active");
       });
@@ -45,4 +51,5 @@
       })
     }
   };
+
 })(jQuery);

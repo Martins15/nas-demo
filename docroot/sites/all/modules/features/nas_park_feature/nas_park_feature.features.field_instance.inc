@@ -115,8 +115,8 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_birds_s_colonization_desc'
-  $field_instances['node-park-field_birds_s_colonization_desc'] = array(
+  // Exported field_instance: 'node-park-field_birds_s_colonizations_desc'
+  $field_instances['node-park-field_birds_s_colonizations_desc'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
     'deleted' => 0,
@@ -197,7 +197,7 @@ function nas_park_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_birds_s_colonization_desc',
+    'field_name' => 'field_birds_s_colonizations_desc',
     'label' => 'Potential Colonizations description summer',
     'required' => 0,
     'settings' => array(
@@ -255,148 +255,8 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_birds_s_current_desc'
-  $field_instances['node-park-field_birds_s_current_desc'] = array(
-    'bundle' => 'park',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'amp' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 11,
-      ),
-      'fb_instant_article' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_editorial_card' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_featured' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_featured_small' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_related_features' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_no_section_link' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_small' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_small_state' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_birds_s_current_desc',
-    'label' => 'Number of Current Species description summer',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'absolute_urls' => 0,
-          'full_html' => 'full_html',
-          'html' => 0,
-          'map' => 0,
-          'php_code' => 0,
-          'plain_text' => 'plain_text',
-          'video' => 0,
-        ),
-        'allowed_formats_toggle' => 1,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'absolute_urls' => array(
-              'weight' => -6,
-            ),
-            'full_html' => array(
-              'weight' => -10,
-            ),
-            'html' => array(
-              'weight' => -8,
-            ),
-            'map' => array(
-              'weight' => -9,
-            ),
-            'php_code' => array(
-              'weight' => 11,
-            ),
-            'plain_text' => array(
-              'weight' => -5,
-            ),
-            'video' => array(
-              'weight' => -7,
-            ),
-          ),
-        ),
-      ),
-      'entity_translation_sync' => FALSE,
-      'quiz_result' => FALSE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 10,
-    ),
-  );
-
-  // Exported field_instance: 'node-park-field_birds_s_extirpation_desc'
-  $field_instances['node-park-field_birds_s_extirpation_desc'] = array(
+  // Exported field_instance: 'node-park-field_birds_s_extirpations_desc'
+  $field_instances['node-park-field_birds_s_extirpations_desc'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
     'deleted' => 0,
@@ -477,7 +337,7 @@ function nas_park_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_birds_s_extirpation_desc',
+    'field_name' => 'field_birds_s_extirpations_desc',
     'label' => 'Potential Extirpations description summer',
     'required' => 0,
     'settings' => array(
@@ -535,8 +395,148 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_birds_w_colonization_desc'
-  $field_instances['node-park-field_birds_w_colonization_desc'] = array(
+  // Exported field_instance: 'node-park-field_birds_s_species_desc'
+  $field_instances['node-park-field_birds_s_species_desc'] = array(
+    'bundle' => 'park',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 11,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_birds_s_species_desc',
+    'label' => 'Number of Current Species description summer',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'absolute_urls' => 0,
+          'full_html' => 'full_html',
+          'html' => 0,
+          'map' => 0,
+          'php_code' => 0,
+          'plain_text' => 'plain_text',
+          'video' => 0,
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'absolute_urls' => array(
+              'weight' => -6,
+            ),
+            'full_html' => array(
+              'weight' => -10,
+            ),
+            'html' => array(
+              'weight' => -8,
+            ),
+            'map' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => 11,
+            ),
+            'plain_text' => array(
+              'weight' => -5,
+            ),
+            'video' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'quiz_result' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 10,
+    ),
+  );
+
+  // Exported field_instance: 'node-park-field_birds_w_colonizations_desc'
+  $field_instances['node-park-field_birds_w_colonizations_desc'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
     'deleted' => 0,
@@ -617,7 +617,7 @@ function nas_park_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_birds_w_colonization_desc',
+    'field_name' => 'field_birds_w_colonizations_desc',
     'label' => 'Potential Colonizations description winter',
     'required' => 0,
     'settings' => array(
@@ -675,148 +675,8 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_birds_w_current_desc'
-  $field_instances['node-park-field_birds_w_current_desc'] = array(
-    'bundle' => 'park',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'amp' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 18,
-      ),
-      'fb_instant_article' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_editorial_card' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_featured' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_featured_small' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_related_features' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_no_section_link' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_small' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_small_state' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_birds_w_current_desc',
-    'label' => 'Number of Current Species description winter',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'absolute_urls' => 0,
-          'full_html' => 'full_html',
-          'html' => 0,
-          'map' => 0,
-          'php_code' => 0,
-          'plain_text' => 'plain_text',
-          'video' => 0,
-        ),
-        'allowed_formats_toggle' => 1,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'absolute_urls' => array(
-              'weight' => -6,
-            ),
-            'full_html' => array(
-              'weight' => -10,
-            ),
-            'html' => array(
-              'weight' => -8,
-            ),
-            'map' => array(
-              'weight' => -9,
-            ),
-            'php_code' => array(
-              'weight' => 11,
-            ),
-            'plain_text' => array(
-              'weight' => -5,
-            ),
-            'video' => array(
-              'weight' => -7,
-            ),
-          ),
-        ),
-      ),
-      'entity_translation_sync' => FALSE,
-      'quiz_result' => FALSE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 17,
-    ),
-  );
-
-  // Exported field_instance: 'node-park-field_birds_w_extirpation_desc'
-  $field_instances['node-park-field_birds_w_extirpation_desc'] = array(
+  // Exported field_instance: 'node-park-field_birds_w_extirpations_desc'
+  $field_instances['node-park-field_birds_w_extirpations_desc'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
     'deleted' => 0,
@@ -897,7 +757,7 @@ function nas_park_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_birds_w_extirpation_desc',
+    'field_name' => 'field_birds_w_extirpations_desc',
     'label' => 'Potential Extirpations description winter',
     'required' => 0,
     'settings' => array(
@@ -952,6 +812,146 @@ function nas_park_feature_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 19,
+    ),
+  );
+
+  // Exported field_instance: 'node-park-field_birds_w_species_desc'
+  $field_instances['node-park-field_birds_w_species_desc'] = array(
+    'bundle' => 'park',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 18,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_birds_w_species_desc',
+    'label' => 'Number of Current Species description winter',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'absolute_urls' => 0,
+          'full_html' => 'full_html',
+          'html' => 0,
+          'map' => 0,
+          'php_code' => 0,
+          'plain_text' => 'plain_text',
+          'video' => 0,
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'absolute_urls' => array(
+              'weight' => -6,
+            ),
+            'full_html' => array(
+              'weight' => -10,
+            ),
+            'html' => array(
+              'weight' => -8,
+            ),
+            'map' => array(
+              'weight' => -9,
+            ),
+            'php_code' => array(
+              'weight' => 11,
+            ),
+            'plain_text' => array(
+              'weight' => -5,
+            ),
+            'video' => array(
+              'weight' => -7,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'quiz_result' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 17,
     ),
   );
 
