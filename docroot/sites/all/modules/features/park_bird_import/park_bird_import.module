@@ -32,3 +32,43 @@ function park_bird_import_feeds_after_parse(FeedsSource $source, FeedsParserResu
       $result->items[] = $item;
     }
 }
+
+/**
+ * Implements hook_feeds_presave().
+ */
+function park_bird_import_feeds_presave(FeedsSource $source, $entity, $item) {
+  if ($entity->type != 'parks_to_birds_relation') {
+    return;
+  }
+  if (!isset($entity->title)) {
+    $query = db_select('node', 'n')
+      ->fields('n', array('title', 'type'));
+    $or = db_or();
+    $or->condition('nid', $item['unit_name']);
+    $or->condition('nid', $item['common_name']);
+    $query->condition($or);
+    $result = $query->execute()->fetchAll();
+
+    $park_title = $item['unit_name'];
+    $bird_title = $item['common_name'];
+
+    if (count($result) == 2) {
+      if ($result[0]->type == 'bird') {
+        $bird_title = $result[0]->title;
+        $park_title = $result[1]->title;
+      }
+      else {
+        $bird_title = $result[1]->title;
+        $park_title = $result[0]->title;
+      }
+    }
+    $title = $park_title
+      . ' | '
+      . $bird_title
+      . ' | '
+      . $item['season']
+      . ' | '
+      . $item['climate_trend'];
+    $entity->title = $title;
+  }
+}
