@@ -256,18 +256,18 @@ function nas_park_feature_panelizer_defaults() {
     $display->content['new-5dcbfbb3-b7a9-4001-926f-accb43868a55'] = $pane;
     $display->panels['park_info'][5] = 'new-5dcbfbb3-b7a9-4001-926f-accb43868a55';
     $pane = new stdClass();
-    $pane->pid = 'new-f8b7c64f-9780-418d-850c-c464e0722001';
+    $pane->pid = 'new-4718598d-738d-4878-ac8d-4e342eca6f83';
     $pane->panel = 'primary_content';
     $pane->type = 'park_bird_trend';
     $pane->subtype = 'park_bird_trend';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
+      'birds_species_title' => 'Number of Current Species',
+      'birds_extirpations_title' => 'Potential Extirpations',
+      'birds_colonizations_title' => 'Potential Colonizations',
+      'birds_parktrend_title' => 'Overall Park Trend',
       'context' => 'panelizer',
-      'birds_current_title' => 'Number of Current Species',
-      'birds_extirpation_title' => 'Potential Extirpations',
-      'birds_colonization_title' => 'Potential Colonizations',
-      'birds_park_trend_title' => 'Overall Park Trend',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -277,9 +277,9 @@ function nas_park_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'f8b7c64f-9780-418d-850c-c464e0722001';
-    $display->content['new-f8b7c64f-9780-418d-850c-c464e0722001'] = $pane;
-    $display->panels['primary_content'][0] = 'new-f8b7c64f-9780-418d-850c-c464e0722001';
+    $pane->uuid = '4718598d-738d-4878-ac8d-4e342eca6f83';
+    $display->content['new-4718598d-738d-4878-ac8d-4e342eca6f83'] = $pane;
+    $display->panels['primary_content'][0] = 'new-4718598d-738d-4878-ac8d-4e342eca6f83';
     $pane = new stdClass();
     $pane->pid = 'new-1ff7ee34-855c-4f06-abe3-062e0ca7c724';
     $pane->panel = 'primary_content';
@@ -359,44 +359,16 @@ function nas_park_feature_panelizer_defaults() {
     $display->content['new-b00f9700-e10f-426e-813a-bcb2e3d11e25'] = $pane;
     $display->panels['secondary_content'][0] = 'new-b00f9700-e10f-426e-813a-bcb2e3d11e25';
     $pane = new stdClass();
-    $pane->pid = 'new-0fc4f9ae-5d54-4a17-9afb-007304d46ee0';
+    $pane->pid = 'new-7d327df9-0628-40b6-804f-310788cc28e3';
     $pane->panel = 'secondary_content';
-    $pane->type = 'native_plants_initial_form';
-    $pane->subtype = 'native_plants_initial_form';
+    $pane->type = 'engagement_card_full_width';
+    $pane->subtype = 'engagement_card_full_width';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'title_desktop' => 'Learn How You Can Make a Difference Today',
-      'title_mobile' => 'Learn How You Can Make a Difference Today',
-      'email_placeholder' => 'Email Address',
-      'zipcode_placeholder' => 'U.S. ZIP code',
-      'button_text' => 'Search',
-      'image' => 0,
-      'color_scheme' => 'dark',
-      'dark_gradient' => 1,
-      'description' => array(
-        'value' => '<p><span>Planting native plants is one way you can help fight the effects of global warming. To receive more info for planting native plants in your area, sign up now: </span></p>
-',
-        'format' => 'full_html',
-      ),
-      'nas_external_integration' => array(
-        'provider' => 'every_action',
-        'id' => 'S49LshHFBUKAejEkZAfw-g2',
-        'apikey' => '',
-        'token' => '',
-        'embed_script' => '<div class="ngp-form"
-     data-form-url="https://actions.everyaction.com/v1/Forms/S49LshHFBUKAejEkZAfw-g2"
-     data-fastaction-endpoint="https://fastaction.ngpvan.com"
-     data-inline-errors="true"
-     data-fastaction-nologin="true"
-     data-databag="everybody">
-</div>',
-        'embed_script_js' => 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js
-sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.action_tag.js
-sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.ajax_screen_lock.js',
-        'get_lists' => 'Get mailing lists from external provider',
-      ),
-      'form_build_id' => 'form-Gv519HrgOIA2SRK3HwxmEE3JT4hQWOIGYxs0_pyjBE0',
+      'reference' => variable_get('nas_park_feature_deafault_card', NULL),
+      'layout' => 'default',
+      'form_build_id' => 'form-Dt4fCd6GAwUKlg07n_-J-737t1kBG-QE44Dz6uxb-Z0',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -406,9 +378,9 @@ sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.aj
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '0fc4f9ae-5d54-4a17-9afb-007304d46ee0';
-    $display->content['new-0fc4f9ae-5d54-4a17-9afb-007304d46ee0'] = $pane;
-    $display->panels['secondary_content'][1] = 'new-0fc4f9ae-5d54-4a17-9afb-007304d46ee0';
+    $pane->uuid = '7d327df9-0628-40b6-804f-310788cc28e3';
+    $display->content['new-7d327df9-0628-40b6-804f-310788cc28e3'] = $pane;
+    $display->panels['secondary_content'][1] = 'new-7d327df9-0628-40b6-804f-310788cc28e3';
     $pane = new stdClass();
     $pane->pid = 'new-64f11403-7a3a-43b0-b0f5-c41da26c94de';
     $pane->panel = 'top';
