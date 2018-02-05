@@ -122,6 +122,7 @@
       var geoData = Drupal.settings.nasCtLandscapesData[name].geoData;
 
       for (var j = 0; j < geoData.length; j++) {
+
         if (geoData[j].type == 'point') {
           location.latitude = geoData[j].data[1];
           location.longitude = geoData[j].data[0];
@@ -132,15 +133,17 @@
       }
 
 
-      if (location.latitude == '' || location.longitude == '') {
+      if (!location.latitude || location.latitude == '' || !location.longitude || location.longitude == '') {
         continue;
       }
+
       location.latLon = [
         parseFloat(location.latitude),
         parseFloat(location.longitude),
       ];
 
       var dot = L.divIcon({iconSize: [12, 12], className: 'ct-leaflet-site'});
+
       var marker = L.marker(location.latLon, {icon: dot});
       var text = '<div class="text-wrap bg-white">' + location.name + '</div>',
           minWidth = 50;

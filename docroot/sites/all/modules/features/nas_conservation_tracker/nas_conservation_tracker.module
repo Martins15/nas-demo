@@ -706,8 +706,8 @@ function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
     }
   }
   elseif ($chart_type == 'data') {
-    $csv['head'][] = t($json_data['settings'][$tab]['chart']['key_type']);
-    $csv['head'][] = t($json_data['settings'][$tab]['chart']['value_type']);
+    $csv['head'][] = !empty($json_data['settings'][$tab]['chart']['key_type']) ? t($json_data['settings'][$tab]['chart']['key_type']) : '';
+    $csv['head'][] = !empty($json_data['settings'][$tab]['chart']['value_type']) ? t($json_data['settings'][$tab]['chart']['value_type']) : '';
   }
   return $csv;
 }
