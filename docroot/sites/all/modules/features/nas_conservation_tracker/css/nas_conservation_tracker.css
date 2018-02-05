@@ -116,3 +116,7 @@
 .ct-landscapes-main .wrap-map-diagram {
   background: #232227;
 }
+
+body.conservation-tracker-pages .mailing-list {
+  position: static;
+}

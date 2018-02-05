@@ -652,7 +652,7 @@ function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
   $head = array(t('Name'), t('Latitude'), t('Longitude'), t('Flyway'), t('State'));
   $csv = array('head' => $head);
   $max = 0;
-  $chart_type = $json_data['settings'][$tab]['chart']['type'];
+  $chart_type = (isset($json_data['settings'][$tab]['chart']['type']))? $json_data['settings'][$tab]['chart']['type'] : 'data';
   foreach ($json_data[$tab]['sites'] as $key => $site) {
     $site_info = array(
       $site['name'],
@@ -690,10 +690,10 @@ function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
           $data['key_type']['name'] == $json_data['settings']['response']['chart']['key_type']) {
           $csvkey = $key . $datakey;
           $csv[$csvkey] = $site_info;
-          if (!empty($data['key'])) {
+          if (isset($data['key'])) {
             $csv[$csvkey][] = $data['key'];
           }
-          if (!empty($data['value'])) {
+          if (isset($data['value'])) {
             $csv[$csvkey][] = $data['value'];
           }
         }
@@ -706,8 +706,8 @@ function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
     }
   }
   elseif ($chart_type == 'data') {
-    $csv['head'][] = t($json_data['settings'][$tab]['chart']['key_type']);
-    $csv['head'][] = t($json_data['settings'][$tab]['chart']['value_type']);
+    $csv['head'][] = !empty($json_data['settings'][$tab]['chart']['key_type']) ? t($json_data['settings'][$tab]['chart']['key_type']) : '';
+    $csv['head'][] = !empty($json_data['settings'][$tab]['chart']['value_type']) ? t($json_data['settings'][$tab]['chart']['value_type']) : '';
   }
   return $csv;
 }
