@@ -666,6 +666,9 @@ function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
   $csv = array('head' => $head);
   $max = 0;
   $chart_type = (isset($json_data['settings'][$tab]['chart']['type']))? $json_data['settings'][$tab]['chart']['type'] : 'data';
+  if (empty($json_data[$tab]['sites'])) {
+    return array();
+  }
   foreach ($json_data[$tab]['sites'] as $key => $site) {
     $site_info = array(
       $site['name'],
