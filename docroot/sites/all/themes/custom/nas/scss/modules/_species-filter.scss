@@ -623,3 +623,48 @@
     }
   }
 }
+
+.pop-up-species-filter {
+  position: fixed;
+  display: none;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  max-width: 480px;
+  padding: 50px 0 45px;
+  transform: translate(-50%, -50%);
+  background: $white;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, .15);
+  text-align: center;
+  &__title {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  &__small-text {
+    color: $brownish-grey;
+    font-size: 16px;
+  }
+  i {
+   @include close-btn(18px, 2px, $darkish-grey);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+}
+.overlay-popup {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255, .5);
+}
+
+.overlay-popup.js-show-popup{
+  display: block;
+  .pop-up-species-filter {
+    display: block;
+  }
+}
