@@ -30,10 +30,10 @@ function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args,
   $block = new stdClass();
 
 
-  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/landscapes.js');
-  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/units.js');
-
   $js_path = drupal_get_path('module', 'nas_conservation_tracker') . '/js/';
+  drupal_add_js($js_path . 'landscapes.js');
+  drupal_add_js($js_path . 'units.js');
+
   drupal_add_js($js_path . 'nas_conservation_tracker_landscapes.js', [
     'weight' => 999,
     'group' => JS_THEME,

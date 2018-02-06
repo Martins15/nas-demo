@@ -9,10 +9,10 @@
 
     // @todo load from backend
     var linkArray = ['threats', 'actions', 'response', 'partners']
-        , pathName = window.location.pathname
-        , pathArray = window.location.pathname.split('/')
-        , lastName = pathArray.slice(-1)[0]
-        , activeUrl = '';
+      , pathName = window.location.pathname
+      , pathArray = window.location.pathname.split('/')
+      , lastName = pathArray.slice(-1)[0]
+      , activeUrl = '';
 
     if (linkArray.indexOf(lastName) > -1) {
       activeUrl = pathArray.slice(0, -1).join('/');
@@ -115,9 +115,12 @@
           }
           setTimeout(function () {
             Drupal.attachBehaviors($('.' + Drupal.settings.nasConservationTracker.currentTab + '-tab-wrapper'));
-            // Fix for conflict with GTM, where event handler was executed earlier then colorbox.
-            $('.video-wrap a.colorbox-load').click(function (e) {
-              e.preventDefault();
+            // Fix for conflict with GTM, where event handler was executed
+            // earlier then colorbox.
+            $('.video-wrap a').click(function (e) {
+              if ($(e.currentTarget).hasClass('colorbox-load')) {
+                e.preventDefault();
+              }
             });
             if (Drupal.curtain) {
               Drupal.curtain.reset();
@@ -136,7 +139,7 @@
             // Load data via ajax only once.
             if (!angular.isDefined(Drupal.settings.nasConservationTracker.tabsOverview[currentName])) {
               // @todo take from backend
-             $scope.startLoad = true;
+              $scope.startLoad = true;
               $http.get('/conservation-tracker/ajax/scorecard/' + idItem + '/' + currentName)
                 .then(function (response) {
                   var tabData = response.data.data;
@@ -202,7 +205,7 @@
                   Drupal.settings.nasConservationTracker.tabsData[currentName] = response.data.data;
                   $scope['tab'] = tabData;
                   updateTabData(response.data.data);
-                }).finally(function() {
+                }).finally(function () {
                 $scope.startLoad = false;
               });
             }

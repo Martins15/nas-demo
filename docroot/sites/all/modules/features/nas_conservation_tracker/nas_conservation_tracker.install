@@ -8,10 +8,11 @@
  * Implements hook_install()
  */
 function nas_conservation_tracker_install() {
-  // Revert conservation tracker feature.
-  features_revert_module('nas_conservation_tracker');
 
   variable_set('nas_conservation_tracker_endpoint', './sites/all/modules/features/nas_conservation_tracker/demo_assets');
+
+  // Revert conservation tracker feature.
+  features_revert_module('nas_conservation_tracker');
 
   variable_set('nas_i18n_redirect_ignore', array(
     'conservation-tracker',
@@ -19,6 +20,51 @@ function nas_conservation_tracker_install() {
     'conservation-tracker/strategies',
     'conservation-tracker/landscapes')
   );
+
+  $item = array(
+    'link_path' => 'conservation-tracker',
+    'link_title' => 'Conservation Tracker',
+    'menu_name' => 'menu-ct-menu',
+    'weight' => 0,
+    'language' => LANGUAGE_NONE,
+    'plid' => 0, // Parent menu item, 0 if menu item is on top level
+    'module' => 'menu',
+  );
+  $parent = menu_link_save($item);
+
+  $item = array(
+    'link_path' => 'conservation-tracker/landscapes',
+    'link_title' => 'Landscapes',
+    'menu_name' => 'menu-ct-menu',
+    'weight' => 0,
+    'language' => LANGUAGE_NONE,
+    'plid' => $parent, // Parent menu item, 0 if menu item is on top level
+    'module' => 'menu',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'link_path' => 'conservation-tracker/species',
+    'link_title' => 'Species',
+    'menu_name' => 'menu-ct-menu',
+    'weight' => 0,
+    'language' => LANGUAGE_NONE,
+    'plid' => $parent, // Parent menu item, 0 if menu item is on top level
+    'module' => 'menu',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'link_path' => 'conservation-tracker/strategies',
+    'link_title' => 'Strategies',
+    'menu_name' => 'menu-ct-menu',
+    'weight' => 0,
+    'language' => LANGUAGE_NONE,
+    'plid' => $parent, // Parent menu item, 0 if menu item is on top level
+    'module' => 'menu',
+  );
+  menu_link_save($item);
+  
 
   // Create scorecard node(s).
 
