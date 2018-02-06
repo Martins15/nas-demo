@@ -97,5 +97,32 @@
 
     }
   };
+  Drupal.behaviors.popUpSpecies = {
+    attach: function (context, settings) {
+      var $wrapCard = $('.species-filter', context);
+      if ($wrapCard.length) {
+        $wrapCard.once(function () {
+          var titleText = Drupal.t('Scorecard in development.');
+          var smallText = Drupal.t('Please check back latter.');
+          var popUpCard = $("<div class='overlay-popup'><div class='pop-up-species-filter'><i class='close-btn'></i>" +
+            "<p class='pop-up-species-filter__title'>"+ titleText+ "</p>" +
+            "<p class='pop-up-species-filter__small-text'>"+ smallText + "</p></div></div>");
+          $('body').append(popUpCard);
+        });
+
+        var popupBlock = $('.overlay-popup');
+        var classShow = 'js-show-popup';
+
+        $('.bird-card-grid-container .no-scorecard-wrapper').click(function () {
+          popupBlock.addClass(classShow);
+        });
+
+        $('i', popupBlock).click(function () {
+          popupBlock.removeClass(classShow);
+        });
+      }
+    }
+  };
+
 
 })(jQuery, window.Drupal);
