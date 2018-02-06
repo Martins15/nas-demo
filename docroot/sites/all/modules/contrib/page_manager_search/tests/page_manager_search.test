@@ -1,0 +1,107 @@
+<?php
+
+/**
+ * @file
+ * Tests for the Page Manager Search module.
+ */
+
+/**
+ * Class PageManagerSearchTestCase.
+ */
+class PageManagerSearchTestCase extends DrupalWebTestCase {
+
+  /**
+   * Administrator user.
+   *
+   * @var object|null
+   */
+  protected $adminUser = NULL;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function getInfo() {
+    return array(
+      'name'        => 'Page manager search core functionality',
+      'description' => 'Tests core Page manager search functionality.',
+      'group'       => 'Page manager search',
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setUp() {
+    parent::setUp(array('page_manager_search_test'));
+
+    // Create administrative user.
+    $this->adminUser = $this->drupalCreateUser(array(
+      'administer page manager',
+      'administer search',
+      'search content',
+      'use advanced search',
+      'use page manager',
+    ));
+  }
+
+  /**
+   * Test Page manager search core functionality.
+   */
+  public function testPageManagerSearch() {
+    $this->drupalLogin($this->adminUser);
+
+    // Create 11 page manager pages.
+    // @TODO - Make this programmatic.
+    $i = 0;
+    while ($i < 11) {
+      $i++;
+      $this->drupalPost('admin/structure/pages/add', array(
+        'admin_title' => t('Page manager search test @num', array('@num' => $i)),
+        'name'        => "page_manager_search_test_{$i}",
+        'path'        => "page_manager_search/test/{$i}",
+        'handler'     => 'page_manager_search_test',
+      ), t('Continue'));
+      $this->drupalPost(NULL, array(), t('Finish'));
+      $this->drupalPost(NULL, array(), t('Save'));
+    }
+    drupal_flush_all_caches();
+
+    // Configure search for Page manager pages.
+    $this->drupalPost('admin/config/search/settings', array(
+      'search_active_modules[page_manager_search]' => 'page_manager_search',
+      'search_default_module'                      => 'page_manager_search',
+    ), t('Save configuration'));
+
+    // Index the Page manager pages.
+    page_manager_search_update_index();
+    search_update_totals();
+    drupal_flush_all_caches();
+
+    // Ensure that the items have been indexed.
+    $this->drupalGet('admin/config/search/settings');
+    $this->assertText('100% of the site has been indexed.');
+
+    // Run a search.
+    $this->drupalPost('search/page_manager', array(
+      'keys' => 'Page manager search test',
+    ), t('Search'));
+    $this->assertText('Page manager search test');
+
+    // Disable one page.
+    $this->drupalGet('admin/structure/pages/nojs/operation/page-page_manager_search_test_1/actions/disable');
+    $this->drupalPost(NULL, array(), t('Disable'));
+    drupal_flush_all_caches();
+
+    // Re-index the Page manager pages.
+    page_manager_search_update_index();
+    search_update_totals();
+    $this->drupalGet('admin/config/search/settings');
+
+    // Run a search.
+    $this->drupalPost('search/page_manager', array(
+      'keys' => 'Page manager search test',
+    ), t('Search'));
+    $this->assertNoLink('2');
+  }
+
+}

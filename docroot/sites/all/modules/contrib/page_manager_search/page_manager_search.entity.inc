@@ -39,18 +39,22 @@ class PageManagerSearchEntityController extends DrupalDefaultEntityController {
     module_load_include('inc', 'page_manager', 'plugins/tasks/page');
     foreach ($ids as $id) {
       $subtask = page_manager_search_get_pages_by_dec($id, $conditions['length']);
-
-      $entity = new stdClass();
-      $entity->pid = $id;
-      $entity->title = isset($subtask->menu['title']) ? $subtask->menu['title'] : $subtask->admin_title;
-      $entity->content = '';
-      $entity->content = page_manager_page_execute($subtask->name);
-      if (is_array($entity->content)) {
-        $entity->content = drupal_render($entity->content);
+      if (isset($subtask->disabled) && $subtask->disabled) {
+        continue;
       }
-      $entity->path = $subtask->path;
 
-      $entities[$id] = $entity;
+      if (is_object($subtask)) {
+        $entity = new stdClass();
+        $entity->pid = $id;
+        $entity->title = isset($subtask->menu['title']) ? $subtask->menu['title'] : $subtask->admin_title;
+        $entity->content = page_manager_page_execute($subtask->name);
+        if (is_array($entity->content)) {
+          $entity->content = drupal_render($entity->content);
+        }
+        $entity->path = $subtask->path;
+
+        $entities[$id] = $entity;
+      }
     }
 
     return $entities;

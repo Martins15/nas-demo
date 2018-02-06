@@ -9538,7 +9538,7 @@ body.touch .primary-sub-nav-index {
   position: relative;
   width: 100%;
 }
-.article-text figure:not(.article-video-container) .ll-wrapper img {
+.article-text figure:not(.article-video-container) .ll-wrapper img:not(.articleImageLazyLoad-processed) {
   position: absolute;
   top: 0;
   left: 0;
@@ -10542,6 +10542,9 @@ body.black-bg .slideshow {
   .slideshow.standalone {
     margin-top: -60px;
   }
+}
+.slideshow.hidden {
+  visibility: hidden;
 }
 
 .hero-image .slideshow img {
@@ -18194,6 +18197,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   top: -35px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   color: #f15936;
+}
+.sidebar, .article-sidebar {
+  margin-bottom: 25px;
 }
 
 .ct-item-nav-conservation {

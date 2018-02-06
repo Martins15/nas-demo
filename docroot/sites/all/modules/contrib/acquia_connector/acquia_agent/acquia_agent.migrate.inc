@@ -134,17 +134,20 @@ function _acquia_migrate_test_migration_setup(&$migration) {
   $headers = array(
     'User-Agent' => 'Acquia Migrate Client/1.x (Drupal ' . VERSION . ';)',
   );
-  $response = drupal_http_request($url, array('headers' => $headers, 'max_redirects' => 0));
-  if ($response->code != 200) {
-    $migration['error'] = t('Unable to connect to migration destination site, please contact Acquia Support.');
+
+  $context = stream_context_create(array(
+    'ssl' => array(
+      'verify_peer' => FALSE,
+      'verify_peer_name' => FALSE,
+    ),
+  ));
+
+  $response = drupal_http_request($url, array('headers' => $headers, 'context' => $context, 'max_redirects' => 0));
+  if ($response->code != 400) {
+    $migration['error'] = t('Unable to connect to migration destination site (unexpected response code: @code), please contact Acquia Support.', array('@code' => $response->code));
     return FALSE;
   }
-  // A 200 response with body 'invalid request' is returned from the AH_UPLOAD
-  // script if receiving a GET request.
-  if (strpos($url, 'AH_UPLOAD') !== FALSE && trim($response->data) != 'invalid request') {
-    $migration['error'] = t('Unable to connect to migration destination site, please contact Acquia Support.');
-    return FALSE;
-  }
+
   return TRUE;
 }
 
@@ -361,7 +364,7 @@ function _acquia_migrate_archive_site(&$migration) {
       $ret = $gz->addModify(array($migration['db_file']), '', $migration['dir'] . DIRECTORY_SEPARATOR);
     }
     // Remove Drupal root from the file paths, OS dependent.
-    if (defined('OS_WINDOWS')) {
+    if (defined('OS_WINDOWS') && OS_WINDOWS) {
       $remove_dir = DRUPAL_ROOT . '\\';
     }
     else {
@@ -380,7 +383,7 @@ function _acquia_migrate_archive_site(&$migration) {
  */
 function _acquia_migrate_validate_archive_files(&$migration, $files) {
   $output = implode("\n", $files);
-  if (defined('OS_WINDOWS')) {
+  if (defined('OS_WINDOWS') && OS_WINDOWS) {
     $output = str_replace('\\', '/', $output);
   }
   $docroot = preg_quote(DRUPAL_ROOT . '/');
@@ -466,8 +469,16 @@ function _acquia_migrate_transmit(&$migration, $content) {
   );
   $url = $migration['env']['url'];
 
+  $context = stream_context_create(array(
+    'ssl' => array(
+      'verify_peer' => FALSE,
+      'verify_peer_name' => FALSE,
+    ),
+  ));
+
   $return = drupal_http_request($url, array(
     'headers' => $headers,
+    'context' => $context,
     'method' => 'POST',
     'data' => $data,
     'max_redirects' => 0,

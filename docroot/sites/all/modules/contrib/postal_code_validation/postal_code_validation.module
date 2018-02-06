@@ -43,6 +43,7 @@ function postal_code_validation_validate($postal_code, $country = FALSE) {
         'country_supported' => TRUE,
       );
       if ($postal_code) {
+        include_once DRUPAL_ROOT . '/includes/locale.inc';
         $countries = country_get_list();
         $return['error'] = t('%country does not have a postal code system. Leave it blank.', array('%country' => $countries[$country]));
       }
@@ -150,6 +151,7 @@ function postal_code_validation_get_supported_countries() {
     'IN',
     'IT',
     'JP',
+    'KR',
     'NL',
     'NZ',
     'PT',
@@ -162,12 +164,70 @@ function postal_code_validation_get_supported_countries() {
  * Return an array of countries that do not have a postal code system.
  */
 function postal_code_validation_get_countries_without_codes() {
-  return array('AE', 'AG', 'AO', 'AW', 'BF', 'BI', 'BJ', 'BS', 'BW', 'BZ',
-    'CD', 'CF', 'CG', 'CI', 'CK', 'CM', 'CW', 'DJ', 'DM', 'ER', 'FJ', 'GD',
-    'GH', 'GM', 'GN', 'GQ', 'GY', 'HK', 'IE', 'KE', 'KI', 'KM', 'KN', 'KP',
-    'KR', 'KW', 'LC', 'ML', 'MO', 'MR', 'MS', 'MU', 'MV', 'MW', 'NR', 'NU',
-    'QA', 'SB', 'SC', 'SL', 'SO', 'SR', 'ST', 'SX', 'SY', 'TF', 'TG', 'TK',
-    'TL', 'TO', 'TV', 'TZ', 'UG', 'UZ', 'VU', 'YE', 'ZW');
+  return array(
+    'AE',
+    'AG',
+    'AO',
+    'AW',
+    'BF',
+    'BI',
+    'BJ',
+    'BO',
+    'BQ',
+    'BS',
+    'BW',
+    'BZ',
+    'CD',
+    'CF',
+    'CG',
+    'CI',
+    'CK',
+    'CM',
+    'CW',
+    'DJ',
+    'DM',
+    'ER',
+    'FJ',
+    'GA',
+    'GD',
+    'GH',
+    'GM',
+    'GQ',
+    'GY',
+    'HK',
+    'HM',
+    'KI',
+    'KM',
+    'KN',
+    'KP',
+    'LY',
+    'ML',
+    'MO',
+    'MR',
+    'MW',
+    'NA',
+    'NR',
+    'NU',
+    'QA',
+    'RW',
+    'SB',
+    'SC',
+    'SL',
+    'SR',
+    'ST',
+    'SX',
+    'SY',
+    'TD',
+    'TG',
+    'TK',
+    'TL',
+    'TO',
+    'TV',
+    'UG',
+    'VU',
+    'YE',
+    'ZW',
+  );
 }
 
 /**

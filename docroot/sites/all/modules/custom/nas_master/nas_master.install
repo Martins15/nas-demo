@@ -27,6 +27,17 @@ function nas_master_install() {
 }
 
 /**
+ * Implements hook_update_dependencies().
+ */
+function nas_master_update_dependencies() {
+  $dependencies['nas_master'][7286] = array(
+    'lazyloader' => 7201,
+  );
+
+  return $dependencies;
+}
+
+/**
  * Enable nas_slideshow_feature feature.
  */
 function nas_master_update_7002() {
@@ -3958,6 +3969,9 @@ function nas_master_update_7266() {
  * Enable event date start field in Search API.
  */
 function nas_master_update_7267() {
+  module_load_install('search_api');
+  search_api_update_7118();
+
   features_revert(array('nas_solr_feature' => array('search_api_index')));
 }
 
@@ -4380,7 +4394,8 @@ function nas_master_update_7302() {
   ));
 }
 
-/**
+
+/*
  * Revert nas_netx_feature, force new auth on netx.
  */
 function nas_master_update_7303() {
@@ -4390,7 +4405,7 @@ function nas_master_update_7303() {
   variable_set('netx_cookie', "");
 }
 
-/**
+/*
  * Disable every action integration for native plants search form.
  */
 function nas_master_update_7304() {
@@ -4435,9 +4450,60 @@ function nas_master_update_7305() {
 }
 
 /**
- * Revert nas_article_feature.
+ * Enable Panels Cache Expiration module.
  */
 function nas_master_update_7306() {
+  module_enable(array('expire_panels'));
+}
+
+/**
+ * Enable nas_imagecache_token_feature feature. Set proper variable for updated lazyloader.
+ */
+function nas_master_update_7307() {
+  module_enable(array('nas_imagecache_token_feature'));
+  variable_set('lazyloader_page_exclude_option', LAZYLOADER_PAGE_EXCLUDE_OPTION);
+}
+
+/**
+ * Set excluded image styles for lazyloader.
+ */
+function nas_master_update_7308() {
+  $options = array();
+  $styles = image_styles();
+  foreach ($styles as $style) {
+    $options[$style['name']] = $style['name'];
+    if ($style['name'] == 'engagement_card' || $style['name'] == 'boa_mail_subscription') {
+      $options[$style['name']] = 0;
+    }
+  }
+  variable_set('lazyloader_image_styles', $options);
+}
+
+/**
+ * Revert nas_file_entity.
+ */
+function nas_master_update_7309() {
+  features_revert(array(
+    'nas_file_entity' => array(
+      'file_display',
+    ),
+    'nas_view_modes_feature' => array(
+      'file_display',
+    ),
+  ));
+}
+
+/**
+ * Enable feeds_entity_processor.
+ */
+function nas_master_update_7310() {
+  module_enable(['feeds_entity_processor']);
+}
+
+/**
+ * Revert nas_article_feature.
+ */
+function nas_master_update_7311() {
   features_revert(array(
     'nas_article_feature' => array(
       'field_instance',
@@ -4447,8 +4513,93 @@ function nas_master_update_7306() {
 }
 
 /**
- * Enable conservation tracker.
+ * Revert nas_nurseries_near_you_feature.
+ */
+function nas_master_update_7312() {
+  features_revert(array(
+    'nas_nurseries_near_you_feature' => array('views_default'),
+  ));
+}
+
+/**
+ * Generate deppzoom images.
+ */
+function nas_master_update_7313() {
+  if ($_ENV['AH_SITE_ENVIRONMENT'] == 'prod') {
+    return;
+  }
+  $efq = new EntityFieldQuery();
+  $efq->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'boa');
+
+  $result = $efq->execute();
+  if (isset($result['node'])) {
+    $dirname = 'public://deepzoom';
+    if (!is_dir($dirname)) {
+      mkdir($dirname);
+      drupal_chmod($dirname);
+    }
+    $nids = array_keys($result['node']);
+    $nodes = entity_load('node', $nids);
+    foreach ($nodes as $node) {
+      if (!$field_items = field_get_items('node', $node, 'field_boa_illustration')) {
+        continue;
+      }
+      if (!file_exists($field_items[0]['uri'])) {
+        continue;
+      }
+      $md5_file = md5_file($field_items[0]['uri']);
+      $dzi_filename = $dirname . '/' . $md5_file . '.dzi';
+      if (file_exists($dzi_filename)) {
+        continue;
+      }
+      file_put_contents($dzi_filename, '');
+    }
+  }
+}
+
+/**
+ * Preparing for generate deppzoom images.
+ */
+function nas_master_update_7314() {
+  $efq = new EntityFieldQuery();
+  $efq->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'boa');
+
+  $result = $efq->execute();
+  $images = array();
+  if (isset($result['node'])) {
+    $dirname = 'public://deepzoom';
+    if (!is_dir($dirname)) {
+      mkdir($dirname);
+      drupal_chmod($dirname);
+    }
+    $nids = array_keys($result['node']);
+    $nodes = entity_load('node', $nids);
+    foreach ($nodes as $node) {
+      if (!$field_items = field_get_items('node', $node, 'field_boa_illustration')) {
+        continue;
+      }
+      if (!file_exists($field_items[0]['uri'])) {
+        continue;
+      }
+      $md5_file = md5_file($field_items[0]['uri']);
+      $images[$md5_file] = $field_items[0]['uri'];
+      $md5_file_path = $dirname . '/' . $md5_file . '.dzi';
+      if (file_exists($md5_file_path)) {
+        $file = file_get_contents($md5_file_path);
+        if(empty($file)) {
+          file_unmanaged_delete($md5_file_path);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Enable CT feature.
  */
 function nas_master_update_7315() {
   module_enable(array('nas_conservation_tracker'));
 }
+

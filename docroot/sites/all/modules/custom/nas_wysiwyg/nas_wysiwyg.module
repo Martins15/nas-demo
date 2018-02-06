@@ -10,8 +10,15 @@ define('NAS_WYSIWYG_LOGO_WELCOME_TO_ADUBON', 'wordmark-black.png');
 /**
  * Implements hook_wysiwyg_editor_settings_alter().
  */
-function nas_wysiwyg_wysiwyg_editor_settings_alter() {
+function nas_wysiwyg_wysiwyg_editor_settings_alter(&$settings, &$context) {
   drupal_add_css(drupal_get_path('module', 'nas_wysiwyg') . '/css/nas_wysiwyg.css');
+  if (empty($settings['contentsCss']) || !is_array($settings['contentsCss'])) {
+    return;
+  }
+  // Force wysiwyg use secure paths to css files.
+  foreach ($settings['contentsCss'] as &$url) {
+    $url = str_replace('http://', 'https://', $url);
+  }
 }
 
 /**
@@ -66,6 +73,13 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
     }
     $get_field_wysiwyg_width_mode = field_get_items('bean', $entity, 'field_wysiwyg_width_mode');
     $vars['width'] = $get_field_wysiwyg_width_mode[0]['value'];
+
+    // Remove height and width to make image responsive
+    if (!empty($vars['content']['field_wysiwyg_image'][0]['file']['#item']['metadata']['width'])
+      || !empty($vars['content']['field_wysiwyg_image'][0]['file']['#item']['metadata']['height'])) {
+      unset($vars['content']['field_wysiwyg_image'][0]['file']['#item']['metadata']['width']);
+      unset($vars['content']['field_wysiwyg_image'][0]['file']['#item']['metadata']['height']);
+    }
   }
   elseif ($vars['elements']['#bundle'] == 'welcome_to_audubon') {
     // Don't display Welcome to Audubon block when sidebar engagement card wasn't rendered on node.
@@ -144,11 +158,11 @@ function nas_wysiwyg_slides_image($variables) {
 
       $url = parse_url(file_create_url($variables['path']));
       $path = $url['path'];
-      $attributes['data-src'] = $path;
-      $attributes['src'] = $path;
+      //$attributes['data-src'] = $path;
+      $attributes['src'] = $path . '?lazyload=1';
       // Path to dummy placeholder image, to be replaced by actual image.
       $image_placeholder = trim(variable_get('lazyloader_placeholder', LAZYLOADER_PLACEHOLDER));
-      $attributes['lazy-src'] = $image_placeholder ? base_path() . $image_placeholder : url(drupal_get_path('module', 'lazyloader') . '/image_placeholder.gif');
+      //$attributes['lazy-src'] = $image_placeholder ? base_path() . $image_placeholder : url(drupal_get_path('module', 'lazyloader') . '/image_placeholder.gif');
       $noscript_attributes['src'] = $path;
 
       // Integrate with Responsive Webdesign module.

@@ -350,9 +350,9 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       'background_color' => '66a122',
       'form_build_id' => 'form-VBQMdIf64e6N2TnEx0BbdAE8x2dRo__kL9hDOng2AMo',
       'title_link' => 'native-plants',
-      'sponsor_logo' => '93236',
-      'sponsor_link' => 'http://www.aveda.com/product/7479/39957/gifts/aveda-love-composition-oil/index.tmpl',
-      'sponsor_preambule' => 'Supported by',
+      'sponsor_logo' => '118081',
+      'sponsor_link' => '',
+      'sponsor_preambule' => 'The Coleman and Susan Burke Center for Native Plants',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -499,7 +499,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       'override_title' => 0,
       'override_title_heading' => 'h2',
       'text' => array(
-        'value' => '<p>Your Native Plant List Thank you for joining Audubon&#39;s bird-friendly plants effort. Below you can find the plant list you selected from <a href="/native-plants">the Audubons native plants database</a>.</p>
+        'value' => '<p>Thank you for planting for birds. With your help, we can grow 1 million bird-friendly plants. Below you\'ll find your selected plants and a list of local resources from Audubon&#39;s <a href="/native-plants">native plants database</a>.</p>
 
 <p>You can access this list on the web at any time using the following link:</p>
 
@@ -874,9 +874,9 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       'background_color' => '66a122',
       'form_build_id' => 'form-o-xhNUNGaJHC1EDK5H-4QILlN7LJqNTdjg_POe342t8',
       'title_link' => 'native-plants',
-      'sponsor_logo' => '93236',
-      'sponsor_link' => 'http://www.aveda.com/product/7479/39957/gifts/aveda-love-composition-oil/index.tmpl',
-      'sponsor_preambule' => 'Supported by',
+      'sponsor_logo' => '118081',
+      'sponsor_link' => '',
+      'sponsor_preambule' => 'The Coleman and Susan Burke Center for Native Plants',
     );
     $pane->cache = array();
     $pane->style = array(
