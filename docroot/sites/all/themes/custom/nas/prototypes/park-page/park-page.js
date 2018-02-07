@@ -8,11 +8,19 @@
         , seasonSwitch = $('#edit-field-park-season-value')
         , formSubmit = $('#edit-submit-park-bird-trends');
 
+      
       $("document").ready(function () {
         tabsBody.hide();
         $(".tab-slider--body:first").show();
         tabsItem.find('li:first').addClass('active');
       });
+
+      // @todo need fix switch in options
+      // @todo after first load
+      // $('body').once(function () {
+      //   seasonSwitch.val(1);
+      //   formSubmit.click();
+      // });
 
       tabsNav.click(function () {
         tabsBody.hide();
@@ -20,13 +28,16 @@
         $("#" + activeTab).fadeIn();
         if ($(this).attr("rel") === "season_winter") {
           tabsItem.addClass('slide');
+          // @todo not work after submit views.
           $(seasonSwitch).val(2);
         }
         else {
           tabsItem.removeClass('slide');
+          // @todo not work after submit views.
           $(seasonSwitch).val(1);
         }
-        $(formSubmit).click();
+        // @todo not work after submit views.
+       // formSubmit.click();
         tabsNav.removeClass("active");
         $(this).addClass("active");
       });
