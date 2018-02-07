@@ -1871,6 +1871,98 @@ function nas_file_entity_file_default_displays() {
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
+  $file_display->name = 'image__park_bird_illustration__file_field_image';
+  $file_display->weight = 0;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'image_style' => 'park_bird_species_illustration',
+    'image_link' => '',
+  );
+  $export['image__park_bird_illustration__file_field_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__park_bird_illustration__netx_audio';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__park_bird_illustration__netx_audio'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__park_bird_illustration__netx_document';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__park_bird_illustration__netx_document'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__park_bird_illustration__netx_image';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'image_style' => '',
+    'image_link' => '',
+    'attributes' => array(
+      'Author' => 0,
+      'Caption' => 0,
+      'Collection' => 0,
+      'Credit' => 0,
+      'Date' => 0,
+      'Species - Scientific' => 0,
+      'Species - Common Name' => 0,
+      'Family' => 0,
+      'Order' => 0,
+      'Gender' => 0,
+      'Flyway' => 0,
+      'Subject' => 0,
+      'Color' => 0,
+      'Location' => 0,
+      'Medium' => 0,
+      'File Family' => 0,
+      'Search Terms' => 0,
+      'Status' => 0,
+    ),
+  );
+  $export['image__park_bird_illustration__netx_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__park_bird_illustration__netx_preview';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'image_style' => '',
+  );
+  $export['image__park_bird_illustration__netx_preview'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__park_bird_illustration__netx_video';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__park_bird_illustration__netx_video'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__preview__file_field_colorbox';
+  $file_display->weight = 0;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'colorbox_node_style' => 'nas_bird_photo_thumbnnail',
+    'colorbox_node_style_first' => '',
+    'colorbox_image_style' => '',
+    'colorbox_gallery' => 'post',
+    'colorbox_gallery_custom' => '',
+    'colorbox_caption' => 'custom',
+    'colorbox_caption_custom' => '[file:field_file_caption] [file:field_file_credit]',
+  );
+  $export['image__preview__file_field_colorbox'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
   $file_display->name = 'image__preview__file_field_deepzoom_file';
   $file_display->weight = 0;
   $file_display->status = FALSE;

@@ -53,7 +53,7 @@ function nas_park_feature_views_default_views() {
   $handler->display->display_options['fields']['field_bird_illustration']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_bird_illustration']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_bird_illustration']['settings'] = array(
-    'file_view_mode' => 'bird_illustration',
+    'file_view_mode' => 'park_bird_illustration',
   );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';

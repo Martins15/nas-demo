@@ -130,4 +130,15 @@ function nas_climate_install() {
     'entity_uuid' => $node->uuid,
   );
   variable_set('nas_park_feature_deafault_card', $card);
+
+  // Revert nas_file_entity, nas_park_feature, nas_image_styles_feature
+  features_revert_module('nas_image_styles_feature');
+  features_revert(array(
+    'nas_file_entity' => array(
+      'file_display',
+    ),
+    'nas_park_feature' => array(
+      'views_default',
+    )
+  ));
 }
