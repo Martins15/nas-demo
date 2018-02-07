@@ -230,6 +230,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('nas_bird_teaser_illustration'),
     'custom settings' => FALSE,
   );
+  $entity_info['file']['view modes']['park_bird_illustration'] = array(
+    'label' => t('Park Bird illustration'),
+    'custom settings' => TRUE,
+  );
 }
 
 /**
