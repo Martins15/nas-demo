@@ -136,6 +136,7 @@ function nas_climate_install() {
   features_revert(array(
     'nas_file_entity' => array(
       'file_display',
+      'strongarm',
     ),
     'nas_park_feature' => array(
       'views_default',
