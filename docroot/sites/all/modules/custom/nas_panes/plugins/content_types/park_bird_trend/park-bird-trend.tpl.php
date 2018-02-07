@@ -31,10 +31,6 @@
                       <p class="link__number"><?php print $data['amount'] ?></p>
                     </li>
                   <?php endforeach; ?>
-                  <div class="not-link columns link large-3">
-                    <p class="link__title"><?php print $tabs['parktrend']['title'] ?></p>
-                    <p class="link__text"><?php print $tabs['parktrend']['desc'] ?></p>
-                  </div>
                 </ul>
                 <?php foreach ($tabs['tabs'] as $tab => $data): ?>
                   <div data-content="display-<?php print $tab ?>"

@@ -18,7 +18,6 @@ $plugin = array(
     'birds_species_title' => t('Number of Current Species'),
     'birds_extirpations_title' => t('Potential Extirpations'),
     'birds_colonizations_title' => t('Potential Colonizations'),
-    'birds_parktrend_title' => t('Overall Park Trend'),
   ),
 );
 
@@ -51,13 +50,6 @@ function park_bird_trend_edit_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Potential Colonizations title'),
     '#default_value' => $conf['birds_colonizations_title'],
-    '#size' => 100,
-  );
-
-  $form['birds_parktrend_title'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Overall Park Trend title'),
-    '#default_value' => $conf['birds_parktrend_title'],
     '#size' => 100,
   );
 
@@ -112,11 +104,6 @@ function park_bird_trend_render($subtype, $conf, $args, $contexts) {
       $result = reset($result);
       $content[$season]['tabs'][$parts[1]]['amount'] = count($result);
     }
-    $parts = 'parktrend';
-    $content[$season][$parts]['title'] = $conf['birds_parktrend_title'];
-    $field_name = 'field_park_trend' . '_' . $abbrev;
-    $output = _park_bird_trend_get_field_value($field_name, $node);
-    $content[$season][$parts]['desc'] = render($output);
   }
   $display = 'default';
   $view = views_get_view('park_bird_trends');
