@@ -18,15 +18,6 @@ function imagecache_external_admin_form($form, $form_state) {
     '#default_value' => variable_get('imagecache_directory', 'externals'),
   );
 
-  $form['imagecache_default_extension'] = array(
-    '#type' => 'select',
-    '#options' => array('' => 'none', '.jpg' => 'jpg', '.png' => 'png', '.gif' => 'gif', '.jpeg' => 'jpeg'),
-    '#title' => t('Imagecache default extension'),
-    '#required' => FALSE,
-    '#description' => t('If no extension is provided by the external host, specify a default extension'),
-    '#default_value' => variable_get('imagecache_default_extension', '.jpg'),
-  );
-
   $form['imagecache_external_management'] = array(
     '#type' => 'radios',
     '#title' => t('How should Drupal handle the files?'),
@@ -56,16 +47,6 @@ function imagecache_external_admin_form($form, $form_state) {
       ),
     ),
   );
-
-  $form['imagecache_fallback_image'] = array(
-    '#type' => 'managed_file',
-    '#name' => 'imagecache_fallback_image',
-    '#title' => t('Fallback image'),
-    '#description' => t("When an external image couldn't be found, use this image as a fallback."),
-    '#default_value' => variable_get('imagecache_fallback_image', ''),
-    '#upload_location' => 'public://'
-  );
-
   return system_settings_form($form);
 }
 

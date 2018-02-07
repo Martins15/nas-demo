@@ -1,7 +1,13 @@
 CHANGELOG for Disqus for Drupal 7
 
-Disqus 7.x-1.x-dev
+Disqus 7.x-1.12
 =================================
+- #2508209 by Eric_A: Add Feeds support
+- #2501743 by PJnes: Default Disqus status is always TRUE
+
+Disqus 7.x-1.11
+=================================
+- #2499753 by Fanyalla: Reduce number of calls to the database
 - #1821146 by DElion, slashrsm, JayeshSolanki: Fixed SSO login, which was incorrectly redirecting to disqus.com
 - #2339153 by jenlampton: Fixed "Toggle Disqus comments" permission required to toggle core comments.
 - #2329899 by JayeshSolanki | mredding: Fixed undefined disqus object in disqus_node_update error.
@@ -12,6 +18,7 @@ Disqus 7.x-1.x-dev
 - #1579492 by zuuperman: Expose disqus as a display field with hook_field_extra_fields().
 - #2169911 by _wdm_: Adding node edit comment info.
 - #2144035 by slashrsm | destinationsound: A "Configure block" link shows to anonymous users.
+- #863122 by jlyon | osman | RobLoach: Add Display Suite support.
 
 Disqus 7.x-1.10
 =================================

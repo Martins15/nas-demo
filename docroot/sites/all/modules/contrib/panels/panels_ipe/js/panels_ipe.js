@@ -2,12 +2,7 @@
 // Ensure the $ alias is owned by jQuery.
 (function($) {
 
-// randomly lock a pane.
-// @debug only
 Drupal.settings.Panels = Drupal.settings.Panels || {};
-Drupal.settings.Panels.RegionLock = {
-  10: { 'top': false, 'left': true, 'middle': true }
-}
 
 Drupal.PanelsIPE = {
   editors: {},
@@ -31,6 +26,17 @@ Drupal.PanelsIPE = {
 
 Drupal.behaviors.PanelsIPE = {
   attach: function(context) {
+    // Remove any old editors.
+    for (var i in Drupal.PanelsIPE.editors) {
+      if (Drupal.settings.PanelsIPECacheKeys.indexOf(i) === -1) {
+        // Clean-up a little bit and remove it.
+        Drupal.PanelsIPE.editors[i].editing = false;
+        Drupal.PanelsIPE.editors[i].changed = false;
+        delete Drupal.PanelsIPE.editors[i];
+      }
+    }
+
+    // Initialize new editors.
     for (var i in Drupal.settings.PanelsIPECacheKeys) {
       var key = Drupal.settings.PanelsIPECacheKeys[i];
       $('div#panels-ipe-display-' + key + ':not(.panels-ipe-processed)')
@@ -235,7 +241,7 @@ function DrupalPanelsIPE(cache_key, cfg) {
     // it clears out inline styles.
     $('.panels-ipe-on').show();
     ipe.showForm();
-    ipe.topParent.addClass('panels-ipe-editing');
+    $('body').add(ipe.topParent).addClass('panels-ipe-editing');
 
   };
 

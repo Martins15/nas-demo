@@ -267,14 +267,10 @@ function imagecache_external_generate_path($url) {
   $url_parameters = drupal_parse_url($url);
 
   // Add the extension for real images.
-  if ($extension = strtolower(pathinfo($url_parameters['path'], PATHINFO_EXTENSION))) {
-    if (in_array($extension, array('jpg', 'png', 'gif', 'jpeg'))) {
+  if ($extension = pathinfo($url_parameters['path'], PATHINFO_EXTENSION)) {
+    if (in_array($extension, array('jpg', 'png', 'gif'))) {
       $filename .= '.' . $extension;
     }
-  }
-  else {
-    // Use jpg as default extension.
-    $filename .= variable_get('imagecache_default_extension', '.jpg');
   }
 
   $default_scheme = file_default_scheme();
@@ -284,29 +280,16 @@ function imagecache_external_generate_path($url) {
   drupal_alter('imagecache_external_directory', $directory, $filename, $url);
 
   if (file_prepare_directory($directory, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS)) {
-    $needs_refresh = FALSE;
-    $filepath = $directory . '/' . $filename;
-    // Allow modules to add custom logic to check if it needs to be re-fetched.
-    drupal_alter('imagecache_external_needs_refresh', $needs_refresh, $filepath);
-    if ($needs_refresh === FALSE) {
-      return $filepath;
+    if (file_exists($directory . '/' . $filename)) {
+      return $directory . '/' . $filename;
     }
-    elseif ($filepath = imagecache_external_fetch($url, $directory . '/' . $filename)) {
-      return $filepath;
+
+    if ($file_uri = imagecache_external_fetch($url, $directory . '/' . $filename)) {
+      return $file_uri;
     }
   }
-
   // We couldn't get the file.
   return FALSE;
-}
-
-/**
- * Implements hook_imagecache_external_needs_refresh_alter().
- */
-function imagecache_external_imagecache_external_needs_refresh_alter(&$needs_refresh, $filepath) {
-  if (!file_exists($filepath)) {
-    $needs_refresh = TRUE;
-  }
 }
 
 /**
@@ -345,7 +328,7 @@ function imagecache_external_fetch($url, $cachepath) {
   // Add extension to the cached file to allow file_entity to use it for
   // mimetype identification.
   $cachepath_ext = pathinfo($cachepath, PATHINFO_EXTENSION);
-  if (!$cachepath_ext && (variable_get('imagecache_default_extension', '.jpg') != '')) {
+  if (!$cachepath_ext) {
     require_once DRUPAL_ROOT . '/includes/file.mimetypes.inc';
     $map = file_mimetype_mapping();
     $mimetype_id = array_search($response_mimetype, $map['mimetypes']);
@@ -354,8 +337,6 @@ function imagecache_external_fetch($url, $cachepath) {
       $cachepath .= $cachepath_ext ? '.' . $cachepath_ext : '';
     }
   }
-
-  $fallback_image_fid = variable_get('imagecache_fallback_image', '');
 
   // Explode content-type to handle mimetypes with more than one
   // property (eg. image/jpeg;charset=UTF-8).
@@ -374,10 +355,6 @@ function imagecache_external_fetch($url, $cachepath) {
       $file = file_save_data($result->data, $cachepath, FILE_EXISTS_REPLACE);
       return $file->uri;
     }
-  }
-  elseif (!empty($fallback_image_fid)) {
-    $fallback_image = file_load($fallback_image_fid);
-    return $fallback_image->uri;
   }
   else {
     // If we are unsuccessful then log a message in watchdog.
@@ -491,15 +468,11 @@ function imagecache_external_flush_cache() {
 function imagecache_external_allowed_mimetypes() {
   return variable_get('imagecache_external_allowed_mimetypes', array(
     'image/jpg',
-    'image/jpg;charset=utf-8',
     'image/jpeg',
     'image/jpeg;charset=utf-8',
     'image/png',
-    'image/png;charset=utf-8',
     'image/gif',
-    'image/gif;charset=utf-8',
     'application/octet-stream',
-    'application/octet-stream;charset=utf-8',
   ));
 }
 

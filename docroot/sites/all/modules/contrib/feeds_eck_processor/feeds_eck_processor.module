@@ -31,3 +31,5 @@ function feeds_eck_processor_feeds_plugins() {
   );
   return $info;
 }
+
+require_once __DIR__ . '/plugins/FeedsECKprocessor.inc';

@@ -42,6 +42,7 @@ function jquery_colorpicker_element_info() {
       '#input' => TRUE,
       '#element_validate' => array('jquery_colorpicker_validate'),
       '#jquery_colorpicker_background' => 'select.png',
+      '#process' => array('ajax_process_form'),
       '#theme' => 'jquery_colorpicker',
     ),
   );
@@ -319,15 +320,15 @@ function jquery_colorpicker_field_formatter_view($entity_type, $entity, $field, 
           '#instance_id' => $instance['id'],
           '#entity_delta' => $delta,
           '#item' => $item['jquery_colorpicker'],
+          '#attached' => array(
+            'css' => array(
+              array(
+                'type' => 'inline',
+                'data' => '.jquery_colorpicker_color_display_' . $instance['id'] . '_' . $delta . '_' . $item['jquery_colorpicker'] . '{background-color:#' . $item['jquery_colorpicker'] . ';}',
+              )
+            )
+          )
         );
-        $css_attachment = array(
-          'type' => 'inline',
-          'data' => '.jquery_colorpicker_color_display_' . $instance['id'] . '_' . $delta . '_' . $item['jquery_colorpicker'] . '{background-color:#' . $item['jquery_colorpicker'] . ';}',
-        );
-        if (!in_array($css_attachment, $css_attachment_cache)) {
-          $css_attachment_cache[] = $css_attachment;
-          $element[$delta]['#attached']['css'] = $css_attachment_cache;
-        }
         break;
 
       case 'jquery_colorpicker_text_display':

@@ -22,6 +22,5 @@ function nas_conservation_tracker_menu_default_menu_custom() {
   // Included for use with string extractors like potx.
   t('CT Menu');
 
-
   return $menus;
 }
