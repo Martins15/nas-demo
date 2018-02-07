@@ -612,6 +612,9 @@ function nas_conservation_tracker_include_angular() {
       'angularjs-storage',
       'angularjs-scroll',
     ],
+    'system' => [
+      'jquery.cookie',
+    ]
   ];
   foreach ($libs as $module => $libs) {
     foreach ($libs as $lib) {

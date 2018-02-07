@@ -7,12 +7,12 @@
 /**
  * Implements hook_install()
  */
-function nas_conservation_tracker_install() {
+function nas_conservation_tracker_custom_install() {
 
-  variable_set('nas_conservation_tracker_endpoint', './sites/all/modules/features/nas_conservation_tracker/demo_assets');
+  //variable_set('nas_conservation_tracker_endpoint', './sites/all/modules/features/nas_conservation_tracker/demo_assets');
 
   // Revert conservation tracker feature.
-  features_revert_module('nas_conservation_tracker');
+  //features_revert_module('nas_conservation_tracker');
 
   variable_set('nas_i18n_redirect_ignore', array(
     'conservation-tracker',
@@ -135,10 +135,9 @@ function nas_conservation_tracker_install() {
 
   path_save($path);
 
-    // Update config for colorbox.
+  // Update config for colorbox.
   variable_set('colorbox_load', TRUE);
   variable_set('colorbox_inline', TRUE);
-
 
   // Set default tooltip text.
   $tooltips = array(
@@ -152,110 +151,7 @@ function nas_conservation_tracker_install() {
   );
   variable_set('nas_conservation_tracker_tooltips', $tooltips);
 
-
   // Prep dir for csv.
   $dir = NAS_CT_CSV_PATH;
-  //drupal_mkdir($dir);
-  file_prepare_directory($dir);
-//
-//  // Update images for Landing page.
-//  $page_name = 'conservation_tracker';
-//  $page = page_manager_page_load($page_name);
-//  page_manager_page_save($page);
-//
-//  $handlers = page_manager_load_sorted_handlers(array('name' => 'page'), $page_name, $enabled = FALSE);
-//  ctools_get_plugins('page_manager', 'task_handlers', 'panel_context');
-//
-//  $assets_path = variable_get('nas_conservation_tracker_endpoint');
-//
-//  foreach ($handlers as $handler) {
-//    // Each handler/variant has an associate display in Panels which
-//    // is the object we actually want to load and save.
-//    $display = panels_panel_context_get_display($handler);
-//    $save = FALSE;
-//
-//    // The panes are stored in a property called 'content'.
-//    foreach ($display->content as &$pane) {
-//      // Add country code as a value to vary by.
-//      if ($pane->type == 'nas_panes_frontpage_featured' && $pane->subtype == 'nas_panes_frontpage_featured') {
-//        $save = TRUE;
-//        $image_url = $assets_path . '/landing_page_hero.jpg';
-//        $file = file_save_data(file_get_contents($image_url), 'public://' . basename($image_url));
-//        $file->status = 1;
-//        $pane->configuration['curtain_html']['image'] = $file->fid;
-//      }
-//      elseif ($pane->type == 'static_cards_3x' && $pane->subtype == 'static_cards_3x') {
-//        $save = TRUE;
-//
-//        $image_urls = array(
-//          $assets_path . '/landing_page_strategies.jpg',
-//          $assets_path . '/landing_page_species.jpg',
-//          $assets_path . '/landing_page_landscapes.jpg',
-//        );
-//
-//        foreach ($image_urls as $key => $image_url) {
-//          $file = file_save_data(file_get_contents($image_url), 'public://' . basename($image_url));
-//          $file->status = 1;
-//          $pane->configuration['items'][$key]['image'] = $file->fid;
-//        }
-//
-//      }
-//    }
-//    // Only save the display if changes were actually made.
-//    if ($save) {
-//      panels_save_display($display);
-//    }
-//  }
-
-  $index = search_api_index_load('ct_species_index', TRUE);
-  $index->reindex();
-  search_api_index_items($index);
-}
-
-/**
- * Set default tooltip text.
- */
-function nas_conservation_tracker_update_7006() {
-  $tooltips = array(
-    'actions' => 'Actions are classified according to the Open Standards for the Practice of Conservation: <a href="http://cmp-openstandards.org/tools/threats-and-actions-taxonomies">http://cmp-openstandards.org/tools/threats-and-actions-taxonomies</a>',
-    'actions_objectives' => 'To quantify progress towards measurable objectives related to conservation interventions designed to address threats',
-    'threats' => 'Threats are classified according to the Open Standards for the Practice of Conservation: <a href="http://cmp-openstandards.org/tools/threats-and-actions-taxonomies">http://cmp-openstandards.org/tools/threats-and-actions-taxonomies</a>',
-    'threats_objectives' => 'To quantify progress towards measurable objectives related to direct threat reduction',
-    'response' => 'Measures of reproductive success such as productivity are the most informative metrics because threats frequently impact nesting birds and reduce hatching or fledging success.',
-    'response_objectives' => 'To quantify progress towards measurable objectives related to the biological response of birds to our conservation actions',
-    'partners_objectives' => 'To quantify progress towards measurable objectives related to expanding our reach through collaborative conservation efforts',
-  );
-  variable_set('nas_conservation_tracker_tooltips', $tooltips);
-}
-
-/**
- * Prep dir for csv.
- */
-function nas_conservation_tracker_update_7009() {
-  $dir = NAS_CT_CSV_PATH;
-  drupal_mkdir($dir);
   file_prepare_directory($dir);
 }
-
-/**
- * Revert conservation tracker.
- */
-/*
-function nas_conservation_tracker_update_7010() {
-  $module = 'nas_conservation_tracker';
-  $feature = features_get_features($module);
-  $components = array_keys($feature->info['features']);
-  features_revert(array($module => $components));
-}
-*/
-
-/**
- * Reindex species.
- */
-/*
-function nas_conservation_tracker_update_7011() {
-  $index = search_api_index_load('ct_species_index', TRUE);
-  $index->reindex();
-  search_api_index_items($index);
-}
-*/

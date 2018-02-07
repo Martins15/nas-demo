@@ -10,7 +10,7 @@
 function nas_conservation_tracker_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_alpha_code'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_alpha_code'.
   $field_instances['ct_species-ct_species-field_ct_alpha_code'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -90,7 +90,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_climate_status'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_climate_status'.
   $field_instances['ct_species-ct_species-field_ct_climate_status'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -170,7 +170,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_common_name'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_common_name'.
   $field_instances['ct_species-ct_species-field_ct_common_name'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -255,7 +255,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_dropped'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_dropped'.
   $field_instances['ct_species-ct_species-field_ct_dropped'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -303,7 +303,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_group'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_group'.
   $field_instances['ct_species-ct_species-field_ct_group'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -383,7 +383,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_image'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_image'.
   $field_instances['ct_species-ct_species-field_ct_image'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -467,7 +467,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_iucn'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_iucn'.
   $field_instances['ct_species-ct_species-field_ct_iucn'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -547,7 +547,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_letter'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_letter'.
   $field_instances['ct_species-ct_species-field_ct_letter'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -627,7 +627,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_parent'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_parent'.
   $field_instances['ct_species-ct_species-field_ct_parent'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -675,7 +675,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_remote_id'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_remote_id'.
   $field_instances['ct_species-ct_species-field_ct_remote_id'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -723,7 +723,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_scientific_name'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_scientific_name'.
   $field_instances['ct_species-ct_species-field_ct_scientific_name'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -808,7 +808,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_score_card'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_score_card'.
   $field_instances['ct_species-ct_species-field_ct_score_card'] = array(
     'bundle' => 'ct_species',
     'default_value' => array(
@@ -860,7 +860,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_score_card_url'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_score_card_url'.
   $field_instances['ct_species-ct_species-field_ct_score_card_url'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -940,7 +940,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_state_of_birds'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_state_of_birds'.
   $field_instances['ct_species-ct_species-field_ct_state_of_birds'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -1020,7 +1020,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_strategies'
+  // Exported field_instance: 'ct_species-ct_species-field_ct_strategies'.
   $field_instances['ct_species-ct_species-field_ct_strategies'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -1100,7 +1100,8 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'ct_species-ct_species-field_ct_strategy_initiative_id'
+  // Exported field_instance:
+  // 'ct_species-ct_species-field_ct_strategy_initiative_id'.
   $field_instances['ct_species-ct_species-field_ct_strategy_initiative_id'] = array(
     'bundle' => 'ct_species',
     'default_value' => NULL,
@@ -1148,7 +1149,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ct_scorecard-body'
+  // Exported field_instance: 'node-ct_scorecard-body'.
   $field_instances['node-ct_scorecard-body'] = array(
     'bundle' => 'ct_scorecard',
     'default_value' => NULL,
@@ -1252,7 +1253,7 @@ function nas_conservation_tracker_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-ct_scorecard-field_scorecard_id'
+  // Exported field_instance: 'node-ct_scorecard-field_scorecard_id'.
   $field_instances['node-ct_scorecard-field_scorecard_id'] = array(
     'bundle' => 'ct_scorecard',
     'default_value' => NULL,
