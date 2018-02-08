@@ -133,7 +133,8 @@ function park_bird_trend_render($subtype, $conf, $args, $contexts) {
     '#view' => $view->render($display),
   );
 
-  drupal_add_js(drupal_get_path('theme', 'nas') . '/prototypes/park-page/park-page.js');
+  drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/park_bird_trend/js/park_bird_trend.js');
+  //drupal_add_js(drupal_get_path('theme', 'nas') . '/prototypes/park-page/park-page.js');
   return $block;
 }
 
