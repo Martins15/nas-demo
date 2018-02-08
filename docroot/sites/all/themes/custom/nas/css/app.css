@@ -18089,6 +18089,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .switch-wrap {
   position: relative;
+  margin-top: 30px;
   z-index: 0;
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
@@ -18103,10 +18104,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .tab-slider--tabs {
   display: inline-block;
-  margin: 0;
+  position: relative;
+  margin: 0 0 25px 0;
   padding: 0;
   list-style: none;
-  position: relative;
   border-radius: 35px;
   overflow: hidden;
   background: #d8d8d8;
@@ -18144,7 +18145,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   color: #fff;
 }
 .tab-slider--body {
+  display: none;
   margin-bottom: 20px;
+}
+.tab-slider--body:first-child {
+  display: block;
 }
 
 ul.tabs-content {
@@ -18255,6 +18260,7 @@ ul.tabs-content .link.current:after {
   display: none;
 }
 .node-type-park .park_info {
+  overflow: hidden;
   font-size: 16px;
 }
 .node-type-park .park_info > .field {
@@ -18324,6 +18330,9 @@ ul.tabs-content .link.current:after {
   font-size: 38px;
   line-height: 1.2;
 }
+.node-type-park .engagement-hero {
+  margin-top: 0;
+}
 
 .form-container.green {
   background: #417505;
@@ -18353,6 +18362,9 @@ ul.tabs-content .link.current:after {
   font-size: 20px;
 }
 
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .view-filters {
+  display: none;
+}
 .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .view-content {
   overflow: hidden;
 }
