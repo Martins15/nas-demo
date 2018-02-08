@@ -178,10 +178,8 @@
   }
   .wrap-strategy-breakdown {
     position: relative;
-    //padding: 0 0 50px;
-    //background: url("../img/strategies/map.png") no-repeat center top $bg-map;
     @include breakpoint(large-up) {
-      min-height: 700px;
+      min-height: 990px;
       padding: 50px 0;
       background: none;
     }
@@ -457,7 +455,7 @@
   @include breakpoint(large-up) {
     display: block;
     position: absolute;
-    height: 700px;
+    height: 990px;
     top: 200px;
     width: 100%;
   }

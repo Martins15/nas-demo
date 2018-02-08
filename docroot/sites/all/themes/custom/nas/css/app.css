@@ -18198,9 +18198,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   color: #f15936;
 }
-.sidebar, .article-sidebar {
-  margin-bottom: 25px;
-}
 
 .ct-item-nav-conservation {
   background: #fbfaf6;
@@ -20265,7 +20262,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .ct-strategies-main .wrap-strategy-breakdown {
-    min-height: 700px;
+    min-height: 990px;
     padding: 50px 0;
     background: none;
   }
@@ -20543,7 +20540,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .strategies-page-inside {
     display: block;
     position: absolute;
-    height: 700px;
+    height: 990px;
     top: 200px;
     width: 100%;
   }
