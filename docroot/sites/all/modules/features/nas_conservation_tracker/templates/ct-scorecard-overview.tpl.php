@@ -45,10 +45,7 @@
             <div class="bird-page body-item {{value}}-tab-wrapper" ng-cloak  ng-class="{'active': isActive === value}">
 
                 <div class="title-wrap">
-                    <div class="title-wrap__title columns large-8"><h3 ng-bind-html="tab.settings.overview.title"></h3></div>
-                    <div ng-if="value !== 'partners'" class="title-wrap__print  columns large-4  hide-for-tiny hide-for-medium hide-for-small">
-                      <a href="#" class="img-block print"></a> <a href="/conservation-tracker/csv/{{value}}/<?php print $data['id'] ?>" id="download-csv" class="img-block download">Download</a>
-                    </div>
+                    <div class="title-wrap__title columns large-12"><h3 ng-bind-html="tab.settings.overview.title"></h3></div>
                 </div>
                 <div class="body-wrap columns large-7">
                     <div class="body-wrap__body-text">
@@ -69,6 +66,9 @@
                         <div class="partner__name"><p>{{partner.name}}</p></div>
                         <div class="partner__chapter"  ng-if="partner.chapter.length > 0"></div>
                     </div>
+                </div>
+                <div ng-if="value !== 'partners'" class="title-wrap__print  columns large-3  hide-for-tiny hide-for-medium hide-for-small">
+                    <a href="#" class="img-block print"></a> <a href="/conservation-tracker/csv/{{value}}/<?php print $data['id'] ?>" id="download-csv" class="img-block download">Download</a>
                 </div>
             </div>
         </div>

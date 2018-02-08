@@ -17851,6 +17851,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-weight: 600;
 }
 .bird-page.body-item .title-wrap__print {
+  margin-top: 25px;
+  float: right;
   color: #9b9b9b;
   font-size: 14px;
   text-transform: uppercase;
@@ -18487,6 +18489,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .tabs-ng-content .row {
   position: relative;
+  min-height: 400px;
 }
 .tabs-ng-content .js-preloader {
   position: absolute;
@@ -18503,7 +18506,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: absolute;
   z-index: 2;
   top: 30%;
-  left: 50%;
+  left: 30%;
   width: 150px;
   height: 150px;
   transform: translate(-50%, -50%);
@@ -18511,6 +18514,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-radius: 100%;
   -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
   animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+@media only screen and (min-width: 768px) {
+  .tabs-ng-content .js-preloader:after {
+    left: 50%;
+  }
 }
 @media only screen and (min-width: 768px) {
   .tabs-ng-content {
@@ -18851,7 +18859,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .wrap-map-diagram {
-    min-height: 800px;
+    min-height: 900px;
   }
 }
 
@@ -20339,7 +20347,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     max-height: 400px;
     float: right;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 .ct-strategies-main #strategy-breakdown-right h5, .ct-strategies-main #strategy-breakdown-right p, .ct-strategies-main #strategy-breakdown-right ul {
