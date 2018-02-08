@@ -8,6 +8,7 @@ $green-park: #417505;
 
 .switch-wrap {
   position: relative;
+  margin-top: 30px;
   z-index: 0;
   font-family: $font-sans;
 }
@@ -23,10 +24,10 @@ $green-park: #417505;
 .tab-slider {
   &--tabs {
     display: inline-block;
-    margin: 0;
+    position: relative;
+    margin: 0 0 25px 0;
     padding: 0;
     list-style: none;
-    position: relative;
     border-radius: $tab-border-radius;
     overflow: hidden;
     background: $grey-park;
@@ -64,7 +65,11 @@ $green-park: #417505;
     }
   }
   &--body {
+    display: none;
     margin-bottom: $base-margin;
+    &:first-child {
+      display: block;
+    }
   }
 }
 
@@ -186,6 +191,7 @@ ul.tabs-content {
     }
   }
   .park_info {
+    overflow: hidden;
     font-size: 16px;
     > .field {
       display: inline-block;
@@ -255,6 +261,9 @@ ul.tabs-content {
       line-height: 1.2;
     }
   }
+  .engagement-hero {
+    margin-top: 0;
+  }
 }
 
 .form-container {
@@ -298,6 +307,9 @@ ul.tabs-content {
 }
 
 .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default {
+  .view-filters {
+    display: none;
+  }
   .view-content {
     overflow: hidden;
   }

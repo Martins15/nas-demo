@@ -6,16 +6,9 @@
       var tabsItem = $('.tab-slider--tabs', context)
         , tabsNav = $('.tab-slider--nav li', context)
         , tabsBody = $('.tab-slider--body', context)
-    , seasonSwitch = $('#edit-season')
-        , trendsSwitch = $('#edit-park-trend')
-        , formSubmit = $('#edit-submit-park-bird-trends');
+        , seasonSwitch = $('#edit-season')
+        , trendsSwitch = $('#edit-park-trend');
 
-
-      $("document").ready(function () {
-        tabsBody.hide();
-        $(".tab-slider--body:first").show();
-        tabsItem.find('li:first').addClass('active');
-      });
 
       var seasonMap = {'1': 'season_summer', '2': 'season_winter'};
 
@@ -25,17 +18,14 @@
         if (seasonCur == 'season_winter') {
           tabsItem.addClass('slide');
         }
-        $('.tabs-content__link').removeClass('active').filter('[data-tab="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('active');
+        $('.tabs-content__link').removeClass('active').filter('[data-tab="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
       });
 
       tabsNav.click(function () {
       var seasonSwitch = $('#edit-season')
           , formSubmit = $('#edit-submit-park-bird-trends');
-
-
         tabsBody.hide();
         var activeTab = $(this).attr("rel");
-        $("#" + activeTab).fadeIn();
         if ($(this).attr("rel") === "season_winter") {
           tabsItem.addClass('slide');
           $(seasonSwitch).find('option[value=2]').prop('selected', true);
@@ -48,7 +38,7 @@
         $(formSubmit).click();
         tabsNav.removeClass("active");
         $(this).addClass("active");
-
+        $("#" + activeTab).fadeIn();
       });
 
 
@@ -63,7 +53,7 @@
         $('.tab-content').removeClass('current');
 
         $(this).addClass('current');
-        //$("."+tabId).addClass('current');
+
         $(".container-data-tabs").find("[data-content='" + tabId + "']").addClass('current');
 
         $(trendsSwitch).find('option[value="' + tabId.replace('display-', '') + '"]').prop('selected', true);
