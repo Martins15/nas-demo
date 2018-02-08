@@ -44,15 +44,15 @@ function nas_park_feature_views_default_views() {
   $handler->display->display_options['relationships']['field_bird_reference_target_id']['id'] = 'field_bird_reference_target_id';
   $handler->display->display_options['relationships']['field_bird_reference_target_id']['table'] = 'field_data_field_bird_reference';
   $handler->display->display_options['relationships']['field_bird_reference_target_id']['field'] = 'field_bird_reference_target_id';
-  /* Field: Content: Illustration */
-  $handler->display->display_options['fields']['field_bird_illustration']['id'] = 'field_bird_illustration';
-  $handler->display->display_options['fields']['field_bird_illustration']['table'] = 'field_data_field_bird_illustration';
-  $handler->display->display_options['fields']['field_bird_illustration']['field'] = 'field_bird_illustration';
-  $handler->display->display_options['fields']['field_bird_illustration']['relationship'] = 'field_bird_reference_target_id';
-  $handler->display->display_options['fields']['field_bird_illustration']['label'] = '';
-  $handler->display->display_options['fields']['field_bird_illustration']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_illustration']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_bird_illustration']['settings'] = array(
+  /* Field: Field: Hero Image */
+  $handler->display->display_options['fields']['field_hero_image']['id'] = 'field_hero_image';
+  $handler->display->display_options['fields']['field_hero_image']['table'] = 'field_data_field_hero_image';
+  $handler->display->display_options['fields']['field_hero_image']['field'] = 'field_hero_image';
+  $handler->display->display_options['fields']['field_hero_image']['relationship'] = 'field_bird_reference_target_id';
+  $handler->display->display_options['fields']['field_hero_image']['label'] = '';
+  $handler->display->display_options['fields']['field_hero_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_hero_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_hero_image']['settings'] = array(
     'file_view_mode' => 'park_bird_illustration',
   );
   /* Field: Content: Title */
