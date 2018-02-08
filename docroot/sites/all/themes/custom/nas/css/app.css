@@ -19878,6 +19878,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-radius: 50px;
   background: transparent;
 }
+.ct-landscapes-main .wrap-map-diagram .leaflet-pane {
+  z-index: inherit;
+}
 .ct-landscapes-main .leaflet-popup .leaflet-popup-content-wrapper {
   background: transparent;
   box-shadow: none;
