@@ -17851,6 +17851,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-weight: 600;
 }
 .bird-page.body-item .title-wrap__print {
+  margin-top: 25px;
+  float: right;
   color: #9b9b9b;
   font-size: 14px;
   text-transform: uppercase;
@@ -18487,6 +18489,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .tabs-ng-content .row {
   position: relative;
+  min-height: 400px;
 }
 .tabs-ng-content .js-preloader {
   position: absolute;
