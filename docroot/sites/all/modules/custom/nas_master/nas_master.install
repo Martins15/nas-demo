@@ -4470,3 +4470,65 @@ function nas_master_update_7315() {
   ));
   module_enable(array('nas_climate'));
 }
+
+/**
+ * Create demo Park page amd import birds relation.
+ */
+function nas_master_update_7316() {
+  // This block is only for climate builds.
+  // Create Park page.
+  global $user;
+  $node = new stdClass();
+  $node->title = 'Acadia National Park';
+  $node->language = LANGUAGE_NONE;
+  $node->type = 'park';
+  node_object_prepare($node);
+  $node->uid = $user->uid;
+  $node->status = 1;
+  $node->promote = 0;
+  $node->comment = 0;
+
+  $node->field_park_id[$node->language][]['value'] = 'ACAD';
+  $node->field_hero_image[$node->language][]['fid'] = 131566;
+  $node->field_state[$node->language][]['tid'] = 403;
+  $node->field_park_area[$node->language][]['value'] = '229 sq. miles';
+  $node->field_link[$node->language][] = array(
+    'url' => 'audubon.org',
+    'title' => 'One link'
+  );
+  $node->field_location_link[$node->language][] = array(
+    'url' => 'audubon.org',
+    'title' => 'Another link'
+  );
+  $node->field_park_map_image[$node->language][] = (array) file_load(128081);
+  $node->field_park_description[$node->language][]['value'] = 'Park description text goes here, where we can talk about habitats, species guilds, etc. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.';
+  $node->field_birds_s_species_desc[$node->language][]['value'] = 'Climate will become suitable for these species not found in this park today. Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park, as other ecological factors will play an important role.';
+  $node->field_birds_s_extirpations_desc[$node->language][]['value'] = 'Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park, as other ecological factors will play an important role. Climate will become suitable for these species not found in this park today.';
+  $node->field_birds_s_colonizations_desc[$node->language][]['value'] = 'It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park, as other ecological factors will play an important role. Climate will become suitable for these species not found in this park today.Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere.';
+  $node->field_birds_w_species_desc[$node->language][]['value'] = 'As other ecological factors will play an important role. Climate will become suitable for these species not found in this park today.Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park.';
+  $node->field_birds_w_extirpations_desc[$node->language][]['value'] = 'Species not found in this park today.Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park.As other ecological factors will play an important role. Climate will become suitable for these.';
+  $node->field_birds_w_colonizations_desc[$node->language][]['value'] = 'Support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park.As other ecological factors will play an important role. Climate will become suitable for these.Species not found in this park today.Our analysis shows that future climate conditions in this park will be similar to those that.';
+  $node->field_park_description_secondary[$node->language][]['value'] = 'This Park in Context Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Id ligula porta felis euismod semper. Curabitur blandit tempus porttitor.';
+  $node->field_interactive_content[$node->language][]['value'] = 'Here, where we can talk about habitats, species guilds, etc. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.Park description text goes.';
+
+  $node = node_submit($node);
+  node_save($node);
+  // This block is only for climate builds.
+}
+
+/**
+ * Create demo Park page amd import birds relation.
+ */
+function nas_master_update_7317() {
+  // This block is only for climate builds.
+  // Import Parks to birds relations.
+  file_unmanaged_copy('sites/all/modules/features/park_bird_import/demo_assets/species_trend_projections_tmp.csv', 'sites/default/files/species_trend_projections_tmp.csv');
+  $importer_id = 'parks_to_birds';
+  $source = feeds_source($importer_id);
+  $fetcher_config = $source->getConfigFor($source->importer->fetcher);
+  $fetcher_config['source'] = 'public://species_trend_projections_tmp.csv';
+  $source->setConfigFor($source->importer->fetcher, $fetcher_config);
+  $source->save();
+  $source->startImport();
+  // This block is only for climate builds.
+}

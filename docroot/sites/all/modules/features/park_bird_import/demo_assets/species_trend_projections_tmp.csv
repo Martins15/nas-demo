@@ -122,113 +122,374 @@ Indigo Bunting,INBU,Acadia National Park,ACAD,85,Summer,I
 Kentucky Warbler,KEWA,Acadia National Park,ACAD,85,Summer,I
 Killdeer,KILL,Acadia National Park,ACAD,26,Summer,I
 Killdeer,KILL,Acadia National Park,ACAD,85,Summer,I
-Least Flycatcher,LEFL,Acadia National Park,ACAD,26,Winter,E
-Least Flycatcher,LEFL,Acadia National Park,ACAD,85,Winter,E
-Mallard,MALL,Acadia National Park,ACAD,26,Winter,S
-Mallard,MALL,Acadia National Park,ACAD,85,Winter,S
-Magnolia Warbler,MAWA,Acadia National Park,ACAD,26,Winter,E
-Magnolia Warbler,MAWA,Acadia National Park,ACAD,85,Winter,E
-Mourning Dove,MODO,Acadia National Park,ACAD,26,Winter,I
-Mourning Dove,MODO,Acadia National Park,ACAD,85,Winter,I
-Mourning Warbler,MOWA,Acadia National Park,ACAD,26,Winter,E
-Mourning Warbler,MOWA,Acadia National Park,ACAD,85,Winter,E
-Nashville Warbler,NAWA,Acadia National Park,ACAD,26,Winter,E
-Nashville Warbler,NAWA,Acadia National Park,ACAD,85,Winter,E
+Least Flycatcher,LEFL,Acadia National Park,ACAD,26,Summer,E
+Least Flycatcher,LEFL,Acadia National Park,ACAD,85,Summer,E
+Mallard,MALL,Acadia National Park,ACAD,26,Summer,S
+Mallard,MALL,Acadia National Park,ACAD,85,Summer,S
+Magnolia Warbler,MAWA,Acadia National Park,ACAD,26,Summer,E
+Magnolia Warbler,MAWA,Acadia National Park,ACAD,85,Summer,E
+Mourning Dove,MODO,Acadia National Park,ACAD,26,Summer,I
+Mourning Dove,MODO,Acadia National Park,ACAD,85,Summer,I
+Mourning Warbler,MOWA,Acadia National Park,ACAD,26,Summer,E
+Mourning Warbler,MOWA,Acadia National Park,ACAD,85,Summer,E
+Nashville Warbler,NAWA,Acadia National Park,ACAD,26,Summer,E
+Nashville Warbler,NAWA,Acadia National Park,ACAD,85,Summer,E
+Northern Bobwhite,NOBO,Acadia National Park,ACAD,85,Summer,C
+Northern Cardinal,NOCA,Acadia National Park,ACAD,26,Summer,I
+Northern Cardinal,NOCA,Acadia National Park,ACAD,85,Summer,I
+Northern Harrier,NOHA,Acadia National Park,ACAD,26,Summer,E
+Northern Harrier,NOHA,Acadia National Park,ACAD,85,Summer,E
+Northern Mockingbird,NOMO,Acadia National Park,ACAD,26,Summer,I
+Northern Mockingbird,NOMO,Acadia National Park,ACAD,85,Summer,I
+Northern Parula,NOPA,Acadia National Park,ACAD,26,Summer,E
+Northern Parula,NOPA,Acadia National Park,ACAD,85,Summer,E
+Northern Waterthrush,NOWA,Acadia National Park,ACAD,26,Summer,E
+Northern Waterthrush,NOWA,Acadia National Park,ACAD,85,Summer,E
+Northern Rough-winged Swallow,NRWS,Acadia National Park,ACAD,26,Summer,I
+Northern Rough-winged Swallow,NRWS,Acadia National Park,ACAD,85,Summer,I
+Orchard Oriole,OROR,Acadia National Park,ACAD,85,Summer,C
+Ovenbird,OVEN,Acadia National Park,ACAD,26,Summer,W
+Ovenbird,OVEN,Acadia National Park,ACAD,85,Summer,W
+Palm Warbler,PAWA,Acadia National Park,ACAD,26,Summer,E
+Palm Warbler,PAWA,Acadia National Park,ACAD,85,Summer,E
+Pileated Woodpecker,PIWO,Acadia National Park,ACAD,26,Summer,E
+Pileated Woodpecker,PIWO,Acadia National Park,ACAD,85,Summer,E
+Prairie Warbler,PRAW,Acadia National Park,ACAD,26,Summer,I
+Prairie Warbler,PRAW,Acadia National Park,ACAD,85,Summer,I
+Purple Finch,PUFI,Acadia National Park,ACAD,26,Summer,E
+Purple Finch,PUFI,Acadia National Park,ACAD,85,Summer,E
+Purple Martin,PUMA,Acadia National Park,ACAD,26,Summer,I
+Purple Martin,PUMA,Acadia National Park,ACAD,85,Summer,I
+Rose-breasted Grosbeak,RBGR,Acadia National Park,ACAD,26,Summer,W
+Rose-breasted Grosbeak,RBGR,Acadia National Park,ACAD,85,Summer,W
+Ring-billed Gull,RBGU,Acadia National Park,ACAD,26,Summer,W
+Ring-billed Gull,RBGU,Acadia National Park,ACAD,85,Summer,W
+Red-breasted Nuthatch,RBNU,Acadia National Park,ACAD,26,Summer,E
+Red-breasted Nuthatch,RBNU,Acadia National Park,ACAD,85,Summer,E
+Red-bellied Woodpecker,RBWO,Acadia National Park,ACAD,26,Summer,I
+Red-bellied Woodpecker,RBWO,Acadia National Park,ACAD,85,Summer,I
+Ruby-crowned Kinglet,RCKI,Acadia National Park,ACAD,26,Summer,E
+Ruby-crowned Kinglet,RCKI,Acadia National Park,ACAD,85,Summer,E
+Red-eyed Vireo,REVI,Acadia National Park,ACAD,26,Summer,W
+Red-eyed Vireo,REVI,Acadia National Park,ACAD,85,Summer,W
+Red-headed Woodpecker,RHWO,Acadia National Park,ACAD,85,Summer,C
+Ring-necked Pheasant,RNEP,Acadia National Park,ACAD,26,Summer,I
+Ring-necked Pheasant,RNEP,Acadia National Park,ACAD,85,Summer,S
+Rock Pigeon,ROPI,Acadia National Park,ACAD,26,Summer,I
+Rock Pigeon,ROPI,Acadia National Park,ACAD,85,Summer,S
+Red-tailed Hawk,RTHA,Acadia National Park,ACAD,26,Summer,I
+Red-tailed Hawk,RTHA,Acadia National Park,ACAD,85,Summer,I
+Ruby-throated Hummingbird,RTHU,Acadia National Park,ACAD,26,Summer,W
+Ruby-throated Hummingbird,RTHU,Acadia National Park,ACAD,85,Summer,W
+Red-winged Blackbird,RWBL,Acadia National Park,ACAD,26,Summer,I
+Red-winged Blackbird,RWBL,Acadia National Park,ACAD,85,Summer,I
+Savannah Sparrow,SAVS,Acadia National Park,ACAD,26,Summer,W
+Savannah Sparrow,SAVS,Acadia National Park,ACAD,85,Summer,E
+Scarlet Tanager,SCTA,Acadia National Park,ACAD,26,Summer,I
+Scarlet Tanager,SCTA,Acadia National Park,ACAD,85,Summer,S
+Song Sparrow,SOSP,Acadia National Park,ACAD,26,Summer,S
+Song Sparrow,SOSP,Acadia National Park,ACAD,85,Summer,S
+Swamp Sparrow,SWSP,Acadia National Park,ACAD,26,Summer,W
+Swamp Sparrow,SWSP,Acadia National Park,ACAD,85,Summer,E
+Swainson's Thrush,SWTH,Acadia National Park,ACAD,26,Summer,E
+Swainson's Thrush,SWTH,Acadia National Park,ACAD,85,Summer,E
+Tennessee Warbler,TEWA,Acadia National Park,ACAD,26,Summer,E
+Tennessee Warbler,TEWA,Acadia National Park,ACAD,85,Summer,E
+Tree Swallow,TRES,Acadia National Park,ACAD,26,Summer,W
+Tree Swallow,TRES,Acadia National Park,ACAD,85,Summer,W
+Tufted Titmouse,TUTI,Acadia National Park,ACAD,26,Summer,C
+Tufted Titmouse,TUTI,Acadia National Park,ACAD,85,Summer,C
+Upland Sandpiper,UPSA,Acadia National Park,ACAD,26,Summer,E
+Upland Sandpiper,UPSA,Acadia National Park,ACAD,85,Summer,E
+Veery,VEER,Acadia National Park,ACAD,26,Summer,W
+Veery,VEER,Acadia National Park,ACAD,85,Summer,E
+Warbling Vireo,WAVI,Acadia National Park,ACAD,26,Summer,I
+Warbling Vireo,WAVI,Acadia National Park,ACAD,85,Summer,I
+White-breasted Nuthatch,WBNU,Acadia National Park,ACAD,26,Summer,I
+White-breasted Nuthatch,WBNU,Acadia National Park,ACAD,85,Summer,I
+White-eyed Vireo,WEVI,Acadia National Park,ACAD,85,Summer,I
+Worm-eating Warbler,WEWA,Acadia National Park,ACAD,26,Summer,C
+Worm-eating Warbler,WEWA,Acadia National Park,ACAD,85,Summer,C
+Willow Flycatcher,WIFL,Acadia National Park,ACAD,26,Summer,I
+Willow Flycatcher,WIFL,Acadia National Park,ACAD,85,Summer,I
+Wilson's Snipe,WISN,Acadia National Park,ACAD,26,Summer,E
+Wilson's Snipe,WISN,Acadia National Park,ACAD,85,Summer,E
+Wood Thrush,WOTH,Acadia National Park,ACAD,26,Summer,I
+Wood Thrush,WOTH,Acadia National Park,ACAD,85,Summer,I
+White-throated Sparrow,WTSP,Acadia National Park,ACAD,26,Summer,E
+White-throated Sparrow,WTSP,Acadia National Park,ACAD,85,Summer,E
+Yellow-breasted Chat,YBCH,Acadia National Park,ACAD,85,Summer,C
+Yellow-billed Cuckoo,YBCU,Acadia National Park,ACAD,26,Summer,I
+Yellow-billed Cuckoo,YBCU,Acadia National Park,ACAD,85,Summer,I
+Yellow-bellied Flycatcher,YBFL,Acadia National Park,ACAD,26,Summer,E
+Yellow-bellied Flycatcher,YBFL,Acadia National Park,ACAD,85,Summer,E
+Yellow-bellied Sapsucker,YBSA,Acadia National Park,ACAD,26,Summer,E
+Yellow-bellied Sapsucker,YBSA,Acadia National Park,ACAD,85,Summer,E
+Yellow Warbler,YEWA,Acadia National Park,ACAD,26,Summer,S
+Yellow Warbler,YEWA,Acadia National Park,ACAD,85,Summer,W
+Yellow-rumped Warbler,YRWA,Acadia National Park,ACAD,26,Summer,E
+Yellow-rumped Warbler,YRWA,Acadia National Park,ACAD,85,Summer,E
+Yellow-throated Vireo,YTVI,Acadia National Park,ACAD,26,Summer,I
+Yellow-throated Vireo,YTVI,Acadia National Park,ACAD,85,Summer,I
+Yellow-throated Warbler,YTWA,Acadia National Park,ACAD,85,Summer,I
+American Black Duck,ABDU,Acadia National Park,ACAD,26,Winter,S
+American Black Duck,ABDU,Acadia National Park,ACAD,85,Winter,I
+American Bittern,AMBI,Acadia National Park,ACAD,85,Winter,I
+American Coot,AMCO,Acadia National Park,ACAD,26,Winter,I
+American Coot,AMCO,Acadia National Park,ACAD,85,Winter,I
+American Crow,AMCR,Acadia National Park,ACAD,26,Winter,I
+American Crow,AMCR,Acadia National Park,ACAD,85,Winter,S
+American Goldfinch,AMGO,Acadia National Park,ACAD,26,Winter,I
+American Goldfinch,AMGO,Acadia National Park,ACAD,85,Winter,I
+American Kestrel,AMKE,Acadia National Park,ACAD,85,Winter,I
+American Robin,AMRO,Acadia National Park,ACAD,26,Winter,I
+American Robin,AMRO,Acadia National Park,ACAD,85,Winter,I
+American Wigeon,AMWI,Acadia National Park,ACAD,26,Winter,I
+American Wigeon,AMWI,Acadia National Park,ACAD,85,Winter,I
+American Woodcock,AMWO,Acadia National Park,ACAD,26,Winter,I
+American Woodcock,AMWO,Acadia National Park,ACAD,85,Winter,I
+American Tree Sparrow,ATSP,Acadia National Park,ACAD,26,Winter,S
+American Tree Sparrow,ATSP,Acadia National Park,ACAD,85,Winter,W
+American Three-toed Woodpecker,ATTW,Acadia National Park,ACAD,26,Winter,E
+American Three-toed Woodpecker,ATTW,Acadia National Park,ACAD,85,Winter,E
+Barred Owl,BADO,Acadia National Park,ACAD,26,Winter,S
+Barred Owl,BADO,Acadia National Park,ACAD,85,Winter,S
+Bald Eagle,BAEA,Acadia National Park,ACAD,26,Winter,S
+Bald Eagle,BAEA,Acadia National Park,ACAD,85,Winter,E
+Black-bellied Plover,BBPL,Acadia National Park,ACAD,26,Winter,I
+Black-bellied Plover,BBPL,Acadia National Park,ACAD,85,Winter,I
+Black-backed Woodpecker,BBWO,Acadia National Park,ACAD,26,Winter,E
+Black-backed Woodpecker,BBWO,Acadia National Park,ACAD,85,Winter,E
+Black-capped Chickadee,BCCH,Acadia National Park,ACAD,26,Winter,S
+Black-capped Chickadee,BCCH,Acadia National Park,ACAD,85,Winter,S
+Black-crowned Night-Heron,BCNH,Acadia National Park,ACAD,85,Winter,I
+Belted Kingfisher,BEKI,Acadia National Park,ACAD,26,Winter,I
+Belted Kingfisher,BEKI,Acadia National Park,ACAD,85,Winter,I
+Brown-headed Cowbird,BHCO,Acadia National Park,ACAD,26,Winter,I
+Brown-headed Cowbird,BHCO,Acadia National Park,ACAD,85,Winter,I
+Black Guillemot,BLGU,Acadia National Park,ACAD,26,Winter,S
+Black Guillemot,BLGU,Acadia National Park,ACAD,85,Winter,W
+Blue Jay,BLJA,Acadia National Park,ACAD,26,Winter,S
+Blue Jay,BLJA,Acadia National Park,ACAD,85,Winter,S
+Black Scoter,BLSC,Acadia National Park,ACAD,26,Winter,I
+Black Scoter,BLSC,Acadia National Park,ACAD,85,Winter,I
+Black Vulture,BLVU,Acadia National Park,ACAD,85,Winter,C
+Boreal Chickadee,BOCH,Acadia National Park,ACAD,26,Winter,E
+Boreal Chickadee,BOCH,Acadia National Park,ACAD,85,Winter,E
+Bonaparte's Gull,BOGU,Acadia National Park,ACAD,26,Winter,I
+Bonaparte's Gull,BOGU,Acadia National Park,ACAD,85,Winter,I
+Bohemian Waxwing,BOWA,Acadia National Park,ACAD,26,Winter,E
+Bohemian Waxwing,BOWA,Acadia National Park,ACAD,85,Winter,E
+Brant,BRAN,Acadia National Park,ACAD,26,Winter,I
+Brant,BRAN,Acadia National Park,ACAD,85,Winter,I
+Brown Creeper,BRCR,Acadia National Park,ACAD,26,Winter,I
+Brown Creeper,BRCR,Acadia National Park,ACAD,85,Winter,I
+Brown Thrasher,BRTH,Acadia National Park,ACAD,85,Winter,I
+Bufflehead,BUFF,Acadia National Park,ACAD,26,Winter,I
+Bufflehead,BUFF,Acadia National Park,ACAD,85,Winter,I
+Canvasback,CANV,Acadia National Park,ACAD,26,Winter,I
+Canvasback,CANV,Acadia National Park,ACAD,85,Winter,I
+Carolina Wren,CARW,Acadia National Park,ACAD,26,Winter,C
+Carolina Wren,CARW,Acadia National Park,ACAD,85,Winter,C
+Cedar Waxwing,CEDW,Acadia National Park,ACAD,26,Winter,I
+Chipping Sparrow,CHSP,Acadia National Park,ACAD,85,Winter,I
+Clapper Rail,CLRA,Acadia National Park,ACAD,85,Winter,C
+Common Eider,COEI,Acadia National Park,ACAD,26,Winter,S
+Common Eider,COEI,Acadia National Park,ACAD,85,Winter,S
+Common Goldeneye,COGO,Acadia National Park,ACAD,26,Winter,S
+Common Goldeneye,COGO,Acadia National Park,ACAD,85,Winter,S
+Common Grackle,COGR,Acadia National Park,ACAD,26,Winter,I
+Common Grackle,COGR,Acadia National Park,ACAD,85,Winter,I
+Cooper's Hawk,COHA,Acadia National Park,ACAD,26,Winter,I
+Cooper's Hawk,COHA,Acadia National Park,ACAD,85,Winter,I
+Common Loon,COLO,Acadia National Park,ACAD,26,Winter,I
+Common Loon,COLO,Acadia National Park,ACAD,85,Winter,S
+Common Merganser,COME,Acadia National Park,ACAD,26,Winter,S
+Common Merganser,COME,Acadia National Park,ACAD,85,Winter,S
+Common Raven,CORA,Acadia National Park,ACAD,26,Winter,E
+Common Raven,CORA,Acadia National Park,ACAD,85,Winter,E
+Common Redpoll,CORE,Acadia National Park,ACAD,26,Winter,S
+Common Redpoll,CORE,Acadia National Park,ACAD,85,Winter,W
+Double-crested Cormorant,DCCO,Acadia National Park,ACAD,26,Winter,I
+Double-crested Cormorant,DCCO,Acadia National Park,ACAD,85,Winter,I
+Dark-eyed Junco,DEJU,Acadia National Park,ACAD,26,Winter,I
+Dark-eyed Junco,DEJU,Acadia National Park,ACAD,85,Winter,I
+Downy Woodpecker,DOWO,Acadia National Park,ACAD,26,Winter,S
+Downy Woodpecker,DOWO,Acadia National Park,ACAD,85,Winter,S
+Dunlin,DUNL,Acadia National Park,ACAD,26,Winter,C
+Dunlin,DUNL,Acadia National Park,ACAD,85,Winter,C
+Eastern Bluebird,EABL,Acadia National Park,ACAD,26,Winter,I
+Eastern Bluebird,EABL,Acadia National Park,ACAD,85,Winter,I
+Eastern Meadowlark,EAME,Acadia National Park,ACAD,26,Winter,I
+Eastern Meadowlark,EAME,Acadia National Park,ACAD,85,Winter,I
+Eastern Screech-Owl,EASO,Acadia National Park,ACAD,26,Winter,I
+Eastern Screech-Owl,EASO,Acadia National Park,ACAD,85,Winter,I
+Eurasian Tree Sparrow,ETSP,Acadia National Park,ACAD,85,Winter,C
+Eurasian Wigeon,EUWI,Acadia National Park,ACAD,26,Winter,I
+Eurasian Wigeon,EUWI,Acadia National Park,ACAD,85,Winter,I
+Evening Grosbeak,EVGR,Acadia National Park,ACAD,26,Winter,E
+Evening Grosbeak,EVGR,Acadia National Park,ACAD,85,Winter,E
+Fish Crow,FICR,Acadia National Park,ACAD,26,Winter,C
+Fish Crow,FICR,Acadia National Park,ACAD,85,Winter,C
+Field Sparrow,FISP,Acadia National Park,ACAD,26,Winter,I
+Field Sparrow,FISP,Acadia National Park,ACAD,85,Winter,I
+Fox Sparrow,FOSP,Acadia National Park,ACAD,26,Winter,C
+Fox Sparrow,FOSP,Acadia National Park,ACAD,85,Winter,C
+Gadwall,GADW,Acadia National Park,ACAD,26,Winter,I
+Gadwall,GADW,Acadia National Park,ACAD,85,Winter,I
+Great Black-backed Gull,GBBG,Acadia National Park,ACAD,26,Winter,I
+Great Black-backed Gull,GBBG,Acadia National Park,ACAD,85,Winter,S
+Great Blue Heron,GBHE,Acadia National Park,ACAD,26,Winter,I
+Great Blue Heron,GBHE,Acadia National Park,ACAD,85,Winter,I
+Golden-crowned Kinglet,GCKI,Acadia National Park,ACAD,26,Winter,S
+Golden-crowned Kinglet,GCKI,Acadia National Park,ACAD,85,Winter,I
+Great Horned Owl,GHOW,Acadia National Park,ACAD,26,Winter,I
+Great Horned Owl,GHOW,Acadia National Park,ACAD,85,Winter,I
+Gray Jay,GRAJ,Acadia National Park,ACAD,26,Winter,E
+Gray Jay,GRAJ,Acadia National Park,ACAD,85,Winter,E
+Gray Catbird,GRCA,Acadia National Park,ACAD,26,Winter,I
+Gray Catbird,GRCA,Acadia National Park,ACAD,85,Winter,I
+Great Cormorant,GRCO,Acadia National Park,ACAD,26,Winter,I
+Great Cormorant,GRCO,Acadia National Park,ACAD,85,Winter,I
+Greater Scaup,GRSC,Acadia National Park,ACAD,26,Winter,I
+Greater Scaup,GRSC,Acadia National Park,ACAD,85,Winter,I
+Green-winged Teal,GWTE,Acadia National Park,ACAD,26,Winter,I
+Green-winged Teal,GWTE,Acadia National Park,ACAD,85,Winter,I
+Harlequin Duck,HADU,Acadia National Park,ACAD,26,Winter,S
+Harlequin Duck,HADU,Acadia National Park,ACAD,85,Winter,W
+Hairy Woodpecker,HAWO,Acadia National Park,ACAD,26,Winter,W
+Hairy Woodpecker,HAWO,Acadia National Park,ACAD,85,Winter,W
+Herring Gull,HERG,Acadia National Park,ACAD,26,Winter,S
+Herring Gull,HERG,Acadia National Park,ACAD,85,Winter,S
+Hermit Thrush,HETH,Acadia National Park,ACAD,26,Winter,I
+Hermit Thrush,HETH,Acadia National Park,ACAD,85,Winter,I
+House Finch,HOFI,Acadia National Park,ACAD,26,Winter,I
+House Finch,HOFI,Acadia National Park,ACAD,85,Winter,I
+Horned Grebe,HOGR,Acadia National Park,ACAD,26,Winter,I
+Horned Grebe,HOGR,Acadia National Park,ACAD,85,Winter,I
+Horned Lark,HOLA,Acadia National Park,ACAD,26,Winter,I
+Horned Lark,HOLA,Acadia National Park,ACAD,85,Winter,I
+Hooded Merganser,HOME,Acadia National Park,ACAD,26,Winter,I
+Hooded Merganser,HOME,Acadia National Park,ACAD,85,Winter,I
+House Sparrow,HOSP,Acadia National Park,ACAD,26,Winter,I
+House Sparrow,HOSP,Acadia National Park,ACAD,85,Winter,I
+Lesser Scaup,LESC,Acadia National Park,ACAD,26,Winter,C
+Lesser Scaup,LESC,Acadia National Park,ACAD,85,Winter,C
+Long-tailed Duck,LTDU,Acadia National Park,ACAD,26,Winter,S
+Long-tailed Duck,LTDU,Acadia National Park,ACAD,85,Winter,S
+Mallard,MALL,Acadia National Park,ACAD,26,Winter,I
+Mallard,MALL,Acadia National Park,ACAD,85,Winter,I
+Merlin,MERL,Acadia National Park,ACAD,26,Winter,I
+Merlin,MERL,Acadia National Park,ACAD,85,Winter,I
+Mourning Dove,MODO,Acadia National Park,ACAD,26,Winter,W
+Mourning Dove,MODO,Acadia National Park,ACAD,85,Winter,W
+Mute Swan,MUSW,Acadia National Park,ACAD,26,Winter,C
+Mute Swan,MUSW,Acadia National Park,ACAD,85,Winter,C
+Northern Hawk Owl,NHOW,Acadia National Park,ACAD,26,Winter,E
+Northern Hawk Owl,NHOW,Acadia National Park,ACAD,85,Winter,E
 Northern Bobwhite,NOBO,Acadia National Park,ACAD,85,Winter,C
 Northern Cardinal,NOCA,Acadia National Park,ACAD,26,Winter,I
 Northern Cardinal,NOCA,Acadia National Park,ACAD,85,Winter,I
-Northern Harrier,NOHA,Acadia National Park,ACAD,26,Winter,E
-Northern Harrier,NOHA,Acadia National Park,ACAD,85,Winter,E
+Northern Flicker,NOFL,Acadia National Park,ACAD,26,Winter,I
+Northern Flicker,NOFL,Acadia National Park,ACAD,85,Winter,I
+Northern Gannet,NOGA,Acadia National Park,ACAD,26,Winter,S
+Northern Gannet,NOGA,Acadia National Park,ACAD,85,Winter,I
+Northern Goshawk,NOGO,Acadia National Park,ACAD,26,Winter,W
+Northern Goshawk,NOGO,Acadia National Park,ACAD,85,Winter,W
+Northern Harrier,NOHA,Acadia National Park,ACAD,26,Winter,I
+Northern Harrier,NOHA,Acadia National Park,ACAD,85,Winter,I
 Northern Mockingbird,NOMO,Acadia National Park,ACAD,26,Winter,I
 Northern Mockingbird,NOMO,Acadia National Park,ACAD,85,Winter,I
-Northern Parula,NOPA,Acadia National Park,ACAD,26,Winter,E
-Northern Parula,NOPA,Acadia National Park,ACAD,85,Winter,E
-Northern Waterthrush,NOWA,Acadia National Park,ACAD,26,Winter,E
-Northern Waterthrush,NOWA,Acadia National Park,ACAD,85,Winter,E
-Northern Rough-winged Swallow,NRWS,Acadia National Park,ACAD,26,Winter,I
-Northern Rough-winged Swallow,NRWS,Acadia National Park,ACAD,85,Winter,I
-Orchard Oriole,OROR,Acadia National Park,ACAD,85,Winter,C
-Ovenbird,OVEN,Acadia National Park,ACAD,26,Winter,W
-Ovenbird,OVEN,Acadia National Park,ACAD,85,Winter,W
-Palm Warbler,PAWA,Acadia National Park,ACAD,26,Winter,E
-Palm Warbler,PAWA,Acadia National Park,ACAD,85,Winter,E
+Northern Shoveler,NSHO,Acadia National Park,ACAD,85,Winter,C
+Northern Shrike,NSHR,Acadia National Park,ACAD,26,Winter,W
+Northern Shrike,NSHR,Acadia National Park,ACAD,85,Winter,E
+Palm Warbler,PAWA,Acadia National Park,ACAD,26,Winter,I
+Palm Warbler,PAWA,Acadia National Park,ACAD,85,Winter,I
+Pied-billed Grebe,PBGR,Acadia National Park,ACAD,26,Winter,I
+Pied-billed Grebe,PBGR,Acadia National Park,ACAD,85,Winter,I
+Peregrine Falcon,PEFA,Acadia National Park,ACAD,85,Winter,I
+Pine Grosbeak,PIGR,Acadia National Park,ACAD,26,Winter,E
+Pine Grosbeak,PIGR,Acadia National Park,ACAD,85,Winter,E
+Pine Siskin,PISI,Acadia National Park,ACAD,26,Winter,I
+Pine Warbler,PIWA,Acadia National Park,ACAD,85,Winter,C
 Pileated Woodpecker,PIWO,Acadia National Park,ACAD,26,Winter,E
 Pileated Woodpecker,PIWO,Acadia National Park,ACAD,85,Winter,E
-Prairie Warbler,PRAW,Acadia National Park,ACAD,26,Winter,I
-Prairie Warbler,PRAW,Acadia National Park,ACAD,85,Winter,I
-Purple Finch,PUFI,Acadia National Park,ACAD,26,Winter,E
-Purple Finch,PUFI,Acadia National Park,ACAD,85,Winter,E
-Purple Martin,PUMA,Acadia National Park,ACAD,26,Winter,I
-Purple Martin,PUMA,Acadia National Park,ACAD,85,Winter,I
-Rose-breasted Grosbeak,RBGR,Acadia National Park,ACAD,26,Winter,W
-Rose-breasted Grosbeak,RBGR,Acadia National Park,ACAD,85,Winter,W
-Ring-billed Gull,RBGU,Acadia National Park,ACAD,26,Winter,W
-Ring-billed Gull,RBGU,Acadia National Park,ACAD,85,Winter,W
-Red-breasted Nuthatch,RBNU,Acadia National Park,ACAD,26,Winter,E
+Purple Finch,PUFI,Acadia National Park,ACAD,26,Winter,S
+Purple Finch,PUFI,Acadia National Park,ACAD,85,Winter,S
+Purple Sandpiper,PUSA,Acadia National Park,ACAD,26,Winter,S
+Purple Sandpiper,PUSA,Acadia National Park,ACAD,85,Winter,S
+Ring-billed Gull,RBGU,Acadia National Park,ACAD,26,Winter,I
+Ring-billed Gull,RBGU,Acadia National Park,ACAD,85,Winter,I
+Red-breasted Merganser,RBME,Acadia National Park,ACAD,26,Winter,I
+Red-breasted Merganser,RBME,Acadia National Park,ACAD,85,Winter,I
+Red-breasted Nuthatch,RBNU,Acadia National Park,ACAD,26,Winter,W
 Red-breasted Nuthatch,RBNU,Acadia National Park,ACAD,85,Winter,E
 Red-bellied Woodpecker,RBWO,Acadia National Park,ACAD,26,Winter,I
 Red-bellied Woodpecker,RBWO,Acadia National Park,ACAD,85,Winter,I
-Ruby-crowned Kinglet,RCKI,Acadia National Park,ACAD,26,Winter,E
-Ruby-crowned Kinglet,RCKI,Acadia National Park,ACAD,85,Winter,E
-Red-eyed Vireo,REVI,Acadia National Park,ACAD,26,Winter,W
-Red-eyed Vireo,REVI,Acadia National Park,ACAD,85,Winter,W
+Ruby-crowned Kinglet,RCKI,Acadia National Park,ACAD,26,Winter,I
+Ruby-crowned Kinglet,RCKI,Acadia National Park,ACAD,85,Winter,I
 Red-headed Woodpecker,RHWO,Acadia National Park,ACAD,85,Winter,C
-Ring-necked Pheasant,RNEP,Acadia National Park,ACAD,26,Winter,I
+Rough-legged Hawk,RLHA,Acadia National Park,ACAD,26,Winter,S
+Rough-legged Hawk,RLHA,Acadia National Park,ACAD,85,Winter,W
+Ring-necked Duck,RNDU,Acadia National Park,ACAD,26,Winter,I
+Ring-necked Duck,RNDU,Acadia National Park,ACAD,85,Winter,I
+Ring-necked Pheasant,RNEP,Acadia National Park,ACAD,26,Winter,S
 Ring-necked Pheasant,RNEP,Acadia National Park,ACAD,85,Winter,S
+Red-necked Grebe,RNGR,Acadia National Park,ACAD,26,Winter,S
+Red-necked Grebe,RNGR,Acadia National Park,ACAD,85,Winter,W
 Rock Pigeon,ROPI,Acadia National Park,ACAD,26,Winter,I
 Rock Pigeon,ROPI,Acadia National Park,ACAD,85,Winter,S
+Red-shouldered Hawk,RSHA,Acadia National Park,ACAD,26,Winter,I
+Red-shouldered Hawk,RSHA,Acadia National Park,ACAD,85,Winter,I
 Red-tailed Hawk,RTHA,Acadia National Park,ACAD,26,Winter,I
 Red-tailed Hawk,RTHA,Acadia National Park,ACAD,85,Winter,I
-Ruby-throated Hummingbird,RTHU,Acadia National Park,ACAD,26,Winter,W
-Ruby-throated Hummingbird,RTHU,Acadia National Park,ACAD,85,Winter,W
+Red-throated Loon,RTLO,Acadia National Park,ACAD,26,Winter,I
+Red-throated Loon,RTLO,Acadia National Park,ACAD,85,Winter,I
+Rusty Blackbird,RUBL,Acadia National Park,ACAD,26,Winter,I
+Rusty Blackbird,RUBL,Acadia National Park,ACAD,85,Winter,I
+Ruddy Duck,RUDU,Acadia National Park,ACAD,26,Winter,C
+Ruddy Duck,RUDU,Acadia National Park,ACAD,85,Winter,C
+Ruffed Grouse,RUGR,Acadia National Park,ACAD,26,Winter,E
+Ruffed Grouse,RUGR,Acadia National Park,ACAD,85,Winter,E
+Ruddy Turnstone,RUTU,Acadia National Park,ACAD,26,Winter,I
+Ruddy Turnstone,RUTU,Acadia National Park,ACAD,85,Winter,I
 Red-winged Blackbird,RWBL,Acadia National Park,ACAD,26,Winter,I
 Red-winged Blackbird,RWBL,Acadia National Park,ACAD,85,Winter,I
-Savannah Sparrow,SAVS,Acadia National Park,ACAD,26,Winter,W
-Savannah Sparrow,SAVS,Acadia National Park,ACAD,85,Winter,E
-Scarlet Tanager,SCTA,Acadia National Park,ACAD,26,Winter,I
-Scarlet Tanager,SCTA,Acadia National Park,ACAD,85,Winter,S
-Song Sparrow,SOSP,Acadia National Park,ACAD,26,Winter,S
-Song Sparrow,SOSP,Acadia National Park,ACAD,85,Winter,S
-Swamp Sparrow,SWSP,Acadia National Park,ACAD,26,Winter,W
-Swamp Sparrow,SWSP,Acadia National Park,ACAD,85,Winter,E
-Swainson's Thrush,SWTH,Acadia National Park,ACAD,26,Winter,E
-Swainson's Thrush,SWTH,Acadia National Park,ACAD,85,Winter,E
-Tennessee Warbler,TEWA,Acadia National Park,ACAD,26,Winter,E
-Tennessee Warbler,TEWA,Acadia National Park,ACAD,85,Winter,E
-Tree Swallow,TRES,Acadia National Park,ACAD,26,Winter,W
-Tree Swallow,TRES,Acadia National Park,ACAD,85,Winter,W
-Tufted Titmouse,TUTI,Acadia National Park,ACAD,26,Winter,C
-Tufted Titmouse,TUTI,Acadia National Park,ACAD,85,Winter,C
-Upland Sandpiper,UPSA,Acadia National Park,ACAD,26,Winter,E
-Upland Sandpiper,UPSA,Acadia National Park,ACAD,85,Winter,E
-Veery,VEER,Acadia National Park,ACAD,26,Winter,W
-Veery,VEER,Acadia National Park,ACAD,85,Winter,E
-Warbling Vireo,WAVI,Acadia National Park,ACAD,26,Winter,I
-Warbling Vireo,WAVI,Acadia National Park,ACAD,85,Winter,I
+Savannah Sparrow,SAVS,Acadia National Park,ACAD,26,Winter,I
+Savannah Sparrow,SAVS,Acadia National Park,ACAD,85,Winter,I
+Seaside Sparrow,SESP,Acadia National Park,ACAD,85,Winter,C
+Snow Bunting,SNBU,Acadia National Park,ACAD,26,Winter,W
+Snow Bunting,SNBU,Acadia National Park,ACAD,85,Winter,W
+Snowy Owl,SNOW,Acadia National Park,ACAD,26,Winter,S
+Snowy Owl,SNOW,Acadia National Park,ACAD,85,Winter,S
+Song Sparrow,SOSP,Acadia National Park,ACAD,26,Winter,I
+Song Sparrow,SOSP,Acadia National Park,ACAD,85,Winter,I
+Sharp-shinned Hawk,SSHA,Acadia National Park,ACAD,26,Winter,I
+Sharp-shinned Hawk,SSHA,Acadia National Park,ACAD,85,Winter,I
+Saltmarsh Sparrow,STSP,Acadia National Park,ACAD,26,Winter,I
+Saltmarsh Sparrow,STSP,Acadia National Park,ACAD,85,Winter,I
+Surf Scoter,SUSC,Acadia National Park,ACAD,26,Winter,S
+Surf Scoter,SUSC,Acadia National Park,ACAD,85,Winter,S
+Swamp Sparrow,SWSP,Acadia National Park,ACAD,26,Winter,I
+Swamp Sparrow,SWSP,Acadia National Park,ACAD,85,Winter,I
+Thayer's Gull,THGU,Acadia National Park,ACAD,26,Winter,C
+Thayer's Gull,THGU,Acadia National Park,ACAD,85,Winter,C
+Turkey Vulture,TUVU,Acadia National Park,ACAD,26,Winter,I
+Turkey Vulture,TUVU,Acadia National Park,ACAD,85,Winter,I
 White-breasted Nuthatch,WBNU,Acadia National Park,ACAD,26,Winter,I
 White-breasted Nuthatch,WBNU,Acadia National Park,ACAD,85,Winter,I
-White-eyed Vireo,WEVI,Acadia National Park,ACAD,85,Winter,I
-Worm-eating Warbler,WEWA,Acadia National Park,ACAD,26,Winter,C
-Worm-eating Warbler,WEWA,Acadia National Park,ACAD,85,Winter,C
-Willow Flycatcher,WIFL,Acadia National Park,ACAD,26,Winter,I
-Willow Flycatcher,WIFL,Acadia National Park,ACAD,85,Winter,I
-Wilson's Snipe,WISN,Acadia National Park,ACAD,26,Winter,E
-Wilson's Snipe,WISN,Acadia National Park,ACAD,85,Winter,E
-Wood Thrush,WOTH,Acadia National Park,ACAD,26,Winter,I
-Wood Thrush,WOTH,Acadia National Park,ACAD,85,Winter,I
-White-throated Sparrow,WTSP,Acadia National Park,ACAD,26,Winter,E
-White-throated Sparrow,WTSP,Acadia National Park,ACAD,85,Winter,E
-Yellow-breasted Chat,YBCH,Acadia National Park,ACAD,85,Winter,C
-Yellow-billed Cuckoo,YBCU,Acadia National Park,ACAD,26,Winter,I
-Yellow-billed Cuckoo,YBCU,Acadia National Park,ACAD,85,Winter,I
-Yellow-bellied Flycatcher,YBFL,Acadia National Park,ACAD,26,Winter,E
-Yellow-bellied Flycatcher,YBFL,Acadia National Park,ACAD,85,Winter,E
-Yellow-bellied Sapsucker,YBSA,Acadia National Park,ACAD,26,Winter,E
-Yellow-bellied Sapsucker,YBSA,Acadia National Park,ACAD,85,Winter,E
-Yellow Warbler,YEWA,Acadia National Park,ACAD,26,Winter,S
-Yellow Warbler,YEWA,Acadia National Park,ACAD,85,Winter,W
-Yellow-rumped Warbler,YRWA,Acadia National Park,ACAD,26,Winter,E
-Yellow-rumped Warbler,YRWA,Acadia National Park,ACAD,85,Winter,E
-Yellow-throated Vireo,YTVI,Acadia National Park,ACAD,26,Winter,I
-Yellow-throated Vireo,YTVI,Acadia National Park,ACAD,85,Winter,I
-Yellow-throated Warbler,YTWA,Acadia National Park,ACAD,85,Winter,I
+Wilson's Snipe,WISN,Acadia National Park,ACAD,26,Winter,S
+Wilson's Snipe,WISN,Acadia National Park,ACAD,85,Winter,S
+Wild Turkey,WITU,Acadia National Park,ACAD,26,Winter,C
+Wood Duck,WODU,Acadia National Park,ACAD,26,Winter,I
+Wood Duck,WODU,Acadia National Park,ACAD,85,Winter,I
+White-throated Sparrow,WTSP,Acadia National Park,ACAD,26,Winter,I
+White-throated Sparrow,WTSP,Acadia National Park,ACAD,85,Winter,I
+White-winged Crossbill,WWCR,Acadia National Park,ACAD,26,Winter,W
+White-winged Crossbill,WWCR,Acadia National Park,ACAD,85,Winter,E
+White-winged Scoter,WWSC,Acadia National Park,ACAD,26,Winter,S
+White-winged Scoter,WWSC,Acadia National Park,ACAD,85,Winter,S
+Yellow-bellied Sapsucker,YBSA,Acadia National Park,ACAD,26,Winter,I
+Yellow-bellied Sapsucker,YBSA,Acadia National Park,ACAD,85,Winter,I
+Yellow-rumped Warbler,YRWA,Acadia National Park,ACAD,26,Winter,I
+Yellow-rumped Warbler,YRWA,Acadia National Park,ACAD,85,Winter,I
