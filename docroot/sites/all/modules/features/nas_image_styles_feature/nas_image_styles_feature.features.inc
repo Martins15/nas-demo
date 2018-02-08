@@ -958,19 +958,28 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['park_bird_species_illustration'] = array(
     'label' => 'Park Bird Species Illustration ',
     'effects' => array(
-      194 => array(
+      201 => array(
         'name' => 'image_scale',
         'data' => array(
-          'width' => 233,
+          'width' => '',
           'height' => 200,
           'upscale' => 0,
         ),
-        'weight' => 2,
+        'weight' => -10,
       ),
-      193 => array(
+      203 => array(
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => 233,
+          'height' => 200,
+          'anchor' => 'center-center',
+        ),
+        'weight' => -9,
+      ),
+      202 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
-        'weight' => 3,
+        'weight' => -8,
       ),
     ),
   );

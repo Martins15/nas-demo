@@ -1248,6 +1248,7 @@ function nas_image($variables) {
     'boa_mail_subscription',
     'engagement_card_full_width',
     'engagement_card_full_width_half_black',
+    'park_bird_species_illustration',
   );
   // List of styles for not applying of lazyloader.
   $exclude_lazyloader_styles = array(
