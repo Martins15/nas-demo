@@ -28,12 +28,12 @@
                     <li class="tabs-content__link link columns large-3"
                         data-tab="display-<?php print $tab ?>">
                       <p class="link__title"><?php print $data['title'] ?></p>
-                      <p class="link__number"><?php //print $data['amount'] ?></p>
+                      <p class="link__number"><?php print $data['amount'] ?></p>
                     </li>
                   <?php endforeach; ?>
                   <div class="not-link columns link large-3">
-                    <p class="link__title"><?php print $tabs['park_trend']['title'] ?></p>
-                    <p class="link__text"><?php print $tabs['park_trend']['desc'] ?></p>
+                    <p class="link__title"><?php print $tabs['parktrend']['title'] ?></p>
+                    <p class="link__text"><?php print $tabs['parktrend']['desc'] ?></p>
                   </div>
                 </ul>
                 <?php foreach ($tabs['tabs'] as $tab => $data): ?>

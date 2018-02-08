@@ -83,4 +83,63 @@ function nas_climate_install() {
   }
   
   module_enable(array('park_bird_import'));
+
+  // Create engagement card.
+  $embed_script_js = 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js
+                      sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.action_tag.js
+                      sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.ajax_screen_lock.js';
+  $embed_script = '<div class="ngp-form"
+                     data-form-url="https://actions.everyaction.com/v1/Forms/S49LshHFBUKAejEkZAfw-g2"
+                     data-fastaction-endpoint="https://fastaction.ngpvan.com"
+                     data-inline-errors="true"
+                     data-fastaction-nologin="true"
+                     data-databag="everybody">
+                   </div>';
+  global $user;
+  $node = new stdClass();
+  $node->title = 'Learn How You Can Make a Difference Today';
+  $node->language = LANGUAGE_NONE;
+  $node->body[$node->language][0]['value'] = 'Planting native plants is one way you can help fight the effects of global warming. To receive more info for planting native plants in your area, sign up now:';
+  $node->body[$node->language][0]['format'] = 'full_html';
+  $node->type = 'engagement_cards';
+  node_object_prepare($node);
+  $node->uid = $user->uid;
+  $node->status = 1;
+  $node->promote = 0;
+  $node->comment = 0;
+
+  $node->field_engagement_card_type[$node->language][]['value'] = 'simple_form';
+  $node->field_nas_engagement_forms[$node->language][]['value'] = '{"engagement_form":"email_zipcode","engagement_form_settings":{"email_placeholder":"Email address","zipcode_placeholder":"U.S. ZIP code","button_text":"Search"},"get_engagement_form_settings":"Get engagement form settings"}';
+  $node->nas_engagement_forms['engagement_form'] = 'email_zipcode';
+
+  $node->field_nas_external_integration[$node->language][]['value'] = '{"provider":"every_action","id":"S49LshHFBUKAejEkZAfw-g2","apikey":"","token":"","embed_script":"\u003Cdiv class=\u0022ngp-form\u0022\r\n     data-form-url=\u0022https:\/\/actions.everyaction.com\/v1\/Forms\/S49LshHFBUKAejEkZAfw-g2\u0022\r\n     data-fastaction-endpoint=\u0022https:\/\/fastaction.ngpvan.com\u0022\r\n     data-inline-errors=\u0022true\u0022\r\n     data-fastaction-nologin=\u0022true\u0022\r\n     data-databag=\u0022everybody\u0022\u003E\r\n\u003C\/div\u003E","embed_script_js":"https:\/\/d1aqhv4sn5kxtx.cloudfront.net\/actiontag\/at.js\r\nsites\/all\/modules\/custom\/nas_master_native_plants\/js\/nas_master_native_plants.action_tag.js\r\nsites\/all\/modules\/custom\/nas_master_native_plants\/js\/nas_master_native_plants.ajax_screen_lock.js","get_lists":"Get mailing lists from external provider"}';
+  $node->nas_external_integration['provider'] = 'every_action';
+  $node->nas_external_integration['id'] = 'every_action';
+  $node->nas_external_integration['embed_script'] = $embed_script;
+  $node->nas_external_integration['embed_script_js'] = $embed_script_js;
+
+  $node->field_image[LANGUAGE_NONE][0] = (array) nas_park_feature_get_image('bird-bg.png');
+
+  $node = node_submit($node);
+  node_save($node);
+  $card = array(
+    'entity_id' => $node->nid,
+    'entity_label' => $node->title,
+    'entity_type' => 'node',
+    'entity_bundle' => 'engagement_cards',
+    'entity_uuid' => $node->uuid,
+  );
+  variable_set('nas_park_feature_deafault_card', $card);
+
+  // Revert nas_file_entity, nas_park_feature, nas_image_styles_feature
+  features_revert_module('nas_image_styles_feature');
+  features_revert(array(
+    'nas_file_entity' => array(
+      'file_display',
+      'strongarm',
+    ),
+    'nas_park_feature' => array(
+      'views_default',
+    )
+  ));
 }

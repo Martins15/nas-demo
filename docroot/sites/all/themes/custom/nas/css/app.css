@@ -18353,6 +18353,86 @@ ul.tabs-content .link.current:after {
   font-size: 20px;
 }
 
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .view-content {
+  overflow: hidden;
+}
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row {
+  display: block;
+  color: #404040;
+  text-align: center;
+  float: left;
+  margin-bottom: 25px;
+}
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-bird-illustration,
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-title {
+  margin: 0 12.5px;
+}
+@media only screen and (max-width: 479px) {
+  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row {
+    width: 50%;
+  }
+  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row:nth-child(odd) {
+    padding-left: 12.5px;
+  }
+  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row:nth-child(even) {
+    padding-right: 12.5px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row {
+    width: 33.333%;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row {
+    width: 25%;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row {
+    width: 20%;
+  }
+}
+@media only screen and (min-width: 840px) {
+  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row {
+    width: 16.66666%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row {
+    width: 14.285%;
+  }
+}
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row:hover {
+  color: #0AA8E3;
+}
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-bird-illustration {
+  width: 118px;
+}
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-bird-illustration img {
+  width: 100%;
+  vertical-align: middle;
+}
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-title {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  height: 45px;
+  padding: 0 5px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-title a {
+  display: inline-block;
+  vertical-align: middle;
+}
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-title:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
 .title-letter {
   display: block;
   float: left;

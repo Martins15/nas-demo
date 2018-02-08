@@ -700,7 +700,7 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['hero_mobile'] = array(
     'label' => 'Hero mobile',
     'effects' => array(
-      141 => array(
+      181 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 1080,
@@ -709,12 +709,12 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
-      142 => array(
+      186 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
         'weight' => 3,
       ),
-      143 => array(
+      191 => array(
         'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 1080,
@@ -950,6 +950,27 @@ function nas_image_styles_feature_image_default_styles() {
         'name' => 'imagemagick_strip',
         'data' => array(),
         'weight' => 2,
+      ),
+    ),
+  );
+
+  // Exported image style: park_bird_species_illustration.
+  $styles['park_bird_species_illustration'] = array(
+    'label' => 'Park Bird Species Illustration ',
+    'effects' => array(
+      194 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 233,
+          'height' => 200,
+          'upscale' => 0,
+        ),
+        'weight' => 2,
+      ),
+      193 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
       ),
     ),
   );

@@ -10,13 +10,13 @@
 function nas_park_feature_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_birds_s_colonization_desc'
-  $field_bases['field_birds_s_colonization_desc'] = array(
+  // Exported field_base: 'field_birds_s_colonizations_desc'
+  $field_bases['field_birds_s_colonizations_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_birds_s_colonization_desc',
+    'field_name' => 'field_birds_s_colonizations_desc',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -39,13 +39,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_birds_s_current_desc'
-  $field_bases['field_birds_s_current_desc'] = array(
+  // Exported field_base: 'field_birds_s_extirpations_desc'
+  $field_bases['field_birds_s_extirpations_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_birds_s_current_desc',
+    'field_name' => 'field_birds_s_extirpations_desc',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -68,13 +68,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_birds_s_extirpation_desc'
-  $field_bases['field_birds_s_extirpation_desc'] = array(
+  // Exported field_base: 'field_birds_s_species_desc'
+  $field_bases['field_birds_s_species_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_birds_s_extirpation_desc',
+    'field_name' => 'field_birds_s_species_desc',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -97,13 +97,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_birds_w_colonization_desc'
-  $field_bases['field_birds_w_colonization_desc'] = array(
+  // Exported field_base: 'field_birds_w_colonizations_desc'
+  $field_bases['field_birds_w_colonizations_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_birds_w_colonization_desc',
+    'field_name' => 'field_birds_w_colonizations_desc',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -126,13 +126,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_birds_w_current_desc'
-  $field_bases['field_birds_w_current_desc'] = array(
+  // Exported field_base: 'field_birds_w_extirpations_desc'
+  $field_bases['field_birds_w_extirpations_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_birds_w_current_desc',
+    'field_name' => 'field_birds_w_extirpations_desc',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -155,13 +155,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_birds_w_extirpation_desc'
-  $field_bases['field_birds_w_extirpation_desc'] = array(
+  // Exported field_base: 'field_birds_w_species_desc'
+  $field_bases['field_birds_w_species_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_birds_w_extirpation_desc',
+    'field_name' => 'field_birds_w_species_desc',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
