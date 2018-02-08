@@ -106,8 +106,9 @@ function nas_park_feature_views_default_views() {
   $handler->display->display_options['filters']['field_park_season_value']['expose']['operator'] = 'field_park_season_value_op';
   $handler->display->display_options['filters']['field_park_season_value']['expose']['identifier'] = 'field_park_season_value';
   $handler->display->display_options['filters']['field_park_season_value']['is_grouped'] = TRUE;
-  $handler->display->display_options['filters']['field_park_season_value']['group_info']['label'] = 'Season (field_park_season)';
-  $handler->display->display_options['filters']['field_park_season_value']['group_info']['identifier'] = 'field_park_season_value';
+  $handler->display->display_options['filters']['field_park_season_value']['group_info']['label'] = 'Season';
+  $handler->display->display_options['filters']['field_park_season_value']['group_info']['identifier'] = 'season';
+  $handler->display->display_options['filters']['field_park_season_value']['group_info']['optional'] = FALSE;
   $handler->display->display_options['filters']['field_park_season_value']['group_info']['group_items'] = array(
     1 => array(
       'title' => 'Summer',
@@ -131,9 +132,10 @@ function nas_park_feature_views_default_views() {
   );
   $handler->display->display_options['filters']['field_park_trend_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_park_trend_value']['expose']['operator_id'] = 'field_park_trend_value_op';
-  $handler->display->display_options['filters']['field_park_trend_value']['expose']['label'] = 'Park trend (field_park_trend)';
+  $handler->display->display_options['filters']['field_park_trend_value']['expose']['label'] = 'Park trend';
   $handler->display->display_options['filters']['field_park_trend_value']['expose']['operator'] = 'field_park_trend_value_op';
-  $handler->display->display_options['filters']['field_park_trend_value']['expose']['identifier'] = 'field_park_trend_value';
+  $handler->display->display_options['filters']['field_park_trend_value']['expose']['identifier'] = 'park_trend';
+  $handler->display->display_options['filters']['field_park_trend_value']['expose']['required'] = TRUE;
   $handler->display->display_options['filters']['field_park_trend_value']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -170,7 +172,8 @@ function nas_park_feature_views_default_views() {
     t('Content entity referenced from field_bird_reference'),
     t('All'),
     t('Season (field_park_season)'),
-    t('Park trend (field_park_trend)'),
+    t('Season'),
+    t('Park trend'),
     t('Block'),
   );
   $export['park_bird_trends'] = $view;
