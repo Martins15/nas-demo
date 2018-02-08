@@ -18,6 +18,43 @@ function nas_park_feature_form_park_node_form_alter(&$form, &$form_state, $form_
       unset($form['field_state'][LANGUAGE_NONE]['#options'][$tid]);
     }
   }
+
+  // Draw relations tables.
+  $nodes = nas_park_feature_get_parks_to_bird_relations($form['#node']->nid);
+  $summer = array();
+  $winter = array();
+  $header = array('Link', 'Trend');
+  foreach ($nodes as $node) {
+    $title = explode('|', $node->title);
+    $row = array(
+      l($title[1], 'node/' . $node->field_bird_reference[LANGUAGE_NONE][0]['target_id']),
+      $node->field_park_trend[LANGUAGE_NONE][0]['value'],
+    );
+    if (strtolower($node->field_park_season[LANGUAGE_NONE][0]['value']) == 'summer') {
+      $summer[] = $row;
+    }
+    else {
+      $winter[] = $row;
+    }
+  }
+  $seasons = array('s' => 'summer', 'w' => 'winter');
+  foreach ($seasons as $key => $season) {
+    $table_relation = 'table_relation_' . $key;
+    $form[$table_relation] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Relations'),
+      '#weight' => 30,
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+    );
+    $form[$table_relation]['table'] = array(
+      '#type' => 'table',
+      '#rows' => $$season,
+      '#header' => $header,
+    );
+    $form['#groups']['group_seasons_' . $season]->childer[] = $table_relation;
+    $form['#group_children'][$table_relation] = 'group_seasons_' . $season;
+  }
 }
 
 /**
@@ -44,4 +81,22 @@ function nas_park_feature_get_image($name) {
     }
     return $file;
   }
+}
+
+/**
+ * Helper function to get parks -> birds relations.
+ */
+function nas_park_feature_get_parks_to_bird_relations($park_node_id) {
+  $relations = db_select('field_data_field_park_reference', 'pr')
+    ->fields('pr', array('entity_id'))
+    ->condition('pr.field_park_reference_target_id', $park_node_id, '=')
+    ->execute()
+    ->fetchAll();
+  $nodes = array();
+  if(!empty($relations)){
+    foreach ($relations as $relation) {
+      $nodes[] = node_load($relation->entity_id);
+    }
+  }
+  return $nodes;
 }
