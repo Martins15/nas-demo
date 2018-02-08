@@ -20339,7 +20339,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     max-height: 400px;
     float: right;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 .ct-strategies-main #strategy-breakdown-right h5, .ct-strategies-main #strategy-breakdown-right p, .ct-strategies-main #strategy-breakdown-right ul {
