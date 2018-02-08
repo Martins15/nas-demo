@@ -8,6 +8,7 @@ $green-park: #417505;
 
 .switch-wrap {
   position: relative;
+  margin-top: 30px;
   z-index: 0;
   font-family: $font-sans;
 }
@@ -23,10 +24,10 @@ $green-park: #417505;
 .tab-slider {
   &--tabs {
     display: inline-block;
-    margin: 0;
+    position: relative;
+    margin: 0 0 25px 0;
     padding: 0;
     list-style: none;
-    position: relative;
     border-radius: $tab-border-radius;
     overflow: hidden;
     background: $grey-park;
@@ -64,7 +65,11 @@ $green-park: #417505;
     }
   }
   &--body {
+    display: none;
     margin-bottom: $base-margin;
+    &:first-child {
+      display: block;
+    }
   }
 }
 
@@ -186,6 +191,7 @@ ul.tabs-content {
     }
   }
   .park_info {
+    overflow: hidden;
     font-size: 16px;
     > .field {
       display: inline-block;
@@ -255,6 +261,9 @@ ul.tabs-content {
       line-height: 1.2;
     }
   }
+  .engagement-hero {
+    margin-top: 0;
+  }
 }
 
 .form-container {
@@ -294,5 +303,86 @@ ul.tabs-content {
     //    display: block;
     //  }
     //}
+  }
+}
+
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default {
+  .view-filters {
+    display: none;
+  }
+  .view-content {
+    overflow: hidden;
+  }
+  .views-row {
+    display: block;
+    color: $color-text-gray;
+    text-align: center;
+    float: left;
+    margin-bottom: $column-gutter;
+
+    .views-field-field-bird-illustration,
+    .views-field-title {
+      margin: 0 $column-gutter/2;
+    }
+
+    @include breakpoint(tiny-only) {
+      width: 50%;
+
+      &:nth-child(odd) {
+        padding-left: $column-gutter/2;
+      }
+      &:nth-child(even) {
+        padding-right: $column-gutter/2;
+      }
+    }
+    @include breakpoint(small-only) {
+      width: 33.333%;
+    }
+    @include breakpoint(medium-only) {
+      width: 25%;
+    }
+    @include breakpoint(large-only) {
+      width: 20%;
+    }
+    @include breakpoint(min-width, 840px) {
+      width: 16.66666%;
+    }
+    @include breakpoint(min-width, 1000px) {
+      width: 14.285%;
+    }
+
+    &:hover {
+      color: $color-bright-blue;
+    }
+
+    .views-field-field-bird-illustration {
+      width: 118px;
+      img {
+        width: 100%;
+        vertical-align: middle;
+      }
+    }
+
+    .views-field-title {
+      background-color: $color-white;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+      height: 45px;
+      padding: 0 5px;
+      font-family: $font-sans;
+      font-size: 13px;
+      line-height: 18px;
+
+      a {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      &:before {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+      }
+    }
   }
 }
