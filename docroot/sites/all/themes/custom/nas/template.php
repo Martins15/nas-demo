@@ -79,7 +79,7 @@ function nas_html_head_alter(&$head_elements) {
       '#tag' => 'meta',
       '#attributes' => array(
         'http-equiv' => 'X-UA-Compatible',
-        'content'    => 'IE=edge,chrome=1',
+        'content' => 'IE=edge,chrome=1',
       ),
       '#weight' => -999999,
     );
@@ -998,7 +998,7 @@ function nas_preprocess_node_strategy(&$vars) {
     ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
       'html' => TRUE,
-      'attributes' => array('title' => $node->title)
+      'attributes' => array('title' => $node->title),
     ));
   }
 
@@ -1110,7 +1110,10 @@ function nas_preprocess_node_engagement_cards(&$vars) {
   $node = $vars['node'];
   if ($field_link_items = field_get_items('node', $node, 'field_link')) {
     $classes = array('button', 'tomato', 'large');
-    $view_mode = array('nas_engagement_cards_full_width', 'nas_engagement_cards_full_width_half_black');
+    $view_mode = array(
+      'nas_engagement_cards_full_width',
+      'nas_engagement_cards_full_width_half_black',
+    );
     if (in_array($vars['view_mode'], $view_mode)) {
       $classes[] = 'native-plants-search-form--submit';
     }
@@ -1249,29 +1252,35 @@ function nas_image($variables) {
     'engagement_card_full_width',
     'engagement_card_full_width_half_black',
     'park_bird_species_illustration',
+    'article_hero_inline',
+    'bean_wysiwyg_full_width',
   );
+
   // List of styles for not applying of lazyloader.
   $exclude_lazyloader_styles = array(
     'engagement_card',
     'boa_mail_subscription',
   );
-  if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name']) && !in_array($variables['style_name'], $exclude_lazyloader_styles)) {
+  if (!isset($_GET['amp']) && module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name']) && !in_array($variables['style_name'], $exclude_lazyloader_styles)) {
     $attributes = $variables['attributes'];
     $noscript_attributes = $variables['attributes'];
 
     if (_lazy_loader_enabled() || in_array($variables['style_name'], ['bean_wysiwyg_full_width'])) {
+      $url = parse_url(file_create_url($variables['path']));
+      $path = $url['path'];
 
-      $attributes['data-src'] = file_create_url($variables['path']);
+      //$attributes['data-src'] = file_create_url($variables['path']);
       // Path to dummy placeholder image, to be replaced by actual image.
-      $image_placeholder = trim(variable_get('lazyloader_placeholder', LAZYLOADER_PLACEHOLDER));
-      $attributes['src'] = $image_placeholder ? base_path() . $image_placeholder : url(drupal_get_path('module', 'lazyloader') . '/image_placeholder.gif');
-      $noscript_attributes['src'] = file_create_url($variables['path']);
+      //$image_placeholder = trim(variable_get('lazyloader_placeholder', LAZYLOADER_PLACEHOLDER));
+      //$attributes['src'] = $image_placeholder ? base_path() . $image_placeholder : url(drupal_get_path('module', 'lazyloader') . '/image_placeholder.gif');
+      $attributes['src'] = file_create_url($path) . '?lazyload=1';
+      $noscript_attributes['src'] = file_create_url($path);
 
       // Integrate with Responsive Webdesign module.
       if (module_exists('rdwimages')) {
         global $_rwdimages_set;
         if ($_rwdimages_set['enabled']) {
-          $attributes['class'] = array('rwdimage');
+          $attributes['class'] = ['rwdimage'];
         }
       }
 
@@ -1280,7 +1289,7 @@ function nas_image($variables) {
       $attributes['src'] = file_create_url($variables['path']);
     }
 
-    foreach (array('width', 'height', 'alt', 'title', 'style') as $key) {
+    foreach (['width', 'height', 'alt', 'title', 'style'] as $key) {
       if (isset($variables[$key])) {
         $attributes[$key] = $variables[$key];
       }
@@ -1288,20 +1297,17 @@ function nas_image($variables) {
         $noscript_attributes[$key] = $variables[$key];
       }
     }
+  }
 
+  // Run lazyloader manually cause lazyloader_theme_registry_alter is overridden by nas_theme_registry_alter.
+  if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name'])) {
     if (isset($variables['style_name']) && in_array($variables['style_name'], $remove_attr_for)) {
-      unset($attributes['width']);
-      unset($attributes['height']);
-      unset($noscript_attributes['width']);
-      unset($noscript_attributes['height']);
+      unset($variables['attributes']['width']);
+      unset($variables['attributes']['height']);
+      unset($variables['width']);
+      unset($variables['height']);
     }
-
-    $noscript = '';
-    if (!empty($attributes['data-src'])) {
-      $noscript = '<noscript><img' . drupal_attributes($noscript_attributes) . ' /></noscript>';
-    }
-
-    return '<img' . drupal_attributes($attributes) . ' />' . $noscript;
+    return theme_lazyloader_image($variables);
   }
   else {
     $attributes = $variables['attributes'];
@@ -1320,6 +1326,24 @@ function nas_image($variables) {
 
     return '<img' . drupal_attributes($attributes) . ' />';
   }
+}
+
+/**
+ * Implement hook_page_alter().
+ */
+function nas_page_alter(&$page) {
+  // Add our processing to the #post_render functions.
+  $page['#post_render'][] = 'nas_page_post_render';
+}
+
+
+/**
+ * Make all images, marked to use lazyloading use placeholder instead of image.
+ */
+function nas_page_post_render($html) {
+  $placeholder = url(drupal_get_path('module', 'lazyloader') . '/image_placeholder.gif');
+  $html = preg_replace('/src="([^\"]*)\?lazyload=1"/', 'data-src="$1" src="' . $placeholder . '"', $html);
+  return $html;
 }
 
 /**
@@ -1366,7 +1390,7 @@ function nas_preprocess_field(&$variables, $hook) {
   $panelizer_style = str_replace($entity_type . ':' . $bundle . ':', '', $panelizer_style);
   if ($panelizer_style) {
     $hook_sugestion = $hook . '__' . $element['#field_name'] . '__'
-        . $bundle . '__' . $panelizer_style;
+      . $bundle . '__' . $panelizer_style;
     $variables['theme_hook_suggestions'][] = $hook_sugestion;
     if (isset($element['#pane_region'])) {
       $variables['theme_hook_suggestions'][] = $hook_sugestion . '__' . $element['#pane_region'] . '_region';
@@ -1651,7 +1675,10 @@ function nas_preprocess_nas_flyway(&$variables) {
   $color_mode = strtolower(trim($color_mode));
 
   // Allowed values are limited to 'dark' and 'light'. Default value is 'light'.
-  $color_mode = in_array($color_mode, array('dark', 'light')) ? $color_mode : 'light';
+  $color_mode = in_array($color_mode, array(
+    'dark',
+    'light',
+  )) ? $color_mode : 'light';
 
   $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
 }
@@ -1802,7 +1829,10 @@ function nas_preprocess_nas_conservation_project(&$vars) {
  * For slideshow content type.
  */
 function nas_preprocess_node_slideshow(&$vars) {
-  if (in_array($vars['view_mode'], array('editorial_card_3x', 'editorial_card_4x'))) {
+  if (in_array($vars['view_mode'], array(
+    'editorial_card_3x',
+    'editorial_card_4x',
+  ))) {
     nas_preprocess_nodes_editorial_cards($vars);
     return;
   }
@@ -1993,7 +2023,7 @@ function nas_images_thumbnails_list($variables) {
   foreach ($thumbnail_options as $image_preset => $image_element) {
     $rows[] = array(
       array('data' => $image_preset),
-      array('data' => $image_element)
+      array('data' => $image_element),
     );
   }
   $header = array(t('Image preset'), t('Image thumbnail'));
@@ -2043,7 +2073,10 @@ function _nas_color_mode(&$variables) {
   $color_mode = strtolower(trim($color_mode));
 
   // Allowed values are limited to 'dark' and 'light'. Default value is 'dark'.
-  $color_mode = in_array($color_mode, array('dark', 'light')) ? $color_mode : 'dark';
+  $color_mode = in_array($color_mode, array(
+    'dark',
+    'light',
+  )) ? $color_mode : 'dark';
 
   $variables['color_mode_gradient'] = $color_mode;
   // Text color mode is inversion of gradient color mode.

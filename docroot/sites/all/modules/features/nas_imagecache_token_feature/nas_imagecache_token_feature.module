@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Imagecache token feature feature.
+ */
+
+include_once 'nas_imagecache_token_feature.features.inc';

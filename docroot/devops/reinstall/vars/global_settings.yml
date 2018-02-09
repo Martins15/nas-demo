@@ -37,7 +37,7 @@ filesystem_group: "{{ ci_server_username }}"
 make_backup: false
 # @todo Backport old NAS approach
 reindex_solr: false
-rebuild_registry: false
+rebuild_registry: true
 # Local environment that will be used from backup.
 local_backup_environment: 'staging'
 # htpasswd protection for securing backups.
