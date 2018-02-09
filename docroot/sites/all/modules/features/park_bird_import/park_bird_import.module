@@ -10,27 +10,30 @@ include_once 'park_bird_import.features.inc';
  * Implements hook_feeds_after_parse().
  */
 function park_bird_import_feeds_after_parse(FeedsSource $source, FeedsParserResult $result) {
-    if(empty($result->items)) {
-      return;
+  if (empty($result->items)) {
+    return;
+  }
+  // Find clones
+  $new = array();
+  foreach ($result->items as $item) {
+    if(empty($item['common_name']) || empty($item['unit_name'])) {
+      watchdog('park_bird_import', '<pre>Item was not impoted:</pre><pre>' . print_r($item, true) . '</pre>');
     }
-    // Find clones
-    $new = array();
-    foreach ($result->items as $item) {
-      $str = $item['common_name'] . $item['unit_name'] . $item['season'] . $item['climate_trend'];
-      $new[hash('crc32', $str)] = $item;
+    $str = $item['common_name'] . $item['unit_name'] . $item['season'] . $item['climate_trend'];
+    $new[hash('crc32', $str)] = $item;
+  }
+  $result->items = array_values($new);
+  $delimiter = ',';
+  // Clone `extirpations` trend to species trend.
+  foreach ($result->items as $key => $item) {
+    if (empty($item['climate_trend']) || strpos($item['climate_trend'], $delimiter) === FALSE) {
+      continue;
     }
-    $result->items = array_values($new);
-    $delimiter = ',';
-    // Clone `extirpations` trend to species trend.
-    foreach ($result->items as $key => $item) {
-      if(empty($item['climate_trend']) || strpos($item['climate_trend'], $delimiter) === false) {
-        continue;
-      }
-      $trends = explode($delimiter, $item['climate_trend']);
-      $result->items[$key]['climate_trend'] = $trends[0];
-      $item['climate_trend'] = $trends[1];
-      $result->items[] = $item;
-    }
+    $trends = explode($delimiter, $item['climate_trend']);
+    $result->items[$key]['climate_trend'] = $trends[0];
+    $item['climate_trend'] = $trends[1];
+    $result->items[] = $item;
+  }
 }
 
 /**
