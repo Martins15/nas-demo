@@ -4606,3 +4606,18 @@ function nas_master_update_7315() {
     ),
   ));
 }
+
+/**
+ * Enable cpn, revert nas_article_feature.
+ */
+function nas_master_update_7316() {
+  module_enable(array('cpn'));
+  features_revert(array(
+    'nas_article_feature' => array(
+      'variable',
+      'user_permission',
+      'field_base',
+      'field_instance',
+    ),
+  ));
+}
