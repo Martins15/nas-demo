@@ -119,7 +119,9 @@ function park_bird_trend_render($subtype, $conf, $args, $contexts) {
     '#content' => $content,
     '#view' => $view->render($display),
   );
-
+  drupal_add_js(drupal_get_path('theme', 'nas') . '/js/vendor/owl-carousel/owl.carousel.min.js');
+  drupal_add_css(drupal_get_path('theme', 'nas') .'/js/vendor/owl-carousel/owl.carousel.css');
+  drupal_add_css(drupal_get_path('theme', 'nas') .'/js/vendor/owl-carousel/owl.theme.css');
   drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/park_bird_trend/js/park_bird_trend.js');
   //drupal_add_js(drupal_get_path('theme', 'nas') . '/prototypes/park-page/park-page.js');
   return $block;
