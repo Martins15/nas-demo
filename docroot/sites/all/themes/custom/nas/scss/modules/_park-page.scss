@@ -173,6 +173,10 @@ ul.tabs-content {
 
 .park-body {
   margin-bottom: 50px;
+  padding: 0 15px;
+  @include breakpoint(large-up) {
+    padding: 0;
+  }
   &__title {
     margin-bottom: 10px;
     font-size: 38px;
@@ -219,8 +223,11 @@ ul.tabs-content {
     }
   }
   .park_info {
-    overflow: hidden;
+    padding: 0 15px;
     font-size: 16px;
+    @include breakpoint(large-up) {
+      padding: 0;
+    }
     > .field {
       display: inline-block;
       margin-right: 30px;
@@ -242,7 +249,9 @@ ul.tabs-content {
       }
     }
     .field-name-field-park-description {
-      width: calc(100% - 165px);
+      @include breakpoint(large-up) {
+        width: calc(100% - 165px);
+      }
       p {
         line-height: 1.38;
       }
@@ -300,18 +309,24 @@ ul.tabs-content {
     padding: 15px 0;
   }
   .inner {
-    float: left;
-    width: 50%;
+    @include breakpoint(large-up) {
+      float: left;
+      width: 50%;
+    }
   }
   label, select {
     margin-bottom: 0;
   }
   &__text {
     label {
+      margin-bottom: 20px;
       color: $white;
       font-family: $font-sans;
       font-size: 33px;
       line-height: 1.15;
+      @include breakpoint(large-up) {
+        margin-bottom: 0;
+      }
     }
   }
   select {
@@ -324,13 +339,13 @@ ul.tabs-content {
     box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.5);
     font-size: 20px;
   }
-  .bird-select {
-    //select {
-    //  display: none;
-    //  &:first-child {
-    //    display: block;
-    //  }
-    //}
+  &__form {
+    > div:first-child {
+      margin-bottom: 20px;
+      @include breakpoint(large-up) {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 
@@ -339,7 +354,34 @@ ul.tabs-content {
     display: none;
   }
   .view-content {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
     overflow: hidden;
+    padding: 0 15px;
+    @include breakpoint(large-up) {
+      padding: 0;
+    }
   }
   .views-row {
     display: block;
@@ -347,25 +389,14 @@ ul.tabs-content {
     text-align: center;
     float: left;
     margin-bottom: $column-gutter;
-
-    .views-field-field-bird-illustration,
+    .views-field-field-hero-image,
     .views-field-title {
-      margin: 0 $column-gutter/2;
-    }
-
-    @include breakpoint(tiny-only) {
-      width: 50%;
-
-      &:nth-child(odd) {
-        padding-left: $column-gutter/2;
-      }
-      &:nth-child(even) {
-        padding-right: $column-gutter/2;
+      margin: 0 10px;
+      @include breakpoint(large-up) {
+        margin: 0 $column-gutter/2;
       }
     }
-    @include breakpoint(small-only) {
-      width: 33.333%;
-    }
+    width: 33.333%;
     @include breakpoint(medium-only) {
       width: 25%;
     }
@@ -383,8 +414,10 @@ ul.tabs-content {
       color: $color-bright-blue;
     }
 
-    .views-field-field-bird-illustration {
-      width: 118px;
+    .views-field-field-hero-image {
+      @include breakpoint(large-up) {
+        width: 118px;
+      }
       img {
         width: 100%;
         vertical-align: middle;
@@ -394,23 +427,29 @@ ul.tabs-content {
     .views-field-title {
       background-color: $color-white;
       border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-      height: 45px;
+      height: 50px;
       padding: 0 5px;
       font-family: $font-sans;
       font-size: 13px;
       line-height: 18px;
-
-      a {
-        display: inline-block;
-        vertical-align: middle;
-      }
-
-      &:before {
-        content: "";
-        display: inline-block;
-        height: 100%;
-        vertical-align: middle;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        a {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 13px;
+          line-height: 15px;
+          color: $color-text-gray;
+        }
       }
     }
   }
+}
+
+
+
+.messages.warning {
+  display: none;
 }
