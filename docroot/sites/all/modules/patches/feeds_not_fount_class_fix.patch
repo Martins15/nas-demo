@@ -1,0 +1,102 @@
+From 0ac73baaef754f03579773b1f5f534ce56b6a479 Mon Sep 17 00:00:00 2001
+From: Alexey Belyaev <alexey.belyaev@ffwagency.com>
+Date: Mon, 10 Apr 2017 18:25:05 +0300
+Subject: [PATCH] [NAS-341] update modules to prevent errors during build
+
+---
+ .../modules/contrib/entitycache/entitycache.module | 24 ++++++----------------
+ .../feeds_eck_processor/feeds_eck_processor.module |  2 ++
+ .../modules/custom/nas_import/nas_import.module    |  3 +++
+ .../sites/all/modules/patched/feeds/feeds.module   | 14 +++++++++++++
+ .../all/modules/patched/feeds_ex/feeds_ex.module   |  3 +++
+ 5 files changed, 28 insertions(+), 18 deletions(-)
+
+diff --git a/docroot/sites/all/modules/contrib/entitycache/entitycache.module b/docroot/sites/all/modules/contrib/entitycache/entitycache.module
+index ba297d8..c8bc0dd 100644
+--- a/docroot/sites/all/modules/contrib/entitycache/entitycache.module
++++ b/docroot/sites/all/modules/contrib/entitycache/entitycache.module
+@@ -213,21 +213,9 @@ function entitycache_user_login(&$edit, $account) {
+   cache_clear_all($account->uid, 'cache_entity_user');
+ }
+ 
+-if (!class_exists('EntityCacheUserController')) {
+-  require_once __DIR__ . '/includes/entitycache.user.inc';
+-}
+-if (!class_exists('EntityCacheTaxonomyTermController')) {
+-  require_once __DIR__ . '/includes/entitycache.taxonomy.inc';
+-}
+-if (!class_exists('EntityCacheTaxonomyVocabularyController')) {
+-  require_once __DIR__ . '/includes/entitycache.taxonomy.inc';
+-}
+-if (!class_exists('EntityCacheControllerHelper')) {
+-  require_once __DIR__ . '/includes/entitycache.entitycachecontrollerhelper.inc';
+-}
+-if (!class_exists('EntityCacheDefaultEntityController')) {
+-  require_once __DIR__ . '/includes/entitycache.defaultentitycontroller.inc';
+-}
+-if (!class_exists('EntityCacheNodeController')) {
+-  require_once __DIR__ . '/includes/entitycache.node.inc';
+-}
++require_once __DIR__ . '/includes/entitycache.user.inc';
++require_once __DIR__ . '/includes/entitycache.taxonomy.inc';
++require_once __DIR__ . '/includes/entitycache.taxonomy.inc';
++require_once __DIR__ . '/includes/entitycache.entitycachecontrollerhelper.inc';
++require_once __DIR__ . '/includes/entitycache.defaultentitycontroller.inc';
++require_once __DIR__ . '/includes/entitycache.node.inc';
+diff --git a/docroot/sites/all/modules/contrib/feeds_eck_processor/feeds_eck_processor.module b/docroot/sites/all/modules/contrib/feeds_eck_processor/feeds_eck_processor.module
+index 73bba31..75d5d1f 100644
+--- a/docroot/sites/all/modules/contrib/feeds_eck_processor/feeds_eck_processor.module
++++ b/docroot/sites/all/modules/contrib/feeds_eck_processor/feeds_eck_processor.module
+@@ -31,3 +31,5 @@ function feeds_eck_processor_feeds_plugins() {
+   );
+   return $info;
+ }
++
++require_once __DIR__ . '/plugins/FeedsECKprocessor.inc';
+diff --git a/docroot/sites/all/modules/custom/nas_import/nas_import.module b/docroot/sites/all/modules/custom/nas_import/nas_import.module
+index 12b9f6d..7846495 100644
+--- a/docroot/sites/all/modules/custom/nas_import/nas_import.module
++++ b/docroot/sites/all/modules/custom/nas_import/nas_import.module
+@@ -2065,3 +2065,6 @@ function nas_import_cron_queue_info() {
+ function nas_import_iba_queue_item_process($item) {
+   nas_import_iba_node($item);
+ }
++
++require_once __DIR__ . '/../../patched/feeds/plugins/FeedsHTTPFetcher.inc';
++require_once __DIR__ . '/../../patched/feeds_ex/src/FeedsExJsonPath.inc';
+diff --git a/docroot/sites/all/modules/patched/feeds/feeds.module b/docroot/sites/all/modules/patched/feeds/feeds.module
+index 7cded50..0fe7453 100644
+--- a/docroot/sites/all/modules/patched/feeds/feeds.module
++++ b/docroot/sites/all/modules/patched/feeds/feeds.module
+@@ -1495,3 +1495,17 @@ function feeds_api_version() {
+   $version = feeds_ctools_plugin_api('feeds', 'plugins');
+   return $version['version'];
+ }
++
++/**
++ * Implements hook_init().
++ */
++function feeds_init() {
++  require_once __DIR__ . '/plugins/FeedsHTTPFetcher.inc';
++}
++require_once __DIR__ . '/includes/FeedsConfigurable.inc';
++require_once __DIR__ . '/includes/FeedsImporter.inc';
++require_once __DIR__ . '/includes/FeedsSource.inc';
++require_once __DIR__ . '/plugins/FeedsPlugin.inc';
++require_once __DIR__ . '/plugins/FeedsFetcher.inc';
++require_once __DIR__ . '/plugins/FeedsParser.inc';
++require_once __DIR__ . '/plugins/FeedsProcessor.inc';
+diff --git a/docroot/sites/all/modules/patched/feeds_ex/feeds_ex.module b/docroot/sites/all/modules/patched/feeds_ex/feeds_ex.module
+index 3236c80..511beb3 100644
+--- a/docroot/sites/all/modules/patched/feeds_ex/feeds_ex.module
++++ b/docroot/sites/all/modules/patched/feeds_ex/feeds_ex.module
+@@ -132,3 +132,6 @@ function feeds_ex_source_exists($source_id, array $element) {
+   $sources = feeds_importer($element['#feeds_importer'])->parser->getMappingSources();
+   return isset($sources[$source_id]);
+ }
++
++require_once __DIR__ . '/src/FeedsExBase.inc';
++require_once __DIR__ . '/src/FeedsExJsonPath.inc';
+-- 
+1.8.5.2.msysgit.0
+

@@ -61,7 +61,7 @@ function auto_entitylabel_menu() {
             'page callback' => 'drupal_get_form',
             'page arguments' => array('auto_entitylabel_settings_form', $entity_type, $bundle_arg),
             'type' => MENU_LOCAL_TASK,
-            'weight' => 2,
+            'weight' => 2.1,
             'file' => 'auto_entitylabel.admin.inc',
           ) + $access;
           // Prefix comment entities, because otherwise there would be multiple
@@ -69,7 +69,7 @@ function auto_entitylabel_menu() {
           if ($entity_type == 'comment') {
             $items["$path/auto_label"]['title'] = '@type Auto label';
             $items["$path/auto_label"]['title arguments'] = array('@type' => $entity_info['label']);
-            $items["$path/auto_label"]['weight'] = 4;
+            $items["$path/auto_label"]['weight'] = 4.1;
           }
         }
       }
@@ -333,7 +333,7 @@ function auto_entitylabel_action_info() {
  * @see auto_entitylabel_action_info()
  */
 function auto_entitylabel_entity_update_action(&$entity, &$context = array()) {
-  if (auto_entitylabel_is_needed($entity, $context['entity_type'], TRUE)) {
+  if (auto_entitylabel_is_needed($entity, $context['entity_type'])) {
     auto_entitylabel_set_title($entity, $context['entity_type']);
     // Only save if the title has actually changed.
     if (!empty($entity->auto_entitylabel_changed)) {
@@ -371,7 +371,7 @@ function auto_entitylabel_operations_update($nodes) {
   * @return
   *   A title string
   */
-function _auto_entitylabel_patternprocessor($pattern, $entity, $entity_type, $language = LANGUAGE_NONE) {
+function _auto_entitylabel_patternprocessor($pattern, $entity, $entity_type, $language = LANGUAGE_NONE) { 
   // Replace tokens.
   $info = entity_get_info($entity_type);
   $languages = language_list();
@@ -421,7 +421,7 @@ function auto_entitylabel_field_attach_delete_bundle($entity_type, $bundle, $ins
   }
 }
 
-/**
+/** 
  * Implements hook_field_attach_rename_bundle().
  */
 function auto_entitylabel_field_attach_rename_bundle($entity_type, $bundle_old, $bundle_new) {

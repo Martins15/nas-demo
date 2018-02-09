@@ -50,6 +50,7 @@
 
 # Run registry rebuild.
 - name: Check if registry_rebuild is installed
+  sudo: yes
   shell: "{{ php_env_vars }} drush | grep -c registry_rebuild"
   args:
     chdir: ~/
@@ -68,11 +69,10 @@
   shell: "{{ php_env_vars }} drush cc drush"
   args:
     chdir: ~/
-  when: rebuild_registry and registry_rebuild_installed.stdout == "0"
 
 - name: Rebuilding drupal registry
   sudo: yes
-  shell: "{{ php_env_vars }} drush -y rr -l {{ site_url }} || true && {{ php_env_vars }} drush -y rr -l {{ site_url }} || true"
+  shell: "{{ php_env_vars }} drush -y rr -l {{ site_url }} || true"
   when: rebuild_registry
 
 # Update database.

@@ -41,7 +41,7 @@ function frontpage_flyway_pane_render($subtype, $conf, $args, $contexts) {
   $i = 1;
   foreach ($result as $value) {
     $subtype_name = 'uuid:' . $value->uuid;
-    $fpp = fieldable_panels_panes_load_entity($subtype_name);
+    $fpp = fieldable_panels_panes_load_from_subtype($subtype_name);
     $get_field_flyway = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway');
     if (!isset($get_field_flyway[0])) {
       continue;

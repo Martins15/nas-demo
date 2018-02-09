@@ -14,7 +14,7 @@ function _acquia_agent_hash_password_crypt($algorithm, $pass, $setting, $extra_m
     $pass = md5($pass);
   }
   // Include core's password.inc because it has _password_crypt().
-  require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+  require_once DRUPAL_ROOT . '/includes/password.inc';
   $hash = _password_crypt($algorithm, $pass, $setting);
   // Match the hash stored on the server which has prefix character 'U' if
   // password was first hashed with MD5.
@@ -64,7 +64,7 @@ function acquia_agent_migrate_form($form, &$form_state) {
     drupal_goto('admin/config/system/acquia-agent');
   }
   elseif (!$data || !isset($data['result'])) {
-    $error = t("Server error, please submit again.");
+    $error = t('Server error, please submit again.');
   }
   else {
     // Response is in $data['result'].
@@ -272,7 +272,7 @@ function acquia_agent_automatic_setup_form_validate($form, &$form_state) {
     $data = array('body' => $body, 'authenticator' => $authenticator);
     // Does not use acquia_agent_call() because Network identifier and key are not available.
     $server = variable_get('acquia_network_address', 'https://rpc.acquia.com');
-    $result = xmlrpc(acquia_agent_network_address($server), array('acquia.agent.communication.settings' => array($data)));
+    $result = _acquia_agent_request(acquia_agent_network_address($server), 'acquia.agent.communication.settings', $data);
 
     if ($errno = xmlrpc_errno() !== NULL) {
       acquia_agent_report_xmlrpc_error();
@@ -311,7 +311,7 @@ function acquia_agent_automatic_setup_form_submit($form, &$form_state) {
     $form_state['redirect'] = array('admin/config/system/acquia-agent');
     cache_clear_all();
     if ($active && count($active) > 1) {
-      drupal_set_message(t('<h3>Connection successful!</h3>You are now connected to Acquia Insight.'));
+      drupal_set_message(t('<h3>Connection successful!</h3>You are now connected to Acquia Cloud. Please enter a name for your site to begin sending profile data.'));
     }
   }
 }
@@ -328,7 +328,8 @@ function _acquia_agent_automatic_start_submit(&$form_state) {
   $data = array('body' => $body, 'authenticator' => $authenticator);
   // Does not use acquia_agent_call() because Network identifier and key are not available.
   $server = variable_get('acquia_network_address', 'https://rpc.acquia.com');
-  $result = xmlrpc(acquia_agent_network_address($server), array('acquia.agent.subscription.credentials' => array($data)));
+
+  $result = _acquia_agent_request(acquia_agent_network_address($server), 'acquia.agent.subscription.credentials', $data);
 
   if ($errno = xmlrpc_errno()) {
     acquia_agent_report_xmlrpc_error();
@@ -339,7 +340,7 @@ function _acquia_agent_automatic_start_submit(&$form_state) {
     // Email doesn't exist
     form_set_error('email', t('Server error, please submit again.'));
   }
-  elseif ($result['is_error']) {
+  elseif (!empty($result['is_error'])) {
     form_set_error('email', t('Server error, please submit again.'));
   }
   elseif (empty($result['body']['subscription'])) {
@@ -365,7 +366,7 @@ function acquia_agent_settings_credentials($form, &$form_state) {
   $identifier = acquia_agent_settings('acquia_identifier');
   $key = acquia_agent_settings('acquia_key');
 
-  $form['#prefix'] = t('Enter your <a href="!net">identifer and key</a> from your subscriptions overview or <a href="!url">log in</a> to connect your site to Acquia Insight.', array('!net' => url('https://insight.acquia.com/subscriptions'), '!url' => url('admin/config/system/acquia-agent/setup')));
+  $form['#prefix'] = t('Enter your <a href="!net">identifier and key</a> from your subscriptions overview or <a href="!url">log in</a> to connect your site to Acquia Insight.', array('!net' => url('https://insight.acquia.com/subscriptions'), '!url' => url('admin/config/system/acquia-agent/setup')));
   $form['acquia_identifier'] = array(
     '#type' => 'textfield',
     '#title' => t('Identifier'),
@@ -443,7 +444,7 @@ function acquia_agent_settings_credentials_submit($form, &$form_state) {
   $form_state['redirect'] = array('admin/config/system/acquia-agent');
   cache_clear_all();
   if ($active && count($active) > 1) {
-    drupal_set_message(t('<h3>Connection successful!</h3>You are now connected to Acquia Insight.'));
+    drupal_set_message(t('<h3>Connection successful!</h3>You are now connected to Acquia Cloud. Please enter a name for your site to begin sending profile data.'));
   }
 }
 
@@ -521,6 +522,11 @@ function acquia_agent_settings_form($form, &$form_state, $banner) {
       '#markup' => t('Subscription: @sub <a href="!url">change</a>', array('@sub' => $subscription, '!url' => url('admin/config/system/acquia-agent/setup'))),
     );
   }
+  $form['identification'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Site Identification'),
+    '#collapsible' => FALSE,
+  );
   $form['connection'] = array(
     '#type' => 'fieldset',
     '#title' => t('Acquia Subscription Settings'),

@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Core functions for the Page manager search test module.
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function page_manager_search_test_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'page_manager') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_type().
+ */
+function page_manager_search_test_ctools_plugin_type() {
+  return array(
+    'task_handlers' => array(),
+  );
+}

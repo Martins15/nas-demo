@@ -14,13 +14,17 @@ function bean_entity_info() {
       'label' => t('Block'),
       'entity class' => 'Bean',
       'controller class' => 'BeanEntityAPIController',
+      // This class provides integration with the Inline entity form module.
+      'inline entity form' => array(
+        'controller' => 'BeanInlineEntityFormController',
+      ),
       'base table' => 'bean',
       'revision table' => 'bean_revision',
       'fieldable' => TRUE,
       'entity keys' => array(
         'id' => 'bid',
         'bundle' => 'type',
-        'label' => 'title',
+        'label' => 'label',
         'name' => 'delta',
         'revision' => 'vid',
         'default revision' => 'default_revision',
@@ -113,7 +117,8 @@ function bean_menu() {
         'title callback' => 'check_plain',
         'page callback' => 'bean_add',
         'page arguments' => array($type->type),
-        'access arguments' => array('create any ' . $type->type . ' bean'),
+        'access callback' => 'bean_access',
+        'access arguments' => array('create', $type->type),
         'file' => 'includes/bean.pages.inc',
       );
     }
@@ -306,6 +311,14 @@ function bean_page_title($bean) {
  */
 function bean_type_load($type) {
   return bean_load_plugin_class(strtr($type, array('-' => '_')));
+}
+
+/**
+ * Menu Argument Loader for panelizer tab.
+ */
+function bean_type_panelizer_load($type) {
+  $type = bean_load_plugin_class(strtr($type, array('-' => '_')));
+  return $type->type;
 }
 
 /**
@@ -734,6 +747,12 @@ function bean_access($op, $bean = NULL, $account = NULL) {
       return TRUE;
     }
   }
+  elseif (isset($bean) && is_string($bean)) {
+    if (user_access("$op any {$bean} bean", $account)) {
+      $rights[$account->uid][$cid][$op] = TRUE;
+      return TRUE;
+    }
+  }
   else {
     // Here we are looking for access to any of the types.
     foreach (bean_get_types() as $bean_type) {
@@ -1008,6 +1027,7 @@ function bean_workbench_create_alter(&$output) {
         'href' => 'block/add/' . $bean_type->buildURL(),
         'description' => $bean_type->getDescription(),
         'localized_options' => array(),
+        'page_arguments' => serialize(array('bean')),
       );
       $i++;
     }
@@ -1155,3 +1175,13 @@ function bean_ctools_block_info($module, $delta, &$info) {
   }
 }
 
+/**
+ * Implements hook_ctools_plugin_directory().
+ *
+ * Inform ctools about our panelizer plugin.
+ */
+function bean_ctools_plugin_directory($module, $plugin) {
+  if (in_array($module, array('panelizer'))) {
+    return 'plugins/' . $plugin;
+  }
+}
