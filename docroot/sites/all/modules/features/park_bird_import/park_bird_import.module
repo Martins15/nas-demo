@@ -17,7 +17,11 @@ function park_bird_import_feeds_after_parse(FeedsSource $source, FeedsParserResu
   $new = array();
   foreach ($result->items as $item) {
     if(empty($item['common_name']) || empty($item['unit_name'])) {
-      watchdog('park_bird_import', '<pre>Item was not impoted:</pre><pre>' . print_r($item, true) . '</pre>');
+      watchdog('park_bird_import', '<pre>Item was not imported:</pre><pre>' . print_r($item, true) . '</pre>');
+      continue;
+    }
+    if($item['es'] == '26' && !variable_get('park_bird_import_skip_es_26', FALSE)) {
+      continue;
     }
     $str = $item['common_name'] . $item['unit_name'] . $item['season'] . $item['climate_trend'];
     $new[hash('crc32', $str)] = $item;
