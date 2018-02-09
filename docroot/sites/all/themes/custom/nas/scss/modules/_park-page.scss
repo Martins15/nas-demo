@@ -82,10 +82,12 @@ ul.tabs-content {
   padding: 0;
   overflow: hidden;
   list-style: none;
-  .red {
+  .red,
+  .extirpations {
     color: $red-park;
   }
-  .green {
+  .green,
+  .colonizations {
     color: $green-park;
   }
   .link {
@@ -125,6 +127,32 @@ ul.tabs-content {
         border-top: 1px solid $grey-landing;
         border-left: 1px solid $grey-landing;
         background: $white;
+      }
+    }
+    &.extirpations,
+    &.colonizations {
+      .link__number {
+        &:before {
+          content: '';
+          display: inline-block;
+          width: 30px;
+          height: 36px;
+          margin-right: 5px;
+        }
+      }
+    }
+    &.extirpations {
+      .link__number {
+        &:before {
+          background: url("../img/park-page/down-red.png") no-repeat center;
+        }
+      }
+    }
+    &.colonizations {
+      .link__number {
+        &:before {
+          background: url("../img/park-page/up-green.png") no-repeat center;
+        }
       }
     }
   }

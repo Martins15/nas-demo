@@ -25,7 +25,7 @@
               <div class="container-data-tabs">
                 <ul class="tabs-content">
                   <?php foreach ($tabs['tabs'] as $tab => $data): ?>
-                    <li class="tabs-content__link link columns large-3"
+                    <li class="tabs-content__link link columns large-4 <?php print $tab ?>"
                         data-tab="display-<?php print $tab ?>">
                       <p class="link__title"><?php print $data['title'] ?></p>
                       <p class="link__number"><?php print $data['amount'] ?></p>

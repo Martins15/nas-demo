@@ -18158,10 +18158,12 @@ ul.tabs-content {
   overflow: hidden;
   list-style: none;
 }
-ul.tabs-content .red {
+ul.tabs-content .red,
+ul.tabs-content .extirpations {
   color: #d0021b;
 }
-ul.tabs-content .green {
+ul.tabs-content .green,
+ul.tabs-content .colonizations {
   color: #417505;
 }
 ul.tabs-content .link {
@@ -18201,6 +18203,19 @@ ul.tabs-content .link.current:after {
   border-top: 1px solid #979797;
   border-left: 1px solid #979797;
   background: #fff;
+}
+ul.tabs-content .link.extirpations .link__number:before, ul.tabs-content .link.colonizations .link__number:before {
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 36px;
+  margin-right: 5px;
+}
+ul.tabs-content .link.extirpations .link__number:before {
+  background: url("../img/park-page/down-red.png") no-repeat center;
+}
+ul.tabs-content .link.colonizations .link__number:before {
+  background: url("../img/park-page/up-green.png") no-repeat center;
 }
 
 .tab-content {
