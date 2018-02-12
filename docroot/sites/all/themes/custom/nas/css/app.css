@@ -18591,6 +18591,9 @@ ul.tabs-content .link.colonizations .link__number:before {
   margin-bottom: 25px;
   width: 33.333%;
 }
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .lazyloader-icon {
+  display: none;
+}
 .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-hero-image,
 .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-title {
   margin: 0 10px;

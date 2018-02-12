@@ -505,6 +505,9 @@ ul.tabs-content {
     text-align: center;
     float: left;
     margin-bottom: $column-gutter;
+    .lazyloader-icon {
+      display: none;
+    }
     .views-field-field-hero-image,
     .views-field-title {
       margin: 0 10px;
