@@ -67,4 +67,37 @@
     }
   };
 
+  Drupal.behaviors.sliderScoreCard = {
+    attach: function (context) {
+      var $slierWrap = $('.switch-wrap .tabs-content', context);
+      if ($slierWrap.length) {
+        $(document).ready(function(){
+          if ($(window).width() <= 767) {
+            $slierWrap.owlCarousel({
+              item: 1,
+              loop: false,
+              singleItem: true,
+              center: true,
+              pagination: true,
+              navigation : true,
+              afterAction: function(el){
+                var current = this.currentItem;
+                var active = el.find(".owl-item").eq(current).find('li');
+                active.click();
+              }
+            });
+          }
+        });
+      }
+    }
+  };
+
+  Drupal.behaviors.cloneImgPark = {
+    attach: function (context) {
+      var cloneImg = $('.node-type-park .field-name-field-park-map-image', context).clone();
+      cloneImg.addClass('js-clone-img');
+      $('.node-type-park .park_info', context).prepend(cloneImg);
+    }
+  };
+
 })(jQuery);
