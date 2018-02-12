@@ -18631,10 +18631,6 @@ ul.tabs-content .link.colonizations .link__number:before {
   color: #404040;
 }
 
-.messages.warning {
-  display: none;
-}
-
 .title-letter {
   display: block;
   float: left;
