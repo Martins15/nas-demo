@@ -110,7 +110,6 @@ $green-park: #417505;
   }
 }
 
-
 ul.tabs-content {
   margin: 0;
   padding: 0;
@@ -234,22 +233,23 @@ ul.tabs-content {
 // Style for content park page.
 .node-type-park {
   font-family: $font-sans;
-  .hero-image {
-    &:after {
-      @include breakpoint(large-up) {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 110px;
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), #000000);
-      }
-    }
-
-  }
   .park_top {
     margin-bottom: 25px;
+    .hero-image {
+      overflow: inherit;
+      &:after {
+        @include breakpoint(large-up) {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 110px;
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), #000000);
+        }
+      }
+
+    }
   }
   .list-of-park {
     @include breakpoint(large-up) {
@@ -271,7 +271,6 @@ ul.tabs-content {
         display: inline-block;
         width: 0;
         height: 0;
-
         border-style: solid;
         border-width: 5px 5px 0 5px;
         border-color: $color-text-gray transparent transparent transparent;
@@ -292,7 +291,6 @@ ul.tabs-content {
         }
       }
     }
-    // Todo update style for drop down list pg items.
     &__others-page {
       display: none;
     }
@@ -312,7 +310,7 @@ ul.tabs-content {
     }
     .field-name-field-state,
     .field-name-field-link {
-      width: calc(100% - 135px);
+      width: calc(100% - 165px);
       float: right;
       margin-right: 0;
       @include breakpoint(large-up) {
@@ -383,22 +381,37 @@ ul.tabs-content {
       }
     }
   }
-  .drop-down-items {
+  .list-of-park {
     position: relative;
     z-index: 9;
   }
-  .drop-down-list {
+  .list-of-park__others-page {
     display: none;
     position: absolute;
-    padding: 20px;
+    max-height: 300px;
+    padding: 10px;
+    overflow: auto;
     background: $white;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    &.js-show {
+      display: block;
+    }
+    @include breakpoint(large-up) {
+      max-height: 500px;
+      padding: 20px;
+    }
     a {
       display: block;
       margin-bottom: 5px;
       color: $color-text-gray;
-      font-size: 38px;
+      font-size: 18px;
       line-height: 1.2;
+      &:hover {
+        opacity: .7;
+      }
+      @include breakpoint(large-up) {
+        font-size: 25px;
+      }
     }
   }
   .engagement-hero {
@@ -492,6 +505,9 @@ ul.tabs-content {
     text-align: center;
     float: left;
     margin-bottom: $column-gutter;
+    .lazyloader-icon {
+      display: none;
+    }
     .views-field-field-hero-image,
     .views-field-title {
       margin: 0 10px;
@@ -549,10 +565,4 @@ ul.tabs-content {
       }
     }
   }
-}
-
-
-
-.messages.warning {
-  display: none;
 }

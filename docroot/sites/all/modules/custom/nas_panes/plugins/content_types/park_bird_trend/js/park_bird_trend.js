@@ -59,11 +59,6 @@
         $(trendsSwitch).find('option[value="' + tabId.replace('display-', '') + '"]').prop('selected', true);
         $(formSubmit).click();
       });
-
-      $('.node-type-park .hero-header h1').click(function (e) {
-        e.preventDefault();
-        $('.drop-down-list').slideToggle('fast');
-      })
     }
   };
 
@@ -99,5 +94,15 @@
       $('.node-type-park .park_info', context).prepend(cloneImg);
     }
   };
+
+  Drupal.behaviors.toogleTitle = {
+    attach: function (context) {
+      $('.node-type-park .list-of-park__current-page a', context).click(function (e) {
+        e.preventDefault();
+        $('.list-of-park__others-page', context).toggleClass('js-show');
+      })
+    }
+  };
+
 
 })(jQuery);
