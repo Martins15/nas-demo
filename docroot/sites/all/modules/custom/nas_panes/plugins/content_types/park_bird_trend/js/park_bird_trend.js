@@ -4,7 +4,7 @@
     attach: function (context, settings) {
 
       var tabsItem = $('.tab-slider--tabs', context)
-        , tabsNav = $('.tab-slider--nav li', context)
+        , tabsNav = $('.tab-slider--nav li')
         , tabsBody = $('.tab-slider--body', context)
         , seasonSwitch = $('#edit-season')
         , trendsSwitch = $('#edit-park-trend');
@@ -18,7 +18,7 @@
         if (seasonCur == 'season_winter') {
           tabsItem.addClass('slide');
         }
-        $('.tabs-content__link').removeClass('active').filter('[data-tab="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
+        $('.tabs-content__link').removeClass('current').filter('[data-tab="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
       });
 
       tabsNav.click(function () {
@@ -34,13 +34,12 @@
           tabsItem.removeClass('slide');
           $(seasonSwitch).find('option[value=1]').prop('selected', true);
         }
-
         $(formSubmit).click();
         tabsNav.removeClass("active");
         $(this).addClass("active");
         $("#" + activeTab).fadeIn();
+        $('.tabs-content__link').removeClass('current').filter('[data-tab="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
       });
-
 
       // Logic for tabs.
       var tabWrap = $('ul.tabs-content', context);
