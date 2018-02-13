@@ -4,6 +4,7 @@ $green-landing: #417505;
 $pumpkin: #e18400;
 
 .climate-landing {
+  font-family: $font-sans;
   .help-center {
     text-align: center;
   }
@@ -205,6 +206,80 @@ $pumpkin: #e18400;
       letter-spacing: normal;
       line-height: 1.04;
       text-shadow: 0 1px 6px rgba(80, 80, 80, .75);
+    }
+  }
+  .park-item {
+    &__image {
+      position: relative;
+      @include breakpoint(large-up) {
+        width: 55%;
+        float: right;
+      }
+      img {
+        width: 100%;
+      }
+      .text-after {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        color: $white;
+        font-size: 14px;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, .75);
+      }
+
+    }
+    &__text-after {
+      p {
+        margin-bottom: 10px;
+        font-size: 20px;
+        @include breakpoint(large-up) {
+          margin-bottom: 15px;
+        }
+      }
+    }
+    &__info {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid $grey-landing;
+      @include breakpoint(large-up) {
+        padding: 15px 15px 15px 5px;
+      }
+    }
+    &__help-wrap {
+      @include breakpoint(large-up) {
+        padding: 0;
+        float: left;
+        width: 43%;
+      }
+    }
+  }
+  .bird {
+    overflow: hidden;
+    &__img {
+      width: 18%;
+      margin-right: 2%;
+      float: left;
+      img {
+        width: 100%;
+      }
+    }
+    &__text {
+      float: right;
+      width: 80%;
+    }
+    .item {
+      overflow: hidden;
+      p {
+        display: inline-block;
+        font-size: 18px;
+        vertical-align: top;
+        &.name {
+          width: 20%;
+        }
+        &.value {
+          width: 78%;
+        }
+      }
     }
   }
 }
