@@ -19,6 +19,7 @@
           tabsItem.addClass('slide');
         }
         $('.tabs-content__link').removeClass('current').filter('[data-tab="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
+        $('.tab-content').removeClass('current').filter('[data-content="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
       });
 
       tabsNav.click(function () {
