@@ -4595,3 +4595,14 @@ function nas_master_update_7314() {
     }
   }
 }
+
+/**
+ * Revert nas_mobapp_endpoint.
+ */
+function nas_master_update_7315() {
+  features_revert(array(
+    'nas_mobapp_endpoint' => array(
+      'views_default',
+    ),
+  ));
+}

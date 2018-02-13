@@ -38,7 +38,7 @@ class EntityFieldMapper {
    *
    * @var \stdClass
    */
-  private $layoutSettings;
+  protected $layoutSettings;
 
   /**
    * Facebook Instant Articles object that encapsulates the structure and
@@ -46,7 +46,7 @@ class EntityFieldMapper {
    *
    * @var InstantArticle
    */
-  private $instantArticle;
+  protected $instantArticle;
 
   /**
    * EntityFieldMapper constructor.
@@ -55,7 +55,7 @@ class EntityFieldMapper {
    * @param InstantArticle $instantArticle
    * @return EntityFieldMapper
    */
-  private function __construct(\stdClass $layoutSettings, InstantArticle $instantArticle) {
+  protected function __construct(\stdClass $layoutSettings, InstantArticle $instantArticle) {
     $this->layoutSettings = $layoutSettings;
     $this->instantArticle = $instantArticle;
   }
@@ -66,7 +66,7 @@ class EntityFieldMapper {
    * @return EntityFieldMapper
    */
   public static function create(\stdClass $layoutSettings, InstantArticle $instantArticle) {
-    return new EntityFieldMapper($layoutSettings, $instantArticle);
+    $test = new EntityFieldMapper($layoutSettings, $instantArticle);die('2222222');return $test;
   }
 
   /**
@@ -145,7 +145,7 @@ class EntityFieldMapper {
           $pass_region = $header;
         }
         else if ($active_region === 'body') {
-          $pass_region = $this->instantArticle;
+          $pass_region = $header;
         }
         if ($pass_region) {
           $this->fieldFormatVideoElement($items, $pass_region, $settings);
@@ -417,7 +417,7 @@ class EntityFieldMapper {
       // encoding issues.  Since we're dealing with HTML snippets, it will
       // always be missing a <meta charset="utf-8" /> or equivalent.
       $output = '<!doctype html><html><head><meta charset="utf-8" /></head><body>' . $output . '</body></html>';
-      @$document->loadHTML(decode_entities($output));
+      @$document->loadHTML($output);
       $transformer->transform($body, $document);
 
       // @todo store entity warnings so we can display them in the admin
