@@ -17901,6 +17901,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   background-color: #dd7537;
 }
 
+.climate-landing {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
 .climate-landing .help-center {
   text-align: center;
 }
@@ -18085,6 +18088,81 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   letter-spacing: normal;
   line-height: 1.04;
   text-shadow: 0 1px 6px rgba(80, 80, 80, 0.75);
+}
+.climate-landing .park-item__image {
+  position: relative;
+}
+@media only screen and (min-width: 768px) {
+  .climate-landing .park-item__image {
+    width: 55%;
+    float: right;
+  }
+}
+.climate-landing .park-item__image img {
+  width: 100%;
+}
+.climate-landing .park-item__image .text-after {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  color: #fff;
+  font-size: 14px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+}
+.climate-landing .park-item__text-after p {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+@media only screen and (min-width: 768px) {
+  .climate-landing .park-item__text-after p {
+    margin-bottom: 15px;
+  }
+}
+.climate-landing .park-item__info {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #979797;
+}
+@media only screen and (min-width: 768px) {
+  .climate-landing .park-item__info {
+    padding: 15px 15px 15px 5px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .climate-landing .park-item__help-wrap {
+    padding: 0;
+    float: left;
+    width: 43%;
+  }
+}
+.climate-landing .bird {
+  overflow: hidden;
+}
+.climate-landing .bird__img {
+  width: 18%;
+  margin-right: 2%;
+  float: left;
+}
+.climate-landing .bird__img img {
+  width: 100%;
+}
+.climate-landing .bird__text {
+  float: right;
+  width: 80%;
+}
+.climate-landing .bird .item {
+  overflow: hidden;
+}
+.climate-landing .bird .item p {
+  display: inline-block;
+  font-size: 18px;
+  vertical-align: top;
+}
+.climate-landing .bird .item p.name {
+  width: 20%;
+}
+.climate-landing .bird .item p.value {
+  width: 78%;
 }
 
 .switch-wrap {
