@@ -104,5 +104,19 @@
     }
   };
 
+  Drupal.behaviors.throbbeViewsPark = {
+    attach: function (context, settings) {
+      var viewsWrap = $('.view-park-bird-trends.view-id-park_bird_trends'),
+        itemsWrap = $('.view-content', viewsWrap),
+        classPreload = 'js-preload';
+
+      viewsWrap.ajaxStart(function () {
+        itemsWrap.fadeTo(300, 0.5).addClass(classPreload);
+      });
+      viewsWrap.ajaxSuccess(function () {
+        itemsWrap.fadeTo(300, 1.0).removeClass(classPreload);
+      })
+    }
+  };
 
 })(jQuery);
