@@ -37,7 +37,7 @@
         debounce: settings.lazyloader.debounce,
         callback: function (element, op) {
           // Remove the loader icon when the image is loaded.
-          $(element).next('.lazyloader-icon').remove();
+          $(element).nextAll('.lazyloader-icon').remove();
         }
       });
 
