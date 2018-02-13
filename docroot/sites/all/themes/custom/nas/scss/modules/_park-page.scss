@@ -221,13 +221,14 @@ ul.tabs-content {
 .tab-content {
   display: none;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 15px;
+  padding: 0 15px;
   overflow: hidden;
   &.current {
-    display: inherit;
+    display: block;
   }
   .tab-bird-container {
-    margin-top: 20px;
+    margin-top: 25px;
   }
 }
 
@@ -271,6 +272,8 @@ ul.tabs-content {
     }
   }
   .list-of-park {
+    position: relative;
+    z-index: 9;
     @include breakpoint(large-up) {
       position: absolute;
       bottom: 15px;
@@ -284,6 +287,7 @@ ul.tabs-content {
       @include breakpoint(large-up) {
         margin-top: 0;
         padding-bottom: 0;
+        border-bottom: 0;
       }
       &:after {
         content: '';
@@ -315,10 +319,11 @@ ul.tabs-content {
     }
   }
   .park_info {
-    padding: 0 15px;
+    margin-bottom: 20px;
     font-size: 16px;
     @include breakpoint(large-up) {
       padding: 0;
+      margin-bottom: 30px;
     }
     > .field {
       display: inline-block;
@@ -400,10 +405,6 @@ ul.tabs-content {
       }
     }
   }
-  .list-of-park {
-    position: relative;
-    z-index: 9;
-  }
   .list-of-park__others-page {
     display: none;
     position: absolute;
@@ -475,6 +476,14 @@ ul.tabs-content {
     font-size: 20px;
   }
   &__form {
+    > div {
+      padding-right: 0;
+      padding-left: 0;
+      @include breakpoint(large-up) {
+        padding-right: 12.5px;
+        padding-left: 12.5px;
+      }
+    }
     > div:first-child {
       margin-bottom: 20px;
       @include breakpoint(large-up) {

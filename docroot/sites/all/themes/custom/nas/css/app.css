@@ -18368,14 +18368,15 @@ ul.tabs-content .link.colonizations .link__number:before {
 .tab-content {
   display: none;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 15px;
+  padding: 0 15px;
   overflow: hidden;
 }
 .tab-content.current {
-  display: inherit;
+  display: block;
 }
 .tab-content .tab-bird-container {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .park-body {
@@ -18418,6 +18419,10 @@ ul.tabs-content .link.colonizations .link__number:before {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
   }
 }
+.node-type-park .list-of-park {
+  position: relative;
+  z-index: 9;
+}
 @media only screen and (min-width: 768px) {
   .node-type-park .list-of-park {
     position: absolute;
@@ -18435,6 +18440,7 @@ ul.tabs-content .link.colonizations .link__number:before {
   .node-type-park .list-of-park__current-page {
     margin-top: 0;
     padding-bottom: 0;
+    border-bottom: 0;
   }
 }
 .node-type-park .list-of-park__current-page:after {
@@ -18469,12 +18475,13 @@ ul.tabs-content .link.colonizations .link__number:before {
   display: none;
 }
 .node-type-park .park_info {
-  padding: 0 15px;
+  margin-bottom: 20px;
   font-size: 16px;
 }
 @media only screen and (min-width: 768px) {
   .node-type-park .park_info {
     padding: 0;
+    margin-bottom: 30px;
   }
 }
 .node-type-park .park_info > .field {
@@ -18564,10 +18571,6 @@ ul.tabs-content .link.colonizations .link__number:before {
   border-color: #fff transparent transparent transparent;
   vertical-align: middle;
 }
-.node-type-park .list-of-park {
-  position: relative;
-  z-index: 9;
-}
 .node-type-park .list-of-park__others-page {
   display: none;
   position: absolute;
@@ -18639,6 +18642,16 @@ ul.tabs-content .link.colonizations .link__number:before {
   background-color: #fff;
   box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.5);
   font-size: 20px;
+}
+.form-container__form > div {
+  padding-right: 0;
+  padding-left: 0;
+}
+@media only screen and (min-width: 768px) {
+  .form-container__form > div {
+    padding-right: 12.5px;
+    padding-left: 12.5px;
+  }
 }
 .form-container__form > div:first-child {
   margin-bottom: 20px;

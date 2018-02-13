@@ -27,14 +27,14 @@
 
 <div class="row">
   <!-- Region: park info -->
-  <div class="park_info">
+  <div class="park_info columns">
     <?php print $content['park_info']; ?>
   </div>
   <!-- /Region: park info -->
 
   <section class="global-content">
     <article class="park park-page-layout">
-      <div class="park-body">
+      <div class="park-body columns">
         <!-- Region: Main body content-->
         <?php print $content['primary_content']; ?>
         <!-- /Region: Main body content-->
