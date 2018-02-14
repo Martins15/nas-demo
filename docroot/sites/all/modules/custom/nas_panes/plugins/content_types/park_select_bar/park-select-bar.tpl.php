@@ -19,7 +19,7 @@
         </div>
         <div class="list-of-park__others-page">
           <?php foreach ($parks as $nid => $park_title): ?>
-            <a href="node/<?php print $nid ?>"><?php print $park_title ?></a>
+            <a href="/node/<?php print $nid ?>"><?php print $park_title ?></a>
           <?php endforeach; ?>
         </div>
       </div>

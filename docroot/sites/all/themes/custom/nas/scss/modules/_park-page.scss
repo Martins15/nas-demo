@@ -289,21 +289,6 @@ ul.tabs-content {
         padding-bottom: 0;
         border-bottom: 0;
       }
-      &:after {
-        content: '';
-        display: inline-block;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 5px 5px 0 5px;
-        border-color: $color-text-gray transparent transparent transparent;
-        vertical-align: middle;
-        @include breakpoint(large-up) {
-          margin-left: 10px;
-          border-width: 10px 10px 0 10px;
-          border-color: #fff transparent transparent transparent;
-        }
-      }
       a {
         font-size: 25px;
         color: $color-text-gray;
@@ -311,6 +296,21 @@ ul.tabs-content {
           color: $white;
           font-size: 48px;
           letter-spacing: .4px;
+        }
+        &:after {
+          content: '';
+          display: inline-block;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 5px 5px 0 5px;
+          border-color: $color-text-gray transparent transparent transparent;
+          vertical-align: middle;
+          @include breakpoint(large-up) {
+            margin-left: 10px;
+            border-width: 10px 10px 0 10px;
+            border-color: #fff transparent transparent transparent;
+          }
         }
       }
     }
