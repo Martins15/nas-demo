@@ -19,33 +19,62 @@ $pumpkin: #e18400;
   }
   .static-page-content {
     h2 {
+      padding: 0 15px;
       color: $color-dark-gray;
       font-family: $font-sans;
-      font-size: 38px;
+      font-size: 33px;
       letter-spacing: -.1px;
-      line-height: 1.16;
+      line-height: 1.15;
       text-align: left;
+      @include breakpoint(large-up) {
+        padding: 0;
+        font-size: 38px;
+      }
     }
   }
   .wrap-help {
     overflow: hidden;
   }
   .percent-wrap {
+    display: flex;
+    flex-direction: column;
     font-family: $font-sans;
+    @include breakpoint(large-up) {
+      display: block;
+    }
+    &__small-text,
     &__percent-item {
+      text-align: center;
+    }
+    &__percent-item {
+      order: 2;
       color: $pumpkin;
       font-size: 72px;
       font-weight: 600;
       line-height: 1.2;
     }
     &__small-text {
+      order: 3;
+      width: 62%;
+      margin: 0 auto 15px;
+      float: none;
       color: $color-text-gray;
       font-size: 14px;
       line-height: 1;
-      text-align: left;
+      @include breakpoint(large-up) {
+        width: auto;
+        margin: 0;
+        float: left;
+        text-align: left;
+      }
     }
     &__text-item {
+      order: 1;
+      margin-bottom: 40px;
       font-size: 16px;
+      @include breakpoint(large-up) {
+        margin-bottom: 0;
+      }
     }
   }
   .gray-left-border {
@@ -61,16 +90,17 @@ $pumpkin: #e18400;
   }
   .center-items-in-wrap {
     position: relative;
-    p {
-
-    }
   }
   .item-bird__title {
+    padding: 0 15px;
     color: $color-dark-gray;
     font-family: $font-sans;
     font-size: 24px;
     line-height: 1.17;
     text-align: left;
+    @include breakpoint(large-up) {
+      padding: 0;
+    }
   }
   .item-bird-card {
     .text-after {
