@@ -611,6 +611,15 @@
       else {
         var mainChart = Drupal.d3.ct_bar('d3-actions', {rows: []});
       }
+
+      var legend = false;
+      if (tabSettings.chart.legend && Array.isArray(tabSettings.chart.legend)) {
+        legend = tabSettings.chart.legend;
+      }
+      else if (tabSettings.chart.legend === true) {
+        legend = Drupal.settings.nasConservationTracker.legend
+      }
+
       Drupal.settings.nasConservationTracker.legend = Drupal.settings.nasConservationTracker.legend || [];
       mainChart.update({
         rows: mainRows,
@@ -620,10 +629,10 @@
         barWidth: 9,
         barRx: 4,
         //graphColor: [colors[loc][1]],
-        graphColor: colors[loc],
+        graphColor: tabSettings.chart.colors || colors[loc],
         tooltip: tabSettings.chart.tooltip || false,
         lineY: tabSettings.chart.line_y || false,
-        legend: (tabSettings.chart.legend) ? Drupal.settings.nasConservationTracker.legend : false
+        legend: legend
       });
       $('#site-count').text(sites.length);
       if (tabSettings.chart.count_copy) {
