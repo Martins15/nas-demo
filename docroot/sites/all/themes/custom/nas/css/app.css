@@ -17973,7 +17973,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .climate-landing .percent-wrap__text-item {
   order: 1;
+  margin-bottom: 40px;
   font-size: 16px;
+}
+@media only screen and (min-width: 768px) {
+  .climate-landing .percent-wrap__text-item {
+    margin-bottom: 0;
+  }
 }
 .climate-landing .gray-left-border {
   border-left: 1px solid #979797;
