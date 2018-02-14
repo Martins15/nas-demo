@@ -118,6 +118,7 @@ function nas_conservation_tracker_libraries_info() {
     'ct_circular' => 'CT Circular',
     'ct_bar' => 'CT Bar Graph',
     'ct_bar_horizontal' => 'CT Bar Horizontal Graph',
+    'ct_tooltip' => 'CT Tooltip',
   );
 
   foreach ($libs as $filename => $name) {
@@ -236,6 +237,10 @@ function nas_conservation_tracker_get_json($path) {
       $file = file_get_contents($json_url);
       $json_data = drupal_json_decode($file);
     }
+    if ($json_data === FALSE) {
+      watchdog('ct debug', 'CAN NOT BE PARSED DATA - ' . print_r($json_data, TRUE));
+    }
+
 
     if (!empty($json_data)) {
       if (strpos($path, 'scorecard') !== FALSE) {

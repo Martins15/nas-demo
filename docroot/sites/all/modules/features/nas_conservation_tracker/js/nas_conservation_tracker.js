@@ -34,7 +34,6 @@
       $radios = $('input[name="map_type"]'),
       $reset = $('#edit-map-reset');
 
-
     // Delete existing sites from map.
     lMap.eachLayer(function (layer) {
       if (layer._leaflet_id !== 'earth' && !layer._layers) {
@@ -295,8 +294,6 @@
         markersZoom = Drupal.settings.nasConservationTracker.jsonData.settings[loc].map.markersZoom;
       }
 
-      //console.log('MARKER ZOOM',
-      // Drupal.settings.nasConservationTracker.jsonData.settings[loc].map.markersZoom);
       var visibility = lMap.getZoom() >= markersZoom ? 'visible' : 'hidden';
       $('.' + classes.site).css('visibility', visibility);
     }
@@ -402,7 +399,10 @@
           var z = 0;
 
           for (var j in rows) {
-            z += parseFloat(rows[j][1]);
+            rows[j].shift();
+            for (var m in rows[j]) {
+              z += parseFloat(rows[j][m]);
+            }
           }
           if (min == null) {
             min = z;
@@ -416,6 +416,7 @@
           if (z > max) {
             max = z;
           }
+
           Drupal.settings.nasConservationTracker.currentMap.rows[polygons[i].properties.machineName] = z;
           Drupal.settings.nasConservationTracker.currentMap.min = min;
           Drupal.settings.nasConservationTracker.currentMap.max = max;
@@ -598,7 +599,7 @@
 
     var mainRows = getChartData(sites);
 
-    if (mainRows.length > 0) {
+    if (mainRows.length > 0 || Object.keys(mainRows).length) {
       var $diagram = $('.diagram-wrap');
       var chartTitle = tabSettings.chart.title ? tabSettings.chart.title : tabSettings.chart.value_type;
       $diagram.find('.map-title .map-span-title').text(chartTitle);
@@ -610,7 +611,7 @@
       else {
         var mainChart = Drupal.d3.ct_bar('d3-actions', {rows: []});
       }
-
+      Drupal.settings.nasConservationTracker.legend = Drupal.settings.nasConservationTracker.legend || [];
       mainChart.update({
         rows: mainRows,
         width: 512,
@@ -618,7 +619,11 @@
         padding: [20, 0, 70, 20],
         barWidth: 9,
         barRx: 4,
-        graphColor: [colors[loc][1]],
+        //graphColor: [colors[loc][1]],
+        graphColor: colors[loc],
+        tooltip: tabSettings.chart.tooltip || false,
+        lineY: tabSettings.chart.line_y || false,
+        legend: (tabSettings.chart.legend) ? Drupal.settings.nasConservationTracker.legend : false
       });
       $('#site-count').text(sites.length);
       if (tabSettings.chart.count_copy) {
@@ -641,6 +646,7 @@
       var loc = getLocation();
       tabSettings = Drupal.settings.nasConservationTracker.jsonData.settings[loc];
     }
+    Drupal.settings.nasConservationTracker.legend = [];
 
     var mainObjRows = {};
     var additionalData = {};
@@ -653,32 +659,73 @@
             if (angular.isDefined(sites[i].data[j].value_type) && sites[i].data[j].value_type.name == tabSettings.chart.value_type) {
               if (angular.isDefined(sites[i].data[j].key_type) && sites[i].data[j].key_type.name == tabSettings.chart.key_type) {
                 var data = sites[i].data[j];
-                mainObjRows[data.key] = mainObjRows[data.key] || 0;
-                switch (agOp) {
-                  case 'sum':
-                    mainObjRows[data.key] += parseFloat(data.value);
-                    break;
-                  case 'avg':
-                    mainObjRows[data.key] += parseFloat(data.value);
-
-                    additionalData[data.key] = additionalData[data.key] || {};
-                    additionalData[data.key]['count'] = additionalData[data.key]['count'] || 0;
-                    additionalData[data.key]['count']++;
-                    break;
+                if (tabSettings.chart.per_site != true) {
+                  var site = 'common';
+                }
+                else {
+                  var site = sites[i]['name'];
                 }
 
+                mainObjRows[site] = mainObjRows[site] || {};
+                if (Array.isArray(data.key)) {
+                  for (var z = 0 in data.key) {
+                    mainObjRows[site][data.key[z]] = mainObjRows[site][data.key[z]] || 0;
+                    if (Drupal.settings.nasConservationTracker.legend.indexOf(data.key[z]) < 0) {
+                      Drupal.settings.nasConservationTracker.legend.push(data.key[z]);
+                    }
+                    switch (agOp) {
+                      case 'sum':
+                        mainObjRows[site][data.key[z]] += parseFloat(data.value[z]);
+                        break;
+                      case 'avg':
+                        mainObjRows[site][data.key[z]] += parseFloat(data.value[z]);
+
+                        additionalData[site][data.key[z]] = additionalData[site][data.key[z]] || {};
+                        additionalData[site][data.key[z]]['count'] = additionalData[site][data.key[z]]['count'] || 0;
+                        additionalData[site][data.key[z]]['count']++;
+                        break;
+                    }
+                  }
+                }
+                else {
+                  mainObjRows[site][data.key] = mainObjRows[site][data.key] || 0;
+                  if (Drupal.settings.nasConservationTracker.legend.indexOf(data.key) < 0) {
+                    Drupal.settings.nasConservationTracker.legend.push(data.key);
+                  }
+                  switch (agOp) {
+                    case 'sum':
+                      mainObjRows[site][data.key] += parseFloat(data.value);
+                      break;
+                    case 'avg':
+                      mainObjRows[site][data.key] += parseFloat(data.value);
+                      additionalData[site] = additionalData[site] || {};
+                      additionalData[site][data.key] = additionalData[site][data.key] || {};
+                      additionalData[site][data.key]['count'] = additionalData[site][data.key]['count'] || 0;
+                      additionalData[site][data.key]['count']++;
+                      break;
+                  }
+
+                }
               }
             }
           }
         }
         else if (tabSettings.chart.type == 'actions' || tabSettings.chart.type == 'threats') {
+
           for (var j = 0 in sites[i][tabSettings.chart.type]) {
             var data = sites[i][tabSettings.chart.type][j];
             var key = data.categories[0].name;
-            mainObjRows[key] = mainObjRows[key] || 0;
+            if (tabSettings.chart.per_site != true) {
+              var site = 'common';
+            }
+            else {
+              var site = sites[i]['name'];
+            }
+            mainObjRows[site] = mainObjRows[site] || {};
+            mainObjRows[site][key] = mainObjRows[site][key] || 0;
             switch (agOp) {
               case 'sum':
-                mainObjRows[key] += 1;
+                mainObjRows[site][key] += 1;
                 break;
             }
           }
@@ -686,13 +733,32 @@
       }
     }
 
-    var mainRows = Object.keys(mainObjRows).map(function (key) {
-      var value = mainObjRows[key];
-      if (agOp == 'avg') {
-        value = (mainObjRows[key] / additionalData[key]['count']).toFixed(2);
-      }
-      return [key, value];
-    });
+    if (mainObjRows.common) {
+      mainObjRows = mainObjRows.common;
+      additionalData = additionalData.common;
+      var mainRows = Object.keys(mainObjRows).map(function (key) {
+
+        var value = mainObjRows[key];
+        if (agOp == 'avg') {
+          value = (mainObjRows[key] / additionalData[key]['count']).toFixed(2);
+        }
+        return [key, value];
+      });
+    }
+    else {
+      mainRows = Object.keys(mainObjRows).map(function(site){
+        var values = Object.keys(mainObjRows[site]).map(function(key){
+          var value = mainObjRows[site][key];
+          if (agOp == 'avg') {
+            value = (mainObjRows[site][key] / additionalData[site][key]['count']).toFixed(2);
+          }
+          return value;
+
+        });
+        values.unshift(site);
+        return values;
+      });
+    }
 
     return mainRows;
   }

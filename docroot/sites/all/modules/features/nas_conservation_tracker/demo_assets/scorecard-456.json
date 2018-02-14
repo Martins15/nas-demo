@@ -94,11 +94,17 @@
         }
       ],
       "chart": {
+        "title": "Mean Bird Friendliness Index",
         "type": "data",
-        "chart_type": "groupedbar",
-        "value_type": "Mean Bird Friendliness Index",
-        "key_type": "Ranch Name",
-        "operation": "avg"
+        "chart_type": "bar",
+        "value_type": "Acreage",
+        "key_type": "Year",
+        "operation": "sum",
+        "per_site": true,
+        "tooltip": true,
+        "line_y": true,
+        "legend": true,
+        "count_copy": "Ranches in selected/visible area(s): "
       }
     },
     "partners": {
@@ -439,9 +445,85 @@
     "sites":
     []
   },
-  "responses": {
+  "response": {
     "sites":
-    []
+    [
+      {
+        "id": 0,
+        "name": "Kiowa Creek Ranch",
+        "latitude": "39.07118538",
+        "longitude": "-104.6380456",
+        "state": "CO",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": ["2016", "2017"],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": ["1000", "2000"]
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Haubein Ranch",
+        "latitude": "37.33228247",
+        "longitude": "-93.99242106",
+        "state": "MO",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": ["2016", "2017"],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": ["100", "200"]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Ranney Ranch",
+        "latitude": "34.17624217",
+        "longitude": "-105.4762029",
+        "state": "NM",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": ["2016", "2017"],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": ["10000", "20000"]
+          }
+        ]
+      }
+    ]
   },
   "partners": [
     {
