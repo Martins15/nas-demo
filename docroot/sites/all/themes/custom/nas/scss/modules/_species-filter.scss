@@ -512,6 +512,9 @@
       border-radius: 50px;
       background: transparent;
     }
+    .leaflet-pane {
+      z-index: inherit;
+    }
   }
   .leaflet-popup {
     .leaflet-popup-content-wrapper {
@@ -668,3 +671,5 @@
     display: block;
   }
 }
+
+

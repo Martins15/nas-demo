@@ -72,6 +72,8 @@ $gray-lightish: #9b9b9b;
   }
   .title-wrap {
     &__print {
+      margin-top: 25px;
+      float: right;
       color: $gray-lightish;
       font-size: 14px;
       text-transform: uppercase;
@@ -643,6 +645,7 @@ $gray-lightish: #9b9b9b;
   }
   .row {
     position: relative;
+    min-height: 400px;
   }
   .js-preloader {
     position: absolute;
@@ -658,7 +661,7 @@ $gray-lightish: #9b9b9b;
       position: absolute;
       z-index: 2;
       top: 30%;
-      left: 50%;
+      left: 30%;
       width: 150px;
       height: 150px;
       transform: translate(-50%, -50%);
@@ -666,6 +669,9 @@ $gray-lightish: #9b9b9b;
       border-radius: 100%;
       -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
       animation: sk-scaleout 1.0s infinite ease-in-out;
+      @include breakpoint(large-up) {
+        left: 50%;
+      }
     }
   }
   @include breakpoint(large-up) {
