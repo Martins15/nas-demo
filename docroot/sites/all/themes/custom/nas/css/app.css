@@ -18485,7 +18485,18 @@ ul.tabs-content .link.colonizations .link__number:before {
     border-bottom: 0;
   }
 }
-.node-type-park .list-of-park__current-page:after {
+.node-type-park .list-of-park__current-page a {
+  font-size: 25px;
+  color: #404040;
+}
+@media only screen and (min-width: 768px) {
+  .node-type-park .list-of-park__current-page a {
+    color: #fff;
+    font-size: 48px;
+    letter-spacing: .4px;
+  }
+}
+.node-type-park .list-of-park__current-page a:after {
   content: '';
   display: inline-block;
   width: 0;
@@ -18496,21 +18507,10 @@ ul.tabs-content .link.colonizations .link__number:before {
   vertical-align: middle;
 }
 @media only screen and (min-width: 768px) {
-  .node-type-park .list-of-park__current-page:after {
+  .node-type-park .list-of-park__current-page a:after {
     margin-left: 10px;
     border-width: 10px 10px 0 10px;
     border-color: #fff transparent transparent transparent;
-  }
-}
-.node-type-park .list-of-park__current-page a {
-  font-size: 25px;
-  color: #404040;
-}
-@media only screen and (min-width: 768px) {
-  .node-type-park .list-of-park__current-page a {
-    color: #fff;
-    font-size: 48px;
-    letter-spacing: .4px;
   }
 }
 .node-type-park .list-of-park__others-page {
