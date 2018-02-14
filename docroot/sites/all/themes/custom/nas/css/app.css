@@ -17917,32 +17917,62 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
 }
 .climate-landing .static-page-content h2 {
+  padding: 0 15px;
   color: #262626;
   font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 38px;
+  font-size: 33px;
   letter-spacing: -.1px;
-  line-height: 1.16;
+  line-height: 1.15;
   text-align: left;
+}
+@media only screen and (min-width: 768px) {
+  .climate-landing .static-page-content h2 {
+    padding: 0;
+    font-size: 38px;
+  }
 }
 .climate-landing .wrap-help {
   overflow: hidden;
 }
 .climate-landing .percent-wrap {
+  display: flex;
+  flex-direction: column;
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
+@media only screen and (min-width: 768px) {
+  .climate-landing .percent-wrap {
+    display: block;
+  }
+}
+.climate-landing .percent-wrap__small-text, .climate-landing .percent-wrap__percent-item {
+  text-align: center;
+}
 .climate-landing .percent-wrap__percent-item {
+  order: 2;
   color: #e18400;
   font-size: 72px;
   font-weight: 600;
   line-height: 1.2;
 }
 .climate-landing .percent-wrap__small-text {
+  order: 3;
+  width: 62%;
+  margin: 0 auto 15px;
+  float: none;
   color: #404040;
   font-size: 14px;
   line-height: 1;
-  text-align: left;
+}
+@media only screen and (min-width: 768px) {
+  .climate-landing .percent-wrap__small-text {
+    width: auto;
+    margin: 0;
+    float: left;
+    text-align: left;
+  }
 }
 .climate-landing .percent-wrap__text-item {
+  order: 1;
   font-size: 16px;
 }
 .climate-landing .gray-left-border {
@@ -17958,11 +17988,17 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: relative;
 }
 .climate-landing .item-bird__title {
+  padding: 0 15px;
   color: #262626;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 24px;
   line-height: 1.17;
   text-align: left;
+}
+@media only screen and (min-width: 768px) {
+  .climate-landing .item-bird__title {
+    padding: 0;
+  }
 }
 .climate-landing .item-bird-card .text-after {
   color: #404040;
