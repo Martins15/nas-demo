@@ -4601,24 +4601,16 @@ function nas_master_update_7314() {
  * Enable CT feature.
  */
 function nas_master_update_7315() {
-  watchdog('ct debug', '11111111111111');
   variable_set('nas_conservation_tracker_endpoint', './sites/all/modules/features/nas_conservation_tracker/demo_assets');
   module_enable(array('nas_conservation_tracker'));
-  watchdog('ct debug', '2222222222222');
   drupal_flush_all_caches();
-  watchdog('ct debug', '33333333333333');
   features_revert_module('nas_conservation_tracker');
   drupal_flush_all_caches();
-  watchdog('ct debug', '4444444444444444');
   module_load_install('nas_conservation_tracker');
   nas_conservation_tracker_custom_install();
-  watchdog('ct debug', '5555555555555555');
   module_load_include('module', 'nas_conservation_tracker');
-  watchdog('ct debug', '6666666666666666');
 
   nas_conservation_tracker_load_species();
-
-  watchdog('ct debug', '77777777777777');
 }
 
 /**
@@ -4626,36 +4618,33 @@ function nas_master_update_7315() {
  */
 function nas_master_update_7316() {
   drupal_flush_all_caches();
-  watchdog('ct debug', '8888888888888888888888');
 }
 
 /**
  * Enable CT Search feature.
  */
 function nas_master_update_7317() {
-  cache_set('module_implements', array(), 'cache_bootstrap');
-  drupal_static_reset('module_hook_info');
-  drupal_static_reset('drupal_alter');
-  cache_clear_all('hook_info', 'cache_bootstrap');
-  cache_clear_all('system_cache_tables', 'cache');
+  // Commented temporarily. Do not delete!!!!
+//  cache_set('module_implements', array(), 'cache_bootstrap');
+//  drupal_static_reset('module_hook_info');
+//  drupal_static_reset('drupal_alter');
+//  cache_clear_all('hook_info', 'cache_bootstrap');
+//  cache_clear_all('system_cache_tables', 'cache');
 
 
-  watchdog('ct debug', '9999999999999');
+
   module_enable(array('nas_conservation_tracker_search'));
   features_revert_module('nas_conservation_tracker_search');
-  watchdog('ct debug', '101010101010101010');
+
 }
 
 /**
  * Re-index CT Species entity.
  */
 function nas_master_update_7318() {
-  watchdog('ct debug', '11 111 11 111');
-  $index = search_api_index_load('ct_species_index', TRUE);
-  watchdog('ct debug', '12 12 12 12 12 12');
-  $index->reindex();
-  watchdog('ct debug', '13 13 13 13 13 13');
-  search_api_index_items($index);
-  watchdog('ct debug', '14 14 14 14 14 14 14');
+// Commented temporarily. Do not delete!!!!
+//  $index = search_api_index_load('ct_species_index', TRUE);
+//  $index->reindex();
+//  search_api_index_items($index);
 }
 
