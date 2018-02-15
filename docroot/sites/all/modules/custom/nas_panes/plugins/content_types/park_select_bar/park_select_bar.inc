@@ -101,6 +101,9 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
     $parks_map_terms = array();
     foreach ($parks as $nid => $park) {
       $term = field_get_items('node', $park, 'field_state');
+      if (!$term) {
+        continue;
+      }
       $term = taxonomy_term_load($term[0]['tid']);
       $parks_map_terms[$term->tid]['tid'] = $term->tid;
       $parks_map_terms[$term->tid]['title'] = $term->name;

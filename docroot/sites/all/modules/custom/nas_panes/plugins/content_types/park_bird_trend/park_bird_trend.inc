@@ -98,11 +98,13 @@ function park_bird_trend_render($subtype, $conf, $args, $contexts) {
         ->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'parks_to_birds_relation')
         ->propertyCondition('status', NODE_PUBLISHED)
+        ->fieldCondition('field_park_reference', 'target_id', $node->nid, '=')
         ->fieldCondition('field_park_season', 'value', $season, '=')
         ->fieldCondition('field_park_trend', 'value', $parts[1], '=');
       $result = $efq->execute();
       $result = reset($result);
-      $content[$season]['tabs'][$parts[1]]['amount'] = count($result);
+      $result = ($result == FALSE) ? 0 : count($result);
+      $content[$season]['tabs'][$parts[1]]['amount'] = $result;
     }
   }
   $display = 'default';
@@ -120,10 +122,9 @@ function park_bird_trend_render($subtype, $conf, $args, $contexts) {
     '#view' => $view->render($display),
   );
   drupal_add_js(drupal_get_path('theme', 'nas') . '/js/vendor/owl-carousel/owl.carousel.min.js');
-  drupal_add_css(drupal_get_path('theme', 'nas') .'/js/vendor/owl-carousel/owl.carousel.css');
-  drupal_add_css(drupal_get_path('theme', 'nas') .'/js/vendor/owl-carousel/owl.theme.css');
+  drupal_add_css(drupal_get_path('theme', 'nas') . '/js/vendor/owl-carousel/owl.carousel.css');
+  drupal_add_css(drupal_get_path('theme', 'nas') . '/js/vendor/owl-carousel/owl.theme.css');
   drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/park_bird_trend/js/park_bird_trend.js');
-  //drupal_add_js(drupal_get_path('theme', 'nas') . '/prototypes/park-page/park-page.js');
   return $block;
 }
 
