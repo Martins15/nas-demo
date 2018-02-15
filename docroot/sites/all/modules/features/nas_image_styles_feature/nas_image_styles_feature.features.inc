@@ -325,6 +325,66 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: case_study_box_thumbnail.
+  $styles['case_study_box_thumbnail'] = array(
+    'label' => 'Case study box thumbnail',
+    'effects' => array(
+      203 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => '',
+          'height' => 118,
+          'upscale' => 0,
+        ),
+        'weight' => 2,
+      ),
+      205 => array(
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => 74,
+          'height' => 118,
+          'anchor' => 'center-center',
+        ),
+        'weight' => 3,
+      ),
+      206 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 4,
+      ),
+    ),
+  );
+
+  // Exported image style: case_study_image.
+  $styles['case_study_image'] = array(
+    'label' => 'Case study image',
+    'effects' => array(
+      198 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => '',
+          'height' => 363,
+          'upscale' => 0,
+        ),
+        'weight' => 2,
+      ),
+      200 => array(
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => 550,
+          'height' => 363,
+          'anchor' => 'center-center',
+        ),
+        'weight' => 3,
+      ),
+      201 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 4,
+      ),
+    ),
+  );
+
   // Exported image style: conservation_slideshow_featured_project.
   $styles['conservation_slideshow_featured_project'] = array(
     'label' => 'Conservation Slideshow featured project',
