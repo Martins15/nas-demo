@@ -53,7 +53,7 @@
       }
 
       // Padding is top, right, bottom, left as in css padding.
-      var p = [40, 50, 40, 40],
+      var p = [40, 50, 40, 50],
         w = settings.width || 800,
         h = settings.height || 400,
         // chart is 65% and 80% of overall height
@@ -94,7 +94,7 @@
         full_width = chart.w;
       }
 
-      x = d3.scale.linear().domain([0, bars]).range([0, range_width]),
+      x = d3.scale.linear().domain([0, bars]).range([10, range_width-10]),
         y = d3.scale.linear().domain([0, max]).range([chart.h, 0]),
         z = d3.scale.ordinal().range(range),
         div = (settings.id) ? settings.id : 'visualization';
@@ -275,6 +275,7 @@
           .attr("class", "chart-legend")
           .attr("transform", "translate(0, 55)");
 
+        var legend_position = 0;
         var keys = legend.selectAll("g")
           .data(key)
           .enter().append("g")
@@ -285,7 +286,8 @@
             else {
               var size = {width: 0};
             }
-            return "translate(" + ((i * 50) + size.width) + ", " + chart.h + ")"
+            legend_position += 40 + size.width;
+            return "translate(" + legend_position + ", " + chart.h + ")"
           });
 
         keys.append("rect")

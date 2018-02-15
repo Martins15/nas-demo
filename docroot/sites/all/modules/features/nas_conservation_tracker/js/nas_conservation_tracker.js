@@ -397,11 +397,13 @@
           }
 
           var z = 0;
-
           for (var j in rows) {
             rows[j].shift();
             for (var m in rows[j]) {
-              z += parseFloat(rows[j][m]);
+              var w = parseFloat(rows[j][m]);
+              if (!isNaN(w)) {
+                z += w;
+              }
             }
           }
           if (min == null) {
