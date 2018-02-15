@@ -4,7 +4,6 @@
  * @file
  * Park page template.
  */
-//dpm(get_defined_vars());
 ?>
 
 <!-- Park page layout begin -->

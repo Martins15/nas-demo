@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Template for Native Plants bar.
+ * Template for Park select bar.
  */
 ?>
 <div class="<?php print !empty($context_links) ? 'contextual-links-region' : ''; ?>"

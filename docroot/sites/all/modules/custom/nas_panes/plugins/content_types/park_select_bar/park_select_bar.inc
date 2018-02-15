@@ -13,7 +13,6 @@ $plugin = array(
   'render callback' => 'park_select_bar_render',
   'hook theme' => 'park_select_bar_theme',
   'no title override' => TRUE,
-  'required context' => new ctools_context_required(t('Node'), 'node'),
   'defaults' => array(
     'park_select_type' => '',
     'background_color' => '66a122',
@@ -86,7 +85,7 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
   if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
     $conf = array_merge($plugin['defaults'], $conf);
   }
-  $node = $contexts->data;
+  $node = menu_get_object();
   $efq = new EntityFieldQuery();
   $efq->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'park');
@@ -96,7 +95,9 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
   }
   $nids = array_keys($result['node']);
   $parks = entity_load('node', $nids);
-  unset($parks[$node->nid]);
+  if(!empty($node->nid)) {
+    unset($parks[$node->nid]);
+  }
   if ($conf['park_select_type'] == 'extended') {
     $parks_map_terms = array();
     foreach ($parks as $nid => $park) {
@@ -126,7 +127,7 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
     '#parks' => $parks,
     '#type' => $conf['park_select_type'],
     '#select_park_label' => $conf['select_park_label'],
-    '#current_park_title' => $node->title,
+    '#current_park_title' => !empty($node->title) ? $node->title : '',
   );
   drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/park_select_bar/js/park_select_bar.js');
   return $block;
