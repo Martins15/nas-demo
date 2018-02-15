@@ -4603,9 +4603,9 @@ function nas_master_update_7314() {
 function nas_master_update_7315() {
   variable_set('nas_conservation_tracker_endpoint', './sites/all/modules/features/nas_conservation_tracker/demo_assets');
   module_enable(array('nas_conservation_tracker'));
-  drupal_flush_all_caches();
+  //drupal_flush_all_caches();
   features_revert_module('nas_conservation_tracker');
-  drupal_flush_all_caches();
+  //drupal_flush_all_caches();
   module_load_install('nas_conservation_tracker');
   nas_conservation_tracker_custom_install();
   module_load_include('module', 'nas_conservation_tracker');
@@ -4617,7 +4617,7 @@ function nas_master_update_7315() {
  * Clear all caches.
  */
 function nas_master_update_7316() {
-  drupal_flush_all_caches();
+  //drupal_flush_all_caches();
 }
 
 /**
@@ -4634,7 +4634,7 @@ function nas_master_update_7317() {
 
 
   module_enable(array('nas_conservation_tracker_search'));
-  features_revert_module('nas_conservation_tracker_search');
+  //features_revert_module('nas_conservation_tracker_search');
 
 }
 
