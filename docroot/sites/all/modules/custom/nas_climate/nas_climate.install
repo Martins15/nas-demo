@@ -81,8 +81,8 @@ function nas_climate_install() {
     $term->field_country_us_ca[LANGUAGE_NONE][0]['value'] = $map[$term->name];
     taxonomy_term_save($term);
   }
-  
-  module_enable(array('park_bird_import'));
+
+  module_enable(array('park_bird_import', 'nas_park_import'));
 
   // Create engagement card.
   $embed_script_js = 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js
