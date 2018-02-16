@@ -366,7 +366,7 @@ function nas_park_feature_panelizer_defaults() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'reference' => variable_get('nas_park_feature_deafault_card', NULL),
+      'reference' => variable_get('nas_park_feature_default_card', NULL),
       'layout' => 'default',
       'form_build_id' => 'form-Dt4fCd6GAwUKlg07n_-J-737t1kBG-QE44Dz6uxb-Z0',
     );
