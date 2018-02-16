@@ -192,20 +192,8 @@
       marker.bindPopup(text, {
         minWidth: minWidth
       }).addTo(lMap);
-      // polygons[name] = new LPolygon(
-      //     name,
-      //     location.polygon,
-      //     location.flyway,
-      //     location
-      // );
     }
 
-    // var polygons = L.geoJson({
-    //   type: 'FeatureCollection',
-    //   features: Object.values(polygons)
-    // }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
-
-    //polygons.addTo(lMap);
 
     function getPolygonEvents(feature, layer) {
       // Placeholder.
@@ -260,8 +248,16 @@
 
     if (!lMap.initiated) {
       lMap.initiated = true;
-      // var $filterElement = $('#nas-conservation-tracker-landscapes-map-form
-      // input'); $filterElement.on('change', updateFilters); updateFilters();
+
+      $(window).resize(function() {
+        Drupal.settings.desktopZoom = Drupal.settings.desktopZoom || lMap.getZoom();
+        if ($( window ).width() < 768) {
+          lMap.setZoom(2);
+        }
+        else {
+          lMap.setZoom(Drupal.settings.desktopZoom);
+        }
+      });
 
       var flywayPolygons = [];
       for (var flyway in Drupal.settings.nasCtUnitData) {

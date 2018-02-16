@@ -660,6 +660,11 @@ function nas_conservation_tracker_csv_cache_update($json_data) {
         $csv = nas_conservation_tracker_csv_get_sites($tab, $json_data);
         if (!empty($csv)) {
           foreach ($csv as $fields) {
+            foreach($fields as $key => $field) {
+              if (is_array($field)) {
+                $fields[$key] = implode(', ', $field);
+              }
+            }
             fputcsv($file, $fields);
           }
         }
