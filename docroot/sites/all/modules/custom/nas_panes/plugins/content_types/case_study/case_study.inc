@@ -135,8 +135,8 @@ function case_study_edit_render($subtype, $conf, $args, $contexts) {
     $case_study_image = theme('image_style', array(
       'style_name' => 'case_study_image',
       'path' => nas_alters_local_image_uri($case_study_file->uri),
-      'alt' => $case_study_file->field_file_image_alt_text,
-      'title' => $case_study_file->field_file_image_title_text,
+      'alt' => !empty($case_study_file->alt) ? $case_study_file->alt : '',
+      'title' => !empty($case_study_file->title) ? $case_study_file->title : '',
     ));
     $case_study_image_caption = _nas_panes_format_image_attribution($case_study_file);
   }
@@ -145,8 +145,8 @@ function case_study_edit_render($subtype, $conf, $args, $contexts) {
     $box_image = theme('image_style', array(
       'style_name' => 'case_study_box_thumbnail',
       'path' => nas_alters_local_image_uri($file->uri),
-      'alt' => $file->field_file_image_alt_text,
-      'title' => $file->field_file_image_title_text,
+      'alt' => !empty($file->alt) ? $file->alt : '',
+      'title' => !empty($file->title) ? $file->title : '',
     ));
   }
   $box = $conf['box'];
