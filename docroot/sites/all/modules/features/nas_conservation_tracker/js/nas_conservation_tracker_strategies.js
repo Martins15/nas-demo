@@ -41,7 +41,6 @@
 
   Drupal.behaviors.nasCtStrategies = {
     attach: function (context, settings) {
-      //alert('fdgfdf');
       var app = angular.module('nasCtStrategies', ['ui.bootstrap'])
           .config(['$locationProvider', function ($locationProvider) {
             $locationProvider.hashPrefix('');
