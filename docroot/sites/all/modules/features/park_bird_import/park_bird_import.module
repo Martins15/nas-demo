@@ -10,7 +10,7 @@ include_once 'park_bird_import.features.inc';
  * Implements hook_feeds_after_parse().
  */
 function park_bird_import_feeds_after_parse(FeedsSource $source, FeedsParserResult $result) {
-  if (empty($result->items)) {
+  if (empty($result->items) || $source->id != 'parks_to_birds') {
     return;
   }
   // Find clones

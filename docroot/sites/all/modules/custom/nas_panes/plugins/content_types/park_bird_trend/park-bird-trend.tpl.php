@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Template for Native Plants bar.
+ * Template for Park Bird trend.
  */
 ?>
 <div class="<?php print !empty($context_links) ? 'contextual-links-region' : ''; ?>">
