@@ -15,7 +15,7 @@ function nas_park_landing_page_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Park Landing page';
   $page->admin_description = '';
-  $page->path = 'climateproject';
+  $page->path = 'climate/national-parks';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();

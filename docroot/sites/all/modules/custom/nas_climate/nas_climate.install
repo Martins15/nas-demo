@@ -140,6 +140,9 @@ function nas_climate_install() {
     ),
     'nas_park_feature' => array(
       'views_default',
+    ),
+    'nas_site_template_feature' => array(
+      'page_manager_handlers',
     )
   ));
 
