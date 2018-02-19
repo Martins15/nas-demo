@@ -13,14 +13,14 @@
     <div class="hero-image">
       <?php print $content['top']; ?>
     </div>
+    <?php if (!empty($content['header_hero_attr_text'])): ?>
+        <div class="hero-caption">
+            <div class="hero-attribution-fullscreen row">
+                <p><?php print $content['header_hero_attr_text']; ?></p>
+            </div>
+        </div>
+    <?php endif; ?>
   </div>
-  <?php if (!empty($content['header_hero_attr_text'])): ?>
-    <div class="hero-caption">
-      <div class="hero-attribution-fullscreen row">
-        <p><?php print $content['header_hero_attr_text']; ?></p>
-      </div>
-    </div>
-  <?php endif; ?>
 </div>
 <!-- /Region: top -->
 
