@@ -67,6 +67,15 @@
           </div>
         </div>
       </div>
+      <div style="background: white" class="rating-wrap map-item large-8">
+        <div class="map-item__inner-help">
+          <div class="rating-wrap__title"><h4 class="map-title">Rate this report</h4></div>
+          <div id="rating-ajax-wrapper">
+            <p>Please comment on the quality of this report. Suggestions for improvement are much appreciated. All comments will be anonymous unless you opt to provide your name.</p>
+            <?php print $rating_form; ?>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </aside>

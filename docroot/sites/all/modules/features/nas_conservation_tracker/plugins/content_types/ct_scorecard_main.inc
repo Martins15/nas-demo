@@ -112,9 +112,14 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   ];
 
   $form = drupal_get_form('nas_conservation_tracker_map_form');
+  $rating_form = drupal_get_form('nas_conservation_tracker_rating_form');
+
+  $rating_form['score_card']['#value'] = $context->data->title;
+  $rating_form['score_card_nid']['#value'] = $context->data->nid;
 
   $vars = [
     'form' => render($form),
+    'rating_form' => render($rating_form),
     'map' => render($map),
     'actions' => d3_draw($actions_chart),
     'objectives' => d3_draw($objectives_chart),
@@ -148,6 +153,91 @@ function nas_conservation_tracker_map_form($form, &$form_state) {
     ],
   ];
   return $form;
+}
+
+function nas_conservation_tracker_rating_form($form, &$form_state) {
+  $form = [
+    '#action' => '/conservation-tracker/ajax/scorecard-rating',
+    'rating' => [
+      '#type' => 'radios',
+      '#options' => [
+        1 => t('Good'),
+        0 => t('Bad'),
+      ],
+    ],
+    'score_card' => [
+      '#type' => 'hidden',
+    ],
+    'score_card_nid' => [
+      '#type' => 'hidden',
+    ],
+    'feedback' => [
+      '#type' => 'textarea',
+      '#attributes' => [
+        'style' => 'display: none;',
+      ],
+    ],
+    'submit' => [
+      '#type' => 'submit',
+      '#value' => t('Submit'),
+      '#ajax' => array(
+        'callback' => 'nas_conservation_tracker_rating_form_ajax_callback',
+      ),
+      '#attributes' => [
+        'class' => [
+          'button',
+          'tomato',
+        ],
+        'style' => 'display: none;',
+      ],
+    ],
+  ];
+  return $form;
+}
+
+function nas_conservation_tracker_rating_form_submit($form, &$form_state) {
+  $user = $GLOBALS['user'];
+  $nid = db_select('webform', 'wf')
+    ->fields('wf', array('nid'))
+    ->condition('machine_name', 'score_card_rating')
+    ->execute()
+    ->fetchField();
+  if ($nid) {
+    $node = node_load($nid);
+  }
+
+  $data = array(
+    'score_card' => $form_state['values']['score_card'],
+    'score_card_nid' => $form_state['values']['score_card_nid'],
+    'rating' => $form_state['values']['rating'],
+    'feedback' => $form_state['values']['feedback'],
+  );
+
+  module_load_include('inc', 'webform', 'webform.module');
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+
+  $data = _webform_client_form_submit_flatten($node, $data);
+  $data = webform_submission_data($node, $data);
+
+  $submission = (object) array(
+    'nid' => $nid,
+    'uid' => $user->uid,
+    'sid' => NULL,
+    'submitted' => REQUEST_TIME,
+    'completed' => REQUEST_TIME,
+    'remote_addr' => ip_address(),
+    'is_draft' => FALSE,
+    'data' => $data,
+  );
+
+  $sid = webform_submission_insert($node, $submission);
+}
+
+function nas_conservation_tracker_rating_form_ajax_callback(&$form, &$form_state) {
+  $commands = array();
+  $output = t('Your feedback has been submitted.');
+  $commands[] = ajax_command_replace('#rating-ajax-wrapper', $output);
+  return array('#type' => 'ajax', '#commands' => $commands);
 }
 
 /**
