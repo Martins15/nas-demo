@@ -40,8 +40,10 @@ function nas_conservation_tracker_scorecard_carousel_render($subtype, $conf, $ar
         'href' => nas_conservation_tracker_scorecard_url($item['id']),
       );
     }
-    $owl = '//cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js';
-    drupal_add_js(variable_get('nas_conservation_tracker_owl', $owl));
+    //$owl = '//cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js';
+    //variable_get('nas_conservation_tracker_owl', $owl)
+    $owl = drupal_get_path('theme', 'nas') . '/js/vendor/owl-carousel/owl.carousel.min.js';
+    drupal_add_js($owl);
   }
   $block->content = theme('ct_scorecard_carousel', $vars);
 

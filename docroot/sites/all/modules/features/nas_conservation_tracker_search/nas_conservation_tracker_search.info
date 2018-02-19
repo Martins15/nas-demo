@@ -1,0 +1,11 @@
+name = NAS Conservation Tracker Search
+core = 7.x
+package = NAS
+version = 7.x-1.0
+dependencies[] = entity
+dependencies[] = nas_conservation_tracker
+dependencies[] = search_api
+dependencies[] = search_api_db
+features[features_api][] = api:2
+features[search_api_index][] = ct_species_index
+features[search_api_server][] = db_search

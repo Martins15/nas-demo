@@ -62,7 +62,7 @@
                                                     Progress</h4></div>
                                         </div>
                                     </div>
-                                    <p>{{tab.subTabs.overview.description}}</p>
+                                    <p  ng-bind-html="tab.subTabs.overview.description"></p>
                                 </div>
                             </div>
                             <div ng-if="tab.subTabs.goals.goals" ng-show="isSet(2)" ng-class="{'js-show-wrap' : toggle_wrap}">
@@ -71,10 +71,8 @@
                                 <ul>
                                     <li class="drop-down-header" ng-repeat="goalGroup in tab.subTabs.goals.goals">
                                         <span class="drop-down-header__item item-header" ng-click="toggle = !toggle" ng-class="{'js-show' : toggle}">{{goalGroup.group}}<i></i></span>
-                                        <ul class="second-level-hide-style" ng-if="goalGroup.list">
-                                            <li ng-repeat="goal in goalGroup.list">
-                                                {{goal}}
-                                            </li>
+                                        <ul class="second-level-hide-style" ng-if="goalGroup.list" ng-repeat="goal in goalGroup.list">
+                                            <li ng-bind-html="goal" ></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -82,37 +80,29 @@
                             <div ng-if="tab.subTabs.partners.list" ng-show="isSet(3)" ng-class="{'js-show-wrap' : toggle_wrap}">
                                 <i class="plus" ng-click="toggle_wrap = !toggle_wrap"></i>
                                 <h5>{{tab.subTabs.partners.title}}</h5>
-                                <ul>
-                                    <li ng-repeat="partner in tab.subTabs.partners.list">
-                                        {{partner}}
-                                    </li>
+                                <ul ng-repeat="partner in tab.subTabs.partners.list">
+                                    <li ng-bind-html="partner"></li>
                                 </ul>
                             </div>
                             <div ng-if="tab.subTabs.initiatives.list" ng-show="isSet(4)" ng-class="{'js-show-wrap' : toggle_wrap}">
                                 <i class="plus" ng-click="toggle_wrap = !toggle_wrap"></i>
                                 <h5>{{tab.subTabs.initiatives.title}}</h5>
-                                <ul>
-                                    <li ng-repeat="initiative in tab.subTabs.initiatives.list">
-                                        {{initiative}}
-                                    </li>
+                                <ul ng-repeat="initiative in tab.subTabs.initiatives.list">
+                                    <li ng-bind-html="initiative"></li>
                                 </ul>
                             </div>
                             <div ng-if="tab.subTabs.priority_species.list" ng-show="isSet(5)" ng-class="{'js-show-wrap' : toggle_wrap}">
                                 <i class="plus" ng-click="toggle_wrap = !toggle_wrap"></i>
                                 <h5>{{tab.subTabs.priority_species.title}}</h5>
-                                <ul class="two-column-content">
-                                    <li ng-repeat="species in tab.subTabs.priority_species.list">
-                                        {{species}}
-                                    </li>
+                                <ul class="two-column-content"  ng-repeat="species in tab.subTabs.priority_species.list">
+                                    <li ng-bind-html="species"></li>
                                 </ul>
                             </div>
                             <div ng-if="tab.subTabs.priority_landscapes.list" ng-show="isSet(6)" ng-class="{'js-show-wrap' : toggle_wrap}">
                                 <i class="plus" ng-click="toggle_wrap = !toggle_wrap"></i>
                                 <h5>{{tab.subTabs.priority_landscapes.title}}</h5>
-                                <ul>
-                                    <li ng-repeat="landscape in tab.subTabs.priority_landscapes.list">
-                                        {{landscape}}
-                                    </li>
+                                <ul ng-repeat="landscape in tab.subTabs.priority_landscapes.list">
+                                    <li ng-bind-html="landscape"></li>
                                 </ul>
                             </div>
                         </div>

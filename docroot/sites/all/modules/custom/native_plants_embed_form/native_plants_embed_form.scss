@@ -1,0 +1,242 @@
+.native-plants-everyaction {
+  .ngp-form.at {
+    &.ngp-form {
+      font-family: "Source Sans Pro";
+      max-width: none;
+      margin: auto;
+    }
+
+    .at-title {
+      display: none;
+    }
+
+    form {
+      position: relative;
+    }
+
+    fieldset.at-fieldset {
+      padding: 18px 7.3% 15px;
+    }
+
+    fieldset legend.at-legend {
+      font-size: 28px;
+      margin: 0;
+      font-family: "Source Sans Pro";
+      padding-top: 16px;
+      line-height: 1;
+      background: transparent;
+    }
+
+    .at-text {
+      font-size: 0;
+    }
+
+    .at-submit.btn-at-primary {
+      width: 100%;
+      background: #F15936;
+      border-radius: 6px;
+      float: none;
+      margin: 0;
+      padding: 5px 0;
+      text-transform: none;
+      font-family: "Source Sans Pro";
+      font-size: 20px;
+    }
+
+    .at-row {
+      input {
+        color: #76736c;
+        &[type="email"],
+        &[type="tel"] {
+          border-radius: 6px;
+          margin-bottom: 16px;
+          font-family: "Source Sans Pro";
+          font-size: 18px;
+          height: 37px;
+        }
+        &[type="email"]:focus,
+        &[type="tel"]:focus {
+          background: #fff;
+          border-color: #c4cfdd;
+        }
+      }
+      > [class^="at-"] {
+        margin: 0;
+        min-width: 0;
+      }
+      .EmailAddress {
+        small:nth-child(2) {
+          display: none;
+        }
+      }
+    }
+
+    .at_pp,
+    .at_home,
+    .at-form-submit,
+    .PostalCode {
+      width: 48%;
+    }
+
+    .at_pp,
+    .PostalCode {
+      float: left;
+    }
+
+    .description {
+      line-height: 1.6;
+    }
+
+    .at_home,
+    .at-form-submit {
+      float: right;
+      padding: 0;
+    }
+
+    .at-description {
+      clear: both;
+      font-size: 15px;
+    }
+
+    .at_home,
+    .at_pp {
+      height: 42px;
+    }
+
+    .at_pp {
+      padding-top: 27px;
+    }
+
+    div.at-row.at-description .at_pp a {
+      font-size: 14px;
+    }
+
+    .at_home {
+      padding-left: 11.2%;
+      background-position: 10px 50%;
+      background-repeat: no-repeat;
+      background-size: 26%;
+    }
+
+    .at_home span {
+    }
+
+    .at_home a {
+      height: 0;
+      display: block;
+      padding-top: 43px;
+      position: relative;
+      overflow: hidden;
+      background-position: 0 100%;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    &.square {
+      .at-inner {
+        max-width: 360px;
+        min-width: 260px;
+        min-height: 320px;
+      }
+      .PostalCode input {
+        margin-bottom: 10px;
+      }
+    }
+
+    &.rectangle {
+      .at-inner {
+        max-width: 600px;
+        min-width: 560px;
+        min-height: 175px;
+      }
+      .at-fields {
+        margin-top: -6px;
+      }
+      fieldset.at-fieldset {
+        padding-left: 3.7%;
+        padding-right: 3.7%;
+      }
+      fieldset legend.at-legend {
+        padding-top: 6px;
+      }
+      .at-row input[type="email"],
+      .at-row input[type="tel"] {
+        margin-bottom: 12px;
+      }
+      .PostalCode,
+      .at-form-submit {
+        margin-left: 1.5%;
+      }
+      .description,
+      .EmailAddress {
+        width: 55%;
+      }
+      .PostalCode {
+        width: 27.5%;
+      }
+      .at-form-submit {
+        width: 12%;
+      }
+      .at_home,
+      .at_pp {
+        width: 14.9%;
+        margin-left: 2.5%;
+      }
+      .at_home {
+        width: 25%;
+      }
+      .at_home,
+      .description,
+      .at_pp,
+      .at-form-submit,
+      .EmailAddress,
+      .PostalCode {
+        float: left;
+      }
+      .at_home {
+        padding-left: 4.4%;
+        background-position: 2px -3px;
+      }
+    }
+
+    &.white {
+      .at_home {
+        background-image: url(../../../themes/custom/nas/img/crane_small_black.png);
+        a {
+          background-image: url("../../../themes/custom/nas/img/wordmark-black-mobile-small.png");
+          color: #000;
+        }
+      }
+    }
+    &.black {
+      .at-inner {
+        background: #000;
+        color: #fff;
+      }
+      .at_home {
+        background-image: url(../../../themes/custom/nas/img/crane_small_white.png);
+        a {
+          background-image: url("../../../themes/custom/nas/img/wordmark-white-mobile-small.png");
+          color: #fff;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+
+      .at-row,
+      .at_home a,
+      fieldset legend {
+        color: #fff;
+      }
+    }
+
+    .FooterHtml {
+      margin: 0;
+    }
+  }
+}
+
+.content.thankYou {
+  display: none;
+}

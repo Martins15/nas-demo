@@ -122,6 +122,7 @@
       var geoData = Drupal.settings.nasCtLandscapesData[name].geoData;
 
       for (var j = 0; j < geoData.length; j++) {
+
         if (geoData[j].type == 'point') {
           location.latitude = geoData[j].data[1];
           location.longitude = geoData[j].data[0];
@@ -132,18 +133,22 @@
       }
 
 
-      if (location.latitude == '' || location.longitude == '') {
+      if (!location.latitude || location.latitude == '' || !location.longitude || location.longitude == '') {
         continue;
       }
+
       location.latLon = [
         parseFloat(location.latitude),
         parseFloat(location.longitude),
       ];
 
       var dot = L.divIcon({iconSize: [12, 12], className: 'ct-leaflet-site'});
+
       var marker = L.marker(location.latLon, {icon: dot});
       var text = '<div class="text-wrap bg-white">' + location.name + '</div>',
           minWidth = 50;
+
+
       if (location.imagePreview) {
         text = '<img class="landscape-popup-preview" src="' + location.imagePreview + '" alt="" />' + text;
         minWidth = 300;
@@ -189,20 +194,8 @@
       marker.bindPopup(text, {
         minWidth: minWidth
       }).addTo(lMap);
-      // polygons[name] = new LPolygon(
-      //     name,
-      //     location.polygon,
-      //     location.flyway,
-      //     location
-      // );
     }
 
-    // var polygons = L.geoJson({
-    //   type: 'FeatureCollection',
-    //   features: Object.values(polygons)
-    // }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
-
-    //polygons.addTo(lMap);
 
     function getPolygonEvents(feature, layer) {
       // Placeholder.
@@ -257,8 +250,16 @@
 
     if (!lMap.initiated) {
       lMap.initiated = true;
-      // var $filterElement = $('#nas-conservation-tracker-landscapes-map-form
-      // input'); $filterElement.on('change', updateFilters); updateFilters();
+
+      $(window).resize(function() {
+        Drupal.settings.desktopZoom = Drupal.settings.desktopZoom || lMap.getZoom();
+        if ($( window ).width() < 768) {
+          lMap.setZoom(2);
+        }
+        else {
+          lMap.setZoom(Drupal.settings.desktopZoom);
+        }
+      });
 
       var flywayPolygons = [];
       for (var flyway in Drupal.settings.nasCtUnitData) {

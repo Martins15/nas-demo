@@ -21,7 +21,7 @@
       overflow: hidden;
       position: relative;
       width: 100%;
-      img {
+      img:not(.articleImageLazyLoad-processed) {
         position: absolute;
         top: 0;
         left: 0;

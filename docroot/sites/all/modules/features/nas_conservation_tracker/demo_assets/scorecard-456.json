@@ -94,11 +94,18 @@
         }
       ],
       "chart": {
+        "title": "Mean Bird Friendliness Index",
         "type": "data",
-        "chart_type": "groupedbar",
-        "value_type": "Mean Bird Friendliness Index",
-        "key_type": "Ranch Name",
-        "operation": "avg"
+        "chart_type": "bar",
+        "value_type": "Acreage",
+        "key_type": "Year",
+        "operation": "sum",
+        "per_site": true,
+        "tooltip": true,
+        "line_y": true,
+        "legend": ["2016", "2017", "2018 - Data collection pending"],
+        "colors": ["#74c476", "#41ab5d", "#cccccc"],
+        "count_copy": "Ranches in selected/visible area(s): "
       }
     },
     "partners": {
@@ -164,7 +171,7 @@
         "latitude": "37.33228247",
         "longitude": "-93.99242106",
         "state": "MO",
-        "flyway": "Central",
+        "flyway": "Mississippi",
         "actions": [],
         "data": [
           {
@@ -439,9 +446,506 @@
     "sites":
     []
   },
-  "responses": {
+  "response": {
     "sites":
-    []
+
+    [
+      {
+        "id": 0,
+        "name": "Dallas May Ranch",
+        "latitude": "38.176227",
+        "longitude": "-102.500903",
+        "state": "CO",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.71",
+              "",
+              ""
+            ]
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Kiowa Creek Ranch",
+        "latitude": "39.07118538",
+        "longitude": "-104.6380456",
+        "state": "CO",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.143",
+              "0.5",
+              "0.5"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Reiser Ranch",
+        "latitude": "47.250578",
+        "longitude": "-100.878474",
+        "state": "ND",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.229",
+              "0.229"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Wild Prairie Beef ",
+        "latitude": "46.081614",
+        "longitude": "-101.599159",
+        "state": "ND",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.206",
+              "0.206"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Ranney Ranch",
+        "latitude": "34.17624217",
+        "longitude": "-105.4762029",
+        "state": "NM",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.437",
+              "0.437"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "33 Ranch ",
+        "latitude": "43.626393",
+        "longitude": "-101.1076852",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.844",
+              "0.844"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Concord Ranch",
+        "latitude": "45.45306102",
+        "longitude": "-98.61901804",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.811",
+              "0.811"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Guptill Ranch",
+        "latitude": "43.99422839",
+        "longitude": "-102.0592182",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.296",
+              "0.296"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Sunrise Ranch",
+        "latitude": "43.349283",
+        "longitude": "-103.8361455",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.217",
+              "0.217"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "Downey & Henderson Ranches",
+        "latitude": "44.3838786",
+        "longitude": "-104.747626",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.372",
+              "0.29",
+              "0.29"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "name": "Fiddleback Ranch",
+        "latitude": "43.49064761",
+        "longitude": "-104.9037471",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.328",
+              "0.365",
+              "0.365"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "Pellatz Ranch",
+        "latitude": "43.352658",
+        "longitude": "-105.194523",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.518",
+              "0.271",
+              "0.271"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Reed Ranch",
+        "latitude": "43.29255308",
+        "longitude": "-105.1385573",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.442",
+              "0.235",
+              "0.235"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "name": "Riehle Ranch",
+        "latitude": "42.64662875",
+        "longitude": "-105.2143301",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.249",
+              "0.383",
+              "0.383"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "name": "Robinson Ranch",
+        "latitude": "42.94067837",
+        "longitude": "-105.2666021",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.238",
+              "0.311",
+              "0.311"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "partners": [
     {

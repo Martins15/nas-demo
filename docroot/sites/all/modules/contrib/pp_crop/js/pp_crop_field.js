@@ -1,5 +1,5 @@
 (function ($) {
-
+  Drupal.fid_counter = 0;
   Drupal.behaviors.ppCropField = {
     attach: function(context) {
       /**
@@ -35,10 +35,11 @@
           return;
         }
 
+        Drupal.fid_counter = ++Drupal.fid_counter;
         // Create a link "Manage thumbnails" and attach click event handler.
-        var link = '<a href="#" class="manage-thumbnails button" id="manage-thumbnails-link-' + fid + '">' + Drupal.t('Manage thumbnails') + '</a>';
+        var link = '<a href="#" class="manage-thumbnails button" id="manage-thumbnails-link-' + fid + '-' + Drupal.fid_counter + '">' + Drupal.t('Manage thumbnails') + '</a>';
         $(this).after(link);
-        $('#manage-thumbnails-link-' + fid).click(function(event){
+        $('#manage-thumbnails-link-' + fid + '-' + Drupal.fid_counter).click(function(event){
           settings = $theme_variables_element.data('theme-variables');
           $.ajax({
             async: false,
@@ -50,7 +51,7 @@
 
               // Close dialog button click event.
               $('.dialog-close').once('ppCropField').click(function(){
-                $('.manage-thumbnails-popup').dialog('close');
+                $('#' + popup_block_id).dialog('close');
                 return false;
               });
 

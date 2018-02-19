@@ -13,7 +13,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__article_featured__file_field_colorbox';
-  $file_display->weight = 0;
+  $file_display->weight = -30;
   $file_display->status = FALSE;
   $file_display->settings = array(
     'colorbox_node_style' => '',
@@ -29,7 +29,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__article_featured__file_field_file_default';
-  $file_display->weight = 0;
+  $file_display->weight = -33;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__article_featured__file_field_file_default'] = $file_display;
@@ -37,7 +37,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__article_featured__file_field_file_download_link';
-  $file_display->weight = 0;
+  $file_display->weight = -34;
   $file_display->status = FALSE;
   $file_display->settings = array(
     'text' => 'Download [file:name]',
@@ -47,7 +47,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__article_featured__file_field_file_table';
-  $file_display->weight = 0;
+  $file_display->weight = -37;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__article_featured__file_field_file_table'] = $file_display;
@@ -55,7 +55,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__article_featured__file_field_file_url_plain';
-  $file_display->weight = 0;
+  $file_display->weight = -36;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__article_featured__file_field_file_url_plain'] = $file_display;
@@ -63,7 +63,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__article_featured__file_field_image';
-  $file_display->weight = 0;
+  $file_display->weight = -31;
   $file_display->status = TRUE;
   $file_display->settings = array(
     'image_style' => 'article_featured',
@@ -74,9 +74,11 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__article_featured__file_field_media_large_icon';
-  $file_display->weight = 0;
+  $file_display->weight = -35;
   $file_display->status = FALSE;
-  $file_display->settings = '';
+  $file_display->settings = array(
+    'image_style' => '',
+  );
   $export['image__article_featured__file_field_media_large_icon'] = $file_display;
 
   $file_display = new stdClass();
@@ -634,7 +636,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_colorbox';
-  $file_display->weight = 0;
+  $file_display->weight = -30;
   $file_display->status = TRUE;
   $file_display->settings = array(
     'colorbox_node_style' => 'bean_wysiwyg_full_width',
@@ -650,7 +652,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_file_default';
-  $file_display->weight = 0;
+  $file_display->weight = -31;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__nas_wysiwyg_image__file_field_file_default'] = $file_display;
@@ -658,7 +660,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_file_download_link';
-  $file_display->weight = 0;
+  $file_display->weight = -39;
   $file_display->status = FALSE;
   $file_display->settings = array(
     'text' => 'Download [file:name]',
@@ -668,7 +670,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_file_table';
-  $file_display->weight = 0;
+  $file_display->weight = -44;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__nas_wysiwyg_image__file_field_file_table'] = $file_display;
@@ -676,7 +678,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_file_url_plain';
-  $file_display->weight = 0;
+  $file_display->weight = -45;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__nas_wysiwyg_image__file_field_file_url_plain'] = $file_display;
@@ -684,7 +686,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_image';
-  $file_display->weight = 0;
+  $file_display->weight = -32;
   $file_display->status = TRUE;
   $file_display->settings = array(
     'image_style' => '',
@@ -695,9 +697,11 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_media_large_icon';
-  $file_display->weight = 0;
+  $file_display->weight = -41;
   $file_display->status = FALSE;
-  $file_display->settings = '';
+  $file_display->settings = array(
+    'image_style' => '',
+  );
   $export['image__nas_wysiwyg_image__file_field_media_large_icon'] = $file_display;
 
   $file_display = new stdClass();

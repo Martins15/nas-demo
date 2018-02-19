@@ -124,6 +124,7 @@ function nas_conservation_tracker_libraries_info() {
     'ct_circular' => 'CT Circular',
     'ct_bar' => 'CT Bar Graph',
     'ct_bar_horizontal' => 'CT Bar Horizontal Graph',
+    'ct_tooltip' => 'CT Tooltip',
   );
 
   foreach ($libs as $filename => $name) {
@@ -234,13 +235,26 @@ function nas_conservation_tracker_get_json($path) {
   if (empty($json_data)) {
     $json_url = rtrim(variable_get('nas_conservation_tracker_endpoint', $demo_url), '\/') . '/' . $path . '.json';
     watchdog('ct debug', 'JSON URL - ' . $json_url);
-    $request = drupal_http_request($json_url);
-    $json_data = drupal_json_decode($request->data);
-    if (strpos($path, 'scorecard') !== FALSE) {
-      nas_conservation_tracker_csv_cache_update($json_data);
+    if (strpos($json_url, 'http') === 0) {
+      $request = drupal_http_request($json_url);
+      $json_data = drupal_json_decode($request->data);
     }
-    if (variable_get('nas_conservation_tracker_api_cache_enabled', TRUE)) {
-      cache_set($cid, $json_data);
+    else if (file_exists($json_url)) {
+      $file = file_get_contents($json_url);
+      $json_data = drupal_json_decode($file);
+    }
+    if ($json_data === FALSE) {
+      watchdog('ct debug', 'CAN NOT BE PARSED DATA - ' . print_r($json_data, TRUE));
+    }
+
+
+    if (!empty($json_data)) {
+      if (strpos($path, 'scorecard') !== FALSE) {
+        nas_conservation_tracker_csv_cache_update($json_data);
+      }
+      if (variable_get('nas_conservation_tracker_api_cache_enabled', TRUE)) {
+        cache_set($cid, $json_data);
+      }
     }
   }
   return $json_data;
@@ -343,7 +357,7 @@ function nas_get_scorecard_by_id($id) {
  * @param $langcode
  */
 function nas_conservation_tracker_node_view($node, $view_mode, $langcode) {
-  if ($node->type == 'ct_scorecard' && $view_mode == 'full') {
+  if ($node->type == 'ct_scorecard' && ($view_mode == 'full' || $view_mode == 'page_manager')) {
     $arg = arg();
     $path = array_pop($arg);
     $tabs = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'response', 'partners'));
@@ -613,6 +627,9 @@ function nas_conservation_tracker_include_angular() {
       'angularjs-storage',
       'angularjs-scroll',
     ],
+    'system' => [
+      'jquery.cookie',
+    ]
   ];
   foreach ($libs as $module => $libs) {
     foreach ($libs as $lib) {
@@ -645,15 +662,24 @@ function nas_conservation_tracker_csv_cache_update($json_data) {
   foreach ($tabs as $tab) {
     if (!in_array($tab, $disabled)) {
       $filename = nas_conservation_tracker_csv_name($tab, $json_data['id'], TRUE);
-      if (file_exists($filename)) {
-        drupal_unlink($filename);
+      if (!empty($filename)) {
+        if (file_exists($filename)) {
+          drupal_unlink($filename);
+        }
+        $file = fopen($filename, 'w');
+        $csv = nas_conservation_tracker_csv_get_sites($tab, $json_data);
+        if (!empty($csv)) {
+          foreach ($csv as $fields) {
+            foreach($fields as $key => $field) {
+              if (is_array($field)) {
+                $fields[$key] = implode(', ', $field);
+              }
+            }
+            fputcsv($file, $fields);
+          }
+        }
+        fclose($file);
       }
-      $file = fopen($filename, 'w');
-      $csv = nas_conservation_tracker_csv_get_sites($tab, $json_data);
-      foreach ($csv as $fields) {
-        fputcsv($file, $fields);
-      }
-      fclose($file);
     }
   }
 }
@@ -662,7 +688,10 @@ function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
   $head = array(t('Name'), t('Latitude'), t('Longitude'), t('Flyway'), t('State'));
   $csv = array('head' => $head);
   $max = 0;
-  $chart_type = $json_data['settings'][$tab]['chart']['type'];
+  $chart_type = (isset($json_data['settings'][$tab]['chart']['type']))? $json_data['settings'][$tab]['chart']['type'] : 'data';
+  if (empty($json_data[$tab]['sites'])) {
+    return array();
+  }
   foreach ($json_data[$tab]['sites'] as $key => $site) {
     $site_info = array(
       $site['name'],
@@ -700,10 +729,10 @@ function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
           $data['key_type']['name'] == $json_data['settings']['response']['chart']['key_type']) {
           $csvkey = $key . $datakey;
           $csv[$csvkey] = $site_info;
-          if (!empty($data['key'])) {
+          if (isset($data['key'])) {
             $csv[$csvkey][] = $data['key'];
           }
-          if (!empty($data['value'])) {
+          if (isset($data['value'])) {
             $csv[$csvkey][] = $data['value'];
           }
         }
@@ -716,8 +745,8 @@ function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
     }
   }
   elseif ($chart_type == 'data') {
-    $csv['head'][] = t($json_data['settings'][$tab]['chart']['key_type']);
-    $csv['head'][] = t($json_data['settings'][$tab]['chart']['value_type']);
+    $csv['head'][] = !empty($json_data['settings'][$tab]['chart']['key_type']) ? t($json_data['settings'][$tab]['chart']['key_type']) : '';
+    $csv['head'][] = !empty($json_data['settings'][$tab]['chart']['value_type']) ? t($json_data['settings'][$tab]['chart']['value_type']) : '';
   }
   return $csv;
 }

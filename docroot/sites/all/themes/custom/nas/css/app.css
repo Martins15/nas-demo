@@ -9538,7 +9538,7 @@ body.touch .primary-sub-nav-index {
   position: relative;
   width: 100%;
 }
-.article-text figure:not(.article-video-container) .ll-wrapper img {
+.article-text figure:not(.article-video-container) .ll-wrapper img:not(.articleImageLazyLoad-processed) {
   position: absolute;
   top: 0;
   left: 0;
@@ -10542,6 +10542,9 @@ body.black-bg .slideshow {
   .slideshow.standalone {
     margin-top: -60px;
   }
+}
+.slideshow.hidden {
+  visibility: hidden;
 }
 
 .hero-image .slideshow img {
@@ -17848,6 +17851,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-weight: 600;
 }
 .bird-page.body-item .title-wrap__print {
+  margin-top: 25px;
+  float: right;
   color: #9b9b9b;
   font-size: 14px;
   text-transform: uppercase;
@@ -18484,6 +18489,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .tabs-ng-content .row {
   position: relative;
+  min-height: 400px;
 }
 .tabs-ng-content .js-preloader {
   position: absolute;
@@ -18500,7 +18506,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: absolute;
   z-index: 2;
   top: 30%;
-  left: 50%;
+  left: 30%;
   width: 150px;
   height: 150px;
   transform: translate(-50%, -50%);
@@ -18508,6 +18514,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-radius: 100%;
   -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
   animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+@media only screen and (min-width: 768px) {
+  .tabs-ng-content .js-preloader:after {
+    left: 50%;
+  }
 }
 @media only screen and (min-width: 768px) {
   .tabs-ng-content {
@@ -18848,7 +18859,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .wrap-map-diagram {
-    min-height: 800px;
+    min-height: 900px;
   }
 }
 
@@ -19867,6 +19878,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-radius: 50px;
   background: transparent;
 }
+.ct-landscapes-main .wrap-map-diagram .leaflet-pane {
+  z-index: inherit;
+}
 .ct-landscapes-main .leaflet-popup .leaflet-popup-content-wrapper {
   background: transparent;
   box-shadow: none;
@@ -19974,6 +19988,78 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin-top: -1px;
   background: #fff;
   transform: rotate(-45deg);
+}
+
+.pop-up-species-filter {
+  position: fixed;
+  display: none;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  max-width: 480px;
+  padding: 50px 0 45px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+.pop-up-species-filter__title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.pop-up-species-filter__small-text {
+  color: #76736c;
+  font-size: 16px;
+}
+.pop-up-species-filter i {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.pop-up-species-filter i:before {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+  background: #404040;
+  transform: rotate(45deg);
+}
+.pop-up-species-filter i:after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+  background: #404040;
+  transform: rotate(-45deg);
+}
+
+.overlay-popup {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.overlay-popup.js-show-popup {
+  display: block;
+}
+.overlay-popup.js-show-popup .pop-up-species-filter {
+  display: block;
 }
 
 .ct-strategies-main {
@@ -20187,7 +20273,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .ct-strategies-main .wrap-strategy-breakdown {
-    min-height: 700px;
+    min-height: 990px;
     padding: 50px 0;
     background: none;
   }
@@ -20264,7 +20350,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     max-height: 400px;
     float: right;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 .ct-strategies-main #strategy-breakdown-right h5, .ct-strategies-main #strategy-breakdown-right p, .ct-strategies-main #strategy-breakdown-right ul {
@@ -20465,7 +20551,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .strategies-page-inside {
     display: block;
     position: absolute;
-    height: 700px;
+    height: 990px;
     top: 200px;
     width: 100%;
   }

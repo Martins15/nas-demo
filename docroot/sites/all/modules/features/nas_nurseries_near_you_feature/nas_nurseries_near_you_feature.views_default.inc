@@ -56,7 +56,7 @@ function nas_nurseries_near_you_feature_views_default_views() {
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['not'] = 0;
-  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['radius'] = '100';
+  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['radius'] = '161';
   /* Contextual filter: Supply area: ISO (indexed) */
   $handler->display->display_options['arguments']['field_nursery_states_field_iso_code']['id'] = 'field_nursery_states_field_iso_code';
   $handler->display->display_options['arguments']['field_nursery_states_field_iso_code']['table'] = 'search_api_index_default_node_index';

@@ -2065,3 +2065,6 @@ function nas_import_cron_queue_info() {
 function nas_import_iba_queue_item_process($item) {
   nas_import_iba_node($item);
 }
+
+require_once __DIR__ . '/../../patched/feeds/plugins/FeedsHTTPFetcher.inc';
+require_once __DIR__ . '/../../patched/feeds_ex/src/FeedsExJsonPath.inc';

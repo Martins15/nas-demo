@@ -1,0 +1,12 @@
+name = Page manager search test
+description = Support module for Page manager search testing.
+dependencies[] = page_manager_search
+package = Testing
+hidden = TRUE
+core = 7.x
+; Information added by Drupal.org packaging script on 2016-06-08
+version = "7.x-1.2"
+core = "7.x"
+project = "page_manager_search"
+datestamp = "1465386453"
+
