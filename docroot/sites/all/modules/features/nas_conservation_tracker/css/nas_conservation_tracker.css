@@ -117,6 +117,10 @@
   background: #232227;
 }
 
+.ct-landscapes-main .wrap-map-diagram .leaflet-pane.leaflet-popup-pane {
+  z-index: 999;
+}
+
 body.conservation-tracker-pages .mailing-list {
   position: static;
 }

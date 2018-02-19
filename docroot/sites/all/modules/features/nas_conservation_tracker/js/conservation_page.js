@@ -147,6 +147,8 @@
       var marker = L.marker(location.latLon, {icon: dot});
       var text = '<div class="text-wrap bg-white">' + location.name + '</div>',
           minWidth = 50;
+
+
       if (location.imagePreview) {
         text = '<img class="landscape-popup-preview" src="' + location.imagePreview + '" alt="" />' + text;
         minWidth = 300;
