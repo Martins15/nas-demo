@@ -67,7 +67,7 @@
         "Centro de Estudio y Conservación del Patrimonio Natural",
         "Municipalities of Buenaventura",
         "SalvaNatura",
-        "Audubon Organizations: Audubon ME",
+        "Audubon ME",
         "Audubon MA",
         "NJ Audubon",
         "Panama Audubon Society"
@@ -116,8 +116,7 @@
     "priority_landscapes": {
       "title": "Priority Landscapes",
       "list": [
-        "Great Plains",
-        "Chihuahuan Desert",
+        "Great Plains & Chihuahuan Desert",
         "Eastern Forests",
         "California's  Central Valley",
         "Sagebrush of the Intemountain West"

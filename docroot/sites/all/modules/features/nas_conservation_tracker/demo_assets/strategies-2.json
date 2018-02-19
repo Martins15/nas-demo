@@ -46,7 +46,7 @@
     "initiatives": {
       "title": "Initiatives",
       "list": [
-        "North American Grasslands",
+        "<a href='/conservation-tracker/interactive-report/conservation-ranching/actions'>North American Grasslands</a>",
         "Atlantic Healthy Forests",
         "Central Valley of California",
         "Sagebrush Ecosystem"
