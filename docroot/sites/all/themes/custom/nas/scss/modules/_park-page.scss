@@ -175,6 +175,8 @@ ul.tabs-content {
         &:after {
           content: '';
           position: absolute;
+          left: 50%;
+          margin-left: -7px;
           bottom: -8px;
           width: 14px;
           height: 14px;
