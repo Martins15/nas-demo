@@ -96,6 +96,12 @@ function nas_conservation_tracker_menu() {
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
+  $items['conservation-tracker/ajax/scorecard-rating'] = array (
+    'title' => 'Submit scorecard rating',
+    'page callback' => 'nas_conservation_tracker_rating',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -487,6 +493,10 @@ function nas_conservation_tracker_scorecard_url($scorecard) {
   else {
     return FALSE;
   }
+}
+
+function nas_conservation_tracker_form_nas_conservation_tracker_rating_form_alter(&$form, &$form_state) {
+  form_load_include($form_state, 'inc', 'nas_conservation_tracker', 'plugins/content_types/ct_scorecard_main');
 }
 
 function nas_conservation_tracker_form_views_exposed_form_alter(&$form, &$form_state) {

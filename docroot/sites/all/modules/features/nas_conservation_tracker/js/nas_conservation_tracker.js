@@ -850,6 +850,23 @@
     }
   };
 
+  Drupal.behaviors.nasCtRatingForm = {
+    attach: function (context, settings) {
+      var $form = $('#nas-conservation-tracker-rating-form', context);
+      var classes = [
+        'hide-for-xlarge',
+        'hide-for-large',
+        'hide-for-mediun',
+        'hide-for-small',
+        'hide-for-tiny'
+      ];
+      $form.find('input[type="radio"]').change(function(){
+        $form.find('textarea, input').fadeIn();
+        //console.log($form.find('textarea, input').length);
+      });
+    }
+  };
+
 })(jQuery, window.Drupal);
 
 Number.isInteger = Number.isInteger || function (value) {
