@@ -152,4 +152,19 @@ function nas_climate_install() {
   if (!file_exists($honeypot_css) || !honeypot_check_css($honeypot_element_name)) {
     honeypot_create_css($honeypot_element_name);
   }
+
+  // Set private path.
+  $file_private_path = variable_get('file_private_path', FALSE);
+  if (
+    $file_private_path == FALSE
+    && (
+      !isset($_ENV['AH_SITE_ENVIRONMENT'])
+      || (
+        isset($_ENV['AH_SITE_ENVIRONMENT'])
+        && $_ENV['AH_SITE_ENVIRONMENT'] != 'prod'
+      )
+    )
+  ) {
+    variable_set('file_private_path', 'sites/default/files/private');
+  }
 }
