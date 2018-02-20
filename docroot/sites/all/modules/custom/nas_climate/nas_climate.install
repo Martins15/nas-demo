@@ -155,6 +155,18 @@ function nas_climate_install() {
 
   // Set private path.
   $file_private_path = variable_get('file_private_path', FALSE);
+  watchdog('nas_climate', 'Variable file_private_path = <pre>' . var_export($file_private_path, TRUE) . '</pre>');
+  watchdog('nas_climate', '$_ENV[AH_SITE_ENVIRONMENT: <pre>' . var_export($_ENV['AH_SITE_ENVIRONMENT'], TRUE) . '</pre>');
+  watchdog('nas_climate', 'isset($_ENV[AH_SITE_ENVIRONMENT]: <pre>' . var_export(isset($_ENV['AH_SITE_ENVIRONMENT']), TRUE) . '</pre>');
+  $message = ($file_private_path == FALSE
+    && (
+      !isset($_ENV['AH_SITE_ENVIRONMENT'])
+      || (
+        isset($_ENV['AH_SITE_ENVIRONMENT'])
+        && $_ENV['AH_SITE_ENVIRONMENT'] != 'prod'
+      )
+    ));
+  watchdog('nas_climate', 'All condition: <pre>' . var_export($message, TRUE) . '</pre>');
   if (
     $file_private_path == FALSE
     && (
