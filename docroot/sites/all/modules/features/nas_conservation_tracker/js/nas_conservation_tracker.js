@@ -83,7 +83,7 @@
             site: site,
           };
           marker.properties.county = site.county ? site.county.toLowerCase() : detectCounty(site, marker);
-          marker.bindTooltip(text).addTo(lMap);
+          //marker.bindTooltip(text).addTo(lMap);
 
           Drupal.settings.nasConservationTracker.currentMap.flyway[marker.properties.flyway] = Drupal.settings.nasConservationTracker.currentMap.flyway[marker.properties.flyway] || [];
           Drupal.settings.nasConservationTracker.currentMap.state[marker.properties.state] = Drupal.settings.nasConservationTracker.currentMap.state[marker.properties.state] || [];
@@ -147,7 +147,6 @@
         }
       });
 
-
       $radios.change(function () {
         resetMap();
         scaleMapTo($(this).val());
@@ -165,7 +164,20 @@
       lMap.initiated = true;
     }
 
+    leafletImage(lMap, doImage);
+
     // Helper functions.
+
+    function doImage(err, canvas) {
+      var img = document.createElement('img');
+      var dimensions = lMap.getSize();
+      imgRatio = dimensions.x / dimensions.y;
+      img.width = 300;
+      img.height = 300 / imgRatio;
+      img.src = canvas.toDataURL();
+      document.getElementById('images').innerHTML = '';
+      document.getElementById('images').appendChild(img);
+    }
 
     function detectCounty(site, marker) {
       for (var county in Drupal.settings.nasCtUnitData[marker.properties.flyway]['states'][marker.properties.state]['counties']) {
@@ -862,7 +874,6 @@
       ];
       $form.find('input[type="radio"]').change(function(){
         $form.find('textarea, input').fadeIn();
-        //console.log($form.find('textarea, input').length);
       });
     }
   };

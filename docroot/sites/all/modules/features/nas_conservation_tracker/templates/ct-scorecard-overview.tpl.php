@@ -68,7 +68,9 @@
                     </div>
                 </div>
                 <div ng-if="value !== 'partners'" class="title-wrap__print  columns large-3  hide-for-tiny hide-for-medium hide-for-small">
-                    <a href="#" class="img-block print"></a> <a href="/conservation-tracker/csv/{{value}}/<?php print $data['id'] ?>" id="download-csv" class="img-block download">Download</a>
+                    <a href="" ng-click="downloadPdf()" id="download-pdf" class="img-block download">Download PDF</a>
+                    <a href="#" class="img-block print"></a>
+                    <a href="/conservation-tracker/csv/{{value}}/<?php print $data['id'] ?>" id="download-csv" class="img-block download">Download</a>
                 </div>
             </div>
         </div>
