@@ -80,5 +80,5 @@
   </div>
 </aside>
 <div class="row" data-ng-controller="Content">
-  {{ tab.settings.overview.footnotes }}
+  <div ng-bind-html="tab.settings.overview.footnotes"></div>
 </div>
