@@ -79,3 +79,6 @@
     </div>
   </div>
 </aside>
+<div class="row" data-ng-controller="Content">
+  <div ng-bind-html="tab.settings.overview.footnotes"></div>
+</div>
