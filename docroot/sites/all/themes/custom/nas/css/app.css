@@ -17907,6 +17907,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .climate-landing .help-center {
   text-align: center;
 }
+.climate-landing .engagement-hero {
+  margin-top: 0;
+}
 .climate-landing .hero-title {
   margin-bottom: 15px;
 }
@@ -17956,16 +17959,22 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .climate-landing .percent-wrap__small-text {
   order: 3;
-  width: 62%;
   margin: 0 auto 15px;
   float: none;
   color: #404040;
   font-size: 14px;
   line-height: 1;
 }
+.climate-landing .percent-wrap__small-text p {
+  padding: 0 15%;
+}
+@media only screen and (min-width: 768px) {
+  .climate-landing .percent-wrap__small-text p {
+    padding: 0;
+  }
+}
 @media only screen and (min-width: 768px) {
   .climate-landing .percent-wrap__small-text {
-    width: auto;
     margin: 0;
     float: left;
     text-align: left;
@@ -18380,6 +18389,8 @@ ul.tabs-content .link__text {
   ul.tabs-content .link.current:after {
     content: '';
     position: absolute;
+    left: 50%;
+    margin-left: -7px;
     bottom: -8px;
     width: 14px;
     height: 14px;

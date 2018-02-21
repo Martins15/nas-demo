@@ -8,6 +8,9 @@ $pumpkin: #e18400;
   .help-center {
     text-align: center;
   }
+  .engagement-hero {
+    margin-top: 0;
+  }
   .hero-title {
     margin-bottom: 15px;
   }
@@ -55,14 +58,18 @@ $pumpkin: #e18400;
     }
     &__small-text {
       order: 3;
-      width: 62%;
       margin: 0 auto 15px;
       float: none;
       color: $color-text-gray;
       font-size: 14px;
       line-height: 1;
+      p {
+        padding: 0 15%;
+        @include breakpoint(large-up) {
+          padding: 0;
+        }
+      }
       @include breakpoint(large-up) {
-        width: auto;
         margin: 0;
         float: left;
         text-align: left;
