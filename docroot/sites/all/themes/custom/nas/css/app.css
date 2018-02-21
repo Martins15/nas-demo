@@ -17959,16 +17959,22 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .climate-landing .percent-wrap__small-text {
   order: 3;
-  width: 62%;
   margin: 0 auto 15px;
   float: none;
   color: #404040;
   font-size: 14px;
   line-height: 1;
 }
+.climate-landing .percent-wrap__small-text p {
+  padding: 0 15%;
+}
+@media only screen and (min-width: 768px) {
+  .climate-landing .percent-wrap__small-text p {
+    padding: 0;
+  }
+}
 @media only screen and (min-width: 768px) {
   .climate-landing .percent-wrap__small-text {
-    width: auto;
     margin: 0;
     float: left;
     text-align: left;
