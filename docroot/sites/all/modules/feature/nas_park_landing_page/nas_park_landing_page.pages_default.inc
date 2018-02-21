@@ -59,7 +59,7 @@ function nas_park_landing_page_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = 'The Future of Birds in our National Parks';
   $display->uuid = '7dfbc47f-1c06-4a43-b12f-f2e3b420d2fe';
   $display->storage_type = 'page_manager';
   $display->storage_id = 'page_park_landing_page__panel';
@@ -176,9 +176,15 @@ function nas_park_landing_page_default_page_manager_pages() {
       'format' => 'full_html',
     ),
     'assets' => array(
-      'value' => '<h3 style="text-align: center;"><strong>Any css or js here</strong></h3>
-
-<div><span>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from &quot;de Finibus Bonorum et Malorum&quot; by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</span></div>
+      'value' => '<div class="diagram-elem">
+                  <div class="diagram-elem__column pink small"><p>8%</p></div>
+                  <div class="diagram-elem__text"><p>Low-emissions scenario</p></div>
+                </div>
+                <div class="diagram-elem">
+                  <div class="diagram-elem__column red big"><p>25%</p></div>
+                  <div class="diagram-elem__text"><p>High-emissions scenario</p></div>
+                </div>
+                <div class="diagram-item__text-after"><p>Risk is much less drastic with reduced future emissions and warming.</p></div>
 ',
       'format' => 'full_html',
     ),
@@ -305,7 +311,7 @@ function nas_park_landing_page_default_page_manager_pages() {
   $pane->uuid = 'f9f4bd2c-a1e7-456b-9bfa-50d65c3518b1';
   $display->content['new-f9f4bd2c-a1e7-456b-9bfa-50d65c3518b1'] = $pane;
   $display->panels['top'][1] = 'new-f9f4bd2c-a1e7-456b-9bfa-50d65c3518b1';
-  $display->hide_title = PANELS_TITLE_NONE;
+  $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
