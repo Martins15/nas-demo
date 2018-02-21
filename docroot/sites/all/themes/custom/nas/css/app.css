@@ -17907,6 +17907,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .climate-landing .help-center {
   text-align: center;
 }
+.climate-landing .engagement-hero {
+  margin-top: 0;
+}
 .climate-landing .hero-title {
   margin-bottom: 15px;
 }
