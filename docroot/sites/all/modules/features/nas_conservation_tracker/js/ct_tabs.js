@@ -127,12 +127,9 @@
               Drupal.curtain.setup();
             }
           }, 500);
+
         }
 
-        $scope.downloadPdf = function() {
-
-
-        };
 
         // Load json file.
         function getContent(currentName) {
