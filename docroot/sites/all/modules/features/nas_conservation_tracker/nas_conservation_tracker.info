@@ -68,8 +68,6 @@ features[page_manager_pages][] = conservation_tracker_landscapes
 features[page_manager_pages][] = conservation_tracker_strategies
 features[page_manager_pages][] = ct_species_view
 features[panelizer_defaults][] = node:ct_scorecard:default
-features[search_api_index][] = ct_species_index
-features[search_api_server][] = db_search
 features[variable][] = comment_webform
 
 features[variable][] = field_bundle_settings_node__ct_scorecard
