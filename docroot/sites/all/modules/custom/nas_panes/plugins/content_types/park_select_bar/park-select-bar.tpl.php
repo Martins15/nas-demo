@@ -40,7 +40,7 @@
                 <?php /*endforeach; */?>
               </select>-->
                 <select name="parks" id="parks-select">
-                    <option value=""><?php print t('Select')?></option>
+                    <option value=""><?php print t('State')?></option>
                 </select>
             </div>
             <div class="bird-select columns large-9">

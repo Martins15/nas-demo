@@ -27,7 +27,7 @@
                   <?php foreach ($tabs['tabs'] as $tab => $data): ?>
                     <li class="tabs-content__link link columns large-4 <?php print $tab ?>"
                         data-tab="display-<?php print $tab ?>">
-                      <p class="link__title"><?php print $data['title'] ?></p>
+                      <p class="link__title"><?php print $data['title'] ?> <i class="tooltip">i<span class="tooltiptext">Tooltip text</span></i></p>
                       <p class="link__number"><?php print $data['amount'] ?></p>
                     </li>
                   <?php endforeach; ?>
