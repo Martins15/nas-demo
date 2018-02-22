@@ -4613,30 +4613,54 @@ function nas_master_update_7341() {
 }
 
 /**
- * Create demo Park page amd import birds relation.
+ * Import Parks pages.
  */
 function nas_master_update_7342() {
-  // This block is only for climate builds.
-  // Create Park page.
-  global $user;
-  $node = new stdClass();
-  $node->title = 'Acadia National Park';
-  $node->language = LANGUAGE_NONE;
-  $node->type = 'park';
-  node_object_prepare($node);
-  $node->uid = $user->uid;
-  $node->status = 1;
-  $node->promote = 0;
-  $node->comment = 0;
+  // This update is with Demo data.
+  file_unmanaged_copy('sites/all/modules/features/nas_park_import/demo_assets/adaptation_classes_demo.csv', 'sites/default/files/adaptation_classes_demo.csv');
+  $importer_id = 'park';
+  $source = feeds_source($importer_id);
+  $fetcher_config = $source->getConfigFor($source->importer->fetcher);
+  $fetcher_config['source'] = 'public://adaptation_classes_demo.csv';
+  $source->setConfigFor($source->importer->fetcher, $fetcher_config);
+  $source->save();
+  $source->startImport();
+  // This update is with Demo data.
+}
 
-  $node->field_park_id[$node->language][]['value'] = 'ACAD';
+/**
+ * Import Parks to birds relations.
+ */
+function nas_master_update_7343() {
+  // This update is with Demo data.
+  file_unmanaged_copy('sites/all/modules/features/park_bird_import/demo_assets/species_trend_projections_demo.csv', 'sites/default/files/species_trend_projections_demo.csv');
+  $importer_id = 'parks_to_birds';
+  $source = feeds_source($importer_id);
+  $fetcher_config = $source->getConfigFor($source->importer->fetcher);
+  $fetcher_config['source'] = 'public://species_trend_projections_demo.csv';
+  $source->setConfigFor($source->importer->fetcher, $fetcher_config);
+  $source->save();
+  $source->startImport();
+  // This update is with Demo data.
+}
+
+/**
+ * Update demo Park page.
+ */
+function nas_master_update_7344() {
+  // This update is with Demo data.
+  $result = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('title', 'Acadia National Park')
+    ->execute()
+    ->fetchAll();
+  if(empty($result)) {
+    watchdog('nas_master', 'Can\'t update node with title \'Acadia National Park\'');
+    return;
+  }
+  $result = reset($result);
+  $node = node_load($result->nid);
   $node->field_hero_image[$node->language][]['fid'] = 131566;
-  $node->field_state[$node->language][]['tid'] = 403;
-  $node->field_park_area[$node->language][]['value'] = '229 sq. miles';
-  $node->field_link[$node->language][] = array(
-    'url' => 'audubon.org',
-    'title' => 'One link'
-  );
   $node->field_location_link[$node->language][] = array(
     'url' => 'audubon.org',
     'title' => 'Another link'
@@ -4651,31 +4675,13 @@ function nas_master_update_7342() {
   $node->field_birds_w_colonizations_desc[$node->language][]['value'] = 'Support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park.As other ecological factors will play an important role. Climate will become suitable for these.Species not found in this park today.Our analysis shows that future climate conditions in this park will be similar to those that.';
   $node->field_park_description_secondary[$node->language][]['value'] = 'This Park in Context Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Id ligula porta felis euismod semper. Curabitur blandit tempus porttitor.';
   $node->field_interactive_content[$node->language][]['value'] = 'Here, where we can talk about habitats, species guilds, etc. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.Park description text goes.';
-
-  $node = node_submit($node);
   node_save($node);
-  // This block is only for climate builds.
-}
 
-/**
- * Create demo Park page amd import birds relation.
- */
-function nas_master_update_7343() {
-  // This block is only for climate builds.
-  // Import Parks to birds relations.
-  file_unmanaged_copy('sites/all/modules/features/park_bird_import/demo_assets/species_trend_projections_tmp.csv', 'sites/default/files/species_trend_projections_tmp.csv');
-  $importer_id = 'parks_to_birds';
-  $source = feeds_source($importer_id);
-  $fetcher_config = $source->getConfigFor($source->importer->fetcher);
-  $fetcher_config['source'] = 'public://species_trend_projections_tmp.csv';
-  $source->setConfigFor($source->importer->fetcher, $fetcher_config);
-  $source->save();
-  $source->startImport();
-}
-
-/**
- * Revert nas_image_styles_feature.
- */
-function nas_master_update_7344() {
-  features_revert_module('nas_image_styles_feature');
+  // Set private path.
+  // This is needrf only fot climate demo environment.
+  $file_private_path = variable_get('file_private_path', FALSE);
+  if ($file_private_path === FALSE || empty($file_private_path)) {
+    variable_set('file_private_path', 'sites/default/files/private');
+  }
+  // This update is with Demo data.
 }
