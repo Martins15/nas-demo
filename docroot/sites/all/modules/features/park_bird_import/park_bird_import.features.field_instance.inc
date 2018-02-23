@@ -10,7 +10,7 @@
 function park_bird_import_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-parks_to_birds_relation-body'
+  // Exported field_instance: 'node-parks_to_birds_relation-body'.
   $field_instances['node-parks_to_birds_relation-body'] = array(
     'bundle' => 'parks_to_birds_relation',
     'default_value' => NULL,
@@ -115,7 +115,8 @@ function park_bird_import_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-parks_to_birds_relation-field_bird_reference'
+  // Exported field_instance:
+  // 'node-parks_to_birds_relation-field_bird_reference'.
   $field_instances['node-parks_to_birds_relation-field_bird_reference'] = array(
     'bundle' => 'parks_to_birds_relation',
     'default_value' => NULL,
@@ -220,7 +221,8 @@ function park_bird_import_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-parks_to_birds_relation-field_emission_scenario'
+  // Exported field_instance:
+  // 'node-parks_to_birds_relation-field_emission_scenario'.
   $field_instances['node-parks_to_birds_relation-field_emission_scenario'] = array(
     'bundle' => 'parks_to_birds_relation',
     'default_value' => NULL,
@@ -360,7 +362,8 @@ function park_bird_import_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-parks_to_birds_relation-field_park_reference'
+  // Exported field_instance:
+  // 'node-parks_to_birds_relation-field_park_reference'.
   $field_instances['node-parks_to_birds_relation-field_park_reference'] = array(
     'bundle' => 'parks_to_birds_relation',
     'default_value' => NULL,
@@ -465,7 +468,7 @@ function park_bird_import_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-parks_to_birds_relation-field_park_season'
+  // Exported field_instance: 'node-parks_to_birds_relation-field_park_season'.
   $field_instances['node-parks_to_birds_relation-field_park_season'] = array(
     'bundle' => 'parks_to_birds_relation',
     'default_value' => NULL,
@@ -605,7 +608,7 @@ function park_bird_import_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-parks_to_birds_relation-field_park_trend'
+  // Exported field_instance: 'node-parks_to_birds_relation-field_park_trend'.
   $field_instances['node-parks_to_birds_relation-field_park_trend'] = array(
     'bundle' => 'parks_to_birds_relation',
     'default_value' => NULL,

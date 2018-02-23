@@ -74,19 +74,25 @@ function nas_park_landing_page_default_page_manager_pages() {
   $pane->access = array();
   $pane->configuration = array(
     'use_title' => 1,
-    'title' => 'What change looks like',
+    'title' => 'As our climate changes, the bird species we see in our national parks will change, too.',
     'use_description' => 0,
     'description' => array(
       'value' => '',
       'format' => 'full_html',
     ),
     'assets' => array(
-      'value' => '<p><span>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span></p>
-',
+      'value' => '<div class="wrap-help percent-wrap">
+            <div class="columns large-8">
+            <p>Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam quis risus eget urna mollis ornare vel eu leo. Donec sed odio dui. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis.</p>
+            </div>
+            <div class="columns large-2 percent-wrap__percent-item gray-border--left"><p>20%</p></div>
+            <div class="columns large-2 percent-wrap__small-text"><p>Average projected turnover (potential colonization and potential extirpation) of species per park, due to shifting climate suitability
+            </p></div>
+          </div>',
       'format' => 'full_html',
     ),
-    'form_build_id' => 'form-CHyXT-ygPXlueX8eC0JR5IQwEIbpqRH0q-ur_oSvzMU',
-    'form_token' => '6De8kyIvod73Ibi-Hj3aHnmrPgTWZFkcRE5JPAp0BNU',
+    'form_build_id' => 'form-urfZYM5-_APmcSvTECikQ3Ov1Ch35N1NPMmsViVIHQk',
+    'form_token' => 'xrTBygHeRMNL8nfu0mtaCFNXykw44Bahp34fwhkMp6Q',
     'form_id' => 'interactive_content_edit_form',
   );
   $pane->cache = array();
@@ -100,6 +106,150 @@ function nas_park_landing_page_default_page_manager_pages() {
   $pane->uuid = '5a084cd6-6a0b-42e5-8a24-af3b7ba06386';
   $display->content['new-5a084cd6-6a0b-42e5-8a24-af3b7ba06386'] = $pane;
   $display->panels['primary_content'][0] = 'new-5a084cd6-6a0b-42e5-8a24-af3b7ba06386';
+  $pane = new stdClass();
+  $pane->pid = 'new-31bd9e22-5bc1-4f88-8957-e27dcf8ec2e2';
+  $pane->panel = 'primary_content';
+  $pane->type = 'interactive_content';
+  $pane->subtype = 'interactive_content';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'use_title' => 0,
+    'title' => '',
+    'use_description' => 0,
+    'description' => array(
+      'value' => '',
+      'format' => 'full_html',
+    ),
+    'assets' => array(
+      'value' => '<div class="item-bird__title">
+	<h3>What change looks like</h3>
+</div>
+
+<div class="item-bird-sliders wrap-help">
+	<div class="single-slider wrap-help">
+		<div class="single-slider__group-birds columns large-8"><img alt="" src="/sites/all/themes/custom/nas/img/climate-landing/block-img.png" /></div>
+
+		<div class="single-slider__single-bird columns large-2"><img alt="" src="/sites/all/themes/custom/nas/img/climate-landing/single-image.png" /></div>
+
+		<div class="single-slider__text-bird columns large-2">
+			<p>Maecenas faucibus mollis interdum. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+		</div>
+	</div>
+
+	<div class="single-slider wrap-help">
+		<div class="single-slider__group-birds columns large-8"><img alt="" src="/sites/all/themes/custom/nas/img/climate-landing/block-img.png" /></div>
+
+		<div class="single-slider__single-bird columns large-2"><img alt="" src="/sites/all/themes/custom/nas/img/climate-landing/single-image.png" /></div>
+
+		<div class="single-slider__text-bird columns large-2">
+			<p>Maecenas faucibus mollis interdum. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+		</div>
+	</div>
+</div>
+',
+      'format' => 'full_html',
+    ),
+    'form_build_id' => 'form-4U7pCbjacWNwO10fOXqXrQUPTEnPMWLcAVW3Cut-Cpg',
+    'form_token' => 'xrTBygHeRMNL8nfu0mtaCFNXykw44Bahp34fwhkMp6Q',
+    'form_id' => 'interactive_content_edit_form',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = '31bd9e22-5bc1-4f88-8957-e27dcf8ec2e2';
+  $display->content['new-31bd9e22-5bc1-4f88-8957-e27dcf8ec2e2'] = $pane;
+  $display->panels['primary_content'][1] = 'new-31bd9e22-5bc1-4f88-8957-e27dcf8ec2e2';
+  $pane = new stdClass();
+  $pane->pid = 'new-556ffb98-0b49-43af-8386-014c2d7ef078';
+  $pane->panel = 'primary_content';
+  $pane->type = 'interactive_content';
+  $pane->subtype = 'interactive_content';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'use_title' => 1,
+    'title' => 'Our national parks will be increasingly critical sanctuaries for birds seeking suitable climate in new places',
+    'use_description' => 0,
+    'description' => array(
+      'value' => '',
+      'format' => 'full_html',
+    ),
+    'assets' => array(
+      'value' => '<div class="item-with-percent">
+	<div class="wrap-help percent-wrap">
+		<div class="columns tiny-12 large-2 percent-wrap__percent-item">
+			<p>99%</p>
+		</div>
+
+		<div class="columns tiny-12 large-2 percent-wrap__small-text">
+			<p>Percentage of parks with more potential for colonization than extirpation in the winter season</p>
+		</div>
+
+		<div class="columns large-8 gray-border--left percent-wrap__text-item">
+			<p>Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nullam quis risus eget urna mollis ornare vel eu leo. Donec sed odio dui. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis.</p>
+		</div>
+	</div>
+</div>
+',
+      'format' => 'full_html',
+    ),
+    'form_build_id' => 'form-6x_AtjkI15gQ-5EAc3QUpTha8PLH99V-YbQfyfXhc-A',
+    'form_token' => 'xrTBygHeRMNL8nfu0mtaCFNXykw44Bahp34fwhkMp6Q',
+    'form_id' => 'interactive_content_edit_form',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 2;
+  $pane->locks = array();
+  $pane->uuid = '556ffb98-0b49-43af-8386-014c2d7ef078';
+  $display->content['new-556ffb98-0b49-43af-8386-014c2d7ef078'] = $pane;
+  $display->panels['primary_content'][2] = 'new-556ffb98-0b49-43af-8386-014c2d7ef078';
+  $pane = new stdClass();
+  $pane->pid = 'new-25339307-0956-42ce-88ad-7d8761cc8375';
+  $pane->panel = 'primary_content';
+  $pane->type = 'interactive_content';
+  $pane->subtype = 'interactive_content';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'use_title' => 0,
+    'title' => '',
+    'use_description' => 0,
+    'description' => array(
+      'value' => '',
+      'format' => 'full_html',
+    ),
+    'assets' => array(
+      'value' => '<div class="item-with-percent">
+  <div class="map-wrap"><img alt="" src="/sites/all/themes/custom/nas/img/climate-landing/map-demo.png" /></div>
+</div>',
+      'format' => 'full_html',
+    ),
+    'form_build_id' => 'form-ynxPiuTLVXXCPz9hUz7G8nkzlF3XLDwJmhU5BPWlxZA',
+    'form_token' => 'xrTBygHeRMNL8nfu0mtaCFNXykw44Bahp34fwhkMp6Q',
+    'form_id' => 'interactive_content_edit_form',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 3;
+  $pane->locks = array();
+  $pane->uuid = '25339307-0956-42ce-88ad-7d8761cc8375';
+  $display->content['new-25339307-0956-42ce-88ad-7d8761cc8375'] = $pane;
+  $display->panels['primary_content'][3] = 'new-25339307-0956-42ce-88ad-7d8761cc8375';
   $pane = new stdClass();
   $pane->pid = 'new-1124274a-339d-4d70-839d-9cb3f2fd37af';
   $pane->panel = 'primary_content';
@@ -154,11 +304,11 @@ function nas_park_landing_page_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 4;
   $pane->locks = array();
   $pane->uuid = '1124274a-339d-4d70-839d-9cb3f2fd37af';
   $display->content['new-1124274a-339d-4d70-839d-9cb3f2fd37af'] = $pane;
-  $display->panels['primary_content'][1] = 'new-1124274a-339d-4d70-839d-9cb3f2fd37af';
+  $display->panels['primary_content'][4] = 'new-1124274a-339d-4d70-839d-9cb3f2fd37af';
   $pane = new stdClass();
   $pane->pid = 'new-c154a723-194d-4d86-b02c-d67f1e85779f';
   $pane->panel = 'primary_content';
@@ -198,11 +348,11 @@ function nas_park_landing_page_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 2;
+  $pane->position = 5;
   $pane->locks = array();
   $pane->uuid = 'c154a723-194d-4d86-b02c-d67f1e85779f';
   $display->content['new-c154a723-194d-4d86-b02c-d67f1e85779f'] = $pane;
-  $display->panels['primary_content'][2] = 'new-c154a723-194d-4d86-b02c-d67f1e85779f';
+  $display->panels['primary_content'][5] = 'new-c154a723-194d-4d86-b02c-d67f1e85779f';
   $pane = new stdClass();
   $pane->pid = 'new-b5f562ad-5f7d-43bb-8626-e5607ae95627';
   $pane->panel = 'secondary_content';
