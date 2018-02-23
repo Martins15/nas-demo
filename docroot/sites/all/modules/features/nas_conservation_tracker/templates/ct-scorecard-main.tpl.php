@@ -8,10 +8,10 @@
     <?php print $form; ?>
     <a href="#" class="controls-link"><span class="border"></span> </a>
   </div>
-  <div class="wrap-map-diagram">
+  <div id="charts" class="wrap-map-diagram">
     <?php print $map; ?>
     <div class="help-wrap-items-map-items">
-      <div class="diagram-wrap help-bg-white columns map-item large-8">
+      <div id="charts-actions" class="diagram-wrap help-bg-white columns map-item large-8">
         <div class="map-item__inner-help">
           <div class="diagram-wrap__title">
             <h4 class="map-title">
@@ -40,7 +40,7 @@
           </div>
         </div>
       </div>
-      <div class="objectives-wrap help-bg-white columns map-item large-8">
+      <div id="charts-objectives" class="objectives-wrap help-bg-white columns map-item large-8">
         <div class="map-item__inner-help">
           <div class="objectives-wrap__title">
             <h4 class="map-title">

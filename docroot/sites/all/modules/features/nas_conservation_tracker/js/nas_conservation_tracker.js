@@ -64,7 +64,11 @@
             parseFloat(site.latitude),
             parseFloat(site.longitude),
           ];
-          var dot = L.divIcon({iconSize: [6, 6], className: classes.site});
+          var dot = L.icon({
+            iconUrl: Drupal.settings.nasConservationTracker.iconUrl,
+            iconSize: new L.Point(6, 6),
+            className: classes.site
+          });
           var marker = L.marker(site.latLon, {icon: dot});
           var text = site.name;
           var categories = [];
@@ -164,7 +168,7 @@
 
       lMap.initiated = true;
     }
-
+    
     // Helper functions.
 
     function detectCounty(site, marker) {

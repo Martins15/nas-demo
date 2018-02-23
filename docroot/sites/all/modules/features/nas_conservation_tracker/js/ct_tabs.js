@@ -130,6 +130,83 @@
 
         }
 
+        $scope.downloadPdf = function() {
+          $scope.pdfLoading = true;
+
+          //console.log('TAB',$scope.tab);
+          //console.log('SCOPE',$scope);
+/*
+          var loader = document.createElement('div');
+          var button = document.getElementById('download-pdf');
+          loader.innerHTML = 'PDF Loading...';
+          loader.id = 'pdf-loading';
+          button.parentNode.insertBefore(loader, button);
+*/
+          var doc = new jsPDF();
+
+          var lMap = Drupal.settings.leaflet['0'].lMap;
+          leafletImage(lMap, function(err, canvas) {
+            Drupal.settings.nasConservationTracker.leafletImage = canvas.toDataURL();
+          });
+          var dimensions = lMap.getSize();
+          var imgRatio = dimensions.x / dimensions.y;
+          var w = 210;
+          var h = w / imgRatio;
+          doc.text(20, 20, $scope.tab.name);
+          doc.text(20, 30, $scope.tab.subtitle);
+          doc.text(20, 40, $scope.isActive);
+
+          doc.addImage(Drupal.settings.nasConservationTracker.leafletImage, 'PNG', 0, 50, w, h);
+
+          var overview = document.querySelector("#scorecard-overview");
+          var w2 = 210;
+          var h2 = w2 / overview.offsetWidth * overview.offsetHeight;
+          var offset1 = h + 70;
+          var size2 = calcSize('#charts-actions');
+          var offset3 = size2.y + 10;
+          var size3 = calcSize('#charts-objectives');
+console.log(size3);
+console.log(offset3);
+          setTimeout(function() {
+            html2canvas(document.querySelector("#scorecard-overview")).then(canvas => {
+              //Drupal.settings.nasConservationTracker.ooo = canvas.toDataURL();
+              doc.addImage(canvas.toDataURL(), 'PNG', 0, offset1, w2, h2);
+            });
+          }, 5000);
+          setTimeout(function() {
+            html2canvas(document.querySelector("#charts-actions")).then(canvas => {
+              //Drupal.settings.nasConservationTracker.aaa = canvas.toDataURL();
+              doc.addPage();
+              doc.addImage(canvas.toDataURL(), 'PNG', 0, 0, size2.x, size2.y);
+            });
+          }, 10000);
+          setTimeout(function() {
+            html2canvas(document.querySelector("#charts-objectives")).then(canvas => {
+              //Drupal.settings.nasConservationTracker.ccc = canvas.toDataURL();
+              doc.addImage(canvas.toDataURL(), 'PNG', 0, offset3, size3.x, size3.y);
+            });
+          }, 15000);
+
+
+//          var svg = d3.select('#d3-objectives-1 svg').node();
+
+         // console.log(doc.canvas['get height']());
+          setTimeout(function() {
+            doc.save($scope.tab.name + '.pdf');
+            $scope.pdfLoading = false;
+          }, 25000);
+
+          function calcSize(selector) {
+            var e = 0.264583;
+            var element = document.querySelector(selector);
+            //console.log('w',element.offsetWidth);
+            //console.log('h',element.offsetHeight);
+            return {
+              x: parseInt((element.offsetWidth * e).toFixed()),
+              y: parseInt((element.offsetHeight * e).toFixed())
+            }
+          }
+        }
 
         // Load json file.
         function getContent(currentName) {

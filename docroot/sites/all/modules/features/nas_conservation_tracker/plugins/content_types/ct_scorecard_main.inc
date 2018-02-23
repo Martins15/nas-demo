@@ -53,7 +53,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
     }
   }
 
-  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/units.js');
+  drupal_add_js(NAS_CT_JS_PATH . 'units.js');
   drupal_add_js([
     'nasConservationTracker' => [
       'scorecardId' => $data['id'],
@@ -61,11 +61,14 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
       'visibleSites' => [],
       'scale' => variable_get('nas_conservation_tracker_scale', $scale),
       'tooltipsDefault' => $tooltips,
+      'iconUrl' => drupal_get_path('module', 'nas_conservation_tracker') . '/images/white-icon.png',
     ],
   ], 'setting');
 
   nas_conservation_tracker_add_base();
   nas_conservation_tracker_include_angular();
+  drupal_add_js('//html2canvas.hertzen.com/dist/html2canvas.min.js');
+  drupal_add_js(NAS_CT_JS_PATH . 'leaflet-image.js');
   drupal_add_js(NAS_CT_JS_PATH . 'ct_tabs.js');
   drupal_add_js(NAS_CT_JS_PATH . 'nas_conservation_tracker.js', [
     'weight' => 999,
@@ -75,6 +78,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   // Map.
   $map_info = current(leaflet_map_get_info());
   $map_info['settings']['layerControl'] = TRUE;
+  $map_info['settings']['preferCanvas'] = TRUE;
   //$map_info['layers']['earth']['urlTemplate'] = '//cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
   $map_info['layers']['earth']['urlTemplate'] = '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
 
@@ -91,6 +95,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   ];
   $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_map_height', '900') . 'px');
 
+  libraries_load('jspdf');
   libraries_load('d3.extend');
   libraries_load('d3.ct_tooltip');
   libraries_load('d3.ct_linegraph');
