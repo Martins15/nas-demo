@@ -12,7 +12,6 @@ features[image][] = native_plant_desktop
 features[image][] = native_plant_lightbox
 features[image][] = native_plant_mobile
 features[image][] = native_plants_sponsor_logo
-features[variable][] = imagecache_external_hosts
 features[variable][] = imagecache_external_management
 features[variable][] = imagecache_external_use_whitelist
 project path = sites/all/modules/features

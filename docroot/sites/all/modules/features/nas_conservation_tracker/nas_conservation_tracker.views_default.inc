@@ -243,17 +243,16 @@ function nas_conservation_tracker_views_default_views() {
   $handler->display->display_options['fields']['field_ct_image']['field'] = 'field_ct_image';
   $handler->display->display_options['fields']['field_ct_image']['label'] = '';
   $handler->display->display_options['fields']['field_ct_image']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_ct_image']['alter']['text'] = '<img src="[field_ct_image]" />';
+  $handler->display->display_options['fields']['field_ct_image']['alter']['text'] = '[field_ct_image]';
   $handler->display->display_options['fields']['field_ct_image']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_ct_image']['alter']['path'] = '[field_ct_score_card_url]';
   $handler->display->display_options['fields']['field_ct_image']['element_class'] = '[field_ct_score_card_url_1]';
   $handler->display->display_options['fields']['field_ct_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_ct_image']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_ct_image']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['field_ct_image']['type'] = 'imagecache_external_image';
   $handler->display->display_options['fields']['field_ct_image']['settings'] = array(
-    'title_style' => '_none',
-    'title_link' => '',
-    'title_class' => '',
+    'imagecache_external_style' => 'ct_species_thumb',
+    'imagecache_external_link' => '',
   );
   /* Field: Indexed CT Species: Common name */
   $handler->display->display_options['fields']['field_ct_common_name']['id'] = 'field_ct_common_name';
@@ -532,7 +531,7 @@ function nas_conservation_tracker_views_default_views() {
     t('#'),
     t('has-scorecard'),
     t('no-scorecard'),
-    t('<img src="[field_ct_image]" />'),
+    t('[field_ct_image]'),
     t('Fulltext search'),
     t('Strategies'),
     t('Threat status'),
