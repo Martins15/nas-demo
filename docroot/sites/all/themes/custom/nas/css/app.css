@@ -18535,16 +18535,26 @@ ul.tabs-content .link.colonizations .link__number:before {
   padding-top: 0;
 }
 .node-type-park .park_top .hero-attribution-fullscreen {
-  margin-top: 10px;
+  margin-top: 0;
   padding: 0 10px;
   color: #404040;
   z-index: 1;
 }
 @media only screen and (min-width: 768px) {
   .node-type-park .park_top .hero-attribution-fullscreen {
-    margin-top: -30px;
     padding: 0;
     color: #fff;
+  }
+}
+.node-type-park .park_top .hero-attribution-fullscreen > p {
+  margin-top: 10px;
+}
+.node-type-park .park_top .hero-attribution-fullscreen > p:empty {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  .node-type-park .park_top .hero-attribution-fullscreen > p {
+    margin-top: -30px;
   }
 }
 .node-type-park .list-of-park {
