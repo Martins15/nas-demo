@@ -70,6 +70,7 @@ features[page_manager_pages][] = ct_species_view
 features[panelizer_defaults][] = node:ct_scorecard:default
 features[variable][] = comment_webform
 
+features[variable][] = imagecache_external_use_whitelist
 features[variable][] = field_bundle_settings_node__ct_scorecard
 features[variable][] = field_bundle_settings_node__webform
 features[variable][] = i18n_sync_node_type_ct_scorecard

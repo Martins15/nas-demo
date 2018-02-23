@@ -13,6 +13,20 @@ function nas_conservation_tracker_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'imagecache_external_hosts';
+  $strongarm->value = 'netapp.audubon.org
+nas.local
+ct.nas.ffwua.com
+nas.ffwua.com
+audubon.org
+www.audubon.org
+nasdev.audubon.org
+nasstg.audubon.org';
+  $export['imagecache_external_hosts'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_webform';
   $strongarm->value = '0';
   $export['comment_webform'] = $strongarm;

@@ -541,6 +541,16 @@ function nas_conservation_tracker_get_image($name) {
   }
 }
 
+
+function nas_conservation_tracker_entity_load($entities, $type) {
+  if ($type == 'ct_species') {
+    foreach ($entities as &$entity) {
+      $entity->field_ct_image[LANGUAGE_NONE][0]['value'] = trim($entity->field_ct_image[LANGUAGE_NONE][0]['value'], '/');
+      $entity->field_ct_image[LANGUAGE_NONE][0]['safe_value'] = trim($entity->field_ct_image[LANGUAGE_NONE][0]['safe_value'], '/');
+    }
+  }
+}
+
 /**
  * Implements hook_preprocess_HOOK.
  */
