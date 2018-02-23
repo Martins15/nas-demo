@@ -4660,12 +4660,12 @@ function nas_master_update_7344() {
   }
   $result = reset($result);
   $node = node_load($result->nid);
-  $node->field_hero_image[$node->language][]['fid'] = 131566;
+  $node->field_hero_image[$node->language][]['fid'] = nas_park_feature_get_image('park_hero.png', TRUE);
   $node->field_location_link[$node->language][] = array(
     'url' => 'audubon.org',
     'title' => 'Another link'
   );
-  $node->field_park_map_image[$node->language][] = (array) file_load(128081);
+  $node->field_park_map_image[$node->language][] = (array) nas_park_feature_get_image('map.png');
   $node->field_park_description[$node->language][]['value'] = 'Park description text goes here, where we can talk about habitats, species guilds, etc. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.';
   $node->field_birds_s_species_desc[$node->language][]['value'] = 'Climate will become suitable for these species not found in this park today. Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park, as other ecological factors will play an important role.';
   $node->field_birds_s_extirpations_desc[$node->language][]['value'] = 'Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park, as other ecological factors will play an important role. Climate will become suitable for these species not found in this park today.';
