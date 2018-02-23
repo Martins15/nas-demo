@@ -315,14 +315,22 @@ ul.tabs-content {
       padding-top: 0;
     }
     .hero-attribution-fullscreen {
-      margin-top: 10px;
+      margin-top: 0;
       padding: 0 10px;
       color: #404040;
       z-index: 1;
       @include breakpoint(large-up) {
-        margin-top: -30px;
         padding: 0;
         color: $white;
+      }
+      > p {
+        margin-top: 10px;
+        &:empty {
+          display: none;
+        }
+        @include breakpoint(large-up) {
+          margin-top: -30px;
+        }
       }
     }
   }
@@ -685,9 +693,9 @@ ul.tabs-content {
       }
     }
     img.lazyloader-icon {
-      position: absolute!important;
-      left: 50%!important;
-      top: 50%!important;
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
       width: 50%;
       transform: translate(-50%, -50%);
       &:after {
