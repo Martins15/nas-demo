@@ -87,11 +87,14 @@
     }
   };
 
-  Drupal.behaviors.cloneImgPark = {
+  Drupal.behaviors.cloneFieldpark = {
     attach: function (context) {
-      var cloneImg = $('.node-type-park .field-name-field-park-map-image', context).clone();
-      cloneImg.addClass('js-clone-img');
-      $('.node-type-park .park_info', context).prepend(cloneImg);
+      var $nodeType = $('.node-type-park', context);
+      var $cloneImg = $('.field-name-field-park-map-image', $nodeType).clone();
+      $cloneImg.addClass('js-clone-img');
+      $('.park_info', $nodeType).prepend($cloneImg);
+      $('.field-name-field-state, .field-name-field-park-area, .field-name-field-link, .field-name-field-location-link', $nodeType)
+        .wrapAll('<div class="help-wrap-field" />');
     }
   };
 

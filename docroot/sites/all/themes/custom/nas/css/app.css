@@ -18319,6 +18319,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-weight: bold;
   color: #fff;
   text-align: center;
+  text-transform: capitalize;
   padding: 11px 20px;
   position: relative;
   z-index: 2;
@@ -18373,6 +18374,39 @@ ul.tabs-content .link__title {
   color: #404040;
   font-size: 20px;
   font-weight: 400;
+}
+ul.tabs-content .link__title .tooltip {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  border-radius: 50%;
+  background-color: #4a90e2;
+  line-height: 20px;
+  font-style: normal;
+  color: #fff;
+  z-index: 1;
+}
+ul.tabs-content .link__title .tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+ul.tabs-content .link__title .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 25px;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 ul.tabs-content .link__number {
   font-size: 72px;
@@ -18591,6 +18625,17 @@ ul.tabs-content .link.colonizations .link__number:before {
 .node-type-park .park_info .field-name-field-park-description {
   float: left;
 }
+@media only screen and (min-width: 768px) {
+  .node-type-park .park_info .help-wrap-field {
+    margin-bottom: 5px;
+  }
+}
+.node-type-park .park_info .help-wrap-field > div {
+  display: inline-block;
+}
+.node-type-park .park_info .help-wrap-field > div:last-child {
+  margin-right: 0;
+}
 .node-type-park .park_info .field-name-field-park-map-image {
   display: none;
   max-width: 135px;
@@ -18677,6 +18722,10 @@ ul.tabs-content .link.colonizations .link__number:before {
 }
 .node-type-park .engagement-hero {
   margin-top: 0;
+}
+.node-type-park .engagement-hero h1 {
+  color: #e18400;
+  text-shadow: 0 1px 6px rgba(80, 80, 80, 0.75);
 }
 
 .form-container.green {
@@ -18789,21 +18838,8 @@ ul.tabs-content .link.colonizations .link__number:before {
   margin-bottom: 25px;
   width: 33.333%;
 }
-.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .lazyloader-icon {
-  display: none;
-}
 .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row:empty {
   display: none;
-}
-.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-hero-image,
-.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-title {
-  margin: 0 10px;
-}
-@media only screen and (min-width: 768px) {
-  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-hero-image,
-  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-title {
-    margin: 0 12.5px;
-  }
 }
 @media only screen and (min-width: 601px) and (max-width: 767px) {
   .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row {
@@ -18823,19 +18859,33 @@ ul.tabs-content .link.colonizations .link__number:before {
 @media only screen and (min-width: 1000px) {
   .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row {
     width: 14.285%;
+    height: 155px;
   }
 }
 .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row:hover {
   color: #0AA8E3;
 }
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-hero-image,
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-title {
+  margin: 0 10px;
+}
+@media only screen and (min-width: 768px) {
+  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-hero-image,
+  .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-title {
+    margin: 0 12.5px;
+  }
+}
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-hero-image {
+  position: relative;
+}
 @media only screen and (min-width: 768px) {
   .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-hero-image {
     width: 118px;
+    height: 100px;
   }
 }
 .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-hero-image img {
   width: 100%;
-  vertical-align: middle;
 }
 .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-title {
   background-color: #fff;
@@ -18855,6 +18905,24 @@ ul.tabs-content .link.colonizations .link__number:before {
   font-size: 13px;
   line-height: 15px;
   color: #404040;
+}
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row img.lazyloader-icon {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 50%;
+  transform: translate(-50%, -50%);
+}
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row img.lazyloader-icon:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-box-shadow: inset 0px 0px 0px 5px #979797;
+  -moz-box-shadow: inset 0px 0px 0px 5px #979797;
+  box-shadow: inset 0px 0px 0px 5px #979797;
 }
 
 .title-letter {

@@ -7,7 +7,9 @@ $red-park: #d0021b;
 $green-park: #417505;
 
 @-webkit-keyframes sk-scaleout {
-  0% { -webkit-transform: scale(0) }
+  0% {
+    -webkit-transform: scale(0)
+  }
   100% {
     -webkit-transform: scale(1.0);
     opacity: 0;
@@ -18,11 +20,12 @@ $green-park: #417505;
   0% {
     -webkit-transform: scale(0);
     transform: scale(0);
-  } 100% {
-      -webkit-transform: scale(1.0);
-      transform: scale(1.0);
-      opacity: 0;
-    }
+  }
+  100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
 }
 
 .switch-wrap {
@@ -109,6 +112,7 @@ $green-park: #417505;
     font-weight: bold;
     color: $white;
     text-align: center;
+    text-transform: capitalize;
     padding: 11px $base-margin;
     position: relative;
     z-index: 2;
@@ -158,6 +162,41 @@ ul.tabs-content {
       color: $color-text-gray;
       font-size: 20px;
       font-weight: 400;
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-left: 5px;
+        border-radius: 50%;
+        background-color: #4a90e2;
+        line-height: 20px;
+        font-style: normal;
+        color: $white;
+        z-index: 1;
+        &:hover {
+          .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+        .tooltiptext {
+          visibility: hidden;
+          width: 120px;
+          background-color: #555;
+          color: #fff;
+          text-align: center;
+          padding: 5px 0;
+          border-radius: 6px;
+          position: absolute;
+          z-index: 1;
+          left: 0;
+          top: 25px;
+          margin-left: -60px;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+      }
     }
     &__number {
       font-size: 72px;
@@ -374,6 +413,17 @@ ul.tabs-content {
     .field-name-field-park-description {
       float: left;
     }
+    .help-wrap-field {
+      @include breakpoint(large-up) {
+        margin-bottom: 5px;
+      }
+      > div {
+        display: inline-block;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
     .field-name-field-park-map-image {
       display: none;
       max-width: 135px;
@@ -453,6 +503,10 @@ ul.tabs-content {
   }
   .engagement-hero {
     margin-top: 0;
+    h1 {
+      color: $pumpkin;
+      text-shadow: 0 1px 6px rgba(80, 80, 80, 0.75);
+    }
   }
 }
 
@@ -568,18 +622,8 @@ ul.tabs-content {
     text-align: center;
     float: left;
     margin-bottom: $column-gutter;
-    .lazyloader-icon {
-      display: none;
-    }
     &:empty {
-     display: none;
-    }
-    .views-field-field-hero-image,
-    .views-field-title {
-      margin: 0 10px;
-      @include breakpoint(large-up) {
-        margin: 0 $column-gutter/2;
-      }
+      display: none;
     }
     width: 33.333%;
     @include breakpoint(medium-only) {
@@ -593,19 +637,28 @@ ul.tabs-content {
     }
     @include breakpoint(min-width, 1000px) {
       width: 14.285%;
+      height: 155px;
     }
 
     &:hover {
       color: $color-bright-blue;
     }
+    .views-field-field-hero-image,
+    .views-field-title {
+      margin: 0 10px;
+      @include breakpoint(large-up) {
+        margin: 0 $column-gutter/2;
+      }
+    }
 
     .views-field-field-hero-image {
+      position: relative;
       @include breakpoint(large-up) {
         width: 118px;
+        height: 100px;
       }
       img {
         width: 100%;
-        vertical-align: middle;
       }
     }
 
@@ -628,6 +681,24 @@ ul.tabs-content {
           line-height: 15px;
           color: $color-text-gray;
         }
+      }
+    }
+    img.lazyloader-icon {
+      position: absolute!important;
+      left: 50%!important;
+      top: 50%!important;
+      width: 50%;
+      transform: translate(-50%, -50%);
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-box-shadow: inset 0px 0px 0px 5px $grey-landing;
+        -moz-box-shadow: inset 0px 0px 0px 5px $grey-landing;
+        box-shadow: inset 0px 0px 0px 5px $grey-landing;
       }
     }
   }
