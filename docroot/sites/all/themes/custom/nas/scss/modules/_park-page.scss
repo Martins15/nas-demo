@@ -656,6 +656,7 @@ ul.tabs-content {
       @include breakpoint(large-up) {
         width: 118px;
         height: 100px;
+        overflow: hidden;
       }
       img {
         width: 100%;

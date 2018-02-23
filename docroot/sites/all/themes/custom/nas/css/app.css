@@ -18882,6 +18882,7 @@ ul.tabs-content .link.colonizations .link__number:before {
   .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-hero-image {
     width: 118px;
     height: 100px;
+    overflow: hidden;
   }
 }
 .view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row .views-field-field-hero-image img {
