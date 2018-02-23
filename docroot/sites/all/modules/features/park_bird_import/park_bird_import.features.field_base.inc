@@ -10,21 +10,13 @@
 function park_bird_import_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_bird_reference'
+  // Exported field_base: 'field_bird_reference'.
   $field_bases['field_bird_reference'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_bird_reference',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -54,21 +46,13 @@ function park_bird_import_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_emission_scenario'
+  // Exported field_base: 'field_emission_scenario'.
   $field_bases['field_emission_scenario'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_emission_scenario',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -84,21 +68,13 @@ function park_bird_import_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_park_reference'
+  // Exported field_base: 'field_park_reference'.
   $field_bases['field_park_reference'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_park_reference',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -128,21 +104,13 @@ function park_bird_import_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_park_season'
+  // Exported field_base: 'field_park_season'.
   $field_bases['field_park_season'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_park_season',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -158,14 +126,13 @@ function park_bird_import_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_park_trend'
+  // Exported field_base: 'field_park_trend'.
   $field_bases['field_park_trend'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_park_trend',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
