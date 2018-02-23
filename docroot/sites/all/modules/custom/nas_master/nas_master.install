@@ -4633,14 +4633,14 @@ function nas_master_update_7342() {
  */
 function nas_master_update_7343() {
   // This update is with Demo data.
-  file_unmanaged_copy('sites/all/modules/features/park_bird_import/demo_assets/species_trend_projections_demo.csv', 'sites/default/files/species_trend_projections_demo.csv');
+/*  file_unmanaged_copy('sites/all/modules/features/park_bird_import/demo_assets/species_trend_projections_demo.csv', 'sites/default/files/species_trend_projections_demo.csv');
   $importer_id = 'parks_to_birds';
   $source = feeds_source($importer_id);
   $fetcher_config = $source->getConfigFor($source->importer->fetcher);
   $fetcher_config['source'] = 'public://species_trend_projections_demo.csv';
   $source->setConfigFor($source->importer->fetcher, $fetcher_config);
   $source->save();
-  $source->startImport();
+  $source->startImport();*/
   // This update is with Demo data.
 }
 
