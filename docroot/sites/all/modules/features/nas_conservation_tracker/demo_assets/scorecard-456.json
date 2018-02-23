@@ -85,7 +85,7 @@
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_response.png",
       "tagLine": "Quantifying the effectiveness of our conservation actions using scientifically-sound metrics",
       "title": "Grassland birds have suffered sharp declines over the past half century",
-      "description": "<ul><li>We will measure the impact of the Conservation Ranching program with a novel index of ecological resilience, the Bird Friendliness Index or \"BFI\"</li></ul>",
+      "description": "<ul><li>We developed the Bird Friendliness Index to evaluate the success of the Conservation Ranching program in increasing resilience of grassland bird communities.</li><li>The Bird Friendliness Index is a composite measure that combines abundance, functional diversity, and conservation status of grassland birds to produce a simple metric that evaluates the resiliency of grassland bird communities.</li><li>The metric is based on research showing that bird communities with a diversity of diets and body sizes will compete less and interact more harmoniously with their ecosystem, increasing community and ecosystem resilience.</li><li>The Bird Friendliness Index is used to track trends in resilience over time in response to bird-friendly management practices. These trends can be used to inform adaptive management on Conservation Ranches.</li></ul>",
       "objectives": [
         {
           "description": "Significantly increase and stabilize population numbers of grassland birds",
