@@ -73,6 +73,35 @@ function nas_conservation_tracker_eck_entity_type_info() {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function nas_conservation_tracker_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: ct_species_thumb.
+  $styles['ct_species_thumb'] = array(
+    'label' => 'Conservation Tracker Species Thumb',
+    'effects' => array(
+      208 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 223,
+          'height' => 214,
+        ),
+        'weight' => 2,
+      ),
+      209 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function nas_conservation_tracker_node_info() {

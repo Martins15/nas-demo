@@ -302,12 +302,18 @@ function nas_conservation_tracker_get_landscapes_json() {
   $result = array('data' => array(), 'success' => 0);
 
     $data = nas_conservation_tracker_get_json('landscapes');
+
     foreach ($data as $key => $item) {
       if (!empty($item['scorecardId'])) {
         $data[$key]['scorecardUrl'] = url(drupal_get_path_alias('node/' . nas_get_scorecard_by_id($item['scorecardId'])));
       }
+      if (!empty($item['imagePreview'])) {
+        if (module_exists('imagecache_external')) {
+          $item['imagePreview'] = trim($item['imagePreview'], '/');
+          $data[$key]['imagePreview'] = image_style_url('ct_landscape_preview', imagecache_external_generate_path($item['imagePreview']));
+        }
+      }
     }
-
     $result['data'] = $data;
     if (!empty($result['data'])) {
       $result['success'] = 1;
