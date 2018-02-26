@@ -3,6 +3,8 @@
   {
     "id": 0,
     "name": "Arctic Coasts",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Arctic_ANWR_Hillebrand_USFWS.jpg",
+    "imageCredit": "Photo: Hillebrand/USFWS",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -18,6 +20,8 @@
   {
     "id": 1,
     "name": "Brazil - North Coast",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Brazil---North-Coast_Otavio-Nogueira_FlickrCC_8333989520_2a968f30bf_o.jpg",
+    "imageCredit": "Photo: Otavio Nogueira/Flickr CC (BY 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -33,7 +37,8 @@
   {
     "id": 2,
     "name": "Coastal Carolinas",
-    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/coastal_carolinas_preview.jpg",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/coastal_carolinas_preview.jpg",
+    "imageCredit": "Photo: Walker Golder",
     "scorecardId": 321,
     "strategy": {
       "id": 1,
@@ -50,6 +55,8 @@
   {
     "id": 3,
     "name": "Colombia - Choco",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Colombia---Choco_Serge_28101514492_8a74bf30d0_o.jpg",
+    "imageCredit": "Photo: Serge/Flickr CC (BY 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -65,6 +72,8 @@
   {
     "id": 4,
     "name": "Colombia Coast",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Colombia-Coast_-4626290580_a1a1103807_o.jpg",
+    "imageCredit": "Photo: Jorge Láscar/Flick CC (BY 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -80,6 +89,8 @@
   {
     "id": 5,
     "name": "Delaware - Chesapeake Bay",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Chesapeake-Bay_Camilla-Cerea_-_MG_5677.jpg",
+    "imageCredit": "Photo: Camilla Cerea/Audubon",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -95,6 +106,8 @@
   {
     "id": 6,
     "name": "Georgia - Florida",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Florida-Georgia_7712229844_00f10beea4_o.jpg",
+    "imageCredit": "Photo: Ralph Daily/Flickr CC (BY 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -110,6 +123,8 @@
   {
     "id": 7,
     "name": "Grays Harbor and Willapa Bay",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Grays-Harbor-and-Willapa-Bay_24867593151_3109af0bf7_o.jpg",
+    "imageCredit": "Photo: EcologyWA/Flickr CC (1.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -125,6 +140,8 @@
   {
     "id": 8,
     "name": "Gulf Coast",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Gulf-Coast_Camilla-Cerea.jpg",
+    "imageCredit": "Photo: Camilla Cerea/Audubon",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -140,6 +157,8 @@
   {
     "id": 9,
     "name": "Gulf of Maine",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Gulf-of-Maine_IMG_0177_MF.jpg",
+    "imageCredit": "Photo: Mike Fernandez/Audubon",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -155,6 +174,8 @@
   {
     "id": 10,
     "name": "Guyana Mudflats",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Guyana-Mudflats_J2FRM5.jpg",
+    "imageCredit": "Photo: Danita Delimont/Alamy",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -170,6 +191,8 @@
   {
     "id": 11,
     "name": "Laguna Madre",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Laguna-Madre238119600551_7a77630461_o.jpg",
+    "imageCredit": "Photo: Capt_tain Tom/Flickr CC (BY 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -185,6 +208,8 @@
   {
     "id": 12,
     "name": "Long Island Sound",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Long-Island-Sound_623354590.jpg",
+    "imageCredit": "Photo: iStock",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -200,6 +225,8 @@
   {
     "id": 13,
     "name": "Panama Bay",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Panama-Bay_32730996056_bd8be7cb97_o.jpg",
+    "imageCredit": "Photo: Bernal Saborio/Flickr CC (BY 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -215,6 +242,8 @@
   {
     "id": 14,
     "name": "Peru - Paracas",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/WEb_Peru-Paracas_30356099573_151bbcea87_o.jpg",
+    "imageCredit": "Photo: Christine Chauvin/Flickr CC (BY-NC-ND 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -230,7 +259,8 @@
   {
     "id": 15,
     "name": "San Francisco Bay",
-    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/san_francisco_bay_preview.jpg",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_San-Francisco-Bay_Camilla-Cerea_-IMG_9279.jpg",
+    "imageCredit": "Photo: Camilla Cerea/Audubon",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -246,6 +276,8 @@
   {
     "id": 16,
     "name": "Bering Sea and Islands",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Bering-Sea-and-Islands_-14038290444_090af21a67_o-(1).jpg",
+    "imageCredit": "Photo: Josh M. London/Flickr CC (BY-NC-ND 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -261,6 +293,8 @@
   {
     "id": 17,
     "name": "Unimak Pass",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Unimak-Pass_13707206574_9782d50797_o.jpg",
+    "imageCredit": "Photo: Josh M. London/Flickr CC (BY-NC-ND 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -276,6 +310,8 @@
   {
     "id": 18,
     "name": "Veracruz",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Veracruz_5394316876_8ec29f1142_o-(1).jpg",
+    "imageCredit": "Photo: Mr. Theklan/Flickr CC (BY-SA 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -291,6 +327,8 @@
   {
     "id": 19,
     "name": "Yucatan",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Yucatan_iStock_607273318.jpg",
+    "imageCredit": "Photo: Mikolajn/iStock",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -310,6 +348,8 @@
   {
     "id": 20,
     "name": "Chiloe Island",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Chiloe_-David-Gysel_.jpg",
+    "imageCredit": "Photo: David Gysel",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -325,6 +365,8 @@
   {
     "id": 21,
     "name": "The Bahamas",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_The-Bahamas_camillacerea_bahamas-13_0.jpg",
+    "imageCredit": "Photo: Camilla Cerea/Audubon",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -340,6 +382,8 @@
   {
     "id": 22,
     "name": "Gulf of California",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Gulf-of-California_33859712012_975a4968d0_o.jpg",
+    "imageCredit": "Photo: Ron Reiring/Flickr CC (BY-SA 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -355,6 +399,8 @@
   {
     "id": 23,
     "name": "Argentina",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Argentina_8579530168_aa8cdf60aa_o.jpg",
+    "imageCredit": "Photo: Petr Meissner/Flickr CC (BY 2.0)",
     "strategy": {
       "id": 1,
       "name": "Coasts"
@@ -370,6 +416,8 @@
   {
     "id": 24,
     "name": "Colorado River Basin and Delta",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/WEb_Colorado-river-delta_Ecoflight-(3).jpg",
+    "imageCredit": "Photo: EcoFlight",
     "strategy": {
       "id": 3,
       "name": "Water"
@@ -385,6 +433,8 @@
   {
     "id": 25,
     "name": "Everglades",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Everglades_Alana-Phan_Screen-Shot-2017-09-07-at-3.28.29-PM.jpg",
+    "imageCredit": "Photo: Alana Phan/Audubon",
     "strategy": {
       "id": 3,
       "name": "Water"
@@ -400,7 +450,8 @@
   {
     "id": 26,
     "name": "Great Lakes",
-    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/great_lakes_preview.jpg",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Great-Lakes_N9A0107.jpg",
+    "imageCredit": "Photo: Mike Fernandez/Audubon",
     "strategy": {
       "id": 3,
       "name": "Water"
@@ -416,6 +467,8 @@
   {
     "id": 27,
     "name": "Saline Lakes",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Saline-Lakes-Owen-Lake_2134741492_4ac1b2150f_o.jpg",
+    "imageCredit": "Photo: Kim Davies/Flickr CC (BY-NC-ND 2.0)",
     "strategy": {
       "id": 3,
       "name": "Water"
@@ -435,6 +488,8 @@
   {
     "id": 28,
     "name": "Sagebrush of the Intermountain West",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Sagebrush-of-the-Intermountain-West_34876450680_69056aacce_o-(1).jpg",
+    "imageCredit": "Photo: Angela Burgess/USFWS",
     "strategy": {
       "id": 2,
       "name": "Working Lands"
@@ -454,6 +509,8 @@
   {
     "id": 29,
     "name": "Central Valley of California",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Central-Valley-of-California_AUDUBON_20170817_TCBB_19_6274.jpg",
+    "imageCredit": "Photo: Elizabeth D. Herman",
     "strategy": {
       "id": 2,
       "name": "Working Lands"
@@ -469,7 +526,8 @@
   {
     "id": 30,
     "name": "Great Plains and Chihuahuan Desert",
-    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/great_plains_and_chihuahan_desert_preview.jpg",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Great-Plains-and-Chihuahua-Desert_Camilla-Cerea_-IMG_6486.jpg",
+    "imageCredit": "Photo: Camilla Cerea/Audubon",
     "strategy": {
       "id": 2,
       "name": "Working Lands"
@@ -485,6 +543,8 @@
   {
     "id": 31,
     "name": "Eastern Forests",
+    "imagePreview": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lp/Web_Eastern-Forest_Adobe-Stock_500_F_140261432_0lefGQJWDYGXL2dXH4xw929zzJsoogxe_AdobeStock_140261432.jpg",
+    "imageCredit": "Photo: Snehit/Adobe Stock",
     "strategy": {
       "id": 2,
       "name": "Working Lands"
