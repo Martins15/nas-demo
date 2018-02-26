@@ -54,7 +54,9 @@
         // If we have some url.
         // Go to this url.
         if (getLink.length) {
-          window.location.href = location.origin + '/' + getLink;
+          setTimeout(function(){
+            window.location.href = location.origin + '/' + getLink;
+          }, 2000);
         }
       });
 

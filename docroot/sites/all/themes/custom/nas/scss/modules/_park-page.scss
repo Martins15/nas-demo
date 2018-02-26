@@ -160,8 +160,11 @@ ul.tabs-content {
     }
     &__title {
       color: $color-text-gray;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 400;
+      @include breakpoint(xlarge-up) {
+        font-size: 20px;
+      }
       .tooltip {
         position: relative;
         display: inline-block;
@@ -395,16 +398,18 @@ ul.tabs-content {
         margin-right: 0;
       }
     }
-    .field-name-field-state,
-    .field-name-field-link,
-    .field-name-field-park-area {
-      width: calc(100% - 165px);
-      float: right;
-      margin-right: 0;
-      @include breakpoint(large-up) {
-        width: auto;
-        float: none;
-        margin-right: 30px;
+    .js-img-in {
+      .field-name-field-state,
+      .field-name-field-link,
+      .field-name-field-park-area {
+        width: calc(100% - 165px);
+        float: right;
+        margin-right: 0;
+        @include breakpoint(large-up) {
+          width: auto;
+          float: none;
+          margin-right: 30px;
+        }
       }
     }
     .field-name-field-location-link {
@@ -523,6 +528,10 @@ ul.tabs-content {
     background: $green-landing;
     padding: 15px 0;
   }
+  .-wrap-select {
+    border: 0;
+    background: transparent;
+  }
   .inner {
     @include breakpoint(large-up) {
       float: left;
@@ -531,6 +540,10 @@ ul.tabs-content {
   }
   label, select {
     margin-bottom: 0;
+  }
+  .-wrap-select {
+    border: 0;
+    background: transparent;
   }
   &__text {
     label {

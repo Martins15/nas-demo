@@ -18397,8 +18397,13 @@ ul.tabs-content .link {
 }
 ul.tabs-content .link__title {
   color: #404040;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
+}
+@media only screen and (min-width: 1280px) {
+  ul.tabs-content .link__title {
+    font-size: 20px;
+  }
 }
 ul.tabs-content .link__title .tooltip {
   position: relative;
@@ -18629,17 +18634,17 @@ ul.tabs-content .link.colonizations .link__number:before {
 .node-type-park .park_info > .field:last-child {
   margin-right: 0;
 }
-.node-type-park .park_info .field-name-field-state,
-.node-type-park .park_info .field-name-field-link,
-.node-type-park .park_info .field-name-field-park-area {
+.node-type-park .park_info .js-img-in .field-name-field-state,
+.node-type-park .park_info .js-img-in .field-name-field-link,
+.node-type-park .park_info .js-img-in .field-name-field-park-area {
   width: calc(100% - 165px);
   float: right;
   margin-right: 0;
 }
 @media only screen and (min-width: 768px) {
-  .node-type-park .park_info .field-name-field-state,
-  .node-type-park .park_info .field-name-field-link,
-  .node-type-park .park_info .field-name-field-park-area {
+  .node-type-park .park_info .js-img-in .field-name-field-state,
+  .node-type-park .park_info .js-img-in .field-name-field-link,
+  .node-type-park .park_info .js-img-in .field-name-field-park-area {
     width: auto;
     float: none;
     margin-right: 30px;
@@ -18767,6 +18772,10 @@ ul.tabs-content .link.colonizations .link__number:before {
   background: #417505;
   padding: 15px 0;
 }
+.form-container .-wrap-select {
+  border: 0;
+  background: transparent;
+}
 @media only screen and (min-width: 768px) {
   .form-container .inner {
     float: left;
@@ -18775,6 +18784,10 @@ ul.tabs-content .link.colonizations .link__number:before {
 }
 .form-container label, .form-container select {
   margin-bottom: 0;
+}
+.form-container .-wrap-select {
+  border: 0;
+  background: transparent;
 }
 .form-container__text label {
   margin-bottom: 20px;

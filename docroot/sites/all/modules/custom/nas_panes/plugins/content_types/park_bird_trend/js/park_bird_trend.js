@@ -90,11 +90,16 @@
   Drupal.behaviors.cloneFieldpark = {
     attach: function (context) {
       var $nodeType = $('.node-type-park', context);
-      var $cloneImg = $('.field-name-field-park-map-image', $nodeType).clone();
-      $cloneImg.addClass('js-clone-img');
-      $('.park_info', $nodeType).prepend($cloneImg);
+      var $imgPark = $('.field-name-field-park-map-image img', $nodeType);
       $('.field-name-field-state, .field-name-field-park-area, .field-name-field-link, .field-name-field-location-link', $nodeType)
         .wrapAll('<div class="help-wrap-field" />');
+      var $helpWrap = $('.help-wrap-field');
+      if ($imgPark.length) {
+        var $cloneImg = $('.field-name-field-park-map-image', $nodeType).clone();
+        $cloneImg.addClass('js-clone-img');
+        $('.park_info', $nodeType).prepend($cloneImg);
+        $helpWrap.addClass('js-img-in')
+      }
     }
   };
 
