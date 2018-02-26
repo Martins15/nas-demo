@@ -17857,6 +17857,8 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 14px;
   text-transform: uppercase;
   font-family: "Source Sans Pro", Verdana, sans-serif;
+  text-align: right;
+  vertical-align: top;
 }
 .bird-page.body-item .title-wrap__print .img-block {
   width: 20px;
@@ -17866,13 +17868,17 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   background-position: center;
   display: inline-block;
 }
+.bird-page.body-item .title-wrap__print .download,
+.bird-page.body-item .title-wrap__print .print {
+  display: inline-block;
+  vertical-align: top;
+}
 .bird-page.body-item .title-wrap__print .download {
   background-image: url("../img/bird-page/download.png");
   padding-left: 25px;
   color: #9b9b9b;
   width: auto;
   background-position: left;
-  float: left;
   font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -17893,9 +17899,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .bird-page.body-item .title-wrap__print .print {
   background-image: url("../img/bird-page/print.png");
   margin-right: 20px;
-  display: block;
-  float: left;
-  margin-left: 50px;
+}
+@media only screen and (min-width: 1280px) {
+  .bird-page.body-item .title-wrap__print .print {
+    margin-left: 50px;
+  }
 }
 
 .page-conservation-tracker-scorecard-black-oystercatcher .global-content.with-padding {
@@ -18199,6 +18207,110 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   top: -35px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   color: #f15936;
+}
+
+.rating-wrap {
+  position: relative;
+  padding-bottom: 10px;
+  background: #fff;
+  text-align: center;
+}
+@media only screen and (min-width: 768px) {
+  .rating-wrap {
+    text-align: left;
+    padding-bottom: 20px;
+  }
+}
+.rating-wrap .map-title {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+@media only screen and (min-width: 768px) {
+  .rating-wrap .map-title {
+    width: calc(100% - 150px);
+  }
+}
+.rating-wrap #rating-ajax-wrapper p {
+  font-size: 15px;
+  line-height: 22px;
+}
+@media only screen and (min-width: 768px) {
+  .rating-wrap #rating-ajax-wrapper p {
+    width: calc(100% - 150px);
+    margin-bottom: 20px;
+  }
+}
+.rating-wrap .form-radios {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background: #f2f2f2;
+  overflow: hidden;
+}
+@media only screen and (min-width: 768px) {
+  .rating-wrap .form-radios {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 120px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+.rating-wrap .form-radios .form-item {
+  width: 50%;
+  float: left;
+}
+.rating-wrap .form-radios input[type="radio"] {
+  position: absolute;
+  left: -999em;
+  margin: 0;
+  padding: 0;
+}
+.rating-wrap .form-radios label {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 60px;
+}
+.rating-wrap .form-radios label:before {
+  content: '';
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.rating-wrap .form-radios input[type="radio"]:checked + label {
+  background: #F15936;
+}
+.rating-wrap .form-radios .form-item:first-child label:before {
+  background: url("../img/bird-page/happy.png") no-repeat center;
+}
+.rating-wrap .form-radios .form-item:first-child input[type="radio"]:checked + label:before {
+  background: url("../img/bird-page/happy-active.png") no-repeat center;
+}
+.rating-wrap .form-radios .form-item:last-child label:before {
+  background: url("../img/bird-page/sad.png") no-repeat center;
+}
+.rating-wrap .form-radios .form-item:last-child input[type="radio"]:checked + label:before {
+  background: url("../img/bird-page/sad-active.png") no-repeat center;
+}
+.rating-wrap textarea {
+  background: #f2f2f2;
+  border: 1px solid #dfdfdf;
+}
+.rating-wrap .button {
+  display: block;
+  width: 150px;
+  height: 50px;
+  padding: 0;
+  line-height: 50px;
+  text-align: center;
 }
 
 .ct-item-nav-conservation {
