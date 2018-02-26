@@ -15,7 +15,6 @@ $pumpkin: #e18400;
     line-height: 1.15;
     text-align: left;
     @include breakpoint(large-up) {
-      padding: 0;
       font-size: 38px;
     }
   }
@@ -27,6 +26,11 @@ $pumpkin: #e18400;
     h1 {
       color: $pumpkin;
       text-shadow: 0 1px 6px rgba(80, 80, 80, 0.75);
+    }
+    @include breakpoint(large-up) {
+      .hero:not(.expand) .hero-image img:not(.canon-logo) {
+        min-height: 500px;
+      }
     }
   }
   .hero-title {
@@ -58,6 +62,9 @@ $pumpkin: #e18400;
       font-size: 72px;
       font-weight: 600;
       line-height: 1.2;
+      @include breakpoint(large-only) {
+        font-size: 50px;
+      }
     }
     &__small-text {
       order: 3;
@@ -247,6 +254,12 @@ $pumpkin: #e18400;
       font-size: 20px;
     }
   }
+  .bird-slider-container {
+    h3 {
+      padding-left: 12.5px;
+      padding-right: 12.5px;
+    }
+  }
   .form-contact-container {
     font-family: $font-sans;
     .engagement-hero__content {
@@ -306,7 +319,6 @@ $pumpkin: #e18400;
     }
     &__help-wrap {
       @include breakpoint(large-up) {
-        padding: 0;
         float: left;
         width: 43%;
       }

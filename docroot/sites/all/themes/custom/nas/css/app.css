@@ -17916,7 +17916,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .climate-landing h2 {
-    padding: 0;
     font-size: 38px;
   }
 }
@@ -17929,6 +17928,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .climate-landing .engagement-hero h1 {
   color: #e18400;
   text-shadow: 0 1px 6px rgba(80, 80, 80, 0.75);
+}
+@media only screen and (min-width: 768px) {
+  .climate-landing .engagement-hero .hero:not(.expand) .hero-image img:not(.canon-logo) {
+    min-height: 500px;
+  }
 }
 .climate-landing .hero-title {
   margin-bottom: 15px;
@@ -17961,6 +17965,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 72px;
   font-weight: 600;
   line-height: 1.2;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .climate-landing .percent-wrap__percent-item {
+    font-size: 50px;
+  }
 }
 .climate-landing .percent-wrap__small-text {
   order: 3;
@@ -18146,6 +18155,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.5);
   font-size: 20px;
 }
+.climate-landing .bird-slider-container h3 {
+  padding-left: 12.5px;
+  padding-right: 12.5px;
+}
 .climate-landing .form-contact-container {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
@@ -18206,7 +18219,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .climate-landing .park-item__help-wrap {
-    padding: 0;
     float: left;
     width: 43%;
   }
