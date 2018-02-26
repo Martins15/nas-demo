@@ -67,7 +67,7 @@
                         <div class="partner__chapter"  ng-if="partner.chapter.length > 0"></div>
                     </div>
                 </div>
-                <div ng-if="value !== 'partners'" class="title-wrap__print  columns large-3  hide-for-tiny hide-for-medium hide-for-small">
+                <div ng-if="value !== 'partners'" class="title-wrap__print  columns large-4  hide-for-tiny hide-for-medium hide-for-small">
                     <a href="#" class="img-block print"></a> <a href="/conservation-tracker/csv/{{value}}/<?php print $data['id'] ?>" id="download-csv" class="img-block download">Download</a>
                 </div>
             </div>

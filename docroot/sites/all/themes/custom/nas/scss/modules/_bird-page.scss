@@ -78,6 +78,8 @@ $gray-lightish: #9b9b9b;
       font-size: 14px;
       text-transform: uppercase;
       font-family: $font-sans;
+      text-align: right;
+      vertical-align: top;
       .img-block {
         width: 20px;
         height: 18px;
@@ -86,13 +88,17 @@ $gray-lightish: #9b9b9b;
         background-position: center;
         display: inline-block;
       }
+      .download,
+      .print {
+        display: inline-block;
+        vertical-align: top;
+      }
       .download {
         background-image: url("../img/bird-page/download.png");
         padding-left: 25px;
         color: $gray-lightish;
         width: auto;
         background-position: left;
-        float: left;
         font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
         font-size: 14px;
         font-weight: 600;
@@ -113,9 +119,9 @@ $gray-lightish: #9b9b9b;
       .print {
         background-image: url("../img/bird-page/print.png");
         margin-right: 20px;
-        display: block;
-        float: left;
-        margin-left: 50px;
+        @include breakpoint(xlarge-up) {
+          margin-left: 50px;
+        }
       }
     }
   }
