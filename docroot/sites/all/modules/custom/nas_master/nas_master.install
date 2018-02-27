@@ -4660,7 +4660,8 @@ function nas_master_update_7344() {
   }
   $result = reset($result);
   $node = node_load($result->nid);
-  $node->field_hero_image[$node->language][]['fid'] = nas_park_feature_get_image('park_hero.png', TRUE);
+  $park_hero_image_fid = nas_park_feature_get_image('park_hero.png', TRUE);
+  $node->field_hero_image[$node->language][]['fid'] = $park_hero_image_fid;
   $node->field_location_link[$node->language][] = array(
     'url' => 'audubon.org',
     'title' => 'Another link'
@@ -4694,5 +4695,22 @@ function nas_master_update_7344() {
     'format' => 'html',
   );
   file_save($file);
+
+  // Update all parks with same demo hero image.
+  $nids = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('type', 'park')
+    ->execute()
+    ->fetchAll();
+  if (!empty($nids)) {
+    foreach ($nids as &$nid) {
+      $nid = $nid->nid;
+    }
+    $nodes = node_load_multiple($nids);
+    foreach ($nodes as $node) {
+      $node->field_hero_image[LANGUAGE_NONE][]['fid'] = $park_hero_image_fid;
+      node_save($node);
+    }
+  }
   // This update is with Demo data.
 }
