@@ -20375,7 +20375,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .ct-strategies-main .tab-content {
-    padding-top: 60px;
+    padding-top: 30px;
   }
 }
 .ct-strategies-main .tab-content .text-wrap {
@@ -20694,7 +20694,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     display: block;
     position: absolute;
     height: 990px;
-    top: 200px;
+    top: 170px;
     width: 100%;
   }
 }
