@@ -4605,7 +4605,7 @@ function nas_master_update_7330() {
   module_enable(array('nas_conservation_tracker'));
   drupal_flush_all_caches();
   features_revert_module('nas_conservation_tracker');
-  drupal_flush_all_caches();
+  //drupal_flush_all_caches();
   module_load_install('nas_conservation_tracker');
   nas_conservation_tracker_custom_install();
   module_load_include('module', 'nas_conservation_tracker');
@@ -4617,7 +4617,7 @@ function nas_master_update_7330() {
  * Clear all caches.
  */
 function nas_master_update_7331() {
-  drupal_flush_all_caches();
+//  drupal_flush_all_caches();
 }
 
 /**
