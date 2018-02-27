@@ -19331,7 +19331,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   color: #262626;
 }
 
-.conservation-tracker-pages .curtain-card h1 {
+.ct-scorecard-header .curtain-card h1,
+.ct-scorecard-header .hero-title,
+.conservation-tracker-pages .curtain-card h1,
+.conservation-tracker-pages .hero-title {
   margin: 0;
   padding: 0;
   color: #fff;
@@ -19339,13 +19342,36 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 37px;
   letter-spacing: normal;
   line-height: .92;
+  font-weight: 400;
   text-align: left;
+  text-shadow: none;
 }
 @media only screen and (min-width: 768px) {
-  .conservation-tracker-pages .curtain-card h1 {
+  .ct-scorecard-header .curtain-card h1,
+  .ct-scorecard-header .hero-title,
+  .conservation-tracker-pages .curtain-card h1,
+  .conservation-tracker-pages .hero-title {
     font-size: 64px;
   }
 }
+.ct-scorecard-header .hero.light-text .hero-blurb,
+.ct-scorecard-header .hero-blurb,
+.conservation-tracker-pages .hero.light-text .hero-blurb,
+.conservation-tracker-pages .hero-blurb {
+  color: #fff;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+}
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-header .hero.light-text .hero-blurb,
+  .ct-scorecard-header .hero-blurb,
+  .conservation-tracker-pages .hero.light-text .hero-blurb,
+  .conservation-tracker-pages .hero-blurb {
+    font-size: 24px;
+  }
+}
+
 .conservation-tracker-pages .column,
 .conservation-tracker-pages .row.space-bottom {
   position: static;

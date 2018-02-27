@@ -1465,23 +1465,38 @@ $gray-lightish: #9b9b9b;
   }
 }
 
-// Style for pages /conservation-tracker and /conservation-tracker/*
+.ct-scorecard-header,
 .conservation-tracker-pages {
-  .curtain-card {
-    h1 {
-      margin: 0;
-      padding: 0;
-      color: $white;
-      font-family: $font-sans;
-      font-size: 37px;
-      letter-spacing: normal;
-      line-height: .92;
-      text-align: left;
-      @include breakpoint(large-up) {
-        font-size: 64px;
-      }
+  .curtain-card h1,
+  .hero-title {
+    margin: 0;
+    padding: 0;
+    color: $white;
+    font-family: $font-sans;
+    font-size: 37px;
+    letter-spacing: normal;
+    line-height: .92;
+    font-weight: 400;
+    text-align: left;
+    text-shadow: none;
+    @include breakpoint(large-up) {
+      font-size: 64px;
     }
   }
+  .hero.light-text .hero-blurb,
+  .hero-blurb {
+    color: $white;
+    font-family: $font-sans;
+    font-size: 20px;
+    font-style: normal;
+    @include breakpoint(large-up) {
+      font-size: 24px;
+    }
+  }
+}
+
+// Style for pages /conservation-tracker and /conservation-tracker/*
+.conservation-tracker-pages {
   .column,
   .row.space-bottom {
     position: static;

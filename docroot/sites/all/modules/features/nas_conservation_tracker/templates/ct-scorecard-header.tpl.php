@@ -3,7 +3,7 @@
  * TPL file for CT content type.
  */
 ?>
-<div class="ct-scorecard-header bg-respond hero small dark-gradient light-text">
+<div class="ct-scorecard-header bg-respond hero small dark-gradient">
   <div class="hero-image">
     <?php print $image; ?>
   </div>
