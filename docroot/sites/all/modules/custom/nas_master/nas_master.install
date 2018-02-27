@@ -4683,5 +4683,16 @@ function nas_master_update_7344() {
   if ($file_private_path === FALSE || empty($file_private_path)) {
     variable_set('file_private_path', 'sites/default/files/private');
   }
+
+  // Set credit field for case study image.
+  $name = 'bird-cart.jpg';
+  $files = file_load_multiple(array(), array('filename' => $name));
+  $file = reset($files);
+  $file->field_file_caption[LANGUAGE_NONE][]['value'] = '';
+  $file->field_file_credit[LANGUAGE_NONE][] = array(
+    'value' => 'NPS',
+    'format' => 'html',
+  );
+  file_save($file);
   // This update is with Demo data.
 }
