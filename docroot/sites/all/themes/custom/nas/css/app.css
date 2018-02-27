@@ -19743,7 +19743,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .species-filter .filter-block .form-item-search {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 .species-filter .filter-block .form-item-search:before, .species-filter .filter-block .form-item-search:after {
   content: '';
