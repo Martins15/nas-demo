@@ -1430,7 +1430,7 @@ $gray-lightish: #9b9b9b;
   .banner-text {
     top: inherit;
     transition: bottom .3s;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, .3) 80%, rgba(0, 0, 0, 0) 100%);
     @media screen and (max-width: 767px) {
       bottom: 0 !important;
     }
@@ -1458,6 +1458,10 @@ $gray-lightish: #9b9b9b;
       margin-bottom: 20px;
       letter-spacing: .5px;
     }
+  }
+  b {
+    font-weight: 400;
+    color: #262626;
   }
 }
 
