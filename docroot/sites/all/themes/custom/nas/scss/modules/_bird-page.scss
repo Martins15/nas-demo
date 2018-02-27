@@ -1430,7 +1430,7 @@ $gray-lightish: #9b9b9b;
   .banner-text {
     top: inherit;
     transition: bottom .3s;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, .3) 80%, rgba(0, 0, 0, 0) 100%);
     @media screen and (max-width: 767px) {
       bottom: 0 !important;
     }
@@ -1459,25 +1459,44 @@ $gray-lightish: #9b9b9b;
       letter-spacing: .5px;
     }
   }
+  b {
+    font-weight: 400;
+    color: #262626;
+  }
+}
+
+.ct-scorecard-header,
+.conservation-tracker-pages {
+  .curtain-card h1,
+  .hero-title {
+    margin: 0;
+    padding: 0;
+    color: $white;
+    font-family: $font-sans;
+    font-size: 37px;
+    letter-spacing: normal;
+    line-height: .92;
+    font-weight: 400;
+    text-align: left;
+    text-shadow: none;
+    @include breakpoint(large-up) {
+      font-size: 64px;
+    }
+  }
+  .hero.light-text .hero-blurb,
+  .hero-blurb {
+    color: $white;
+    font-family: $font-sans;
+    font-size: 20px;
+    font-style: normal;
+    @include breakpoint(large-up) {
+      font-size: 24px;
+    }
+  }
 }
 
 // Style for pages /conservation-tracker and /conservation-tracker/*
 .conservation-tracker-pages {
-  .curtain-card {
-    h1 {
-      margin: 0;
-      padding: 0;
-      color: $white;
-      font-family: $font-sans;
-      font-size: 37px;
-      letter-spacing: normal;
-      line-height: .92;
-      text-align: left;
-      @include breakpoint(large-up) {
-        font-size: 64px;
-      }
-    }
-  }
   .column,
   .row.space-bottom {
     position: static;

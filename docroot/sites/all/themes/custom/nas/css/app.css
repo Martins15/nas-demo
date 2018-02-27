@@ -19293,7 +19293,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .show-hide-text .banner-text {
   top: inherit;
   transition: bottom .3s;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 0) 100%);
 }
 @media screen and (max-width: 767px) {
   .show-hide-text .banner-text {
@@ -19326,8 +19326,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     letter-spacing: .5px;
   }
 }
+.conservation-tracker-custom-pane b {
+  font-weight: 400;
+  color: #262626;
+}
 
-.conservation-tracker-pages .curtain-card h1 {
+.ct-scorecard-header .curtain-card h1,
+.ct-scorecard-header .hero-title,
+.conservation-tracker-pages .curtain-card h1,
+.conservation-tracker-pages .hero-title {
   margin: 0;
   padding: 0;
   color: #fff;
@@ -19335,13 +19342,36 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 37px;
   letter-spacing: normal;
   line-height: .92;
+  font-weight: 400;
   text-align: left;
+  text-shadow: none;
 }
 @media only screen and (min-width: 768px) {
-  .conservation-tracker-pages .curtain-card h1 {
+  .ct-scorecard-header .curtain-card h1,
+  .ct-scorecard-header .hero-title,
+  .conservation-tracker-pages .curtain-card h1,
+  .conservation-tracker-pages .hero-title {
     font-size: 64px;
   }
 }
+.ct-scorecard-header .hero.light-text .hero-blurb,
+.ct-scorecard-header .hero-blurb,
+.conservation-tracker-pages .hero.light-text .hero-blurb,
+.conservation-tracker-pages .hero-blurb {
+  color: #fff;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+}
+@media only screen and (min-width: 768px) {
+  .ct-scorecard-header .hero.light-text .hero-blurb,
+  .ct-scorecard-header .hero-blurb,
+  .conservation-tracker-pages .hero.light-text .hero-blurb,
+  .conservation-tracker-pages .hero-blurb {
+    font-size: 24px;
+  }
+}
+
 .conservation-tracker-pages .column,
 .conservation-tracker-pages .row.space-bottom {
   position: static;
@@ -19713,7 +19743,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .species-filter .filter-block .form-item-search {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 .species-filter .filter-block .form-item-search:before, .species-filter .filter-block .form-item-search:after {
   content: '';
@@ -20345,7 +20375,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .ct-strategies-main .tab-content {
-    padding-top: 60px;
+    padding-top: 30px;
   }
 }
 .ct-strategies-main .tab-content .text-wrap {
@@ -20664,7 +20694,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     display: block;
     position: absolute;
     height: 990px;
-    top: 200px;
+    top: 170px;
     width: 100%;
   }
 }
