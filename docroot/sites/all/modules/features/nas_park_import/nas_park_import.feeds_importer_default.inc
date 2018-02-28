@@ -20,14 +20,14 @@ function nas_park_import_feeds_importer_default() {
     'fetcher' => array(
       'plugin_key' => 'FeedsFileFetcher',
       'config' => array(
-        'allowed_extensions' => 'txt csv tsv xml opml',
-        'delete_uploaded_file' => FALSE,
-        'direct' => FALSE,
+        'allowed_extensions' => 'csv',
+        'delete_uploaded_file' => 0,
+        'direct' => 0,
         'directory' => 'private://feeds',
         'allowed_schemes' => array(
-          0 => 'netx',
-          1 => 'public',
-          2 => 'private',
+          'netx' => 'netx',
+          'public' => 'public',
+          'private' => 'private',
         ),
       ),
     ),
@@ -49,7 +49,7 @@ function nas_park_import_feeds_importer_default() {
           0 => array(
             'source' => 'unit_name',
             'target' => 'title',
-            'unique' => 0,
+            'unique' => 1,
           ),
           1 => array(
             'source' => 'park',
@@ -94,7 +94,7 @@ function nas_park_import_feeds_importer_default() {
             'language' => 'und',
           ),
         ),
-        'insert_new' => '1',
+        'insert_new' => '0',
         'update_existing' => '2',
         'update_non_existent' => 'delete',
         'input_format' => 'plain_text',
@@ -103,7 +103,7 @@ function nas_park_import_feeds_importer_default() {
         'language' => 'und',
       ),
     ),
-    'content_type' => 'park',
+    'content_type' => '',
     'update' => 0,
     'import_period' => '-1',
     'expire_period' => 3600,
