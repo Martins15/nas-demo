@@ -19845,10 +19845,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin: 10px 0;
 }
 .species-filter .birds-wrap .bird-card-caption .common-name {
-  font-size: 18px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 18px;
 }
 .species-filter .birds-wrap .bird-card-illustration {
   height: auto;
