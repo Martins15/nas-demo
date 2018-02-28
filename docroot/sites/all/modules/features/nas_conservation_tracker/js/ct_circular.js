@@ -56,11 +56,13 @@
           background = svg.append("path")
             .datum({endAngle: τ})
             .attr('class', class_assign+'_back')
+            .attr("data-html2canvas-ignore", "true")
             .attr("d", arc);
 
           foreground = svg.append("path")
             .datum({endAngle: τ})
             .attr('class', class_assign+'_front')
+            .attr("data-html2canvas-ignore", "true")
             .attr("d", arc);
 
           svg.append("text")

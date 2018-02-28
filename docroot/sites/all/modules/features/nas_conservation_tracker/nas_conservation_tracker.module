@@ -133,6 +133,21 @@ function nas_conservation_tracker_libraries_info() {
     $libraries[$key]['files']['js'][] = $filename . '.js';
   }
 
+  $libraries['jspdf'] = array(
+    'name' => 'jsPDF',
+    'vendor url' => 'http://parall.ax/products/jspdf',
+    'download url' => 'https://github.com/MrRio/jsPDF',
+    'files' => array(
+      'js' => array(
+        'dist/jspdf.min.js' => array(
+          'type' => 'file',
+          'group' => JS_LIBRARY,
+        ),
+      ),
+    ),
+    'version' => '1',
+  );
+
   return $libraries;
 }
 

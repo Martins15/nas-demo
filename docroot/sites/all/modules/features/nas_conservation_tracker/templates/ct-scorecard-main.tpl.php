@@ -8,20 +8,19 @@
     <?php print $form; ?>
     <a href="#" class="controls-link"><span class="border"></span> </a>
   </div>
-  <div class="wrap-map-diagram">
+  <div id="charts" class="wrap-map-diagram">
     <?php print $map; ?>
     <div class="help-wrap-items-map-items">
-      <div class="diagram-wrap help-bg-white columns map-item large-8">
+      <div id="charts-actions" class="diagram-wrap help-bg-white columns map-item large-8">
         <div class="map-item__inner-help">
           <div class="diagram-wrap__title">
             <h4 class="map-title">
               <span class="map-span-title">
                 Action Categories
               </span>
-              <span class="tooltip">
+              <span class="tooltip" data-html2canvas-ignore="true">
                 <span class="icon"></span>
-                <span class="text"
-                      id="tooltip-text"><?php print $tooltip; ?></span>
+                <span class="text" id="tooltip-text"><?php print $tooltip; ?></span>
               </span>
             </h4>
             <div class="trigger">
@@ -40,12 +39,12 @@
           </div>
         </div>
       </div>
-      <div class="objectives-wrap help-bg-white columns map-item large-8">
+      <div id="charts-objectives" class="objectives-wrap help-bg-white columns map-item large-8">
         <div class="map-item__inner-help">
           <div class="objectives-wrap__title">
             <h4 class="map-title">
               Objectives
-              <span class="tooltip">
+              <span class="tooltip" data-html2canvas-ignore="true">
                 <span class="icon"></span>
                 <span class="text"
                       id="tooltip-objectives-text"><?php print $tooltip_objectives; ?></span>
@@ -79,6 +78,6 @@
     </div>
   </div>
 </aside>
-<div class="row" data-ng-controller="Content">
+<div id="scorecard-footnotes" class="row" data-ng-controller="Content">
   <div ng-bind-html="tab.settings.overview.footnotes"></div>
 </div>
