@@ -131,19 +131,10 @@
         }
 
         $scope.downloadPdf = function() {
+          $('body').append('<div id="pdf-render-container"></div>');
           $scope.pdfLoading = true;
 
-          //console.log('TAB',$scope.tab);
-          //console.log('SCOPE',$scope);
-/*
-          var loader = document.createElement('div');
-          var button = document.getElementById('download-pdf');
-          loader.innerHTML = 'PDF Loading...';
-          loader.id = 'pdf-loading';
-          button.parentNode.insertBefore(loader, button);
-*/
           var doc = new jsPDF();
-
           var lMap = Drupal.settings.leaflet['0'].lMap;
           leafletImage(lMap, function(err, canvas) {
             Drupal.settings.nasConservationTracker.leafletImage = canvas.toDataURL();
@@ -151,56 +142,88 @@
           var dimensions = lMap.getSize();
           var imgRatio = dimensions.x / dimensions.y;
           var w = 210;
-          var h = w / imgRatio;
-          doc.text(20, 20, $scope.tab.name);
-          doc.text(20, 30, $scope.tab.subtitle);
-          doc.text(20, 40, $scope.isActive);
-
-          doc.addImage(Drupal.settings.nasConservationTracker.leafletImage, 'PNG', 0, 50, w, h);
-
+          var h = parseInt((w / imgRatio).toFixed());
           var overview = document.querySelector("#scorecard-overview");
-          var w2 = 210;
-          var h2 = w2 / overview.offsetWidth * overview.offsetHeight;
-          var offset1 = h + 70;
+          var w2 = 195;
+          var h2 = parseInt((w2 / overview.offsetWidth * overview.offsetHeight).toFixed());
+          var offset = 20;
+          var offset1 = h2 + 60;
           var size2 = calcSize('#charts-actions');
-          var offset3 = size2.y + 10;
+          var offset3 = size2.y + 20;
           var size3 = calcSize('#charts-objectives');
-console.log(size3);
-console.log(offset3);
+          var size4 = calcSize('#scorecard-footnotes');
+          var offset4 = size3.y + offset3 + 20;
+
+          doc.setFontSize(18);
+          doc.setTextColor(38,38,38);
+          doc.text(12, offset, $scope.tab.name);
+          offset += 10;
+          doc.setFontSize(12);
+          if ($scope.tab.subtitle) {
+            doc.text(12, 30, $scope.tab.subtitle);
+            offset += 10;
+          }
+          doc.text(12, offset, $scope.isActive);
+
+          html2canvas(document.querySelector("#scorecard-overview")).then(canvas => {
+            doc.addImage(canvas.toDataURL(), 'PNG', 10, 50, w2, h2);
+          });
+
           setTimeout(function() {
-            html2canvas(document.querySelector("#scorecard-overview")).then(canvas => {
-              //Drupal.settings.nasConservationTracker.ooo = canvas.toDataURL();
-              doc.addImage(canvas.toDataURL(), 'PNG', 0, offset1, w2, h2);
-            });
+            var overviewHref = $scope.tab.settings[$scope.isActive].preparedLink.href;
+            if (typeof(overviewHref) == 'string') {
+              var ext = ['jpeg', 'jpg', 'gif', 'png'];
+              for (var e in ext) {
+                if (overviewHref.indexOf('.' + ext[e]) > 0) {
+                  var imgOverview = new Image;
+                  imgOverview.onload = function () {
+                    doc.addImage(this, 'PNG', 0, offset1, w, h);
+                    doc.addPage();
+                    offset1 = 0;
+                  };
+                  imgOverview.crossOrigin = '';
+                  imgOverview.src = overviewHref;
+                  console.log('overviewHref', overviewHref);
+                  break;
+                }
+              }
+            }
           }, 5000);
+
+          setTimeout(function() {
+            doc.addImage(Drupal.settings.nasConservationTracker.leafletImage, 'PNG', 0, offset1, w, h);
+          }, 9000);
+
           setTimeout(function() {
             html2canvas(document.querySelector("#charts-actions")).then(canvas => {
-              //Drupal.settings.nasConservationTracker.aaa = canvas.toDataURL();
               doc.addPage();
-              doc.addImage(canvas.toDataURL(), 'PNG', 0, 0, size2.x, size2.y);
+              doc.addImage(canvas.toDataURL(), 'PNG', 5, 10, size2.x, size2.y);
             });
-          }, 10000);
+          }, 12000);
+
           setTimeout(function() {
             html2canvas(document.querySelector("#charts-objectives")).then(canvas => {
-              //Drupal.settings.nasConservationTracker.ccc = canvas.toDataURL();
-              doc.addImage(canvas.toDataURL(), 'PNG', 0, offset3, size3.x, size3.y);
+              doc.addImage(canvas.toDataURL(), 'PNG', 5, offset3, size3.x, size3.y);
             });
-          }, 15000);
+          }, 17000);
 
-
-//          var svg = d3.select('#d3-objectives-1 svg').node();
-
-         // console.log(doc.canvas['get height']());
           setTimeout(function() {
-            doc.save($scope.tab.name + '.pdf');
+            if ($scope.tab.settings[$scope.isActive].footnotes) {
+              html2canvas(document.querySelector("#scorecard-footnotes")).then(canvas => {
+                doc.addImage(canvas.toDataURL(), 'PNG', 15, offset4, size4.x, size4.y);
+              });
+            }
+          }, 19000);
+
+          setTimeout(function() {
             $scope.pdfLoading = false;
+            doc.save($scope.tab.name + '.pdf');
+            $scope.$apply();
           }, 25000);
 
           function calcSize(selector) {
             var e = 0.264583;
             var element = document.querySelector(selector);
-            //console.log('w',element.offsetWidth);
-            //console.log('h',element.offsetHeight);
             return {
               x: parseInt((element.offsetWidth * e).toFixed()),
               y: parseInt((element.offsetHeight * e).toFixed())

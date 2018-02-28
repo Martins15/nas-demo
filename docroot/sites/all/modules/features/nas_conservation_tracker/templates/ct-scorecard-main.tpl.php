@@ -18,10 +18,9 @@
               <span class="map-span-title">
                 Action Categories
               </span>
-              <span class="tooltip">
+              <span class="tooltip" data-html2canvas-ignore="true">
                 <span class="icon"></span>
-                <span class="text"
-                      id="tooltip-text"><?php print $tooltip; ?></span>
+                <span class="text" id="tooltip-text"><?php print $tooltip; ?></span>
               </span>
             </h4>
             <div class="trigger">
@@ -45,7 +44,7 @@
           <div class="objectives-wrap__title">
             <h4 class="map-title">
               Objectives
-              <span class="tooltip">
+              <span class="tooltip" data-html2canvas-ignore="true">
                 <span class="icon"></span>
                 <span class="text"
                       id="tooltip-objectives-text"><?php print $tooltip_objectives; ?></span>
@@ -79,6 +78,6 @@
     </div>
   </div>
 </aside>
-<div class="row" data-ng-controller="Content">
+<div id="scorecard-footnotes" class="row" data-ng-controller="Content">
   <div ng-bind-html="tab.settings.overview.footnotes"></div>
 </div>
