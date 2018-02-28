@@ -19830,32 +19830,38 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 .species-filter .birds-wrap .bird-card {
-  padding: 0 0 50px;
+  padding: 0;
+  max-width: 95%;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .birds-wrap .bird-card {
+    max-width: 100%;
+  }
 }
 .species-filter .birds-wrap .bird-card-caption {
   padding: 0 8px;
+  position: relative;
+  bottom: 0;
+  margin: 10px 0;
 }
-@media only screen and (min-width: 768px) {
-  .species-filter .birds-wrap .bird-card-illustration {
-    height: 230px;
-  }
+.species-filter .birds-wrap .bird-card-caption .common-name {
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-@media only screen and (min-width: 768px) {
-  .species-filter .birds-wrap .bird-card-illustration .field-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+.species-filter .birds-wrap .bird-card-illustration {
+  height: auto;
+  width: 100%;
 }
-@media only screen and (min-width: 768px) {
-  .species-filter .birds-wrap .bird-card-illustration img {
-    width: 100%;
-    max-width: inherit;
-    height: auto;
-    max-height: initial;
-  }
+.species-filter .birds-wrap .bird-card-illustration:before {
+  display: none;
+}
+.species-filter .birds-wrap .bird-card-illustration img {
+  width: 100%;
+  max-width: inherit;
+  height: auto;
+  max-height: initial;
 }
 
 .dark-style {
