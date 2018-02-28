@@ -10,7 +10,7 @@
 function nas_park_feature_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-park-body'
+  // Exported field_instance: 'node-park-body'.
   $field_instances['node-park-body'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -115,7 +115,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_birds_s_colonizations_desc'
+  // Exported field_instance: 'node-park-field_birds_s_colonizations_desc'.
   $field_instances['node-park-field_birds_s_colonizations_desc'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -255,7 +255,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_birds_s_extirpations_desc'
+  // Exported field_instance: 'node-park-field_birds_s_extirpations_desc'.
   $field_instances['node-park-field_birds_s_extirpations_desc'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -395,7 +395,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_birds_s_species_desc'
+  // Exported field_instance: 'node-park-field_birds_s_species_desc'.
   $field_instances['node-park-field_birds_s_species_desc'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -535,7 +535,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_birds_w_colonizations_desc'
+  // Exported field_instance: 'node-park-field_birds_w_colonizations_desc'.
   $field_instances['node-park-field_birds_w_colonizations_desc'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -675,7 +675,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_birds_w_extirpations_desc'
+  // Exported field_instance: 'node-park-field_birds_w_extirpations_desc'.
   $field_instances['node-park-field_birds_w_extirpations_desc'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -815,7 +815,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_birds_w_species_desc'
+  // Exported field_instance: 'node-park-field_birds_w_species_desc'.
   $field_instances['node-park-field_birds_w_species_desc'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -955,7 +955,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_hero_image'
+  // Exported field_instance: 'node-park-field_hero_image'.
   $field_instances['node-park-field_hero_image'] = array(
     'bundle' => 'park',
     'deleted' => 0,
@@ -1120,7 +1120,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_interactive_content'
+  // Exported field_instance: 'node-park-field_interactive_content'.
   $field_instances['node-park-field_interactive_content'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -1260,7 +1260,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_link'
+  // Exported field_instance: 'node-park-field_link'.
   $field_instances['node-park-field_link'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -1346,6 +1346,7 @@ function nas_park_feature_field_default_field_instances() {
     'label' => 'Website',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
@@ -1361,6 +1362,7 @@ function nas_park_feature_field_default_field_instances() {
       'quiz_result' => FALSE,
       'rel_remove' => 'default',
       'title' => 'optional',
+      'title_label_use_field_label' => FALSE,
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
@@ -1376,7 +1378,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_location_link'
+  // Exported field_instance: 'node-park-field_location_link'.
   $field_instances['node-park-field_location_link'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -1462,6 +1464,7 @@ function nas_park_feature_field_default_field_instances() {
     'label' => 'More',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
@@ -1477,6 +1480,7 @@ function nas_park_feature_field_default_field_instances() {
       'quiz_result' => FALSE,
       'rel_remove' => 'default',
       'title' => 'optional',
+      'title_label_use_field_label' => FALSE,
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
@@ -1492,7 +1496,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_park_area'
+  // Exported field_instance: 'node-park-field_park_area'.
   $field_instances['node-park-field_park_area'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -1632,7 +1636,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_park_description'
+  // Exported field_instance: 'node-park-field_park_description'.
   $field_instances['node-park-field_park_description'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -1772,7 +1776,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_park_description_secondary'
+  // Exported field_instance: 'node-park-field_park_description_secondary'.
   $field_instances['node-park-field_park_description_secondary'] = array(
     'bundle' => 'park',
     'default_value' => array(
@@ -1920,7 +1924,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_park_id'
+  // Exported field_instance: 'node-park-field_park_id'.
   $field_instances['node-park-field_park_id'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -2060,7 +2064,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_park_location'
+  // Exported field_instance: 'node-park-field_park_location'.
   $field_instances['node-park-field_park_location'] = array(
     'bundle' => 'park',
     'default_value' => NULL,
@@ -2163,7 +2167,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_park_map_image'
+  // Exported field_instance: 'node-park-field_park_map_image'.
   $field_instances['node-park-field_park_map_image'] = array(
     'bundle' => 'park',
     'deleted' => 0,
@@ -2336,7 +2340,7 @@ function nas_park_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-park-field_state'
+  // Exported field_instance: 'node-park-field_state'.
   $field_instances['node-park-field_state'] = array(
     'bundle' => 'park',
     'default_value' => NULL,

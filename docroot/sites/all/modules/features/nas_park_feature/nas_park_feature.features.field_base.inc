@@ -10,21 +10,13 @@
 function nas_park_feature_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_birds_s_colonizations_desc'
+  // Exported field_base: 'field_birds_s_colonizations_desc'.
   $field_bases['field_birds_s_colonizations_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_birds_s_colonizations_desc',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -39,21 +31,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_birds_s_extirpations_desc'
+  // Exported field_base: 'field_birds_s_extirpations_desc'.
   $field_bases['field_birds_s_extirpations_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_birds_s_extirpations_desc',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -68,21 +52,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_birds_s_species_desc'
+  // Exported field_base: 'field_birds_s_species_desc'.
   $field_bases['field_birds_s_species_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_birds_s_species_desc',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -97,21 +73,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_birds_w_colonizations_desc'
+  // Exported field_base: 'field_birds_w_colonizations_desc'.
   $field_bases['field_birds_w_colonizations_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_birds_w_colonizations_desc',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -126,21 +94,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_birds_w_extirpations_desc'
+  // Exported field_base: 'field_birds_w_extirpations_desc'.
   $field_bases['field_birds_w_extirpations_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_birds_w_extirpations_desc',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -155,21 +115,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_birds_w_species_desc'
+  // Exported field_base: 'field_birds_w_species_desc'.
   $field_bases['field_birds_w_species_desc'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_birds_w_species_desc',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -184,21 +136,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_interactive_content'
+  // Exported field_base: 'field_interactive_content'.
   $field_bases['field_interactive_content'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_interactive_content',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -213,21 +157,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_park_area'
+  // Exported field_base: 'field_park_area'.
   $field_bases['field_park_area'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_park_area',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -243,21 +179,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_park_description'
+  // Exported field_base: 'field_park_description'.
   $field_bases['field_park_description'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_park_description',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -272,21 +200,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_park_description_secondary'
+  // Exported field_base: 'field_park_description_secondary'.
   $field_bases['field_park_description_secondary'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_park_description_secondary',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -301,21 +221,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_park_id'
+  // Exported field_base: 'field_park_id'.
   $field_bases['field_park_id'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_park_id',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -331,14 +243,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_park_location'
+  // Exported field_base: 'field_park_location'.
   $field_bases['field_park_location'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_park_location',
-    'foreign keys' => array(),
     'indexes' => array(
       'bbox' => array(
         0 => 'top',
@@ -383,21 +294,13 @@ function nas_park_feature_field_default_field_bases() {
     'type' => 'geofield',
   );
 
-  // Exported field_base: 'field_park_map_image'
+  // Exported field_base: 'field_park_map_image'.
   $field_bases['field_park_map_image'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_park_map_image',
-    'foreign keys' => array(
-      'fid' => array(
-        'columns' => array(
-          'fid' => 'fid',
-        ),
-        'table' => 'file_managed',
-      ),
-    ),
     'indexes' => array(
       'fid' => array(
         0 => 'fid',

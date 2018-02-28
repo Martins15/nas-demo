@@ -28,6 +28,7 @@ function park_bird_import_feeds_importer_default() {
           1 => 'public',
           2 => 'private',
         ),
+        'delete_uploaded_file' => FALSE,
       ),
     ),
     'parser' => array(
@@ -35,6 +36,7 @@ function park_bird_import_feeds_importer_default() {
       'config' => array(
         'delimiter' => ',',
         'no_headers' => 0,
+        'encoding' => 'UTF-8',
       ),
     ),
     'processor' => array(
@@ -75,9 +77,11 @@ function park_bird_import_feeds_importer_default() {
         'input_format' => 'plain_text',
         'skip_hash_check' => 0,
         'bundle' => 'parks_to_birds_relation',
+        'insert_new' => '1',
+        'language' => 'und',
       ),
     ),
-    'content_type' => 'parks_to_birds_relation',
+    'content_type' => '',
     'update' => 0,
     'import_period' => '-1',
     'expire_period' => 3600,
