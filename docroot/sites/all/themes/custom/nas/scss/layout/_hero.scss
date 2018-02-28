@@ -79,6 +79,9 @@
     height: 100%;
     background: #000;
   }
+  video{
+    object-fit: cover;
+  }
 }
 .hero-video {
   .hero-attribution-fullscreen {

@@ -27,9 +27,9 @@ function nativePlantsEmbedForm() {
   }
   var homePathToModule = '/sites/all/modules/custom/native_plants_embed_form'
     , homePath = script.src.substring(0, script.src.indexOf(homePathToModule));
-  addAssets('script', 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js');
+  addAssets('script', '//d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js');
   addAssets('link', homePath + homePathToModule + '/native_plants_embed_form.css');
-  addAssets('link', 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
+  addAssets('link', '//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
 
   var parent = script.parentElement
     , div = document.createElement('div')
