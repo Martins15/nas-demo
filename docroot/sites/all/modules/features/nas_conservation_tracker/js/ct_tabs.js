@@ -183,7 +183,6 @@
                   };
                   imgOverview.crossOrigin = '';
                   imgOverview.src = overviewHref;
-                  console.log('overviewHref', overviewHref);
                   break;
                 }
               }

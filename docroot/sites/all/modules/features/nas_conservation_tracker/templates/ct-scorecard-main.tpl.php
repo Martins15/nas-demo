@@ -56,7 +56,7 @@
           </div>
         </div>
       </div>
-      <div class="progress-wrap map-item large-8">
+      <div class="progress-wrap map-item large-8 columns">
         <div class="map-item__inner-help">
           <div class="progress-wrap__title">
             <h4 class="map-title">Overall Progress</h4></div>
@@ -66,7 +66,7 @@
           </div>
         </div>
       </div>
-      <div style="background: white" class="rating-wrap map-item large-8">
+      <div class="rating-wrap map-item large-8  columns">
         <div class="map-item__inner-help">
           <div class="rating-wrap__title"><h4 class="map-title">Rate this report</h4></div>
           <div id="rating-ajax-wrapper">

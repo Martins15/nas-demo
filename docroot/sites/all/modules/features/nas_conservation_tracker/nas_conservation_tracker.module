@@ -317,12 +317,18 @@ function nas_conservation_tracker_get_landscapes_json() {
   $result = array('data' => array(), 'success' => 0);
 
     $data = nas_conservation_tracker_get_json('landscapes');
+
     foreach ($data as $key => $item) {
       if (!empty($item['scorecardId'])) {
         $data[$key]['scorecardUrl'] = url(drupal_get_path_alias('node/' . nas_get_scorecard_by_id($item['scorecardId'])));
       }
+      if (!empty($item['imagePreview'])) {
+        if (module_exists('imagecache_external')) {
+          $item['imagePreview'] = trim($item['imagePreview'], '/');
+          $data[$key]['imagePreview'] = image_style_url('ct_landscape_preview', imagecache_external_generate_path($item['imagePreview']));
+        }
+      }
     }
-
     $result['data'] = $data;
     if (!empty($result['data'])) {
       $result['success'] = 1;
@@ -553,6 +559,16 @@ function nas_conservation_tracker_get_image($name) {
       }
     }
     return $file->fid;
+  }
+}
+
+
+function nas_conservation_tracker_entity_load($entities, $type) {
+  if ($type == 'ct_species') {
+    foreach ($entities as &$entity) {
+      $entity->field_ct_image[LANGUAGE_NONE][0]['value'] = trim($entity->field_ct_image[LANGUAGE_NONE][0]['value'], '/');
+      $entity->field_ct_image[LANGUAGE_NONE][0]['safe_value'] = trim($entity->field_ct_image[LANGUAGE_NONE][0]['safe_value'], '/');
+    }
   }
 }
 

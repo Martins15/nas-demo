@@ -78,6 +78,8 @@ $gray-lightish: #9b9b9b;
       font-size: 14px;
       text-transform: uppercase;
       font-family: $font-sans;
+      text-align: right;
+      vertical-align: top;
       .img-block {
         width: 20px;
         height: 18px;
@@ -86,13 +88,17 @@ $gray-lightish: #9b9b9b;
         background-position: center;
         display: inline-block;
       }
+      .download,
+      .print {
+        display: inline-block;
+        vertical-align: top;
+      }
       .download {
         background-image: url("../img/bird-page/download.png");
         padding-left: 25px;
         color: $gray-lightish;
         width: auto;
         background-position: left;
-        float: left;
         font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
         font-size: 14px;
         font-weight: 600;
@@ -113,9 +119,9 @@ $gray-lightish: #9b9b9b;
       .print {
         background-image: url("../img/bird-page/print.png");
         margin-right: 20px;
-        display: block;
-        float: left;
-        margin-left: 50px;
+        @include breakpoint(xlarge-up) {
+          margin-left: 50px;
+        }
       }
     }
   }
@@ -419,6 +425,104 @@ $gray-lightish: #9b9b9b;
   }
 }
 
+.rating-wrap {
+  position: relative;
+  padding-bottom: 10px;
+  background: $white;
+  text-align: center;
+  @include breakpoint(large-up) {
+    text-align: left;
+    padding-bottom: 20px;
+  }
+  .map-title {
+    margin-bottom: 10px;
+    font-size: 24px;
+    @include breakpoint(large-up) {
+      width: calc(100% - 150px);
+    }
+  }
+  #rating-ajax-wrapper {
+    p {
+      font-size: 15px;
+      line-height: 22px;
+      @include breakpoint(large-up) {
+        width: calc(100% - 150px);
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .form-radios {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background: #f2f2f2;
+    overflow: hidden;
+    @include breakpoint(large-up) {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 120px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .form-item {
+      width: 50%;
+      float: left;
+    }
+    input[type="radio"] {
+      position: absolute;
+      left: -999em;
+      margin: 0;
+      padding: 0;
+    }
+    label {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      margin: 0;
+      padding: 0;
+      font-size: 0;
+      line-height: 60px;
+      &:before {
+        content: '';
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    input[type="radio"]:checked + label {
+      background: $color-tomato;
+    }
+    .form-item:first-child label:before {
+      background: url("../img/bird-page/happy.png") no-repeat center;
+    }
+    .form-item:first-child input[type="radio"]:checked + label:before {
+      background: url("../img/bird-page/happy-active.png") no-repeat center;
+    }
+    .form-item:last-child label:before {
+      background: url("../img/bird-page/sad.png") no-repeat center;
+    }
+    .form-item:last-child input[type="radio"]:checked + label:before {
+      background: url("../img/bird-page/sad-active.png") no-repeat center;
+    }
+  }
+  textarea {
+    background: #f2f2f2;
+    border: 1px solid #dfdfdf;
+  }
+  .button {
+    display: block;
+    width: 150px;
+    height: 50px;
+    padding: 0;
+    line-height: 50px;
+    text-align: center;
+  }
+}
+
 .ct-item-nav-conservation {
   background: $grey-menu-bird;
   padding: 10px 0;
@@ -694,9 +798,9 @@ $gray-lightish: #9b9b9b;
     z-index: 2;
     opacity: 0.8;
     display: block;
-    background: -moz-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(125,185,232,0) 100%);
-    background: -webkit-linear-gradient(left, rgba(0,0,0,1) 0%,rgba(125,185,232,0) 100%);
-    background: linear-gradient(to right, rgba(0,0,0,1) 0%,rgba(125,185,232,0) 100%);
+    background: -moz-linear-gradient(left, rgba(0, 0, 0, 1) 0%, rgba(125, 185, 232, 0) 100%);
+    background: -webkit-linear-gradient(left, rgba(0, 0, 0, 1) 0%, rgba(125, 185, 232, 0) 100%);
+    background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(125, 185, 232, 0) 100%);
     @include breakpoint(large-up) {
       background: transparent;
       width: 0;
@@ -830,7 +934,7 @@ $gray-lightish: #9b9b9b;
       }
     }
     .first.last {
-     > a {
+      > a {
         &:after {
           content: '';
           position: relative;
@@ -897,9 +1001,9 @@ $gray-lightish: #9b9b9b;
     }
   }
   .leaflet-container {
-      position: absolute;
-      top: 0;
-      width: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
     .leaflet-bottom.leaflet-right {
       .leaflet-control-attribution.leaflet-control {
         display: none;
@@ -1300,7 +1404,7 @@ $gray-lightish: #9b9b9b;
   &.clone-header {
     position: static;
     .hero-image {
-        display: none;
+      display: none;
     }
   }
   .curtain-arrow {
@@ -1323,14 +1427,14 @@ $gray-lightish: #9b9b9b;
   position: relative;
   overflow: hidden;
   margin-bottom: 20px;
- .banner-text {
-   top: inherit;
-   transition: bottom .3s;
-   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0) 100%);
-   @media screen and (max-width: 767px) {
-     bottom: 0 !important;
-   }
- }
+  .banner-text {
+    top: inherit;
+    transition: bottom .3s;
+    background: linear-gradient(0deg, rgba(0, 0, 0, .3) 80%, rgba(0, 0, 0, 0) 100%);
+    @media screen and (max-width: 767px) {
+      bottom: 0 !important;
+    }
+  }
   .banner-gradient-overlay-horizontal {
     background: transparent;
   }
@@ -1355,25 +1459,44 @@ $gray-lightish: #9b9b9b;
       letter-spacing: .5px;
     }
   }
+  b {
+    font-weight: 400;
+    color: #262626;
+  }
+}
+
+.ct-scorecard-header,
+.conservation-tracker-pages {
+  .curtain-card h1,
+  .hero-title {
+    margin: 0;
+    padding: 0;
+    color: $white;
+    font-family: $font-sans;
+    font-size: 37px;
+    letter-spacing: normal;
+    line-height: .92;
+    font-weight: 400;
+    text-align: left;
+    text-shadow: none;
+    @include breakpoint(large-up) {
+      font-size: 64px;
+    }
+  }
+  .hero.light-text .hero-blurb,
+  .hero-blurb {
+    color: $white;
+    font-family: $font-sans;
+    font-size: 20px;
+    font-style: normal;
+    @include breakpoint(large-up) {
+      font-size: 24px;
+    }
+  }
 }
 
 // Style for pages /conservation-tracker and /conservation-tracker/*
 .conservation-tracker-pages {
-  .curtain-card {
-    h1 {
-      margin: 0;
-      padding: 0;
-      color: $white;
-      font-family: $font-sans;
-      font-size: 37px;
-      letter-spacing: normal;
-      line-height: .92;
-      text-align: left;
-      @include breakpoint(large-up) {
-        font-size: 64px;
-      }
-    }
-  }
   .column,
   .row.space-bottom {
     position: static;
