@@ -94,7 +94,7 @@ function nas_park_import_feeds_importer_default() {
             'language' => 'und',
           ),
         ),
-        'insert_new' => '0',
+        'insert_new' => '1',
         'update_existing' => '2',
         'update_non_existent' => 'delete',
         'input_format' => 'plain_text',
