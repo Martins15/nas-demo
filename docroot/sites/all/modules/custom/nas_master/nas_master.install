@@ -4686,45 +4686,14 @@ function nas_master_update_7344() {
   }
 
   // Set credit field for case study image.
-  $file = db_select('file_managed', 'fm')
-    ->fields('fm', array('fid'))
-    ->condition('filename', 'bird-cart.jpg')
-    ->execute()
-    ->fetchAll();
-  $tmp = nas_park_feature_get_image('bird-cart.jpg', TRUE);
-  watchdog('nas_master', '<pre>got item from nas_park_feature_get_image:</pre><pre>' . print_r($tmp, TRUE) . '</pre>');
+  $file = nas_park_feature_get_image('bird-cart.jpg');
   if (!empty($file)) {
-    watchdog('nas_master', '<pre>got item from db_select:</pre><pre>' . print_r($file, TRUE) . '</pre>');
-    $file = reset($file);
-    $file = file_load($file->fid);
-    watchdog('nas_master', '<pre>file loaded:</pre><pre>' . print_r($file, TRUE) . '</pre>');
-    $file->field_file_caption[LANGUAGE_NONE][]['value'] = '';
-    $file->field_file_credit[LANGUAGE_NONE][] = array(
+    $file->field_file_caption[LANGUAGE_NONE][0]['value'] = '';
+    $file->field_file_credit[LANGUAGE_NONE][0] = array(
       'value' => 'NPS',
       'format' => 'html',
     );
-    watchdog('nas_master', '<pre>file after update:</pre><pre>' . print_r($file, TRUE) . '</pre>');
     file_save($file);
-  }
-  else {
-    watchdog('nas_master', '<pre>bird-cart.jpg was not found</pre>');
-  }
-
-  // Update all parks with same demo hero image.
-  $nids = db_select('node', 'n')
-    ->fields('n', array('nid'))
-    ->condition('type', 'park')
-    ->execute()
-    ->fetchAll();
-  if (!empty($nids)) {
-    foreach ($nids as &$nid) {
-      $nid = $nid->nid;
-    }
-    $nodes = node_load_multiple($nids);
-    foreach ($nodes as $node) {
-      $node->field_hero_image[LANGUAGE_NONE][]['fid'] = $park_hero_image_fid;
-      node_save($node);
-    }
   }
   // This update is with Demo data.
 }
