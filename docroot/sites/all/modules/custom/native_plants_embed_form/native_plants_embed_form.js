@@ -98,10 +98,10 @@ var alterFormDefinition = function (args) {
       'Include your email, and Audubon will send tips on how to bring more birds to your home.' +
     '</div>' +
     '<div class="at_pp">' +
-      '<a href="//audubon.org/privacy-policy">Privacy Policy</a>' +
+      '<a href="//www.audubon.org/privacy-policy">Privacy Policy</a>' +
     '</div>' +
     '<div class="at_home">' +
-      '<a href="//audubon.org"><span>Audubon</span></a>' +
+      '<a href="//www.audubon.org"><span>Audubon</span></a>' +
     '</div>';
   var new_item = {
     name: 'Description',
@@ -121,7 +121,7 @@ var alterPost = function (args) {
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(args.data.PostalCode);
     if (isValidZip && typeof args.data.EmailAddress === 'undefined') {
       document.getElementsByClassName('at-inner')[0].style.display = 'none';
-      location = '//audubon.org/native-plants/search?zipcode=' + args.data.PostalCode;
+      location = '//www.audubon.org/native-plants/search?zipcode=' + args.data.PostalCode;
     }
   }
   return args;
@@ -132,7 +132,7 @@ nvtag_callbacks.alterPost.push(alterPost);
 
 var preSegue = function (args) {
   document.getElementsByClassName('at-inner')[0].style.display = 'none';
-  location = '//audubon.org/native-plants/search?zipcode=' + args.postVals.PostalCode;
+  location = '//www.audubon.org/native-plants/search?zipcode=' + args.postVals.PostalCode;
 };
 nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
 nvtag_callbacks.preSegue.push(preSegue);
