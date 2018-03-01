@@ -79,5 +79,6 @@
   </div>
 </aside>
 <div id="scorecard-footnotes" class="row" data-ng-controller="Content">
+  <a id="footnotes"></a>
   <div ng-bind-html="tab.settings.overview.footnotes"></div>
 </div>
