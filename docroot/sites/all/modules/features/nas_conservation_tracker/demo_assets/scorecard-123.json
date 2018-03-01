@@ -36,6 +36,7 @@
       "tagLine": "Conservation interventions by Audubon field staff and partners as classifed by the Open Standards for the Practice of Conservation",
       "title": "Numerous conservation activities have been initiated by partners to help preserve the species",
       "description": "<ul><li>Monitoring and research to track the health of Black Oystercatcher populations by measuring productivity</li><li>Engagement to increase public awareness of oystercatchers, including signs, magnets, pamphlets, lectures, and conversations with coastal users and business owners</li><li>Habitat management and restoration to protect and enhance Black Oystercatcher populations and other societal benefits</li></ul>",
+      "footnotes": "Meehan, T.D., Harvey, A.L., Michel, N.L., Langham, G.M., and Weinstein, A. 2018. A population model exploring factors influencing Black Oystercatcher (Haematopus bachmani) population dynamics. Waterbirds, in press",
       "tooltip": "Actions are classified according to the Open Standards for the Practice of Conservation: <a href='http://cmp-openstandards.org/tools/threats-and-actions-taxonomies'>http://cmp-openstandards.org/tools/threats-and-actions-taxonomies</a>",
       "objectives": [{
         "description": "Protect or restore intertidal habitat for Black Oystercatcher",
@@ -43,7 +44,7 @@
         "value": ""
       },
         {
-        "description": "Continue monitoring productivity along the California coast and improve our recent population viability assessment <sup>1</sup>",
+        "description": "Continue monitoring productivity along the California coast and improve our recent population viability assessment <sup><a class=\"footnotes\" href=\"#\">1</a></sup>",
         "tooltip": "To quantify progress towards measurable objectives related to conservation interventions designed to address threats",
         "value": "33"
       }],
@@ -64,7 +65,8 @@
       "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_bloy_response.png",
       "tagLine": "Quantifying the effectiveness of our conservation actions using scientifically-sound metrics",
       "title": "California intertidal is critical for the Black Oystercatcher population",
-      "description": "<ul><li>Until recently little was known of its status and distribution in California</li><li>Over 1300 birds and over 170 nests were detected in California, more than previously documented</li><li>We estimate 4000-6000 Black Oystercatchers in California, suggesting the state provides critical habitat for the species.</li><li>Productivity monitoring from 2012-2016 has found a statewide fledge success (fledged chicks per pair per year) of between 0.41-0.49.</li><li>Audubon Christmas Bird Count shows significant increase in wintering oystercatchers between 1966 and 2017 <sup>3</sup></li></ul>",
+      "description": "<ul><li>Until recently little was known of its status and distribution in California<sup><a class=\"footnotes\" href=\"#\">1</a></sup></li><li>Over 1300 birds and over 170 nests were detected in California, more than previously documented<sup><a class=\"footnotes\" href=\"#\">1</a></sup></li><li>We estimate 4000-6000 Black Oystercatchers in California, suggesting the state provides critical habitat for the species.<sup><a class=\"footnotes\" href=\"#\">1</a></sup></li><li>Productivity monitoring from 2012-2016 has found a statewide fledge success (fledged chicks per pair per year) of between 0.41-0.49.<sup><a class=\"footnotes\" href=\"#\">1</a></sup></li><li>Audubon Christmas Bird Count shows significant increase in wintering oystercatchers between 1966 and 2017 <sup><a class=\"footnotes\" href=\"#\">2</a></sup></li></ul>",
+      "footnotes": "1. Weinstein, A., Trocki, L., Levalle, R., Doster, R.H., Distler, T. & Krieger, K. 2014. A first population assessment of Black Oystercatcher (Haematopus bachmani) in California. Marine Ornithology 42: 49–56<br />2. Audubon CBC 2017",
       "tooltip": "Measures of reproductive success such as productivity are the most informative metrics because threats frequently impact nesting birds and reduce hatching or fledging success.",
       "objectives": [{
         "description": "Maintain or increase current statewide fledge success",
