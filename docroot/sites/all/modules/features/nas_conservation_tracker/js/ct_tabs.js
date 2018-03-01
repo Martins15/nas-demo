@@ -91,8 +91,8 @@
     ]);
 
     NativeCtaApp.controller('Content', [
-      '$scope', '$stateParams', '$state', '$rootScope', '$http',
-      function ($scope, $stateParams, $state, $rootScope, $http) {
+      '$scope', '$stateParams', '$state', '$rootScope', '$http', '$location', '$anchorScroll',
+      function ($scope, $stateParams, $state, $rootScope, $http, $location, $anchorScroll) {
         // @todo update var.
         var idItem = Drupal.settings.nasConservationTracker.scorecardId;
         $scope.tabLoaded = function () {
@@ -122,6 +122,10 @@
                 e.preventDefault();
               }
             });
+            $('a.footnotes').click(function (e) {
+              e.preventDefault();
+              $scope.goToFootNotes();
+            });
             if (Drupal.curtain) {
               Drupal.curtain.reset();
               Drupal.curtain.setup();
@@ -129,6 +133,15 @@
           }, 500);
 
         }
+
+        $scope.goToFootNotes = function() {
+          // set the location.hash to the id of
+          // the element you wish to scroll to.
+          $location.hash('footnotes');
+          $anchorScroll.yOffset = 50;
+          // call $anchorScroll()
+          $anchorScroll();
+        };
 
         $scope.downloadPdf = function() {
           $('body').append('<div id="pdf-render-container"></div>');

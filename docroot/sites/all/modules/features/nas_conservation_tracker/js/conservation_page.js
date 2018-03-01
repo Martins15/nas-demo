@@ -90,6 +90,47 @@
 
     var lMap = Drupal.settings.leaflet['0'].lMap;
 
+    lMap.scrollWheelZoom.disable();
+
+    if (!lMap.initiated) {
+      lMap.initiated = true;
+
+      $(window).resize(function() {
+        Drupal.settings.desktopZoom = Drupal.settings.desktopZoom || lMap.getZoom();
+        if ($( window ).width() < 768) {
+          lMap.setZoom(2);
+        }
+        else {
+          lMap.setZoom(Drupal.settings.desktopZoom);
+        }
+      });
+
+      var flywayPolygons = [];
+      for (var flyway in Drupal.settings.nasCtUnitData) {
+
+        var unit = {'type': 'flyway'};
+        // name, coordinates, flyway, unit, type
+        var flywayItem = new LPolygon(
+          flyway,
+          Drupal.settings.nasCtUnitData[flyway].coordinates,
+          flyway,
+          unit,
+          ''
+        );
+
+        flywayPolygons.push(flywayItem);
+      }
+
+      var polygons = L.geoJson({
+        type: 'FeatureCollection',
+        features: flywayPolygons
+      }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
+      polygons.addTo(lMap);
+
+
+
+    }
+
     // Delete existing sites from map.
     lMap.eachLayer(function (layer) {
       if (layer._leaflet_id !== 'earth' && !layer._layers && !isFlyway(layer)) {
@@ -144,7 +185,7 @@
 
       var dot = L.divIcon({iconSize: [12, 12], className: 'ct-leaflet-site'});
 
-      var marker = L.marker(location.latLon, {icon: dot});
+      var marker = L.marker(location.latLon, {icon: dot, zIndexOffset: 200});
       var text = '<div class="text-wrap bg-white">' + location.name + '</div>',
           minWidth = 50;
 
@@ -246,46 +287,7 @@
     }
 
 
-    lMap.scrollWheelZoom.disable();
 
-    if (!lMap.initiated) {
-      lMap.initiated = true;
-
-      $(window).resize(function() {
-        Drupal.settings.desktopZoom = Drupal.settings.desktopZoom || lMap.getZoom();
-        if ($( window ).width() < 768) {
-          lMap.setZoom(2);
-        }
-        else {
-          lMap.setZoom(Drupal.settings.desktopZoom);
-        }
-      });
-
-      var flywayPolygons = [];
-      for (var flyway in Drupal.settings.nasCtUnitData) {
-
-        var unit = {'type': 'flyway'};
-        // name, coordinates, flyway, unit, type
-        var flywayItem = new LPolygon(
-            flyway,
-            Drupal.settings.nasCtUnitData[flyway].coordinates,
-            flyway,
-            unit,
-            ''
-        );
-
-        flywayPolygons.push(flywayItem);
-      }
-
-      var polygons = L.geoJson({
-        type: 'FeatureCollection',
-        features: flywayPolygons
-      }, {style: getPolygonStyle, onEachFeature: getPolygonEvents});
-      polygons.addTo(lMap);
-
-
-
-    }
   }
 
   Drupal.nasConservationTracker = Drupal.nasConservationTracker || {};
