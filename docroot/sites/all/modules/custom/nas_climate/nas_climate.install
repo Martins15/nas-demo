@@ -82,9 +82,6 @@ function nas_climate_install() {
     taxonomy_term_save($term);
   }
 
-  features_revert_module('nas_image_styles_feature');
-  module_enable(array('park_bird_import', 'nas_park_import', 'nas_park_landing_page'));
-
   // Create engagement card.
   $embed_script_js = 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js
                       sites/all/modules/custom/nas_master_native_plants/js/nas_master_native_plants.action_tag.js
@@ -131,6 +128,8 @@ function nas_climate_install() {
     'entity_uuid' => $node->uuid,
   );
   variable_set('nas_park_feature_default_card', $card);
+
+  module_enable(array('park_bird_import', 'nas_park_import', 'nas_park_landing_page'));
 
   // Revert nas_file_entity, nas_park_feature, nas_image_styles_feature
   features_revert_module('nas_image_styles_feature');
