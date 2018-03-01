@@ -180,6 +180,13 @@ function nas_park_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_park_pattern';
+  $strongarm->value = 'climate/national-parks/[node:title]';
+  $export['pathauto_node_park_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_settings_node_park';
   $strongarm->value = array(
     'status' => '0',
