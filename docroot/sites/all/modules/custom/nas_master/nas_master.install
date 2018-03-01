@@ -4617,14 +4617,14 @@ function nas_master_update_7341() {
  */
 function nas_master_update_7342() {
   // This update is with Demo data.
-  file_unmanaged_copy('sites/all/modules/features/nas_park_import/demo_assets/adaptation_classes_demo.csv', 'sites/default/files/adaptation_classes_demo.csv');
+/*  file_unmanaged_copy('sites/all/modules/features/nas_park_import/demo_assets/adaptation_classes_demo.csv', 'sites/default/files/adaptation_classes_demo.csv');
   $importer_id = 'park';
   $source = feeds_source($importer_id);
   $fetcher_config = $source->getConfigFor($source->importer->fetcher);
   $fetcher_config['source'] = 'public://adaptation_classes_demo.csv';
   $source->setConfigFor($source->importer->fetcher, $fetcher_config);
   $source->save();
-  $source->startImport();
+  $source->startImport();*/
   // This update is with Demo data.
 }
 
