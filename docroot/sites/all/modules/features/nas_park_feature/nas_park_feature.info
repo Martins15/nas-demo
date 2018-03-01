@@ -95,6 +95,7 @@ features[variable][] = node_options_park
 features[variable][] = node_preview_park
 features[variable][] = node_submitted_park
 features[variable][] = panelizer_defaults_node_park
+features[variable][] = pathauto_node_park_pattern
 features[variable][] = xmlsitemap_settings_node_park
 features[views_view][] = park_bird_trends
 features_exclude[variable][i18n_node_extended_park] = i18n_node_extended_park
