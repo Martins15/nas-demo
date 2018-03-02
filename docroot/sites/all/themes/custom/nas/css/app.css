@@ -17959,8 +17959,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 @media only screen and (min-width: 768px) {
   .diagram-wrap {
-    margin-bottom: 10px;
     margin-top: 0;
+    margin-bottom: 10px;
+    padding-bottom: 25px;
   }
 }
 .diagram-wrap__title p {
@@ -18005,8 +18006,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .objectives-wrap .item__info {
   width: 74%;
-}
-.objectives-wrap .item__info p {
   font-size: 14px;
   line-height: normal;
 }
