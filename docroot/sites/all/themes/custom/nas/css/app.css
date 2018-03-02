@@ -17910,6 +17910,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-top: 50px;
 }
 
+.page-conservation-tracker #cboxClose {
+  left: inherit;
+  right: -20px;
+}
+
 .map-items.bird-page {
   background: #212121;
   margin-top: 10px;
@@ -18964,7 +18969,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .wrap-map-diagram {
   position: relative;
-  background: #212121;
+  background: #222327;
   overflow: hidden;
   min-height: 1300px;
 }
@@ -19924,6 +19929,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: relative;
   color: #fff;
   font-size: 25px;
+  opacity: .65;
 }
 #nas-conservation-tracker-landscapes-map-form .form-item label.option {
   font-size: 17px;
