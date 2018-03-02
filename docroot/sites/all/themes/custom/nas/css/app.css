@@ -19450,6 +19450,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin: 0;
 }
 
+.help-wrap-footnotes {
+  padding: 25px 0;
+  background: #FBFAF6;
+}
+
 .species-filter {
   margin-bottom: 40px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
