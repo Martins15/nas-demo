@@ -138,6 +138,13 @@ $gray-lightish: #9b9b9b;
   }
 }
 
+.page-conservation-tracker {
+  #cboxClose {
+    left: inherit;
+    right: -20px;
+  }
+}
+
 .map-items.bird-page {
   background: $bg-map-bird;
   margin-top: 10px;
@@ -1109,7 +1116,7 @@ $gray-lightish: #9b9b9b;
 
 .wrap-map-diagram {
   position: relative;
-  background: $bg-map-bird;
+  background: $bg-map-bird-new;
   overflow: hidden;
   min-height: 1300px;
   @include breakpoint(large-up) {
@@ -1555,4 +1562,5 @@ $gray-lightish: #9b9b9b;
 .help-wrap-footnotes {
   padding: 25px 0;
   background: $color-bone-white;
+  font-size: 15px;
 }

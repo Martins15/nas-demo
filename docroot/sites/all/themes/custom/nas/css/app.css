@@ -17910,6 +17910,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-top: 50px;
 }
 
+.page-conservation-tracker #cboxClose {
+  left: inherit;
+  right: -20px;
+}
+
 .map-items.bird-page {
   background: #212121;
   margin-top: 10px;
@@ -18964,7 +18969,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .wrap-map-diagram {
   position: relative;
-  background: #212121;
+  background: #222327;
   overflow: hidden;
   min-height: 1300px;
 }
@@ -19452,6 +19457,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .help-wrap-footnotes {
   padding: 25px 0;
   background: #FBFAF6;
+  font-size: 15px;
 }
 
 .species-filter {
@@ -19525,18 +19531,27 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     display: block;
   }
 }
-.species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a {
+.species-filter .filter-block form .js-link-wrap {
+  margin-bottom: 10px;
+}
+.species-filter .filter-block form .js-link-wrap > a {
   display: block;
   position: relative;
   margin: 0 auto;
   padding: 10px;
   font-size: 16px;
   text-align: center;
+  line-height: 30px;
   border-radius: 6px;
   background-color: #7AA926;
   color: #fff;
 }
-.species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a:hover {
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block form .js-link-wrap > a {
+    line-height: 60px;
+  }
+}
+.species-filter .filter-block form .js-link-wrap > a:hover {
   opacity: .9;
 }
 .species-filter .filter-block .views-widget-filter-field_ct_letter {
@@ -19923,6 +19938,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: relative;
   color: #fff;
   font-size: 25px;
+  opacity: .65;
 }
 #nas-conservation-tracker-landscapes-map-form .form-item label.option {
   font-size: 17px;
