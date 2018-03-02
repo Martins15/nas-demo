@@ -74,7 +74,7 @@
 
         $('#edit-iucn .collapsible').addClass('collapsed').find('.fieldset-wrapper').hide();
         $linkWrap.addClass('js-link-wrap');
-         $linkWrap.appendTo('#edit-search-wrapper', $formWrap);
+        $linkWrap.appendTo('#edit-search-wrapper', $formWrap);
       });
 
       var wrapItems = $('.help-items');
