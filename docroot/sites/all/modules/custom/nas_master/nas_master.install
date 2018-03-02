@@ -4684,8 +4684,14 @@ function nas_master_update_7344() {
   if ($file_private_path === FALSE || empty($file_private_path)) {
     variable_set('file_private_path', 'sites/default/files/private');
   }
+  // This update is with Demo data.
+}
 
-  // Set credit field for case study image.
+/**
+ * Set credit field for case study image.
+ */
+function nas_master_update_7345() {
+  // This update is with Demo data.
   $file = nas_park_feature_get_image('bird-cart.jpg');
   if (!empty($file)) {
     $file->field_file_caption[LANGUAGE_NONE][0]['value'] = '';
