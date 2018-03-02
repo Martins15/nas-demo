@@ -73,9 +73,6 @@
           border-radius: 6px;
           background-color: #7AA926;
           color: $white;
-          @include breakpoint(large-up) {
-            line-height: 60px;
-          }
           &:hover {
             opacity: .9;
           }

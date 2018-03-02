@@ -19548,7 +19548,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .species-filter .filter-block form .js-link-wrap > a {
-    line-height: 60px;
+    line-height: 30px;
   }
 }
 .species-filter .filter-block form .js-link-wrap > a:hover {
