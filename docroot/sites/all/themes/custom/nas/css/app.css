@@ -6976,6 +6976,9 @@ table.row-borders tbody td {
   height: 100%;
   background: #000;
 }
+.hero-video-wrapper video {
+  object-fit: cover;
+}
 
 .hero-video .hero-attribution-fullscreen {
   position: absolute;

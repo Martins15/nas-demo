@@ -27,9 +27,9 @@ function nativePlantsEmbedForm() {
   }
   var homePathToModule = '/sites/all/modules/custom/native_plants_embed_form'
     , homePath = script.src.substring(0, script.src.indexOf(homePathToModule));
-  addAssets('script', 'https://d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js');
+  addAssets('script', '//d1aqhv4sn5kxtx.cloudfront.net/actiontag/at.js');
   addAssets('link', homePath + homePathToModule + '/native_plants_embed_form.css');
-  addAssets('link', 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
+  addAssets('link', '//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
 
   var parent = script.parentElement
     , div = document.createElement('div')
@@ -98,10 +98,10 @@ var alterFormDefinition = function (args) {
       'Include your email, and Audubon will send tips on how to bring more birds to your home.' +
     '</div>' +
     '<div class="at_pp">' +
-      '<a href="//audubon.org/privacy-policy">Privacy Policy</a>' +
+      '<a href="//www.audubon.org/privacy-policy">Privacy Policy</a>' +
     '</div>' +
     '<div class="at_home">' +
-      '<a href="//audubon.org"><span>Audubon</span></a>' +
+      '<a href="//www.audubon.org"><span>Audubon</span></a>' +
     '</div>';
   var new_item = {
     name: 'Description',
@@ -121,7 +121,9 @@ var alterPost = function (args) {
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(args.data.PostalCode);
     if (isValidZip && typeof args.data.EmailAddress === 'undefined') {
       document.getElementsByClassName('at-inner')[0].style.display = 'none';
-      location = '//audubon.org/native-plants/search?zipcode=' + args.data.PostalCode;
+      var url = '//www.audubon.org/native-plants/search?zipcode=' + args.data.PostalCode
+        , win = window.open(url, '_blank');
+      win.focus();
     }
   }
   return args;
@@ -132,7 +134,9 @@ nvtag_callbacks.alterPost.push(alterPost);
 
 var preSegue = function (args) {
   document.getElementsByClassName('at-inner')[0].style.display = 'none';
-  location = '//audubon.org/native-plants/search?zipcode=' + args.postVals.PostalCode;
+  var url = '//www.audubon.org/native-plants/search?zipcode=' + args.postVals.PostalCode
+    , win = window.open(url, '_blank');
+  win.focus();
 };
 nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
 nvtag_callbacks.preSegue.push(preSegue);
