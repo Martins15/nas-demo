@@ -19531,18 +19531,27 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     display: block;
   }
 }
-.species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a {
+.species-filter .filter-block form .js-link-wrap {
+  margin-bottom: 10px;
+}
+.species-filter .filter-block form .js-link-wrap > a {
   display: block;
   position: relative;
   margin: 0 auto;
   padding: 10px;
   font-size: 16px;
   text-align: center;
+  line-height: 30px;
   border-radius: 6px;
   background-color: #7AA926;
   color: #fff;
 }
-.species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a:hover {
+@media only screen and (min-width: 768px) {
+  .species-filter .filter-block form .js-link-wrap > a {
+    line-height: 60px;
+  }
+}
+.species-filter .filter-block form .js-link-wrap > a:hover {
   opacity: .9;
 }
 .species-filter .filter-block .views-widget-filter-field_ct_letter {
