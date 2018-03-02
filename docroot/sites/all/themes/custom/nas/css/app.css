@@ -17959,8 +17959,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 @media only screen and (min-width: 768px) {
   .diagram-wrap {
-    margin-bottom: 10px;
     margin-top: 0;
+    margin-bottom: 10px;
+    padding-bottom: 25px;
   }
 }
 .diagram-wrap__title p {
@@ -18005,8 +18006,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .objectives-wrap .item__info {
   width: 74%;
-}
-.objectives-wrap .item__info p {
   font-size: 14px;
   line-height: normal;
 }
@@ -19448,6 +19447,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 #nas-conservation-tracker-map-form .form-item.form-type-radio input {
   margin: 0;
+}
+
+.help-wrap-footnotes {
+  padding: 25px 0;
+  background: #FBFAF6;
 }
 
 .species-filter {

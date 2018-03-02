@@ -15,6 +15,7 @@ $dark-bg-bird: #1c1c1c;
 $brownish-grey: #76736c;
 $darkish-grey: #404040;
 $bg-map-bird: #212121;
+$bg-map-bird-new: #222327;
 $grey-bg-bird: #f0f0f0;
 $grey-menu-bird: #fbfaf6;
 $border-bird: #d9d9d9;
@@ -180,8 +181,9 @@ $gray-lightish: #9b9b9b;
 
 .diagram-wrap {
   @include breakpoint(large-up) {
-    margin-bottom: 10px;
     margin-top: 0;
+    margin-bottom: 10px;
+    padding-bottom: 25px;
   }
   &__title {
     p {
@@ -224,10 +226,8 @@ $gray-lightish: #9b9b9b;
     }
     &__info {
       width: 74%;
-      p {
-        font-size: 14px;
-        line-height: normal;
-      }
+      font-size: 14px;
+      line-height: normal;
       @include breakpoint(large-up) {
         width: calc(100% - 80px);
       }
@@ -1550,4 +1550,9 @@ $gray-lightish: #9b9b9b;
       margin: 0;
     }
   }
+}
+
+.help-wrap-footnotes {
+  padding: 25px 0;
+  background: $color-bone-white;
 }
