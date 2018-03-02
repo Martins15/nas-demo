@@ -121,9 +121,7 @@ var alterPost = function (args) {
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(args.data.PostalCode);
     if (isValidZip && typeof args.data.EmailAddress === 'undefined') {
       document.getElementsByClassName('at-inner')[0].style.display = 'none';
-      var url = '//www.audubon.org/native-plants/search?zipcode=' + args.data.PostalCode
-        , win = window.open(url, '_blank');
-      win.focus();
+      location = '//www.audubon.org/native-plants/search?zipcode=' + args.data.PostalCode;
     }
   }
   return args;
@@ -134,9 +132,7 @@ nvtag_callbacks.alterPost.push(alterPost);
 
 var preSegue = function (args) {
   document.getElementsByClassName('at-inner')[0].style.display = 'none';
-  var url = '//www.audubon.org/native-plants/search?zipcode=' + args.postVals.PostalCode
-    , win = window.open(url, '_blank');
-  win.focus();
+  location = '//www.audubon.org/native-plants/search?zipcode=' + args.postVals.PostalCode;
 };
 nvtag_callbacks.preSegue = nvtag_callbacks.preSegue || [];
 nvtag_callbacks.preSegue.push(preSegue);
