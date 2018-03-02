@@ -19452,6 +19452,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .help-wrap-footnotes {
   padding: 25px 0;
   background: #FBFAF6;
+  font-size: 15px;
 }
 
 .species-filter {
