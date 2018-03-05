@@ -16,6 +16,7 @@ dependencies[] = search_api_db
 dependencies[] = title
 dependencies[] = views_load_more
 dependencies[] = webform
+dependencies[] = webform_features
 stylesheets[all][] = css/nas_conservation_tracker.css
 __drupal_alter_by_ref[][node][webform] = webform
 features[ctools][] = page_manager:pages_default:1
