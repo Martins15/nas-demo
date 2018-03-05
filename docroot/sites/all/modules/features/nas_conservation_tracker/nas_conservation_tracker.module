@@ -235,8 +235,7 @@ function nas_conservation_tracker_theme() {
  * Get JSON object from hub.
  * @param $path
  */
-function nas_conservation_tracker_get_json($path) {
-  // @TODO: swap this for real data hub.
+function nas_conservation_tracker_get_json($path, $cache = TRUE) {
   $demo_url = '';
   $json_data = NULL;
   if (variable_get('nas_conservation_tracker_api_cache_enabled', TRUE)) {
@@ -247,7 +246,7 @@ function nas_conservation_tracker_get_json($path) {
     }
   }
 
-  if (empty($json_data)) {
+  if (empty($json_data) || !$cache) {
     $json_url = rtrim(variable_get('nas_conservation_tracker_endpoint', $demo_url), '\/') . '/' . $path . '.json';
     watchdog('ct debug', 'JSON URL - ' . $json_url);
     if (strpos($json_url, 'http') === 0) {
@@ -675,13 +674,24 @@ function nas_conservation_tracker_download_csv($tab, $scorecard_id) {
     drupal_goto($filename);
   }
   else {
-    drupal_not_found();
+    // Try to generate CSV file one more time.
+    $json_data = nas_conservation_tracker_get_json('scorecard-' . $scorecard_id);
+    nas_conservation_tracker_csv_cache_update($json_data);
+
+    if (!file_exists($filename)) {
+      drupal_not_found();
+    }
+    else {
+      drupal_goto($filename);
+    }
   }
 }
 
 function nas_conservation_tracker_csv_name($tab, $scorecard_id, $real = FALSE) {
   $node = node_load(nas_conservation_tracker_scorecard_nid($scorecard_id));
   if ($node) {
+    $dir = NAS_CT_CSV_PATH;
+    file_prepare_directory($dir);
     $file = '/' . preg_replace('@[^a-z0-9-]+@','-', strtolower($node->title)) . '-' . $tab . '.csv';
     return $real ? drupal_realpath(NAS_CT_CSV_PATH) . $file : NAS_CT_CSV_PATH . $file;
   }
