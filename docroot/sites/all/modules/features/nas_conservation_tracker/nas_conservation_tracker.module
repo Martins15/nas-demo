@@ -6,7 +6,9 @@
 
 include_once 'nas_conservation_tracker.features.inc';
 
-define('NAS_CT_JS_PATH', drupal_get_path('module', 'nas_conservation_tracker') . '/js/');
+
+//define('NAS_CT_JS_PATH', drupal_get_path('module', 'nas_conservation_tracker') . '/js/');
+define('NAS_CT_JS_PATH', dirname(drupal_get_filename('module', 'nas_conservation_tracker')) . '/js/');
 define('NAS_CT_CSV_PATH', variable_get('file_public_path') . '/conservation_tracker_csv');
 
 /**
