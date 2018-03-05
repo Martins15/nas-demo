@@ -791,3 +791,39 @@ function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
   }
   return $csv;
 }
+
+/**
+ * Implements hook_boot().
+ */
+function nas_conservation_tracker_boot() {
+  if ( variable_get('nas_conservation_tracker_auth_protection', FALSE)) {
+    $path = current_path();
+    $path_alias = drupal_lookup_path('alias', $path);
+    $patterns =  variable_get('nas_conservation_tracker_auth_protection_pattern', 'conservation-tracker*');
+
+    if (drupal_match_path($path, $patterns) || drupal_match_path($path_alias, $patterns)) {
+      $user = variable_get('nas_conservation_tracker_auth_user', '');
+      if (!$user) {
+        return;
+      }
+
+      // allow Drush to bypass Shield
+      if (drupal_is_cli()) {
+        return;
+      }
+
+      $pass = variable_get('nas_conservation_tracker_auth_pass', '');
+      if (!empty($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])
+        && $_SERVER['PHP_AUTH_USER'] == $user
+        && $_SERVER['PHP_AUTH_PW']   == $pass) {
+        return;
+      }
+
+      $print = 'Hello, user: [user], pass: [pass]!';
+      header(sprintf('WWW-Authenticate: Basic realm="%s"', strtr($print, array('[user]' => $user, '[pass]' => $pass))));
+      header('HTTP/1.0 401 Unauthorized');
+      exit;
+    }
+  }
+}
+
