@@ -141,6 +141,7 @@
           $anchorScroll.yOffset = 50;
           // call $anchorScroll()
           $anchorScroll();
+          $location.hash('');
         };
 
         $scope.downloadPdf = function() {
