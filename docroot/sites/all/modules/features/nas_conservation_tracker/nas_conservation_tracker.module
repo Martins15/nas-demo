@@ -693,7 +693,7 @@ function nas_conservation_tracker_csv_name($tab, $scorecard_id, $real = FALSE) {
   $node = node_load(nas_conservation_tracker_scorecard_nid($scorecard_id));
   if ($node) {
     $dir = NAS_CT_CSV_PATH;
-    file_prepare_directory($dir);
+    file_prepare_directory($dir, FILE_CREATE_DIRECTORY);
     $file = '/' . preg_replace('@[^a-z0-9-]+@','-', strtolower($node->title)) . '-' . $tab . '.csv';
     return $real ? drupal_realpath(NAS_CT_CSV_PATH) . $file : NAS_CT_CSV_PATH . $file;
   }

@@ -165,5 +165,5 @@ function nas_conservation_tracker_custom_install() {
 
   // Prep dir for csv.
   $dir = NAS_CT_CSV_PATH;
-  file_prepare_directory($dir);
+  file_prepare_directory($dir, FILE_CREATE_DIRECTORY);
 }
