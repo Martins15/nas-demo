@@ -17910,6 +17910,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-top: 50px;
 }
 
+.page-conservation-tracker #cboxClose {
+  left: inherit;
+  right: -20px;
+}
+
 .map-items.bird-page {
   background: #212121;
   margin-top: 10px;
@@ -17959,8 +17964,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 @media only screen and (min-width: 768px) {
   .diagram-wrap {
-    margin-bottom: 10px;
     margin-top: 0;
+    margin-bottom: 10px;
+    padding-bottom: 25px;
   }
 }
 .diagram-wrap__title p {
@@ -18005,8 +18011,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .objectives-wrap .item__info {
   width: 74%;
-}
-.objectives-wrap .item__info p {
   font-size: 14px;
   line-height: normal;
 }
@@ -18965,7 +18969,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .wrap-map-diagram {
   position: relative;
-  background: #212121;
+  background: #222327;
   overflow: hidden;
   min-height: 1300px;
 }
@@ -19450,6 +19454,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin: 0;
 }
 
+.help-wrap-footnotes {
+  padding: 25px 0;
+  background: #FBFAF6;
+  font-size: 15px;
+}
+
 .species-filter {
   margin-bottom: 40px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
@@ -19521,18 +19531,22 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     display: block;
   }
 }
-.species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a {
+.species-filter .filter-block form .js-link-wrap {
+  margin-bottom: 10px;
+}
+.species-filter .filter-block form .js-link-wrap > a {
   display: block;
   position: relative;
   margin: 0 auto;
   padding: 10px;
   font-size: 16px;
   text-align: center;
+  line-height: 30px;
   border-radius: 6px;
   background-color: #7AA926;
   color: #fff;
 }
-.species-filter .filter-block form > div:not(.nas-ct-refine-listing) > a:hover {
+.species-filter .filter-block form .js-link-wrap > a:hover {
   opacity: .9;
 }
 .species-filter .filter-block .views-widget-filter-field_ct_letter {
@@ -19830,32 +19844,38 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 .species-filter .birds-wrap .bird-card {
-  padding: 0 0 50px;
+  padding: 0;
+  max-width: 95%;
+}
+@media only screen and (min-width: 768px) {
+  .species-filter .birds-wrap .bird-card {
+    max-width: 100%;
+  }
 }
 .species-filter .birds-wrap .bird-card-caption {
   padding: 0 8px;
+  position: relative;
+  bottom: 0;
+  margin: 10px 0;
 }
-@media only screen and (min-width: 768px) {
-  .species-filter .birds-wrap .bird-card-illustration {
-    height: 230px;
-  }
+.species-filter .birds-wrap .bird-card-caption .common-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 18px;
 }
-@media only screen and (min-width: 768px) {
-  .species-filter .birds-wrap .bird-card-illustration .field-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+.species-filter .birds-wrap .bird-card-illustration {
+  height: auto;
+  width: 100%;
 }
-@media only screen and (min-width: 768px) {
-  .species-filter .birds-wrap .bird-card-illustration img {
-    width: 100%;
-    max-width: inherit;
-    height: auto;
-    max-height: initial;
-  }
+.species-filter .birds-wrap .bird-card-illustration:before {
+  display: none;
+}
+.species-filter .birds-wrap .bird-card-illustration img {
+  width: 100%;
+  max-width: inherit;
+  height: auto;
+  max-height: initial;
 }
 
 .dark-style {
@@ -19913,6 +19933,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: relative;
   color: #fff;
   font-size: 25px;
+  opacity: .65;
 }
 #nas-conservation-tracker-landscapes-map-form .form-item label.option {
   font-size: 17px;

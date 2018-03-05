@@ -64,13 +64,17 @@
     attach: function (context, settings) {
       // Insert block to another block.
       $('#views-exposed-form-ct-species-default').once(function () {
+        var $formWrap = $('#views-exposed-form-ct-species-default');
+        var $linkWrap = $('> div:last-child', $formWrap);
         var threatWrap = $('#edit-threat-status .fieldset-wrapper', context);
+
         $('.form-item', threatWrap).wrapAll('<div class="wrap-items"><div class="help-items"></div>');
         $('<div class="fieldset-title second">Audubon Climate<span class="fieldset-legend-prefix"></span></div>').prependTo('.wrap-items');
         $('#edit-iucn-wrapper', context).insertAfter('.wrap-items');
 
         $('#edit-iucn .collapsible').addClass('collapsed').find('.fieldset-wrapper').hide();
-
+        $linkWrap.addClass('js-link-wrap');
+        $linkWrap.appendTo('#edit-search-wrapper', $formWrap);
       });
 
       var wrapItems = $('.help-items');

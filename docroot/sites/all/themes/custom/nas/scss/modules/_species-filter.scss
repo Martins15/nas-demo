@@ -60,14 +60,16 @@
       @include breakpoint(large-up) {
         display: block;
       }
-      > div:not(.nas-ct-refine-listing) {
-       > a {
+      .js-link-wrap {
+        margin-bottom: 10px;
+        > a {
           display: block;
           position: relative;
           margin: 0 auto;
           padding: 10px;
           font-size: 16px;
           text-align: center;
+          line-height: 30px;
           border-radius: 6px;
           background-color: #7AA926;
           color: $white;
@@ -168,7 +170,7 @@
       }
     }
     .wrap-items,
-     #edit-iucn-wrapper {
+    #edit-iucn-wrapper {
       .form-radios {
         border: 0;
       }
@@ -294,7 +296,7 @@
       .form-item.form-type-radio {
         opacity: .5;
       }
-      .fieldset-title:not(.second) .fieldset-legend-prefix{
+      .fieldset-title:not(.second) .fieldset-legend-prefix {
         &:before,
         &:after {
           background-color: $white;
@@ -347,31 +349,35 @@
       margin-bottom: 15px;
     }
     .bird-card {
-      padding: 0 0 50px;
+      padding: 0;
+      max-width: 95%;
+      @include breakpoint(large-up) {
+        max-width: 100%;
+      }
     }
     .bird-card-caption {
       padding: 0 8px;
+      position: relative;
+      bottom: 0;
+      margin: 10px 0;
+      .common-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 18px;
+      }
     }
     .bird-card-illustration {
-      @include breakpoint(large-up) {
-        height: 230px;
-      }
-      .field-content {
-        @include breakpoint(large-up) {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
+      height: auto;
+      width: 100%;
+      &:before {
+        display: none;
       }
       img {
-        @include breakpoint(large-up) {
-          width: 100%;
-          max-width: inherit;
-          height: auto;
-          max-height: initial;
-        }
+        width: 100%;
+        max-width: inherit;
+        height: auto;
+        max-height: initial;
       }
     }
   }
@@ -437,6 +443,7 @@
       position: relative;
       color: $white;
       font-size: 25px;
+      opacity: .65;
       &.option {
         font-size: 17px;
       }
@@ -648,13 +655,14 @@
     font-size: 16px;
   }
   i {
-   @include close-btn(18px, 2px, $darkish-grey);
+    @include close-btn(18px, 2px, $darkish-grey);
     position: absolute;
     top: 20px;
     right: 20px;
     cursor: pointer;
   }
 }
+
 .overlay-popup {
   position: fixed;
   display: none;
@@ -662,10 +670,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255,255,255, .5);
+  background: rgba(255, 255, 255, .5);
 }
 
-.overlay-popup.js-show-popup{
+.overlay-popup.js-show-popup {
   display: block;
   .pop-up-species-filter {
     display: block;
