@@ -181,6 +181,9 @@ function nas_conservation_tracker_rating_form($form, &$form_state) {
     'score_card_nid' => [
       '#type' => 'hidden',
     ],
+    'score_card_tab' => [
+      '#type' => 'hidden',
+    ],
     'feedback' => [
       '#type' => 'textarea',
       '#attributes' => [
@@ -219,6 +222,7 @@ function nas_conservation_tracker_rating_form_submit($form, &$form_state) {
   $data = array(
     'score_card' => $form_state['values']['score_card'],
     'score_card_nid' => $form_state['values']['score_card_nid'],
+    'score_card_tab' => $form_state['values']['score_card_tab'],
     'rating' => $form_state['values']['rating'],
     'feedback' => $form_state['values']['feedback'],
   );

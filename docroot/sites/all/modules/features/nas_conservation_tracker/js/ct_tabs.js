@@ -114,6 +114,7 @@
             $('#nas-conservation-tracker-map-form').show();
           }
           setTimeout(function () {
+            $('input[name="score_card_tab"]').val(Drupal.settings.nasConservationTracker.currentTab);
             Drupal.attachBehaviors($('.' + Drupal.settings.nasConservationTracker.currentTab + '-tab-wrapper'));
             // Fix for conflict with GTM, where event handler was executed
             // earlier then colorbox.
@@ -141,6 +142,7 @@
           $anchorScroll.yOffset = 50;
           // call $anchorScroll()
           $anchorScroll();
+          $location.hash('');
         };
 
         $scope.downloadPdf = function() {
