@@ -4,3 +4,27 @@
  * @file
  * Empty file. All code to be placed to nas_master_hotfix.install.
  */
+
+
+/**
+ * Fix geofield for Community Resource CT.
+ */
+function nas_master_hotfix_cron() {
+  if ($_SERVER['REQUEST_TIME'] - variable_get('nas_master_hotfix_last_cron', 0) > variable_get('nas_master_hotfix_cron_period', 3600)) {
+    variable_set('nas_master_hotfix_last_cron', $_SERVER['REQUEST_TIME']);
+    db_query("DELETE FROM `cache_geocoder` WHERE `data` LIKE '%s:8:\"geometry\";b:0;%'");
+
+    $try = 0;
+    $nids = db_query("SELECT nid FROM node WHERE type = 'community_resource' AND nid NOT IN (SELECT entity_id FROM field_data_field_community_res_geofield)")->fetchAll();
+    // Try few times, as we can get OVER_QUERY_LIMIT response from google some times.
+    while ($try < 3 && count($nids) > 0) {
+      $try++;
+      foreach ($nids as $nid) {
+        $node = node_load($nid->nid);
+        node_save($node);
+      }
+      // Check if there is not updated nodes.
+      $nids = db_query("SELECT nid FROM node WHERE type = 'community_resource' AND nid NOT IN (SELECT entity_id FROM field_data_field_community_res_geofield)")->fetchAll();
+    }
+  }
+}
