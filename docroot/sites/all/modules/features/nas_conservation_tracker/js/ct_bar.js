@@ -101,7 +101,7 @@
 
       var svg = d3.select('#' + div).append("svg")
         .attr("width", w)
-        .attr("height", h)
+        .attr("height", h + 30)
         .style('cursor', function () {
           if (full_width > chart.w) {
             return 'ew-resize';
@@ -123,12 +123,12 @@
         .enter().append("g")
         .attr("class", "ticks")
         .attr('transform', function (d, i) {
-          return 'translate(' + (x(i) + (barGroupWidth / 2)) + ',' + (chart.h) + ')'
+          return 'translate(' + (x(i) + (barGroupWidth / 2)) + ',' + (chart.h + 10) + ')'
         })
         .append("text")
         .attr("font-size", "12px")
         .attr("font-family", "\"Source Sans Pro\", Verdana, sans-serif")
-        .attr("dy", "1.75em")
+        .attr("dy", "1em")
         .attr("text-anchor", "middle")
         .style('fill', d3.rgb("#666666"))
         .text(function (d, i) {
@@ -273,7 +273,7 @@
       if (key.length > 0) {
         var legend = svg.append("g")
           .attr("class", "chart-legend")
-          .attr("transform", "translate(0, 55)");
+          .attr("transform", "translate(0, 75)");
 
         var legend_position = 0;
         var keys = legend.selectAll("g")

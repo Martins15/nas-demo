@@ -17851,6 +17851,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-weight: 600;
 }
 .bird-page.body-item .title-wrap__print {
+  position: relative;
   margin-top: 25px;
   float: right;
   color: #9b9b9b;
@@ -17859,6 +17860,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   text-align: right;
   vertical-align: top;
+  cursor: pointer;
 }
 .bird-page.body-item .title-wrap__print .img-block {
   width: 20px;
@@ -17904,6 +17906,29 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .bird-page.body-item .title-wrap__print .print {
     margin-left: 50px;
   }
+}
+.bird-page.body-item .title-wrap__print .show-options {
+  position: absolute;
+  display: none;
+  right: 0;
+  background: #fbfaf6;
+}
+.bird-page.body-item .title-wrap__print .show-options.js-show-wrap {
+  display: block;
+}
+.bird-page.body-item .title-wrap__print .show-options a {
+  display: block;
+  padding: 10px;
+  font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  line-height: 18px;
+  color: #9b9b9b;
+  background: #fbfaf6;
+}
+.bird-page.body-item .title-wrap__print .show-options a:hover {
+  background: #ccc;
 }
 
 .page-conservation-tracker-scorecard-black-oystercatcher .global-content.with-padding {
