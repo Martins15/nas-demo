@@ -14,7 +14,7 @@
       , lastName = pathArray.slice(-1)[0]
       , activeUrl = '';
 
-    if (linkArray.indexOf(lastName) > -1) {
+      if (linkArray.indexOf(lastName) > -1) {
       activeUrl = pathArray.slice(0, -1).join('/');
     }
     else {
@@ -345,6 +345,7 @@
           Drupal.settings.nasConservationTracker.currentTab = $state['current']['name'];
           getContent($state['current']['name']);
           $scope.isActive = transition.name;
+          $scope.toggle_wrap = false;
         });
 
         // On change.
