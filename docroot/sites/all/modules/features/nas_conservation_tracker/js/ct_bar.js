@@ -101,7 +101,7 @@
 
       var svg = d3.select('#' + div).append("svg")
         .attr("width", w)
-        .attr("height", h)
+        .attr("height", h + 20)
         .style('cursor', function () {
           if (full_width > chart.w) {
             return 'ew-resize';
@@ -273,7 +273,7 @@
       if (key.length > 0) {
         var legend = svg.append("g")
           .attr("class", "chart-legend")
-          .attr("transform", "translate(0, 55)");
+          .attr("transform", "translate(0, 70)");
 
         var legend_position = 0;
         var keys = legend.selectAll("g")
