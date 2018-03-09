@@ -144,10 +144,27 @@ function park_bird_trend_theme(&$theme, $plugin) {
 }
 
 /**
- *
+ * Helper function to get field value.
  */
 function _park_bird_trend_get_field_value($field, $node, $index = 0) {
+  // Description fields with global values in variables.
+  $global_field_birds = [
+    'field_birds_s_species_desc',
+    'field_birds_s_extirpations_desc',
+    'field_birds_s_colonizations_desc',
+    'field_birds_w_species_desc',
+    'field_birds_w_extirpations_desc',
+    'field_birds_w_colonizations_desc',
+  ];
+
   $fields = field_get_items('node', $node, $field);
   $output = field_view_value('node', $node, $field, $fields[$index]);
+  // Put to the Output a global value if description field is empty and global value filled.
+  if (!$fields && in_array($field, $global_field_birds) && variable_get($field . '_global') != '') {
+    $output = [
+      '#markup' => check_markup(variable_get($field . '_global'), 'full_html'),
+      '#access' => 'true',
+    ];
+  }
   return $output;
 }
