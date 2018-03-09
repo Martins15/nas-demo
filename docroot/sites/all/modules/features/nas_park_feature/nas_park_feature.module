@@ -131,7 +131,6 @@ function nas_park_feature_form($form, &$form_state) {
     '#default_value' => variable_get('field_birds_s_species_desc_global'),
     '#cols' => 60,
     '#rows' => 5,
-
   ];
 
   $form['field_birds_s_extirpations_desc_global'] = [
@@ -140,7 +139,6 @@ function nas_park_feature_form($form, &$form_state) {
     '#default_value' => variable_get('field_birds_s_extirpations_desc_global'),
     '#cols' => 60,
     '#rows' => 5,
-
   ];
 
   $form['field_birds_s_colonizations_desc_global'] = [
@@ -149,7 +147,6 @@ function nas_park_feature_form($form, &$form_state) {
     '#default_value' => variable_get('field_birds_s_colonizations_desc_global'),
     '#cols' => 60,
     '#rows' => 5,
-
   ];
 
   $form['field_birds_w_species_desc_global'] = [
@@ -158,7 +155,6 @@ function nas_park_feature_form($form, &$form_state) {
     '#default_value' => variable_get('field_birds_w_species_desc_global'),
     '#cols' => 60,
     '#rows' => 5,
-
   ];
 
   $form['field_birds_w_extirpations_desc_global'] = [
@@ -167,7 +163,6 @@ function nas_park_feature_form($form, &$form_state) {
     '#default_value' => variable_get('field_birds_w_extirpations_desc_global'),
     '#cols' => 60,
     '#rows' => 5,
-
   ];
 
   $form['field_birds_w_colonizations_desc_global'] = [
@@ -176,7 +171,14 @@ function nas_park_feature_form($form, &$form_state) {
     '#default_value' => variable_get('field_birds_w_colonizations_desc_global'),
     '#cols' => 60,
     '#rows' => 5,
+  ];
 
+  $form['field_park_description_secondary_global'] = [
+    '#type' => 'textarea',
+    '#title' => 'Park description secondary',
+    '#default_value' => variable_get('field_park_description_secondary_global'),
+    '#cols' => 60,
+    '#rows' => 5,
   ];
 
   $form['submit_button'] = [
@@ -198,9 +200,10 @@ function nas_park_feature_form_submit($form, &$form_state) {
     'field_birds_w_species_desc_global',
     'field_birds_w_extirpations_desc_global',
     'field_birds_w_colonizations_desc_global',
+    'field_park_description_secondary_global',
   ];
   foreach ($fields as $field) {
     variable_set($field, $form_state['values'][$field]);
   }
-  drupal_set_message("Values succesfully saved");
+  drupal_set_message("Values successfully saved");
 }
