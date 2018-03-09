@@ -4601,6 +4601,10 @@ function nas_master_update_7314() {
  * Enable CT feature.
  */
 function nas_master_update_7330() {
+  variable_set('nas_conservation_tracker_auth_protection', TRUE);
+  variable_set('nas_conservation_tracker_auth_user', 'audubon');
+  variable_set('nas_conservation_tracker_auth_pass', 'audubon');
+
   variable_set('nas_conservation_tracker_endpoint', './sites/all/modules/features/nas_conservation_tracker/demo_assets');
   module_enable(array('nas_conservation_tracker'));
   drupal_flush_all_caches();

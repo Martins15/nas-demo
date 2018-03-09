@@ -23,13 +23,13 @@
                 <span class="text" id="tooltip-text"><?php print $tooltip; ?></span>
               </span>
             </h4>
-            <div class="trigger">
+            <?php /*<div class="trigger">
               <h5>Display Actions</h5>
               <div class="switch">
                 <input type="checkbox" class="form-switch" id="checkActions">
                 <label for="checkActions"></label>
               </div>
-            </div>
+            </div>*/ ?>
             <p><span
                 id="site-count-copy">Sites in selected/visible area(s): </span><span
                 id="site-count">0</span></p>
