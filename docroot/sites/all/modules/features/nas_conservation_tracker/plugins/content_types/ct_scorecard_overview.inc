@@ -37,7 +37,7 @@ function nas_conservation_tracker_scorecard_overview_render($subtype, $conf, $ar
   }
   $block = new stdClass();
   $vars = array(
-    'data' => nas_conservation_tracker_get_json('scorecard-' . $scorecard_id),
+    'data' => nas_conservation_tracker_get_json('scorecard', $scorecard_id),
   );
   $block->content = theme('ct_scorecard_overview', $vars);
 

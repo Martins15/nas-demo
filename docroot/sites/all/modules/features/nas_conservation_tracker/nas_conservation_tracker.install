@@ -70,7 +70,7 @@ function nas_conservation_tracker_custom_install() {
   // Create scorecard node(s).
 
   // Black Oystercatcher.
-  $data = nas_conservation_tracker_get_json('scorecard-123');
+  $data = nas_conservation_tracker_get_json('scorecard', 123);
   watchdog('ct debug', print_r($data, TRUE));
   $node = new StdClass();
   $node->type = 'ct_scorecard';
@@ -93,7 +93,7 @@ function nas_conservation_tracker_custom_install() {
 
 
   // Coastal Carolinas.
-  $data = nas_conservation_tracker_get_json('scorecard-321');
+  $data = nas_conservation_tracker_get_json('scorecard', 321);
   watchdog('ct debug', print_r($data, TRUE));
   $node = new StdClass();
   $node->type = 'ct_scorecard';
@@ -115,7 +115,7 @@ function nas_conservation_tracker_custom_install() {
   path_save($path);
 
   // Coastal Carolinas.
-  $data = nas_conservation_tracker_get_json('scorecard-456');
+  $data = nas_conservation_tracker_get_json('scorecard', 456);
   watchdog('ct debug', print_r($data, TRUE));
   $node = new StdClass();
   $node->type = 'ct_scorecard';

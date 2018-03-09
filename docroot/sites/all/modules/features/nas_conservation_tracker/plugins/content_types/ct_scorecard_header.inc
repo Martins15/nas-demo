@@ -29,7 +29,7 @@ function nas_conservation_tracker_scorecard_header_render($subtype, $conf, $args
   $block = new stdClass();
   $node = menu_get_object('node', 1,_nas_conservation_tracker_get_real_path());
   $id = $node->field_scorecard_id[LANGUAGE_NONE][0]['value'];
-  $data = nas_conservation_tracker_get_json('scorecard-' . $id);
+  $data = nas_conservation_tracker_get_json('scorecard', $id);
 
   $vars = array(
     'name' => isset($data['name']) ? $data['name'] : '',
