@@ -3,7 +3,7 @@
   "name": "Conservation Ranching",
   "subtitle": "",
   "credit": "Photo: Mike Fernandez/Audubon",
-  "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_conservation_ranching_hero.jpg",
+  "image": "http://www.audubon.org/sites/default/files/conservation-tracker/images/hero/scorecard_conservation_ranching_hero.jpg",
   "settings": {
     "menuParent": "Strategies",
     "tabDefault": "actions",
@@ -19,8 +19,8 @@
         "zoom": "5",
         "markersZoom": "4"
       },
-      "iframe": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/acr_brochure_printable.pdf",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_threats.png",
+      "iframe": "//www.audubon.org/sites/default/files/conservation-tracker/pdfs/interactive-reports/acr_brochure_printable.pdf",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_consranching_threats.png",
       "tagLine": "Anthropogenic pressures on birds, habitats they rely on, and/or an entire ecosystem",
       "title": "Over 50% of North America’s vast native grasslands that originally covered over 300 million acres have been lost due to:",
       "description": "<ul><li>Conversion to row crop agriculture</li><li>Woody shrub encroachment due to fire supression and prairie dog declines</li><li>Urbanization and energy development</li><li>Unsustainable livestock management practices</li><li>Desertification</li><li>Short-term and localized landowner incentive programs</li><li>Failed policy approaches</li></ul>",
@@ -44,7 +44,7 @@
         "markersZoom": "5"
       },
       "image": "//web4.audubon.org/scidev/images/conservation_ranching.png",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_actions.png",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_consranching_actions.png",
       "tagLine": "Conservation interventions by Audubon field staff and partners as classifed by the Open Standards for the Practice of Conservation",
       "title": "Program Goals:",
       "description": "<ul><li>Leverage Audubon’s brand to drive consumer interest in ecologically sustainable beef production</li><li>Develop market-based conservation solutions that help land managers increase their profitability while adopting bird-friendly land management practices.</li><li>Audubon’s policy team, working with a coalition of stakeholders, will engage in reauthorization of the U.S. Farm Bill to promote policies and increase funding available to landowners for conservation</li></ul>",
@@ -82,7 +82,7 @@
         "markersZoom": "4"
       },
       "iframe": "//audubon.maps.arcgis.com/apps/webappviewer/index.html?id=3fe2d54c685a46eaad9d5f60949d4e5d",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_response.png",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_consranching_response.png",
       "tagLine": "Quantifying the effectiveness of our conservation actions using scientifically-sound metrics",
       "title": "Grassland birds have suffered sharp declines over the past half century",
       "description": "<ul><li>We developed the Bird Friendliness Index to evaluate the success of the Conservation Ranching program in increasing resilience of grassland bird communities.</li><li>The Bird Friendliness Index is a composite measure that combines abundance, functional diversity, and conservation status of grassland birds to produce a simple metric that evaluates the resiliency of grassland bird communities.</li><li>The metric is based on research showing that bird communities with a diversity of diets and body sizes will compete less and interact more harmoniously with their ecosystem, increasing community and ecosystem resilience.</li><li>The Bird Friendliness Index is used to track trends in resilience over time in response to bird-friendly management practices. These trends can be used to inform adaptive management on Conservation Ranches.</li></ul>",
@@ -104,7 +104,7 @@
         "tooltip": true,
         "line_y": true,
         "legend": ["2016", "2017", "2018 - Data collection pending"],
-        "colors": ["#98d399", "#41ab5d", "#cccccc"],
+        "colors": ["#74c476", "#41ab5d", "#cccccc"],
         "count_copy": "Ranches in selected/visible area(s): "
       }
     },
@@ -115,8 +115,8 @@
         "zoom": "5",
         "markersZoom": "4"
       },
-      "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/how_it_works_inforgraphic_2.jpg",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_consranching_partners.png",
+      "image": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/how_it_works_inforgraphic_2.jpg",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_consranching_partners.png",
       "tagLine": "Our work is co-developed and often led by partner organizations and stakeholders",
       "title": "Audubon works with domestic and international partners to promote sustainable ranching and expand and coordinate grassland bird conservation work across Canada, the US and Mexico",
       "description": "The infographic on the right outlines the collaborative roles of Audubon staff, ranchers enrolled in the program, and retail partners in the implementation of the Conservation Ranching Program.",

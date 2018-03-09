@@ -36,7 +36,7 @@ function nas_conservation_tracker_scorecard_tabs_render($subtype, $conf, $args, 
   else {
     return;
   }
-  $data = nas_conservation_tracker_get_json('scorecard-' . $scorecard_id);
+  $data = nas_conservation_tracker_get_json('scorecard', $scorecard_id);
   $links = menu_tree_all_data('menu-ct-menu');
   $vars['menu_tree'] = array();
 

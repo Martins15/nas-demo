@@ -40,7 +40,7 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   else {
     return;
   }
-  $data = nas_conservation_tracker_get_json('scorecard-' . $scorecard_id);
+  $data = nas_conservation_tracker_get_json('scorecard', $scorecard_id);
   $scale = array(
     'actions' => array('county', 'state', 'flyway'),
     'threats' => array('county', 'state', 'flyway'),

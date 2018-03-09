@@ -3,7 +3,7 @@
   "name": "Coastal Carolinas",
   "subtitle": "",
   "credit": "Photo: Walker Golder",
-  "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/scorecard_coastal_carolinas_hero.jpg",
+  "image": "http://www.audubon.org/sites/default/files/conservation-tracker/images/hero/scorecard_coastal_carolinas_hero.jpg",
   "settings": {
     "menuParent": "Landscapes",
     "tabDefault": "actions",
@@ -18,8 +18,8 @@
         "longitude": "-73.59191894531251",
         "zoom": "6"
       },
-      "image": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/coastal_carolinas_cbrs.png",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_threats.png",
+      "image": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/coastal_carolinas_cbrs.png",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_carolinas_threats.png",
       "tagLine": "Anthropogenic pressures on birds, habitats they rely on, and/or an entire ecosystem",
       "title": "Coastal habitats in the region are feeling the pressure of sea level rise",
       "description": "<ul><li>Marshes and beaches are being squeezed between rising seas and increasing development</li><li>Islands in the sounds and bays are eroding</li><li>Shorelines hardened with seawalls, roadways, and groins are accelerating erosion and habitat loss</li><li>Policies that support development in flood and storm-prone areas</li><li>Abundant and invasive predators</li></ul>",
@@ -54,7 +54,7 @@
         "zoom": "6"
       },
       "iframe": "//web4.audubon.org/scidev/coasts_actions/carolinas.html",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_actions.png",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_carolinas_actions.png",
       "tagLine": "Conservation interventions by Audubon field staff and partners as classifed by the Open Standards for the Practice of Conservation",
       "title": "The Coastal Barrier Resources System saves lives, money and coastal resources",
       "description": "<ul><li>Expand and modernize Coastal Barrier Resources Act (CBRA)</li><li>Material from dredging activity is used to reduce storm damage, promote public safety, restore habitat, enhance shorelines, promote recreation, and reduce disposal costs</li><li>Monitoring is needed to assess populations, demography, habitat use, and impacts of sea level rise on marsh-dependent species</li><li>Nature-based strategies or \"green infrastructure\" such as marshes, oyster beds and seagrass, can mitigate  climate change impacts, and provide economic and environmental benefits to coastal communities</li></ul>",
@@ -92,7 +92,7 @@
         "zoom": "6"
       },
       "iframe": "//web4.audubon.org/scidev/cbc_trends/carolinas.html",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_response.png",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_carolinas_response.png",
       "tagLine": "Quantifying the effectiveness of our conservation actions using scientifically-sound metrics",
       "title": "American Oystercatcher productivity varies widely across the Coastal Carolinas landscape",
       "description": "<ul><li>Understanding the drivers of this variation will help us better manage the species</li><li>Recent research suggests that average productivity of 0.63 chicks per pair per year leads to stable populations<sup><a class=\"footnotes\" href=\"#\">1</a></sup></li><li>American Oystercatcher abundance during winter appears to be stable<sup><a class=\"footnotes\" href=\"#\">1</a></sup></li></ul>",
@@ -120,7 +120,7 @@
         "zoom": "6"
       },
       "youtube": "//youtu.be/RDBbmZALHIU",
-      "thumbnail": "/sites/all/modules/features/nas_conservation_tracker/demo_assets/lightbox_thumb_carolinas_partners.png",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_carolinas_partners.png",
       "tagLine": "Our work is co-developed and often led by partner organizations and stakeholders",
       "title": "Audubon has established partnerships with 25 NGOs, state and federal agencies, and independent researchers to protect and restore the Coastal Carolinas landscape",
       "description": "Audubon has a proven track record of working with the Army Corps of Engineers and states to use dredged material to restore habitat and recreation-dependent economies",
