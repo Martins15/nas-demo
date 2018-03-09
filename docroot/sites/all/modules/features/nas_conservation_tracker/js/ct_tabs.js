@@ -153,56 +153,6 @@
           $scope.pdfLoading = true;
 
           var lMap = Drupal.settings.leaflet['0'].lMap;
-
-          var doc = new jsPDF();
-          var dimensions = lMap.getSize();
-          var imgRatio = dimensions.x / dimensions.y;
-          var w = 210;
-          var h = parseInt((w / imgRatio).toFixed());
-          var overview = document.querySelector("#scorecard-overview");
-          var w2 = 195;
-          var h2 = parseInt((w2 / overview.offsetWidth * overview.offsetHeight).toFixed());
-          var offset = 20;
-          var offset1 = h2 + 60;
-          var size2 = calcSize('#charts-actions');
-          var offset3 = size2.y + 20;
-          var size3 = calcSize('#charts-objectives');
-          var size4 = calcSize('#scorecard-footnotes');
-          var offset4 = size3.y + offset3 + 20;
-
-          var promise = new Promise(function(resolve, reject) {
-            leafletImage(lMap, function(err, canvas) {
-              //@todo add logic not to show blank space in pdf if map can not be grabbed.
-              if(!err) {
-                console.log('MAP READY - NO ERROR!', err);
-              }
-              Drupal.settings.nasConservationTracker.leafletImage = canvas.toDataURL();
-
-              doc.setFontSize(18);
-              doc.setTextColor(38,38,38);
-              ///console.log(typeof $scope.isActive.capitalize(), $scope.isActive.capitalize());
-              doc.text(12, offset, $scope.tab.name.capitalize());
-              offset += 10;
-              doc.setFontSize(12);
-              if ($scope.tab.subtitle) {
-                doc.text(12, 30, $scope.tab.subtitle.capitalize());
-                offset += 10;
-              }
-              doc.text(12, offset, $scope.isActive.capitalize());
-              return doc;
-            });
-          });
-
-          promise.then(function(doc){
-            html2canvas(document.querySelector("#scorecard-overview")).then(function(canvas) {
-              doc.addImage(canvas.toDataURL(), 'PNG', 10, 50, w2, h2);
-              doc.save('fsdfd.pdf');
-            });
-          });
-
-
-
-    /*
           leafletImage(lMap, function(err, canvas) {
             //@todo add logic not to show blank space in pdf if map can not be grabbed.
             if(!err) {
@@ -227,7 +177,7 @@
 
             doc.setFontSize(18);
             doc.setTextColor(38,38,38);
-            ///console.log(typeof $scope.isActive.capitalize(), $scope.isActive.capitalize());
+            console.log(typeof $scope.isActive.capitalize(), $scope.isActive.capitalize());
             doc.text(12, offset, $scope.tab.name.capitalize());
             offset += 10;
             doc.setFontSize(12);
@@ -288,7 +238,7 @@
 
             });
           });
-*/
+
 
 
           function calcSize(selector) {
