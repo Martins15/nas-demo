@@ -68,9 +68,12 @@
                 </div>
                 <div data-html2canvas-ignore="true" ng-if="value !== 'partners'" class="title-wrap__print  columns large-3  hide-for-tiny hide-for-medium hide-for-small">
                     <div ng-show="pdfLoading" id="pdf-loading">PDF Loading...</div>
-                    <a href="" ng-click="downloadPdf()" id="download-pdf" class="img-block download">Download PDF</a>
                     <a href="#" class="img-block print"></a>
-                    <a href="/conservation-tracker/csv/{{value}}/<?php print $data['id'] ?>" id="download-csv" class="img-block download">Download</a>
+                    <div class="img-block download" ng-click="toggle_wrap = !toggle_wrap">Download</div>
+                    <div class="show-options" ng-class="{'js-show-wrap' : toggle_wrap}">
+                        <a href="" ng-click="downloadPdf()" id="download-pdf" class="">PDF</a>
+                        <a href="/conservation-tracker/csv/{{value}}/<?php print $data['id'] ?>" id="download-csv" class="">CSV</a>
+                    </div>
                 </div>
             </div>
         </div>

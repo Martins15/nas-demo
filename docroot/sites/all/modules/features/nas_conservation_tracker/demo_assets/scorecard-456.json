@@ -104,7 +104,7 @@
         "tooltip": true,
         "line_y": true,
         "legend": ["2016", "2017", "2018 - Data collection pending"],
-        "colors": ["#74c476", "#41ab5d", "#cccccc"],
+        "colors": ["#98d399", "#41ab5d", "#cccccc"],
         "count_copy": "Ranches in selected/visible area(s): "
       }
     },

@@ -73,6 +73,7 @@ $gray-lightish: #9b9b9b;
   }
   .title-wrap {
     &__print {
+      position: relative;
       margin-top: 25px;
       float: right;
       color: $gray-lightish;
@@ -81,6 +82,7 @@ $gray-lightish: #9b9b9b;
       font-family: $font-sans;
       text-align: right;
       vertical-align: top;
+      cursor: pointer;
       .img-block {
         width: 20px;
         height: 18px;
@@ -122,6 +124,29 @@ $gray-lightish: #9b9b9b;
         margin-right: 20px;
         @include breakpoint(xlarge-up) {
           margin-left: 50px;
+        }
+      }
+      .show-options {
+        position: absolute;
+        display: none;
+        right: 0;
+        background: $grey-menu-bird;
+        &.js-show-wrap {
+          display: block;
+        }
+        a {
+          display: block;
+          padding: 10px;
+          font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+          font-size: 16px;
+          font-weight: 600;
+          text-align: left;
+          line-height: 18px;
+          color: $gray-lightish;
+          background: $grey-menu-bird;
+          &:hover {
+            background: #ccc;
+          }
         }
       }
     }
