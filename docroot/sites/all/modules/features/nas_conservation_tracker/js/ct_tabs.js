@@ -150,7 +150,6 @@
             return this.charAt(0).toUpperCase() + this.slice(1);
           }
 
-          $('body').append('<div id="pdf-render-container"></div>');//@todo Is it required? Remove if not.
           $scope.pdfLoading = true;
 
           var lMap = Drupal.settings.leaflet['0'].lMap;
@@ -173,19 +172,20 @@
             var size2 = calcSize('#charts-actions');
             var offset3 = size2.y + 20;
             var size3 = calcSize('#charts-objectives');
-            var size4 = calcSize('#footnotes');
+            var size4 = calcSize('#scorecard-footnotes');
             var offset4 = size3.y + offset3 + 20;
 
             doc.setFontSize(18);
             doc.setTextColor(38,38,38);
-            doc.text(12, offset, $scope.tab.name.capitalize());//@todo Finish it, does not work currently.
+            console.log(typeof $scope.isActive.capitalize(), $scope.isActive.capitalize());
+            doc.text(12, offset, $scope.tab.name.capitalize());
             offset += 10;
             doc.setFontSize(12);
             if ($scope.tab.subtitle) {
-              doc.text(12, 30, $scope.tab.subtitle);
+              doc.text(12, 30, $scope.tab.subtitle.capitalize());
               offset += 10;
             }
-            doc.text(12, offset, $scope.isActive);
+            doc.text(12, offset, $scope.isActive.capitalize());
 
             //@todo Divide in independent peices, so if some fail - pdf generating won't be broken.
             html2canvas(document.querySelector("#scorecard-overview")).then(canvas => {
@@ -209,7 +209,7 @@
                   }
                 }
               }
-
+//console.log(Drupal.settings.nasConservationTracker.leafletImage);
               //@todo Do only if map was generated successfully.
               //if (!err) {
                 doc.addImage(Drupal.settings.nasConservationTracker.leafletImage, 'PNG', 0, offset1, w, h);
@@ -224,7 +224,7 @@
                   doc.addImage(canvas.toDataURL(), 'PNG', 5, offset3, size3.x, size3.y);
 
                   if ($scope.tab.settings[$scope.isActive].footnotes) {
-                    html2canvas(document.querySelector("#footnotes")).then(canvas => {
+                    html2canvas(document.querySelector("#scorecard-footnotes")).then(canvas => {
                       doc.addImage(canvas.toDataURL(), 'PNG', 15, offset4, size4.x, size4.y);
 
 
@@ -244,10 +244,12 @@
           function calcSize(selector) {
             var e = 0.264583;
             var element = document.querySelector(selector);
-            return {
-              x: parseInt((element.offsetWidth * e).toFixed()),
-              y: parseInt((element.offsetHeight * e).toFixed())
+            var size = {x,y};
+            if (element) {
+              size.x = parseInt((element.offsetWidth * e).toFixed());
+              size.y = parseInt((element.offsetHeight * e).toFixed());
             }
+            return size;
           }
         }
 
