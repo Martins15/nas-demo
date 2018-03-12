@@ -20,7 +20,6 @@
           </ul>
         </div>
         <div class="tab-slider--container">
-          <div class="cell" id="chart"></div>
           <?php foreach ($content as $season => $tabs): ?>
             <div id="season_<?php print $season ?>"
                  class="tab-slider--body <?php print $season ?>-tab">
@@ -33,9 +32,6 @@
                       <p class="link__number"><?php print $data['amount'] ?></p>
                     </li>
                   <?php endforeach; ?>
-
-
-
                 </ul>
 
                 <?php foreach ($tabs['tabs'] as $tab => $data): ?>
@@ -49,6 +45,9 @@
           <?php endforeach; ?>
           <?php print $view ?>
         </div>
+      </div>
+      <div class="parks_blog">
+        <div class="cell" id="chart"></div>
       </div>
     </div>
   </div>
