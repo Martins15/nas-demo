@@ -7,6 +7,15 @@
 include_once 'nas_park_feature.features.inc';
 
 /**
+ * Implements hook_ctools_plugin_directory().
+ */
+function nas_park_feature_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools' && !empty($plugin)) {
+    return "plugins/$plugin";
+  }
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function nas_park_feature_form_park_node_form_alter(&$form, &$form_state, $form_id) {
