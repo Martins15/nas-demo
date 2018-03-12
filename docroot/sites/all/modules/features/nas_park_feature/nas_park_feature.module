@@ -252,3 +252,36 @@ function nas_park_feature_form_submit($form, &$form_state) {
   drupal_set_message("Values successfully saved");
 }
 
+function nas_park_feature_add_chart_assets() {
+  $module_path = drupal_get_path('module', 'nas_park_feature');
+  drupal_add_css($module_path . '/css/stamen-audubon-parks.css');
+  drupal_add_js($module_path . '/js/lib/d3.v4.min.js');
+  drupal_add_js($module_path . '/js/lib/stamen-audubon-parks.js');
+  drupal_add_js($module_path . '/js/nas_park_feature.js');
+
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'park')
+    ->propertyCondition('status', '1')
+    ->execute();
+
+  $cid = 'nas_park_feature_park_links';
+  $park_links_cache = cache_get($cid);
+  if ($park_links_cache) {
+    $park_links = $park_links_cache->data;
+  }
+  else {
+    $park_links = array();
+    foreach ($result['node'] as $nid => $value) {
+      $node = node_load($nid);
+      $park_links[$node->title] = drupal_get_path_alias('node/' . $nid);
+    }
+    cache_set($cid, $park_links);
+  }
+
+  drupal_add_js([
+    'nasClimateFeature' => [
+      'parkLinks' => $park_links,
+    ],
+  ], 'setting');
+}

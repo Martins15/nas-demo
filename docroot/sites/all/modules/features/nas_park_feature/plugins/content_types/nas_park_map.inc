@@ -4,12 +4,11 @@
  * Content type plugin for NAS climate.
  */
 $plugin = array(
-  'title' => t('NAS Park Birds Dots'),
+  'title' => t('NAS Park Map'),
   'single' => TRUE,
-  'content_types' => array('nas_park_birds_dots'),
-  'render callback' => 'nas_park_feature_birds_dots_render',
-  'required context' => new ctools_context_required(t('Node'), 'node'),
-  'edit form' => 'nas_park_feature_birds_dots_edit_form',
+  'content_types' => array('nas_park_map'),
+  'render callback' => 'nas_park_feature_map_render',
+  'edit form' => 'nas_park_feature_map_edit_form',
   'category' => 'NAS Climate',
 );
 /**
@@ -21,16 +20,16 @@ $plugin = array(
  * @param $context
  * @return stdClass
  */
-function nas_park_feature_birds_dots_render($subtype, $conf, $args, $context) {
-  $elem_id = 'nas-park-birds-dots';
+function nas_park_feature_map_render($subtype, $conf, $args, $context) {
+  $elem_id = 'nas-park-map';
+  $data_path = $GLOBALS['base_url'] . '/' . drupal_get_path('module', 'nas_park_feature') . '/data';
   nas_park_feature_add_chart_assets();
   drupal_add_js([
     'nasClimateFeature' => [
-      'turnoverChart' => TRUE,
+      'parkMap' => TRUE,
       'elementId' => $elem_id,
-      'dataUrl' => $GLOBALS['base_url'] . '/' . drupal_get_path('module', 'nas_park_feature') . '/data/filtered_turnover_counts_53parks.csv',
-      'parkTitle' => $context->data->title,
-      'parkUrl' => drupal_get_path_alias('node/' . $context->data->nid),
+      'dataUrl' => $data_path . '/filtered_turnover_counts_53parks.csv',
+      'shapeUrl' => $data_path . '/ne_50m_admin_1_states_provinces_lakes.geojson',
     ],
   ], 'setting');
   $block = new stdClass();
@@ -52,7 +51,7 @@ function nas_park_feature_birds_dots_render($subtype, $conf, $args, $context) {
  * @param $form_state
  * @return mixed
  */
-function nas_park_feature_birds_dots_edit_form($form, &$form_state) {
+function nas_park_feature_map_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   // some code TBD.
   return $form;
@@ -63,5 +62,5 @@ function nas_park_feature_birds_dots_edit_form($form, &$form_state) {
  * @param $form
  * @param $form_state
  */
-function nas_park_feature_birds_dots_edit_form_submit($form, &$form_state) {
+function nas_park_feature_map_edit_form_submit($form, &$form_state) {
 }
