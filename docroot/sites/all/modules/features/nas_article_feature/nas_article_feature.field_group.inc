@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function nas_article_feature_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -41,7 +41,7 @@ function nas_article_feature_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $export['group_editorial_card|node|article|form'] = $field_group;
+  $field_groups['group_editorial_card|node|article|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -54,7 +54,7 @@ function nas_article_feature_field_group_info() {
   $field_group->parent_name = 'group_panelizer';
   $field_group->data = array(
     'label' => 'Hero video settings',
-    'weight' => '46',
+    'weight' => '47',
     'children' => array(
       0 => 'field_hero_video_settings',
     ),
@@ -69,7 +69,7 @@ function nas_article_feature_field_group_info() {
       'formatter' => 'collapsible',
     ),
   );
-  $export['group_hero_video_settings|node|article|form'] = $field_group;
+  $field_groups['group_hero_video_settings|node|article|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -104,7 +104,7 @@ function nas_article_feature_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $export['group_main_content|node|article|form'] = $field_group;
+  $field_groups['group_main_content|node|article|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -140,7 +140,7 @@ function nas_article_feature_field_group_info() {
       ),
     ),
   );
-  $export['group_menu_sections_references|node|article|form'] = $field_group;
+  $field_groups['group_menu_sections_references|node|article|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -165,7 +165,9 @@ function nas_article_feature_field_group_info() {
       7 => 'field_hero_mobile_image',
       8 => 'field_hero_video',
       9 => 'field_hero_video_poster',
-      10 => 'group_hero_video_settings',
+      10 => 'field_image',
+      11 => 'field_assests_per_node',
+      12 => 'group_hero_video_settings',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -178,7 +180,15 @@ function nas_article_feature_field_group_info() {
       'formatter' => 'closed',
     ),
   );
-  $export['group_panelizer|node|article|form'] = $field_group;
+  $field_groups['group_panelizer|node|article|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Editorial card fields');
+  t('Hero video settings');
+  t('Layout');
+  t('Main content');
+  t('Menu sections & references');
+
+  return $field_groups;
 }

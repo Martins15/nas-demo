@@ -391,6 +391,20 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
 
   // Manage visibility comment settings vertical tab.
   $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/hide-comment-settings.js';
+  if (!empty($form['field_assests_per_node'][LANGUAGE_NONE]) && !empty($form['cpn'])) {
+    $mapping = array();
+    $field_assests_per_node = $form['field_assests_per_node'][LANGUAGE_NONE];
+    foreach ($field_assests_per_node as $item) {
+      if (is_array($item) && !empty($item['#default_value']['fid'])) {
+        $file = file_load($item['#default_value']['fid']);
+        $mapping[$file->fid] = file_create_url($file->uri);
+      }
+    }
+    if (!empty($mapping)) {
+      drupal_add_js(array('articleAssetsMapping' => $mapping), 'setting');
+      drupal_add_js(drupal_get_path('module', 'nas_alters') . '/js/article-images-per-node.js');
+    }
+  }
 
   // Attach after build callback.
   $form['#after_build'][] = 'nas_alters_form_article_node_form_after_build';

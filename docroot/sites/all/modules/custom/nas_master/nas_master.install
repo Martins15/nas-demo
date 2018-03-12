@@ -4596,6 +4596,40 @@ function nas_master_update_7314() {
   }
 }
 
+/**
+ * Revert nas_mobapp_endpoint.
+ */
+function nas_master_update_7315() {
+  features_revert(array(
+    'nas_mobapp_endpoint' => array(
+      'views_default',
+    ),
+  ));
+}
+
+/**
+ * Enable cpn, revert nas_article_feature.
+ */
+function nas_master_update_7316() {
+  module_enable(array('cpn'));
+  features_revert(array(
+    'nas_article_feature' => array(
+      'variable',
+      'user_permission',
+      'field_base',
+      'field_instance',
+    ),
+  ));
+}
+
+/**
+ * Disable logging for amp.
+ */
+function nas_master_update_7317() {
+  variable_set('amp_library_warnings_display', FALSE);
+  variable_set('amp_library_process_statistics', FALSE);
+  variable_set('amp_library_process_full_html_warnings', FALSE);
+}
 
 /**
  * Enable CT feature.
@@ -4621,7 +4655,7 @@ function nas_master_update_7330() {
  * Clear all caches.
  */
 function nas_master_update_7331() {
-//  drupal_flush_all_caches();
+  //  drupal_flush_all_caches();
 }
 
 /**
@@ -4647,4 +4681,3 @@ function nas_master_update_7333() {
   $index->reindex();
   search_api_index_items($index);
 }
-
