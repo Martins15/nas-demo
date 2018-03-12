@@ -23,13 +23,15 @@ $plugin = array(
  */
 function nas_park_feature_birds_dots_render($subtype, $conf, $args, $context) {
   $elem_id = 'nas-park-birds-dots';
-  drupal_add_js(drupal_get_path('module', 'nas_park_feature') . '/js/lib/d3.v4.min.js');
-  drupal_add_js(drupal_get_path('module', 'nas_park_feature') . '/js/lib/stamen-audubon-parks.js');
-  drupal_add_js(drupal_get_path('module', 'nas_park_feature') . '/js/nas_park_feature.js');
+  $module_path = drupal_get_path('module', 'nas_park_feature');
+  drupal_add_css($module_path . '/css/stamen-audubon-parks.css');
+  drupal_add_js($module_path . '/js/lib/d3.v4.min.js');
+  drupal_add_js($module_path . '/js/lib/stamen-audubon-parks.js');
+  drupal_add_js($module_path . '/js/nas_park_feature.js');
   drupal_add_js([
     'nasClimateFeature' => [
       'elementId' => $elem_id,
-      'dataUrl' => '//studio.stamen.com/audubon-parks/show/latest/dist/data/filtered_turnover_counts_53parks.csv',
+      'dataUrl' => $GLOBALS['base_url'] . '/' . $module_path . '/csv/filtered_turnover_counts_53parks.csv',
       'parkTitle' => $context->data->title,
       'parkUrl' => drupal_get_path_alias('node/' . $context->data->nid),
     ],
