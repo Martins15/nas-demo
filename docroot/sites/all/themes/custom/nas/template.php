@@ -1453,8 +1453,8 @@ function nas_preprocess_panels_pane(&$vars) {
       $hero_image = $vars['content'];
       $hero_image['#prefix'] = '<div class="hide-for-tiny hide-for-small">';
       $hero_image['#suffix'] = '</div>';
-
-      $hero_mobile_image_file = reset($field_items)['file'];
+      $field_items = reset($field_items);
+      $hero_mobile_image_file = !empty($field_items['file']) ? $field_items['file'] : file_load($field_items['fid']);
 
       $hero_mobile_image = $hero_image;
       $hero_mobile_image[0]['file']['#item'] = $hero_mobile_image[0]['file']['image']['#item'] = (array) $hero_mobile_image_file;
