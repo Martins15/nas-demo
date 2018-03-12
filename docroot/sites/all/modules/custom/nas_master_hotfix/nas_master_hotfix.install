@@ -57,3 +57,14 @@ function nas_master_hotfix_update_7005() {
   module_load_include('inc', 'nas_master', 'includes/nas_master.aliases_utils');
   _nas_master_delete_orphan_node_aliases();
 }
+
+/**
+ * Fix geofield for Community Resource CT.
+ */
+function nas_master_hotfix_update_7008() {
+  variable_set('geocoder_cache_empty_results', FALSE);
+  variable_set('geocoder_google_delay', 200);
+
+  module_load_include('module', 'nas_master_hotfix');
+  nas_master_hotfix_cron();
+}
