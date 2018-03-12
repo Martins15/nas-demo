@@ -13,6 +13,44 @@ function nas_article_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'cpn_css_article';
+  $strongarm->value = '';
+  $export['cpn_css_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'cpn_css_enabled_article';
+  $strongarm->value = 1;
+  $export['cpn_css_enabled_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'cpn_js_article';
+  $strongarm->value = '';
+  $export['cpn_js_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'cpn_js_enabled_article';
+  $strongarm->value = 1;
+  $export['cpn_js_enabled_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'cpn_view_modes_node_article';
+  $strongarm->value = array(
+    0 => 'full',
+    1 => 'teaser',
+  );
+  $export['cpn_view_modes_node_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'date_format_article_date';
   $strongarm->value = 'M j, Y';
   $export['date_format_article_date'] = $strongarm;
@@ -142,16 +180,19 @@ function nas_article_feature_strongarm() {
           'weight' => '7',
         ),
         'locations' => array(
-          'weight' => '9',
-        ),
-        'metatags' => array(
           'weight' => '10',
         ),
+        'metatags' => array(
+          'weight' => '11',
+        ),
         'xmlsitemap' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'language' => array(
           'weight' => '1',
+        ),
+        'cpn' => array(
+          'weight' => '8',
         ),
       ),
       'display' => array(
@@ -184,10 +225,6 @@ function nas_article_feature_strongarm() {
             'weight' => '31',
             'visible' => FALSE,
           ),
-          'amp' => array(
-            'weight' => '6',
-            'visible' => TRUE,
-          ),
         ),
         'language' => array(
           'default' => array(
@@ -205,10 +242,6 @@ function nas_article_feature_strongarm() {
           'editorial_grid_teaser' => array(
             'weight' => '7',
             'visible' => FALSE,
-          ),
-          'amp' => array(
-            'weight' => '0',
-            'visible' => TRUE,
           ),
         ),
       ),
@@ -261,6 +294,7 @@ function nas_article_feature_strongarm() {
   $strongarm->name = 'panelizer_defaults_node_article';
   $strongarm->value = array(
     'status' => 1,
+    'help' => '',
     'view modes' => array(
       'page_manager' => array(
         'status' => 1,
@@ -292,6 +326,18 @@ function nas_article_feature_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
+      'amp' => array(
+        'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'fb_instant_article' => array(
+        'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'status' => 0,
         'substitute' => 0,
@@ -311,6 +357,12 @@ function nas_article_feature_strongarm() {
         'choice' => 0,
       ),
       'editorial_card_4x' => array(
+        'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'editorial_grid_teaser' => array(
         'status' => 0,
         'substitute' => 0,
         'default' => 0,

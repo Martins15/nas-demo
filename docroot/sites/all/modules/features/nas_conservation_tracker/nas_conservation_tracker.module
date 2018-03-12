@@ -24,6 +24,11 @@ function nas_conservation_tracker_ctools_plugin_directory($module, $plugin) {
  * Implements hook_init().
  */
 function nas_conservation_tracker_init() {
+  drupal_add_css(drupal_get_path('module', 'nas_conservation_tracker') . '/css/nas_conservation_tracker.css');
+  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/conservation_page.js');
+
+  _nas_conservation_tracker_get_real_path(TRUE);
+
   if ( variable_get('nas_conservation_tracker_auth_protection', FALSE)) {
     $path = current_path();
     $path_alias = drupal_lookup_path('alias', $path);
@@ -53,11 +58,6 @@ function nas_conservation_tracker_init() {
       exit;
     }
   }
-
-  drupal_add_css(drupal_get_path('module', 'nas_conservation_tracker') . '/css/nas_conservation_tracker.css');
-  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/conservation_page.js');
-
-  _nas_conservation_tracker_get_real_path(TRUE);
 }
 
 /**
@@ -377,7 +377,10 @@ function nas_conservation_tracker_get_landscapes_json() {
       }
       if (!empty($item['imagePreview'])) {
         if (module_exists('imagecache_external')) {
-          $item['imagePreview'] = trim($item['imagePreview'], '/');
+          $item['imagePreview'] = rtrim($item['imagePreview'], '/');
+          if (strpos($item['imagePreview'], '//') === 0) {
+            $item['imagePreview'] = 'http:' . $item['imagePreview'];
+          }
           $data[$key]['imagePreview'] = image_style_url('ct_landscape_preview', imagecache_external_generate_path($item['imagePreview']));
         }
       }
@@ -605,6 +608,9 @@ function nas_conservation_tracker_get_image($name, $folder = '') {
       $file = file_save_data(file_get_contents($image_url), 'public://' . basename($image_url));
       $file->status = 1;
       return $file->fid;
+    }
+    else {
+      watchdog('ct debug', 'No remote file - ' . $image_url);
     }
     return FALSE;
   }
