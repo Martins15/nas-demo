@@ -49,6 +49,7 @@ $green-park: #417505;
     position: absolute;
     top: 5px;
     width: 100%;
+    z-index: 10;
     > div {
       font-size: 0;
       position: absolute;
@@ -68,6 +69,24 @@ $green-park: #417505;
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
       border-left: 20px solid #d8d8d8;
+    }
+  }
+}
+
+.parks_blog {
+  position: absolute;
+  top: 115px;
+  right: 40px;
+  @include breakpoint(large-up) {
+    top: 85px;
+    right: 40px;
+  }
+  .bird-dot-container {
+    width: 36px;
+    height: 84px;
+    @include breakpoint(large-up) {
+      width: 50px;
+      height: 100px;
     }
   }
 }
@@ -129,6 +148,9 @@ $green-park: #417505;
     margin-bottom: $base-margin;
     &:first-child {
       display: block;
+    }
+    @include breakpoint(large-up) {
+      width: 85%;
     }
   }
 }

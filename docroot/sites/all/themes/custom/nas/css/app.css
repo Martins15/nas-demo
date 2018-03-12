@@ -18024,7 +18024,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: relative;
 }
 .climate-landing .item-bird__title {
-  padding: 0 15px;
+  padding: 0 12.5px;
   color: #262626;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 24px;
@@ -18289,6 +18289,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: absolute;
   top: 5px;
   width: 100%;
+  z-index: 10;
 }
 .switch-wrap .owl-buttons > div {
   font-size: 0;
@@ -18309,6 +18310,28 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-left: 20px solid #d8d8d8;
+}
+
+.parks_blog {
+  position: absolute;
+  top: 115px;
+  right: 40px;
+}
+@media only screen and (min-width: 768px) {
+  .parks_blog {
+    top: 85px;
+    right: 40px;
+  }
+}
+.parks_blog .bird-dot-container {
+  width: 36px;
+  height: 84px;
+}
+@media only screen and (min-width: 768px) {
+  .parks_blog .bird-dot-container {
+    width: 50px;
+    height: 100px;
+  }
 }
 
 .tab-slider--nav {
@@ -18368,6 +18391,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .tab-slider--body:first-child {
   display: block;
+}
+@media only screen and (min-width: 768px) {
+  .tab-slider--body {
+    width: 85%;
+  }
 }
 
 ul.tabs-content {
