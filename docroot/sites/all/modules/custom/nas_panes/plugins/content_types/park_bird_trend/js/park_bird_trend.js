@@ -15,30 +15,89 @@
       $('.switch-wrap').once('tab-init', function () {
         var seasonCur = seasonMap[$(seasonSwitch).find('option:selected').val()];
         $('.tab-slider--trigger').removeClass('active').filter('[rel="' + seasonCur + '"]').addClass('active');
+        $('.tab-slider--body').removeClass('active-season');
+        var season = '';
         if (seasonCur == 'season_winter') {
           tabsItem.addClass('slide');
+          $('#season_winter').show().addClass('active-season');
+          season = 'winter';
+
+        }
+        else {
+          $('#season_summer').show().addClass('active-season');;
+          season = 'summer';
         }
         $('.tabs-content__link').removeClass('current').filter('[data-tab="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
         $('.tab-content').removeClass('current').filter('[data-content="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
+
+        Drupal.settings.nasClimateFeature.birdDot = new StamenAudubonParks.BirdDots({
+          element: '#chart',
+          currentCounter: '.active-season .current .link__number',
+          colonizedCounter: '.active-season .extirpations .link__number',
+          extirpatedCounter: '.active-season .colonizations .link__number',
+          dataUrl: Drupal.settings.nasClimateFeature.dataUrl,
+          park: Drupal.settings.nasClimateFeature.parkTitle,
+          season: season,
+          initStats: false,
+          onLoad: function () {
+            Drupal.settings.nasClimateFeature.birdDot.animateIn(initStamenUI);
+          }
+        });
+
       });
+
+
+      function initStamenUI() {
+        d3.select('.tabs-content__link.current').classed('selected', true);
+        d3.select('.tabs-content__link.extirpations').classed('selected', false);
+        d3.select('.tabs-content__link.colonizations').classed('selected', false);
+        Drupal.settings.nasClimateFeature.birdDot.setCurrent();
+
+        d3.select('.tabs-content__link.current').on('click', function () {
+          d3.select('.tabs-content__link.current').classed('selected', true);
+          d3.select('.tabs-content__link.extirpations').classed('selected', false);
+          d3.select('.tabs-content__link.colonizations').classed('selected', false);
+          Drupal.settings.nasClimateFeature.birdDot.setCurrent();
+        });
+
+        d3.select('.tabs-content__link.extirpations').on('click', function () {
+          d3.select('.tabs-content__link.current').classed('selected', false);
+          d3.select('.tabs-content__link.extirpations').classed('selected', true);
+          d3.select('.tabs-content__link.colonizations').classed('selected', false);
+          Drupal.settings.nasClimateFeature.birdDot.setColonized();
+        });
+
+        d3.select('.tabs-content__link.colonizations').on('click', function () {
+          d3.select('.tabs-content__link.current').classed('selected', false);
+          d3.select('.tabs-content__link.extirpations').classed('selected', false);
+          d3.select('.tabs-content__link.colonizations').classed('selected', true);
+          Drupal.settings.nasClimateFeature.birdDot.setExtirpated();
+        });
+
+      }
 
       tabsNav.click(function () {
       var seasonSwitch = $('#edit-season')
           , formSubmit = $('#edit-submit-park-bird-trends');
         tabsBody.hide();
         var activeTab = $(this).attr("rel");
+
         if ($(this).attr("rel") === "season_winter") {
           tabsItem.addClass('slide');
           $(seasonSwitch).find('option[value=2]').prop('selected', true);
+          Drupal.settings.nasClimateFeature.birdDot.setSeason('winter');
         }
         else {
           tabsItem.removeClass('slide');
           $(seasonSwitch).find('option[value=1]').prop('selected', true);
+          Drupal.settings.nasClimateFeature.birdDot.setSeason('summer');
+
         }
         $(formSubmit).click();
         tabsNav.removeClass("active");
         $(this).addClass("active");
-        $("#" + activeTab).fadeIn();
+        $('.tab-slider--body').removeClass('active-season');
+        $("#" + activeTab).fadeIn().addClass('active-season');;
         $('.tabs-content__link').removeClass('current').filter('[data-tab="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
       });
 
@@ -58,6 +117,8 @@
 
         $(trendsSwitch).find('option[value="' + tabId.replace('display-', '') + '"]').prop('selected', true);
         $(formSubmit).click();
+
+
       });
     }
   };
