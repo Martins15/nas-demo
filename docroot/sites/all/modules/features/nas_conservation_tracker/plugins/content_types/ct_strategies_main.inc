@@ -48,7 +48,7 @@ function nas_conservation_tracker_strategies_main_render($subtype, $conf, $args,
   $map_info['settings']['zoomDefault'] = 3;
   $map_info['settings']['zoom'] = 3;
   $map_info['settings']['zoomControl'] = FALSE;
-  $map_info['settings']['dragging'] = FALSE;
+  $map_info['settings']['dragging'] = TRUE;
   $map_info['settings']['touchZoom'] = FALSE;
   $map_info['settings']['doubleClickZoom'] = FALSE;
   $map_info['settings']['scrollWheelZoom'] = FALSE;
