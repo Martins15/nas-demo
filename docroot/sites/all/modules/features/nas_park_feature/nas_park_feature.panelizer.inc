@@ -392,13 +392,7 @@ function nas_park_feature_panelizer_defaults() {
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
-    'reference' => array(
-      'entity_id' => '211027',
-      'entity_label' => 'Learn How You Can Make a Difference Today',
-      'entity_type' => 'node',
-      'entity_bundle' => 'engagement_cards',
-      'entity_uuid' => '07d7ef58-41e2-4f94-96ba-c10bad4c8be6',
-    ),
+    'reference' => variable_get('nas_park_feature_default_card', NULL),
     'layout' => 'default',
     'form_build_id' => 'form-Dt4fCd6GAwUKlg07n_-J-737t1kBG-QE44Dz6uxb-Z0',
   );

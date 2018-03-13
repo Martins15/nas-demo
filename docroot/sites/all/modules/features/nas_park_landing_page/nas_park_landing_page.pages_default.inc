@@ -265,9 +265,9 @@ function nas_park_landing_page_default_page_manager_pages() {
 ',
       'format' => 'full_html',
     ),
-    'case_study_image' => '132628',
+    'case_study_image' => nas_park_feature_get_image('bird-cart.jpg', TRUE),
     'box' => array(
-      'image' => '132629',
+      'image' => nas_park_feature_get_image('bird-3.png', TRUE),
       1 => array(
         'box_title' => 'Park',
         'box_description' => '<a href="">Everglades National Park</a>',
@@ -371,13 +371,7 @@ function nas_park_landing_page_default_page_manager_pages() {
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
-    'reference' => array(
-      'entity_id' => '211027',
-      'entity_label' => 'Learn How You Can Make a Difference Today',
-      'entity_type' => 'node',
-      'entity_bundle' => 'engagement_cards',
-      'entity_uuid' => '07d7ef58-41e2-4f94-96ba-c10bad4c8be6',
-    ),
+    'reference' => variable_get('nas_park_feature_default_card', NULL),
     'layout' => 'default',
     'form_build_id' => 'form-Cb2hy704BVnR0mb0FK9zh57kkUlj16IiKiC642Ve_Ew',
   );
@@ -434,7 +428,7 @@ function nas_park_landing_page_default_page_manager_pages() {
     'slug' => '',
     'subtitle' => 'How climate change will affect which birds we see in our country’s most treasured natural places.',
     'icon' => 0,
-    'image' => '132630',
+    'image' => nas_park_feature_get_image('hero-image.jpg', TRUE),
     'mobile_image' => 0,
     'header_color_mode' => 'none',
     'disable_gradient' => 0,
