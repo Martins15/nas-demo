@@ -95,7 +95,6 @@
       }
       var tabWrap = $('ul.tabs-content', context);
 
-
       tabsNav.click(function () {
         var seasonSwitch = $('#edit-season')
           , formSubmit = $('#edit-submit-park-bird-trends');

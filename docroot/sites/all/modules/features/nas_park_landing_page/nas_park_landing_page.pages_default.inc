@@ -225,6 +225,7 @@ function nas_park_landing_page_default_page_manager_pages() {
     'override_title' => 0,
     'override_title_text' => '',
     'override_title_heading' => 'h2',
+    'metric' => 'colonization',
   );
   $pane->cache = array();
   $pane->style = array(
@@ -237,6 +238,31 @@ function nas_park_landing_page_default_page_manager_pages() {
   $pane->uuid = '3942e633-9f68-4d37-8d5d-92ad81f904d0';
   $display->content['new-3942e633-9f68-4d37-8d5d-92ad81f904d0'] = $pane;
   $display->panels['primary_content'][3] = 'new-3942e633-9f68-4d37-8d5d-92ad81f904d0';
+  $pane = new stdClass();
+  $pane->pid = 'new-dd24aeea-fa1e-47dd-bbec-8cbf4346216d';
+  $pane->panel = 'primary_content';
+  $pane->type = 'nas_park_map';
+  $pane->subtype = 'nas_park_map';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'metric' => 'extirpation',
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 4;
+  $pane->locks = array();
+  $pane->uuid = 'dd24aeea-fa1e-47dd-bbec-8cbf4346216d';
+  $display->content['new-dd24aeea-fa1e-47dd-bbec-8cbf4346216d'] = $pane;
+  $display->panels['primary_content'][4] = 'new-dd24aeea-fa1e-47dd-bbec-8cbf4346216d';
+
   $pane = new stdClass();
   $pane->pid = 'new-1124274a-339d-4d70-839d-9cb3f2fd37af';
   $pane->panel = 'primary_content';
@@ -291,11 +317,11 @@ function nas_park_landing_page_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 4;
+  $pane->position = 5;
   $pane->locks = array();
   $pane->uuid = '1124274a-339d-4d70-839d-9cb3f2fd37af';
   $display->content['new-1124274a-339d-4d70-839d-9cb3f2fd37af'] = $pane;
-  $display->panels['primary_content'][4] = 'new-1124274a-339d-4d70-839d-9cb3f2fd37af';
+  $display->panels['primary_content'][5] = 'new-1124274a-339d-4d70-839d-9cb3f2fd37af';
   $pane = new stdClass();
   $pane->pid = 'new-c154a723-194d-4d86-b02c-d67f1e85779f';
   $pane->panel = 'primary_content';
@@ -335,11 +361,11 @@ function nas_park_landing_page_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 5;
+  $pane->position = 6;
   $pane->locks = array();
   $pane->uuid = 'c154a723-194d-4d86-b02c-d67f1e85779f';
   $display->content['new-c154a723-194d-4d86-b02c-d67f1e85779f'] = $pane;
-  $display->panels['primary_content'][5] = 'new-c154a723-194d-4d86-b02c-d67f1e85779f';
+  $display->panels['primary_content'][6] = 'new-c154a723-194d-4d86-b02c-d67f1e85779f';
   $pane = new stdClass();
   $pane->pid = 'new-b5f562ad-5f7d-43bb-8626-e5607ae95627';
   $pane->panel = 'secondary_content';

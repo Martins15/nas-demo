@@ -34,11 +34,11 @@
   Drupal.behaviors.nasClimateParkMap = {
     attach: function (context, settings) {
       if (settings.nasClimateFeature.parkMap) {
-        var $charts = $('.' + settings.nasClimateFeature.elementId);
+        var $charts = $('.' + settings.nasClimateFeature.elementClass);
         $charts.each(function(index, element){
           var trend = $(element).attr('data-trend');
           var chart = new StamenAudubonParks.ParkMap({
-            element: '.' + settings.nasClimateFeature.elementId + '.' + trend,
+            element: '.' + settings.nasClimateFeature.elementClass + '.' + trend,
             dataUrl: settings.nasClimateFeature.dataUrl,
             season: 'summer',
             metric: trend,
@@ -60,9 +60,6 @@
 
           });
         });
-
-
-
       }
     }
   }

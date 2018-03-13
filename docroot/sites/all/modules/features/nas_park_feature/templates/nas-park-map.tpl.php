@@ -9,5 +9,5 @@
       </div>
     </div>
   </div>
-  <div class="<?php print $container_id; ?> <?php print $trend; ?>" data-trend="<?php print $trend; ?>"></div>
+  <div class="<?php print $container_class; ?> <?php print $trend; ?>" data-trend="<?php print $trend; ?>"></div>
 </div>
