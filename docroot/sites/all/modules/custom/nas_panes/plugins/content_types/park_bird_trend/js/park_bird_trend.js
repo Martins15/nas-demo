@@ -44,6 +44,11 @@
             }
           });
         }
+        else {
+          $('.tabs-content__link.species .link__number').text($(".container-data-tabs").find(".tab-season-" + season + "[data-content='display-species']").attr('data-amount'));
+          $('.tabs-content__link.extirpations .link__number').text($(".container-data-tabs").find(".tab-season-" + season + "[data-content='display-extirpations']").attr('data-amount'));
+          $('.tabs-content__link.colonizations .link__number').text($(".container-data-tabs").find(".tab-season-" + season + "[data-content='display-colonizations']").attr('data-amount'));
+        }
 
 
       });
@@ -103,6 +108,7 @@
           if (typeof StamenAudubonParks != 'undefined') {
             Drupal.settings.nasClimateFeature.birdDot.setSeason('winter');
           }
+          var season = 'winter';
         }
         else {
           tabsItem.removeClass('slide');
@@ -110,6 +116,13 @@
           if (typeof StamenAudubonParks != 'undefined') {
             Drupal.settings.nasClimateFeature.birdDot.setSeason('summer');
           }
+          var season = 'summer';
+        }
+
+        if (typeof StamenAudubonParks == 'undefined') {
+          $('.tabs-content__link.species .link__number').text($(".container-data-tabs").find(".tab-season-" + season + "[data-content='display-species']").attr('data-amount'));
+          $('.tabs-content__link.extirpations .link__number').text($(".container-data-tabs").find(".tab-season-" + season + "[data-content='display-extirpations']").attr('data-amount'));
+          $('.tabs-content__link.colonizations .link__number').text($(".container-data-tabs").find(".tab-season-" + season + "[data-content='display-colonizations']").attr('data-amount'));
         }
 
         tabsNav.removeClass("active");

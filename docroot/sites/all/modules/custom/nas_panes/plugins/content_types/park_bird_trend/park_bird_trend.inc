@@ -34,21 +34,21 @@ function park_bird_trend_edit_form($form, &$form_state) {
 
   $form['birds_species_title'] = array(
     '#type' => 'textfield',
-    '#title' => t('Current Species title'),
+    '#title' => t('Current Species Title'),
     '#default_value' => $conf['birds_species_title'],
     '#size' => 100,
   );
 
   $form['birds_extirpations_title'] = array(
     '#type' => 'textfield',
-    '#title' => t('Potential Extirpations title'),
+    '#title' => t('Potential Extirpations Title'),
     '#default_value' => $conf['birds_extirpations_title'],
     '#size' => 100,
   );
 
   $form['birds_colonizations_title'] = array(
     '#type' => 'textfield',
-    '#title' => t('Potential Colonizations title'),
+    '#title' => t('Potential Colonizations Title'),
     '#default_value' => $conf['birds_colonizations_title'],
     '#size' => 100,
   );

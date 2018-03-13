@@ -27,7 +27,7 @@
                   <?php foreach ($tabs as $tab => $title): ?>
                     <li class="tabs-content__link link columns large-4 <?php print $tab ?>"
                         data-tab="display-<?php print $tab ?>">
-                      <p class="link__title"><?php print $title ?> <i class="tooltip">i<span class="tooltiptext">Tooltip text</span></i></p>
+                      <p class="link__title"><?php print $title ?> <i class="tooltip">i<span class="tooltiptext"><?php print  variable_get('field_birds_' .  $tab . '_tooltip', '');?></span></i></p>
                       <p class="link__number">0</p>
                     </li>
                   <?php endforeach; ?>

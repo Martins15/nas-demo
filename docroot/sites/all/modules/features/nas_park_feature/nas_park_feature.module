@@ -225,6 +225,28 @@ function nas_park_feature_form($form, &$form_state) {
     '#rows' => 5,
   ];
 
+  $field = variable_get('field_birds_species_tooltip', '');
+  $form['field_birds_species_tooltip'] = [
+    '#type' => 'textfield',
+    '#title' => 'Current Species tooltip',
+    '#default_value' => $field,
+  ];
+
+  $field = variable_get('field_birds_extirpations_tooltip', '');
+  $form['field_birds_extirpations_tooltip'] = [
+    '#type' => 'textfield',
+    '#title' => 'Potential Extirpations tooltip',
+    '#default_value' => $field,
+  ];
+
+  $field = variable_get('field_birds_colonizations_tooltip', '');
+  $form['field_birds_colonizations_tooltip'] = [
+    '#type' => 'textfield',
+    '#title' => 'Potential Colonizations  tooltip',
+    '#default_value' => $field,
+  ];
+
+
   $form['submit_button'] = [
     '#type' => 'submit',
     '#value' => t('Save'),
@@ -245,6 +267,9 @@ function nas_park_feature_form_submit($form, &$form_state) {
     'field_birds_w_extirpations_desc_global',
     'field_birds_w_colonizations_desc_global',
     'field_park_description_secondary_global',
+    'field_birds_species_tooltip',
+    'field_birds_extirpations_tooltip',
+    'field_birds_colonizations_tooltip',
   ];
   foreach ($fields as $field) {
     variable_set($field, $form_state['values'][$field]);
