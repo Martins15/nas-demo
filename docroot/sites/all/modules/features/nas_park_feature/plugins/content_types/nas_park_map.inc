@@ -32,16 +32,11 @@ function nas_park_feature_map_render($subtype, $conf, $args, $context) {
       'shapeUrl' => $data_path . '/ne_50m_admin_1_states_provinces_lakes.geojson',
     ],
   ], 'setting');
-  $block = new stdClass();
-  $content = array(
-    'element' => array(
-      '#children' => '',
-      '#attributes' => array(
-        'id' => $elem_id,
-      ),
-    ),
+  $vars = array(
+    'container_id' => $elem_id,
   );
-  $block->content = theme_container($content);
+  $block = new stdClass();
+  $block->content = theme('nas_park_map', $vars);
   return $block;
 }
 /**

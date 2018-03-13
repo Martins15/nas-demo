@@ -337,6 +337,30 @@ function nas_park_feature_panelizer_defaults() {
   $display->content['new-bf1104a3-5168-4b9a-aef5-50627754f337'] = $pane;
   $display->panels['primary_content'][2] = 'new-bf1104a3-5168-4b9a-aef5-50627754f337';
   $pane = new stdClass();
+  $pane->pid = 'new-caac7827-b7cf-42aa-b7f1-e1966218f6c1';
+  $pane->panel = 'primary_content';
+  $pane->type = 'nas_park_birds_dots';
+  $pane->subtype = 'nas_park_birds_dots';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'context' => 'panelizer',
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 3;
+  $pane->locks = array();
+  $pane->uuid = 'caac7827-b7cf-42aa-b7f1-e1966218f6c1';
+  $display->content['new-caac7827-b7cf-42aa-b7f1-e1966218f6c1'] = $pane;
+  $display->panels['primary_content'][3] = 'new-caac7827-b7cf-42aa-b7f1-e1966218f6c1';
+  $pane = new stdClass();
   $pane->pid = 'new-b00f9700-e10f-426e-813a-bcb2e3d11e25';
   $pane->panel = 'secondary_content';
   $pane->type = 'park_select_bar';

@@ -4736,5 +4736,4 @@ function nas_master_update_7345() {
     );
     file_save($file);
   }
-  // This update is with Demo data.
 }
