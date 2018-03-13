@@ -21,11 +21,14 @@ $plugin = array(
  * @return stdClass
  */
 function nas_park_feature_map_render($subtype, $conf, $args, $context) {
-  $elem_id = 'nas-park-map';
+  //dpm($);
+  dpm($args);
+  $elem_id = drupal_html_id('nas-park-map');
   $data_path = $GLOBALS['base_url'] . '/' . drupal_get_path('module', 'nas_park_feature') . '/data';
   nas_park_feature_add_chart_assets();
   drupal_add_js([
     'nasClimateFeature' => [
+      'metric' => $conf['metric'],
       'parkMap' => TRUE,
       'elementId' => $elem_id,
       'dataUrl' => $data_path . '/filtered_turnover_counts_53parks.csv',
@@ -48,7 +51,15 @@ function nas_park_feature_map_render($subtype, $conf, $args, $context) {
  */
 function nas_park_feature_map_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
-  // some code TBD.
+  $form['metric'] = array(
+    '#type' => 'radios',
+    '#title' => t('Metric'),
+    '#options' => array(
+      'colonization' => t('Colonization'),
+      'extirpation' => t('Extirpation'),
+    ),
+    '#default_value' => !empty($conf['metric']) ? $conf['metric'] : 'colonization',
+  );
   return $form;
 }
 /**
@@ -58,4 +69,5 @@ function nas_park_feature_map_edit_form($form, &$form_state) {
  * @param $form_state
  */
 function nas_park_feature_map_edit_form_submit($form, &$form_state) {
+  $form_state['conf']['metric'] = $form_state['values']['metric'];
 }

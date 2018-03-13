@@ -38,7 +38,7 @@
           element: '#' + settings.nasClimateFeature.elementId,
           dataUrl: settings.nasClimateFeature.dataUrl,
           season: 'summer',
-          metric: 'colonization',
+          metric: settings.nasClimateFeature.metric,
           shapeUrl: settings.nasClimateFeature.shapeUrl,
           onClick: parkOnClick
         });
