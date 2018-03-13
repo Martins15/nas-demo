@@ -318,7 +318,8 @@ function nas_park_feature_theme() {
   $theme = array(
     'nas_park_map' => array(
       'variables' => array(
-        'container_id' => NULL,
+        'container_class' => NULL,
+        'trend' => NULL,
       ),
       'template' => 'templates/nas-park-map',
     ),
