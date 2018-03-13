@@ -13,36 +13,36 @@
 
         <div class="tab-slider--nav">
           <ul class="tab-slider--tabs">
-            <?php foreach ($content as $season => $tabs): ?>
+            <?php foreach ($content as $season => $item): ?>
               <li class="tab-slider--trigger"
                   rel="season_<?php print $season ?>"><?php print $season ?></li>
             <?php endforeach; ?>
           </ul>
         </div>
         <div class="tab-slider--container">
-          <?php foreach ($content as $season => $tabs): ?>
-            <div id="season_<?php print $season ?>"
-                 class="tab-slider--body <?php print $season ?>-tab">
+
+            <div id="season_summer" class="season-wrapper tab-slider--body">
               <div class="container-data-tabs">
                 <ul class="tabs-content">
-                  <?php foreach ($tabs['tabs'] as $tab => $data): ?>
+                  <?php foreach ($tabs as $tab => $title): ?>
                     <li class="tabs-content__link link columns large-4 <?php print $tab ?>"
                         data-tab="display-<?php print $tab ?>">
-                      <p class="link__title"><?php print $data['title'] ?> <i class="tooltip">i<span class="tooltiptext">Tooltip text</span></i></p>
-                      <p class="link__number"><?php print $data['amount'] ?></p>
+                      <p class="link__title"><?php print $title ?> <i class="tooltip">i<span class="tooltiptext">Tooltip text</span></i></p>
+                      <p class="link__number">0</p>
                     </li>
                   <?php endforeach; ?>
                 </ul>
-
-                <?php foreach ($tabs['tabs'] as $tab => $data): ?>
-                  <div data-content="display-<?php print $tab ?>"
-                       class="tab-content">
+                <?php foreach ($content as $season => $items): ?>
+                  <?php foreach ($items['tabs'] as $tab => $data): ?>
+                  <div data-content="display-<?php print $tab ?>" data-amount="<?php print $data['amount'] ?>"
+                       class="tab-content tab-season-<?php print $season;?>">
                     <?php print $data['desc'] ?>
                   </div>
+                  <?php endforeach; ?>
                 <?php endforeach; ?>
               </div>
             </div>
-          <?php endforeach; ?>
+
           <?php print $view ?>
         </div>
       </div>
