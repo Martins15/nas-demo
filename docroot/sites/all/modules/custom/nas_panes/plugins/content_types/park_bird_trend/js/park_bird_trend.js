@@ -23,7 +23,7 @@
       });
 
       tabsNav.click(function () {
-      var seasonSwitch = $('#edit-season')
+        var seasonSwitch = $('#edit-season')
           , formSubmit = $('#edit-submit-park-bird-trends');
         tabsBody.hide();
         var activeTab = $(this).attr("rel");
@@ -40,6 +40,10 @@
         $(this).addClass("active");
         $("#" + activeTab).fadeIn();
         $('.tabs-content__link').removeClass('current').filter('[data-tab="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
+        var season = activeTab.replace('season_', '');
+        if (Drupal.settings.nasClimateFeature && Drupal.settings.nasClimateFeature.chart) {
+          Drupal.settings.nasClimateFeature.chart.setSeason(season);
+        }
       });
 
       // Logic for tabs.
