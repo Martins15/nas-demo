@@ -29,28 +29,31 @@
 
         $('.tabs-content__link').removeClass('current').filter('[data-tab="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
         $('.tab-content').removeClass('current').filter('.tab-season-' + season + '[data-content="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
+        if (typeof StamenAudubonParks != 'undefined') {
+          Drupal.settings.nasClimateFeature.birdDot = new StamenAudubonParks.BirdDots({
+            element: '#chart',
+            currentCounter: '.tabs-content__link.species .link__number',
+            colonizedCounter: '.tabs-content__link.extirpations .link__number',
+            extirpatedCounter: '.tabs-content__link.colonizations .link__number',
+            dataUrl: Drupal.settings.nasClimateFeature.dataUrl,
+            park: Drupal.settings.nasClimateFeature.parkTitle,
+            season: season,
+            initStats: false,
+            onLoad: function () {
+              Drupal.settings.nasClimateFeature.birdDot.animateIn(initStamenUI);
+            }
+          });
+        }
 
-        Drupal.settings.nasClimateFeature.birdDot = new StamenAudubonParks.BirdDots({
-          element: '#chart',
-          currentCounter: '.current .link__number',
-          colonizedCounter: '.extirpations .link__number',
-          extirpatedCounter: '.colonizations .link__number',
-          dataUrl: Drupal.settings.nasClimateFeature.dataUrl,
-          park: Drupal.settings.nasClimateFeature.parkTitle,
-          season: season,
-          initStats: false,
-          onLoad: function () {
-            Drupal.settings.nasClimateFeature.birdDot.animateIn(initStamenUI);
-          }
-        });
 
       });
 
 
       function initStamenUI() {
-        d3.select('.tabs-content__link.current').classed('selected', true);
+        d3.select('.tabs-content__link.species').classed('selected', true);
         d3.select('.tabs-content__link.extirpations').classed('selected', false);
         d3.select('.tabs-content__link.colonizations').classed('selected', false);
+
         var trend = $(trendsSwitch).find('option:selected').val();
         if (trend == 'xxtirpated') {
           Drupal.settings.nasClimateFeature.birdDot.setExtirpated();
@@ -63,22 +66,22 @@
 
         }
 
-        d3.select('.tabs-content__link.current').on('click', function () {
-          d3.select('.tabs-content__link.current').classed('selected', true);
+        d3.select('.tabs-content__link.species').on('click', function () {
+          d3.select('.tabs-content__link.species').classed('selected', true);
           d3.select('.tabs-content__link.extirpations').classed('selected', false);
           d3.select('.tabs-content__link.colonizations').classed('selected', false);
           Drupal.settings.nasClimateFeature.birdDot.setCurrent();
         });
 
         d3.select('.tabs-content__link.extirpations').on('click', function () {
-          d3.select('.tabs-content__link.current').classed('selected', false);
+          d3.select('.tabs-content__link.species').classed('selected', false);
           d3.select('.tabs-content__link.extirpations').classed('selected', true);
           d3.select('.tabs-content__link.colonizations').classed('selected', false);
           Drupal.settings.nasClimateFeature.birdDot.setColonized();
         });
 
         d3.select('.tabs-content__link.colonizations').on('click', function () {
-          d3.select('.tabs-content__link.current').classed('selected', false);
+          d3.select('.tabs-content__link.species').classed('selected', false);
           d3.select('.tabs-content__link.extirpations').classed('selected', false);
           d3.select('.tabs-content__link.colonizations').classed('selected', true);
           Drupal.settings.nasClimateFeature.birdDot.setExtirpated();
@@ -97,14 +100,16 @@
         if ($(this).attr("rel") === "season_winter") {
           tabsItem.addClass('slide');
           $(seasonSwitch).find('option[value=2]').prop('selected', true);
-          Drupal.settings.nasClimateFeature.birdDot.setSeason('winter');
-
+          if (typeof StamenAudubonParks != 'undefined') {
+            Drupal.settings.nasClimateFeature.birdDot.setSeason('winter');
+          }
         }
         else {
           tabsItem.removeClass('slide');
           $(seasonSwitch).find('option[value=1]').prop('selected', true);
-          Drupal.settings.nasClimateFeature.birdDot.setSeason('summer');
-
+          if (typeof StamenAudubonParks != 'undefined') {
+            Drupal.settings.nasClimateFeature.birdDot.setSeason('summer');
+          }
         }
 
         tabsNav.removeClass("active");
@@ -112,8 +117,7 @@
 
         $('.tabs-content__link').removeClass('current').filter('[data-tab="display-' + $(trendsSwitch).find('option:selected').val() + '"]').addClass('current');
 
-        $(trendsSwitch).find('option[value="current"]').prop('selected', true);
-        tabWrap.find('li.species').click();
+        $(formSubmit).click();
       });
 
       // Logic for tabs.
