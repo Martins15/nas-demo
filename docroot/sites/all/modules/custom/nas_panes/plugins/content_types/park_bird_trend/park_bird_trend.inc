@@ -34,21 +34,21 @@ function park_bird_trend_edit_form($form, &$form_state) {
 
   $form['birds_species_title'] = array(
     '#type' => 'textfield',
-    '#title' => t('Current Species title'),
+    '#title' => t('Current Species Title'),
     '#default_value' => $conf['birds_species_title'],
     '#size' => 100,
   );
 
   $form['birds_extirpations_title'] = array(
     '#type' => 'textfield',
-    '#title' => t('Potential Extirpations title'),
+    '#title' => t('Potential Extirpations Title'),
     '#default_value' => $conf['birds_extirpations_title'],
     '#size' => 100,
   );
 
   $form['birds_colonizations_title'] = array(
     '#type' => 'textfield',
-    '#title' => t('Potential Colonizations title'),
+    '#title' => t('Potential Colonizations Title'),
     '#default_value' => $conf['birds_colonizations_title'],
     '#size' => 100,
   );
@@ -82,12 +82,14 @@ function park_bird_trend_render($subtype, $conf, $args, $contexts) {
   $parktrend = 'birds_parktrend_title';
   unset($fields['context']);
   unset($fields[$parktrend]);
+  $tabs = array();
   $fields = array_keys($fields);
   $content = array();
   $seasons = array('s' => t('summer'), 'w' => t('winter'));
   foreach ($seasons as $abbrev => $season) {
     foreach ($fields as $field) {
       $parts = explode('_', $field);
+      $tabs[$parts[1]] = $conf[$field];
       $content[$season]['tabs'][$parts[1]]['title'] = $conf[$field];
       $field_name = 'field_birds_' . $abbrev . '_' . $parts[1] . '_desc';
       $output = _park_bird_trend_get_field_value($field_name, $node);
@@ -119,6 +121,7 @@ function park_bird_trend_render($subtype, $conf, $args, $contexts) {
     '#theme' => 'park_bird_trend',
     '#context_links' => $contextual_links,
     '#content' => $content,
+    '#tabs' => $tabs,
     '#view' => $view->render($display),
   );
   drupal_add_js(drupal_get_path('theme', 'nas') . '/js/vendor/owl-carousel/owl.carousel.min.js');
@@ -135,6 +138,7 @@ function park_bird_trend_theme(&$theme, $plugin) {
   $theme['park_bird_trend'] = array(
     'variables' => array(
       'content' => '',
+      'tabs' => '',
       'view' => '',
       'context_links' => '',
     ),
@@ -160,9 +164,10 @@ function _park_bird_trend_get_field_value($field, $node, $index = 0) {
   $fields = field_get_items('node', $node, $field);
   $output = field_view_value('node', $node, $field, $fields[$index]);
   // Put to the Output a global value if description field is empty and global value filled.
-  if (!$fields && in_array($field, $global_field_birds) && variable_get($field . '_global') != '') {
+  $default_field = variable_get($field . '_global');
+  if (!$fields && in_array($field, $global_field_birds) &&  !empty($default_field['value']) && !empty($default_field['format'])) {
     $output = [
-      '#markup' => check_markup(variable_get($field . '_global'), 'full_html'),
+      '#markup' => check_markup($default_field['value'], $default_field['format']),
       '#access' => 'true',
     ];
   }

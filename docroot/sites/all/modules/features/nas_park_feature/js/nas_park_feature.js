@@ -104,4 +104,23 @@
   function parkOnClick(parkName) {
     location = location.origin + '/' + Drupal.settings.nasClimateFeature.parkLinks[parkName];
   }
+
+  Drupal.behaviors.nasClimateTabs = {
+    attach: function (context, settings) {
+      var tabsItem = $('.tab-slider--dots .tab-slider--tabs');
+      var tabsNav = $('li', tabsItem);
+      tabsNav.click(function () {
+        tabsNav.removeClass("active");
+        $(this).addClass("active");
+        if ($(this).attr("rel") === "season_winter") {
+          tabsItem.addClass('slide');
+        }
+        else {
+          tabsItem.removeClass('slide');
+        }
+      });
+
+    }
+  }
+
 })(jQuery, window.Drupal);

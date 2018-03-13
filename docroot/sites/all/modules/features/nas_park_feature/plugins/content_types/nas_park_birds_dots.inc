@@ -42,7 +42,12 @@ function nas_park_feature_birds_dots_render($subtype, $conf, $args, $context) {
       ),
     ),
   );
-  $block->content = theme_container($content);
+  $block->content = '<div class="tab-slider--dots">
+          <ul class="tab-slider--tabs">
+                          <li class="tab-slider--trigger active" rel="season_summer">summer</li>
+                          <li class="tab-slider--trigger" rel="season_winter">winter</li>
+                      </ul>
+        </div>' . theme_container($content);
   return $block;
 }
 /**
