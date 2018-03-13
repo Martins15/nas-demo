@@ -18334,11 +18334,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
-.tab-slider--nav {
+.tab-slider--nav,
+.tab-slider--dots {
   width: 100%;
   text-align: center;
 }
-.tab-slider--nav .slide {
+.tab-slider--nav .slide,
+.tab-slider--dots .slide {
   float: none;
 }
 
@@ -18396,6 +18398,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .tab-slider--body {
     width: 85%;
   }
+}
+
+.tab-slider--dots {
+  margin-top: 20px;
+}
+.tab-slider--dots .tab-slider--tabs {
+  margin-bottom: 0;
 }
 
 ul.tabs-content {

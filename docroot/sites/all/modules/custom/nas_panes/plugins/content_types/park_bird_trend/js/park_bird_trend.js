@@ -3,8 +3,8 @@
   Drupal.behaviors.tabParkPage = {
     attach: function (context, settings) {
 
-      var tabsItem = $('.tab-slider--tabs', context)
-        , tabsNav = $('.tab-slider--nav li')
+      var tabsItem = $('.switch-wrap .tab-slider--tabs', context)
+        , tabsNav = $('.switch-wrap .tab-slider--nav li')
         , tabsBody = $('.tab-slider--body', context)
         , seasonSwitch = $('#edit-season')
         , trendsSwitch = $('#edit-park-trend');
@@ -14,7 +14,7 @@
 
       $('.switch-wrap').once('tab-init', function () {
         var seasonCur = seasonMap[$(seasonSwitch).find('option:selected').val()];
-        $('.tab-slider--trigger').removeClass('active').filter('[rel="' + seasonCur + '"]').addClass('active');
+        $('.switch-wrap .tab-slider--trigger').removeClass('active').filter('[rel="' + seasonCur + '"]').addClass('active');
         if (seasonCur == 'season_winter') {
           tabsItem.addClass('slide');
         }
