@@ -28,8 +28,10 @@ function bird_similar_birds_render($subtype, $conf, $args, $context) {
   $birds = array();
   foreach ($node->field_related_bird[LANGUAGE_NONE] as $ref) {
     $ref_node = _i18n_node_load($ref['target_id']);
-    $renderable = node_view($ref_node, 'teaser');
-    $birds[] = drupal_render($renderable);
+    if (!empty($ref_node)) {
+      $renderable = node_view($ref_node, 'teaser');
+      $birds[] = drupal_render($renderable);
+    }
   }
 
   $block = new stdClass();

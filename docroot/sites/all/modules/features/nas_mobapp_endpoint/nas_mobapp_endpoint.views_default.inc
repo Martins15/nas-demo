@@ -397,14 +397,14 @@ function nas_mobapp_endpoint_views_default_views() {
   $handler->display->display_options['fields']['field_menu_section']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_menu_section']['delta_reversed'] = TRUE;
   $handler->display->display_options['fields']['field_menu_section']['multi_type'] = 'ul';
-  /* Field: Content: Nid */
-  $handler->display->display_options['fields']['nid']['id'] = 'nid';
-  $handler->display->display_options['fields']['nid']['table'] = 'node';
-  $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['label'] = '';
-  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['nid']['alter']['text'] = '/node/[nid]';
-  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  /* Field: Field: Link */
+  $handler->display->display_options['fields']['field_link']['id'] = 'field_link';
+  $handler->display->display_options['fields']['field_link']['table'] = 'field_data_field_link';
+  $handler->display->display_options['fields']['field_link']['field'] = 'field_link';
+  $handler->display->display_options['fields']['field_link']['label'] = '';
+  $handler->display->display_options['fields']['field_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_link']['type'] = 'link_plain';
   /* Field: Nodequeue: Position */
   $handler->display->display_options['fields']['position']['id'] = 'position';
   $handler->display->display_options['fields']['position']['table'] = 'nodequeue_nodes';

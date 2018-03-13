@@ -69,7 +69,12 @@ function hero_video_form_render($subtype, $conf, $args, $contexts) {
   if (is_array($hero_video_poster)) {
     $hero_video_poster = reset($hero_video_poster);
     if (empty($hero_video_poster['file']->uri)) {
-      return;
+      if (!empty($hero_video_poster['fid'])) {
+        $hero_video_poster['file'] = file_load($hero_video_poster['fid']);
+      }
+      else {
+        return;
+      }
     }
     $image_uri = nas_alters_local_image_uri($hero_video_poster['file']->uri);
     $hero_image_path = image_style_url('hero_video_poster', $image_uri);
@@ -89,7 +94,11 @@ function hero_video_form_render($subtype, $conf, $args, $contexts) {
   foreach ($hero_video_settings_default_values['settings']['allowed_values'] as $value) {
     $settings[$value] = (!empty($hero_video_settings[$value])) ? $value : '';
   }
-
+  if ($node->panelizer['page_manager']->name == 'node:article:fullscreen_video') {
+    $class = &drupal_static('nas_header_class');
+    $class = 'transparent dark-text';
+    drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/hero_video_pane/hero-video.js');
+  }
   $content = theme('hero_video_pane', array(
     'video_url' => file_create_url($hero_video->uri),
     'video_type' => $hero_video->filemime,

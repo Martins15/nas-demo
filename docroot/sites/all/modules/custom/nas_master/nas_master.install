@@ -4597,6 +4597,41 @@ function nas_master_update_7314() {
 }
 
 /**
+ * Revert nas_mobapp_endpoint.
+ */
+function nas_master_update_7315() {
+  features_revert(array(
+    'nas_mobapp_endpoint' => array(
+      'views_default',
+    ),
+  ));
+}
+
+/**
+ * Enable cpn, revert nas_article_feature.
+ */
+function nas_master_update_7316() {
+  module_enable(array('cpn'));
+  features_revert(array(
+    'nas_article_feature' => array(
+      'variable',
+      'user_permission',
+      'field_base',
+      'field_instance',
+    ),
+  ));
+}
+
+/**
+ * Disable logging for amp.
+ */
+function nas_master_update_7317() {
+  variable_set('amp_library_warnings_display', FALSE);
+  variable_set('amp_library_process_statistics', FALSE);
+  variable_set('amp_library_process_full_html_warnings', FALSE);
+}
+
+/**
  * Revert nas_flyway_feature, enable nas_climate.
  */
 function nas_master_update_7341() {
@@ -4617,14 +4652,14 @@ function nas_master_update_7341() {
  */
 function nas_master_update_7342() {
   // This update is with Demo data.
-/*  file_unmanaged_copy('sites/all/modules/features/nas_park_import/demo_assets/adaptation_classes_demo.csv', 'sites/default/files/adaptation_classes_demo.csv');
-  $importer_id = 'park';
-  $source = feeds_source($importer_id);
-  $fetcher_config = $source->getConfigFor($source->importer->fetcher);
-  $fetcher_config['source'] = 'public://adaptation_classes_demo.csv';
-  $source->setConfigFor($source->importer->fetcher, $fetcher_config);
-  $source->save();
-  $source->startImport();*/
+  /*  file_unmanaged_copy('sites/all/modules/features/nas_park_import/demo_assets/adaptation_classes_demo.csv', 'sites/default/files/adaptation_classes_demo.csv');
+    $importer_id = 'park';
+    $source = feeds_source($importer_id);
+    $fetcher_config = $source->getConfigFor($source->importer->fetcher);
+    $fetcher_config['source'] = 'public://adaptation_classes_demo.csv';
+    $source->setConfigFor($source->importer->fetcher, $fetcher_config);
+    $source->save();
+    $source->startImport();*/
   // This update is with Demo data.
 }
 
@@ -4633,14 +4668,14 @@ function nas_master_update_7342() {
  */
 function nas_master_update_7343() {
   // This update is with Demo data.
-/*  file_unmanaged_copy('sites/all/modules/features/park_bird_import/demo_assets/species_trend_projections_demo.csv', 'sites/default/files/species_trend_projections_demo.csv');
-  $importer_id = 'parks_to_birds';
-  $source = feeds_source($importer_id);
-  $fetcher_config = $source->getConfigFor($source->importer->fetcher);
-  $fetcher_config['source'] = 'public://species_trend_projections_demo.csv';
-  $source->setConfigFor($source->importer->fetcher, $fetcher_config);
-  $source->save();
-  $source->startImport();*/
+  /*  file_unmanaged_copy('sites/all/modules/features/park_bird_import/demo_assets/species_trend_projections_demo.csv', 'sites/default/files/species_trend_projections_demo.csv');
+    $importer_id = 'parks_to_birds';
+    $source = feeds_source($importer_id);
+    $fetcher_config = $source->getConfigFor($source->importer->fetcher);
+    $fetcher_config['source'] = 'public://species_trend_projections_demo.csv';
+    $source->setConfigFor($source->importer->fetcher, $fetcher_config);
+    $source->save();
+    $source->startImport();*/
   // This update is with Demo data.
 }
 
@@ -4701,5 +4736,4 @@ function nas_master_update_7345() {
     );
     file_save($file);
   }
-  // This update is with Demo data.
 }
