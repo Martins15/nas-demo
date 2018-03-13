@@ -13,69 +13,49 @@ function nas_park_feature_user_default_permissions() {
   // Exported permission: 'administer panelizer node park choice'.
   $permissions['administer panelizer node park choice'] = array(
     'name' => 'administer panelizer node park choice',
-    'roles' => array(
-      'super' => 'super',
-    ),
+    'roles' => array(),
     'module' => 'panelizer',
   );
 
   // Exported permission: 'administer panelizer node park content'.
   $permissions['administer panelizer node park content'] = array(
     'name' => 'administer panelizer node park content',
-    'roles' => array(
-      'editor' => 'editor',
-      'super' => 'super',
-    ),
+    'roles' => array(),
     'module' => 'panelizer',
   );
 
   // Exported permission: 'administer panelizer node park context'.
   $permissions['administer panelizer node park context'] = array(
     'name' => 'administer panelizer node park context',
-    'roles' => array(
-      'editor' => 'editor',
-      'super' => 'super',
-    ),
+    'roles' => array(),
     'module' => 'panelizer',
   );
 
   // Exported permission: 'administer panelizer node park defaults'.
   $permissions['administer panelizer node park defaults'] = array(
     'name' => 'administer panelizer node park defaults',
-    'roles' => array(
-      'editor' => 'editor',
-      'super' => 'super',
-    ),
+    'roles' => array(),
     'module' => 'panelizer',
   );
 
   // Exported permission: 'administer panelizer node park layout'.
   $permissions['administer panelizer node park layout'] = array(
     'name' => 'administer panelizer node park layout',
-    'roles' => array(
-      'editor' => 'editor',
-      'super' => 'super',
-    ),
+    'roles' => array(),
     'module' => 'panelizer',
   );
 
   // Exported permission: 'administer panelizer node park overview'.
   $permissions['administer panelizer node park overview'] = array(
     'name' => 'administer panelizer node park overview',
-    'roles' => array(
-      'editor' => 'editor',
-      'super' => 'super',
-    ),
+    'roles' => array(),
     'module' => 'panelizer',
   );
 
   // Exported permission: 'administer panelizer node park settings'.
   $permissions['administer panelizer node park settings'] = array(
     'name' => 'administer panelizer node park settings',
-    'roles' => array(
-      'editor' => 'editor',
-      'super' => 'super',
-    ),
+    'roles' => array(),
     'module' => 'panelizer',
   );
 

@@ -215,29 +215,16 @@ function nas_park_landing_page_default_page_manager_pages() {
   $display->content['new-556ffb98-0b49-43af-8386-014c2d7ef078'] = $pane;
   $display->panels['primary_content'][2] = 'new-556ffb98-0b49-43af-8386-014c2d7ef078';
   $pane = new stdClass();
-  $pane->pid = 'new-25339307-0956-42ce-88ad-7d8761cc8375';
+  $pane->pid = 'new-3942e633-9f68-4d37-8d5d-92ad81f904d0';
   $pane->panel = 'primary_content';
-  $pane->type = 'interactive_content';
-  $pane->subtype = 'interactive_content';
+  $pane->type = 'nas_park_map';
+  $pane->subtype = 'nas_park_map';
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
-    'use_title' => 0,
-    'title' => '',
-    'use_description' => 0,
-    'description' => array(
-      'value' => '',
-      'format' => 'full_html',
-    ),
-    'assets' => array(
-      'value' => '<div class="item-with-percent">
-  <div class="map-wrap"><img alt="" src="/sites/all/themes/custom/nas/img/climate-landing/map-demo.png" /></div>
-</div>',
-      'format' => 'full_html',
-    ),
-    'form_build_id' => 'form-ynxPiuTLVXXCPz9hUz7G8nkzlF3XLDwJmhU5BPWlxZA',
-    'form_token' => 'xrTBygHeRMNL8nfu0mtaCFNXykw44Bahp34fwhkMp6Q',
-    'form_id' => 'interactive_content_edit_form',
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
   );
   $pane->cache = array();
   $pane->style = array(
@@ -247,9 +234,9 @@ function nas_park_landing_page_default_page_manager_pages() {
   $pane->extras = array();
   $pane->position = 3;
   $pane->locks = array();
-  $pane->uuid = '25339307-0956-42ce-88ad-7d8761cc8375';
-  $display->content['new-25339307-0956-42ce-88ad-7d8761cc8375'] = $pane;
-  $display->panels['primary_content'][3] = 'new-25339307-0956-42ce-88ad-7d8761cc8375';
+  $pane->uuid = '3942e633-9f68-4d37-8d5d-92ad81f904d0';
+  $display->content['new-3942e633-9f68-4d37-8d5d-92ad81f904d0'] = $pane;
+  $display->panels['primary_content'][3] = 'new-3942e633-9f68-4d37-8d5d-92ad81f904d0';
   $pane = new stdClass();
   $pane->pid = 'new-1124274a-339d-4d70-839d-9cb3f2fd37af';
   $pane->panel = 'primary_content';
@@ -278,9 +265,9 @@ function nas_park_landing_page_default_page_manager_pages() {
 ',
       'format' => 'full_html',
     ),
-    'case_study_image' => nas_park_feature_get_image('bird-cart.jpg', TRUE),
+    'case_study_image' => '132628',
     'box' => array(
-      'image' => nas_park_feature_get_image('bird-3.png', TRUE),
+      'image' => '132629',
       1 => array(
         'box_title' => 'Park',
         'box_description' => '<a href="">Everglades National Park</a>',
@@ -384,7 +371,13 @@ function nas_park_landing_page_default_page_manager_pages() {
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
-    'reference' => variable_get('nas_park_feature_default_card', NULL),
+    'reference' => array(
+      'entity_id' => '211027',
+      'entity_label' => 'Learn How You Can Make a Difference Today',
+      'entity_type' => 'node',
+      'entity_bundle' => 'engagement_cards',
+      'entity_uuid' => '07d7ef58-41e2-4f94-96ba-c10bad4c8be6',
+    ),
     'layout' => 'default',
     'form_build_id' => 'form-Cb2hy704BVnR0mb0FK9zh57kkUlj16IiKiC642Ve_Ew',
   );
@@ -441,7 +434,7 @@ function nas_park_landing_page_default_page_manager_pages() {
     'slug' => '',
     'subtitle' => 'How climate change will affect which birds we see in our country’s most treasured natural places.',
     'icon' => 0,
-    'image' => nas_park_feature_get_image('hero-image.jpg', TRUE),
+    'image' => '132630',
     'mobile_image' => 0,
     'header_color_mode' => 'none',
     'disable_gradient' => 0,

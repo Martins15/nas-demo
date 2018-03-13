@@ -337,6 +337,30 @@ function nas_park_feature_panelizer_defaults() {
   $display->content['new-bf1104a3-5168-4b9a-aef5-50627754f337'] = $pane;
   $display->panels['primary_content'][2] = 'new-bf1104a3-5168-4b9a-aef5-50627754f337';
   $pane = new stdClass();
+  $pane->pid = 'new-caac7827-b7cf-42aa-b7f1-e1966218f6c1';
+  $pane->panel = 'primary_content';
+  $pane->type = 'nas_park_birds_dots';
+  $pane->subtype = 'nas_park_birds_dots';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'context' => 'panelizer',
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 3;
+  $pane->locks = array();
+  $pane->uuid = 'caac7827-b7cf-42aa-b7f1-e1966218f6c1';
+  $display->content['new-caac7827-b7cf-42aa-b7f1-e1966218f6c1'] = $pane;
+  $display->panels['primary_content'][3] = 'new-caac7827-b7cf-42aa-b7f1-e1966218f6c1';
+  $pane = new stdClass();
   $pane->pid = 'new-b00f9700-e10f-426e-813a-bcb2e3d11e25';
   $pane->panel = 'secondary_content';
   $pane->type = 'park_select_bar';
@@ -368,7 +392,13 @@ function nas_park_feature_panelizer_defaults() {
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
-    'reference' => variable_get('nas_park_feature_default_card', NULL),
+    'reference' => array(
+      'entity_id' => '211027',
+      'entity_label' => 'Learn How You Can Make a Difference Today',
+      'entity_type' => 'node',
+      'entity_bundle' => 'engagement_cards',
+      'entity_uuid' => '07d7ef58-41e2-4f94-96ba-c10bad4c8be6',
+    ),
     'layout' => 'default',
     'form_build_id' => 'form-Dt4fCd6GAwUKlg07n_-J-737t1kBG-QE44Dz6uxb-Z0',
   );
