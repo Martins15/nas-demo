@@ -34,15 +34,34 @@
   Drupal.behaviors.nasClimateParkMap = {
     attach: function (context, settings) {
       if (settings.nasClimateFeature.parkMap) {
-        var chart = new StamenAudubonParks.ParkMap({
-          element: '#' + settings.nasClimateFeature.elementId,
-          dataUrl: settings.nasClimateFeature.dataUrl,
-          season: 'summer',
-          metric: 'colonization',
-          shapeUrl: settings.nasClimateFeature.shapeUrl,
-          onClick: parkOnClick
+        var $charts = $('.' + settings.nasClimateFeature.elementId);
+        $charts.each(function(index, element){
+          var trend = $(element).attr('data-trend');
+          var chart = new StamenAudubonParks.ParkMap({
+            element: '.' + settings.nasClimateFeature.elementId + '.' + trend,
+            dataUrl: settings.nasClimateFeature.dataUrl,
+            season: 'summer',
+            metric: trend,
+            shapeUrl: settings.nasClimateFeature.shapeUrl,
+            onClick: parkOnClick
+          });
+
+          var tabsSwitcherNav = $(element).parent().find('.tab-slider--tabs');
+          tabsSwitcherNav.find('li').click(function () {
+
+            if (!$(tabsSwitcherNav).hasClass('slide')) {
+              var season = 'winter';
+            }
+            else {
+              var season = 'summer';
+            }
+            chart.setParams(season, trend);
+            $(this).parent().toggleClass('slide');
+
+          });
         });
-        Drupal.settings.nasClimateFeature.chart = chart;
+
+
 
       }
     }
