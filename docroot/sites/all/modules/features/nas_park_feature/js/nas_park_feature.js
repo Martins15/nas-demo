@@ -18,14 +18,10 @@
 
         var tabsSwitcherNav = $('.tab-slider--dots .tab-slider--tabs');
         tabsSwitcherNav.find('li').click(function () {
-          if (!$(tabsSwitcherNav).hasClass('slide')) {
-            var season = 'winter';
-          }
-          else {
-            var season = 'summer';
-          }
+          var season = ($(this).attr('rel') === 'season_winter')
+            ? 'winter'
+            : 'summer';
           Drupal.settings.nasClimateFeature.chart.setSeason(season);
-
         });
       }
     }
