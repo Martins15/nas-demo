@@ -18272,6 +18272,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin-top: 30px;
   z-index: 0;
   font-family: "Source Sans Pro", Verdana, sans-serif;
+  z-index: 1;
 }
 .switch-wrap .owl-theme .owl-controls .owl-buttons div {
   zoom: 1;
@@ -18284,6 +18285,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   background: transparent;
   filter: none;
   opacity: 1;
+}
+.switch-wrap .owl-page {
+  z-index: 10;
 }
 .switch-wrap .owl-buttons {
   position: absolute;
@@ -18314,24 +18318,25 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .parks_blog {
   position: absolute;
-  top: 115px;
+  top: 105px;
   right: 40px;
-  z-index: -1;
-}
-@media only screen and (min-width: 768px) {
-  .parks_blog {
-    top: 85px;
-    right: 40px;
-  }
-}
-.parks_blog .bird-dot-container {
   width: 36px;
   height: 84px;
 }
 @media only screen and (min-width: 768px) {
-  .parks_blog .bird-dot-container {
+  .parks_blog {
+    top: 55px;
+    right: 40px;
     width: 50px;
     height: 100px;
+  }
+}
+.parks_blog .cell {
+  transform: scale(0.6);
+}
+@media only screen and (min-width: 768px) {
+  .parks_blog .cell {
+    transform: scale(1);
   }
 }
 
@@ -18400,6 +18405,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     width: 85%;
   }
 }
+.tab-slider--container {
+  position: relative;
+  z-index: 2;
+}
 
 .tab-slider--dots {
   margin-top: 20px;
@@ -18420,13 +18429,16 @@ ul.tabs-content {
     border-bottom: 0;
   }
 }
+ul.tabs-content .species {
+  color: #90d2d8;
+}
 ul.tabs-content .red,
 ul.tabs-content .extirpations {
-  color: #d0021b;
+  color: #e8c578;
 }
 ul.tabs-content .green,
 ul.tabs-content .colonizations {
-  color: #417505;
+  color: #18a1ad;
 }
 ul.tabs-content .link {
   position: relative;
@@ -18441,7 +18453,7 @@ ul.tabs-content .link {
 }
 ul.tabs-content .link__title {
   color: #404040;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
 }
 @media only screen and (min-width: 1280px) {
