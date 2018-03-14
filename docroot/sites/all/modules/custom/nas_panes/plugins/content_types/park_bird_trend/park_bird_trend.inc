@@ -16,8 +16,8 @@ $plugin = array(
   'required context' => new ctools_context_required(t('Node'), 'node'),
   'defaults' => array(
     'birds_species_title' => t('Number of Current Species'),
-    'birds_extirpations_title' => t('Potential Extirpations'),
     'birds_colonizations_title' => t('Potential Colonizations'),
+    'birds_extirpations_title' => t('Potential Extirpations'),
   ),
 );
 
