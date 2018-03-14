@@ -33,8 +33,8 @@
           Drupal.settings.nasClimateFeature.birdDot = new StamenAudubonParks.BirdDots({
             element: '#chart',
             currentCounter: '.tabs-content__link.species .link__number',
-            colonizedCounter: '.tabs-content__link.extirpations .link__number',
-            extirpatedCounter: '.tabs-content__link.colonizations .link__number',
+            colonizedCounter: '.tabs-content__link.colonizations .link__number',
+            extirpatedCounter: '.tabs-content__link.extirpations .link__number',
             dataUrl: Drupal.settings.nasClimateFeature.dataUrl,
             park: Drupal.settings.nasClimateFeature.parkTitle,
             season: season,
