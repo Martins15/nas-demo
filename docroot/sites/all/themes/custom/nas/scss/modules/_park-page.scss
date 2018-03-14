@@ -77,6 +77,7 @@ $green-park: #417505;
   position: absolute;
   top: 115px;
   right: 40px;
+  z-index: -1;
   @include breakpoint(large-up) {
     top: 85px;
     right: 40px;
