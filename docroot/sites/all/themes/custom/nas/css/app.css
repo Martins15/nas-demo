@@ -18318,7 +18318,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .parks_blog {
   position: absolute;
-  top: 115px;
+  top: 105px;
   right: 40px;
   width: 36px;
   height: 84px;
@@ -18429,13 +18429,16 @@ ul.tabs-content {
     border-bottom: 0;
   }
 }
+ul.tabs-content .species {
+  color: #90d2d8;
+}
 ul.tabs-content .red,
 ul.tabs-content .extirpations {
-  color: #d0021b;
+  color: #e8c578;
 }
 ul.tabs-content .green,
 ul.tabs-content .colonizations {
-  color: #417505;
+  color: #18a1ad;
 }
 ul.tabs-content .link {
   position: relative;

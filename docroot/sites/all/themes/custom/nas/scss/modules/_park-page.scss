@@ -79,7 +79,7 @@ $green-park: #417505;
 
 .parks_blog {
   position: absolute;
-  top: 115px;
+  top: 105px;
   right: 40px;
   width: 36px;
   height: 84px;
@@ -182,13 +182,16 @@ ul.tabs-content {
   @include breakpoint(large-up) {
     border-bottom: 0;
   }
+  .species {
+    color: #90d2d8;
+  }
   .red,
   .extirpations {
-    color: $red-park;
+    color: #e8c578;
   }
   .green,
   .colonizations {
-    color: $green-park;
+    color: #18a1ad;
   }
   .link {
     position: relative;
