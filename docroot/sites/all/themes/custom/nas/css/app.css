@@ -19488,6 +19488,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 15px;
 }
 
+#footnotes-content {
+  padding-top: 5px;
+}
+
 .species-filter {
   margin-bottom: 40px;
   font-family: "Source Sans Pro", Verdana, sans-serif;

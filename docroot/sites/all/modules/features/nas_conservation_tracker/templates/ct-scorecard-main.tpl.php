@@ -84,6 +84,6 @@
         <div class="row"
         <div class="columns"
         <a id="footnotes"></a>
-        <div ng-bind-html="tab.settings.overview.footnotes"></div>
+        <div ng-bind-html="tab.settings.overview.footnotes" id="footnotes-content"></div>
     </div>
 </div>

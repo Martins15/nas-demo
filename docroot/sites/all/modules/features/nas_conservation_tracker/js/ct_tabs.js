@@ -172,8 +172,8 @@
             var size2 = calcSize('#charts-actions');
             var offset3 = size2.y + 20;
             var size3 = calcSize('#charts-objectives');
-            var size4 = calcSize('#scorecard-footnotes');
-            var offset4 = size3.y + offset3 + 20;
+            var size4 = calcSize('#footnotes-content', 15);
+            var offset4 = size3.y + offset3 + 10;
 
             doc.setFontSize(18);
             doc.setTextColor(38,38,38);
@@ -187,7 +187,7 @@
             }
             doc.text(12, offset, $scope.isActive.capitalize());
 
-            //@todo Divide in independent peices, so if some fail - pdf generating won't be broken.
+            //@todo Divide in independent pieces, so if some fail - pdf generating won't be broken.
             html2canvas(document.querySelector("#scorecard-overview")).then(canvas => {
               doc.addImage(canvas.toDataURL(), 'PNG', 10, 50, w2, h2);
 
@@ -209,7 +209,7 @@
                   }
                 }
               }
-//console.log(Drupal.settings.nasConservationTracker.leafletImage);
+
               //@todo Do only if map was generated successfully.
               //if (!err) {
                 doc.addImage(Drupal.settings.nasConservationTracker.leafletImage, 'PNG', 0, offset1, w, h);
@@ -224,10 +224,8 @@
                   doc.addImage(canvas.toDataURL(), 'PNG', 5, offset3, size3.x, size3.y);
 
                   if ($scope.tab.settings[$scope.isActive].footnotes) {
-                    html2canvas(document.querySelector("#scorecard-footnotes")).then(canvas => {
+                    html2canvas(document.querySelector("#footnotes-content")).then(canvas => {
                       doc.addImage(canvas.toDataURL(), 'PNG', 15, offset4, size4.x, size4.y);
-
-
                       $scope.pdfLoading = false;
                       doc.save($scope.tab.name + '.pdf');
                       $scope.$apply();
@@ -240,14 +238,22 @@
           });
 
 
-
-          function calcSize(selector) {
+          function calcSize(selector, margin) {
             var e = 0.264583;
             var element = document.querySelector(selector);
             var size = {x,y};
             if (element) {
               size.x = parseInt((element.offsetWidth * e).toFixed());
               size.y = parseInt((element.offsetHeight * e).toFixed());
+
+              if (size.x > 210) {
+                var ratio =  size.x / size.y;
+                size.x = 210;
+                if (margin) {
+                  size.x = size.x - (2*margin);
+                }
+                size.y = parseInt((size.x / ratio).toFixed());
+              }
             }
             return size;
           }
