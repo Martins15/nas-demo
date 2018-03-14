@@ -40,7 +40,7 @@
             season: season,
             initStats: false,
             onLoad: function () {
-              Drupal.settings.nasClimateFeature.birdDot.animateIn(initStamenUI);
+              initStamenUIWaypoint();
             }
           });
         }
@@ -53,6 +53,20 @@
 
       });
 
+      /**
+       * Helper function to make waypoint (delay in scroll) for dots animation.
+       */
+      function initStamenUIWaypoint() {
+        var el = $('.parks_blog');
+        var waypoint = new Waypoint({
+          element: el[0],
+          handler: function (direction) {
+            Drupal.settings.nasClimateFeature.birdDot.animateIn(initStamenUI);
+            this.destroy();
+          },
+          offset: '60%'
+        });
+      }
 
       function initStamenUI() {
         d3.select('.tabs-content__link.species').classed('selected', true);
