@@ -116,7 +116,10 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
     drupal_add_js(array('parksMapTerms' => $parks_map_terms), 'setting');
   }
   foreach ($parks as $nid => $park) {
-    $parks[$nid] = $park->title;
+    $parks[$nid] = array(
+      'title' => $park->title,
+      'alias' => '/' . drupal_get_path_alias('node/' . $nid)
+    );
   }
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
   $block = new stdClass();
