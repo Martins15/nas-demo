@@ -18,8 +18,8 @@
           <a class="" href="#"><?php print $current_park_title ?></a>
         </div>
         <div class="list-of-park__others-page">
-          <?php foreach ($parks as $nid => $park_title): ?>
-            <a href="/node/<?php print $nid ?>"><?php print $park_title ?></a>
+          <?php foreach ($parks as $nid => $park): ?>
+            <a href="<?php print $park['alias'] ?>"><?php print $park['title'] ?></a>
           <?php endforeach; ?>
         </div>
       </div>
