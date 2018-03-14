@@ -7,6 +7,41 @@
 include_once 'nas_park_feature.features.inc';
 
 /**
+ * Implements hook_init().
+ */
+function nas_park_feature_init() {
+  if ( variable_get('nas_park_climate_auth_protection', TRUE)) {
+    $path = current_path();
+    $path_alias = drupal_lookup_path('alias', $path);
+    $patterns =  variable_get('nas_park_climate_auth_protection_pattern', 'climate/national-parks*');
+
+    if (drupal_match_path($path, $patterns) || drupal_match_path($path_alias, $patterns)) {
+      $user = variable_get('nas_park_climate_auth_user', 'audubon');
+      if (!$user) {
+        return;
+      }
+
+      // allow Drush to bypass Shield
+      if (drupal_is_cli()) {
+        return;
+      }
+
+      $pass = variable_get('nas_park_climate_auth_pass', 'audubon');
+      if (!empty($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])
+        && $_SERVER['PHP_AUTH_USER'] == $user
+        && $_SERVER['PHP_AUTH_PW']   == $pass) {
+        return;
+      }
+
+      $print = 'Hello, user: [user], pass: [pass]!';
+      header(sprintf('WWW-Authenticate: Basic realm="%s"', strtr($print, array('[user]' => $user, '[pass]' => $pass))));
+      header('HTTP/1.0 401 Unauthorized');
+      exit;
+    }
+  }
+}
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function nas_park_feature_ctools_plugin_directory($module, $plugin) {
