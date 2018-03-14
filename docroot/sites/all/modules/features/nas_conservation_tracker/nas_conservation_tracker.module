@@ -61,6 +61,14 @@ function nas_conservation_tracker_init() {
 }
 
 /**
+ * Implements hook_imagecache_external_directory_alter().
+ */
+function nas_conservation_tracker_imagecache_external_directory_alter($directory, $filename, &$url) {
+  // Fix issue with spaces in filenames.
+  $url = str_replace(' ', '%20', $url);
+}
+
+/**
  * Implements hook_init().
  */
 function _nas_conservation_tracker_get_real_path($load = FALSE) {
