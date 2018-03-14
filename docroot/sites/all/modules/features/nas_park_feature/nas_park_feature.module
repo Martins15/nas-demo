@@ -281,6 +281,7 @@ function nas_park_feature_add_chart_assets() {
   $module_path = drupal_get_path('module', 'nas_park_feature');
   drupal_add_css($module_path . '/css/stamen-audubon-parks.css');
   drupal_add_js($module_path . '/js/lib/d3.v4.min.js');
+  drupal_add_js($module_path . '/js/polyfill_array_prototype_find.js');
   drupal_add_js($module_path . '/js/lib/stamen-audubon-parks.js');
   drupal_add_js($module_path . '/js/nas_park_feature.js');
 
