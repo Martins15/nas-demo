@@ -1251,6 +1251,7 @@ function nas_image($variables) {
     'boa_mail_subscription',
     'engagement_card_full_width',
     'engagement_card_full_width_half_black',
+    'park_bird_species_illustration',
     'article_hero_inline',
     'bean_wysiwyg_full_width',
   );
@@ -1264,7 +1265,7 @@ function nas_image($variables) {
     $attributes = $variables['attributes'];
     $noscript_attributes = $variables['attributes'];
 
-    if (_lazy_loader_enabled() || in_array($variables['style_name'], ['bean_wysiwyg_full_width'])) {
+    if (_lazy_loader_enabled() || in_array($variables['style_name'], ['bean_wysiwyg_full_width', 'park_bird_species_illustration'])) {
       $url = parse_url(file_create_url($variables['path']));
       $path = $url['path'];
 
@@ -1305,6 +1306,9 @@ function nas_image($variables) {
       unset($variables['attributes']['height']);
       unset($variables['width']);
       unset($variables['height']);
+    }
+    if (in_array($variables['style_name'], ['park_bird_species_illustration'])) {
+      $variables['theme_hook_original'] = 'lazyloader_image';
     }
     return theme_lazyloader_image($variables);
   }

@@ -1,0 +1,772 @@
+$base-margin: 20px;
+$tab-height: 35px;
+$tab-border-radius: 35px;
+$grey-park: #d8d8d8;
+$grey-active-park: #969696;
+$red-park: #d0021b;
+$green-park: #417505;
+
+@-webkit-keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0)
+  }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+.switch-wrap {
+  position: relative;
+  margin-top: 30px;
+  z-index: 0;
+  font-family: $font-sans;
+  z-index: 1;
+  .owl-theme .owl-controls .owl-buttons div {
+    zoom: 1;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background: transparent;
+    filter: none;
+    opacity: 1;
+  }
+  .owl-page {
+    z-index: 10;
+  }
+  .owl-buttons {
+    position: absolute;
+    top: 5px;
+    width: 100%;
+    z-index: 10;
+    > div {
+      font-size: 0;
+      position: absolute;
+    }
+    .owl-prev {
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 20px solid #d8d8d8;
+    }
+    .owl-next {
+      right: 20px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 20px solid #d8d8d8;
+    }
+  }
+}
+
+.parks_blog {
+  position: absolute;
+  top: 105px;
+  right: 40px;
+  width: 36px;
+  height: 84px;
+  @include breakpoint(large-up) {
+    top: 55px;
+    right: 40px;
+    width: 50px;
+    height: 100px;
+  }
+  .cell {
+    transform: scale(.6);
+    @include breakpoint(large-up) {
+      transform: scale(1);
+    }
+  }
+}
+
+.tab-slider--nav,
+.tab-slider--dots {
+  width: 100%;
+  text-align: center;
+  .slide {
+    float: none;
+  }
+}
+
+.tab-slider {
+  &--tabs {
+    display: inline-block;
+    position: relative;
+    margin: 0 0 25px 0;
+    padding: 0;
+    list-style: none;
+    border-radius: $tab-border-radius;
+    overflow: hidden;
+    background: $grey-park;
+    user-select: none;
+    &:after {
+      content: "";
+      width: 50%;
+      background: $grey-active-park;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: all 250ms ease-in-out;
+      border-radius: $tab-border-radius;
+    }
+    &.slide:after {
+      left: 50%;
+    }
+  }
+  &--trigger {
+    font-size: 18px;
+    line-height: 1;
+    font-weight: bold;
+    color: $white;
+    text-align: center;
+    text-transform: capitalize;
+    padding: 11px $base-margin;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    display: inline-block;
+    transition: color 250ms ease-in-out;
+    user-select: none;
+    &.active {
+      color: $white;
+    }
+  }
+  &--body {
+    display: none;
+    margin-bottom: $base-margin;
+    &:first-child {
+      display: block;
+    }
+    @include breakpoint(large-up) {
+      width: 85%;
+    }
+  }
+  &--container {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.tab-slider--dots {
+  margin-top: 20px;
+  .tab-slider--tabs {
+    margin-bottom: 0;
+  }
+}
+
+ul.tabs-content {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  border-bottom: 1px solid $grey-landing;
+  @include breakpoint(large-up) {
+    border-bottom: 0;
+  }
+  .species {
+    color: #90d2d8;
+  }
+  .red,
+  .extirpations {
+    color: #e8c578;
+  }
+  .green,
+  .colonizations {
+    color: #18a1ad;
+  }
+  .link {
+    position: relative;
+    padding-bottom: 10px;
+    text-align: center;
+    cursor: pointer;
+    @include breakpoint(large-up) {
+      border-bottom: 1px solid $grey-landing;
+    }
+    &__title {
+      color: $color-text-gray;
+      font-size: 14px;
+      font-weight: 400;
+      @include breakpoint(xlarge-up) {
+        font-size: 20px;
+      }
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-left: 5px;
+        border-radius: 50%;
+        background-color: #4a90e2;
+        line-height: 20px;
+        font-style: normal;
+        color: $white;
+        z-index: 1;
+        &:hover {
+          .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+        .tooltiptext {
+          visibility: hidden;
+          width: 120px;
+          background-color: #555;
+          color: #fff;
+          text-align: center;
+          padding: 5px 0;
+          border-radius: 6px;
+          position: absolute;
+          z-index: 1;
+          left: 0;
+          top: 25px;
+          margin-left: -60px;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+      }
+    }
+    &__number {
+      font-size: 72px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    &__text {
+      color: $pumpkin;
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    &.current {
+      @include breakpoint(large-up) {
+        &:after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          margin-left: -7px;
+          bottom: -8px;
+          width: 14px;
+          height: 14px;
+          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          -o-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          border-top: 1px solid $grey-landing;
+          border-left: 1px solid $grey-landing;
+          background: $white;
+        }
+      }
+    }
+    &.extirpations,
+    &.colonizations {
+      .link__number {
+        &:before {
+          content: '';
+          display: inline-block;
+          width: 30px;
+          height: 36px;
+          margin-right: 5px;
+        }
+      }
+    }
+    &.extirpations {
+      .link__number {
+        &:before {
+          background: url("../img/park-page/down-red.png") no-repeat center;
+        }
+      }
+    }
+    &.colonizations {
+      .link__number {
+        &:before {
+          background: url("../img/park-page/up-green.png") no-repeat center;
+        }
+      }
+    }
+  }
+}
+
+.tab-content {
+  display: none;
+  width: 100%;
+  margin-top: 15px;
+  padding: 0 15px;
+  overflow: hidden;
+  &.current {
+    display: block;
+  }
+  .tab-bird-container {
+    margin-top: 25px;
+  }
+}
+
+.park-body {
+  margin-bottom: 50px;
+  padding: 0 15px;
+  overflow: hidden;
+  width: 100%;
+  @include breakpoint(large-up) {
+    padding: 0;
+  }
+  &__title {
+    margin-bottom: 10px;
+    font-size: 38px;
+    line-height: 1.15;
+  }
+  &__body-text {
+    font-size: 16px;
+  }
+}
+
+// Style for content park page.
+.node-type-park {
+  font-family: $font-sans;
+  .park_top {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 25px;
+    .hero-image {
+      overflow: inherit;
+      &:after {
+        @include breakpoint(large-up) {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 110px;
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), #000000);
+        }
+      }
+
+    }
+    .hero-caption {
+      padding-top: 0;
+    }
+    .hero-attribution-fullscreen {
+      margin-top: 0;
+      padding: 0 10px;
+      color: #404040;
+      z-index: 1;
+      @include breakpoint(large-up) {
+        padding: 0;
+        color: $white;
+      }
+      > p {
+        margin-top: 10px;
+        &:empty {
+          display: none;
+        }
+        @include breakpoint(large-up) {
+          margin-top: -30px;
+        }
+      }
+    }
+  }
+  .list-of-park {
+    position: relative;
+    z-index: 9;
+    @include breakpoint(large-up) {
+      position: absolute;
+      bottom: 50px;
+    }
+    &__current-page {
+      position: relative;
+      z-index: 1;
+      margin-top: 25px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid $color-text-gray;
+      @include breakpoint(large-up) {
+        margin-top: 0;
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+      a {
+        font-size: 25px;
+        color: $color-text-gray;
+        @include breakpoint(large-up) {
+          color: $white;
+          font-size: 48px;
+          letter-spacing: .4px;
+        }
+        &:after {
+          content: '';
+          display: inline-block;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 5px 5px 0 5px;
+          border-color: $color-text-gray transparent transparent transparent;
+          vertical-align: middle;
+          @include breakpoint(large-up) {
+            margin-left: 10px;
+            border-width: 10px 10px 0 10px;
+            border-color: #fff transparent transparent transparent;
+          }
+        }
+      }
+    }
+    &__others-page {
+      display: none;
+    }
+  }
+  .park_info {
+    margin-bottom: 20px;
+    font-size: 16px;
+    @include breakpoint(large-up) {
+      padding: 0;
+      margin-bottom: 30px;
+    }
+    > .field {
+      display: inline-block;
+      margin-right: 30px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .js-img-in {
+      .field-name-field-state,
+      .field-name-field-link,
+      .field-name-field-park-area {
+        width: calc(100% - 165px);
+        float: right;
+        margin-right: 0;
+        @include breakpoint(large-up) {
+          width: auto;
+          float: none;
+          margin-right: 30px;
+        }
+      }
+    }
+    .field-name-field-location-link {
+      width: 100%;
+      @include breakpoint(large-up) {
+        width: auto;
+      }
+    }
+
+    .field-label {
+      font-weight: normal;
+    }
+    .field-name-field-park-map-image,
+    .field-name-field-park-description {
+      float: left;
+    }
+    .help-wrap-field {
+      @include breakpoint(large-up) {
+        margin-bottom: 5px;
+      }
+      > div {
+        display: inline-block;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    .field-name-field-park-map-image {
+      display: none;
+      max-width: 135px;
+      @include breakpoint(large-up) {
+        display: block;
+      }
+      img {
+        width: 100%;
+      }
+      &.js-clone-img {
+        display: block;
+        @include breakpoint(large-up) {
+          display: none;
+        }
+      }
+    }
+    .field-name-field-park-description {
+      @include breakpoint(large-up) {
+        width: calc(100% - 165px);
+      }
+      p {
+        line-height: 1.38;
+      }
+    }
+  }
+  .hero {
+    overflow: inherit;
+  }
+  .hero-header {
+    padding-bottom: 0;
+    h1 {
+      position: relative;
+      margin: 0;
+      padding-bottom: 15px;
+      cursor: pointer;
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 20px;
+        border-style: solid;
+        border-width: 10px 10px 0 10px;
+        border-color: $white transparent transparent transparent;
+        vertical-align: middle;
+      }
+    }
+  }
+  .list-of-park__others-page {
+    display: none;
+    position: absolute;
+    max-height: 300px;
+    padding: 10px;
+    overflow: auto;
+    background: $white;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    &.js-show {
+      display: block;
+    }
+    @include breakpoint(large-up) {
+      max-height: 500px;
+      padding: 20px;
+    }
+    a {
+      display: block;
+      margin-bottom: 5px;
+      color: $color-text-gray;
+      font-size: 18px;
+      line-height: 1.2;
+      &:hover {
+        opacity: .7;
+      }
+      @include breakpoint(large-up) {
+        font-size: 25px;
+      }
+    }
+  }
+  .engagement-hero {
+    margin-top: 0;
+    h1 {
+      color: $pumpkin;
+      text-shadow: 0 1px 6px rgba(80, 80, 80, 0.75);
+    }
+  }
+}
+
+.form-container {
+  &.green {
+    background: $green-landing;
+    padding: 15px 0;
+  }
+  .-wrap-select {
+    border: 0;
+    background: transparent;
+  }
+  .inner {
+    @include breakpoint(large-up) {
+      float: left;
+      width: 50%;
+    }
+  }
+  label, select {
+    margin-bottom: 0;
+  }
+  .-wrap-select {
+    border: 0;
+    background: transparent;
+  }
+  &__text {
+    label {
+      margin-bottom: 20px;
+      color: $white;
+      font-family: $font-sans;
+      font-size: 33px;
+      line-height: 1.15;
+      @include breakpoint(large-up) {
+        margin-bottom: 0;
+      }
+    }
+  }
+  select {
+    width: 100%;
+    height: 45px;
+    padding: 5px 10px;
+    border: solid 1px #d4d4d4;
+    border-radius: 8px;
+    background-color: $white;
+    box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+  }
+  &__form {
+    > div {
+      padding-right: 0;
+      padding-left: 0;
+      @include breakpoint(large-up) {
+        padding-right: 12.5px;
+        padding-left: 12.5px;
+      }
+    }
+    > div:first-child {
+      margin-bottom: 20px;
+      @include breakpoint(large-up) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default {
+  .view-filters {
+    display: none;
+  }
+  .view-content {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    padding: 0 15px;
+    @include breakpoint(large-up) {
+      display: block;
+      padding: 0;
+    }
+    &.js-preload {
+      &:after {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        top: 20%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        transform: translate(-50%, -50%);
+        background-color: #333;
+        border-radius: 100%;
+        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+        animation: sk-scaleout 1.0s infinite ease-in-out;
+      }
+    }
+  }
+  .views-row {
+    display: block;
+    color: $color-text-gray;
+    text-align: center;
+    float: left;
+    margin-bottom: $column-gutter;
+    &:empty {
+      display: none;
+    }
+    width: 33.333%;
+    @include breakpoint(medium-only) {
+      width: 25%;
+    }
+    @include breakpoint(large-only) {
+      width: 20%;
+    }
+    @include breakpoint(min-width, 840px) {
+      width: 16.66666%;
+    }
+    @include breakpoint(min-width, 1000px) {
+      width: 14.285%;
+      height: 155px;
+    }
+
+    &:hover {
+      color: $color-bright-blue;
+    }
+    .views-field-field-hero-image,
+    .views-field-title {
+      margin: 0 10px;
+      @include breakpoint(large-up) {
+        margin: 0 $column-gutter/2;
+      }
+    }
+
+    .views-field-field-hero-image {
+      position: relative;
+      @include breakpoint(large-up) {
+        width: 118px;
+        height: 100px;
+        overflow: hidden;
+      }
+      img {
+        width: 100%;
+      }
+    }
+
+    .views-field-title {
+      background-color: $color-white;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+      height: 50px;
+      padding: 0 5px;
+      font-family: $font-sans;
+      font-size: 13px;
+      line-height: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        a {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 13px;
+          line-height: 15px;
+          color: $color-text-gray;
+        }
+      }
+    }
+    img.lazyloader-icon {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      width: 50%;
+      transform: translate(-50%, -50%);
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-box-shadow: inset 0px 0px 0px 5px $grey-landing;
+        -moz-box-shadow: inset 0px 0px 0px 5px $grey-landing;
+        box-shadow: inset 0px 0px 0px 5px $grey-landing;
+      }
+    }
+  }
+}

@@ -1,0 +1,348 @@
+$pink-landing: #ff9aa7;
+$red-landing: #ff3951;
+$green-landing: #417505;
+$pumpkin: #e18400;
+
+.climate-landing {
+  font-family: $font-sans;
+  h2 {
+    padding-left: 12.5px;
+    padding-right: 12.5px;
+    color: $color-dark-gray;
+    font-family: $font-sans;
+    font-size: 33px;
+    letter-spacing: -.1px;
+    line-height: 1.15;
+    text-align: left;
+    @include breakpoint(large-up) {
+      font-size: 38px;
+    }
+  }
+  .help-center {
+    text-align: center;
+  }
+  .engagement-hero {
+    margin-top: 0;
+    h1 {
+      color: $pumpkin;
+      text-shadow: 0 1px 6px rgba(80, 80, 80, 0.75);
+    }
+    @include breakpoint(large-up) {
+      .hero:not(.expand) .hero-image img:not(.canon-logo) {
+        min-height: 500px;
+      }
+    }
+  }
+  .hero-title {
+    margin-bottom: 15px;
+  }
+  .hero-paragraph-text {
+    color: $white;
+    font-size: 24px;
+    text-align: left;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+  }
+  .wrap-help {
+    overflow: hidden;
+  }
+  .percent-wrap {
+    display: flex;
+    flex-direction: column;
+    font-family: $font-sans;
+    @include breakpoint(large-up) {
+      display: block;
+    }
+    &__small-text,
+    &__percent-item {
+      text-align: center;
+    }
+    &__percent-item {
+      order: 2;
+      color: $pumpkin;
+      font-size: 72px;
+      font-weight: 600;
+      line-height: 1.2;
+      @include breakpoint(large-only) {
+        font-size: 50px;
+      }
+    }
+    &__small-text {
+      order: 3;
+      margin: 0 auto 15px;
+      float: none;
+      color: $color-text-gray;
+      font-size: 14px;
+      line-height: 1;
+      p {
+        padding: 0 15%;
+        @include breakpoint(large-up) {
+          padding: 0;
+        }
+      }
+      @include breakpoint(large-up) {
+        margin: 0;
+        float: left;
+        text-align: left;
+      }
+    }
+    &__text-item {
+      order: 1;
+      margin-bottom: 40px;
+      font-size: 16px;
+      @include breakpoint(large-up) {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .gray-left-border {
+    border-left: 1px solid $grey-landing;
+  }
+  .gray-border {
+    &--left {
+      @include breakpoint(large-up) {
+        border-left: 1px solid $grey-landing;
+      }
+    }
+    &--right {
+      @include breakpoint(large-up) {
+        border-right: 1px solid $grey-landing;
+      }
+    }
+  }
+  .center-items-in-wrap {
+    position: relative;
+  }
+  .item-bird__title {
+    padding: 0 12.5px;
+    color: $color-dark-gray;
+    font-family: $font-sans;
+    font-size: 24px;
+    line-height: 1.17;
+    text-align: left;
+  }
+  .item-bird-card {
+    .text-after {
+      color: $color-text-gray;
+      font-family: $font-sans;
+      font-size: 14px;
+      text-align: right;
+    }
+    &__text-wrap {
+      p {
+        margin-bottom: 18px;
+      }
+    }
+  }
+  .item-with-bird-card {
+    margin-bottom: 90px;
+  }
+  .map-wrap {
+    margin-bottom: 70px;
+  }
+  .item-bird-sliders {
+    margin-bottom: 25px;
+  }
+  .single-slider {
+    margin-bottom: 35px;
+    &__text-bird {
+      color: $color-text-gray;
+      font-family: $font-sans;
+      font-size: 14px;
+      line-height: normal;
+    }
+    @include breakpoint(large-up) {
+      &__text-bird,
+      &__single-bird {
+        margin-top: 30px;
+      }
+    }
+  }
+  .item-with-diagram {
+    .small-text {
+      color: $color-text-gray;
+      font-size: 16px;
+      line-height: normal;
+    }
+  }
+  .diagram-wrap {
+    margin-bottom: 100px;
+  }
+  .diagram-elem {
+    display: inline-block;
+    &__column {
+      position: relative;
+      margin: 0 auto 5px;
+      p {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: $color-dark-gray;
+        font-family: $font-sans;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: -.1px;
+      }
+    }
+    &__text {
+      font-size: 16px;
+      text-align: center;
+    }
+    .pink {
+      width: 104px;
+      height: 88px;
+      background-color: $pink-landing;
+    }
+    .big {
+      width: 104px;
+      height: 150px;
+      background-color: $red-landing;
+    }
+  }
+  .diagram-item {
+    margin-top: 20px;
+    text-align: center;
+    @include breakpoint(large-up) {
+      margin-top: 0;
+    }
+  }
+  .diagram-item__text-after {
+    max-width: 375px;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    border-top: 1px solid $grey-landing;
+    p {
+      color: $color-dark-gray;
+      font-family: $font-sans;
+      font-size: 20px;
+      letter-spacing: -.1px;
+      text-align: center;
+    }
+  }
+  .form-container {
+    &.green {
+      background: $green-landing;
+      padding: 15px 0;
+    }
+    .inner {
+      float: left;
+      width: 50%;
+    }
+    h5, select {
+      margin-bottom: 0;
+    }
+    &__text {
+      h5 {
+        color: $white;
+        font-family: $font-sans;
+        font-size: 33px;
+        line-height: 1.15;
+      }
+    }
+    select {
+      width: 100%;
+      height: 45px;
+      padding: 5px 10px;
+      border: solid 1px #d4d4d4;
+      border-radius: 8px;
+      background-color: $white;
+      box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      font-size: 20px;
+    }
+  }
+  .form-contact-container {
+    font-family: $font-sans;
+    .engagement-hero__content {
+      margin-top: 45px;
+    }
+    .native-plants-hero-text {
+      margin-bottom: 30px;
+      color: $white;
+      font-size: 16px;
+      line-height: 1.1;
+    }
+
+    h3 {
+      color: $pumpkin;
+      font-size: 48px;
+      letter-spacing: normal;
+      line-height: 1.04;
+      text-shadow: 0 1px 6px rgba(80, 80, 80, .75);
+    }
+  }
+  .park-item {
+    &__image {
+      position: relative;
+      @include breakpoint(large-up) {
+        width: 55%;
+        float: right;
+      }
+      img {
+        width: 100%;
+      }
+      .text-after {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        color: $white;
+        font-size: 14px;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, .75);
+      }
+
+    }
+    &__text-after {
+      p {
+        margin-bottom: 10px;
+        font-size: 20px;
+        @include breakpoint(large-up) {
+          margin-bottom: 15px;
+        }
+      }
+    }
+    &__info {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid $grey-landing;
+      @include breakpoint(large-up) {
+        padding: 15px 15px 15px 5px;
+      }
+    }
+    &__help-wrap {
+      @include breakpoint(large-up) {
+        float: left;
+        width: 43%;
+      }
+    }
+  }
+  .bird {
+    overflow: hidden;
+    &__img {
+      width: 18%;
+      margin-right: 2%;
+      float: left;
+      img {
+        width: 100%;
+      }
+    }
+    &__text {
+      float: right;
+      width: 80%;
+    }
+    .item {
+      overflow: hidden;
+      p {
+        display: inline-block;
+        font-size: 18px;
+        vertical-align: top;
+        &.name {
+          width: 20%;
+        }
+        &.value {
+          width: 78%;
+        }
+      }
+    }
+  }
+}
+
