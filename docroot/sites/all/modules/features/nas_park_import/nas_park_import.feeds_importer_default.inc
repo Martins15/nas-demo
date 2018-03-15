@@ -50,6 +50,7 @@ function nas_park_import_feeds_importer_default() {
             'source' => 'unit_name',
             'target' => 'title',
             'unique' => 1,
+            'language' => 'und',
           ),
           1 => array(
             'source' => 'park',
@@ -88,6 +89,24 @@ function nas_park_import_feeds_importer_default() {
             'language' => 'und',
           ),
           7 => array(
+            'source' => 'website_title',
+            'target' => 'field_link:title',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          8 => array(
+            'source' => 'more_title',
+            'target' => 'field_location_link:title',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          9 => array(
+            'source' => 'more_URL',
+            'target' => 'field_location_link:url',
+            'unique' => FALSE,
+            'language' => 'und',
+          ),
+          10 => array(
             'source' => 'park_description',
             'target' => 'field_park_description',
             'unique' => FALSE,
