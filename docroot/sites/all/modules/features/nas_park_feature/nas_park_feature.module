@@ -26,7 +26,7 @@ function nas_park_feature_init() {
         return;
       }
 
-      $pass = variable_get('nas_park_climate_auth_pass', 'audubon');
+      $pass = variable_get('nas_park_climate_auth_pass', 'F0rth3b1rds!');
       if (!empty($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])
         && $_SERVER['PHP_AUTH_USER'] == $user
         && $_SERVER['PHP_AUTH_PW']   == $pass) {
