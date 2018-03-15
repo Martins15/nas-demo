@@ -18576,6 +18576,8 @@ ul.tabs-content .link.colonizations .link__number:before {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 .node-type-park .park_top {
+  position: relative;
+  z-index: 2;
   margin-bottom: 25px;
 }
 .node-type-park .park_top .hero-image {
