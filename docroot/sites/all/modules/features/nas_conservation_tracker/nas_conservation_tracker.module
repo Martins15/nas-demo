@@ -1,0 +1,866 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Conservation Tracker feature.
+ */
+
+include_once 'nas_conservation_tracker.features.inc';
+
+
+//define('NAS_CT_JS_PATH', drupal_get_path('module', 'nas_conservation_tracker') . '/js/');
+define('NAS_CT_JS_PATH', dirname(drupal_get_filename('module', 'nas_conservation_tracker')) . '/js/');
+define('NAS_CT_CSV_PATH', variable_get('file_public_path') . '/conservation_tracker_csv');
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function nas_conservation_tracker_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools' && !empty($plugin)) {
+    return "plugins/$plugin";
+  }
+}
+
+/**
+ * Implements hook_init().
+ */
+function nas_conservation_tracker_init() {
+  drupal_add_css(drupal_get_path('module', 'nas_conservation_tracker') . '/css/nas_conservation_tracker.css');
+  drupal_add_js(drupal_get_path('module', 'nas_conservation_tracker') . '/js/conservation_page.js');
+
+  _nas_conservation_tracker_get_real_path(TRUE);
+
+  if ( variable_get('nas_conservation_tracker_auth_protection', FALSE)) {
+    $path = current_path();
+    $path_alias = drupal_lookup_path('alias', $path);
+    $patterns =  variable_get('nas_conservation_tracker_auth_protection_pattern', 'conservation-tracker*');
+
+    if (drupal_match_path($path, $patterns) || drupal_match_path($path_alias, $patterns)) {
+      $user = variable_get('nas_conservation_tracker_auth_user', '');
+      if (!$user) {
+        return;
+      }
+
+      // allow Drush to bypass Shield
+      if (drupal_is_cli()) {
+        return;
+      }
+
+      $pass = variable_get('nas_conservation_tracker_auth_pass', '');
+      if (!empty($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])
+        && $_SERVER['PHP_AUTH_USER'] == $user
+        && $_SERVER['PHP_AUTH_PW']   == $pass) {
+        return;
+      }
+
+      $print = 'Hello, user: [user], pass: [pass]!';
+      header(sprintf('WWW-Authenticate: Basic realm="%s"', strtr($print, array('[user]' => $user, '[pass]' => $pass))));
+      header('HTTP/1.0 401 Unauthorized');
+      exit;
+    }
+  }
+}
+
+/**
+ * Implements hook_imagecache_external_directory_alter().
+ */
+function nas_conservation_tracker_imagecache_external_directory_alter($directory, $filename, &$url) {
+  // Fix issue with spaces in filenames.
+  $url = str_replace(' ', '%20', $url);
+}
+
+/**
+ * Implements hook_init().
+ */
+function _nas_conservation_tracker_get_real_path($load = FALSE) {
+  $current_sections = $sections = arg();
+  $path = array_pop($sections);
+  $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'response', 'partners'));
+  if (in_array($path, $types)) {
+    $alias = implode('/', $sections);
+    $source = drupal_get_normal_path($alias);
+    if (strpos($source, 'node/') === 0) {
+      if ($load) {
+        menu_execute_active_handler($source);
+        drupal_exit();
+      }
+      return $source;
+    }
+  }
+  elseif (arg(0) == 'conservation-tracker' && arg(1) == 'strategies') {
+    foreach (nas_conservation_tracker_get_json('strategies') as $strategy) {
+      if (arg(3) == $strategy['link']) {
+        $alias = implode('/', $sections);
+        $source = drupal_get_normal_path($alias);
+        if ($load) {
+          menu_execute_active_handler($source);
+          drupal_exit();
+        }
+        return $source;
+      }
+    }
+
+  }
+
+  return  implode('/', $current_sections);
+}
+
+/**
+ * Implements hook_menu().
+ */
+function nas_conservation_tracker_menu() {
+  $items = array();
+  $items['conservation-tracker/ajax/scorecard/%/%'] = array (
+    'title' => 'Get data for scorecard',
+    'page callback' => 'nas_conservation_tracker_get_scorecard_json',
+    'page arguments' => array(3,4),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['conservation-tracker/ajax/landscapes'] = array (
+    'title' => 'Get data for landscapes',
+    'page callback' => 'nas_conservation_tracker_get_landscapes_json',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['conservation-tracker/ajax/strategy/%'] = array (
+    'title' => 'Get data for strategy',
+    'page callback' => 'nas_conservation_tracker_get_strategy_json',
+    'page arguments' => array(3),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['conservation-tracker/csv/%/%'] = array (
+    'title' => 'Download CSV file for score card',
+    'page callback' => 'nas_conservation_tracker_download_csv',
+    'page arguments' => array(2, 3),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['conservation-tracker/ajax/scorecard-rating'] = array (
+    'title' => 'Submit scorecard rating',
+    'page callback' => 'nas_conservation_tracker_rating',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function nas_conservation_tracker_libraries_info() {
+  $libraries = array();
+
+  $lib_info = array(
+    'vendor url' => 'http://audubon.org',
+    'path' => 'js',
+    'library path' => drupal_get_path('module', 'nas_conservation_tracker'),
+    'dependencies' => array('d3'),
+    'version' => '1',
+  );
+
+  $libs = array(
+    'ct_linegraph' => 'CT Line Graph',
+    'ct_circular' => 'CT Circular',
+    'ct_bar' => 'CT Bar Graph',
+    'ct_bar_horizontal' => 'CT Bar Horizontal Graph',
+    'ct_tooltip' => 'CT Tooltip',
+  );
+
+  foreach ($libs as $filename => $name) {
+    $key = 'd3.' . $filename;
+    $libraries[$key] = $lib_info;
+    $libraries[$key]['files']['js'][] = $filename . '.js';
+  }
+
+  $libraries['jspdf'] = array(
+    'name' => 'jsPDF',
+    'vendor url' => 'http://parall.ax/products/jspdf',
+    'download url' => 'https://github.com/MrRio/jsPDF',
+    'files' => array(
+      'js' => array(
+        'dist/jspdf.min.js' => array(
+          'type' => 'file',
+          'group' => JS_LIBRARY,
+        ),
+      ),
+    ),
+    'version' => '1',
+  );
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_libraries_info_alter().
+ */
+function nas_conservation_tracker_libraries_info_alter(&$libraries) {
+  $libraries['leaflet']['version arguments']['lines'] = 137000;
+  $libraries['leaflet']['version arguments']['cols'] = 150000;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nas_conservation_tracker_theme() {
+  $theme = array(
+    'ct_scorecard_header' => array(
+      'variables' => array(
+        'name' => NULL,
+        'subtitle' => NULL,
+        'image' => NULL,
+        'credit' => NULL,
+      ),
+      'template' => 'templates/ct-scorecard-header',
+    ),
+    'ct_scorecard_tabs' => array(
+      'variables' => array(
+        'menu_tree' => NULL,
+        'tabs' => NULL,
+      ),
+      'template' => 'templates/ct-scorecard-tabs',
+    ),
+    'ct_scorecard_tabs' => array(
+      'variables' => array(
+        'menu_tree' => NULL,
+        'tabs' => NULL,
+      ),
+      'template' => 'templates/ct-scorecard-tabs',
+    ),
+    'ct_scorecard_overview' => array(
+      'variables' => array(
+        'data' => NULL,
+        /*
+        'title' => NULL,
+        'description' => NULL,
+        'application' => NULL,
+        'thumbnail' => NULL,
+        'youtube' => NULL,
+        'tagline' => NULL,
+        */
+      ),
+      'template' => 'templates/ct-scorecard-overview',
+    ),
+    'ct_scorecard_main' => array(
+      'variables' => array(
+        'map' => NULL,
+        'form' => NULL,
+      ),
+      'template' => 'templates/ct-scorecard-main',
+    ),
+    'ct_scorecard_carousel' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => NULL,
+      ),
+      'template' => 'templates/ct-scorecard-carousel',
+    ),
+    'ct_landscapes_main' => array(
+      'variables' => array(
+        'map' => NULL,
+      ),
+      'template' => 'templates/ct-landscapes-main',
+    ),
+    'ct_strategies_main' => array(
+      'variables' => array(
+        'strategies' => NULL,
+      ),
+      'template' => 'templates/ct-strategies-main',
+    ),
+  );
+  return $theme;
+}
+
+/**
+ * Get JSON object from hub.
+ * @param $path
+ */
+function nas_conservation_tracker_get_json($name, $id = NULL, $cache = TRUE) {
+  $demo_url = '';
+  $json_data = NULL;
+  switch ($name) {
+    case 'scorecard':
+      $path = 'json/interactive-reports/' . $name;
+      break;
+    case 'landscapes':
+      $path = 'json/landscapes/' . $name;
+      break;
+    case 'species':
+      $path = 'json/species/' . $name;
+      break;
+    case 'strategies':
+      $path = 'json/strategies/' . $name;
+      break;
+    default:
+      $path = 'json/' . $name;
+      break;
+  }
+
+  if (!is_null($id)) {
+    $path .= '-' . $id;
+  }
+
+  if (variable_get('nas_conservation_tracker_api_cache_enabled', TRUE)) {
+    $cid = 'nas_conservation_tracker:' . md5($path);
+    $data = cache_get($cid);
+    if (!empty($data->data)) {
+      $json_data = $data->data;
+    }
+  }
+
+  if (empty($json_data) || !$cache) {
+    $json_url = rtrim(variable_get('nas_conservation_tracker_endpoint', $demo_url), '\/') . '/' . $path . '.json';
+    watchdog('ct debug', 'JSON URL - ' . $json_url);
+    if (strpos($json_url, 'http') === 0) {
+      $request = drupal_http_request($json_url);
+      $json_data = drupal_json_decode($request->data);
+    }
+    else if (file_exists($json_url)) {
+      $file = file_get_contents($json_url);
+      $json_data = drupal_json_decode($file);
+    }
+    if ($json_data === FALSE) {
+      watchdog('ct debug', 'CAN NOT BE PARSED DATA - ' . print_r($json_data, TRUE));
+    }
+
+
+    if (!empty($json_data)) {
+      if (strpos($path, 'scorecard') !== FALSE) {
+        nas_conservation_tracker_csv_cache_update($json_data);
+      }
+      if (variable_get('nas_conservation_tracker_api_cache_enabled', TRUE)) {
+        cache_set($cid, $json_data);
+      }
+    }
+  }
+  return $json_data;
+}
+
+/**
+ * Get Score card data.
+ * @param $id
+ */
+function nas_conservation_tracker_get_scorecard_json($id, $type = 'actions') {
+  $result = array('data' => array(), 'success' => 0);
+  if (!empty($id) && is_numeric($id)) {
+    $data = nas_conservation_tracker_get_json('scorecard', $id);
+    $types = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'response', 'partners'));
+    if ($type == 'partners') {
+      usort($data[$type], function($item1, $item2) {
+        if ($item1['name'] == $item2['name']) {
+          return 0;
+        }
+        return $item1['name'] < $item2['name'] ? -1 : 1;
+      });
+    }
+    if (!in_array($type, $types)) {
+      $type = 'actions';
+    }
+    foreach ($types as $item) {
+      if ($item != $type) {
+        unset($data[$item]);
+      }
+    }
+
+    $result['data'] = $data;
+    if (!empty($result['data'])) {
+      $result['success'] = 1;
+    }
+  }
+  drupal_json_output($result);
+}
+
+/**
+ * Get Score card data.
+ * @param $id
+ */
+function nas_conservation_tracker_get_landscapes_json() {
+  $result = array('data' => array(), 'success' => 0);
+
+    $data = nas_conservation_tracker_get_json('landscapes');
+
+    foreach ($data as $key => $item) {
+      if (!empty($item['scorecardId'])) {
+        $data[$key]['scorecardUrl'] = url(drupal_get_path_alias('node/' . nas_get_scorecard_by_id($item['scorecardId'])));
+      }
+      if (!empty($item['imagePreview'])) {
+        if (module_exists('imagecache_external')) {
+          $item['imagePreview'] = rtrim($item['imagePreview'], '/');
+          if (strpos($item['imagePreview'], '//') === 0) {
+            $item['imagePreview'] = 'http:' . $item['imagePreview'];
+          }
+          $data[$key]['imagePreview'] = image_style_url('ct_landscape_preview', imagecache_external_generate_path($item['imagePreview']));
+        }
+      }
+    }
+    $result['data'] = $data;
+    if (!empty($result['data'])) {
+      $result['success'] = 1;
+    }
+
+  drupal_json_output($result);
+}
+
+/**
+ * Get Score card data.
+ * @param $id
+ */
+function nas_conservation_tracker_get_strategy_json($id) {
+  $result = array('data' => array(), 'success' => 0);
+  if (!empty($id) && is_numeric($id)) {
+    $data = nas_conservation_tracker_get_json('strategies', $id);
+    if (!empty($data['tabs']['partners']['list'])) {
+      sort($data['tabs']['partners']['list']);
+    }
+    $result['data'] = $data;
+    if (!empty($result['data'])) {
+      $result['success'] = 1;
+    }
+  }
+
+  drupal_json_output($result);
+}
+
+function nas_get_scorecard_by_id($id) {
+  if (!is_numeric($id)) {
+    return FALSE;
+  }
+  $nid = db_select('field_data_field_scorecard_id', 'fs')
+    ->fields('fs', array('entity_id'))
+    ->condition('fs.field_scorecard_id_value', $id)
+    ->execute()
+    ->fetchField();
+
+  return !empty($nid) ? $nid : FALSE;
+}
+
+
+/**
+ * Implements hook_node_view().
+ * @param $node
+ * @param $view_mode
+ * @param $langcode
+ */
+function nas_conservation_tracker_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'ct_scorecard' && ($view_mode == 'full' || $view_mode == 'page_manager')) {
+    $arg = arg();
+    $path = array_pop($arg);
+    $tabs = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'response', 'partners'));
+    if (!in_array($path, $tabs)) {
+      $json = nas_conservation_tracker_get_json('scorecard', $node->field_scorecard_id[LANGUAGE_NONE][0]['value']);
+      $tab = (!empty($json['settings']['tabDefault']) && in_array($json['settings']['tabDefault'], $tabs)) ?
+        $json['settings']['tabDefault'] : $tabs[0];
+      drupal_goto(request_path() . '/' . $tab);
+    }
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function nas_conservation_tracker_cron() {
+  nas_conservation_tracker_load_species();
+}
+
+/**
+ * Load species from datahub and create custom entities.
+ */
+function nas_conservation_tracker_load_species() {
+  $path = 'species';
+  $cid = 'nas_conservation_tracker:' . md5($path);
+  cache_clear_all($cid, 'cache');
+  $data = nas_conservation_tracker_get_json($path);
+  // Bundle name same as entity name.
+  $entity_type = 'ct_species';
+  foreach ($data as $species) {
+    $entity = nas_conservation_tracker_get_entity($species['id'], $entity_type);
+    if (!$entity) {
+      $entity = entity_create($entity_type, array('type' => $entity_type));
+    }
+    $wrapper = entity_metadata_wrapper($entity_type, $entity);
+    if (!empty($species['id'])) {
+      $wrapper->field_ct_remote_id->set($species['id']);
+    }
+    if (!empty($species['commonName'])) {
+      $wrapper->title->set($species['commonName']);
+      $wrapper->field_ct_common_name->set($species['commonName']);
+      $wrapper->field_ct_letter->set(strtolower(substr($species['commonName'], 0, 1)));
+    }
+    if (!empty($species['scientificName'])) {
+      $wrapper->field_ct_scientific_name->set($species['scientificName']);
+    }
+    if (!empty($species['scoreCard'])) {
+      $wrapper->field_ct_score_card->set($species['scoreCard']);
+      $wrapper->field_ct_score_card_url->set(nas_conservation_tracker_scorecard_url($species['scoreCard']));
+    }
+    if (!empty($species['image'])) {
+      $wrapper->field_ct_image->set($species['image']);
+    }
+    if (!empty($species['dropped'])) {
+      $wrapper->field_ct_dropped->set($species['dropped']);
+    }
+    if (!empty($species['audubonClimateStatus'])) {
+      $wrapper->field_ct_climate_status->set($species['audubonClimateStatus']);
+    }
+    if (!empty($species['stateOfBirds'])) {
+      $wrapper->field_ct_state_of_birds->set($species['stateOfBirds']);
+    }
+    if (!empty($species['alphaCode'])) {
+      $wrapper->field_ct_alpha_code->set($species['alphaCode']);
+    }
+    if (!empty($species['parent'])) {
+      $wrapper->field_ct_parent->set($species['parent']);
+    }
+    if (!empty($species['strategyInitiativeId'])) {
+      $wrapper->field_ct_strategy_initiative_id->set($species['strategyInitiativeId']);
+    }
+    if (!empty($species['strategies'])) {
+      if (is_array($species['strategies'])) {
+        $strategies = $species['strategies'];
+      }
+      else {
+        $strategies = array_map('trim', explode(',', $species['strategies']));
+      }
+      $wrapper->field_ct_strategies->set($strategies);
+    }
+    if (!empty($species['iucn'])) {
+      $wrapper->field_ct_iucn->set($species['iucn']);
+    }
+    if (!empty($species['group'])) {
+      $wrapper->field_ct_group->set($species['group']);
+    }
+    $wrapper->save();
+  }
+}
+
+/**
+ * Load entity by remote id.
+ */
+function nas_conservation_tracker_get_entity($remote_id, $entity_type) {
+  $entities = array();
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', $entity_type)
+    ->fieldCondition('field_ct_remote_id', 'value', $remote_id, '=');
+  $result = $query->execute();
+  if (isset($result[$entity_type])) {
+    $entity_ids = array_keys($result[$entity_type]);
+    $entity = entity_load($entity_type, $entity_ids);
+    return current($entity);
+  }
+}
+
+/**
+ * Implements hook_search_api_index_reindex().
+ */
+function nas_conservation_tracker_search_api_index_reindex(SearchApiIndex $index, $clear = FALSE) {
+  nas_conservation_tracker_load_species();
+}
+
+function nas_conservation_tracker_scorecard_nid($scorecard) {
+  $nid = FALSE;
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->entityCondition('bundle', 'ct_scorecard')
+    ->fieldCondition('field_scorecard_id', 'value', (int)$scorecard, '=')
+    ->execute();
+  if ($result) {
+    $nid = current(array_keys($result['node']));
+  }
+  return $nid;
+}
+
+function nas_conservation_tracker_scorecard_url($scorecard) {
+  $nid = nas_conservation_tracker_scorecard_nid($scorecard);
+  if ($nid) {
+    return drupal_get_path_alias('node/' . $nid);
+  }
+  else {
+    return FALSE;
+  }
+}
+
+function nas_conservation_tracker_form_nas_conservation_tracker_rating_form_alter(&$form, &$form_state) {
+  form_load_include($form_state, 'inc', 'nas_conservation_tracker', 'plugins/content_types/ct_scorecard_main');
+}
+
+function nas_conservation_tracker_form_views_exposed_form_alter(&$form, &$form_state) {
+  if ($form['#id'] == 'views-exposed-form-ct-species-block') {
+    $form['search']['#attributes'] = array(
+      'placeholder' => t('Search'),
+    );
+    $form['letter']['#attributes']['class'] = array(
+      'hide-for-xlarge',
+      'hide-for-large',
+      'hide-for-mediun',
+      'hide-for-small',
+      'hide-for-tiny',
+    );
+    if (isset($form['letter']['#options']['All'])) {
+      unset($form['letter']['#options']['All']);
+    }
+  }
+}
+
+function nas_conservation_tracker_get_image($name, $folder = '') {
+  $files = file_load_multiple(array(), array('filename' => $name));
+  $file = reset($files);
+  if (empty($file)) {
+    if (!empty($folder)) {
+      $image_url = variable_get('nas_conservation_tracker_endpoint') . '/' . $folder . '/'. $name;
+    }
+    else {
+      $image_url = variable_get('nas_conservation_tracker_endpoint') . '/' . $name;
+    }
+    if (file_exists($image_url)) {
+      $file = file_save_data(file_get_contents($image_url), 'public://' . basename($image_url));
+      $file->status = 1;
+      return $file->fid;
+    }
+    else {
+      watchdog('ct debug', 'No remote file - ' . $image_url);
+    }
+    return FALSE;
+  }
+  else {
+    if (!file_exists($file->uri)) {
+      $image_url = variable_get('nas_conservation_tracker_endpoint') . '/' . $name;
+      if (file_exists($image_url)) {
+        file_put_contents('public://' . basename($image_url), file_get_contents($image_url));
+        return $file->fid;
+      }
+    }
+    return $file->fid;
+  }
+}
+
+
+function nas_conservation_tracker_entity_load($entities, $type) {
+  if ($type == 'ct_species') {
+    foreach ($entities as &$entity) {
+      $entity->field_ct_image[LANGUAGE_NONE][0]['value'] = trim($entity->field_ct_image[LANGUAGE_NONE][0]['value'], '/');
+      $entity->field_ct_image[LANGUAGE_NONE][0]['safe_value'] = trim($entity->field_ct_image[LANGUAGE_NONE][0]['safe_value'], '/');
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK.
+ */
+function nas_conservation_tracker_preprocess_views_view(&$vars) {
+  $view = $vars['view'];
+  if ($view->name == 'ct_species') {
+    //$view_path = (request_path() == 'views/ajax') ? $_SERVER['HTTP_REFERER'] : request_path();
+    $view_path = '/conservation-tracker/species';
+    $letters = array(
+      'title' => '',
+      'type' => 'ul',
+      'attributes' => array(
+        'id' => 'species-aplphabet',
+        'class' => 'alphabet-block__alphabet'
+      ),
+    );
+    foreach (range('a', 'z') as $letter) {
+      $attr = array('data-letter' => $letter);
+      if (isset($_GET['letter']) && $letter == $_GET['letter']) {
+        $attr['class'][] = 'active';
+      }
+      $letters['items'][$letter] = l(strtoupper($letter), $view_path, array('attributes' => $attr));
+    }
+    $reset = array(
+      '#type' => 'markup',
+      '#markup' => theme('container', array(
+        'element' => array(
+          '#children' => l(t('Reset Filters'), $view_path),
+          '#id' => 'reset-filters',
+        ),
+      )),
+    );
+    $refine = nas_conservation_tracker_refine_button('species');
+    $vars['alphabet'] = theme_item_list($letters);
+    $vars['reset'] = drupal_render($reset);
+    $vars['refine_listing'] = drupal_render($refine);
+    drupal_add_js(NAS_CT_JS_PATH . 'nas_conservation_tracker_species.js');
+    drupal_add_js(array('nasConservationTracker' => array('speciesPath' => $view_path)), 'setting');
+  }
+}
+
+function nas_conservation_tracker_refine_button($type) {
+  return array(
+    '#type' => 'markup',
+    '#markup' => theme('container', array(
+      'element' => array(
+        '#children' => l(t('Refine Listing'), ''),
+        '#id' => 'refine-listing-' . $type,
+        '#attributes' => array(
+          'class' => array(
+            'hide-for-large',
+            'hide-for-xlarge',
+            'nas-ct-refine-listing',
+          ),
+        ),
+      ),
+    )),
+  );
+}
+
+function nas_conservation_tracker_add_base($href = NULL) {
+  if (!$href) {
+    $href = base_path();
+  }
+  $base = array(
+    '#tag' => 'base',
+    '#attributes' => array(
+      'href' => $href,
+    ),
+  );
+  drupal_add_html_head($base, 'nas_conservation_tracker_base');
+}
+
+function nas_conservation_tracker_include_angular() {
+  drupal_add_js('//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js', 'external');
+  $libs = [
+    'nas_master_native_plants' => [
+      'angularjs',
+      'angularjs-ui-router',
+      'angularjs-ui-bootstrap',
+      'angularjs-sanitize',
+      'angularjs-cookies',
+      'angularjs-animate',
+      'angularjs-storage',
+      'angularjs-scroll',
+    ],
+    'system' => [
+      'jquery.cookie',
+    ]
+  ];
+  foreach ($libs as $module => $libs) {
+    foreach ($libs as $lib) {
+      drupal_add_library($module, $lib);
+    }
+  }
+}
+
+function nas_conservation_tracker_download_csv($tab, $scorecard_id) {
+  $filename = nas_conservation_tracker_csv_name($tab, $scorecard_id);
+  if (file_exists($filename)) {
+    drupal_goto($filename);
+  }
+  else {
+    // Try to generate CSV file one more time.
+    $json_data = nas_conservation_tracker_get_json('scorecard', $scorecard_id);
+    nas_conservation_tracker_csv_cache_update($json_data);
+
+    if (!file_exists($filename)) {
+      drupal_not_found();
+    }
+    else {
+      drupal_goto($filename);
+    }
+  }
+}
+
+function nas_conservation_tracker_csv_name($tab, $scorecard_id, $real = FALSE) {
+  $node = node_load(nas_conservation_tracker_scorecard_nid($scorecard_id));
+  if ($node) {
+    $dir = NAS_CT_CSV_PATH;
+    file_prepare_directory($dir, FILE_CREATE_DIRECTORY);
+    $file = '/' . preg_replace('@[^a-z0-9-]+@','-', strtolower($node->title)) . '-' . $tab . '.csv';
+    return $real ? drupal_realpath(NAS_CT_CSV_PATH) . $file : NAS_CT_CSV_PATH . $file;
+  }
+}
+
+function nas_conservation_tracker_csv_cache_update($json_data) {
+  $tabs = variable_get('nas_conservation_tracker_tabs', array('threats', 'actions', 'response', 'partners'));
+  $disabled = array('partners');
+  foreach ($tabs as $tab) {
+    if (!in_array($tab, $disabled)) {
+      $filename = nas_conservation_tracker_csv_name($tab, $json_data['id'], TRUE);
+      if (!empty($filename)) {
+        if (file_exists($filename)) {
+          drupal_unlink($filename);
+        }
+        $file = fopen($filename, 'w');
+        $csv = nas_conservation_tracker_csv_get_sites($tab, $json_data);
+        if (!empty($csv)) {
+          foreach ($csv as $fields) {
+            foreach($fields as $key => $field) {
+              if (is_array($field)) {
+                $fields[$key] = implode(', ', $field);
+              }
+            }
+            fputcsv($file, $fields);
+          }
+        }
+        fclose($file);
+      }
+    }
+  }
+}
+
+function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
+  $head = array(t('Name'), t('Latitude'), t('Longitude'), t('Flyway'), t('State'));
+  $csv = array('head' => $head);
+  $max = 0;
+  $chart_type = (isset($json_data['settings'][$tab]['chart']['type']))? $json_data['settings'][$tab]['chart']['type'] : 'data';
+  if (empty($json_data[$tab]['sites'])) {
+    return array();
+  }
+  foreach ($json_data[$tab]['sites'] as $key => $site) {
+    $site_info = array(
+      $site['name'],
+      $site['latitude'],
+      $site['longitude'],
+      $site['state'],
+      $site['flyway'],
+    );
+    $csv[$key] = $site_info;
+    $categories = array();
+    if (empty($site[$tab]) || count($site[$tab]) == 0 ) {
+      $site[$tab] = array();
+    }
+    if (in_array($chart_type, array('actions', 'threats'))) {
+      foreach ($site[$chart_type] as $item) {
+        if (!empty($item['categories'])) {
+          foreach ($item['categories'] as $category) {
+            if (!in_array($category['name'], $categories)) {
+              $categories[] = $category['name'];
+            }
+          }
+        }
+      }
+      foreach ($categories as $cat) {
+        $csv[$key][] = $cat;
+      }
+      $count = count($categories);
+      if ($count > $max) {
+        $max = $count;
+      }
+    }
+    elseif ($chart_type == 'data') {
+      foreach ($site['data'] as $datakey => $data) {
+        if ($data['value_type']['name'] == $json_data['settings']['response']['chart']['value_type'] &&
+          $data['key_type']['name'] == $json_data['settings']['response']['chart']['key_type']) {
+          $csvkey = $key . $datakey;
+          $csv[$csvkey] = $site_info;
+          if (isset($data['key'])) {
+            $csv[$csvkey][] = $data['key'];
+          }
+          if (isset($data['value'])) {
+            $csv[$csvkey][] = $data['value'];
+          }
+        }
+      }
+    }
+  }
+  if (in_array($chart_type, array('actions', 'threats'))) {
+    for ($i = 1; $i <= $max; $i++) {
+      $csv['head'][] = t('Category @i', array('@i' => $i));
+    }
+  }
+  elseif ($chart_type == 'data') {
+    $csv['head'][] = !empty($json_data['settings'][$tab]['chart']['key_type']) ? t($json_data['settings'][$tab]['chart']['key_type']) : '';
+    $csv['head'][] = !empty($json_data['settings'][$tab]['chart']['value_type']) ? t($json_data['settings'][$tab]['chart']['value_type']) : '';
+  }
+  return $csv;
+}

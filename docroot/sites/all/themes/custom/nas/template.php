@@ -1473,6 +1473,10 @@ function nas_preprocess_panels_pane(&$vars) {
       $vars['title_suffix'] = '</div></div>';
     }
   }
+  if ($vars['pane']->type == 'block' && $vars['pane']->subtype == 'menu-menu-ct-menu' && is_array($vars['content'])) {
+    $vars['content']['#prefix'] = '<div class="ct-scorecard-tabs nas-ct-menu"><div class="ct-scorecard-tabs__help"><div class="row">';
+    $vars['content']['#suffix'] = '</div></div></div>';
+  }
 }
 
 /**
@@ -2060,6 +2064,15 @@ function nas_file_icon(array $variables) {
  */
 function nas_preprocess_asc_landing_page(&$vars) {
   $vars['asc_landing_page_sidebar_title'] = drupal_static('asc_landing_page_sidebar_title', NULL);
+}
+
+/**
+ * Preprocess function for views_view_fields theme.
+ */
+function nas_preprocess_views_view_fields(&$vars) {
+  if ($vars['view']->name == 'ct_species') {
+
+  }
 }
 
 /**

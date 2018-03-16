@@ -1,0 +1,98 @@
+{
+  "id": "2",
+  "name": "Working Lands",
+  "tagline": "We focus on four landscapes dominated by private lands where birds and habitats are most threatened:  California's Central Valley; the sagebrush ecosystem of the interior West; North American grasslands, including the Chihuahuan Desert; and eastern forests.",
+  "settings": {},
+  "tabs": {
+    "overview": {
+      "title": "Overview",
+      "description": "Working lands represent one of the best hopes for conservation.  These parcels of forests, ranches, and farms add up to roughly a billion acres--or about half the land in the entire Lower 48 states.  Audubon collaborates with landowners, land managers, government agencies, and private industry across the hemisphere to increase the quality of habitat on privately managed lands to benefit 20 flagship bird species.",
+      "progress": "79"
+    },
+    "goals": {
+      "title": "Goals",
+      "goals": [
+        {
+          "group": "Conservation Goals",
+          "list": [
+            "Increase or stabilize the populations of 20 flagship bird species by reducing threats in 4 priority landscapes",
+            "Increase the acreage of working lands in bird-friendly management programs to 500,000 acres per year.",
+            "Audubon will continue its leadership role with 11 states, multiple federal agencies, and thousands of private-sector stakeholders to implement Greater Sage-Grouse recovery plans. These plans will now cover 67,000,000 acres, and if successfully implemented, ultimately mean protecting more than 350 additional species.",
+            "Increase the amount of public and private funding available to private landowners to adopt bird-friendly land management practices by 10 percent. (In a new Farm Bill alone, this could be as much as $300 million annually.)"
+          ]
+        },
+        {
+          "group": "Engagement Goal",
+          "list": [
+            "Through robust outreach engage 10,000 land managers in bird-friendly land management practices."
+          ]
+        }
+      ]
+    },
+    "partners": {
+      "title": "Partners",
+      "list": [
+        "Pronatura Noreste",
+        "Bird Studies Canada",
+        "Nature Canada",
+        "private landowners",
+        "farmers",
+        "ranchers",
+        "public agencies",
+        "agricultural organizations",
+        "foresters"
+      ]
+    },
+    "initiatives": {
+      "title": "Initiatives",
+      "list": [
+        "<a href='/conservation-tracker/interactive-report/conservation-ranching/actions'>North American Grasslands</a>",
+        "Atlantic Healthy Forests",
+        "Central Valley of California",
+        "Sagebrush Ecosystem"
+      ]
+    },
+    "priority_species": {
+      "title": "Priority Species",
+      "list": [
+        "American Woodcock",
+        "Bell's Vireo",
+        "Black-necked Stilt",
+        "Black-throated Blue Warbler",
+        "Bobolink",
+        "Brown-headed Nuthatch",
+        "Canada Warbler",
+        "Cerulean Warbler",
+        "Florida Scrub Jay",
+        "Golden-winged Warbler",
+        "Greater Sage-Grouse",
+        "Hooded Warbler",
+        "Lesser Prairie Chicken",
+        "Long-billed Curlew",
+        "Northern Bobwhite",
+        "Prairie Warbler",
+        "Rose-breasted Grosbeak",
+        "Sandhill Crane",
+        "Swainson's Hawk",
+        "Swainson's Warbler",
+        "Tricolored Blackbird",
+        "Upland sandpiper",
+        "Western Meadowlark",
+        "Western Sandpiper",
+        "Wood Thrush",
+        "Yellow Warbler",
+        "Yellow-Breasted Chat"
+      ]
+    },
+    "priority_landscapes": {
+      "title": "Priority Landscapes",
+      "list": [
+        "Great Plains",
+        "Chihuahuan Desert",
+        "Eastern Forests",
+        "California's  Central Valley",
+        "Sagebrush of the Intemountain West"
+      ]
+    }
+  }
+}
