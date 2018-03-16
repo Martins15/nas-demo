@@ -68,6 +68,9 @@
 }
 
 @include breakpoint(medium-up) {
+  .mailing-list {
+    position: static;
+  }
   .mailing-list-text,
   .mailing-list-form {
     display: inline-block;

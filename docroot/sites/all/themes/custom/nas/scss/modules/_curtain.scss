@@ -63,6 +63,19 @@
   }
 }
 
+.curtain-content-up {
+  position: absolute;
+  top: 0;
+  height: 400px;
+  z-index: 1;
+  padding: $column-gutter 0;
+  width: 100%;
+  background: linear-gradient(rgba($color-black, 0.5), rgba($color-black, 0));
+  background-repeat: no-repeat;
+  background-size: 100% 100px;
+  background-position: center top;
+}
+
 .curtain-attribution {
   line-height: $size-line-small;
 

@@ -1,0 +1,470 @@
+.ct-strategies-main {
+  overflow: hidden;
+  position: relative;
+  .ct-strategies-tabs-wrap {
+    > div {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 20px auto 0;
+    }
+    .nav-tabs>li>a {
+      margin: 0;
+      padding: 0;
+      line-height: normal;
+    }
+    .nav-tabs>.active>a,
+    .nav-tabs>.active>a:hover,
+    .nav-tabs>.active>a:focus {
+      padding: 0;
+      border: 0;
+      background-color: transparent;
+    }
+    .nav-tabs>li>a:hover, .nav-tabs>li>a:focus {
+      border-color: transparent;
+      background-color: transparent;
+    }
+    .nav.nav-tabs {
+      position: relative;
+      text-align: center;
+      list-style: none;
+      margin: 0;
+      padding-bottom: 10px;
+      border: 0;
+      //position: absolute;
+      //display: none;
+      width: 100%;
+      @include breakpoint(large-up) {
+        display: block;
+        position: relative;
+        width: 50%;
+        padding-top: 30px;
+        padding-right: 50px;
+        padding-bottom: 0;
+        text-align: left;
+        @include content-between();
+      }
+      li {
+        width: 100%;
+        @include breakpoint(large-up) {
+          width: 90px;
+        }
+      }
+      li .link,
+      .mobile-active {
+        display: inline-block;
+        cursor: pointer;
+        background-size: auto 38px;
+        height: 40px;
+        background-position: 10px center;
+        background-repeat: no-repeat;
+        padding-left: 60px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 40px;
+        opacity: .2;
+        @include breakpoint(large-up) {
+          width: 90px;
+          height: auto;
+          margin-top: 0;
+          margin-bottom: 0;
+          padding: 60px 0 0;
+          line-height: 1;
+          background-position: center top;
+          background-size: auto;
+          &:hover {
+            opacity: 1;
+          }
+        }
+        &.active {
+          opacity: 1;
+        }
+      }
+      li {
+        @include breakpoint(large-up) {
+          width: 90px;
+        }
+        &.active {
+          .link {
+            opacity: 1;
+          }
+        }
+      }
+      a {
+        color: #222222;
+        font-family: $lato-font;
+        font-weight: 400;
+        text-align: left;
+        text-transform: capitalize;
+        @include breakpoint(large-up) {
+          text-align: center;
+        }
+      }
+      .mobile-active {
+        display: inline-block;
+        padding-right: 0;
+        @include breakpoint(large-up) {
+          display: none;
+        }
+      }
+      .coasts .link {
+        background-image: url("../img/strategies/1.png");
+      }
+      .coasts.active .link {
+        background-image: url("../img/strategies/1-1.png");
+      }
+      .working-lands .link {
+        background-image: url("../img/strategies/2.png");
+      }
+      .working-lands.active .link {
+        background-image: url("../img/strategies/2-1.png");
+      }
+      .water .link {
+        background-image: url("../img/strategies/3.png");
+      }
+      .water.active .link {
+        background-image: url("../img/strategies/3-1.png");
+      }
+      .bird-friendly-communities .link {
+        background-image: url("../img/strategies/4.png");
+      }
+      .bird-friendly-communities.active .link {
+        background-image: url("../img/strategies/4-1.png");
+      }
+      .climate .link {
+        background-image: url("../img/strategies/5.png");
+      }
+      .climate.active .link {
+        background-image: url("../img/strategies/5-1.png");
+      }
+    }
+  }
+
+  .tab-content {
+    @include breakpoint(large-up) {
+      padding-top: 30px;
+    }
+    .text-wrap {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding-left: 50px;
+      border-left: 1px solid #d9d9d9;
+      @include breakpoint(large-up) {
+        display: block;
+      }
+      h4 {
+        @include breakpoint(large-up) {
+          font-size: 33px;
+          font-weight: 300;
+          line-height: 1.21;
+          margin: 0;
+          color: $black;
+        }
+      }
+      p {
+        @include breakpoint(large-up) {
+          font-size: 14px;
+          line-height: normal;
+          color: $brownish-grey;
+        }
+      }
+    }
+  }
+  .tab-content {
+    overflow: inherit;
+  }
+  .wrap-strategy-breakdown {
+    position: relative;
+    @include breakpoint(large-up) {
+      min-height: 990px;
+      padding: 50px 0;
+      background: none;
+    }
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: $bg-map;
+    }
+    &:before {
+      left: -100%;
+    }
+    &:after {
+      right: -100%;
+    }
+  }
+  .help-wrap-over {
+    @include breakpoint(large-up) {
+      width: 100%;
+      overflow: hidden;
+    }
+  }
+  #strategy-breakdown-left,
+  #strategy-breakdown-right {
+    position: relative;
+    z-index: 999;
+  }
+   #strategy-breakdown-left {
+    width: 100%;
+    background: $dark-bg-filter;
+    color: $white;
+    font-family: $font-sans;
+     @include breakpoint(large-up) {
+       width: 230px;
+       float: left;
+     }
+    h5 {
+      margin-bottom: 0;
+      padding: 15px 15px 5px;
+      color: $white;
+      font-family: $font-sans;
+      font-size: 25px;
+      font-weight: 500;
+      line-height: 1.2;
+      text-align: center;
+      @include breakpoint(large-up) {
+        text-align: left;
+      }
+    }
+    .active {
+      span {
+        color: $orange-ct;
+      }
+    }
+  }
+  .strategy-left-item {
+    position: relative;
+  }
+  #strategy-breakdown-right {
+    > div {
+      position: relative;
+      width: 100%;
+      padding: 20px;
+      background: $white;
+      -webkit-animation: fadeIn 0.3s;
+      animation: fadeIn 0.3s;
+      @include breakpoint(large-up) {
+        width: 400px;
+        max-height: 400px;
+        float: right;
+        overflow: hidden;
+        overflow-y: auto;
+      }
+    }
+    h5, p, ul {
+      font-family: $font-sans;
+    }
+    p, ul {
+      font-size: 14px;
+    }
+    h5 {
+      margin-bottom: 20px;
+      color: #222;
+      font-size: 33px;
+      font-weight: 500;
+    }
+    i.plus {
+      display: none;
+      position: absolute;
+      cursor: pointer;
+      top: 25px;
+      right: 15px;
+      width: 15px;
+      height: 15px;
+      @include breakpoint(large-up) {
+        display: block;
+      }
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        background-color: $color-text-gray;
+        border-radius: 2px;
+        transition: transform 0.25s ease-out;
+      }
+      &:before {
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        transform: rotate(90deg);
+      }
+      &:after {
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        transform: translateY(-50%);
+        background: transparent;
+      }
+    }
+    .js-show-wrap {
+      width: 40px;
+      height: 40px;
+      overflow: hidden;
+      padding: 0;
+      * {
+        opacity: 0;
+      }
+      i {
+        display: block;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        width: 70%;
+        height: 70%;
+        margin: 6px;
+        padding: 10px;
+        opacity: 1;
+        &:before {
+          transform: translateX(-50%);
+        }
+        &:after {
+          background-color: $color-text-gray;
+        }
+      }
+    }
+  }
+  .item-menu {
+    display: block;
+    padding: 10px 15px;
+    border-bottom: 1px solid $bg-map;;
+    background: $dark-bg-filter;
+    color: $white;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    @include breakpoint(large-up) {
+      text-align: left;
+    }
+  }
+  .loader-tabs {
+      position: relative;
+      z-index: 9999;
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      margin-bottom: 50px;
+     // background: $white;
+    @include breakpoint(large-up) {
+      min-height: 500px;
+    }
+      &:after {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        top: 30%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        transform: translate(-50%, -50%);
+        background-color: #333;
+        border-radius: 100%;
+        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+        animation: sk-scaleout 1.0s infinite ease-in-out;
+        @include breakpoint(large-up) {
+          background-color: $white;
+        }
+      }
+    }
+  .progress-wrap {
+    background: transparent;
+  }
+  .map-item__inner-help {
+    padding: 0;
+  }
+  .progress-item {
+    background: #E0E0E0;
+    height: 8px;
+    border-radius: 5px;
+    p {
+      display: block;
+      height: 8px;
+      margin-top: -9px;
+      border-radius: 5px;
+      background: $orange-ct;
+    }
+  }
+  .map-title {
+    margin-top: 5px;
+    color: $orange-ct;
+    font-size: 15px;
+  }
+  .progress-wrap p[data-value]:after{
+    top: 12px;
+    font-size: 15px;
+  }
+  .two-column-content {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+    margin-left: 0;
+    li {
+      margin-left: 10px;
+    }
+  }
+  .second-level-hide-style {
+    display: none;
+    margin-left: 15px;
+    -webkit-animation: fadeIn .3s;
+    animation: fadeIn .3s;
+  }
+  .drop-down-header {
+    .item-header {
+      display: block;
+      position: relative;
+      width: 100%;
+      padding-right: 10px;
+      cursor: pointer;
+      i {
+        display: inline-block;
+        position: absolute;
+        top: 8px;
+        right: 0;
+        bottom: inherit;
+        width: 8px;
+        height: 8px;
+        padding: 3px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        border: solid $dark-filter;
+        border-width: 0 2px 2px 0;
+        border-radius: 0;
+      }
+      &.js-show {
+        i {
+          -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+        }
+      }
+    }
+  }
+  .drop-down-header__item.js-show ~ .second-level-hide-style{
+    display: block;
+  }
+}
+
+.strategies-page-inside {
+  @include breakpoint(large-up) {
+    display: block;
+    position: absolute;
+    height: 990px;
+    top: 170px;
+    width: 100%;
+  }
+  .wrap-map-diagram {
+    min-height: auto;
+  }
+
+  .leaflet-control-layers {
+    display: none;
+  }
+
+}
