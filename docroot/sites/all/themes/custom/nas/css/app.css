@@ -21356,6 +21356,19 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   border-bottom: 10px solid transparent;
   border-left: 20px solid #d8d8d8;
 }
+.switch-wrap .tab-content {
+  display: none;
+  width: 100%;
+  margin-top: 15px;
+  padding: 0 15px;
+  overflow: hidden;
+}
+.switch-wrap .tab-content.current {
+  display: block;
+}
+.switch-wrap .tab-content .tab-bird-container {
+  margin-top: 25px;
+}
 
 .parks_blog {
   position: absolute;
@@ -21577,20 +21590,6 @@ ul.tabs-content .link.extirpations .link__number:before {
 }
 ul.tabs-content .link.colonizations .link__number:before {
   background: url("../img/park-page/up-green.png") no-repeat center;
-}
-
-.tab-content {
-  display: none;
-  width: 100%;
-  margin-top: 15px;
-  padding: 0 15px;
-  overflow: hidden;
-}
-.tab-content.current {
-  display: block;
-}
-.tab-content .tab-bird-container {
-  margin-top: 25px;
 }
 
 .park-body {
