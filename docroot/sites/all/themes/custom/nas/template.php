@@ -2081,3 +2081,14 @@ function _nas_color_mode(&$variables) {
   // Text color mode is inversion of gradient color mode.
   $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
 }
+
+/**
+ * Implements template_preprocess_field().
+ */
+function nas_preprocess_field_field_bird_photo_bird(&$variables) {
+  if(!empty($variables['items'])){
+    foreach ($variables['items'] as $key => $value) {
+      $variables['image_urls'][$key] = file_create_url($value['file']['#item']['uri']);
+    }
+  }
+}
