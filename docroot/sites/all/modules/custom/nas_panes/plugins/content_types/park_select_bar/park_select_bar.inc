@@ -101,7 +101,7 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
   if ($conf['park_select_type'] == 'extended') {
     $parks_map_terms = array();
     foreach ($parks as $nid => $park) {
-      $term = field_get_items('node', $park, 'field_state');
+      $term = field_get_items('node', $park, 'field_region');
       if (!$term) {
         continue;
       }
