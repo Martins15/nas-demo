@@ -155,12 +155,20 @@ function nas_climate_install() {
 }
 
 /**
- * Revert nas_park_feature.
+ * Revert nas_park_feature, nas_park_import.
  */
 function nas_climate_update_7000() {
   features_revert(array(
     'nas_park_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+      'taxonomy',
+      'variable',
       'views_default',
+    ),
+    'nas_park_import' => array(
+      'feeds_importer_default',
     )
   ));
 }
