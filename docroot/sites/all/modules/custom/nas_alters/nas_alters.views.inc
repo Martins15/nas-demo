@@ -75,3 +75,19 @@ function nas_alters_views_query_alter(&$view, &$query) {
     }
   }
 }
+
+/**
+ * Implements hook_views_post_execute().
+ */
+function nas_alters_views_post_execute(&$view) {
+  if ($view->name == 'boa_index') {
+    $result = array();
+    foreach ($view->result as $item) {
+      if (!empty($result[$item->node_title])) {
+        continue;
+      }
+      $result[$item->node_title] = $item;
+    }
+    $view->result = array_values($result);
+  }
+}
