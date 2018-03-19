@@ -1,0 +1,169 @@
+<?php
+/**
+ * @file
+ * Update hooks.
+ */
+
+/**
+ * Implements hook_install()
+ */
+function nas_conservation_tracker_custom_install() {
+
+  //variable_set('nas_conservation_tracker_endpoint', './sites/all/modules/features/nas_conservation_tracker/demo_assets');
+
+  // Revert conservation tracker feature.
+  //features_revert_module('nas_conservation_tracker');
+
+  variable_set('nas_i18n_redirect_ignore', array(
+    'ct',
+    'conservation-tracker',
+    'conservation-tracker/species',
+    'conservation-tracker/strategies',
+    'conservation-tracker/landscapes')
+  );
+
+  $item = array(
+    'link_path' => 'conservation-tracker',
+    'link_title' => 'Conservation Tracker',
+    'menu_name' => 'menu-ct-menu',
+    'weight' => 0,
+    'language' => LANGUAGE_NONE,
+    'plid' => 0, // Parent menu item, 0 if menu item is on top level
+    'module' => 'menu',
+  );
+  $parent = menu_link_save($item);
+
+  $item = array(
+    'link_path' => 'conservation-tracker/landscapes',
+    'link_title' => 'Landscapes',
+    'menu_name' => 'menu-ct-menu',
+    'weight' => 0,
+    'language' => LANGUAGE_NONE,
+    'plid' => $parent, // Parent menu item, 0 if menu item is on top level
+    'module' => 'menu',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'link_path' => 'conservation-tracker/species',
+    'link_title' => 'Species',
+    'menu_name' => 'menu-ct-menu',
+    'weight' => 0,
+    'language' => LANGUAGE_NONE,
+    'plid' => $parent, // Parent menu item, 0 if menu item is on top level
+    'module' => 'menu',
+  );
+  menu_link_save($item);
+
+  $item = array(
+    'link_path' => 'conservation-tracker/strategies',
+    'link_title' => 'Strategies',
+    'menu_name' => 'menu-ct-menu',
+    'weight' => 0,
+    'language' => LANGUAGE_NONE,
+    'plid' => $parent, // Parent menu item, 0 if menu item is on top level
+    'module' => 'menu',
+  );
+  menu_link_save($item);
+  
+
+  // Create scorecard node(s).
+
+  // Black Oystercatcher.
+  $data = nas_conservation_tracker_get_json('scorecard', 123);
+  watchdog('ct debug', print_r($data, TRUE));
+  $node = new StdClass();
+  $node->type = 'ct_scorecard';
+  $node->status = 1;
+  $node->uid = 1;
+  $node->language = LANGUAGE_NONE;
+  $node->title = $data['name'];
+  $node->field_scorecard_id = array(LANGUAGE_NONE => array(array('value' => $data['id'])));
+  $node = node_submit($node);
+  node_save($node);
+  watchdog('ct debug', print_r($node, TRUE));
+
+  $path = array(
+    'source' => 'node/' . $node->nid,
+    'alias' => 'conservation-tracker/interactive-report/black-oystercatcher',
+    'language' => $node->language,
+  );
+
+  path_save($path);
+
+
+  // Coastal Carolinas.
+  $data = nas_conservation_tracker_get_json('scorecard', 321);
+  watchdog('ct debug', print_r($data, TRUE));
+  $node = new StdClass();
+  $node->type = 'ct_scorecard';
+  $node->status = 1;
+  $node->uid = 1;
+  $node->language = LANGUAGE_NONE;
+  $node->title = $data['name'];
+  $node->field_scorecard_id = array(LANGUAGE_NONE => array(array('value' => $data['id'])));
+  $node = node_submit($node);
+  node_save($node);
+  watchdog('ct debug', print_r($node, TRUE));
+
+  $path = array(
+    'source' => 'node/' . $node->nid,
+    'alias' => 'conservation-tracker/interactive-report/coastal-carolinas',
+    'language' => $node->language,
+  );
+
+  path_save($path);
+
+  // Coastal Carolinas.
+  $data = nas_conservation_tracker_get_json('scorecard', 456);
+  watchdog('ct debug', print_r($data, TRUE));
+  $node = new StdClass();
+  $node->type = 'ct_scorecard';
+  $node->status = 1;
+  $node->uid = 1;
+  $node->language = LANGUAGE_NONE;
+  $node->title = $data['name'];
+  $node->field_scorecard_id = array(LANGUAGE_NONE => array(array('value' => $data['id'])));
+  $node = node_submit($node);
+  node_save($node);
+  watchdog('ct debug', print_r($node, TRUE));
+
+  $path = array(
+    'source' => 'node/' . $node->nid,
+    'alias' => 'conservation-tracker/interactive-report/conservation-ranching',
+    'language' => $node->language,
+  );
+
+  path_save($path);
+
+  // Update config for colorbox.
+  variable_set('colorbox_load', TRUE);
+  variable_set('colorbox_inline', TRUE);
+
+  // Set default tooltip text.
+  $tooltips = array(
+    'actions' => 'Actions are classified according to the Open Standards for the Practice of Conservation: <a href="http://cmp-openstandards.org/tools/threats-and-actions-taxonomies">http://cmp-openstandards.org/tools/threats-and-actions-taxonomies</a>',
+    'actions_objectives' => 'To quantify progress towards measurable objectives related to conservation interventions designed to address threats',
+    'threats' => 'Threats are classified according to the Open Standards for the Practice of Conservation: <a href="http://cmp-openstandards.org/tools/threats-and-actions-taxonomies">http://cmp-openstandards.org/tools/threats-and-actions-taxonomies</a>',
+    'threats_objectives' => 'To quantify progress towards measurable objectives related to direct threat reduction',
+    'response' => 'Measures of reproductive success such as productivity are the most informative metrics because threats frequently impact nesting birds and reduce hatching or fledging success.',
+    'response_objectives' => 'To quantify progress towards measurable objectives related to the biological response of birds to our conservation actions',
+    'partners_objectives' => 'To quantify progress towards measurable objectives related to expanding our reach through collaborative conservation efforts',
+  );
+  variable_set('nas_conservation_tracker_tooltips', $tooltips);
+
+  $redirects = array(
+    array('source' => 'ct', 'redirect' => 'conservation-tracker'),
+  );
+
+  // Make redirects for all departments.
+  foreach ($redirects as $item) {
+    $redirect = new stdClass();
+    redirect_object_prepare($redirect, $item);
+    redirect_save($redirect);
+  }
+
+  // Prep dir for csv.
+  $dir = NAS_CT_CSV_PATH;
+  file_prepare_directory($dir, FILE_CREATE_DIRECTORY);
+}

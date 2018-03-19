@@ -1,0 +1,98 @@
+$gray-menu-filter: #fbfaf6;
+$bord-filter: #dfdfdf;
+$dark-filter: #404040;
+$dark-bg-filter: #303030;
+$dark-border-filter: #1c1c1c;
+$text-gray-filter: #9b9b9b;
+$orange-ct: #f15936;
+
+
+@-webkit-keyframes sk-scaleout {
+  0% { -webkit-transform: scale(0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 100% {
+      -webkit-transform: scale(1.0);
+      transform: scale(1.0);
+      opacity: 0;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@mixin style-input() {
+  input[type="radio"], input[type="checkbox"] {
+    position: absolute;
+    left: -999em;
+  }
+  label {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    &:before {
+      content: '';
+      position: absolute;
+      top: .25em;
+      left: -2px;
+      width: 14px;
+      height: 14px;
+    }
+  }
+  input[type="checkbox"] + label:before,
+  input[type="radio"] + label:before {
+    border: 1px solid $bord-filter;
+    background: transparent;
+  }
+  input[type="radio"] + label:before {
+    border-radius: 50%;
+  }
+  input[type="checkbox"]:checked + label:before,
+  input[type="radio"]:checked + label:before {
+    background: $bord-filter;
+  }
+}
+
+@mixin close-btn($size, $depth, $color) {
+  position: relative;
+  display: inline-block;
+  width: $size;
+  height: $size;
+  overflow: hidden;
+  &:before {
+    content: '';
+    position: absolute;
+    height: $depth;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: $color;
+    transform: rotate(45deg);
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    height: $depth;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: $color;
+    transform: rotate(-45deg);
+  }
+}

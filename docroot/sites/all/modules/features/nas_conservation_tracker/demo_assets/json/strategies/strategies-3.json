@@ -1,0 +1,101 @@
+{
+  "id": 3,
+  "name": "Water",
+  "tagline": "Audubon and its partners engage the public on water-management and water-quality issues; restore habitats along rivers, wetlands, and deltas; and explore market based solutions that contribute to the achievement of our water goals.",
+  "settings": {},
+  "tabs": {
+    "overview": {
+      "title": "Overview",
+      "description": "Water is the lifeline for the places that matter to birds. Wetlands, lakes, rivers, estuaries, and deltas are vital habitats for birds across the Western Hemisphere and around the world.  Without water, or with too little or too much water at the wrong time, the functionality of these natural systems is compromised and the result is a lack of food and quality habitat that birds and other wildlife depend on for their survival. Audubon's Water Strategy aims to advance sustainable water management to protect the most important habitats for birds across the hemisphere. ",
+      "progress": "71"
+    },
+    "goals": {
+      "title": "Goals",
+      "goals": [
+        {
+          "group": "2020 Conservation Goals",
+          "list": [
+            "20 percent increase in protected/managed habitat acres that are important wintering, breeding stopover sites for birds in the three key landscapes",
+            "1 million acres of land managed, restored and protected in critical watersheds",
+            "International, federal and state policy actions that ensure adequate flows to critical ecosystems, including the Colorado River Delta, the Salton Sea, the Mississippi River and Delta, and the Greater Everglades",
+            "20 percent increase in Federal and State funding/incentives to enhance water management and restoration action"
+          ]
+        },
+        {
+          "group": "2020 Engagement Goals",
+          "list": [
+            "200,000 people engaged in advocacy on water conservation measures",
+            "25,000 people participating in the new Water for Birds Program – a native habitat/xeriscaping program designed to inform and engage individuals and community members in actions that benefit ecosystems – thus reducing water consumption by 300 million gallons",
+            "75 chapters and 10 Audubon Sanctuaries and Centers engaged in advocacy, education and on the ground actions"
+          ]
+        }
+      ]
+    },
+    "partners": {
+      "title": "Partners",
+      "list": [
+        "Western Rivers Action Network (30,000 people)",
+        "Audubon members (430,000 people)",
+        "US Fish and Wildlife Service",
+        "Sonoran Joint Venture",
+        "Intermountain West Joint Venture",
+        "National Fish and Wildlife Foundation",
+        "Pronatura Noroeste",
+        "international, federal, state, and local agencies",
+        "agriculture producers",
+        "municipalities",
+        "water stakeholders",
+        "businesses",
+        "Native American Tribes"
+      ]
+    },
+    "initiatives": {
+      "title": "Initiatives",
+      "list": [
+        "Western Water",
+        "Everglades",
+        "Great Lakes"
+      ]
+    },
+    "priority_species": {
+      "title": "Priority Species",
+      "list": [
+        "American Avocet",
+        "American White Pelican",
+        "Bald Eagle (Southern)",
+        "Bell's Vireo",
+        "Eared Grebe",
+        "Florida Grasshopper Sparrow",
+        "King Rail",
+        "Least Bittern",
+        "Least Tern",
+        "Prothonotary Warbler",
+        "Reddish Egret",
+        "Ridgway's Rail",
+        "Roseate Spoonbill",
+        "Ruddy Duck",
+        "Sandhill Crane",
+        "Scarlet Tanager",
+        "Snail Kite",
+        "Snowy Plover",
+        "Summer Tanager",
+        "Western Sandpiper",
+        "White-faced Ibis",
+        "Willow Flycatcher (Southwestern)",
+        "Wilson's Phalarope",
+        "Wood Stork",
+        "Yellow Warbler",
+        "Yellow-Breasted Chat"
+      ]
+    },
+    "priority_landscapes": {
+      "title": "Priority Landscapes",
+      "list": [
+        "Colorado River Basin and Delta",
+        "Saline Lakes",
+        "Great Lakes",
+        "Everglades"
+      ]
+    }
+  }
+}

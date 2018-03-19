@@ -17,6 +17,7 @@ env:
     - { name: 'search-api-set-index-server', status: true, arguments: 'default_node_index solr_4_x' }
     - { name: 'search-api-set-index-server', status: true, arguments: 'page_manager_pages solr_4_x' }
     - { name: 'vset', status: true, arguments: 'cdn_status 0' }
+    - { name: 'vset', status: true, arguments: 'securepages_enable 0' }
     - { name: 'search-api-clear', status: false, arguments: "-l {{ site_url }}" }
     - { name: 'search-api-index', status: false, arguments: "-l {{ site_url }}" }
     - { name: 'solr-mark-all', status: false, arguments: "-l {{ site_url }}" }

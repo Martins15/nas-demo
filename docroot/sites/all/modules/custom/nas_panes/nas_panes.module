@@ -732,6 +732,14 @@ function nas_panes_theme() {
       'template' => 'static-cards-two-columns',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_cards_two_columns',
     ),
+    'static_cards_3x' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'items' => NULL,
+      ),
+      'template' => 'static-cards-3x',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_cards_3x',
+    ),
     'static_cards_three_columns' => array(
       'variables' => array(
         'contextual_links' => NULL,

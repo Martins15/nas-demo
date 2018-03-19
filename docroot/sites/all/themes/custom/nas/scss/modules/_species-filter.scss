@@ -1,0 +1,683 @@
+.species-filter {
+  margin-bottom: 40px;
+  font-family: $font-sans;
+  @include breakpoint(large-up) {
+    margin-bottom: 60px;
+  }
+  .text-info {
+    background: $gray-menu-filter;
+    padding: 10px 20px;
+    margin: 30px 10px 10px;
+    @include breakpoint(large-up) {
+      padding: 15px 20px;
+      margin: 30px 10px 30px;
+    }
+    p {
+      color: $text-gray-filter;
+      font-size: 15px;
+      line-height: 1.33;
+      @include breakpoint(large-up) {
+        font-size: 20px;
+      }
+    }
+  }
+  .alphabet-block {
+    overflow: hidden;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    margin-bottom: 30px;
+    ul {
+      list-style: none;
+      margin: 0;
+      @extend %content-between;
+      width: 340%;
+      @include breakpoint(large-up) {
+        width: 100%;
+      }
+    }
+    li {
+      a {
+        font-size: 24px;
+        color: $brownish-grey;
+        cursor: pointer;
+        font-weight: 400;
+        @include breakpoint(large-up) {
+          font-size: 18px;
+        }
+        &.active,
+        &:hover {
+          color: $black;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .filter-block {
+    form {
+      display: none;
+      @include breakpoint(large-up) {
+        display: block;
+      }
+      .js-link-wrap {
+        margin-bottom: 10px;
+        > a {
+          display: block;
+          position: relative;
+          margin: 0 auto;
+          padding: 10px;
+          font-size: 16px;
+          text-align: center;
+          line-height: 30px;
+          border-radius: 6px;
+          background-color: #7AA926;
+          color: $white;
+          &:hover {
+            opacity: .9;
+          }
+        }
+      }
+    }
+    .views-widget-filter-field_ct_letter {
+      display: none;
+    }
+    .views-widget {
+      .form-radios {
+        font-family: $lato-font;
+        width: 100%;
+        padding: 15px 0;
+        margin-bottom: 10px;
+        background: $gray-menu-filter;
+        border: 1px solid $bord-filter;
+      }
+    }
+    fieldset.collapsible {
+      height: auto;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      legend {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+      }
+    }
+    .views-exposed-form .views-exposed-widget {
+      width: 100%;
+      padding: 0;
+    }
+    .form-item.form-type-radio {
+      @include style-input();
+      padding: 15px;
+      border-bottom: 1px solid #dfdfdf;
+      input {
+        margin: 0;
+      }
+      &:last-child {
+        padding: 15px 15px 0;
+        border-bottom: 0;
+      }
+    }
+    .option {
+      font-size: 17px;
+    }
+    .fieldset-legend {
+      position: relative;
+    }
+    .fieldset-title {
+      display: block;
+      position: relative;
+      width: 100%;
+      margin-bottom: 0;
+      padding: 0 15px;
+      color: $black;
+      font-size: 25px;
+      font-weight: normal;
+      .fieldset-legend-prefix {
+        display: block;
+        top: 50%;
+        right: 10px;
+        width: 12px;
+        height: 12px;
+        clip: inherit;
+        transform: translateY(-50%);
+        font-size: 0;
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          transition: transform .25s ease-out;
+          border-radius: 2px;
+          background-color: $dark-filter;
+        }
+        &:before {
+          top: 0;
+          left: 50%;
+          width: 2px;
+          height: 100%;
+          transform: translateX(-50%) rotate(90deg);
+        }
+        &:after {
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          transform: translateY(-50%);
+          background: transparent;
+        }
+      }
+    }
+    .wrap-items,
+    #edit-iucn-wrapper {
+      .form-radios {
+        border: 0;
+      }
+      #edit-iucn {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      #edit-iucn-wrapper {
+        margin-bottom: 0;
+      }
+      .fieldset-title,
+      &.second {
+        padding-left: 25px;
+        font-size: 17px;
+        text-align: left;
+        cursor: pointer;
+        span {
+          display: inline-block;
+          position: absolute;
+          top: 50%;
+          bottom: inherit;
+          width: 8px;
+          height: 8px;
+          padding: 3px;
+          -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+          border: solid $white;
+          border-width: 0 2px 2px 0;
+          border-radius: 0;
+          @include breakpoint(large-up) {
+            border: solid $dark-filter;
+            border-width: 0 2px 2px 0;
+          }
+          &:before,
+          &:after {
+            border-color: transparent;
+            background-color: transparent;
+          }
+          &.js-down {
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+          }
+        }
+      }
+      .collapsed {
+        .fieldset-title span {
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      }
+    }
+    #edit-iucn-wrapper {
+      margin-bottom: 0;
+    }
+    .wrap-items {
+      padding: 15px 0;
+      .help-items.js-close {
+        display: none;
+      }
+      @include breakpoint(large-up) {
+        border-bottom: 1px solid #dfdfdf;
+      }
+    }
+    .collapsed {
+      .fieldset-title {
+        .fieldset-legend-prefix {
+          &:before {
+            transform: translateX(-50%) rotate(0);
+          }
+          &:after {
+            background-color: $dark-filter;
+          }
+        }
+      }
+    }
+    input[type='text'] {
+      border: 1px solid $bord-filter;
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0;
+      padding-right: 30px;
+    }
+    .form-item-search {
+      position: relative;
+      margin-bottom: 16px;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+      }
+      &:before {
+        width: 10px;
+        height: 10px;
+        right: 15px;
+        top: 18px;
+        transform: translateY(-50%);
+        border: 2px solid $dark-filter;
+        border-radius: 100px;
+      }
+      &:after {
+        right: 10px;
+        width: 5px;
+        top: 22px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        border: 2px solid $dark-filter;
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+      }
+    }
+    .js-open-mobile {
+      .fieldset-title,
+      .form-item.form-type-radio label {
+        color: $white;
+      }
+      .views-widget .form-radios,
+      .form-item.form-type-radio {
+        border: 0;
+      }
+      .views-widget .form-radios {
+        background: $dark-bg-filter;
+      }
+      .form-item.form-type-radio {
+        opacity: .5;
+      }
+      .fieldset-title:not(.second) .fieldset-legend-prefix {
+        &:before,
+        &:after {
+          background-color: $white;
+        }
+      }
+      input[type='text'] {
+        color: $white;
+        background: transparent;
+        border: 1px solid $dark-bg-filter;
+      }
+      .form-item-search {
+        &:before,
+        &:after {
+          border: 2px solid #949494;
+        }
+      }
+    }
+    .ajax-progress.ajax-progress-throbber {
+      display: none;
+    }
+  }
+  .birds-wrap {
+    position: relative;
+    &.js-preload {
+      &:after {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        left: 50%;
+        width: 80px;
+        height: 80px;
+        transform: translate(-50%, -50%);
+        background-color: #333;
+        border-radius: 100%;
+        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+        animation: sk-scaleout 1.0s infinite ease-in-out;
+      }
+    }
+    @include breakpoint(large-up) {
+      float: left;
+    }
+    &__title {
+      h4 {
+        font-size: 28px;
+        @include breakpoint(large-up) {
+          font-size: 33px;
+        }
+      }
+      margin-bottom: 15px;
+    }
+    .bird-card {
+      padding: 0;
+      max-width: 95%;
+      @include breakpoint(large-up) {
+        max-width: 100%;
+      }
+    }
+    .bird-card-caption {
+      padding: 0 8px;
+      position: relative;
+      bottom: 0;
+      margin: 10px 0;
+      .common-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 18px;
+      }
+    }
+    .bird-card-illustration {
+      height: auto;
+      width: 100%;
+      &:before {
+        display: none;
+      }
+      img {
+        width: 100%;
+        max-width: inherit;
+        height: auto;
+        max-height: initial;
+      }
+    }
+  }
+}
+
+.dark-style {
+  margin-bottom: 20px;
+  .first-level {
+    > li {
+      color: $white;
+      background: $dark-bg-filter;
+      border: 1px solid $dark-border-filter;
+      margin-bottom: 0;
+    }
+  }
+  .second-level {
+    li {
+      border-bottom: 1px solid $dark-border-filter;
+      opacity: .5;
+    }
+  }
+  i {
+    opacity: .5;
+  }
+  i.plus {
+    &:before,
+    &:after {
+      background-color: $white;
+    }
+  }
+  i.down {
+    border: solid $white;
+    border-width: 0 3px 3px 0;
+  }
+}
+
+// Style for /conservation-tracker/landscapes page.
+#nas-conservation-tracker-landscapes-map-form {
+  display: none;
+  @include breakpoint(large-up) {
+    display: block;
+    position: absolute;
+    z-index: 999;
+    width: 25%;
+    max-width: 230px;
+    margin: 50px 0 0 15.27777777777778%;
+  }
+  .form-item {
+    &.form-type-radios,
+    &.form-type-checkboxes {
+      margin-bottom: 10px;
+      padding: 15px;
+      background: $dark-bg-filter;
+      color: $white;
+      @include breakpoint(large-up) {
+        margin-bottom: 3px;
+      }
+    }
+    input {
+      margin: 0;
+    }
+    label {
+      position: relative;
+      color: $white;
+      font-size: 25px;
+      opacity: .65;
+      &.option {
+        font-size: 17px;
+      }
+    }
+    .form-type-radio,
+    .form-type-checkbox {
+      @include style-input();
+      padding: 5px 0;
+      opacity: .5;
+      &:last-child {
+        padding: 5px 0 0;
+      }
+    }
+  }
+  .form-type-radios,
+  .form-type-checkboxes {
+    > label ~ div {
+      display: none;
+      -webkit-animation: fadeIn 1s;
+      animation: fadeIn 1s;
+    }
+    > label.js-open ~ div {
+      display: block;
+    }
+  }
+  i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    cursor: pointer;
+  }
+  i.plus {
+    width: 12px;
+    height: 12px;
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      background-color: $white;
+      border-radius: 2px;
+      transition: transform 0.25s ease-out;
+    }
+    &:before {
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      transform: translateX(-50%);
+    }
+    &:after {
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      transform: translateY(-50%);
+    }
+    &.js-open {
+      &:before {
+        transform: rotate(90deg);
+      }
+      &:after {
+        background: transparent;
+      }
+    }
+  }
+}
+
+.ct-landscapes-main {
+  position: relative;
+  .wrap-map-diagram {
+    .ct-leaflet-site {
+      border-radius: 50px;
+      background: transparent;
+    }
+    .leaflet-pane {
+      z-index: inherit;
+    }
+  }
+  .leaflet-popup {
+    .leaflet-popup-content-wrapper {
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+    }
+    .bg-white {
+      padding: 5px 15px;
+      overflow: hidden;
+      background: $white;
+      line-height: 1.1;
+    }
+    .leaflet-popup-content {
+      margin: 0;
+      font-family: $font-sans;
+      img {
+        float: left;
+      }
+    }
+    .text-wrap {
+      font-size: 23px;
+      text-align: left;
+    }
+    .link-wrap {
+      a {
+        color: #0AA8E3;
+        font-size: 15px;
+      }
+    }
+    .leaflet-popup-close-button {
+      display: none;
+    }
+  }
+}
+
+.js-overflow {
+  overflow: hidden;
+  .global-header,
+  .global-footer,
+  .mailing-list {
+    z-index: -1;
+  }
+}
+
+#nas-conservation-tracker-landscapes-map-form,
+.filter-block form {
+  &.js-open-mobile {
+    display: block;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px 70px;
+    background-color: #1c1c1c;
+    overflow-y: scroll;
+    > div {
+      margin-top: 25px;
+      a {
+        display: block;
+        background: $dark-bg-filter;
+        color: $white;
+        line-height: 60px;
+        text-align: center;
+      }
+    }
+    .title-form {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      margin-top: 20px;
+      overflow: hidden;
+      color: $white;
+      font-family: $font-sans;
+      font-size: 18px;
+      span {
+        position: relative;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        overflow: hidden;
+        cursor: pointer;
+        &:before {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 100%;
+          top: 50%;
+          left: 0;
+          margin-top: -1px;
+          background: $white;
+          transform: rotate(45deg);
+        }
+        &:after {
+          content: '';
+          position: absolute;
+          height: 2px;
+          width: 100%;
+          top: 50%;
+          left: 0;
+          margin-top: -1px;
+          background: $white;
+          transform: rotate(-45deg);
+        }
+
+      }
+    }
+  }
+}
+
+.pop-up-species-filter {
+  position: fixed;
+  display: none;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  max-width: 480px;
+  padding: 50px 0 45px;
+  transform: translate(-50%, -50%);
+  background: $white;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, .15);
+  text-align: center;
+  &__title {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  &__small-text {
+    color: $brownish-grey;
+    font-size: 16px;
+  }
+  i {
+    @include close-btn(18px, 2px, $darkish-grey);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+}
+
+.overlay-popup {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, .5);
+}
+
+.overlay-popup.js-show-popup {
+  display: block;
+  .pop-up-species-filter {
+    display: block;
+  }
+}
+
+
