@@ -4588,7 +4588,7 @@ function nas_master_update_7314() {
       $md5_file_path = $dirname . '/' . $md5_file . '.dzi';
       if (file_exists($md5_file_path)) {
         $file = file_get_contents($md5_file_path);
-        if(empty($file)) {
+        if (empty($file)) {
           file_unmanaged_delete($md5_file_path);
         }
       }
@@ -4629,4 +4629,112 @@ function nas_master_update_7317() {
   variable_set('amp_library_warnings_display', FALSE);
   variable_set('amp_library_process_statistics', FALSE);
   variable_set('amp_library_process_full_html_warnings', FALSE);
+}
+
+/**
+ * Revert nas_flyway_feature, enable nas_climate.
+ */
+function nas_master_update_7341() {
+  features_revert(array(
+    'nas_flyways_feature' => array(
+      'field_base',
+      'field_instance',
+      'taxonomy',
+      'panelizer_defaults',
+      'strongarm',
+    )
+  ));
+  module_enable(array('nas_climate'));
+}
+
+/**
+ * Import Parks pages.
+ */
+function nas_master_update_7342() {
+  // This update is with Demo data.
+  /*  file_unmanaged_copy('sites/all/modules/features/nas_park_import/demo_assets/adaptation_classes_demo.csv', 'sites/default/files/adaptation_classes_demo.csv');
+    $importer_id = 'park';
+    $source = feeds_source($importer_id);
+    $fetcher_config = $source->getConfigFor($source->importer->fetcher);
+    $fetcher_config['source'] = 'public://adaptation_classes_demo.csv';
+    $source->setConfigFor($source->importer->fetcher, $fetcher_config);
+    $source->save();
+    $source->startImport();*/
+  // This update is with Demo data.
+}
+
+/**
+ * Import Parks to birds relations.
+ */
+function nas_master_update_7343() {
+  // This update is with Demo data.
+  /*  file_unmanaged_copy('sites/all/modules/features/park_bird_import/demo_assets/species_trend_projections_demo.csv', 'sites/default/files/species_trend_projections_demo.csv');
+    $importer_id = 'parks_to_birds';
+    $source = feeds_source($importer_id);
+    $fetcher_config = $source->getConfigFor($source->importer->fetcher);
+    $fetcher_config['source'] = 'public://species_trend_projections_demo.csv';
+    $source->setConfigFor($source->importer->fetcher, $fetcher_config);
+    $source->save();
+    $source->startImport();*/
+  // This update is with Demo data.
+}
+
+/**
+ * Set credit field for case study image.
+ */
+function nas_master_update_7345() {
+  // This update is with Demo data.
+  $file = nas_park_feature_get_image('bird-cart.jpg');
+  if (!empty($file)) {
+    $file->field_file_caption[LANGUAGE_NONE][0]['value'] = '';
+    $file->field_file_credit[LANGUAGE_NONE][0] = array(
+      'value' => 'NPS',
+      'format' => 'html',
+    );
+    file_save($file);
+  }
+}
+
+/*
+ * Enable CT feature.
+ */
+function nas_master_update_7346() {
+  variable_set('nas_conservation_tracker_auth_protection', TRUE);
+  variable_set('nas_conservation_tracker_auth_user', 'audubon');
+  variable_set('nas_conservation_tracker_auth_pass', 'audubon');
+
+  variable_set('nas_conservation_tracker_endpoint', 'http://www.audubon.org/sites/default/files/conservation-tracker');
+  module_enable(array('nas_conservation_tracker'));
+  drupal_flush_all_caches();
+  features_revert_module('nas_conservation_tracker');
+  module_load_install('nas_conservation_tracker');
+  nas_conservation_tracker_custom_install();
+  module_load_include('module', 'nas_conservation_tracker');
+
+  nas_conservation_tracker_load_species();
+}
+
+
+/**
+ * Enable CT Search feature.
+ */
+function nas_master_update_7347() {
+  cache_set('module_implements', array(), 'cache_bootstrap');
+  drupal_static_reset('module_hook_info');
+  drupal_static_reset('drupal_alter');
+  cache_clear_all('hook_info', 'cache_bootstrap');
+  cache_clear_all('system_cache_tables', 'cache');
+
+  module_enable(array('nas_conservation_tracker_search'));
+  features_revert_module('nas_conservation_tracker_search');
+
+}
+
+/**
+ * Re-index CT Species entity.
+ */
+function nas_master_update_7348() {
+  $index = search_api_index_load('ct_species_index', TRUE);
+  $index->reindex();
+  search_api_index_items($index);
 }

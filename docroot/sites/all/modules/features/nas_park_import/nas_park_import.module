@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Park import feature.
+ */
+
+include_once 'nas_park_import.features.inc';

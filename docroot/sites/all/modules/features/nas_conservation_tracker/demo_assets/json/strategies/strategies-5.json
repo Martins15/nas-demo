@@ -1,0 +1,43 @@
+{
+  "id": 5,
+  "name": "Climate",
+  "tagline": "More than half of bird species on the continent are at risk from climate change—but there are reasons for hope. By identifying which birds are most sensitive to climate change and where those changes are most likely to occur, our research provides a roadmap for future conservation and advocacy efforts.",
+  "settings": {},
+  "tabs": {
+    "overview": {
+      "title": "Overview",
+      "description": "Leveraging Audubon's climate science, Audubon will tap into people's passion for birds to create a greater demand for change at the local, state, and national levels through targeted engagement initiatives that involve 1 million American's over the next five years, thereby creating a safe political space and demonstrating the durable public will necessary to secure energy and conservation solutions to the climate threat at scale and at pace to protect 314 threatened and endangered bird species.",
+      "progress": "71"
+    },
+    "goals": {
+      "title": "Goals",
+      "goals": [{
+        "group": "5-Year Conservation and Engagement Goals",
+        "list": [
+          "2100 trained, regularly engaged, moderate and conservative local climate champions",
+          "5 new or enhanced state renewable energy standards or state-wide advances in solar energy",
+          "50 municipal resolutions supporting climate action to protect birds and habitat",
+          "5,000 acres of EPA-designated brownfields restored and hosting solar",
+          "10,000 homes solarized through Audubon efforts, representing more than 500 MW of new solar",
+          "10,000 citizen scientists engaged in monitoring and tracking climate-threatened birds",
+          "100,000 participants- homeowners, cities, corporations- building the World's Largest Bird Sanctuary by planting 100,000 acres of native plants for birds",
+          "1 million Americans newly engaged in climate issues, 40% of whom are moderate or conservative demonstrating a greater demand for change",
+          "Climate conservation plans in 10 countries in Latin America"
+        ]
+      }]
+    },
+    "partners": {
+
+    },
+    "initiatives": {
+      "title": "Initiatives",
+      "list": [
+        "Conservation Doesn't Have a Party",
+        "Climate Watch",
+        "Renewable Energy"
+      ]
+    },
+    "priority_species": {},
+    "priority_landscapes": {}
+  }
+}

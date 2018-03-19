@@ -1,0 +1,190 @@
+.sd-turnover-chart {
+  width: 100%;
+  position: relative; }
+
+.hidden {
+  display: none; }
+
+.sd-turnover-tooltip {
+  pointer-events: none;
+  box-sizing: border-box;
+  position: absolute;
+  text-align: center;
+  font-size: 14px;
+  line-height: 14px;
+  height: 14px;
+  color: #7F7F7F; }
+
+.sd-perma-tooltip {
+  pointer-events: none;
+  box-sizing: border-box;
+  position: absolute;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 14px;
+  height: 14px;
+  max-height: 14px;
+  /*text-transform: uppercase;*/ }
+
+.sd-dot {
+  stroke: none;
+  pointer-events: none;
+  fill: rgba(100, 100, 100, 0.2); }
+
+#sd-mainchart {
+  white-space: nowrap; }
+  #sd-mainchart .hovered {
+    stroke: black; }
+  #sd-mainchart .sd-selected-dot {
+    fill: black; }
+
+#sd-subchart-1 .hovered {
+  stroke: #18a1ad; }
+
+#sd-subchart-1 .sd-selected-dot {
+  fill: #18a1ad; }
+
+#sd-subchart-2 .hovered {
+  stroke: #e8c578; }
+
+#sd-subchart-2 .sd-selected-dot {
+  fill: #e8c578; }
+
+.sd-dot-chart {
+  position: relative;
+  box-sizing: border-box; }
+  .sd-dot-chart .sd-line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #E8E8E8; }
+  .sd-dot-chart h2.sd-axis-label {
+    margin: 6px 3px 0 3px;
+    font-weight: normal;
+    font-size: 18px;
+    text-align: center;
+    width: 100%; }
+
+.sd-label-area {
+  position: relative; }
+  .sd-label-area .sd-axis-left {
+    position: absolute;
+    font-size: 14px;
+    top: 0;
+    left: 0;
+    margin: 3px;
+    line-height: 14px; }
+  .sd-label-area .sd-axis-right {
+    position: absolute;
+    font-size: 14px;
+    top: 0;
+    right: 0;
+    margin: 3px;
+    line-height: 14px; }
+
+.sd-subrow {
+  display: inline-block;
+  float: left;
+  width: 50%;
+  vertical-align: top;
+  box-sizing: border-box; }
+  .sd-subrow.sd-left {
+    padding-right: 20px; }
+  .sd-subrow.sd-right {
+    padding-left: 20px; }
+
+/* BIRD DOTS */
+.dot {
+  stroke: none; }
+
+.bird-dot-container {
+  position: relative;
+  width: 50px;
+  height: 100px;
+  /*border: 1px solid red;*/
+  box-sizing: border-box; }
+
+.bird-dot-container svg {
+  position: absolute;
+  top: -200px;
+  left: -140px;
+  /*border: 1px solid green;*/ }
+
+.sd-map {
+  position: relative; }
+  .sd-map .sd-parkcircle {
+    fill-opacity: 0.5;
+    stroke-width: 0px; }
+    .sd-map .sd-parkcircle.hover {
+      /*fill: red;*/
+      fill-opacity: 1;
+      stroke-width: 2px; }
+  .sd-map .hidden {
+    display: none; }
+
+.sd-map .sd-tooltip {
+  position: absolute;
+  pointer-events: none;
+  width: 236px;
+  padding: 18px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-sizing: border-box; }
+
+.sd-map .sd-tooltip .title {
+  font-size: 18px;
+  line-height: 18px;
+  pointer-events: all;
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  padding-bottom: 16px;
+  cursor: pointer}
+  .sd-map .sd-tooltip .title:hover {
+    color: #0AA8E3; }
+
+.sd-map .sd-tooltip .sd-arrow {
+  margin-top: 4px; }
+
+.sd-map .sd-tooltip .sd-arrow .sd-arrow-icon {
+  fill: #18a1ad; }
+
+.sd-map .sd-tooltip.down .sd-arrow .sd-arrow-icon {
+  fill: #e8c578; }
+
+.sd-map .sd-tooltip .number {
+  display: inline-block;
+  /* width: 40%; */
+  font-size: 70px;
+  margin: 0;
+  text-align: right;
+  margin-right: 12px;
+  padding: 0;
+  font-weight: 700;
+  line-height: 48px;
+  vertical-align: top;
+  color: #18a1ad; }
+
+.sd-map .sd-tooltip.down .number {
+  color: #e8c578; }
+
+.sd-map .sd-tooltip.down .sd-arrow {
+  transform: rotate(180deg); }
+
+.sd-map .sd-tooltip .label {
+  display: inline-block;
+  width: 85px;
+  /* border: 1px solid red; */
+  font-size: 16px;
+  line-height: 16px;
+  vertical-align: top;
+  margin: 0; }
+
+.wand circle {
+  fill: white;
+  stroke: black;
+  stroke-width: 1px; }
+
+.wand line {
+  stroke: black;
+  stroke-width: 1;
+  fill: black; }
