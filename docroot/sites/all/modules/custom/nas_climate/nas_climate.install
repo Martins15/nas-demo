@@ -156,6 +156,8 @@ function nas_climate_install() {
 
 /**
  * Revert nas_park_feature, nas_park_import.
+ *
+ * Delete saved default values from park_description_secondary.
  */
 function nas_climate_update_7000() {
   features_revert(array(
@@ -171,4 +173,9 @@ function nas_climate_update_7000() {
       'feeds_importer_default',
     )
   ));
+
+  db_delete('field_data_field_park_description_secondary')
+    ->execute();
+  db_delete('field_revision_field_park_description_secondary')
+    ->execute();
 }

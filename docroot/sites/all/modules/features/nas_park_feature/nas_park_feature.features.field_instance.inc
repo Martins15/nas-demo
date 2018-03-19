@@ -1779,15 +1779,7 @@ function nas_park_feature_field_default_field_instances() {
   // Exported field_instance: 'node-park-field_park_description_secondary'.
   $field_instances['node-park-field_park_description_secondary'] = array(
     'bundle' => 'park',
-    'default_value' => array(
-      0 => array(
-        'value' => '<h3><span>This Park in Context </span></h3>
-
-<p><span>Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Id ligula porta felis euismod semper. <a href="http://local.net">Curabitur blandit tempus porttitor.</a></span></p>
-',
-        'format' => 'full_html',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
