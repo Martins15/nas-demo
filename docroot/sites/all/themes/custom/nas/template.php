@@ -1251,6 +1251,7 @@ function nas_image($variables) {
     'boa_mail_subscription',
     'engagement_card_full_width',
     'engagement_card_full_width_half_black',
+    'park_bird_species_illustration',
     'article_hero_inline',
     'bean_wysiwyg_full_width',
   );
@@ -1264,7 +1265,7 @@ function nas_image($variables) {
     $attributes = $variables['attributes'];
     $noscript_attributes = $variables['attributes'];
 
-    if (_lazy_loader_enabled() || in_array($variables['style_name'], ['bean_wysiwyg_full_width'])) {
+    if (_lazy_loader_enabled() || in_array($variables['style_name'], ['bean_wysiwyg_full_width', 'park_bird_species_illustration'])) {
       $url = parse_url(file_create_url($variables['path']));
       $path = $url['path'];
 
@@ -1305,6 +1306,9 @@ function nas_image($variables) {
       unset($variables['attributes']['height']);
       unset($variables['width']);
       unset($variables['height']);
+    }
+    if (in_array($variables['style_name'], ['park_bird_species_illustration'])) {
+      $variables['theme_hook_original'] = 'lazyloader_image';
     }
     return theme_lazyloader_image($variables);
   }
@@ -1468,6 +1472,10 @@ function nas_preprocess_panels_pane(&$vars) {
       $vars['title_prefix'] = '<div class="row"><div class="column">';
       $vars['title_suffix'] = '</div></div>';
     }
+  }
+  if ($vars['pane']->type == 'block' && $vars['pane']->subtype == 'menu-menu-ct-menu' && is_array($vars['content'])) {
+    $vars['content']['#prefix'] = '<div class="ct-scorecard-tabs nas-ct-menu"><div class="ct-scorecard-tabs__help"><div class="row">';
+    $vars['content']['#suffix'] = '</div></div></div>';
   }
 }
 
@@ -2059,6 +2067,15 @@ function nas_preprocess_asc_landing_page(&$vars) {
 }
 
 /**
+ * Preprocess function for views_view_fields theme.
+ */
+function nas_preprocess_views_view_fields(&$vars) {
+  if ($vars['view']->name == 'ct_species') {
+
+  }
+}
+
+/**
  * Helper function to provide color_mode_gradient and color_mode_text variables.
  */
 function _nas_color_mode(&$variables) {
@@ -2080,4 +2097,15 @@ function _nas_color_mode(&$variables) {
   $variables['color_mode_gradient'] = $color_mode;
   // Text color mode is inversion of gradient color mode.
   $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
+}
+
+/**
+ * Implements template_preprocess_field().
+ */
+function nas_preprocess_field_field_bird_photo_bird(&$variables) {
+  if(!empty($variables['items'])){
+    foreach ($variables['items'] as $key => $value) {
+      $variables['image_urls'][$key] = file_create_url($value['file']['#item']['uri']);
+    }
+  }
 }

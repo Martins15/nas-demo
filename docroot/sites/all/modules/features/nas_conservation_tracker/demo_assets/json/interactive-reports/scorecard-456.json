@@ -1,0 +1,984 @@
+{
+  "id": "456",
+  "name": "Conservation Ranching",
+  "subtitle": "",
+  "credit": "Photo: Mike Fernandez/Audubon",
+  "image": "http://www.audubon.org/sites/default/files/conservation-tracker/images/hero/scorecard_conservation_ranching_hero.jpg",
+  "settings": {
+    "menuParent": "Strategies",
+    "tabDefault": "actions",
+    "threats": {
+      "scale": [
+        "county",
+        "state",
+        "flyway"
+      ],
+      "map": {
+        "latitude": "40.212440718286466",
+        "longitude": "-89.01123046875001",
+        "zoom": "5",
+        "markersZoom": "4"
+      },
+      "iframe": "//www.audubon.org/sites/default/files/conservation-tracker/pdfs/interactive-reports/acr_brochure_printable.pdf",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_consranching_threats.png",
+      "tagLine": "Anthropogenic pressures on birds, habitats they rely on, and/or an entire ecosystem",
+      "title": "Over 50% of North America’s vast native grasslands that originally covered over 300 million acres have been lost due to:",
+      "description": "<ul><li>Conversion to row crop agriculture</li><li>Woody shrub encroachment due to fire supression and prairie dog declines</li><li>Urbanization and energy development</li><li>Unsustainable livestock management practices</li><li>Desertification</li><li>Short-term and localized landowner incentive programs</li><li>Failed policy approaches</li></ul>",
+      "objectives": [
+        {
+          "description": "",
+          "tooltip": "",
+          "value": ""
+        }
+      ]
+    },
+    "actions": {
+      "scale": [
+        "state",
+        "flyway"
+      ],
+      "map": {
+        "latitude": "40.212440718286466",
+        "longitude": "-89.01123046875001",
+        "zoom": "5",
+        "markersZoom": "5"
+      },
+      "image": "//web4.audubon.org/scidev/images/conservation_ranching.png",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_consranching_actions.png",
+      "tagLine": "Conservation interventions by Audubon field staff and partners as classifed by the Open Standards for the Practice of Conservation",
+      "title": "Program Goals:",
+      "description": "<ul><li>Leverage Audubon’s brand to drive consumer interest in ecologically sustainable beef production</li><li>Develop market-based conservation solutions that help land managers increase their profitability while adopting bird-friendly land management practices.</li><li>Audubon’s policy team, working with a coalition of stakeholders, will engage in reauthorization of the U.S. Farm Bill to promote policies and increase funding available to landowners for conservation</li></ul>",
+      "objectives": [
+        {
+          "description": "Continue working with local ranchers to promote sustainable ranching through market-based incentives to conserve 1,000,000 acres of critical grassland bird habitat by 2020",
+          "tooltip": "",
+          "value": "30%"
+        },
+        {
+          "description": "Protect and restore 10 million acres of ecologically intact grassland habitats throughout North America by 2023",
+          "tooltip": "",
+          "value": "3%"
+        }
+      ],
+      "chart": {
+        "title": "Number of Ranch Acres Enrolled in the Conservation Ranching Program",
+        "type": "data",
+        "chart_type": "bar",
+        "value_type": "Acreage",
+        "key_type": "State",        
+        "operation": "sum",
+        "count_copy": "Ranches in selected/visible area(s): "
+      }
+    },
+    "response": {
+      "scale": [
+         "state",
+        "flyway"
+      ],
+      "map": {
+        "latitude": "40.212440718286466",
+        "longitude": "-89.01123046875001",
+        "zoom": "5",
+        "markersZoom": "4"
+      },
+      "iframe": "//audubon.maps.arcgis.com/apps/webappviewer/index.html?id=3fe2d54c685a46eaad9d5f60949d4e5d",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_consranching_response.png",
+      "tagLine": "Quantifying the effectiveness of our conservation actions using scientifically-sound metrics",
+      "title": "Grassland birds have suffered sharp declines over the past half century",
+      "description": "<ul><li>We developed the Bird Friendliness Index to evaluate the success of the Conservation Ranching program in increasing resilience of grassland bird communities.</li><li>The Bird Friendliness Index is a composite measure that combines abundance, functional diversity, and conservation status of grassland birds to produce a simple metric that evaluates the resiliency of grassland bird communities.</li><li>The metric is based on research showing that bird communities with a diversity of diets and body sizes will compete less and interact more harmoniously with their ecosystem, increasing community and ecosystem resilience.</li><li>The Bird Friendliness Index is used to track trends in resilience over time in response to bird-friendly management practices. These trends can be used to inform adaptive management on Conservation Ranches.</li></ul>",
+      "objectives": [
+        {
+          "description": "Significantly increase and stabilize population numbers of grassland birds",
+          "tooltip": "",
+          "value": ""
+        }
+      ],
+      "chart": {
+        "title": "Mean Bird Friendliness Index",
+        "type": "data",
+        "chart_type": "bar",
+        "value_type": "Acreage",
+        "key_type": "Year",
+        "operation": "sum",
+        "per_site": true,
+        "tooltip": true,
+        "line_y": true,
+        "legend": ["2016", "2017", "2018 - Data collection pending"],
+        "colors": ["#74c476", "#41ab5d", "#cccccc"],
+        "count_copy": "Ranches in selected/visible area(s): "
+      }
+    },
+    "partners": {
+      "map": {
+        "latitude": "40.212440718286466",
+        "longitude": "-89.01123046875001",
+        "zoom": "5",
+        "markersZoom": "4"
+      },
+      "image": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/how_it_works_inforgraphic_2.jpg",
+      "thumbnail": "//www.audubon.org/sites/default/files/conservation-tracker/images/interactive-reports/lightbox/lightbox_thumb_consranching_partners.png",
+      "tagLine": "Our work is co-developed and often led by partner organizations and stakeholders",
+      "title": "Audubon works with domestic and international partners to promote sustainable ranching and expand and coordinate grassland bird conservation work across Canada, the US and Mexico",
+      "description": "The infographic on the right outlines the collaborative roles of Audubon staff, ranchers enrolled in the program, and retail partners in the implementation of the Conservation Ranching Program.",
+      "objectives": [
+      {
+          "description": "Enroll 50 producers in the program",
+          "tooltip": "",
+          "value": ""
+        },        
+       {
+          "description": "Continue collaborating with Bird Studies Canada, Nature Canada and Pronatura Noreste to expand and coordinate conservation ranching tri-nationally.",
+          "tooltip": "",
+          "value": ""
+        }
+      ]
+    }
+  },
+  "landscapes_id": "13",
+  "species_id": "56",
+  "initiatives_id": "63",
+  "actions": {
+    "sites":
+    [
+      {
+        "id": 0,
+        "name": "Kiowa Creek Ranch",
+        "latitude": "39.07118538",
+        "longitude": "-104.6380456",
+        "state": "CO",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "CO",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "2500"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Haubein Ranch",
+        "latitude": "37.33228247",
+        "longitude": "-93.99242106",
+        "state": "MO",
+        "flyway": "Mississippi",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "MO",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "1910"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Ranney Ranch",
+        "latitude": "34.17624217",
+        "longitude": "-105.4762029",
+        "state": "NM",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "NM",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "18000"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "33 Ranch ",
+        "latitude": "43.626393",
+        "longitude": "-101.1076852",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "SD",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "22000"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Concord Ranch",
+        "latitude": "45.45306102",
+        "longitude": "-98.61901804",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "SD",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "3500"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Guptill Ranch",
+        "latitude": "43.99422839",
+        "longitude": "-102.0592182",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "SD",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "7000"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Sunrise Ranch",
+        "latitude": "43.349283",
+        "longitude": "-103.8361455",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "SD",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "4500"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Downey & Henderson Ranches",
+        "latitude": "44.3838786",
+        "longitude": "-104.747626",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "WY",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "1000"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Fiddleback Ranch",
+        "latitude": "43.49064761",
+        "longitude": "-104.9037471",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "WY",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "65000"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "Reed Ranch",
+        "latitude": "43.29255308",
+        "longitude": "-105.1385573",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "WY",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "32000"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "name": "Riehle Ranch",
+        "latitude": "42.64662875",
+        "longitude": "-105.2143301",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "WY",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "43000"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "Robinson Ranch",
+        "latitude": "42.94067837",
+        "longitude": "-105.2666021",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "State",
+              "description": "",
+              "unit": ""
+            },
+            "key": "WY",
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": "18000"
+          }
+        ]
+      }
+    ]
+  },
+  "threats": {
+    "sites":
+    []
+  },
+  "response": {
+    "sites":
+
+    [
+      {
+        "id": 0,
+        "name": "Dallas May Ranch",
+        "latitude": "38.176227",
+        "longitude": "-102.500903",
+        "state": "CO",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.71",
+              "",
+              ""
+            ]
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "Kiowa Creek Ranch",
+        "latitude": "39.07118538",
+        "longitude": "-104.6380456",
+        "state": "CO",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.143",
+              "0.5",
+              "0.5"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Reiser Ranch",
+        "latitude": "47.250578",
+        "longitude": "-100.878474",
+        "state": "ND",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.229",
+              "0.229"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Wild Prairie Beef ",
+        "latitude": "46.081614",
+        "longitude": "-101.599159",
+        "state": "ND",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.206",
+              "0.206"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Ranney Ranch",
+        "latitude": "34.17624217",
+        "longitude": "-105.4762029",
+        "state": "NM",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.437",
+              "0.437"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "33 Ranch ",
+        "latitude": "43.626393",
+        "longitude": "-101.1076852",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.844",
+              "0.844"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Concord Ranch",
+        "latitude": "45.45306102",
+        "longitude": "-98.61901804",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.811",
+              "0.811"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Guptill Ranch",
+        "latitude": "43.99422839",
+        "longitude": "-102.0592182",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.296",
+              "0.296"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Sunrise Ranch",
+        "latitude": "43.349283",
+        "longitude": "-103.8361455",
+        "state": "SD",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "",
+              "0.217",
+              "0.217"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "Downey & Henderson Ranches",
+        "latitude": "44.3838786",
+        "longitude": "-104.747626",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.372",
+              "0.29",
+              "0.29"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "name": "Fiddleback Ranch",
+        "latitude": "43.49064761",
+        "longitude": "-104.9037471",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.328",
+              "0.365",
+              "0.365"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "Pellatz Ranch",
+        "latitude": "43.352658",
+        "longitude": "-105.194523",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.518",
+              "0.271",
+              "0.271"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Reed Ranch",
+        "latitude": "43.29255308",
+        "longitude": "-105.1385573",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.442",
+              "0.235",
+              "0.235"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "name": "Riehle Ranch",
+        "latitude": "42.64662875",
+        "longitude": "-105.2143301",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.249",
+              "0.383",
+              "0.383"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "name": "Robinson Ranch",
+        "latitude": "42.94067837",
+        "longitude": "-105.2666021",
+        "state": "WY",
+        "flyway": "Central",
+        "actions": [],
+        "data": [
+          {
+            "key_type": {
+              "name": "Year",
+              "description": "",
+              "unit": ""
+            },
+            "key": [
+              2016,
+              2017,
+              2018
+            ],
+            "value_type": {
+              "name": "Acreage",
+              "description": "",
+              "unit": "ac"
+            },
+            "value": [
+              "0.238",
+              "0.311",
+              "0.311"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "partners": [
+    {
+      "id": 1,
+      "name": "Private landowners",
+      "state": "",
+      "chapter": "",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 2,
+      "name": "Federal agencies: Natural Resources Conservation Service, US Forest Service, US Fish and Wildlife Service               - International NGOs:  Bird Studies Canada, Nature Canada and Pronatura Noreste",
+      "state": "",
+      "chapter": "",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 3,
+      "name": "Audubon Organizations:  Audubon Dakota, Audubon New Mexico, Audubon Rockies, Audubon Nebraska, Audubon Missouri, and Audubon Texas",
+      "state": "",
+      "chapter": "",
+      "description": "",
+      "image": ""
+    },
+    {
+      "id": 4,
+      "name": "Funding provided by the Andy Love Foundation, Bobolink Foundation, Craig and Shelly Larson, Margaret A. Cargill Foundation, Missouri Dept of Conservation, National Fish and Wildlife Foundation, Natural Resources Conservation Service, ND Natural Resources Trust, Thornburg Foundation",
+      "state": "",
+      "chapter": "",
+      "description": "",
+      "image": ""
+    }
+  ]
+}

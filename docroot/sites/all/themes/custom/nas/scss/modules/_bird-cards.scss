@@ -74,7 +74,8 @@
   .common-name {
     a { color: $color-text-gray !important; }
     margin-bottom: $size-space/2;
-    font-size: $size-text-h4 - 2px;
+    font-size: $size-text-h4 - 5px;
+    white-space: nowrap;
   }
   .scientific-name {
     color: $color-warm-gray;
@@ -105,6 +106,11 @@
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.bird-card-illustration .no-scorecard img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 
 // Variants

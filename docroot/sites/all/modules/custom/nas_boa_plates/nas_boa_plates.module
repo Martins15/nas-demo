@@ -36,7 +36,11 @@ function nas_boa_plates_page_access($node) {
 function nas_boa_plates_ctools_render_alter($info, $page, $context) {
   if ($page) {
     foreach ($context['contexts'] AS $ctools_context) {
-      if ($ctools_context->data->type == 'boa' && $ctools_context->data->panelizer_view_mode == 'page_manager') {
+      if (
+        !empty($ctools_context->data)
+        && $ctools_context->data->type == 'boa'
+        && $ctools_context->data->panelizer_view_mode == 'page_manager'
+      ) {
         _nas_boa_plates_doheader();
       }
     }

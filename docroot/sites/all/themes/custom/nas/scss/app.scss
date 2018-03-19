@@ -157,12 +157,21 @@
 @import "modules/grid-gallery";
 @import "modules/video-page-2";
 
+
+// Conservation-tracker sections.
+@import "mixin-scor";
+@import "modules/bird-page";
+@import "modules/species-filter";
+@import "modules/strategies";
+
 // Sidebar modules
 @import "modules/sidebar";
 @import "modules/article-sidebar";
 @import "modules/story-list";
 @import "modules/contact-info";
 @import "modules/welcome-cards";
+@import "modules/climate-landing";
+@import "modules/park-page";
 
 // Article layouts
 @import "layout/article/full-width";

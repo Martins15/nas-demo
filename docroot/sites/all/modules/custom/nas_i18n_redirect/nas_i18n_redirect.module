@@ -30,7 +30,11 @@ function nas_i18n_redirect_init() {
   if (!$path) {
     return;
   }
+  if (in_array($path, variable_get('nas_i18n_redirect_ignore', array()))) {
+    return;
+  }
   elseif ($translations = i18n_get_path_translations($path)) {
+
     if (isset($translations[$language->language]) && $translations[$language->language]['href'] != $path) {
       drupal_goto($translations[$language->language]['href'], array('language' => $language, 'query' => drupal_get_query_parameters()), 301);
     }
