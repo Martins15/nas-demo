@@ -112,6 +112,7 @@ function park_bird_trend_render($subtype, $conf, $args, $contexts) {
   $display = 'default';
   $view = views_get_view('park_bird_trends');
   $view->set_display($display);
+  $view->set_exposed_input(array('season' => '1','park_trend' => 'species'));
   $view->pre_execute();
   $view->execute();
 
