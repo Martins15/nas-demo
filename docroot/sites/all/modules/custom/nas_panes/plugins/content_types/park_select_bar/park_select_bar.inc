@@ -88,7 +88,8 @@ function park_select_bar_render($subtype, $conf, $args, $contexts) {
   $node = menu_get_object();
   $efq = new EntityFieldQuery();
   $efq->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'park');
+    ->entityCondition('bundle', 'park')
+    ->propertyOrderBy('title', 'ASC');
   $result = $efq->execute();
   if (!isset($result['node'])) {
     return NULL;
