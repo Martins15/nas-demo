@@ -21311,9 +21311,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .switch-wrap {
   position: relative;
   margin-top: 30px;
-  z-index: 0;
   font-family: "Source Sans Pro", Verdana, sans-serif;
-  z-index: 1;
 }
 .switch-wrap .owl-theme .owl-controls .owl-buttons div {
   zoom: 1;
@@ -21368,6 +21366,24 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .switch-wrap .tab-content .tab-bird-container {
   margin-top: 25px;
+}
+.switch-wrap .tab-slider--tabs {
+  z-index: 0;
+}
+.switch-wrap .tab-slider--trigger {
+  z-index: 1;
+}
+.switch-wrap .tab-slider--container {
+  z-index: auto;
+}
+.switch-wrap .tabs-content {
+  padding-bottom: 20px;
+}
+.switch-wrap .tabs-content .link__title .tooltip {
+  z-index: auto;
+}
+.switch-wrap .tab-slider--body {
+  margin-bottom: 0;
 }
 
 .parks_blog {
@@ -21617,7 +21633,6 @@ ul.tabs-content .link.colonizations .link__number:before {
 }
 .node-type-park .park_top {
   position: relative;
-  z-index: 2;
   margin-bottom: 25px;
 }
 .node-type-park .park_top .hero-image {
@@ -21662,7 +21677,7 @@ ul.tabs-content .link.colonizations .link__number:before {
 }
 .node-type-park .list-of-park {
   position: relative;
-  z-index: 9;
+  z-index: 1;
 }
 @media only screen and (min-width: 768px) {
   .node-type-park .list-of-park {
@@ -21672,7 +21687,6 @@ ul.tabs-content .link.colonizations .link__number:before {
 }
 .node-type-park .list-of-park__current-page {
   position: relative;
-  z-index: 1;
   margin-top: 25px;
   padding-bottom: 5px;
   border-bottom: 1px solid #404040;
@@ -21725,7 +21739,6 @@ ul.tabs-content .link.colonizations .link__number:before {
     margin-bottom: 30px;
   }
 }
-
 .node-type-park .park_info > .field {
   margin-right: 30px;
 }
@@ -21734,13 +21747,12 @@ ul.tabs-content .link.colonizations .link__number:before {
     display: inline-block;
   }
 }
-
 .node-type-park .park_info > .field:last-child {
   margin-right: 0;
 }
-.node-type-park .park_info .js-img-in .field-name-field-state,
-.node-type-park .park_info .js-img-in .field-name-field-link,
-.node-type-park .park_info .js-img-in .field-name-field-park-area {
+.node-type-park .park_info .field-name-field-state,
+.node-type-park .park_info .field-name-field-link,
+.node-type-park .park_info .field-name-field-park-area {
   width: calc(100% - 165px);
   float: right;
   margin-right: 0;
