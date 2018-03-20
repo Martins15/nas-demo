@@ -153,3 +153,29 @@ function nas_climate_install() {
     honeypot_create_css($honeypot_element_name);
   }
 }
+
+/**
+ * Revert nas_park_feature, nas_park_import.
+ *
+ * Delete saved default values from park_description_secondary.
+ */
+function nas_climate_update_7000() {
+  features_revert(array(
+    'nas_park_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+      'taxonomy',
+      'variable',
+      'views_default',
+    ),
+    'nas_park_import' => array(
+      'feeds_importer_default',
+    )
+  ));
+
+  db_delete('field_data_field_park_description_secondary')
+    ->execute();
+  db_delete('field_revision_field_park_description_secondary')
+    ->execute();
+}

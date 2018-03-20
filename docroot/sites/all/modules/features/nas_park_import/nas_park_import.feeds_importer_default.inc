@@ -71,10 +71,10 @@ function nas_park_import_feeds_importer_default() {
             'language' => 'und',
           ),
           4 => array(
-            'source' => 'state',
-            'target' => 'field_state',
-            'unique' => FALSE,
-            'language' => 'und',
+            'source' => 'nps_region',
+            'target' => 'field_region',
+            'term_search' => '0',
+            'autocreate' => 1,
           ),
           5 => array(
             'source' => 'size',

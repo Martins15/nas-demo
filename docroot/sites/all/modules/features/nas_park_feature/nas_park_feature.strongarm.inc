@@ -19,7 +19,7 @@ function nas_park_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'locations' => array(
-          'weight' => '10',
+          'weight' => '11',
         ),
         'metatags' => array(
           'weight' => '6',
@@ -193,6 +193,16 @@ function nas_park_feature_strongarm() {
     'priority' => '0.5',
   );
   $export['xmlsitemap_settings_node_park'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_taxonomy_term_us_regions';
+  $strongarm->value = array(
+    'status' => '0',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_taxonomy_term_us_regions'] = $strongarm;
 
   return $export;
 }
