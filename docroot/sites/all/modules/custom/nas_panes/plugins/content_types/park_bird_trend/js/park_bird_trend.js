@@ -74,10 +74,10 @@
         d3.select('.tabs-content__link.colonizations').classed('selected', false);
 
         var trend = $(trendsSwitch).find('option:selected').val();
-        if (trend == 'xxtirpated') {
+        if (trend == 'extirpations') {
           Drupal.settings.nasClimateFeature.birdDot.setExtirpated();
         }
-        else if (trend == 'colonized') {
+        else if (trend == 'colonizations') {
           Drupal.settings.nasClimateFeature.birdDot.setColonized();
         }
         else {
