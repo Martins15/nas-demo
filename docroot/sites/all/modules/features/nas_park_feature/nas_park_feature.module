@@ -362,3 +362,20 @@ function nas_park_feature_theme() {
   );
   return $theme;
 }
+
+/**
+ * implements hook_views_pre_render().
+ */
+function nas_park_feature_views_pre_render(&$view) {
+  // Remove clones.
+  if ($view->name == 'park_bird_trends') {
+    $result = array();
+    foreach ($view->result as $item) {
+      if (!empty($result[$item->node_field_data_field_bird_reference_title])) {
+        continue;
+      }
+      $result[$item->node_field_data_field_bird_reference_title] = $item;
+    }
+    $view->result = array_values($result);
+  }
+}

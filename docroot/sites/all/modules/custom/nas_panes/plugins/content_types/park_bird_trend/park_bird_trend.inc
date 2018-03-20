@@ -115,16 +115,6 @@ function park_bird_trend_render($subtype, $conf, $args, $contexts) {
   $view->pre_execute();
   $view->execute();
 
-  // Remove clones.
-  $result = array();
-  foreach ($view->result as $item) {
-    if (!empty($result[$item->node_field_data_field_bird_reference_title])) {
-      continue;
-    }
-    $result[$item->node_field_data_field_bird_reference_title] = $item;
-  }
-  $view->result = array_values($result);
-
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
   $block = new stdClass();
   $block->content = array(
