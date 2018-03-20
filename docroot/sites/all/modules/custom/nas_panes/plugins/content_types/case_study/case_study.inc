@@ -48,7 +48,7 @@ function case_study_edit_form($form, &$form_state) {
     '#title' => t('Article reference'),
     '#default_value' => !empty($conf['article_reference']['entity_id']) ? $conf['article_reference']['entity_id'] : '',
     '#era_entity_type' => 'node',
-    '#era_bundles' => array('article'),
+    '#era_bundles' => array('article', 'park'),
   );
   $form['case_study_description'] = array(
     '#type' => 'text_format',
