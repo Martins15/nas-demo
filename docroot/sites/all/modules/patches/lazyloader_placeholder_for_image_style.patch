@@ -1,0 +1,74 @@
+diff --git a/docroot/sites/all/modules/contrib/lazyloader/lazyloader.js b/docroot/sites/all/modules/contrib/lazyloader/lazyloader.js
+index 8add5fe..0d44218 100644
+--- a/docroot/sites/all/modules/contrib/lazyloader/lazyloader.js
++++ b/docroot/sites/all/modules/contrib/lazyloader/lazyloader.js
+@@ -11,8 +11,9 @@
+     attach: function (context, settings) {
+       if (lazyloader_icon == undefined) {
+         lazyloader_icon = new Image();
+-
+-        $(lazyloader_icon).attr({src: settings.lazyloader.icon}).addClass('lazyloader-icon');
++        var iconClass = 'lazyloader-icon';
++        iconClass += (typeof settings.lazyloader.icon_class !== 'undefined') ? ' ' + settings.lazyloader.icon_class : '';
++        $(lazyloader_icon).attr({src: settings.lazyloader.icon}).addClass(iconClass);
+       }
+ 
+       // add the loader icon
+diff --git a/docroot/sites/all/modules/contrib/lazyloader/lazyloader.module b/docroot/sites/all/modules/contrib/lazyloader/lazyloader.module
+index 8714cbe..ea425ba 100644
+--- a/docroot/sites/all/modules/contrib/lazyloader/lazyloader.module
++++ b/docroot/sites/all/modules/contrib/lazyloader/lazyloader.module
+@@ -138,10 +138,10 @@ function theme_lazyloader_image($variables) {
+ 
+   static $rdwimages_enabled, $image_placeholder_src;
+   $attributes = $variables['attributes'];
+-
++  $variables['style_to_icon'] = variable_get('lazyloader_placeholder_style_to_icon', FALSE);
+   // Set the data source and placeholder image.
+   $attributes['data-echo'] = file_create_url($variables['path']);
+-  $attributes['data-icon'] = _lazyloader_icon_path();
++  $attributes['data-icon'] = _lazyloader_icon_path($variables);
+   if (!isset($image_placeholder_src)) {
+     // Path to dummy placeholder image, to be replaced by actual image.
+     $image_placeholder = trim(variable_get('lazyloader_placeholder', LAZYLOADER_PLACEHOLDER));
+@@ -172,17 +172,20 @@ function theme_lazyloader_image($variables) {
+   }
+ 
+   // Get the icon width and height for use in the javascript.
+-  list($icon_width, $icon_height) = getimagesize(substr(_lazyloader_icon_path(), strlen(base_path())));
++  list($icon_width, $icon_height) = getimagesize(substr(_lazyloader_icon_path($variables), strlen(base_path())));
+ 
+   $settings['lazyloader'] = array(
+     'throttle' => variable_get('lazyloader_load_image_delay', LAZYLOADER_LOAD_IMAGE_DELAY),
+     'offset' => variable_get('lazyloader_distance', LAZYLOADER_DISTANCE),
+     'debounce' => variable_get('lazyloader_debounce', LAZYLOADER_DEBOUNCE),
+     'unload' => variable_get('lazyloader_unload', LAZYLOADER_UNLOAD),
+-    'icon' => _lazyloader_icon_path(),
++    'icon' => _lazyloader_icon_path($variables),
+     'offsetX' => $icon_width > 0 ? floor($icon_width / 2) : 0,
+     'offsetY' => $icon_height > 0 ? floor($icon_height / 2) : 0,
+   );
++  if (!empty($variables['style_to_icon'][$variables['style_name']])) {
++    $settings['lazyloader']['icon_class'] = $variables['style_name'];
++  }
+   drupal_add_js($settings, array('type' => 'setting'));
+ 
+   // Load the Echo library.
+@@ -275,12 +278,15 @@ function _lazyloader_excluded_by_image_style($variables) {
+ /**
+  * Helper function to get the loading icon.
+  */
+-function _lazyloader_icon_path() {
++function _lazyloader_icon_path($variables = FALSE) {
++  $base = base_path();
++  if (!empty($variables['style_to_icon'][$variables['style_name']])) {
++    return $base . $variables['style_to_icon'][$variables['style_name']];
++  }
+   $icon = variable_get('lazyloader_icon', LAZYLOADER_ICON);
+   $custom_icon_path = variable_get('lazyloader_custom_icon_path', LAZYLOADER_CUSTOM_ICON_PATH);
+ 
+   if (!empty($icon)) {
+-    $base = base_path();
+     if ($icon == 9) {
+       return "{$base}{$custom_icon_path}";
+     }
