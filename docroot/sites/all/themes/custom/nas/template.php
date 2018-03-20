@@ -1447,7 +1447,7 @@ function nas_preprocess_panels_pane(&$vars) {
   }
 
   // Responsive Hero Image logic.
-  if ($vars['pane']->type == 'entity_field' && $vars['pane']->subtype == 'node:field_hero_image') {
+  if ($vars['pane']->type == 'entity_field' && $vars['pane']->subtype == 'node:field_hero_image' && !empty($vars['content']['#object'])) {
     $node = $vars['content']['#object'];
     if ($field_items = field_get_items('node', $node, 'field_hero_mobile_image')) {
       $hero_image = $vars['content'];
