@@ -179,3 +179,13 @@ function nas_climate_update_7000() {
   db_delete('field_revision_field_park_description_secondary')
     ->execute();
 }
+
+/**
+ * Add custom image placeholder for park_bird_species_illustration image style.
+ */
+function nas_climate_update_7001() {
+  $map = array(
+    'park_bird_species_illustration' => 'sites/all/themes/custom/nas/img/park-page/bird_placeholder.gif',
+  );
+  variable_set('lazyloader_placeholder_style_to_icon', $map);
+}

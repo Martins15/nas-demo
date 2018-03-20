@@ -22071,6 +22071,12 @@ ul.tabs-content .link.colonizations .link__number:before {
   -moz-box-shadow: inset 0px 0px 0px 5px #979797;
   box-shadow: inset 0px 0px 0px 5px #979797;
 }
+.view-park-bird-trends.view-id-park_bird_trends.view-display-id-default .views-row img.lazyloader-icon.park_bird_species_illustration {
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  transform: none !important;
+}
 
 .title-letter {
   display: block;
