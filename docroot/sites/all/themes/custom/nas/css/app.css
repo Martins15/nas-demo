@@ -21409,6 +21409,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     transform: scale(1);
   }
 }
+.parks_blog .cell .bird-dot-base-container {
+  position: absolute;
+}
 
 .tab-slider--nav,
 .tab-slider--dots {
