@@ -10,6 +10,7 @@ backup/*
 *.sql.gz
 *.sql
 .idea
+.docksal
 .tern-port
 
 # Ignore configuration files that may contain sensitive information.

@@ -96,14 +96,14 @@
           d3.select('.tabs-content__link.species').classed('selected', false);
           d3.select('.tabs-content__link.extirpations').classed('selected', true);
           d3.select('.tabs-content__link.colonizations').classed('selected', false);
-          Drupal.settings.nasClimateFeature.birdDot.setColonized();
+          Drupal.settings.nasClimateFeature.birdDot.setExtirpated();
         });
 
         d3.select('.tabs-content__link.colonizations').on('click', function () {
           d3.select('.tabs-content__link.species').classed('selected', false);
           d3.select('.tabs-content__link.extirpations').classed('selected', false);
           d3.select('.tabs-content__link.colonizations').classed('selected', true);
-          Drupal.settings.nasClimateFeature.birdDot.setExtirpated();
+          Drupal.settings.nasClimateFeature.birdDot.setColonized();
         });
 
       }

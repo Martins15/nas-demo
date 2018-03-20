@@ -82,7 +82,13 @@ DirectoryIndex index.php index.html index.htm
   # downloaded.
   RewriteRule "(^|/)\." - [F]
 
+
+
   # Custom redirect rules.
+
+  RewriteCond %{HTTP_HOST} ^ct.nas.ffwua.com$ [NC]
+  RewriteCond %{HTTPS} on
+  RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
   # If there any hardcoded links to nasprod.
   RewriteCond %{HTTP_HOST} ^nasprod\.audubon\.org [NC]
@@ -288,6 +294,15 @@ DirectoryIndex index.php index.html index.htm
   RewriteRule ^(campaign/esa)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
   RewriteRule ^(campaign/esa)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
   RewriteRule ^(news/pressroom/bacc/pdfs)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+
+  # Fix for missed files
+  RewriteCond %{ENV:AH_SITE_ENVIRONMENT} !^prod$
+  RewriteCond %{HTTP_HOST} !^www.audubon.org$
+  RewriteCond %{REQUEST_URI} ^/sites/[^\/]*/files/footer-logo\.png$ [OR]
+  RewriteCond %{REQUEST_URI} ^/sites/[^\/]*/files/egret-64x64_0\.png$
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [QSA,L]
 
   # Close access to reinstall.yml.
   RewriteRule ^reinstall.yml$ [R=404,L,NC]

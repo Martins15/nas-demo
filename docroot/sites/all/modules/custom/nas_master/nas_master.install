@@ -4680,49 +4680,6 @@ function nas_master_update_7343() {
 }
 
 /**
- * Update demo Park page.
- */
-function nas_master_update_7344() {
-  // This update is with Demo data.
-  $result = db_select('node', 'n')
-    ->fields('n', array('nid'))
-    ->condition('title', 'Acadia National Park')
-    ->execute()
-    ->fetchAll();
-  if(empty($result)) {
-    watchdog('nas_master', 'Can\'t update node with title \'Acadia National Park\'');
-    return;
-  }
-  $result = reset($result);
-  $node = node_load($result->nid);
-  $park_hero_image_fid = nas_park_feature_get_image('park_hero.png', TRUE);
-  $node->field_hero_image[$node->language][]['fid'] = $park_hero_image_fid;
-  $node->field_location_link[$node->language][] = array(
-    'url' => 'audubon.org',
-    'title' => 'Another link'
-  );
-  $node->field_park_map_image[$node->language][] = (array) nas_park_feature_get_image('map.png');
-  $node->field_park_description[$node->language][]['value'] = 'Park description text goes here, where we can talk about habitats, species guilds, etc. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.';
-  $node->field_birds_s_species_desc[$node->language][]['value'] = 'Climate will become suitable for these species not found in this park today. Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park, as other ecological factors will play an important role.';
-  $node->field_birds_s_extirpations_desc[$node->language][]['value'] = 'Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park, as other ecological factors will play an important role. Climate will become suitable for these species not found in this park today.';
-  $node->field_birds_s_colonizations_desc[$node->language][]['value'] = 'It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park, as other ecological factors will play an important role. Climate will become suitable for these species not found in this park today.Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere.';
-  $node->field_birds_w_species_desc[$node->language][]['value'] = 'As other ecological factors will play an important role. Climate will become suitable for these species not found in this park today.Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park.';
-  $node->field_birds_w_extirpations_desc[$node->language][]['value'] = 'Species not found in this park today.Our analysis shows that future climate conditions in this park will be similar to those that support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park.As other ecological factors will play an important role. Climate will become suitable for these.';
-  $node->field_birds_w_colonizations_desc[$node->language][]['value'] = 'Support this species elsewhere. It does not predict whether these birds will find necessary habitat or resources to successfully colonize the park.As other ecological factors will play an important role. Climate will become suitable for these.Species not found in this park today.Our analysis shows that future climate conditions in this park will be similar to those that.';
-  $node->field_park_description_secondary[$node->language][]['value'] = 'This Park in Context Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Id ligula porta felis euismod semper. Curabitur blandit tempus porttitor.';
-  $node->field_interactive_content[$node->language][]['value'] = 'Here, where we can talk about habitats, species guilds, etc. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.Park description text goes.';
-  node_save($node);
-
-  // Set private path.
-  // This is needrf only fot climate demo environment.
-  $file_private_path = variable_get('file_private_path', FALSE);
-  if ($file_private_path === FALSE || empty($file_private_path)) {
-    variable_set('file_private_path', 'sites/default/files/private');
-  }
-  // This update is with Demo data.
-}
-
-/**
  * Set credit field for case study image.
  */
 function nas_master_update_7345() {
@@ -4736,4 +4693,48 @@ function nas_master_update_7345() {
     );
     file_save($file);
   }
+}
+
+/*
+ * Enable CT feature.
+ */
+function nas_master_update_7346() {
+  variable_set('nas_conservation_tracker_auth_protection', TRUE);
+  variable_set('nas_conservation_tracker_auth_user', 'audubon');
+  variable_set('nas_conservation_tracker_auth_pass', 'audubon');
+
+  variable_set('nas_conservation_tracker_endpoint', 'http://www.audubon.org/sites/default/files/conservation-tracker');
+  module_enable(array('nas_conservation_tracker'));
+  drupal_flush_all_caches();
+  features_revert_module('nas_conservation_tracker');
+  module_load_install('nas_conservation_tracker');
+  nas_conservation_tracker_custom_install();
+  module_load_include('module', 'nas_conservation_tracker');
+
+  nas_conservation_tracker_load_species();
+}
+
+
+/**
+ * Enable CT Search feature.
+ */
+function nas_master_update_7347() {
+  cache_set('module_implements', array(), 'cache_bootstrap');
+  drupal_static_reset('module_hook_info');
+  drupal_static_reset('drupal_alter');
+  cache_clear_all('hook_info', 'cache_bootstrap');
+  cache_clear_all('system_cache_tables', 'cache');
+
+  module_enable(array('nas_conservation_tracker_search'));
+  features_revert_module('nas_conservation_tracker_search');
+
+}
+
+/**
+ * Re-index CT Species entity.
+ */
+function nas_master_update_7348() {
+  $index = search_api_index_load('ct_species_index', TRUE);
+  $index->reindex();
+  search_api_index_items($index);
 }

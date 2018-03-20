@@ -127,7 +127,7 @@ function case_study_edit_form_submit(&$form, &$form_state) {
  */
 function case_study_edit_render($subtype, $conf, $args, $contexts) {
   $article_reference = !empty($conf['article_reference']['entity_id'])
-    ? l(t('Read mode'), 'node/' . $conf['article_reference']['entity_id'])
+    ? l(t('Read more'), 'node/' . $conf['article_reference']['entity_id'])
     : '';
 
   if (!empty($conf['case_study_image'])) {
