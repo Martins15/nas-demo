@@ -11,8 +11,9 @@
     attach: function (context, settings) {
       if (lazyloader_icon == undefined) {
         lazyloader_icon = new Image();
-
-        $(lazyloader_icon).attr({src: settings.lazyloader.icon}).addClass('lazyloader-icon');
+        var iconClass = 'lazyloader-icon';
+        iconClass += (typeof settings.lazyloader.icon_class !== 'undefined') ? ' ' + settings.lazyloader.icon_class : '';
+        $(lazyloader_icon).attr({src: settings.lazyloader.icon}).addClass(iconClass);
       }
 
       // add the loader icon

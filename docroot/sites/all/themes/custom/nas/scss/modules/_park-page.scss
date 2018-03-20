@@ -766,6 +766,12 @@ ul.tabs-content {
         -moz-box-shadow: inset 0px 0px 0px 5px $grey-landing;
         box-shadow: inset 0px 0px 0px 5px $grey-landing;
       }
+      &.park_bird_species_illustration{
+        left:0 !important;
+        top:0 !important;
+        width: 100% !important;
+        transform: none !important;
+      }
     }
   }
 }
