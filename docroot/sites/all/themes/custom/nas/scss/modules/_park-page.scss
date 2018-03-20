@@ -436,26 +436,28 @@ ul.tabs-content {
       margin-bottom: 30px;
     }
     > .field {
-      display: inline-block;
       margin-right: 30px;
+      @include breakpoint(large-up) {
+        display: inline-block;
+      }
       &:last-child {
         margin-right: 0;
       }
     }
-    .js-img-in {
-      .field-name-field-state,
-      .field-name-field-link,
-      .field-name-field-park-area {
-        width: calc(100% - 165px);
-        float: right;
-        margin-right: 0;
-        @include breakpoint(large-up) {
-          width: auto;
-          float: none;
-          margin-right: 30px;
-        }
+
+    .field-name-field-state,
+    .field-name-field-link,
+    .field-name-field-park-area {
+      width: calc(100% - 165px);
+      float: right;
+      margin-right: 0;
+      @include breakpoint(large-up) {
+        width: auto;
+        float: none;
+        margin-right: 30px;
       }
     }
+
     .field-name-field-location-link {
       width: 100%;
       @include breakpoint(large-up) {
@@ -464,7 +466,7 @@ ul.tabs-content {
     }
 
     .field-label {
-      font-weight: normal;
+      font-weight: bold;
     }
     .field-name-field-park-map-image,
     .field-name-field-park-description {
@@ -475,7 +477,9 @@ ul.tabs-content {
         margin-bottom: 5px;
       }
       > div {
-        display: inline-block;
+        @include breakpoint(large-up) {
+          display: inline-block;
+        }
         &:last-child {
           margin-right: 0;
         }

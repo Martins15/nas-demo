@@ -21725,10 +21725,16 @@ ul.tabs-content .link.colonizations .link__number:before {
     margin-bottom: 30px;
   }
 }
+
 .node-type-park .park_info > .field {
-  display: inline-block;
   margin-right: 30px;
 }
+@media only screen and (min-width: 768px) {
+  .node-type-park .park_info > .field {
+    display: inline-block;
+  }
+}
+
 .node-type-park .park_info > .field:last-child {
   margin-right: 0;
 }
@@ -21740,9 +21746,9 @@ ul.tabs-content .link.colonizations .link__number:before {
   margin-right: 0;
 }
 @media only screen and (min-width: 768px) {
-  .node-type-park .park_info .js-img-in .field-name-field-state,
-  .node-type-park .park_info .js-img-in .field-name-field-link,
-  .node-type-park .park_info .js-img-in .field-name-field-park-area {
+  .node-type-park .park_info .field-name-field-state,
+  .node-type-park .park_info .field-name-field-link,
+  .node-type-park .park_info .field-name-field-park-area {
     width: auto;
     float: none;
     margin-right: 30px;
@@ -21757,7 +21763,7 @@ ul.tabs-content .link.colonizations .link__number:before {
   }
 }
 .node-type-park .park_info .field-label {
-  font-weight: normal;
+  font-weight: bold;
 }
 .node-type-park .park_info .field-name-field-park-map-image,
 .node-type-park .park_info .field-name-field-park-description {
@@ -21768,8 +21774,10 @@ ul.tabs-content .link.colonizations .link__number:before {
     margin-bottom: 5px;
   }
 }
-.node-type-park .park_info .help-wrap-field > div {
-  display: inline-block;
+@media only screen and (min-width: 768px) {
+  .node-type-park .park_info .help-wrap-field > div {
+    display: inline-block;
+  }
 }
 .node-type-park .park_info .help-wrap-field > div:last-child {
   margin-right: 0;
