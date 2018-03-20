@@ -21379,7 +21379,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .parks_blog {
-    top: 55px;
+    top: 40px;
     right: 40px;
     width: 50px;
     height: 100px;
