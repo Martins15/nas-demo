@@ -111,7 +111,7 @@
   /*border: 1px solid green;*/ }
 
 .bird-dot-base-container {
-  position: relative; }
+  position: absolute; }
 .bird-dot-base-container svg {
   pointer-events: none;
   position: absolute; }
