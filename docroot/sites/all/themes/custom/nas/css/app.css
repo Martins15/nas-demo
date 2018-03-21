@@ -21168,7 +21168,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   text-align: center;
 }
 .climate-landing .form-container.green {
-  background: #417505;
+  background: #18a1ad;
   padding: 15px 0;
 }
 .climate-landing .form-container .inner {
@@ -21890,7 +21890,7 @@ ul.tabs-content .link.colonizations .link__number:before {
 }
 
 .form-container.green {
-  background: #417505;
+  background: #18a1ad;
   padding: 15px 0;
 }
 .form-container .-wrap-select {
