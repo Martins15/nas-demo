@@ -42,7 +42,11 @@ function nas_mobapp_endpoint_get_endpoint() {
     if ($counted > $amount) {
       $view_results = array_slice($view_results, 0, $amount);
     }
-    foreach ($view_results as &$view_result) {
+    $output = array();
+    foreach ($view_results as $view_result) {
+      if (!empty($output[$view_result->nid])) {
+        continue;
+      }
       $item = array();
       global $base_url;
       $item['title'] = trim($view_result->node_title);
@@ -50,7 +54,7 @@ function nas_mobapp_endpoint_get_endpoint() {
       $item['position'] = $view_result->nodequeue_nodes_node_position;
       $uri = '';
       if ($type == 'article') {
-        $item['url'] = $base_url . '/node/' . $view_result->nid;
+        $item['url'] = $base_url . '/' . drupal_get_path_alias('node/' . $view_result->nid);
         $item['slug'] = !empty($view_result->taxonomy_term_data_node_name) ? $view_result->taxonomy_term_data_node_name : '';
         if (!empty($view_result->field_field_hero_image_1[0]['raw']['file']->uri)) {
           $uri = $view_result->field_field_hero_image_1[0]['raw']['file']->uri;
@@ -68,9 +72,9 @@ function nas_mobapp_endpoint_get_endpoint() {
         $uri = nas_alters_local_image_uri($uri);
         $item['image'] = image_style_url('mobapp', $uri);
       }
-      $view_result = $item;
+      $output[$view_result->nid] = $item;
     }
-    return $view_results;
+    return array_values($output);
   }
   return NULL;
 }
