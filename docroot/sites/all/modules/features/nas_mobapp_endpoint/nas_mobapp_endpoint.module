@@ -38,10 +38,6 @@ function nas_mobapp_endpoint_get_endpoint() {
   $amount = intval($amount);
   if (!empty($types[$type]) && $amount > 0) {
     $view_results = views_get_view_result('mobile_app', $types[$type], $lang);
-    $counted = count($view_results);
-    if ($counted > $amount) {
-      $view_results = array_slice($view_results, 0, $amount);
-    }
     $output = array();
     foreach ($view_results as $view_result) {
       if (!empty($output[$view_result->nid])) {
@@ -73,6 +69,10 @@ function nas_mobapp_endpoint_get_endpoint() {
         $item['image'] = image_style_url('mobapp', $uri);
       }
       $output[$view_result->nid] = $item;
+    }
+    $counted = count($output);
+    if ($counted > $amount) {
+      $output = array_slice($output, 0, $amount);
     }
     return array_values($output);
   }
