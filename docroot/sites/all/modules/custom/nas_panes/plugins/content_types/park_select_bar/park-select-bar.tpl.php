@@ -34,23 +34,11 @@
           </div>
           <div class="form-container__form inner">
             <div class="state-select columns large-3">
-<!--              <select id="parks_map_terms">
-                <?php /*foreach ($parks_map_terms as $tid => $map): */?>
-                  <option value="<?php /*print $tid */?>"><?php /*print $map['title'] */?></option>
-                <?php /*endforeach; */?>
-              </select>-->
                 <select name="parks" id="parks-select">
-                    <option value=""><?php print t('State')?></option>
+                    <option value=""><?php print t('Region')?></option>
                 </select>
             </div>
             <div class="bird-select columns large-9">
-<!--              <?php /*foreach ($parks_map_terms as $tid => $map): */?>
-                <select id="<?php /*print $tid */?>">
-                  <?php /*foreach ($map['nodes'] as $nid => $park_title): */?>
-                    <option value="<?php /*print $nid */?>"><?php /*print $park_title */?></option>
-                  <?php /*endforeach; */?>
-                </select>
-              --><?php /*endforeach; */?>
                 <select name="state" id="state-select">
                     <option value="" selected><?php print t('Select')?></option>
                 </select>
