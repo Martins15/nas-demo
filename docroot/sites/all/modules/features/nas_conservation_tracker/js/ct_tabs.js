@@ -188,7 +188,7 @@
             doc.text(12, offset, $scope.isActive.capitalize());
 
             //@todo Divide in independent pieces, so if some fail - pdf generating won't be broken.
-            html2canvas(document.querySelector("#scorecard-overview")).then(canvas => {
+            html2canvas(document.querySelector("#scorecard-overview")).then(function(canvas) {
               doc.addImage(canvas.toDataURL(), 'PNG', 10, 50, w2, h2);
 
 
@@ -215,16 +215,16 @@
                 doc.addImage(Drupal.settings.nasConservationTracker.leafletImage, 'PNG', 0, offset1, w, h);
               //}
 
-              html2canvas(document.querySelector("#charts-actions")).then(canvas => {
+              html2canvas(document.querySelector("#charts-actions")).then(function(canvas) {
                 doc.addPage();
                 doc.addImage(canvas.toDataURL(), 'PNG', 5, 10, size2.x, size2.y);
 
 
-                html2canvas(document.querySelector("#charts-objectives")).then(canvas => {
+                html2canvas(document.querySelector("#charts-objectives")).then(function(canvas) {
                   doc.addImage(canvas.toDataURL(), 'PNG', 5, offset3, size3.x, size3.y);
 
                   if ($scope.tab.settings[$scope.isActive].footnotes) {
-                    html2canvas(document.querySelector("#footnotes-content")).then(canvas => {
+                    html2canvas(document.querySelector("#footnotes-content")).then(function(canvas) {
                       doc.addImage(canvas.toDataURL(), 'PNG', 15, offset4, size4.x, size4.y);
                       $scope.pdfLoading = false;
                       doc.save($scope.tab.name + '.pdf');
@@ -241,7 +241,7 @@
           function calcSize(selector, margin) {
             var e = 0.264583;
             var element = document.querySelector(selector);
-            var size = {x,y};
+            var size = {x:0,y:0};
             if (element) {
               size.x = parseInt((element.offsetWidth * e).toFixed());
               size.y = parseInt((element.offsetHeight * e).toFixed());
