@@ -5035,11 +5035,6 @@ small {
   bottom: 0;
 }
 
-.bird-card-illustration .no-scorecard img {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-}
-
 .bird-card.small {
   max-width: 160px;
 }
