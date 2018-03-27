@@ -19377,6 +19377,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-weight: 400;
   text-align: left;
   text-shadow: none;
+  margin-bottom: 10px;
 }
 @media only screen and (min-width: 768px) {
   .ct-scorecard-header .curtain-card h1,

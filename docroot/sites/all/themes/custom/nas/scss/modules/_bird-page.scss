@@ -1511,6 +1511,7 @@ $gray-lightish: #9b9b9b;
     font-weight: 400;
     text-align: left;
     text-shadow: none;
+    margin-bottom: 10px;
     @include breakpoint(large-up) {
       font-size: 64px;
     }
