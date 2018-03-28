@@ -33,6 +33,7 @@
     <figcaption class="bird-card-caption">
       <?php print $fields['field_ct_common_name']->content; ?>
       <?php print $fields['field_ct_scientific_name']->content; ?>
+      <div class="bird-card-caption__icon"></div>
     </figcaption>
   </figure>
 </div>
