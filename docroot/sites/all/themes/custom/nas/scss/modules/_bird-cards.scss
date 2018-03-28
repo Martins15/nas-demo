@@ -65,12 +65,27 @@
   }
 }
 
+.has-scorecard-wrapper {
+  .bird-card-caption {
+    &__icon {
+      width: 20px;
+      height: 20px;
+      background: url('../img/scorecard_icon.png');
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+    }
+  }
+}
+
 .bird-card-caption {
   position: absolute;
   bottom: $size-space;
   margin: 0 $size-space 0 0;
   padding-top: $size-space*3;
   @include background-image(linear-gradient(rgba($color-white, 0) 0%, rgba($color-white, 1) 50%, rgba($color-white, 1) 100%));
+
   .common-name {
     a { color: $color-text-gray !important; }
     margin-bottom: $size-space/2;
@@ -82,6 +97,7 @@
     font-size: $size-text-tiny;
     line-height: $size-text-tiny + 5px;
     font-style: italic;
+    padding-right: 32px;
   }
   &.bird-card-caption-long {
     bottom: 0;

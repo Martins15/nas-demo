@@ -4986,6 +4986,16 @@ small {
   max-width: 95%;
 }
 
+.has-scorecard-wrapper .bird-card-caption__icon {
+  width: 20px;
+  height: 20px;
+  background: url("../img/scorecard_icon.png");
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+
 .bird-card-caption {
   position: absolute;
   bottom: 10px;
@@ -5011,6 +5021,7 @@ small {
   font-size: 12px;
   line-height: 17px;
   font-style: italic;
+  padding-right: 32px;
 }
 .bird-card-caption.bird-card-caption-long {
   bottom: 0;
