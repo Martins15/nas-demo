@@ -9,7 +9,7 @@
             <div class="mobile-active {{isActiveTab}}" for="{{isActiveTab}}" ng-click="toggle = ! toggle">{{isActiveTab}}</div>
             <ul ng-class="{'open' : toggle }" ng-click="toggle = ! toggle">
                 <li ng-repeat="tab in tabs" ng-mouseenter="hover(tab.route)" ng-mouseleave="unhover()" class="{{tab.active}}">
-                    <a ui-sref="{{ tab.route }}"0
+                    <a ui-sref="{{ tab.route }}"
                        class="{{tab.heading}} {{tab.active}}">{{ tab.heading }}</a>
                 </li>
             </ul>
