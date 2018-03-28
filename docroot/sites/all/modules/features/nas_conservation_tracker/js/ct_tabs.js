@@ -80,6 +80,15 @@
 
         $scope.tabs = tabsArray;
 
+        $scope.hover = function(tab) {
+          $scope.originalActiveTab = $scope.isActiveTab;
+          $scope.isActiveTab = tab;
+        };
+
+        $scope.unhover = function() {
+          $scope.isActiveTab = $scope.originalActiveTab;
+        };
+
         $scope.$on("$stateChangeSuccess", function () { // Keep the right tab highlighted if the URL changes.
           $scope.tabs.forEach(function (tab) {
             tab.active = $scope.active(tab.route);

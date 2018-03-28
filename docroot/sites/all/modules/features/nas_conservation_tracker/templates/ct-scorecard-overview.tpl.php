@@ -8,7 +8,7 @@
         <div class="menu-wrap columns large-6">
             <div class="mobile-active {{isActiveTab}}" for="{{isActiveTab}}" ng-click="toggle = ! toggle">{{isActiveTab}}</div>
             <ul ng-class="{'open' : toggle }" ng-click="toggle = ! toggle">
-                <li ng-repeat="tab in tabs" class="{{tab.active}}">
+                <li ng-repeat="tab in tabs" ng-mouseenter="hover(tab.route)" ng-mouseleave="unhover()" class="{{tab.active}}">
                     <a ui-sref="{{ tab.route }}"
                        class="{{tab.heading}} {{tab.active}}">{{ tab.heading }}</a>
                 </li>
