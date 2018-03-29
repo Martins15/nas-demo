@@ -37,7 +37,7 @@
     </div>
 </div>
 
-<div class="global-content with-padding tabs-ng-content" data-ng-controller="Content">
+<div class="global-content with-padding tabs-ng-content {{tab.path}}-overview" data-ng-controller="Content">
     <div id="scorecard-overview" class="row">
         <div class="js-preloader" ng-show="startLoad"></div>
         <div ng-repeat="(key, value) in tab.settings.tabs" tabs-repeat-directive>

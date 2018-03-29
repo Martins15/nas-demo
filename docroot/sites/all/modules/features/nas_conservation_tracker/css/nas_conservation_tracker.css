@@ -124,3 +124,7 @@
 body.conservation-tracker-pages .mailing-list {
   position: static;
 }
+
+.wrap-map-diagram.partners-charts {
+  background: #fff;
+}
