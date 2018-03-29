@@ -337,6 +337,7 @@
                     tabData.settings.overview.partners = tabData.partners;
                   }
 
+                  tabData.path = currentName;
                   tabData.settings.tabs = linkArray;
                   Drupal.settings.nasConservationTracker.tabsOverview[currentName] = tabData;
                   Drupal.settings.nasConservationTracker.tabsData[currentName] = response.data.data;
@@ -350,7 +351,6 @@
               $scope['tab'] = Drupal.settings.nasConservationTracker.tabsOverview[currentName];
               updateTabData(Drupal.settings.nasConservationTracker.tabsData[currentName]);
             }
-
           }
         }
 

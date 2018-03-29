@@ -32,7 +32,10 @@
       loc = getLocation(),
       json = Drupal.settings.nasConservationTracker.jsonData[loc],
       $radios = $('input[name="map_type"]'),
-      $reset = $('#edit-map-reset');
+      $reset = $('#edit-map-reset'),
+      $container = $('#charts');
+
+    $container.removeAttr('class').addClass('wrap-map-diagram').addClass(loc + '-charts');
 
     // Delete existing sites from map.
     lMap.eachLayer(function (layer) {
@@ -856,18 +859,20 @@
 
   Drupal.behaviors.nasCtRatingForm = {
     attach: function (context, settings) {
-      var $form = $('#nas-conservation-tracker-rating-form', context);
-      var classes = [
-        'hide-for-xlarge',
-        'hide-for-large',
-        'hide-for-mediun',
-        'hide-for-small',
-        'hide-for-tiny'
-      ];
+      var loc = getLocation();
+      var $rating = $('.map-items .rating-wrap');
+      var $form = $('#nas-conservation-tracker-rating-form', $rating);
       $form.find('input[type="radio"]').change(function(){
         $form.find('textarea, input').fadeIn();
-        //console.log($form.find('textarea, input').length);
       });
+      if (settings.nasConservationTracker.jsonData && settings.nasConservationTracker.jsonData[loc]) {
+        if (loc !== 'partners' && settings.nasConservationTracker.jsonData[loc].sites.length > 0) {
+          $rating.show();
+        }
+        else {
+          $rating.hide();
+        }
+      }
     }
   };
 
