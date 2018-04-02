@@ -9952,6 +9952,7 @@ body.touch .primary-sub-nav-index {
 .banner-title {
   font-size: 24px;
   margin-bottom: 12.5px;
+  text-shadow: 1px 1px #000;
 }
 @media only screen and (min-width: 768px) {
   .banner-title {
@@ -18066,7 +18067,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .help-wrap-items-map-items {
     margin-right: 10px;
     padding-bottom: 0;
-    margin-top: 80px;
+    margin-top: 20px;
     margin-bottom: 0;
     position: relative;
     bottom: inherit;
@@ -18639,7 +18640,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .tabs-ng-content .row {
   position: relative;
-  min-height: 400px;
+  min-height: 300px;
 }
 .tabs-ng-content .js-preloader {
   position: absolute;
@@ -18672,7 +18673,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .tabs-ng-content {
-    padding-bottom: 60px;
+    padding-bottom: 0;
   }
 }
 
@@ -19143,7 +19144,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     -webkit-column-count: 2;
     -moz-column-count: 2;
     column-count: 2;
-    margin: 80px auto 40px;
+    margin: 20px auto 40px;
   }
 }
 @media screen and (min-width: 1000px) {

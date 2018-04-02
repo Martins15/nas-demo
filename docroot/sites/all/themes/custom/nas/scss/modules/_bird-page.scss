@@ -277,7 +277,7 @@ $gray-lightish: #9b9b9b;
   @include breakpoint(large-up) {
     margin-right: 10px;
     padding-bottom: 0;
-    margin-top: 80px;
+    margin-top: 20px;
     margin-bottom: 0;
     position: relative;
     bottom: inherit;
@@ -781,7 +781,7 @@ $gray-lightish: #9b9b9b;
   }
   .row {
     position: relative;
-    min-height: 400px;
+    min-height: 300px;
   }
   .js-preloader {
     position: absolute;
@@ -811,7 +811,7 @@ $gray-lightish: #9b9b9b;
     }
   }
   @include breakpoint(large-up) {
-    padding-bottom: 60px;
+    padding-bottom: 0;
   }
 }
 
@@ -1279,7 +1279,7 @@ $gray-lightish: #9b9b9b;
       -webkit-column-count: 2;
       -moz-column-count: 2;
       column-count: 2;
-      margin: 80px auto 40px;
+      margin: 20px auto 40px;
     }
     @media screen and (min-width: 1000px) {
       width: 29%;
