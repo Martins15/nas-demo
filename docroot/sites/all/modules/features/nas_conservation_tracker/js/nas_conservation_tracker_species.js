@@ -118,11 +118,30 @@
         var classShow = 'js-show-popup';
 
         $('.bird-card-grid-container .no-scorecard-wrapper').click(function () {
+          var birdCard = $(this).find('.views-view-fields .bird-card');
           popupBlock.addClass(classShow);
+          $('.overlay-popup').css('position', 'absolute');
+          $('.pop-up-species-filter').css({
+            'left': birdCard.offset().left,
+            'top': birdCard.offset().top + 4,
+            'width': birdCard.width() + 4,
+            'height': birdCard.height(),
+            'transform': 'translate(0, 0)',
+            'position': 'absolute'
+          });
         });
 
         $('i', popupBlock).click(function () {
           popupBlock.removeClass(classShow);
+          $('.overlay-popup').css('position', 'fixed');
+          $('.pop-up-species-filter').css({
+            'left': '50%',
+            'top': '50%',
+            'transform': 'translate(-50%, -50%)',
+            'position': 'fixed',
+            'width': '70%',
+            'height': 'auto'
+          });
         });
       }
     }
