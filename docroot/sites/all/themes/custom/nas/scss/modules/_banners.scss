@@ -124,6 +124,7 @@
 .banner-title {
   font-size: $size-text-large;
   margin-bottom: $column-gutter/2;
+  text-shadow: 1px 1px #000;
 
   @include breakpoint(large-up) {
     font-size: $size-text-engagement;
