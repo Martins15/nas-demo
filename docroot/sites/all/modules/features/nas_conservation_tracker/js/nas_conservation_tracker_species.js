@@ -123,9 +123,9 @@
           $('.overlay-popup').css('position', 'absolute');
           $('.pop-up-species-filter').css({
             'left': birdCard.offset().left,
-            'top': birdCard.offset().top - 4,
-            'width': birdCard.width() + 2,
-            'height': birdCard.height() + 6,
+            'top': birdCard.offset().top - 2,
+            'width': birdCard.width() + 3,
+            'height': birdCard.height() + 8,
             'transform': 'translate(0, 0)',
             'position': 'absolute'
           });
