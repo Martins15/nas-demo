@@ -20209,6 +20209,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .pop-up-species-filter__title {
   font-size: 30px;
   margin-bottom: 20px;
+  line-height: 34px;
 }
 .pop-up-species-filter__small-text {
   color: #76736c;
