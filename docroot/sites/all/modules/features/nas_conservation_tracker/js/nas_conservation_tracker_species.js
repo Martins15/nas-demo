@@ -107,7 +107,7 @@
       if ($wrapCard.length) {
         $wrapCard.once(function () {
           var titleText = Drupal.t('Interactive report in development.');
-          var smallText = Drupal.t('Please check back latter.');
+          var smallText = Drupal.t('Please check back later.');
           var popUpCard = $("<div class='overlay-popup'><div class='pop-up-species-filter'><i class='close-btn'></i>" +
             "<p class='pop-up-species-filter__title'>"+ titleText+ "</p>" +
             "<p class='pop-up-species-filter__small-text'>"+ smallText + "</p></div></div>");
@@ -123,9 +123,9 @@
           $('.overlay-popup').css('position', 'absolute');
           $('.pop-up-species-filter').css({
             'left': birdCard.offset().left,
-            'top': birdCard.offset().top + 4,
-            'width': birdCard.width() + 4,
-            'height': birdCard.height(),
+            'top': birdCard.offset().top - 4,
+            'width': birdCard.width() + 2,
+            'height': birdCard.height() + 6,
             'transform': 'translate(0, 0)',
             'position': 'absolute'
           });
