@@ -171,6 +171,8 @@
 
       lMap.initiated = true;
     }
+
+    lMap.invalidateSize();
     
     // Helper functions.
 
@@ -864,6 +866,7 @@
       var $form = $('#nas-conservation-tracker-rating-form', $rating);
       $form.find('input[type="radio"]').change(function(){
         $form.find('textarea, input').fadeIn();
+        Drupal.settings.leaflet['0'].lMap.invalidateSize();
       });
       if (settings.nasConservationTracker.jsonData && settings.nasConservationTracker.jsonData[loc]) {
         if (loc !== 'partners' && settings.nasConservationTracker.jsonData[loc].sites.length > 0) {
