@@ -1144,9 +1144,9 @@ $gray-lightish: #9b9b9b;
   position: relative;
   background: $bg-map-bird-new;
   overflow: hidden;
-  min-height: 1300px;
+  //min-height: 1300px;
   @include breakpoint(large-up) {
-    min-height: 900px;
+    //min-height: 900px;
   }
 }
 
