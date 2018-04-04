@@ -33,7 +33,7 @@
     <figcaption class="bird-card-caption">
       <?php print $fields['field_ct_common_name']->content; ?>
       <?php print $fields['field_ct_scientific_name']->content; ?>
-      <div class="bird-card-caption__icon"></div>
+      <a href="<?php print preg_replace('#</?span[^>]*>#is', '/', $fields['field_ct_score_card_url']->content) ?>"><div class="bird-card-caption__icon"></div></a>
     </figcaption>
   </figure>
 </div>
