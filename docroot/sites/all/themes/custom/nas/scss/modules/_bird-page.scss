@@ -133,6 +133,7 @@ $gray-lightish: #9b9b9b;
         background: $grey-menu-bird;
         &.js-show-wrap {
           display: block;
+          z-index: 99999;
         }
         a {
           display: block;

@@ -17925,6 +17925,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .bird-page.body-item .title-wrap__print .show-options.js-show-wrap {
   display: block;
+  z-index: 99999;
 }
 .bird-page.body-item .title-wrap__print .show-options a {
   display: block;
