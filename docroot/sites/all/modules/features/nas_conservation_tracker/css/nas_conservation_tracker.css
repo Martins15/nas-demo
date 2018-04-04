@@ -128,3 +128,9 @@ body.conservation-tracker-pages .mailing-list {
 .wrap-map-diagram.partners-charts {
   background: #fff;
 }
+
+.ct-scorecard-main .leaflet-pane.leaflet-map-pane,
+.ct-scorecard-main .leaflet-pane.leaflet-overlay-pane,
+.ct-scorecard-main .leaflet-pane.leaflet-overlay-pane canvas {
+  height: 100%;
+}
