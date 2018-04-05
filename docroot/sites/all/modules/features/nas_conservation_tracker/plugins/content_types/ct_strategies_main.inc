@@ -63,7 +63,6 @@ function nas_conservation_tracker_strategies_main_render($subtype, $conf, $args,
   ];
   $map = leaflet_build_map($map_info, $features, variable_get('nas_conservation_tracker_landscapes_map_height', '990') . 'px');
 
-dpm($data);
   $vars = array(
     'map' => render($map),
     'strategies' => $data
