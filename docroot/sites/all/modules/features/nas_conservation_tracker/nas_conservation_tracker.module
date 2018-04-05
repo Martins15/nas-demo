@@ -799,7 +799,7 @@ function nas_conservation_tracker_csv_cache_update($json_data) {
 }
 
 function nas_conservation_tracker_csv_get_sites($tab, $json_data) {
-  $head = array(t('Name'), t('Latitude'), t('Longitude'), t('Flyway'), t('State'));
+  $head = array(t('Name'), t('Latitude'), t('Longitude'), t('State'), t('Flyway'));
   $csv = array('head' => $head);
   $max = 0;
   $chart_type = (isset($json_data['settings'][$tab]['chart']['type']))? $json_data['settings'][$tab]['chart']['type'] : 'data';
