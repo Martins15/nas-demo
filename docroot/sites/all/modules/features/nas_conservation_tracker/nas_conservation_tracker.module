@@ -320,7 +320,7 @@ function nas_conservation_tracker_get_json($name, $id = NULL, $cache = TRUE) {
       $json_data = drupal_json_decode($file);
     }
     if ($json_data === FALSE) {
-      watchdog('ct debug', 'CAN NOT BE PARSED DATA - ' . print_r($json_data, TRUE));
+      watchdog('ct debug', "CAN'T PARSE DATA - " . print_r($json_data, TRUE));
     }
 
 
