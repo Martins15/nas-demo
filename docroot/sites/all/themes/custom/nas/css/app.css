@@ -19007,6 +19007,12 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   position: relative;
   background: #222327;
   overflow: hidden;
+  min-height: 1300px;
+}
+@media only screen and (min-width: 768px) {
+  .wrap-map-diagram {
+    min-height: 434px;
+  }
 }
 
 .leaflet-container,
