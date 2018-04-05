@@ -7,7 +7,7 @@
     <div class="ct-strategies-tabs-wrap" ng-app="nasCtStrategies"
          ng-controller="tabs">
         <tabset>
-            <tab ng-repeat="tab in tabs" heading="{{tab.name}}"
+            <tab ng-mouseenter="hover($index)" ng-mouseleave="unhover()" ng-repeat="tab in tabs" heading="{{tab.name}}"
                  class="{{tab.link}}" select="getContent($index)"
                  active="tab.active" disabled="tab.disabled">
                 <tab-heading class="link" ng-class="getClass($index)">
@@ -15,9 +15,9 @@
                 </tab-heading>
                 <div ng-hide="!tab.isLoaded">
                     <div class="text-wrap columns large-6">
-                        <h4>{{tab.name}}</h4>
+                        <h4>{{activeName}}</h4>
                         <div>
-                            <p>{{tab.tagline}}</p>
+                            <p>{{activeTagline}}</p>
                         </div>
                     </div>
                     <div class="wrap-strategy-breakdown">

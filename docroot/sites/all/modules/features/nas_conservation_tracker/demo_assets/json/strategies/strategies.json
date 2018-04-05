@@ -2,26 +2,31 @@
   {
     "id":1,
     "name":"Coasts",
+    "tagline": "Audubon's Coasts initiative focuses on the most threatened and iconic bird species that rely on coastal habitats—estuaries, islands, beaches, and the marine environment—throughout the hemisphere.",
     "link":"coasts"
   },
   {
     "id":2,
     "name":"Working Lands",
+    "tagline": "We focus on four landscapes dominated by private lands where birds and habitats are most threatened:  California's Central Valley; the sagebrush ecosystem of the interior West; North American grasslands, including the Chihuahuan Desert; and eastern forests.",
     "link":"working-lands"
   },
   {
     "id":3,
     "name":"Water",
+    "tagline": "Audubon and its partners engage the public on water-management and water-quality issues; restore habitats along rivers, wetlands, and deltas; and explore market based solutions that contribute to the achievement of our water goals.",
     "link":"water"
   },
   {
     "id":4,
     "name":"Bird-friendly communities",
+    "tagline": "Where birds thrive, people prosper. From urban centers to rural towns, each community can provide important habitat for native birds. In turn, birds offer us a richer, more beautiful, and healthful place to live.",
     "link":"bird-friendly-communities"
   },
   {
     "id":5,
     "name":"Climate",
+    "tagline": "More than half of bird species on the continent are at risk from climate change—but there are reasons for hope. By identifying which birds are most sensitive to climate change and where those changes are most likely to occur, our research provides a roadmap for future conservation and advocacy efforts.",
     "link":"climate"
   }
 ]

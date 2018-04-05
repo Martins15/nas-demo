@@ -97,6 +97,10 @@
           }
           $scope.isActiveTab = $scope.tabs[index].name;
           $scope.isActiveTabLink = $scope.tabs[index].link;
+          $scope.activeName = $scope.tabs[index].name;
+          $scope.activeTagline = $scope.tabs[index].tagline;
+          $scope.originalActiveName = $scope.tabs[index].name;
+          $scope.originalActiveTagline = $scope.tabs[index].tagline;
 
           if (strategiesMap[$scope.tabs[index].link]) {
             var filters = {
@@ -122,6 +126,16 @@
 
         $scope.isSet = function (tabNum) {
           return $scope.tab === tabNum;
+        };
+
+        $scope.hover = function(hovered) {
+          $scope.activeName =  $scope.tabs[hovered].name;
+          $scope.activeTagline = $scope.tabs[hovered].tagline;
+        };
+
+        $scope.unhover = function() {
+          $scope.activeName = $scope.originalActiveName;
+          $scope.activeTagline = $scope.originalActiveTagline;
         };
       };
 
