@@ -43,7 +43,7 @@ function nas_conservation_tracker_strategies_main_render($subtype, $conf, $args,
   // Map.
   $map_info = current(leaflet_map_get_info());
   $map_info['settings']['layerControl'] = TRUE;
-  $map_info['layers']['earth']['urlTemplate'] = '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+  $map_info['layers']['earth']['urlTemplate'] = variable_get('nas_conservation_tracker_map_tiles_url_strategies', '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}');
   // TODO make it configrable via form.
   $map_info['settings']['zoomDefault'] = 3;
   $map_info['settings']['zoom'] = 3;
