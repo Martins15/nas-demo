@@ -671,7 +671,7 @@ function nas_conservation_tracker_preprocess_views_view(&$vars) {
       '#type' => 'markup',
       '#markup' => theme('container', array(
         'element' => array(
-          '#children' => l(t('Reset Filters'), $view_path),
+          '#children' => l(t('Reset Filters'), $view_path, array('query' => array('reset' => 1))),
           '#id' => 'reset-filters',
         ),
       )),

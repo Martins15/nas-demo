@@ -7,6 +7,13 @@
   // Custom breadcrumbs for bird page.
   Drupal.behaviors.nasCtSpecies = {
     attach: function (context, settings) {
+      $('body').once('scrollonreset', function() {
+        if (location.search.indexOf('reset') == 1) {
+          $('html, body').animate({
+            scrollTop: $("#species-list").offset().top + $(window).height()
+          }, 200);
+        };
+      });
       var $a = $('#reset-filters a');
       if (location.search.length || location.pathname !== settings.nasConservationTracker.speciesPath) {
         $a.show();

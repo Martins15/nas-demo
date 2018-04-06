@@ -27,7 +27,7 @@
  * @ingroup views_templates
  */
 ?>
-<div class="<?php print $classes; ?> row">
+<div id="species-list" class="<?php print $classes; ?> row">
   <div class="species-filter">
     <?php print render($title_prefix); ?>
     <?php if ($title): ?>
