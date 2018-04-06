@@ -43,7 +43,8 @@ function nas_conservation_tracker_landscapes_main_render($subtype, $conf, $args,
   $map_info = current(leaflet_map_get_info());
   $map_info['settings']['layerControl'] = TRUE;
 
-  $map_info['layers']['earth']['urlTemplate'] = variable_get('nas_conservation_tracker_map_tiles_url_landscapes', '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}');
+  //$map_info['layers']['earth']['urlTemplate'] = variable_get('nas_conservation_tracker_map_tiles_url_landscapes', '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}');
+  $map_info['layers']['earth']['urlTemplate'] = variable_get('nas_conservation_tracker_map_tiles_url_landscapes', '//gis.audubon.org/arcgisweb/rest/services/TileCache/WorldTileCache/MapServer/tile/{z}/{y}/{x}');
   $map_info['layers']['earth']['options'] = array('attribution' => 'Mapnik | ESRI');
   // TODO make it configrable via form.
   $map_info['settings']['zoomDefault'] = 3;
