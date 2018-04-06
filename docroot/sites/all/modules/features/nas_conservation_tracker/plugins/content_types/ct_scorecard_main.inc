@@ -80,7 +80,9 @@ function nas_conservation_tracker_scorecard_main_render($subtype, $conf, $args, 
   $map_info['settings']['layerControl'] = TRUE;
   $map_info['settings']['preferCanvas'] = TRUE;
   //$map_info['layers']['earth']['urlTemplate'] = '//cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png';
-  $map_info['layers']['earth']['urlTemplate'] = variable_get('nas_conservation_tracker_map_tiles_url_scorecard', '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}');
+  //$map_info['layers']['earth']['urlTemplate'] = variable_get('nas_conservation_tracker_map_tiles_url_scorecard', '//server.arcgisonline.com/ArcGIS/rest/services/Canvas//World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}');
+  $map_info['layers']['earth']['urlTemplate'] = variable_get('nas_conservation_tracker_map_tiles_url_scorecard', '//gis.audubon.org/arcgisweb/rest/services/TileCache/WorldTileCache/MapServer/tile/{z}/{y}/{x}');
+
 
   if (!empty($data['settings'][$path]['map']['zoom'])) {
     $map_info['settings']['zoomDefault'] = $data['settings'][$path]['map']['zoom'];
